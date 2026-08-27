@@ -120,8 +120,9 @@ export default function Home() {
             <div className="stat-image-shade" />
             <div className="stat-topline"><span>The multiplication opportunity</span><b>02</b></div>
             <div className="stat-content">
+              <span className="stat-only">Only</span>
               <strong>3 - 5<span>%</span></strong>
-              <p>of Christians have personally led someone to the Lord in their lifetime.</p>
+              <p>of Christians in the history of the world have ever led one person to Christ.</p>
               <em>Imagine what changes when the whole Church is equipped to reach one.</em>
             </div>
           </div>
@@ -362,6 +363,7 @@ export default function Home() {
                         .stat{display:block;padding:clamp(10px,1.8vw,22px);border:1px solid rgba(102,188,250,.55);border-radius:clamp(10px,1.4vw,20px);background:rgba(2,15,30,.68);backdrop-filter:blur(8px)}
                         .stat strong{display:block;color:#55b8ff;font-size:clamp(27px,4.8vw,68px);line-height:.8;letter-spacing:-.06em}
                         .stat small{display:block;margin-top:10px;color:white;font-size:clamp(8px,1.05vw,13px);line-height:1.25;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+                        .stat .only{margin:0 0 7px;color:#8bd2ff;font-size:clamp(7px,.9vw,11px);letter-spacing:.18em}
                         .discover{display:block;max-width:660px;margin-top:clamp(10px,2vw,24px);font-size:clamp(9px,1.25vw,16px);line-height:1.35;font-weight:700}
                         .cost-title{font-size:clamp(22px,3.5vw,50px)}
                         .cost-title em{font-size:.46em;line-height:1.2;letter-spacing:.04em}
@@ -374,7 +376,7 @@ export default function Home() {
                             <span class="eyebrow">The challenge we’re changing</span>
                             <span class="stats">
                               <span class="stat"><strong>80%</strong><small>have never shared their faith</small></span>
-                              <span class="stat"><strong>&lt;5%</strong><small>have led someone to the Lord</small></span>
+                              <span class="stat"><small class="only">Only</small><strong>3 - 5%</strong><small>have led one person to Christ</small></span>
                             </span>
                             <span class="discover">Discover what Lockliel is—and how we’re going to change that.</span>
                             <span class="play"><b>▶</b> Watch the short vision</span>
