@@ -1,0 +1,22 @@
+LOCKLIEL NETLIFY CONVERSION
+
+These four replacement files convert the approved Lockliel website into a
+standard static Next.js export that Netlify can deploy.
+
+GITHUB
+1. Open the root of your Lockliel GitHub repository.
+2. Choose Add file > Upload files.
+3. Upload package.json, next.config.ts, tsconfig.json, and netlify.toml from
+   this folder. Keep all four at the repository root.
+4. Commit the changes.
+
+NETLIFY BUILD SETTINGS
+- Base directory: leave blank
+- Build command: npm run build
+- Publish directory: out
+- Functions directory: leave blank
+
+Then choose Deploy site (or Trigger deploy if the site already exists).
+
+This conversion was verified with a clean production build. It generated
+out/index.html and all referenced website image assets were present.
