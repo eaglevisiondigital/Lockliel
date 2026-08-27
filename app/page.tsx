@@ -176,15 +176,20 @@ export default function Home() {
           </div>
 
           <div className="harvest-numbers-note">
-            <p>
-              Religious identity is not necessarily the same as personally
-              knowing and following Christ. The true spiritual need is greater
-              than numbers alone can show.
-            </p>
-            <small>
-              Rounded estimates. Population data: <a href="https://population.un.org/wpp/" target="_blank" rel="noreferrer">United Nations</a>.
-              Christian affiliation benchmark: <a href="https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/" target="_blank" rel="noreferrer">Pew Research Center</a>.
-            </small>
+            <div className="context-marker" aria-hidden="true">i</div>
+            <div className="context-copy">
+              <span>Important context</span>
+              <p>
+                Religious identity is not necessarily the same as personally
+                knowing and following Christ. The true spiritual need is greater
+                than numbers alone can show.
+              </p>
+              <div className="context-sources">
+                <small>Rounded estimates · Sources</small>
+                <a href="https://population.un.org/wpp/" target="_blank" rel="noreferrer">United Nations <b>↗</b></a>
+                <a href="https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/" target="_blank" rel="noreferrer">Pew Research Center <b>↗</b></a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -423,8 +428,19 @@ export default function Home() {
                         .discover{display:block;max-width:660px;margin-top:clamp(10px,2vw,24px);font-size:clamp(9px,1.25vw,16px);line-height:1.35;font-weight:700}
                         .cost-title{font-size:clamp(22px,3.5vw,50px)}
                         .cost-title em{font-size:.46em;line-height:1.2;letter-spacing:.04em}
+                        .stats-cover{display:block}
+                        .stats-cover .shade{background:linear-gradient(180deg,rgba(1,8,19,.16) 0%,rgba(1,10,24,.08) 47%,rgba(1,10,24,.92) 73%,#020d1a 100%)}
+                        .stats-cover .copy{position:absolute;inset:0;width:100%;height:100%;padding:0}
+                        .stats-cover .eyebrow{position:absolute;top:6%;left:5%;margin:0;text-shadow:0 3px 14px rgba(0,0,0,.8)}
+                        .stats-cover .stats{position:absolute;left:4%;right:4%;bottom:4%;width:auto;height:32%;gap:clamp(8px,1.5vw,18px)}
+                        .stats-cover .stat{display:grid;align-content:center;padding:clamp(10px,1.4vw,18px);background:rgba(2,15,30,.94);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+                        .stats-cover .stat strong{font-size:clamp(27px,4vw,56px)}
+                        .stats-cover .stat small{margin-top:clamp(5px,.8vw,9px)}
+                        .stats-cover .stat .only{margin:0 0 5px}
+                        .stats-cover .discover{display:none}
+                        .stats-cover .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;text-shadow:0 3px 14px rgba(0,0,0,.8)}
                       </style>
-                      <a href="https://www.youtube-nocookie.com/embed/${video.videoId}?autoplay=1" aria-label="Play ${video.title}">
+                      <a class="${video.thumbnailType === "stats" ? "stats-cover" : ""}" href="https://www.youtube-nocookie.com/embed/${video.videoId}?autoplay=1" aria-label="Play ${video.title}">
                         <img src="${video.thumbnail}" alt="" />
                         <span class="shade"></span>
                         <span class="copy">
