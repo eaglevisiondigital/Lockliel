@@ -464,33 +464,39 @@ export default function Home() {
             </div>
             <form
               className="notify-form"
-              action="mailto:info@lockliel.com?subject=Notify%20me%20when%20Lockliel%20giving%20opens"
-              method="post"
-              encType="text/plain"
+              name="lockliel-interest"
+              action="/thank-you/"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
             >
+              <input type="hidden" name="form-name" value="lockliel-interest" />
+              <p className="form-honeypot" aria-hidden="true">
+                <label>Do not fill this out <input name="bot-field" tabIndex={-1} autoComplete="off" /></label>
+              </p>
               <div className="form-heading">
                 <strong>Be the first to know</strong>
                 <span>We’ll send you the giving link when it goes live.</span>
               </div>
               <label className="full-field">
                 <span>Name</span>
-                <input type="text" name="Name" placeholder="Your full name" autoComplete="name" required />
+                <input type="text" name="name" placeholder="Your full name" autoComplete="name" required />
               </label>
               <label className="full-field">
                 <span>Email address</span>
-                <input type="email" name="Email" placeholder="you@example.com" autoComplete="email" required />
+                <input type="email" name="email" placeholder="you@example.com" autoComplete="email" required />
               </label>
               <label>
                 <span>City</span>
-                <input type="text" name="City" placeholder="Your city" autoComplete="address-level2" required />
+                <input type="text" name="city" placeholder="Your city" autoComplete="address-level2" required />
               </label>
               <label>
                 <span>State</span>
-                <input type="text" name="State" placeholder="State / province" autoComplete="address-level1" required />
+                <input type="text" name="state" placeholder="State / province" autoComplete="address-level1" required />
               </label>
               <label className="full-field">
                 <span>Country</span>
-                <input type="text" name="Country" placeholder="Your country" autoComplete="country-name" required />
+                <input type="text" name="country" placeholder="Your country" autoComplete="country-name" required />
               </label>
               <fieldset className="harvest-pledge full-field">
                 <legend>Partner in the Harvest <span>Optional</span></legend>
@@ -498,12 +504,12 @@ export default function Home() {
                 <div className="pledge-controls">
                   <label className="pledge-amount">
                     <span>Pledge amount</span>
-                    <div><b>$</b><input type="number" name="Optional pledge amount" min="1" step="1" placeholder="Amount" /></div>
+                    <div><b>$</b><input type="number" name="pledge-amount" min="1" step="1" placeholder="Amount" /></div>
                   </label>
                   <div className="pledge-frequency" role="group" aria-label="Optional pledge frequency">
                     <span>Partnership</span>
-                    <label><input type="radio" name="Optional pledge frequency" value="One time" /> <b>One time</b></label>
-                    <label><input type="radio" name="Optional pledge frequency" value="Monthly" /> <b>Monthly</b></label>
+                    <label><input type="radio" name="pledge-frequency" value="One time" /> <b>One time</b></label>
+                    <label><input type="radio" name="pledge-frequency" value="Monthly" /> <b>Monthly</b></label>
                   </div>
                 </div>
               </fieldset>
