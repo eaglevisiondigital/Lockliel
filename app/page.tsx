@@ -432,11 +432,12 @@ export default function Home() {
                         .stats-cover .shade{background:linear-gradient(180deg,rgba(1,8,19,.16) 0%,rgba(1,10,24,.08) 47%,rgba(1,10,24,.92) 73%,#020d1a 100%)}
                         .stats-cover .copy{position:absolute;inset:0;width:100%;height:100%;padding:0}
                         .stats-cover .eyebrow{position:absolute;top:6%;left:5%;margin:0;text-shadow:0 3px 14px rgba(0,0,0,.8)}
-                        .stats-cover .stats{position:absolute;left:4%;right:4%;bottom:4%;width:auto;height:32%;gap:clamp(8px,1.5vw,18px)}
-                        .stats-cover .stat{display:grid;align-content:center;padding:clamp(10px,1.4vw,18px);background:rgba(2,15,30,.94);box-shadow:0 16px 40px rgba(0,0,0,.28)}
-                        .stats-cover .stat strong{font-size:clamp(27px,4vw,56px)}
+                        .stats-cover .stats{position:absolute;left:4%;right:4%;bottom:3%;width:auto;height:auto;align-items:stretch;gap:clamp(8px,1.5vw,18px)}
+                        .stats-cover .stat{display:grid;align-content:center;padding:clamp(9px,1.05vw,15px) clamp(14px,1.5vw,22px);background:rgba(2,15,30,.94);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+                        .stats-cover .stat strong{font-size:clamp(30px,4.4vw,62px)}
                         .stats-cover .stat small{margin-top:clamp(5px,.8vw,9px)}
                         .stats-cover .stat .only{margin:0 0 5px}
+                        .stats-cover .stat .stat-spacer{visibility:hidden}
                         .stats-cover .discover{display:none}
                         .stats-cover .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;text-shadow:0 3px 14px rgba(0,0,0,.8)}
                       </style>
@@ -447,7 +448,7 @@ export default function Home() {
                           ${video.thumbnailType === "stats" ? `
                             <span class="eyebrow">The challenge we’re changing</span>
                             <span class="stats">
-                              <span class="stat"><strong>80%</strong><small>have never shared their faith</small></span>
+                              <span class="stat"><small class="only stat-spacer" aria-hidden="true">Only</small><strong>80%</strong><small>have never shared their faith</small></span>
                               <span class="stat"><small class="only">Only</small><strong>3 - 5%</strong><small>have led one person to Christ</small></span>
                             </span>
                             <span class="discover">Discover what Lockliel is—and how we’re going to change that.</span>
