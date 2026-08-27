@@ -465,7 +465,7 @@ export default function Home() {
             <form
               className="notify-form"
               name="lockliel-interest"
-              action="/thank-you/"
+              action="/thank-you"
               method="POST"
               data-netlify="true"
               data-netlify-honeypot="bot-field"
