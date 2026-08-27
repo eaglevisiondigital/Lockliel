@@ -316,6 +316,7 @@ blockquote cite { display: block; margin-top: 15px; color: #7cc8ff; font-family:
 .social-icons a:hover { transform: translateY(-8px); background: #061b30; box-shadow: 0 26px 55px rgba(0,23,46,.32); }
 .social-icons svg { width: 34%; height: 34%; fill: currentColor; }
 .notify-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+.form-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 .form-heading { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 5px 2px 2px; }
 .form-heading strong { font-size: 15px; letter-spacing: -.02em; }
 .form-heading span { color: #71808d; font-size: 11px; }
@@ -349,6 +350,20 @@ footer { padding: 74px 0 26px; background: #020c17; color: white; }
 .footer-grid a { color: rgba(255,255,255,.65); font-size: 13px; }
 .footer-grid a:hover { color: white; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.35); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+
+.thank-you-page { position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden; padding: 48px 24px; background: radial-gradient(circle at 76% 22%, rgba(11,132,227,.38), transparent 33%), linear-gradient(145deg, #020b16, #052746); color: white; }
+.thank-you-page::before { content: ""; position: absolute; inset: 0; opacity: .13; background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(circle at center, black, transparent 72%); }
+.thank-you-glow { position: absolute; width: 650px; height: 650px; right: -280px; top: -300px; border: 1px solid rgba(110,201,255,.25); border-radius: 50%; box-shadow: 0 0 0 80px rgba(54,169,255,.035), 0 0 0 160px rgba(54,169,255,.02); }
+.thank-you-card { position: relative; z-index: 1; width: min(720px, 100%); padding: 52px; border: 1px solid rgba(112,200,255,.3); border-radius: 32px; background: linear-gradient(145deg, rgba(5,38,69,.92), rgba(2,14,27,.94)); box-shadow: 0 42px 100px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.08); backdrop-filter: blur(16px); }
+.thank-you-card::after { content: ""; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 23px; pointer-events: none; }
+.thank-you-brand { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 11px; font-size: 20px; font-weight: 800; letter-spacing: -.04em; }
+.thank-you-brand img { width: 44px; height: 44px; object-fit: contain; }
+.thank-you-check { position: relative; z-index: 2; display: grid; place-items: center; width: 72px; height: 72px; margin: 54px 0 30px; border: 1px solid rgba(130,214,255,.65); border-radius: 50%; background: #0b84e3; box-shadow: 0 0 0 12px rgba(54,169,255,.08), 0 16px 42px rgba(0,0,0,.28); font-size: 31px; }
+.thank-you-card .section-kicker { position: relative; z-index: 2; margin-bottom: 15px; }
+.thank-you-card h1 { position: relative; z-index: 2; max-width: 610px; margin: 0; font-size: clamp(45px, 6vw, 72px); line-height: .94; letter-spacing: -.065em; }
+.thank-you-card > p:not(.section-kicker) { position: relative; z-index: 2; max-width: 580px; margin: 25px 0 0; color: rgba(255,255,255,.68); font-size: 16px; line-height: 1.75; }
+.thank-you-actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.thank-you-card > small { position: relative; z-index: 2; display: block; margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.13); color: rgba(255,255,255,.45); font-size: 10px; line-height: 1.6; }
 
 @media (max-width: 900px) {
   .site-header nav { display: none; }
@@ -465,6 +480,14 @@ footer { padding: 74px 0 26px; background: #020c17; color: white; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px 30px; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; }
+  .thank-you-page { padding: 18px; }
+  .thank-you-card { padding: 34px 28px; border-radius: 26px; }
+  .thank-you-card::after { inset: 10px; border-radius: 19px; }
+  .thank-you-check { width: 62px; height: 62px; margin: 42px 0 25px; font-size: 27px; }
+  .thank-you-card h1 { font-size: 45px; }
+  .thank-you-card > p:not(.section-kicker) { font-size: 14px; }
+  .thank-you-actions { display: grid; }
+  .thank-you-actions .button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
