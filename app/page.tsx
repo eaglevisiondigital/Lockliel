@@ -133,6 +133,62 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="harvest-numbers-section" aria-labelledby="harvest-numbers-title">
+        <div className="harvest-numbers-glow" aria-hidden="true" />
+        <div className="page-shell harvest-numbers-layout">
+          <div className="harvest-numbers-copy">
+            <p className="section-kicker light">The harvest before us</p>
+            <h2 id="harvest-numbers-title">More than <em>8.3 billion</em> people.<br />One global mission.</h2>
+            <p>
+              Approximately 2.5 billion people worldwide identify as Christian.
+              Roughly 5.8 billion do not. The need is enormous—and so is the
+              opportunity before the Church.
+            </p>
+            <div className="world-counts" aria-label="Estimated worldwide religious identity">
+              <div>
+                <span>Identify as Christian</span>
+                <strong>≈2.5B</strong>
+                <small>about thirty percent</small>
+              </div>
+              <div>
+                <span>The harvest still before us</span>
+                <strong>≈5.8B</strong>
+                <small>more than two-thirds of the world</small>
+              </div>
+            </div>
+          </div>
+
+          <div className="global-ratio" aria-label="About three out of every ten people worldwide identify as Christian">
+            <span className="ratio-orbit orbit-one" aria-hidden="true" />
+            <span className="ratio-orbit orbit-two" aria-hidden="true" />
+            <small>Only about</small>
+            <strong><b>3</b><span>out of</span><b>10</b></strong>
+            <p>people worldwide identify as Christian</p>
+          </div>
+
+          <div className="reach-one-callout">
+            <div>
+              <span>The multiplication question</span>
+              <h3>What if every Christian reached one?</h3>
+              <p>One believer. One conversation. One life changed. Multiplied around the world.</p>
+            </div>
+            <strong aria-hidden="true">×1</strong>
+          </div>
+
+          <div className="harvest-numbers-note">
+            <p>
+              Religious identity is not necessarily the same as personally
+              knowing and following Christ. The true spiritual need is greater
+              than numbers alone can show.
+            </p>
+            <small>
+              Rounded estimates. Population data: <a href="https://population.un.org/wpp/" target="_blank" rel="noreferrer">United Nations</a>.
+              Christian affiliation benchmark: <a href="https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/" target="_blank" rel="noreferrer">Pew Research Center</a>.
+            </small>
+          </div>
+        </div>
+      </section>
+
       <section className="everywhere-section" aria-labelledby="everywhere-title">
         <div className="page-shell everywhere-heading">
           <p className="section-kicker">The Gospel belongs everywhere</p>
