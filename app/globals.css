@@ -65,7 +65,7 @@ img { display: block; max-width: 100%; }
     linear-gradient(90deg, rgba(2,11,21,.97) 0%, rgba(2,11,21,.76) 43%, rgba(2,11,21,.08) 78%),
     linear-gradient(0deg, rgba(2,11,21,.85) 0%, transparent 35%);
 }
-.hero-content { position: relative; z-index: 2; padding-top: 190px; }
+.hero-content { position: relative; z-index: 2; padding-top: 190px; padding-bottom: 64px; }
 .kicker, .section-kicker { text-transform: uppercase; letter-spacing: .17em; font-size: 11px; line-height: 1.4; font-weight: 800; }
 .kicker { display: flex; align-items: center; gap: 12px; color: #a9d8ff; margin-bottom: 29px; }
 .kicker span { width: 34px; height: 2px; background: var(--blue-bright); }
@@ -79,14 +79,15 @@ img { display: block; max-width: 100%; }
 }
 .hero h1 em { color: var(--blue-bright); font-style: normal; font-weight: 400; }
 .hero-copy { max-width: 670px; margin: 34px 0 0; color: rgba(255,255,255,.72); font-size: 18px; line-height: 1.7; }
-.hero-actions { display: flex; gap: 14px; margin-top: 38px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
 .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 10px; padding: 0 24px; border-radius: 999px; font-size: 13px; font-weight: 800; letter-spacing: .02em; transition: transform .2s ease, background .2s ease; }
 .button:hover { transform: translateY(-2px); }
 .button-primary { background: var(--blue); color: white; box-shadow: 0 12px 36px rgba(11,132,227,.28); }
 .button-primary:hover { background: #1495f5; }
 .button-ghost { border: 1px solid rgba(255,255,255,.28); color: white; background: rgba(255,255,255,.06); backdrop-filter: blur(8px); }
 .play-icon { display: grid; place-items: center; width: 27px; height: 27px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; font-size: 8px; padding-left: 2px; }
-.hero-rail { position: absolute; top: 685px; left: 0; display: grid; grid-template-columns: repeat(4, 1fr); width: min(770px, 70%); border-top: 1px solid rgba(255,255,255,.2); }
+/* Keep the mission row in normal flow below the buttons on every screen. */
+.hero-rail { position: static; display: grid; grid-template-columns: repeat(4, 1fr); width: min(770px, 70%); margin-top: 44px; border-top: 1px solid rgba(255,255,255,.2); }
 .hero-rail div { padding: 22px 0; display: flex; align-items: center; gap: 12px; border-right: 1px solid rgba(255,255,255,.13); }
 .hero-rail span { color: var(--blue-bright); font-size: 10px; font-weight: 800; }
 .hero-rail strong { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
@@ -411,7 +412,7 @@ footer { padding: 74px 0 26px; background: #020c17; color: white; }
 @media (max-width: 900px) {
   .site-header nav { display: none; }
   .hero { min-height: 860px; }
-  .hero-rail { width: 100%; top: 710px; }
+  .hero-rail { width: 100%; }
   .two-column-heading, .everywhere-heading, .on-the-go-heading, .connection-grid, .partner-layout, .relaunch-grid, .harvest-numbers-layout { grid-template-columns: 1fr; }
   .challenge-intro { grid-template-columns: 1fr; gap: 18px; padding-right: 0; }
   .challenge-grid { grid-template-columns: 1fr 1fr; }
