@@ -288,7 +288,6 @@ blockquote cite { display: block; margin-top: 15px; color: #7cc8ff; font-family:
 .centered-heading > p:last-child { margin: 22px auto 0; max-width: 600px; color: #63707d; font-size: 16px; line-height: 1.7; }
 .videos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .video-card { position: relative; overflow: hidden; background: white; border: 1px solid rgba(11,132,227,.12); border-radius: 28px; box-shadow: 0 25px 65px rgba(3,20,40,.1); }
-.video-card::before { content: "VISION MESSAGE"; position: absolute; top: 18px; left: 18px; z-index: 3; padding: 9px 12px; border-radius: 999px; background: rgba(2,12,23,.82); color: white; font-size: 8px; font-weight: 900; letter-spacing: .15em; pointer-events: none; }
 .featured-video { grid-column: 1 / -1; display: grid; grid-template-columns: 1.45fr .55fr; }
 .video-frame { position: relative; aspect-ratio: 16/9; background: #071727; }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
@@ -578,7 +577,6 @@ footer { padding: 74px 0 26px; background: #020c17; color: white; }
   .billion-badge strong { font-size: 31px; }
   .billion-badge span { max-width: 72px; font-size: 8px; }
   .featured-video { grid-column: auto; }
-  .video-card::before { display: none; }
   .video-details, .featured-video .video-details { padding: 24px; }
   .video-details h3 { font-size: 24px; line-height: 1.08; }
   .video-details span { margin-top: 11px; }
