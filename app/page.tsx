@@ -435,14 +435,24 @@ export default function Home() {
                         .stats-cover .shade{background:linear-gradient(180deg,rgba(1,8,19,.16) 0%,rgba(1,10,24,.08) 47%,rgba(1,10,24,.92) 73%,#020d1a 100%)}
                         .stats-cover .copy{position:absolute;inset:0;width:100%;height:100%;padding:0}
                         .stats-cover .eyebrow{position:absolute;top:6%;left:5%;margin:0;text-shadow:0 3px 14px rgba(0,0,0,.8)}
-                        .stats-cover .stats{position:absolute;left:4%;right:4%;bottom:3%;width:auto;height:auto;align-items:stretch;gap:clamp(8px,1.5vw,18px)}
-                        .stats-cover .stat{display:grid;align-content:center;padding:clamp(9px,1.05vw,15px) clamp(14px,1.5vw,22px);background:rgba(2,15,30,.94);box-shadow:0 16px 40px rgba(0,0,0,.28)}
-                        .stats-cover .stat strong{font-size:clamp(30px,4.4vw,62px)}
-                        .stats-cover .stat small{margin-top:clamp(5px,.8vw,9px)}
-                        .stats-cover .stat .only{margin:0 0 5px}
+                        .stats-cover .stats{position:absolute;left:50%;right:auto;bottom:4%;transform:translateX(-50%);width:92%;max-width:880px;height:auto;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:clamp(10px,1.4vw,18px)}
+                        .stats-cover .stat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-content:normal;align-items:center;gap:clamp(12px,1.8vw,20px);min-width:0;padding:clamp(12px,1.4vw,18px) clamp(14px,1.8vw,22px);border:1px solid rgba(102,188,250,.32);border-radius:14px;background:linear-gradient(120deg,rgba(9,34,56,.97),rgba(2,15,30,.96));box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 24px rgba(0,0,0,.22)}
+                        .stats-cover .stat-value{display:grid;align-content:center;gap:5px;min-width:0}
+                        .stats-cover .stat strong{display:flex;align-items:baseline;gap:.08em;font-size:clamp(32px,4.6vw,56px);line-height:.9;letter-spacing:-.04em;white-space:nowrap}
+                        .stats-cover .stat strong .percent{font-size:.6em;letter-spacing:0}
+                        .stats-cover .stat .stat-label{margin:0;padding-left:clamp(12px,1.5vw,18px);border-left:1px solid rgba(102,188,250,.25);font-size:clamp(12px,1.4vw,16px);line-height:1.4;font-weight:700;letter-spacing:0;text-transform:none;text-wrap:pretty}
+                        .stats-cover .stat .only{margin:0;font-size:12px;line-height:1;letter-spacing:.16em}
                         .stats-cover .stat .stat-spacer{visibility:hidden}
                         .stats-cover .discover{display:none}
                         .stats-cover .play{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);margin:0;white-space:nowrap;text-shadow:0 3px 14px rgba(0,0,0,.8)}
+                        @media(max-width:600px){
+                          .stats-cover .stat{grid-template-columns:minmax(0,1fr);gap:6px;padding:8px 10px;border-radius:12px}
+                          .stats-cover .stat-value{gap:4px}
+                          .stats-cover .stat strong{font-size:clamp(28px,7vw,38px)}
+                          .stats-cover .stat .stat-label{padding:0;border:0;font-size:12px;line-height:1.25}
+                          .stats-cover .play{top:32%;gap:8px;font-size:12px}
+                          .stats-cover .play b{width:34px;height:34px}
+                        }
                       </style>
                       <a class="${video.thumbnailType === "stats" ? "stats-cover" : ""}" href="https://www.youtube-nocookie.com/embed/${video.videoId}?autoplay=1" aria-label="Play ${video.title}">
                         <img src="${video.thumbnail}" alt="" />
@@ -451,8 +461,14 @@ export default function Home() {
                           ${video.thumbnailType === "stats" ? `
                             <span class="eyebrow">The challenge we’re changing</span>
                             <span class="stats">
-                              <span class="stat"><small class="only stat-spacer" aria-hidden="true">Only</small><strong>80%</strong><small>have never shared their faith</small></span>
-                              <span class="stat"><small class="only">Only</small><strong>3 - 5%</strong><small>have led one person to Christ</small></span>
+                              <span class="stat">
+                                <span class="stat-value"><small class="only stat-spacer" aria-hidden="true">Only</small><strong><span>80</span><span class="percent">%</span></strong></span>
+                                <small class="stat-label">Have never shared their faith</small>
+                              </span>
+                              <span class="stat">
+                                <span class="stat-value"><small class="only">Only</small><strong><span>3 - 5</span><span class="percent">%</span></strong></span>
+                                <small class="stat-label">Have led one person to Christ</small>
+                              </span>
                             </span>
                             <span class="discover">Discover what Lockliel is—and how we’re going to change that.</span>
                             <span class="play"><b>▶</b> Watch the short vision</span>
