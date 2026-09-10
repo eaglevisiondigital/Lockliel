@@ -1,3 +1,5 @@
+import FaithBoostSection from "@/components/faith-boost-section";
+
 const visionSteps = [
   {
     number: "01",
@@ -66,6 +68,7 @@ export default function Home() {
         <nav aria-label="Primary navigation">
           <a href="#vision">The Vision</a>
           <a href="#videos">Videos</a>
+          <a href="#faith-boost">Faith Boost</a>
           <a href="#partner">Partnership</a>
         </nav>
         <a className="header-cta" href="#partner">Sow Into the Vision</a>
@@ -482,6 +485,8 @@ export default function Home() {
         </div>
       </section>
 
+      <FaithBoostSection />
+
       <section className="relaunch-section">
         <div className="relaunch-backdrop" />
         <div className="page-shell relaunch-grid">
@@ -494,12 +499,12 @@ export default function Home() {
             <p className="section-kicker light">The vision is moving forward</p>
             <h2>Doubling down on the <em>technology.</em><br />Turning up the <em>message.</em></h2>
             <p>
-              Development is moving forward with renewed focus. We will also be
-              starting back with the <strong>Monday through Friday Faith Boost
-              Broadcast</strong>, bringing fresh encouragement while the
-              Lockliel platform is being built.
+              Development is moving forward with renewed focus. Alongside the
+              <strong> Faith Boost Broadcast relaunch</strong>, we’re building
+              the tools that will equip believers to reach, teach, train,
+              and disciple.
             </p>
-            <div className="broadcast-chip"><span>5×</span><strong>Faith Boost</strong><small>Monday–Friday</small></div>
+            <a className="broadcast-chip" href="#faith-boost"><span>7×</span><strong>Faith Boost</strong><small>Daily · 7 PM CT</small></a>
           </div>
           <div className="launch-date">
             <span>Next milestone</span>
