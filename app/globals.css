@@ -297,6 +297,41 @@ blockquote cite { display: block; margin-top: 15px; color: #7cc8ff; font-family:
 .video-details h3 { margin: 0; font-size: 27px; letter-spacing: -.04em; }
 .video-details span { display: block; margin-top: 14px; color: #66717d; font-size: 14px; line-height: 1.6; }
 
+/* Founders 50 invitations use the same palette and image treatment as the vision. */
+.founders-invitation { padding: 100px 0; background: linear-gradient(125deg,#eaf2f8,#f5f7f8); border-top: 1px solid #d7e4ef; }
+.founders-invitation-grid { display: grid; grid-template-columns: 1fr 1.05fr; align-items: center; gap: 68px; }
+.founders-invitation-art { min-width: 0; border: 1px solid #234d70; border-radius: 30px; overflow: hidden; background: #062039; box-shadow: 0 28px 65px rgba(3,20,40,.15); }
+.founders-invitation-art > img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 35%; }
+.founders-invitation-art > div { display: flex; align-items: center; gap: 30px; padding: 22px 32px; background: linear-gradient(120deg,#0a365d,#031729); }
+.founders-invitation-art strong { font-size: 88px; line-height: .95; font-weight: 800; letter-spacing: -.085em; color: #58bcff; }
+.founders-invitation-art span { padding-left: 24px; border-left: 1px solid #365a76; color: #d2e9fa; font-size: 16px; line-height: 1.55; }
+.founders-invitation-kicker { color: #0874ba; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; line-height: 1.5; font-weight: 800; margin: 0 0 20px; }
+.founders-invitation-copy h2 { margin: 0; font-size: clamp(38px,4.5vw,59px); line-height: 1.03; font-weight: 700; letter-spacing: -.055em; }
+.founders-invitation-copy h2 em { color: #0b84e3; font-style: normal; font-weight: 400; }
+.founders-invitation-copy > p:not(.founders-invitation-kicker) { font-size: 17px; color: #566575; line-height: 1.7; margin: 24px 0; }
+.founders-invitation-copy ul { display: flex; flex-wrap: wrap; list-style: none; margin: 0 0 30px; padding: 0; gap: 10px 18px; color: #195679; font-size: 14px; font-weight: 700; }
+.founders-invitation-copy .button { font-size: 14px; }
+.faith-boost-founders { display: flex; align-items: center; justify-content: space-between; gap: 44px; margin-top: 40px; padding: 32px 36px; border: 1px solid #315c7d; border-radius: 24px; background: linear-gradient(120deg,rgba(20,91,143,.24),rgba(3,21,39,.45)); }
+.faith-boost-founders > div { max-width: 750px; }
+.faith-boost-founders .faith-boost-eyebrow { margin-bottom: 14px; }
+.faith-boost-founders h3 { margin: 0; font-size: clamp(26px,3vw,36px); font-weight: 700; line-height: 1.15; letter-spacing: -.035em; }
+.faith-boost-founders p:last-child { margin: 16px 0 0; font-size: 16px; color: #b6cede; line-height: 1.65; }
+.faith-boost-founders > a { flex-shrink: 0; font-size: 14px; }
+@media (max-width: 900px) {
+  .founders-invitation-grid { gap: 36px; }
+  .faith-boost-founders { flex-direction: column; align-items: flex-start; gap: 24px; }
+}
+@media (max-width: 640px) {
+  .founders-invitation { padding: 64px 0; }
+  .founders-invitation-grid { grid-template-columns: 1fr; gap: 32px; }
+  .founders-invitation-art > div { padding: 20px 24px; gap: 24px; }
+  .founders-invitation-art strong { font-size: 72px; }
+  .founders-invitation-art span { font-size: 15px; padding-left: 20px; }
+  .founders-invitation-copy h2 { font-size: 39px; }
+  .faith-boost-founders { padding: 26px 24px; }
+  .faith-boost-founders > a { width: 100%; text-align: center; }
+}
+
 /* Faith Boost Broadcast: keep copy and supplied artwork in normal document flow. */
 .faith-boost-section { padding: 110px 0 90px; scroll-margin-top: 24px; color: white; background: radial-gradient(ellipse at 90% 18%, rgba(11,132,227,.24), transparent 48%), linear-gradient(145deg, #031428, #061e38); }
 .faith-boost-feature { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }

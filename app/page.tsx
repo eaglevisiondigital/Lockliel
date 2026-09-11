@@ -1,4 +1,5 @@
 import FaithBoostSection from "@/components/faith-boost-section";
+import Founders50Invitation from "@/components/founders50-invitation";
 
 const visionSteps = [
   {
@@ -69,6 +70,7 @@ export default function Home() {
           <a href="#vision">The Vision</a>
           <a href="#videos">Videos</a>
           <a href="#faith-boost">Faith Boost</a>
+          <a href="/founders-50">Founders 50</a>
           <a href="#partner">Partnership</a>
         </nav>
         <a className="header-cta" href="#partner">Sow Into the Vision</a>
@@ -501,6 +503,7 @@ export default function Home() {
         </div>
       </section>
 
+      <Founders50Invitation />
       <FaithBoostSection />
 
       <section className="relaunch-section">
@@ -656,6 +659,7 @@ export default function Home() {
             <span>Explore</span>
             <a href="#vision">The Vision</a>
             <a href="#videos">Watch Videos</a>
+            <a href="/founders-50">Founders 50</a>
             <a href="#partner">Partnership</a>
           </div>
           <div>
