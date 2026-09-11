@@ -5,7 +5,7 @@ import "./founders.css";
 
 export const metadata: Metadata = {
   title: "The Founders 50 | Help Begin the Lockliel Movement",
-  description: "Share with five. Gather a few. Reach your community. We're looking for the first 50 people across America to help build Lockliel from the ground up.",
+  description: "Share with five. Gather a few. Join Lockliel's first 50 hosts across America, Canada, and other English-speaking countries, with a worldwide vision.",
   alternates: { canonical: "https://lockliel.com/founders-50" },
   openGraph: {
     title: "The Lockliel Founders 50",
@@ -57,7 +57,8 @@ export default function Founders50Page() {
             <p className="f50-eyebrow">A ground floor opportunity</p>
             <h1 id="founders-title">The Founders <em>50.</em></h1>
             <h2>We're looking for 50 people ready to reach their world.</h2>
-            <p className="f50-lead">People across America who love Jesus, believe the Bible, love people, and are willing to gather a few and help something grow.</p>
+            <p className="f50-lead">People across America and Canada (for now, any English-speaking country) who love Jesus, believe the Bible, love people, and are willing to gather a few and help something grow.</p>
+            <p className="f50-lead">As Lockliel develops, our vision is to reach every country and every language around the world.</p>
             <p className="f50-hero-reassurance">You don't need a building, a title, or a large following.</p>
             <div className="f50-actions">
               <a className="button button-primary" href="#apply">I'm interested in becoming one of the 50 <ArrowUpRight size={18} aria-hidden="true" /></a>
@@ -68,7 +69,7 @@ export default function Founders50Page() {
             <img src="/living-room-small-group-v2.png" alt="A small group sharing Scripture and conversation in a living room" width="1448" height="1086" fetchPriority="high" />
             <figcaption>
               <strong>50</strong>
-              <div><span>The first founding hosts</span><p>Across America.<br />United by one mission.</p></div>
+              <div><span>The first founding hosts</span><p>Starting in English.<br />A worldwide vision.</p></div>
             </figcaption>
           </figure>
         </div>

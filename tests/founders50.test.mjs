@@ -11,7 +11,7 @@ test("Founders 50 form fields match the Netlify detection form", async () => {
   const html = withoutScripts(await read("out/founders-50.html"));
   const form = html.match(/<form\b[^>]*name="lockliel-founders-50"[\s\S]*?<\/form>/)?.[0];
   assert.ok(form, "The application must be included in the exported page");
-  const expected = ["form-name", "bot-field", "first-name", "last-name", "email", "mobile-phone", "city", "state", "church-affiliation", "gathering-place", "invite-count", "why-interested", "what-excites-you", "share-with-five", "gather-weekly", "training-willingness"].sort();
+  const expected = ["form-name", "bot-field", "first-name", "last-name", "email", "mobile-phone", "city", "state", "country", "church-affiliation", "gathering-place", "invite-count", "why-interested", "what-excites-you", "share-with-five", "gather-weekly", "training-willingness"].sort();
   assert.deepEqual([...fieldNames(form)].sort(), expected);
   assert.deepEqual([...fieldNames(await read("out/__founders50.html"))].sort(), expected);
   assert.match(form, /method="POST"/);
@@ -21,6 +21,13 @@ test("Founders 50 form fields match the Netlify detection form", async () => {
   const church = form.match(/<input\b[^>]*name="church-affiliation"[^>]*>/)?.[0];
   assert.ok(church);
   assert.doesNotMatch(church, /\brequired\b/);
+  const country = form.match(/<input\b[^>]*name="country"[^>]*>/)?.[0];
+  assert.ok(country);
+  assert.match(country, /\brequired\b/);
+  assert.match(country, /autoComplete="country-name"/i);
+  const region = form.match(/<input\b[^>]*name="state"[^>]*>/)?.[0];
+  assert.ok(region, "Applicants can enter a province or region outside the U.S.");
+  assert.doesNotMatch(region, /\brequired\b/);
 });
 
 test("Founders 50 assets and local links resolve in the static export", async () => {

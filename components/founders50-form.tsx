@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "American Samoa", "Guam", "Northern Mariana Islands", "Puerto Rico", "U.S. Virgin Islands"];
 const places = ["Home", "Coffee shop", "Workplace / office", "Community space", "Restaurant", "Other"];
 const inviteCounts = ["2 - 3", "4 - 5", "6 - 10", "11+", "Not sure yet"];
 const willingness = ["Yes", "I'd like to learn more"];
@@ -29,7 +28,7 @@ export default function Founders50Form() {
     if (submitting.current) return;
     const form = event.currentTarget;
     const data = new FormData(form);
-    const required = ["first-name", "last-name", "email", "mobile-phone", "city", "state", "gathering-place", "invite-count", "why-interested", "what-excites-you", "share-with-five", "gather-weekly", "training-willingness"];
+    const required = ["first-name", "last-name", "email", "mobile-phone", "city", "country", "gathering-place", "invite-count", "why-interested", "what-excites-you", "share-with-five", "gather-weekly", "training-willingness"];
     const missing = required.find(name => !String(data.get(name) ?? "").trim());
     if (missing) {
       setError("Please complete each required field so we can get to know you.");
@@ -68,7 +67,7 @@ export default function Founders50Form() {
     <form className="f50-form" name="lockliel-founders-50" method="POST" action="/founders-50/thank-you" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit} noValidate aria-labelledby="f50-form-title" aria-busy={status === "sending"}>
       <input type="hidden" name="form-name" value="lockliel-founders-50" />
       <p className="f50-honeypot" aria-hidden="true"><label>Leave this field empty <input name="bot-field" tabIndex={-1} autoComplete="off" /></label></p>
-      <div className="f50-form-heading"><p className="f50-eyebrow">The Founders 50</p><h3 id="f50-form-title">Express your interest.</h3><p>Every field is required except your church or ministry affiliation.</p></div>
+      <div className="f50-form-heading"><p className="f50-eyebrow">The Founders 50</p><h3 id="f50-form-title">Express your interest.</h3><p>Fields marked optional may be left blank.</p></div>
       <noscript><p className="f50-form-error">Please enable JavaScript to complete this form, or contact info@lockliel.com to express your interest.</p></noscript>
       <fieldset><legend><span>01</span> You and your community</legend><div className="f50-form-grid">
         <div className="f50-field"><label htmlFor="first-name">First name</label><input id="first-name" name="first-name" autoComplete="given-name" maxLength={80} required /></div>
@@ -76,7 +75,8 @@ export default function Founders50Form() {
         <div className="f50-field"><label htmlFor="email">Email address</label><input id="email" name="email" type="email" autoComplete="email" maxLength={254} required /></div>
         <div className="f50-field"><label htmlFor="mobile-phone">Mobile phone</label><input id="mobile-phone" name="mobile-phone" type="tel" inputMode="tel" autoComplete="tel" maxLength={40} required /></div>
         <div className="f50-field"><label htmlFor="city">City</label><input id="city" name="city" autoComplete="address-level2" maxLength={100} required /></div>
-        <FormSelect name="state" label="State / territory" placeholder="Choose your state" options={states} />
+        <div className="f50-field"><label htmlFor="state">State / province / region <span>Optional</span></label><input id="state" name="state" autoComplete="address-level1" maxLength={100} /></div>
+        <div className="f50-field f50-full-field"><label htmlFor="country">Country</label><input id="country" name="country" autoComplete="country-name" maxLength={100} required /></div>
       </div></fieldset>
       <fieldset><legend><span>02</span> Where you could begin</legend><div className="f50-form-grid">
         <div className="f50-field f50-full-field"><label htmlFor="church-affiliation">Current church / ministry <span>Optional</span></label><input id="church-affiliation" name="church-affiliation" maxLength={160} /></div>

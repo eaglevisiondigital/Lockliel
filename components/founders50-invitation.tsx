@@ -11,7 +11,7 @@ export default function Founders50Invitation() {
         <div className="founders-invitation-copy">
           <p className="founders-invitation-kicker">What if God wants to use your living room?</p>
           <h2 id="founders-invitation-title">We're looking for<br /><em>the Founders 50.</em></h2>
-          <p>50 ordinary believers across America willing to gather people, share Faith Boost, reach their communities, and help us build a movement of disciples who make disciples.</p>
+          <p>50 ordinary believers across America, Canada, and other English-speaking countries willing to gather people, share Faith Boost, reach their communities, and help us build a movement of disciples who make disciples.</p>
           <ul><li>No building required.</li><li>No title required.</li><li>Start with two.</li></ul>
           <a className="button button-primary" href="/founders-50">Discover the Founders 50 <ArrowUpRight size={18} aria-hidden="true" /></a>
         </div>
