@@ -4,3 +4,15 @@
 
 [build.environment]
   NODE_VERSION = "22.13.0"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[functions."faith-boost-reader"]
+  included_files = ["resources/faith-boost-reader/**"]
+
+[[headers]]
+  for = "/who-god-says-you-are/read*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
