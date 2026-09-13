@@ -1,3 +1,5 @@
+import FreeBookInvitation from "@/components/free-book-invitation";
+
 const weeklyLineup = [
   { day: "Monday", theme: "Love", image: "monday-love" },
   { day: "Tuesday", theme: "Righteous", image: "tuesday-righteous" },
@@ -65,6 +67,7 @@ export default function FaithBoostSection() {
             ))}
           </ol>
         </div>
+        <FreeBookInvitation />
         <div className="faith-boost-founders">
           <div><p className="faith-boost-eyebrow">Take the next step with the Founders 50</p><h3>Don't just watch Faith Boost. Gather someone.</h3><p>Invite a couple of friends. Watch together, talk about what you're learning, pray, and encourage each other. Then help somebody else.</p></div>
           <a className="button button-ghost" href="/founders-50">Become a founding host <span aria-hidden="true">↗</span></a>
