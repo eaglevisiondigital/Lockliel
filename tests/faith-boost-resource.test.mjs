@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { createSignup } from "../netlify/functions/faith-boost-signup.mjs";
-import { COOKIE, hash, sessionFor } from "../netlify/lib/faith-boost-core.mjs";
+import { COOKIE, allowedOrigin, hash, sessionFor } from "../netlify/lib/faith-boost-core.mjs";
 
 function memoryStore() {
   const data = new Map(); let revision = 0;
@@ -14,6 +14,15 @@ function memoryStore() {
 }
 const valid = { firstName: "QA Reader", email: "reader@example.com", phone: "", emailConsent: true, attribution: { utm_source: "facebook", utm_medium: "social", utm_campaign: "identity", utm_content: "video-1", referrer: "facebook.com" } };
 const request = (data, origin = "https://lockliel.com") => new Request("https://lockliel.com/api/faith-boost/signup", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: JSON.stringify(data) });
+
+test("same-origin Lockliel deploy previews work without runtime URL variables; lookalike and cross-origin hosts fail", () => {
+  const preview = "https://deploy-preview-1--lockliel.netlify.app";
+  assert.equal(allowedOrigin(new Request(`${preview}/api/faith-boost/signup`, {headers:{Origin:preview}})), true);
+  for (const foreign of ["https://deploy-preview-1--unrelated.netlify.app", "https://deploy-preview-1--lockliel.netlify.app.evil.example"]) {
+    assert.equal(allowedOrigin(new Request(`${foreign}/api/faith-boost/signup`, {headers:{Origin:foreign}})), false);
+    assert.equal(allowedOrigin(new Request(`${preview}/api/faith-boost/signup`, {headers:{Origin:foreign}})), false);
+  }
+});
 
 test("valid signup persists attribution and consent, mirrors Forms, and grants opaque cookie access", async () => {
   const store = memoryStore(); const posts = [];

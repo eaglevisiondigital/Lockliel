@@ -10,6 +10,10 @@ export function allowedOrigin(request, context = {}) {
   const origin = request.headers.get("origin");
   const valid = new Set(["https://lockliel.com", "https://www.lockliel.com", "https://lockliel.netlify.app"]);
   for (const candidate of [context.site?.url, process.env.DEPLOY_PRIME_URL]) { try { if (candidate) valid.add(new URL(candidate).origin); } catch {} }
+  // Deploy preview URLs are not always included in the function runtime's environment.
+  // Accept only this site's preview host, and only for a same-origin request to it.
+  const target = new URL(request.url);
+  if (target.protocol === "https:" && /^deploy-preview-\d+--lockliel\.netlify\.app$/.test(target.hostname)) valid.add(target.origin);
   return !!origin && valid.has(origin);
 }
 export function attribution(input = {}) {
