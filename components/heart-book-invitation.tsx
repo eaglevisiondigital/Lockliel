@@ -1,0 +1,4 @@
+import styles from "./free-book-invitation.module.css";
+export default function HeartBookInvitation() {
+  return <aside className={styles.invitation} aria-labelledby="heart-book-invitation-title"><img src="/heart-for-the-lost/cover.jpg" width={800} height={1228} loading="lazy" alt="A Heart for the Lost by David Fowler"/><div><p className={styles.eyebrow}>Coming soon · A Lockliel resource</p><h3 id="heart-book-invitation-title">A Heart for the Lost</h3><p>One person matters. Discover the Father’s heart for people and practical steps to share Jesus with confidence. Reach one. Help that one grow. Teach that one to reach one.</p><a className="button button-primary" href="/a-heart-for-the-lost?source=faith-boost-home">Get notified when it releases <span aria-hidden="true">↗</span></a></div></aside>;
+}
