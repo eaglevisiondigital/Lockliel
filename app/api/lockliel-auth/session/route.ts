@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 
   const headers = supabaseHeaders(access);
   const [profileRes, journeyRes] = await Promise.all([
-    fetch(`${LOCKLIEL_SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(user.id)}&select=id,first_name,last_name,email,city,region,country,onboarding_status,original_inviter_id,current_leader_id`, { headers, cache: "no-store" }),
+    fetch(`${LOCKLIEL_SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(user.id)}&select=id,first_name,last_name,email,phone,city,region,country,onboarding_status,original_inviter_id,current_leader_id`, { headers, cache: "no-store" }),
     fetch(`${LOCKLIEL_SUPABASE_URL}/rest/v1/member_journey?profile_id=eq.${encodeURIComponent(user.id)}&select=next_step_type,next_step_title,next_step_path,reach_one_count,active_connections_count,last_faith_boost_at`, { headers, cache: "no-store" }),
   ]);
   const profiles = profileRes.ok ? await profileRes.json() : [];
