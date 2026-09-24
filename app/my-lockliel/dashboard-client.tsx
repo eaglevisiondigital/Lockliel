@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, HeartHandshake, LogOut, Radio, Share2, Sprout, Users } from "lucide-react";
+import { ArrowUpRight, BookOpen, HeartHandshake, LogOut, Radio, Share2, Sprout, Users, UsersRound } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type SessionData={authenticated:boolean;profile?:{first_name?:string|null;onboarding_status?:string|null};journey?:{next_step_title?:string|null;next_step_path?:string|null;reach_one_count?:number;active_connections_count?:number}};
@@ -8,7 +8,7 @@ const cards=[
 {icon:Sprout,title:"My Journey",text:"Continue growing in the Word and pick up exactly where you left off.",href:"/my-lockliel/journey",cta:"Continue my journey"},
 {icon:Users,title:"My Five",text:"Keep the people you are intentionally encouraging in front of you. Reach one. Follow up. Help them grow.",href:"/my-lockliel/connections",cta:"View my connections"},
 {icon:Radio,title:"Faith Boost",text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",href:"/#faith-boost",cta:"Go to Faith Boost"},
-{icon:Share2,title:"Share & Invite",text:"Use approved Lockliel resources and personal invitation links to reach people intentionally.",href:"/my-lockliel/share",cta:"Open Share Center"},
+{icon:Share2,title:"Share & Invite",text:"Use approved Lockliel resources and personal invitation links to reach people intentionally.",href:"/my-lockliel/share",cta:"Open Share Center"},\n{icon:UsersRound,title:"My Group",text:"Connect with your Lockliel gathering, leader, and the people growing alongside you.",href:"/my-lockliel/group",cta:"Open my group"},
 {icon:HeartHandshake,title:"Partner With Us",text:"Help advance the mission through one-time or monthly partnership as giving comes online.",href:"/my-lockliel/partner",cta:"Partnership"},
 {icon:BookOpen,title:"Books & Resources",text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",href:"/my-lockliel/resources",cta:"Open my library"}
 ];
