@@ -16,3 +16,10 @@
   for = "/who-god-says-you-are/read*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow, noarchive"
+
+
+[[redirects]]
+  from = "/r/*"
+  to = "/.netlify/functions/lockliel-referral-redirect?code=:splat"
+  status = 200
+  force = true
