@@ -1,0 +1,12 @@
+"use client";
+import {useEffect,useState} from "react";import {CalendarHeart,HeartHandshake,LockKeyhole} from "lucide-react";
+export default function PartnerClient(){
+ const [data,setData]=useState<any>(null),[error,setError]=useState("");
+ useEffect(()=>{fetch("/api/lockliel/partner",{cache:"no-store"}).then(async r=>{if(r.status===401){location.assign("/my-lockliel/sign-in");return;}const d=await r.json();if(!r.ok){setError(d.error||"Unable to load partnership.");return;}setData(d);});},[]);
+ if(error)return <p className="ml-auth-message error">{error}</p>;if(!data)return <div className="ml-loading">Loading partnership…</div>;
+ const monthly=data.commitments.find((c:any)=>c.cadence==="monthly"&&c.status==="active");
+ const monthlyLabel=monthly?"$"+(monthly.amount_cents/100).toFixed(2):"Not active";
+ return <><section className="ml-partner-stats"><article className="ml-card"><div className="ml-icon"><HeartHandshake size={20}/></div><strong>{"$"+(data.totalGiven/100).toFixed(2)}</strong><span>recorded giving</span></article><article className="ml-card"><div className="ml-icon"><CalendarHeart size={20}/></div><strong>{monthlyLabel}</strong><span>monthly partnership</span></article></section>
+ {!data.checkoutReady?<section className="ml-panel ml-payment-pending"><div className="ml-icon"><LockKeyhole size={20}/></div><div><div className="ml-kicker">Secure giving connection</div><h2>Payment processing is being connected.</h2><p>The giving records, recurring-partner structure, receipts foundation, and book-benefit framework are ready. This page will not collect payment details until an approved processor is connected and tested.</p></div></section>:<section className="ml-panel"><div className="ml-kicker">Giving is connected</div><h2>Choose how you want to partner.</h2><p>Secure checkout options will appear here from the active Lockliel payment provider.</p></section>}
+ <h2 className="ml-section-title">Payment gateway readiness</h2><section className="ml-provider-grid">{data.providers.map((p:any)=><article key={p.provider}><b>{p.label}</b><span className={p.status==="active"?"active":""}>{p.status.replaceAll("_"," ")}</span><small>{p.supports_recurring?"One-time + monthly":"One-time"}</small></article>)}</section></>;
+}
