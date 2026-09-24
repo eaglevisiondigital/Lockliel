@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import { allowedOrigin, bodyJSON, attribution, hash, json } from "../lib/faith-boost-core.mjs";
+import { allowedOrigin, bodyJSON, attribution, hash, json } from "../lib/faith-boost-core.mjs";\nimport { SUPABASE_URL } from "../lib/lockliel-core.mjs";
 const book="A Heart for the Lost";
 const consentText="By signing up, you agree to receive email notifications about this book’s release. We won’t add you to unrelated mailing lists.";
 export function createReleaseSignup({storeFor=()=>getStore({name:"book-release-notifications",consistency:"strong"}),post=fetch}={}) {
@@ -32,6 +32,9 @@ export function createReleaseSignup({storeFor=()=>getStore({name:"book-release-n
      await store.setJSON(syncKey,{sent:true,at:new Date().toISOString()});
     }catch{await store.setJSON(syncKey,{sent:false,at:new Date().toISOString()});}
    }
+   try {
+    await fetch(SUPABASE_URL+"/functions/v1/capture-lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({firstName:saved.firstName,email:saved.email,sourceType:"book_interest",campaign:"a-heart-for-the-lost-release",attribution:saved.attribution,consent:{releaseNotifications:true,generalMarketing:false,version:saved.consentVersion,text:saved.consentText}}),signal:AbortSignal.timeout(5000)});
+   } catch { /* CRM mirroring must not block the release signup. */ }
    return json({ok:true});
   }catch{return json({ok:false,message:"We couldn’t confirm your signup. Your details are still here. Please try again, or contact info@lockliel.com."},503);}
  };
