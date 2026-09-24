@@ -2,10 +2,10 @@ import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/
 function inFilter(ids){return "in.("+ids.join(",")+")";}
 export default async(request)=>{
  const s=await requireSession(request);if(!s.user||!s.access)return json({error:"Unauthorized"},401);
- const h=dbHeaders(s.access),uid=s.user.id;
+ const h=dbHeaders(s.access),uid=s.user.id;\n const flagRes=await fetch(SUPABASE_URL+"/rest/v1/feature_flags?key=eq.internal_messaging&select=enabled&limit=1",{headers:h});\n const flagRows=flagRes.ok?await flagRes.json():[];const messagingEnabled=flagRows?.[0]?.enabled!==false;
  if(request.method==="POST"){
   const b=await request.json().catch(()=>({}));
-  if(b.action==="sendMessage"){
+  if(b.action==="sendMessage"){\n   if(!messagingEnabled)return json({error:"Internal messaging is temporarily unavailable."},403);
    const conversationId=String(b.conversationId||""),body=String(b.body||"").trim();
    if(!conversationId||!body||body.length>5000)return json({error:"Enter a message."},400);
    const r=await fetch(SUPABASE_URL+"/rest/v1/messages",{method:"POST",headers:{...h,Prefer:"return=representation"},body:JSON.stringify({conversation_id:conversationId,sender_id:uid,body})});
@@ -36,6 +36,6 @@ export default async(request)=>{
  }
  const tr=await fetch(SUPABASE_URL+"/rest/v1/follow_up_tasks?assigned_to=eq."+encodeURIComponent(uid)+"&status=eq.open&select=id,subject_profile_id,task_type,due_at,notes,created_at&order=due_at.asc",{headers:h});
  const tasks=tr.ok?await tr.json():[];
- return json({conversations,tasks},200,s.refreshed?sessionCookies(s.refreshed):[]);
+ return json({conversations,tasks,messagingEnabled},200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 export const config={path:"/api/lockliel/connections"};
