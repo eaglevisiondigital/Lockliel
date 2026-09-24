@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import { RESOURCE, allowedOrigin, bodyJSON, cookieHeader, hash, issueSession, json, saveEvent, validateSignup } from "../lib/faith-boost-core.mjs";
+import { RESOURCE, allowedOrigin, bodyJSON, cookieHeader, hash, issueSession, json, saveEvent, validateSignup } from "../lib/faith-boost-core.mjs";\nimport { SUPABASE_URL } from "../lib/lockliel-core.mjs";
 
 export function createSignup({ storeFor = () => getStore({ name: "faith-boost-resource", consistency: "strong" }), post = fetch } = {}) {
   return async (request, context = {}) => {
@@ -29,6 +29,9 @@ export function createSignup({ storeFor = () => getStore({ name: "faith-boost-re
           await store.setJSON(mirrorKey, { sent: true, at: new Date().toISOString() });
         } catch { await store.setJSON(mirrorKey, { sent: false, at: new Date().toISOString() }); }
       }
+      try {
+        await fetch(SUPABASE_URL+"/functions/v1/capture-lead",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({firstName:saved.firstName,email:saved.email,phone:saved.phone,sourceType:"faith_boost",campaign:"faith-boost",attribution:saved.attribution,consent:{email:true,sms:false,version:saved.consentVersion,text:saved.consentText}}),signal:AbortSignal.timeout(5000)});
+      } catch { /* CRM mirroring must not block resource access. */ }
       const token = await issueSession(store, leadKey, lead.attribution);
       // The conversion is emitted by the server, after persistence. This is a valid signup,
       // not a claim that mailbox ownership or a social follow has been verified.
