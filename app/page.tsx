@@ -71,6 +71,7 @@ export default function Home() {
           <a href="#videos">Videos</a>
           <a href="#faith-boost">Faith Boost</a>
           <a href="/founders-50">Founders 50</a>
+          <a href="/my-lockliel">My Lockliel</a>
           <a href="#partner">Partnership</a>
         </nav>
         <a className="header-cta" href="#partner">Sow Into the Vision</a>
