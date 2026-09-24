@@ -1,0 +1,3 @@
+import Link from "next/link";import LocklielAuthForm from "../auth-form";import "../my-lockliel.css";
+export const metadata={title:"Create account | My Lockliel"};
+export default function SignUp(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/" className="ml-auth-home">← Lockliel</Link><div className="ml-kicker">Start your journey</div><h1>Grow. Reach one. Multiply.</h1><p>Create your My Lockliel account so your discipleship progress, connections, resources, and next steps can follow you.</p><LocklielAuthForm mode="signup"/></div></main>}
