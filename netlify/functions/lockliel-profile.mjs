@@ -8,7 +8,7 @@ export default async(request)=>{
  const h={...dbHeaders(s.access),Prefer:"return=representation"},id=encodeURIComponent(s.user.id);
  const p=await fetch(SUPABASE_URL+"/rest/v1/profiles?id=eq."+id,{method:"PATCH",headers:h,body:JSON.stringify(patch)});
  if(!p.ok)return json({error:"We couldn't save your profile."},500);
- await fetch(SUPABASE_URL+"/rest/v1/member_journey?profile_id=eq."+id,{method:"PATCH",headers:h,body:JSON.stringify({next_step_type:"course",next_step_title:"Begin Getting a Grip on the Basics",next_step_path:"/my-lockliel/journey",updated_at:new Date().toISOString()})});
+ await fetch(SUPABASE_URL+"/rest/v1/member_journey?profile_id=eq."+id,{method:"PATCH",headers:h,body:JSON.stringify({next_step_type:"faith_profile",next_step_title:"Tell us where you are in your faith journey",next_step_path:"/my-lockliel/faith-profile",updated_at:new Date().toISOString()})});
  return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 export const config={path:"/api/lockliel/profile"};
