@@ -10,7 +10,7 @@ const cards=[
 {icon:Radio,title:"Faith Boost",text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",href:"/#faith-boost",cta:"Go to Faith Boost"},
 {icon:Share2,title:"Share & Invite",text:"Use approved Lockliel resources and personal invitation links to reach people intentionally.",href:"/my-lockliel/share",cta:"Open Share Center"},
 {icon:HeartHandshake,title:"Partner With Us",text:"Help advance the mission through one-time or monthly partnership as giving comes online.",href:"/my-lockliel/partner",cta:"Partnership"},
-{icon:BookOpen,title:"Books & Resources",text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",href:"/a-heart-for-the-lost",cta:"Explore resources"}
+{icon:BookOpen,title:"Books & Resources",text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",href:"/my-lockliel/resources",cta:"Open my library"}
 ];
 
 export default function MyLocklielDashboard(){
