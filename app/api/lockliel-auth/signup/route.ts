@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   const lastName = String(body.lastName || "").trim();
   const email = String(body.email || "").trim().toLowerCase();
   const password = String(body.password || "");
-  const referralCode = String(body.referralCode || "").trim();
+  const referralCode = String(body.referralCode || request.cookies.get("lockliel_ref")?.value || "").trim();
   if (!firstName || !lastName || !email || password.length < 8) {
     return NextResponse.json({ error: "Please enter your name, a valid email, and a password of at least 8 characters." }, { status: 400 });
   }
