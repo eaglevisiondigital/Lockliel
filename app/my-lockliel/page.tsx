@@ -1,14 +1,3 @@
-import Link from "next/link";
-import { ArrowUpRight, BookOpen, HeartHandshake, Radio, Share2, Sprout, Users } from "lucide-react";
-import "./my-lockliel.css";
-
-const cards=[
-{icon:Sprout,title:"My Journey",text:"Continue growing in the Word and pick up exactly where you left off.",href:"/my-lockliel/journey",cta:"Continue my journey"},
-{icon:Users,title:"My Five",text:"Keep the people you are intentionally encouraging in front of you. Reach one. Follow up. Help them grow.",href:"/my-lockliel/connections",cta:"View my connections"},
-{icon:Radio,title:"Faith Boost",text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",href:"/#faith-boost",cta:"Go to Faith Boost"},
-{icon:Share2,title:"Share & Invite",text:"Use approved Lockliel graphics and personal invitation links that help us understand what is reaching people.",href:"/my-lockliel/share",cta:"Open Share Center"},
-{icon:HeartHandshake,title:"Partner With Us",text:"Help advance the mission through one-time or monthly partnership as giving comes online.",href:"/my-lockliel/partner",cta:"Partnership"},
-{icon:BookOpen,title:"Books & Resources",text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",href:"/a-heart-for-the-lost",cta:"Explore resources"}
-];
+import "./my-lockliel.css";import MyLocklielDashboard from "./dashboard-client";
 export const metadata={title:"My Lockliel | Grow. Reach. Multiply."};
-export default function MyLockliel(){return <main className="my-lockliel"><div className="ml-shell"><div className="ml-kicker">My Lockliel</div><section className="ml-hero"><div className="ml-panel"><div className="ml-kicker">Your next step matters</div><h1>Grow. Reach one.<br/>Help them grow.</h1><p>Lockliel is built to help you grow in Jesus, live from who God says you are, reach people personally, and help somebody else begin doing the same.</p><div className="ml-path"><span>KNOW JESUS</span><span>GROW</span><span>REACH ONE</span><span>SHARE</span><span>FOLLOW UP</span><span>MULTIPLY</span></div></div><aside className="ml-panel ml-next"><div><div className="ml-kicker">Continue your journey</div><strong>Getting a Grip on the Basics</strong><p>Your foundational discipleship journey is being prepared here. Your lesson progress will follow you across devices.</p></div><Link href="/my-lockliel/journey">View my journey <ArrowUpRight size={17}/></Link></aside></section><h2 className="ml-section-title">What will you do next?</h2><section className="ml-grid">{cards.map(({icon:Icon,...c})=><article className="ml-card" key={c.title}><div className="ml-icon"><Icon size={21}/></div><h2>{c.title}</h2><p>{c.text}</p><Link href={c.href}>{c.cta} →</Link></article>)}</section><p className="ml-footer-note">Reach. Teach. Train. Disciple. Multiply.</p></div></main>}
+export default function MyLockliel(){return <MyLocklielDashboard/>}
