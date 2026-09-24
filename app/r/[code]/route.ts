@@ -15,6 +15,6 @@ export async function GET(request: NextRequest,{params}:{params:Promise<{code:st
   const url=new URL(destination,request.nextUrl.origin);
   url.searchParams.set("ref",code);
   const response=NextResponse.redirect(url);
-  if(!request.cookies.get("lockliel_visitor")) response.cookies.set("lockliel_visitor",visitorKey,{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",path:"/",maxAge:60*60*24*90});
+  if(!request.cookies.get("lockliel_visitor")) response.cookies.set("lockliel_visitor",visitorKey,{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",path:"/",maxAge:60*60*24*90});\n  response.cookies.set("lockliel_ref",code,{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",path:"/",maxAge:60*60*24*30});
   return response;
 }
