@@ -5,7 +5,7 @@ export default async(request)=>{
  const firstName=String(b.firstName||"").trim(),lastName=String(b.lastName||"").trim(),email=String(b.email||"").trim().toLowerCase(),password=String(b.password||"");
  const referralCode=String(b.referralCode||c.lockliel_ref||"").trim();
  if(!firstName||!lastName||!email||password.length<8)return json({error:"Please enter your name, a valid email, and a password of at least 8 characters."},400);
- const r=await fetch(SUPABASE_URL+"/auth/v1/signup",{method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email,password,data:{first_name:firstName,last_name:lastName,referral_code:referralCode||null,source:"my-lockliel"}})});
+ const redirectTo=new URL("/my-lockliel/sign-in?confirmed=1",request.url).toString();\n const r=await fetch(SUPABASE_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(redirectTo),{method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email,password,data:{first_name:firstName,last_name:lastName,referral_code:referralCode||null,source:"my-lockliel"}})});
  const d=await r.json().catch(()=>({}));if(!r.ok)return json({error:d.msg||d.error_description||"We couldn't create your account."},r.status);
  return json({ok:true,needsConfirmation:!d.access_token},200,d.access_token?sessionCookies(d):[]);
 };
