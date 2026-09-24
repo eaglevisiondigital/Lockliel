@@ -21,15 +21,23 @@ export default async(request)=>{
  }
  if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
- const [people,founders,activeCourses,gifts,leads,followups,apps]=await Promise.all([
+ const [people,founders,activeCourses,gifts,leads,followups,appsRes,refRes,leadSourceRes]=await Promise.all([
   count("profiles?select=id",s.access),
   count("founders50_applications?select=id",s.access),
   count("course_enrollments?status=eq.active&select=id",s.access),
   count("gifts?status=eq.succeeded&select=id",s.access),
   count("lead_contacts?select=id",s.access),
   count("follow_up_tasks?status=eq.open&select=id",s.access),
-  fetch(SUPABASE_URL+"/rest/v1/founders50_applications?select=id,profile_id,first_name,last_name,email,phone,city,region,country,status,created_at&order=created_at.desc&limit=12",{headers:h})
+  fetch(SUPABASE_URL+"/rest/v1/founders50_applications?select=id,profile_id,first_name,last_name,email,phone,city,region,country,status,created_at&order=created_at.desc&limit=12",{headers:h}),
+  fetch(SUPABASE_URL+"/rest/v1/referral_events?select=event_type&limit=5000",{headers:h}),
+  fetch(SUPABASE_URL+"/rest/v1/lead_sources?select=source_type,campaign&limit=5000",{headers:h})
  ]);
- return json({roles,counts:{people,founders,activeCourses,gifts,leads,followups},applications:apps.ok?await apps.json():[]},200,s.refreshed?sessionCookies(s.refreshed):[]);
+ const applications=appsRes.ok?await appsRes.json():[];
+ const referralRows=refRes.ok?await refRes.json():[];
+ const leadSourceRows=leadSourceRes.ok?await leadSourceRes.json():[];
+ const activity={share_initiated:0,visit:0,signup:0,course_started:0,lesson_completed:0};
+ for(const row of referralRows)if(Object.prototype.hasOwnProperty.call(activity,row.event_type))activity[row.event_type]++;
+ const sourceCounts={};for(const row of leadSourceRows){const key=row.source_type||"other";sourceCounts[key]=(sourceCounts[key]||0)+1;}
+ return json({roles,counts:{people,founders,activeCourses,gifts,leads,followups},activity,sourceCounts,applications},200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 export const config={path:"/api/lockliel/admin/summary"};
