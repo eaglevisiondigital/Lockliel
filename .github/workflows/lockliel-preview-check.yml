@@ -14,4 +14,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Check Netlify function syntax
+        run: find netlify -type f -name '*.mjs' -print0 | xargs -0 -n1 node --check
+      - name: Import Netlify function modules
+        run: node --input-type=module -e "import fs from 'node:fs'; import path from 'node:path'; const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]); for(const f of walk('netlify/functions').filter(f=>f.endsWith('.mjs'))) await import('./'+f);"
       - run: npm run build
