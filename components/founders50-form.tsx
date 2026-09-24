@@ -44,12 +44,12 @@ export default function Founders50Form() {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 20000);
     try {
-      const body = new URLSearchParams();
-      data.forEach((value, key) => body.append(key, String(value)));
-      const response = await fetch("/__founders50.html", {
+      const payload: Record<string,string> = {};
+      data.forEach((value, key) => { if (key !== "bot-field" && key !== "form-name") payload[key] = String(value); });
+      const response = await fetch("/api/lockliel/founders50", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
         signal: controller.signal,
       });
       if (!response.ok) throw new Error("Submission was not accepted");
