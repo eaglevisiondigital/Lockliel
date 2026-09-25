@@ -772,3 +772,15 @@ test("system-owned records do not expose dormant member write paths",()=>{
   assert.match(migration,/revoke insert, delete on table public\.contact_permissions from authenticated/);
   assert.match(migration,/revoke insert, delete on table public\.orders from authenticated/);
 });
+
+
+test("member journey state is system-derived and read-only to members",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120028_lockliel_system_owned_member_journey.sql","utf8");
+  const session=fs.readFileSync("netlify/functions/lockliel-session.mjs","utf8");
+
+  assert.match(migration,/drop policy if exists member_journey_self_update/);
+  assert.match(migration,/revoke insert, update, delete on table public\.member_journey from authenticated/);
+  assert.match(migration,/grant select on table public\.member_journey to authenticated/);
+  assert.match(session,/rest\/v1\/member_journey\?profile_id=eq/);
+  assert.doesNotMatch(session,/member_journey.*method:"PATCH"/s);
+});
