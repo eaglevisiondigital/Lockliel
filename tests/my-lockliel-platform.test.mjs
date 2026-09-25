@@ -974,3 +974,19 @@ test("tags and consent history are read-only while notifications expose only rea
   assert.doesNotMatch(migration,/grant insert .*communication_preference_events/);
   assert.doesNotMatch(migration,/grant insert .*profile_tags/);
 });
+
+
+test("Founders reviewers are scoped to Founders-specific people and tasks",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122007_lockliel_scope_founders_reviewer_access.sql","utf8");
+  const groupsApi=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  const leadersApi=fs.readFileSync("netlify/functions/lockliel-admin-leaders.mjs","utf8");
+
+  assert.match(migration,/founders50_reviewer/);
+  assert.match(migration,/founders50_applications fa/);
+  assert.match(migration,/founders50_orientation_followup/);
+  assert.match(migration,/context_type in \('founders50','founders50_application'\)/);
+  assert.doesNotMatch(groupsApi,/discipleship_admin","founders50_reviewer/);
+  assert.doesNotMatch(leadersApi,/discipleship_admin","founders50_reviewer/);
+  assert.match(groupsApi,/\["super_admin","admin","discipleship_admin"\]/);
+  assert.match(leadersApi,/\["super_admin","admin","discipleship_admin"\]/);
+});
