@@ -29,6 +29,8 @@ type SessionData={
   roles?:string[];
   founderStatus?:string|null;
   groupMemberships?:{group_id:string;role:string;joined_at:string}[];
+  leaderProfile?:{leader_type:string;city?:string|null;region?:string|null;country?:string|null;capacity?:number|null}|null;
+  peopleAssignedCount?:number;
 };
 
 const baseCards=[
@@ -111,6 +113,7 @@ export default function MyLocklielDashboard(){
     const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin"];
     const hasAdminAccess=roles.some(role=>adminCapableRoles.includes(role));
     const isRoleLeader=roles.includes("group_leader");
+    const hasLeaderTools=Boolean(data.leaderProfile)||Number(data.peopleAssignedCount||0)>0||isRoleLeader;
     const founderStatus=String(data.founderStatus||"");
     const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
@@ -133,13 +136,23 @@ export default function MyLocklielDashboard(){
       });
     }
 
-    if(founderStatus==="active_host"||isHost||isRoleLeader){
+    if(founderStatus==="active_host"||isHost){
       extra.push({
         icon:Sparkles,
         title:"Founder / Host Tools",
         text:"Lead your gathering, submit weekly multiplication check-ins, and keep reaching people intentionally.",
         href:"/my-lockliel/group",
         cta:"Open host tools"
+      });
+    }
+
+    if(hasLeaderTools){
+      extra.push({
+        icon:UsersRound,
+        title:"Leader Tools",
+        text:"See the people and groups you are responsible for, follow up intentionally, and keep private member information protected.",
+        href:"/my-lockliel/leader",
+        cta:"Open leader tools"
       });
     }
 
