@@ -132,8 +132,30 @@ export default async(request)=>{
     if(b.action==="updateReachContact"){
       const id=String(b.id||"");
       const status=String(b.status||"");
-      if(!id||!["praying","invited","connected","growing","paused","completed"].includes(status)){
+      const activeStatuses=["praying","invited","connected","growing"];
+      if(!id||![...activeStatuses,"paused","completed"].includes(status)){
         return json({error:"Choose a valid My Five status."},400);
+      }
+
+      const currentRes=await fetch(
+        SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+
+        "&owner_id=eq."+encodeURIComponent(uid)+
+        "&select=id,status&limit=1",
+        {headers:h}
+      );
+      const current=(currentRes.ok?await currentRes.json():[])?.[0]||null;
+      if(!current)return json({error:"My Five person not found."},404);
+
+      if(activeStatuses.includes(status)&&!activeStatuses.includes(current.status)){
+        const countRes=await fetch(
+          SUPABASE_URL+"/rest/v1/reach_contacts?owner_id=eq."+encodeURIComponent(uid)+
+          "&status=in.(praying,invited,connected,growing)&select=id",
+          {headers:h}
+        );
+        const active=countRes.ok?await countRes.json():[];
+        if(active.length>=5){
+          return json({error:"Your active My Five list already has five people. Pause or complete one before reactivating another."},409);
+        }
       }
 
       const r=await fetch(
