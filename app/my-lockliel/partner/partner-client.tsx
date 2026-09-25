@@ -94,7 +94,10 @@ export default function PartnerClient(){
       <h2>Recent recorded gifts</h2>
       {recentGifts.map((gift:any)=><div key={gift.id}>
         <div><b>{money(gift.amount_cents)}</b><span>{gift.designation||"general"}</span></div>
-        <small>{gift.status} • {new Date(gift.received_at||gift.created_at).toLocaleDateString()}</small>
+        <div className="ml-gift-history-actions">
+          <small>{gift.status} • {new Date(gift.received_at||gift.created_at).toLocaleDateString()}</small>
+          {["succeeded","paid","completed"].includes(gift.status)&&<a href={"/my-lockliel/partner/acknowledgment?giftId="+encodeURIComponent(gift.id)}>Acknowledgment</a>}
+        </div>
       </div>)}
     </section>}
 
