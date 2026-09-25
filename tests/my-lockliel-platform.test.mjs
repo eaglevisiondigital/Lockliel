@@ -1207,3 +1207,15 @@ test("launch readiness uses the authoritative Getting a Grip readiness RPC",()=>
   assert.match(api,/distinct lessons with playable teaching video/);
   assert.doesNotMatch(api,/const gripVideos=gripAssets/);
 });
+
+
+test("Grip readiness RPC uses caller RLS instead of SECURITY DEFINER",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925124032_lockliel_make_grip_readiness_security_invoker.sql","utf8");
+  const readiness=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/security invoker/);
+  assert.doesNotMatch(migration,/security definer[\s\S]*lockliel_grip_readiness/i);
+  assert.match(migration,/has_staff_role[\s\S]*super_admin[\s\S]*admin/);
+  assert.match(migration,/lesson_asset_storage_read/);
+  assert.match(readiness,/rpc\/lockliel_grip_readiness/);
+});
