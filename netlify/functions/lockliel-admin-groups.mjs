@@ -89,7 +89,8 @@ export default async(request)=>{
             group_id:groupId,
             profile_id:profileId,
             role:"participant",
-            status:"active"
+            status:"active",
+            left_at:null
           })
         }
       );
