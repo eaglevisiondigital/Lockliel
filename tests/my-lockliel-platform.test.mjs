@@ -493,6 +493,7 @@ test("group leave or change requests are reviewed and preserve membership histor
   const memberUi=fs.readFileSync("app/my-lockliel/group/my-group-client.tsx","utf8");
   const adminUi=fs.readFileSync("app/my-lockliel/admin/groups-admin-client.tsx","utf8");
   const migration=fs.readFileSync("supabase/migrations/20260925111018_lockliel_reviewed_group_transitions.sql","utf8");
+  const transition=fs.readFileSync("supabase/migrations/20260925124550_lockliel_atomic_group_transition_resolution.sql","utf8");
   const notifyMigration=fs.readFileSync("supabase/migrations/20260925111300_lockliel_group_transition_notifications.sql","utf8");
 
   assert.match(migration,/leave_or_change_group/);
@@ -501,9 +502,9 @@ test("group leave or change requests are reviewed and preserve membership histor
   assert.match(memberApi,/requestGroupChange/);
   assert.match(memberApi,/requestedGroupId:groupId/);
   assert.match(memberUi,/Need to leave or change groups/);
-  assert.match(adminApi,/resolveGroupChange/);
-  assert.match(adminApi,/Reassign group leadership before moving or ending this leader\/host membership/);
-  assert.match(adminApi,/status:"inactive",left_at:now/);
+  assert.match(adminApi,/rest\/v1\/rpc\/lockliel_resolve_group_transition/);
+  assert.match(transition,/Reassign group leadership before moving or ending this leader\/host membership/);
+  assert.match(transition,/set status='inactive',[\s\S]*left_at=now_at/);
   assert.match(adminUi,/End membership/);
   assert.match(adminUi,/Transfer/);
   assert.match(notifyMigration,/Your Lockliel group connection is active/);
@@ -612,10 +613,12 @@ test("lesson journey sync is idempotent after completion",()=>{
 
 test("group membership dates stay consistent on leave and reactivation",()=>{
   const migration=fs.readFileSync("supabase/migrations/20260925113405_lockliel_consistent_group_membership_dates.sql","utf8");
-  const adminApi=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  const assignment=fs.readFileSync("supabase/migrations/20260925124731_lockliel_atomic_group_assignment.sql","utf8");
+  const transition=fs.readFileSync("supabase/migrations/20260925124550_lockliel_atomic_group_transition_resolution.sql","utf8");
   assert.match(migration,/if new\.status='active' then[\s\S]*new\.left_at:=null/);
   assert.match(migration,/old\.status='active'[\s\S]*new\.left_at:=now\(\)/);
-  assert.match(adminApi,/status:"active",[\s\S]*left_at:null/);
+  assert.match(assignment,/status='active',[\s\S]*left_at=null/);
+  assert.match(transition,/status='inactive',[\s\S]*left_at=now_at/);
 });
 
 
