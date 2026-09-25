@@ -440,3 +440,14 @@ test("inviter and leader consent changes are audited without private contact dat
   assert.doesNotMatch(migration,/message body/i);
   assert.match(migration,/revoke execute on function app_private\.audit_contact_permission_change/);
 });
+
+
+test("approved privacy export includes member consent history",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-privacy-export.mjs","utf8");
+  assert.match(endpoint,/communication_preference_events\?profile_id=eq/);
+  assert.match(endpoint,/communication_consent_history:preferenceEvents/);
+  assert.match(endpoint,/contact_permissions\?profile_id=eq/);
+  assert.match(endpoint,/contact_permissions:contactPermissions/);
+  assert.match(endpoint,/Private staff-only notes are not part/);
+  assert.match(endpoint,/Security secrets/);
+});
