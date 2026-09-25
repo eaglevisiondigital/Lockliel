@@ -43,6 +43,7 @@ export default function ConnectionsClient(){
     reachContacts:ReachContact[];
     messagingEnabled?:boolean;
     leaderAssignment?:any;
+    leaderRequest?:any;
   }|null>(null);
   const [error,setError]=useState("");
   const [message,setMessage]=useState("");
@@ -70,6 +71,40 @@ export default function ConnectionsClient(){
     });
     if(r.ok){
       setDrafts(v=>({...v,[id]:""}));
+      await load();
+    }
+  }
+
+  async function requestLeader(){
+    setWorking(true);
+    setMessage("");
+    const r=await fetch("/api/lockliel/connections",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"requestLeader"})
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+    if(!r.ok){
+      setMessage(d.error||"Unable to submit leader request.");
+      return;
+    }
+    setMessage("Your leader request has been sent to the Lockliel team.");
+    await load();
+  }
+
+  async function cancelLeaderRequest(){
+    if(!data?.leaderRequest?.id)return;
+    setWorking(true);
+    setMessage("");
+    const r=await fetch("/api/lockliel/connections",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"cancelLeaderRequest",requestId:data.leaderRequest.id})
+    });
+    setWorking(false);
+    if(r.ok){
+      setMessage("Leader request cancelled.");
       await load();
     }
   }
@@ -201,6 +236,25 @@ export default function ConnectionsClient(){
         <div>{history.map(person=><span key={person.id}>{person.display_name} • {person.status}</span>)}</div>
       </details>}
     </section>
+
+    {!data.leaderAssignment&&<section className="ml-panel ml-assigned-leader">
+      <div className="ml-kicker">Lockliel leader / mentor</div>
+      <div className="ml-assigned-leader-head">
+        <div className="ml-avatar">L</div>
+        <div>
+          <h2>Would a leader connection help?</h2>
+          <span>Optional ministry support</span>
+        </div>
+      </div>
+      <p>A Lockliel leader or mentor can help you take a next step, answer questions, and stay connected. This does not replace your local church or pastor.</p>
+      {data.leaderRequest
+        ? <div className="ml-open-request">
+            <Check size={15}/>
+            <div><b>Leader request is open</b><span>The Lockliel team can review your location and available approved leaders.</span></div>
+            <button disabled={working} onClick={cancelLeaderRequest}>Cancel</button>
+          </div>
+        : <button className="ml-action" disabled={working} onClick={requestLeader}>Request a leader connection</button>}
+    </section>}
 
     {data.leaderAssignment&&<section className="ml-panel ml-assigned-leader">
       <div className="ml-kicker">My assigned Lockliel leader</div>
