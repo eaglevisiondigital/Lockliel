@@ -33,6 +33,7 @@ export default function FounderOrientationClient(){
   if(!data)return <div className="ml-loading">Opening Founders 50 orientation…</div>;
 
   const complete=data.percent===100;
+  const locked=data.application?.status==="active_host";
 
   return <section className="ml-founder-orientation">
     <section className="ml-panel ml-founder-orientation-hero">
@@ -46,11 +47,13 @@ export default function FounderOrientationClient(){
 
     <div className="ml-course-progress"><span style={{width:data.percent+"%"}}/></div>
 
+    {locked&&<p className="ml-privacy-note">Orientation history is locked after active-host approval so the completed review record stays intact.</p>}
+
     <div className="ml-founder-steps">
       {data.steps.map((step:any)=>{
         const done=Boolean(step.progress?.completed_at);
         return <article className={done?"done":""} key={step.id}>
-          <button className="ml-founder-step-check" disabled={working===step.id} onClick={()=>toggle(step.id,!done)} aria-label={done?"Mark incomplete":"Mark complete"}>
+          <button className="ml-founder-step-check" disabled={locked||working===step.id} onClick={()=>toggle(step.id,!done)} aria-label={locked?"Orientation locked after active-host approval":done?"Mark incomplete":"Mark complete"}>
             {done?<CheckCircle2 size={21}/>:<Circle size={21}/>}
           </button>
           <div>

@@ -32,8 +32,7 @@ export default async(request)=>{
         body:JSON.stringify({
           profile_id:s.user.id,
           step_id:stepId,
-          completed_at:completed?new Date().toISOString():null,
-          updated_at:new Date().toISOString()
+          completed_at:completed?new Date().toISOString():null
         })
       }
     );

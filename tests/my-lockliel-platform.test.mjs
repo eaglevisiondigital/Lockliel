@@ -1281,3 +1281,21 @@ test("weekly group check-in corrections are audited without storing testimony or
   assert.doesNotMatch(migration,/'testimony',new\.testimony/);
   assert.doesNotMatch(migration,/'needs_support',new\.needs_support/);
 });
+
+
+test("Founder orientation progress is active-step scoped, audited, and locked after host approval",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925130031_lockliel_harden_founder_orientation_progress.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-founder-orientation.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/founder/founder-orientation-client.tsx","utf8");
+
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*step_id[\s\S]*completed_at[\s\S]*\) on table public\.founder_orientation_progress/);
+  assert.match(migration,/s\.active=true/);
+  assert.match(migration,/Founder orientation progress identity cannot be changed/);
+  assert.match(migration,/Completed orientation history cannot be removed after active-host approval/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(migration,/founder_orientation_step_completed/);
+  assert.match(migration,/founder_orientation_step_reopened/);
+  assert.doesNotMatch(api,/updated_at:new Date/);
+  assert.match(client,/status==="active_host"/);
+  assert.match(client,/Orientation history is locked after active-host approval/);
+});
