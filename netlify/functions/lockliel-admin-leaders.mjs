@@ -60,7 +60,9 @@ export default async(request)=>{
       const memberId=String(b.memberId||"");
       const leaderId=String(b.leaderId||"");
       const assignmentType=String(b.assignmentType||"mentor");
+      const allowedAssignments=["mentor","group_leader","founders_coach","discipleship_leader","regional_leader"];
       if(!memberId||!leaderId||memberId===leaderId)return json({error:"Choose a member and a different leader."},400);
+      if(!allowedAssignments.includes(assignmentType))return json({error:"Choose a valid assignment type."},400);
 
       const lr=await fetch(
         SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+encodeURIComponent(leaderId)+"&active=eq.true&select=profile_id,leader_type,language_code&limit=1",
@@ -68,6 +70,18 @@ export default async(request)=>{
       );
       const leaders=lr.ok?await lr.json():[];
       if(!leaders.length)return json({error:"That person is not an active approved leader."},400);
+
+      const approvedType=leaders[0].leader_type;
+      const compatible={
+        mentor:["mentor","discipleship_leader","regional_leader"],
+        group_leader:["group_leader","regional_leader"],
+        founders_coach:["founders_coach","regional_leader"],
+        discipleship_leader:["discipleship_leader","regional_leader"],
+        regional_leader:["regional_leader"]
+      };
+      if(!compatible[assignmentType]?.includes(approvedType)){
+        return json({error:"That approved leader role does not support this assignment type."},400);
+      }
 
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/leader_assignments?on_conflict=member_id",
