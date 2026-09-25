@@ -131,7 +131,7 @@ export default async(request)=>{
             {
               method:"PATCH",
               headers:{...h,Prefer:"return=minimal"},
-              body:JSON.stringify({status:"active",updated_at:new Date().toISOString()})
+              body:JSON.stringify({status:"active"})
             }
           );
           if(!patch.ok)throw new Error("Uploaded but could not activate asset");
