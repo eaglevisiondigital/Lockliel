@@ -1193,11 +1193,12 @@ test("public intake records enforce bounded normalized identities and metadata",
 
 
 test("launch readiness uses the authoritative Getting a Grip readiness RPC",()=>{
-  const migration=fs.readFileSync("supabase/migrations/20260925124013_lockliel_invoker_grip_readiness.sql","utf8");
+  const migration=fs.readFileSync("supabase/migrations/20260925124314_lockliel_align_public_grip_readiness_threshold.sql","utf8");
   const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
 
   assert.match(migration,/lockliel_grip_readiness/);
   assert.match(migration,/security invoker/);
+  assert.match(migration,/playable_video_lessons>=10/);
   assert.match(migration,/private_workbook_lessons/);
   assert.match(migration,/playable_video_lessons/);
   assert.match(migration,/Administrator access required/);
