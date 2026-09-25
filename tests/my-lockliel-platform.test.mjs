@@ -616,3 +616,18 @@ test("group membership dates stay consistent on leave and reactivation",()=>{
   assert.match(migration,/old\.status='active'[\s\S]*new\.left_at:=now\(\)/);
   assert.match(adminApi,/status:"active",[\s\S]*left_at:null/);
 });
+
+
+test("referral analytics allow owner shares but block direct anonymous and destructive writes",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113543_lockliel_harden_referral_analytics_writes.sql","utf8");
+  const shareApi=fs.readFileSync("netlify/functions/lockliel-share-link.mjs","utf8");
+  const redirectApi=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
+
+  assert.match(migration,/drop policy if exists anon_visit_insert/);
+  assert.match(migration,/revoke all privileges on table public\.referral_events from anon/);
+  assert.match(migration,/grant insert \([\s\S]*referral_link_id[\s\S]*event_type[\s\S]*member_id[\s\S]*metadata[\s\S]*\) on table public\.referral_events to authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*owner_id[\s\S]*code[\s\S]*reach_contact_id[\s\S]*\) on table public\.referral_links to authenticated/);
+  assert.doesNotMatch(migration,/grant update on table public\.referral_links to authenticated/);
+  assert.match(shareApi,/event_type:"share_initiated"/);
+  assert.match(redirectApi,/functions\/v1\/track-referral/);
+});
