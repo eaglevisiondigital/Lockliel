@@ -235,9 +235,11 @@ export default async(request)=>{
       label:"Live partner checkout switch",
       ready:Boolean(flagMap.partner_checkout)&&Boolean(activeProvider),
       manual:false,
-      detail:flagMap.partner_checkout
-        ?"Feature flag is on."
-        :"Feature flag remains off until the processor is connected and tested."
+      detail:Boolean(flagMap.partner_checkout)&&Boolean(activeProvider)
+        ?"Feature flag is on and the verified payment path is ready."
+        :flagMap.partner_checkout
+          ?"Feature flag is on, but checkout remains blocked because the provider has not completed all technical readiness gates."
+          :"Feature flag remains off until the processor, checkout adapter, and webhook are connected and tested."
     },
     {
       key:"book_benefit",
