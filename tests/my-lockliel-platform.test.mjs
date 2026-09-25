@@ -1098,3 +1098,16 @@ test("members cannot write system-owned progress timestamps",()=>{
   assert.doesNotMatch(api,/last_activity_at:new Date/);
   assert.doesNotMatch(api,/completed_at:b\.status/);
 });
+
+
+test("course metadata is limited to the member's enrolled course family",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925123002_lockliel_nonrecursive_course_access_scope.sql","utf8");
+
+  assert.match(migration,/can_read_course/);
+  assert.match(migration,/security definer/);
+  assert.match(migration,/ce\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/ce\.status in \('active','completed'\)/);
+  assert.match(migration,/enrolled_course\.translation_key=target_translation_key/);
+  assert.match(migration,/status='published'/);
+  assert.match(migration,/grant execute on function app_private\.can_read_course/);
+});
