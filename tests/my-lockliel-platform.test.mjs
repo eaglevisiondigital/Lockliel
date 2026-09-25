@@ -1551,3 +1551,16 @@ test("privacy request lifecycle is database-owned and race-safe",()=>{
   assert.doesNotMatch(adminApi,/resolved_at:new Date/);
   assert.match(memberApi,/r\.status===409[\s\S]*already have an open request of this type/);
 });
+
+
+test("profile connection and finance cards are system-owned read models",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925134935_lockliel_system_owned_profile_cards.sql","utf8");
+  const reinforce=fs.readFileSync("supabase/migrations/20260925134949_lockliel_read_only_profile_card_tables.sql","utf8");
+
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.profile_connection_cards[\s\S]*from authenticated/);
+  assert.match(migration,/grant select[\s\S]*on table public\.profile_connection_cards[\s\S]*to authenticated/);
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.profile_finance_cards[\s\S]*from authenticated/);
+  assert.match(migration,/grant select[\s\S]*on table public\.profile_finance_cards[\s\S]*to authenticated/);
+  assert.match(reinforce,/profile_connection_cards/);
+  assert.match(reinforce,/profile_finance_cards/);
+});
