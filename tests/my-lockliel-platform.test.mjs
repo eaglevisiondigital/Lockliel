@@ -1267,3 +1267,17 @@ test("members cannot create duplicate open connection requests under race condit
   assert.match(groups,/r\.status===409[\s\S]*already have an open request of this type/);
   assert.match(connections,/r\.status===409[\s\S]*already have an open leader request/);
 });
+
+
+test("weekly group check-in corrections are audited without storing testimony or support text",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925125731_lockliel_audit_group_checkin_updates.sql","utf8");
+
+  assert.match(migration,/group_weekly_checkin_updated/);
+  assert.match(migration,/actor:=coalesce\(\(select auth\.uid\(\)\),new\.submitted_by\)/);
+  assert.match(migration,/testimony_changed/);
+  assert.match(migration,/support_changed/);
+  assert.match(migration,/support_requested/);
+  assert.match(migration,/after insert or update of/);
+  assert.doesNotMatch(migration,/'testimony',new\.testimony/);
+  assert.doesNotMatch(migration,/'needs_support',new\.needs_support/);
+});
