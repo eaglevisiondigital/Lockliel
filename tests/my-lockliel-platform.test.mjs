@@ -873,3 +873,12 @@ test("Founders 50 applications are immutable and active-host approval is review-
   assert.match(orientationUi,/decision:"activate_host"/);
   assert.match(orientationUi,/Approve active host/);
 });
+
+
+test("connection request status and resolution timestamps stay consistent",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121239_lockliel_normalize_connection_request_status.sql","utf8");
+  assert.match(migration,/status in \('open','in_progress','resolved','closed','cancelled'\)/);
+  assert.match(migration,/new\.status in \('resolved','closed','cancelled'\)/);
+  assert.match(migration,/new\.status in \('open','in_progress'\)/);
+  assert.match(migration,/new\.resolved_at:=null/);
+});
