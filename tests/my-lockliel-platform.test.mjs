@@ -50,10 +50,11 @@ test("branded referral links route through the server tracker",()=>{
   assert.match(source,/lockliel-referral-redirect/);
 });
 
-test("partnership checkout requires both feature flag and active provider",()=>{
+test("partnership checkout requires feature flag plus fully verified provider path",()=>{
   const source=fs.readFileSync("netlify/functions/lockliel-partner.mjs","utf8");
   assert.match(source,/flagMap\.partner_checkout/);
-  assert.match(source,/providers\.some\(p=>p\.status==="active"\)/);
+  assert.match(source,/checkout_adapter_ready===true/);
+  assert.match(source,/webhook_ready===true/);
 });
 
 test("signup confirmation returns to My Lockliel",()=>{
@@ -205,13 +206,14 @@ test("member connection requests remain human-reviewed",()=>{
   assert.match(leaderAdmin,/assignRequest/);
 });
 
-test("privacy center offers self-service export without staff notes or secrets",()=>{
+test("privacy center offers approved export without staff notes or secrets",()=>{
   const exportApi=fs.readFileSync("netlify/functions/lockliel-privacy-export.mjs","utf8");
   const privacyUi=fs.readFileSync("app/my-lockliel/privacy/privacy-client.tsx","utf8");
   assert.match(exportApi,/Private staff-only notes are not part/);
   assert.match(exportApi,/Security secrets/);
+  assert.match(exportApi,/status=eq\.completed/);
   assert.match(privacyUi,/privacy-export/);
-  assert.match(privacyUi,/Download my data/);
+  assert.match(privacyUi,/Download approved export/);
 });
 
 
