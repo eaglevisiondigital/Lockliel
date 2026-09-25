@@ -1758,12 +1758,13 @@ test("launch verification audits record state changes without duplicating note t
 
 test("Auth email changes synchronize the profile without exposing email values in audit metadata",()=>{
   const migration=fs.readFileSync("supabase/migrations/20260925152507_lockliel_sync_profile_email_from_auth.sql","utf8");
+  const auditMetadata=migration.match(/jsonb_build_object\([\s\S]*?\)/)?.[0]||"";
 
   assert.match(migration,/after update of email[\s\S]*on auth\.users/);
   assert.match(migration,/set email=lower\(trim\(new\.email\)\)/);
   assert.match(migration,/account_email_changed/);
-  assert.match(migration,/jsonb_build_object\('email_changed',true\)/);
-  assert.doesNotMatch(migration,/old\.email[\s\S]*metadata/);
+  assert.match(auditMetadata,/email_changed/);
+  assert.doesNotMatch(auditMetadata,/old\.email|new\.email/);
 });
 
 test("account security changes email and password through Supabase Auth with MFA protection",()=>{
