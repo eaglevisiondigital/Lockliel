@@ -29,8 +29,7 @@ export default async(request)=>{
           headers:{...h,Prefer:"return=representation"},
           body:JSON.stringify({
             status:"in_review",
-            handled_by:s.user.id,
-            updated_at:new Date().toISOString()
+            handled_by:s.user.id
           })
         }
       );
@@ -70,7 +69,6 @@ export default async(request)=>{
             status,
             handled_by:s.user.id,
             admin_note:adminNote||null,
-            updated_at:new Date().toISOString(),
             resolved_at:new Date().toISOString()
           })
         }
