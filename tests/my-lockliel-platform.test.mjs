@@ -462,3 +462,12 @@ test("launch readiness excludes tentative book benefit from required score",()=>
   assert.match(client,/required launch checks ready/);
   assert.match(client,/Optional/);
 });
+
+
+test("digital book readiness requires file, active product, and release flag",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+  assert.match(api,/digitalBook\?\.storage_path/);
+  assert.match(api,/digitalBook\?\.status==="active"/);
+  assert.match(api,/flagMap\.digital_book_delivery/);
+  assert.match(api,/member delivery switch/);
+});
