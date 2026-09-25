@@ -4,8 +4,7 @@ import {
   json,
   dbHeaders,
   requireSession,
-  sessionCookies
-} from "../lib/lockliel-core.mjs";
+  sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
 function safeSlug(value){
   return String(value||"resource")
@@ -17,6 +16,7 @@ function safeSlug(value){
 export default async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
+  if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
   const h=dbHeaders(s.access);
   const rr=await fetch(
