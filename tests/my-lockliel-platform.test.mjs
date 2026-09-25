@@ -949,3 +949,15 @@ test("leader assignment lifecycle timestamps and actor are database-controlled",
   assert.doesNotMatch(api,/status:"ended",ended_at/);
   assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
 });
+
+
+test("leader profile approval identity and timestamps are database-controlled",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121721_lockliel_normalize_leader_profile_approval.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-leaders.mjs","utf8");
+
+  assert.match(migration,/Leader profile identity cannot be changed/);
+  assert.match(migration,/new\.approved_at:=now\(\)/);
+  assert.match(migration,/new\.approved_by:=old\.approved_by/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.doesNotMatch(api,/approved_by:uid,[\s\S]*updated_at:new Date/);
+});
