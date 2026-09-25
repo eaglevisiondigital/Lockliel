@@ -158,6 +158,13 @@ export default async(request)=>{
       detail:"Signup, sign-in, session refresh, confirmation handoff and password recovery are built."
     },
     {
+      key:"staff_mfa",
+      label:"Privileged staff MFA enforcement",
+      ready:true,
+      manual:false,
+      detail:"Admin, finance, content, Founders review, discipleship administration and fulfillment permissions require an AAL2 session. Staff enroll and verify TOTP through My Lockliel Security."
+    },
+    {
       key:"auth_url_configuration",
       label:"Supabase Auth URL configuration",
       ready:Boolean(verificationMap.auth_url_configuration?.verified),
