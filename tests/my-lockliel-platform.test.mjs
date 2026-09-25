@@ -895,3 +895,26 @@ test("staff notes and audit history are append-only",()=>{
   assert.match(notesApi,/method:"POST"/);
   assert.doesNotMatch(notesApi,/method:"PATCH"/);
 });
+
+
+test("leadership assignments and group leadership require approved compatible roles",()=>{
+  const assignmentMigration=fs.readFileSync("supabase/migrations/20260925121010_lockliel_enforce_approved_leadership_roles.sql","utf8");
+  const membershipMigration=fs.readFileSync("supabase/migrations/20260925121116_lockliel_guard_group_leadership_memberships.sql","utf8");
+  const lifecycleMigration=fs.readFileSync("supabase/migrations/20260925121355_lockliel_protect_active_leader_responsibilities.sql","utf8");
+  const leadersApi=fs.readFileSync("netlify/functions/lockliel-admin-leaders.mjs","utf8");
+  const groupsApi=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  const leadersUi=fs.readFileSync("app/my-lockliel/admin/leaders-admin-client.tsx","utf8");
+  const groupsUi=fs.readFileSync("app/my-lockliel/admin/groups-admin-client.tsx","utf8");
+
+  assert.match(assignmentMigration,/leader_type_allows_assignment/);
+  assert.match(assignmentMigration,/Leader assignments require an active approved leader profile/);
+  assert.match(assignmentMigration,/Group leaders must have an active approved group-leader profile/);
+  assert.match(membershipMigration,/Group leader and host roles require an active approved group-leader profile/);
+  assert.match(membershipMigration,/sync_group_primary_leader_membership/);
+  assert.match(lifecycleMigration,/Reassign active members before deactivating this leader/);
+  assert.match(lifecycleMigration,/Reassign active groups before deactivating this leader/);
+  assert.match(leadersApi,/approved leader role does not support this assignment type/);
+  assert.match(groupsApi,/active approved group leader or regional leader/);
+  assert.match(leadersUi,/assignmentTypesFor/);
+  assert.match(groupsUi,/approvedGroupLeaders/);
+});
