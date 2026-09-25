@@ -5,7 +5,7 @@ on:
 
 jobs:
   import:
-    if: ${{ !contains(github.event.head_commit.message, '[grip-pdf-import]') }}
+    if: ${{ contains(github.event.head_commit.message, '[run-grip-pdf-import]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
