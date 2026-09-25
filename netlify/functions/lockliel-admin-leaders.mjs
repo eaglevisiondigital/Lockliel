@@ -93,9 +93,7 @@ export default async(request)=>{
             leader_id:leaderId,
             assignment_type:assignmentType,
             status:"active",
-            assigned_by:uid,
-            ended_at:null,
-            updated_at:new Date().toISOString()
+            assigned_by:uid
           })
         }
       );
@@ -112,7 +110,7 @@ export default async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"ended",ended_at:new Date().toISOString(),updated_at:new Date().toISOString()})
+          body:JSON.stringify({status:"ended"})
         }
       );
       if(!r.ok)return json({error:"Unable to end leader assignment."},r.status);
