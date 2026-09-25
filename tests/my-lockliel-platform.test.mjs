@@ -1959,3 +1959,20 @@ test("account deletion completion requires session, Auth, and personal-data proc
   assert.match(client,/Supabase Auth account processing is complete/);
   assert.match(client,/personal-data processing is complete/);
 });
+
+
+test("server sessions fail closed when the Supabase Auth session row is gone",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925175229_lockliel_require_active_session_for_staff_access.sql","utf8");
+  const core=fs.readFileSync("netlify/lib/lockliel-core.mjs","utf8");
+
+  assert.match(migration,/current_session_is_active/);
+  assert.match(migration,/auth\.sessions/);
+  assert.match(migration,/session_id/);
+  assert.match(migration,/s\.not_after is null or s\.not_after>now\(\)/);
+  assert.match(migration,/security invoker/);
+  assert.match(migration,/app_private\.current_session_is_active\(\)[\s\S]*aal2/);
+  assert.match(core,/function activeSession/);
+  assert.match(core,/rpc\/lockliel_current_session_active/);
+  assert.match(core,/if\(user&&!\(await activeSession\(access\)\)\)/);
+  assert.match(core,/refreshed=null/);
+});

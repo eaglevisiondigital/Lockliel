@@ -29,9 +29,28 @@ export async function refreshSession(refresh){
  const r=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:refresh})});
  return r.ok?r.json():null;
 }
+export async function activeSession(access){
+ if(!access)return false;
+ const r=await fetch(SUPABASE_URL+"/rest/v1/rpc/lockliel_current_session_active",{
+  method:"POST",
+  headers:dbHeaders(access),
+  body:"{}"
+ }).catch(()=>null);
+ if(!r?.ok)return false;
+ const value=await r.json().catch(()=>false);
+ return value===true;
+}
 export async function requireSession(request){
  const c=parseCookies(request); let access=c[ACCESS_COOKIE]||""; let user=await authUser(access); let refreshed=null;
- if(!user&&c[REFRESH_COOKIE]){refreshed=await refreshSession(c[REFRESH_COOKIE]);if(refreshed?.access_token){access=refreshed.access_token;user=await authUser(access);}}
+ if(user&&!(await activeSession(access))){user=null;access="";}
+ if(!user&&c[REFRESH_COOKIE]){
+  refreshed=await refreshSession(c[REFRESH_COOKIE]);
+  if(refreshed?.access_token){
+   access=refreshed.access_token;
+   user=await authUser(access);
+   if(user&&!(await activeSession(access))){user=null;access="";refreshed=null;}
+  }
+ }
  return {user,access,refreshed,cookies:c};
 }
 
