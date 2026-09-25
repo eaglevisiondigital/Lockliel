@@ -63,40 +63,36 @@ export default async(request)=>{
     }
 
     if(b.action==="addMember"){
-      const groupId=String(b.groupId||"");
-      const profileId=String(b.profileId||"");
-      const requestId=String(b.requestId||"");
+      const groupId=String(b.groupId||"").trim();
+      const profileId=String(b.profileId||"").trim();
+      const requestId=String(b.requestId||"").trim();
 
       if(!groupId||!profileId)return json({error:"Group and member are required."},400);
 
-      const mr=await fetch(
-        SUPABASE_URL+"/rest/v1/group_members?on_conflict=group_id,profile_id",
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/rpc/lockliel_assign_member_to_group",
         {
           method:"POST",
-          headers:{...h,Prefer:"resolution=merge-duplicates,return=minimal"},
+          headers:{...h,"Content-Type":"application/json"},
           body:JSON.stringify({
-            group_id:groupId,
-            profile_id:profileId,
-            role:"participant",
-            status:"active",
-            left_at:null
+            member_uuid:profileId,
+            group_uuid:groupId,
+            request_uuid:requestId||null
           })
         }
       );
-      if(!mr.ok)return json({error:"Unable to add member to group."},mr.status);
 
-      if(requestId){
-        await fetch(
-          SUPABASE_URL+"/rest/v1/connection_requests?id=eq."+encodeURIComponent(requestId),
-          {
-            method:"PATCH",
-            headers:{...h,Prefer:"return=minimal"},
-            body:JSON.stringify({status:"resolved"})
-          }
-        );
+      const result=await r.json().catch(()=>null);
+      if(!r.ok){
+        const detail=Array.isArray(result)?result?.[0]?.message:result?.message;
+        return json({error:detail||"Unable to add member to group."},r.status===400?400:409);
       }
 
-      return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
+      return json(
+        result||{ok:true,group_id:groupId,member_id:profileId,request_id:requestId||null},
+        200,
+        s.refreshed?sessionCookies(s.refreshed):[]
+      );
     }
 
     if(b.action==="resolveGroupChange"){
