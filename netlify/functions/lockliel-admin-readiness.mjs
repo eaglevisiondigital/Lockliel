@@ -6,11 +6,12 @@ export default async(request)=>{
 
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
-  const rr=await fetch(
+
+  const roleRes=await fetch(
     SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+uid+"&select=role",
     {headers:h}
   );
-  const roles=rr.ok?(await rr.json()).map(r=>r.role):[];
+  const roles=roleRes.ok?(await roleRes.json()).map(r=>r.role):[];
   if(!roles.some(r=>["super_admin","admin"].includes(r))){
     return json({error:"Administrator access required"},403);
   }
@@ -20,7 +21,10 @@ export default async(request)=>{
     const key=String(b.key||"");
     const verified=Boolean(b.verified);
     const allowed=["auth_url_configuration","custom_smtp"];
-    if(!allowed.includes(key))return json({error:"Unknown launch verification."},400);
+
+    if(!allowed.includes(key)){
+      return json({error:"Unknown launch verification."},400);
+    }
 
     const r=await fetch(
       SUPABASE_URL+"/rest/v1/launch_verifications?key=eq."+encodeURIComponent(key),
@@ -33,34 +37,68 @@ export default async(request)=>{
         })
       }
     );
+
     if(!r.ok)return json({error:"Unable to update launch verification."},r.status);
 
-    return json({ok:true,verification:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    return json(
+      {ok:true,verification:(await r.json())?.[0]||null},
+      200,
+      s.refreshed?sessionCookies(s.refreshed):[]
+    );
   }
 
-  if(request.method!=="GET")return json({error:"Method not allowed"},405);
+  if(request.method!=="GET"){
+    return json({error:"Method not allowed"},405);
+  }
 
   const [
     flagsRes,
     providersRes,
-    courseRes,
+    coursesRes,
+    lessonsRes,
     assetsRes,
     productsRes,
     rolesRes,
     verificationRes
   ]=await Promise.all([
-    fetch(SUPABASE_URL+"/rest/v1/feature_flags?select=key,enabled,description&order=key.asc",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring&order=label.asc",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/courses?slug=eq.getting-a-grip-on-the-basics&select=id,title,status&limit=1",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,status,provider,storage_path&limit=2000",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/products?select=id,slug,title,product_type,status,storage_path&order=created_at.asc",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/staff_roles?select=profile_id,role",{headers:h}),
-    fetch(SUPABASE_URL+"/rest/v1/launch_verifications?select=key,label,verified,verified_by,verified_at,note,updated_at&order=key.asc",{headers:h})
+    fetch(
+      SUPABASE_URL+"/rest/v1/feature_flags?select=key,enabled,description&order=key.asc",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring&order=label.asc",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/courses?select=id,slug,title,status&order=created_at.asc",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/lessons?select=id,course_id,position,worksheet_schema&order=position.asc&limit=5000",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,status,provider,storage_path&limit=5000",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/products?select=id,slug,title,product_type,status,storage_path&order=created_at.asc",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/staff_roles?select=profile_id,role",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/launch_verifications?select=key,label,verified,verified_by,verified_at,note,updated_at&order=key.asc",
+      {headers:h}
+    )
   ]);
 
   const flags=flagsRes.ok?await flagsRes.json():[];
   const providers=providersRes.ok?await providersRes.json():[];
-  const course=(courseRes.ok?await courseRes.json():[])?.[0]||null;
+  const courses=coursesRes.ok?await coursesRes.json():[];
+  const lessons=lessonsRes.ok?await lessonsRes.json():[];
   const assets=assetsRes.ok?await assetsRes.json():[];
   const products=productsRes.ok?await productsRes.json():[];
   const staffRoles=rolesRes.ok?await rolesRes.json():[];
@@ -68,10 +106,39 @@ export default async(request)=>{
 
   const flagMap=Object.fromEntries(flags.map(f=>[f.key,f.enabled]));
   const verificationMap=Object.fromEntries(verifications.map(v=>[v.key,v]));
+
   const activeProvider=providers.find(p=>p.status==="active")||null;
-  const gripVideos=assets.filter(a=>a.asset_type==="video"&&a.status==="active").length;
-  const gripPrivatePdfs=assets.filter(a=>a.asset_type==="pdf"&&a.status==="active"&&a.storage_path).length;
-  const digitalBook=products.find(p=>p.slug==="a-heart-for-the-lost-digital")||null;
+  const gripCourse=courses.find(c=>c.slug==="getting-a-grip-on-the-basics")||null;
+  const gripLessons=gripCourse?lessons.filter(l=>l.course_id===gripCourse.id):[];
+  const gripLessonIds=new Set(gripLessons.map(l=>l.id));
+  const gripAssets=assets.filter(a=>gripLessonIds.has(a.lesson_id));
+
+  const gripVideos=gripAssets.filter(
+    a=>a.asset_type==="video"&&a.status==="active"
+  ).length;
+
+  const gripPrivatePdfs=gripAssets.filter(
+    a=>a.asset_type==="pdf"&&a.status==="active"&&a.storage_path
+  ).length;
+
+  const gripStructuredLessons=gripLessons.filter(lesson=>{
+    const questions=lesson.worksheet_schema?.questions;
+    return Array.isArray(questions)&&questions.length>0;
+  }).length;
+
+  const gripEngineReady=
+    Boolean(gripCourse) &&
+    gripLessons.length===13 &&
+    gripStructuredLessons===13 &&
+    gripVideos>=10;
+
+  const gripWorkbooksReady=gripPrivatePdfs===13;
+  const gripPublished=gripCourse?.status==="published";
+
+  const digitalBook=products.find(
+    p=>p.slug==="a-heart-for-the-lost-digital"
+  )||null;
+
   const hasSuperAdmin=staffRoles.some(r=>r.role==="super_admin");
 
   const checks=[
@@ -95,7 +162,7 @@ export default async(request)=>{
       ready:Boolean(verificationMap.auth_url_configuration?.verified),
       manual:true,
       manualKey:"auth_url_configuration",
-      detail:"Verify Site URL = https://lockliel.com and allow production redirects for /my-lockliel/sign-in and /my-lockliel/reset-password. For Netlify previews, allow the controlled preview pattern https://**--lockliel.netlify.app/**."
+      detail:"Verify Site URL = https://lockliel.com. Allow exact production redirects for https://lockliel.com/my-lockliel/sign-in and https://lockliel.com/my-lockliel/reset-password. For Netlify previews, allow https://**--lockliel.netlify.app/**."
     },
     {
       key:"custom_smtp",
@@ -115,11 +182,27 @@ export default async(request)=>{
         :"Create the first real member account, then assign its staff role to super_admin directly in Supabase."
     },
     {
-      key:"course",
-      label:"Getting a Grip course foundation",
-      ready:Boolean(course)&&gripVideos>0,
+      key:"grip_engine",
+      label:"Getting a Grip course engine",
+      ready:gripEngineReady,
       manual:false,
-      detail:(course?course.status:"missing")+" • "+gripVideos+" active video assets • "+gripPrivatePdfs+" private workbook PDFs ready"
+      detail:gripLessons.length+" of 13 lessons • "+gripStructuredLessons+" structured worksheet/note experiences • "+gripVideos+" active video assets"
+    },
+    {
+      key:"grip_workbooks",
+      label:"Getting a Grip private workbook library",
+      ready:gripWorkbooksReady,
+      manual:false,
+      detail:gripPrivatePdfs+" of 13 private lesson PDFs are active in Lockliel storage."
+    },
+    {
+      key:"grip_published",
+      label:"Getting a Grip release status",
+      ready:gripPublished,
+      manual:false,
+      detail:gripPublished
+        ?"Course is published."
+        :"Course remains in draft until the private workbook library is imported and reviewed."
     },
     {
       key:"digital_book",
