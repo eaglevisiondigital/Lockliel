@@ -46,15 +46,18 @@ export default function TasksAdminClient(){
     {data.tasks.length
       ? <div className="ml-task-list">{data.tasks.map((t:any)=>{
           const subject=t.subject||{};
+          const lead=t.lead||null;
           const mine=t.assigned_to===data.currentUserId;
+          const displayName=lead?([lead.first_name,lead.last_name].filter(Boolean).join(" ")||lead.email):(subject.first_name?subject.first_name+(subject.last_initial?" "+subject.last_initial+".":""):"Member");
           return <article className="ml-task-row" key={t.id}>
             <div className="ml-task-icon"><UsersRound size={16}/></div>
             <div className="ml-task-copy">
               <b>{t.task_type.replaceAll("_"," ")}</b>
               <span>{t.notes||"Follow up"}</span>
               <small>
-                {subject.first_name?subject.first_name+(subject.last_initial?" "+subject.last_initial+".":""):"Member"}
-                {subject.city?" • "+[subject.city,subject.region].filter(Boolean).join(", "):""}
+                {displayName}
+                {lead?.email?" • "+lead.email:""}
+                {!lead&&subject.city?" • "+[subject.city,subject.region].filter(Boolean).join(", "):""}
                 {t.due_at?" • Due "+new Date(t.due_at).toLocaleDateString():""}
               </small>
             </div>
