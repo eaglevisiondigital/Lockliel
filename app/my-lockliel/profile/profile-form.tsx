@@ -11,7 +11,7 @@ export default function ProfileForm(){
   city:f.get("city"),
   region:f.get("region"),
   country:f.get("country"),
-  locale:typeof navigator!=="undefined"?(navigator.language||"en-US"):"en-US",
+  locale:profile?.locale||(typeof navigator!=="undefined"?(navigator.language||"en-US"):"en-US"),
   timezone:typeof Intl!=="undefined"?Intl.DateTimeFormat().resolvedOptions().timeZone:null
 })});const d=await r.json();setSaving(false);if(!r.ok){setMessage(d.error||"Unable to save.");return;}router.push(profile?.onboarding_status==="active"?"/my-lockliel":"/my-lockliel/faith-profile");router.refresh();}
  if(!profile)return <p>Loading your profile…</p>;
