@@ -47,7 +47,9 @@ export default function ResourcesClient(){
             <h2>{r.product.title}</h2>
             <p>{r.product.description||"Your Lockliel resource."}</p>
             <small className="ml-resource-grant">Added {new Date(r.granted_at).toLocaleDateString()}</small>
-            <button className="ml-action" onClick={()=>openResource(r.product.id)}>Open resource</button>
+            {r.deliveryAvailable
+              ? <button className="ml-action" onClick={()=>openResource(r.product.id)}>Open resource</button>
+              : <div className="ml-resource-pending"><LockKeyhole size={14}/> Not released yet</div>}
           </article>)}
         </section>
       : <section className="ml-card">
