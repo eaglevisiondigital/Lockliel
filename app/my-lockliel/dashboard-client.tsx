@@ -108,6 +108,9 @@ export default function MyLocklielDashboard(){
 
     const extra:any[]=[];
     const roles=data.roles||[];
+    const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin"];
+    const hasAdminAccess=roles.some(role=>adminCapableRoles.includes(role));
+    const isRoleLeader=roles.includes("group_leader");
     const founderStatus=String(data.founderStatus||"");
     const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
@@ -130,7 +133,7 @@ export default function MyLocklielDashboard(){
       });
     }
 
-    if(founderStatus==="active_host"||isHost){
+    if(founderStatus==="active_host"||isHost||isRoleLeader){
       extra.push({
         icon:Sparkles,
         title:"Founder / Host Tools",
@@ -140,7 +143,7 @@ export default function MyLocklielDashboard(){
       });
     }
 
-    if(roles.length){
+    if(hasAdminAccess){
       extra.push({
         icon:ShieldCheck,
         title:"Lockliel Admin",
