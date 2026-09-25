@@ -1431,3 +1431,20 @@ test("Founders review decisions require a documented rationale in the database",
   assert.match(migration,/char_length\(trim\(coalesce\(rationale,''\)\)\)>=20/);
   assert.match(api,/rationale\.length<20/);
 });
+
+
+test("member-created referral links are bound to approved Share Library content",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925133008_lockliel_bind_referral_links_to_approved_content.sql","utf8");
+  const shareApi=fs.readFileSync("netlify/functions/lockliel-share-link.mjs","utf8");
+
+  assert.match(migration,/campaign in \('share-center','share-center-my-five'\)/);
+  assert.match(migration,/sa\.status='active'/);
+  assert.match(migration,/sa\.asset_type=content_type/);
+  assert.match(migration,/sa\.destination_path=destination_path/);
+  assert.match(migration,/Default member invitation links must use the canonical Lockliel sign-up destination/);
+  assert.match(migration,/Referral links must match an active approved Share Library resource/);
+  assert.match(migration,/referral_links_code_format/);
+  assert.match(migration,/referral_links_destination_path_check/);
+  assert.match(shareApi,/campaign:reachContact\?"share-center-my-five":"share-center"/);
+  assert.match(shareApi,/destination_path:asset\.destination_path/);
+});
