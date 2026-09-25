@@ -1251,3 +1251,16 @@ test("group assignment and request resolution are atomic",()=>{
   assert.match(api,/rest\/v1\/rpc\/lockliel_assign_member_to_group/);
   assert.doesNotMatch(api,/on_conflict=group_id,profile_id[\s\S]*connection_requests\?id=eq/);
 });
+
+
+test("members cannot create duplicate open connection requests under race conditions",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925124859_lockliel_unique_open_connection_requests.sql","utf8");
+  const groups=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+  const connections=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+
+  assert.match(migration,/create unique index connection_requests_one_open_type_uidx/);
+  assert.match(migration,/\(requester_id,request_type\)/);
+  assert.match(migration,/where status='open'/);
+  assert.match(groups,/r\.status===409[\s\S]*already have an open request of this type/);
+  assert.match(connections,/r\.status===409[\s\S]*already have an open leader request/);
+});
