@@ -19,7 +19,7 @@ export default async(request)=>{
 
   if(request.method==="GET"){
     const r=await fetch(
-      SUPABASE_URL+"/rest/v1/share_assets?select=id,slug,title,asset_type,description,share_text,category,preview_image_path,destination_path,status,featured,sort_order,created_at,updated_at&order=featured.desc,sort_order.asc,title.asc",
+      SUPABASE_URL+"/rest/v1/share_assets?select=id,slug,title,asset_type,description,share_text,category,preview_image_path,destination_path,status,featured,sort_order,language_code,translation_key,created_at,updated_at&order=featured.desc,sort_order.asc,title.asc",
       {headers:h}
     );
     return json({assets:r.ok?await r.json():[]},200,s.refreshed?sessionCookies(s.refreshed):[]);
@@ -51,6 +51,8 @@ export default async(request)=>{
         category:String(b.category||"").trim().slice(0,120)||null,
         preview_image_path:String(b.previewImagePath||"").trim().slice(0,500)||null,
         destination_path:destinationPath,
+        language_code:String(b.languageCode||"en").trim().toLowerCase().slice(0,12)||"en",
+        translation_key:String(b.translationKey||slug).trim().slice(0,200)||slug,
         status:String(b.status||"draft"),
         featured:Boolean(b.featured),
         sort_order:Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100,
@@ -86,6 +88,8 @@ export default async(request)=>{
           category:String(b.category||"").trim().slice(0,120)||null,
           preview_image_path:String(b.previewImagePath||"").trim().slice(0,500)||null,
           destination_path:String(b.destinationPath||"").trim(),
+          language_code:String(b.languageCode||"en").trim().toLowerCase().slice(0,12)||"en",
+          translation_key:String(b.translationKey||"").trim().slice(0,200)||null,
           status,
           featured:Boolean(b.featured),
           sort_order:Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100,
