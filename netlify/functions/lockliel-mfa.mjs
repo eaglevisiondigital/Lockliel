@@ -45,10 +45,25 @@ export default async(request)=>{
         lastChallengedAt:f.last_challenged_at||null
       }));
 
+    const recovery=await authJson("/factors/recovery-codes",s.access,{method:"GET"});
+    const recoveryCodes=recovery.response.ok
+      ? {
+          enrolled:true,
+          id:recovery.data.id||null,
+          total:Number(recovery.data.total)||0,
+          remaining:Number(recovery.data.remaining)||0
+        }
+      : {
+          enrolled:false,
+          unavailable:recovery.response.status!==404,
+          status:recovery.response.status
+        };
+
     return json({
       aal:sessionAal(s.access),
       hasVerifiedTotp:hasVerifiedTotp(s.user),
-      factors:safeFactors
+      factors:safeFactors,
+      recoveryCodes
     },200,s.refreshed?sessionCookies(s.refreshed):[]);
   }
 
@@ -117,6 +132,94 @@ export default async(request)=>{
       ok:true,
       aal:sessionAal(verified.data.access_token)
     },200,sessionCookies(verified.data));
+  }
+
+  if(action==="generateRecoveryCodes"){
+    if(sessionAal(s.access)!=="aal2"){
+      return json({error:"Verify your authenticator before generating recovery codes."},403);
+    }
+
+    const generated=await authJson("/factors/recovery-codes",s.access,{
+      method:"POST",
+      body:JSON.stringify({friendly_name:"Lockliel Recovery Codes"})
+    });
+
+    if(!generated.response.ok){
+      return json({
+        error:generated.data.msg||generated.data.message||generated.data.error_description||"Recovery codes are not available for this project."
+      },generated.response.status);
+    }
+
+    return json({
+      ok:true,
+      recoveryCodes:{
+        id:generated.data.id,
+        total:generated.data.total,
+        codes:Array.isArray(generated.data.codes)?generated.data.codes:[]
+      }
+    });
+  }
+
+  if(action==="regenerateRecoveryCodes"){
+    if(sessionAal(s.access)!=="aal2"){
+      return json({error:"Verify your authenticator before rotating recovery codes."},403);
+    }
+
+    const generated=await authJson("/factors/recovery-codes/regenerate",s.access,{
+      method:"POST",
+      body:JSON.stringify({})
+    });
+
+    if(!generated.response.ok){
+      return json({
+        error:generated.data.msg||generated.data.message||"Unable to regenerate recovery codes."
+      },generated.response.status);
+    }
+
+    return json({
+      ok:true,
+      recoveryCodes:{
+        id:generated.data.id,
+        total:generated.data.total,
+        codes:Array.isArray(generated.data.codes)?generated.data.codes:[]
+      }
+    });
+  }
+
+  if(action==="verifyRecoveryCode"){
+    const code=String(body.code||"").trim();
+    if(!code)return json({error:"Enter a recovery code."},400);
+
+    const verified=await authJson("/factors/recovery-codes/verify",s.access,{
+      method:"POST",
+      body:JSON.stringify({code})
+    });
+
+    if(!verified.response.ok||!verified.data.access_token||!verified.data.refresh_token){
+      return json({
+        error:verified.data.msg||verified.data.message||"Recovery code was not accepted."
+      },verified.response.status||400);
+    }
+
+    return json({
+      ok:true,
+      aal:sessionAal(verified.data.access_token)
+    },200,sessionCookies(verified.data));
+  }
+
+  if(action==="revokeRecoveryCodes"){
+    if(sessionAal(s.access)!=="aal2"){
+      return json({error:"Verify your authenticator before revoking recovery codes."},403);
+    }
+
+    const removed=await authJson("/factors/recovery-codes",s.access,{method:"DELETE"});
+    if(!removed.response.ok){
+      return json({
+        error:removed.data.msg||removed.data.message||"Unable to revoke recovery codes."
+      },removed.response.status);
+    }
+
+    return json({ok:true});
   }
 
   if(action==="unenroll"){
