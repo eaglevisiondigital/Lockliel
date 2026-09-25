@@ -6,7 +6,9 @@ import {
   sessionCookies,
   clearCookie,
   ACCESS_COOKIE,
-  REFRESH_COOKIE
+  REFRESH_COOKIE,
+  sessionAal,
+  hasVerifiedTotp
 } from "../lib/lockliel-core.mjs";
 
 export default async(request)=>{
@@ -63,6 +65,9 @@ export default async(request)=>{
   const leaderProfiles=lp.ok?await lp.json():[];
   const leaderAssignments=la.ok?await la.json():[];
 
+  const aal=sessionAal(s.access);
+  const verifiedTotp=hasVerifiedTotp(s.user);
+
   return json({
     authenticated:true,
     user:{id:s.user.id,email:s.user.email},
@@ -72,7 +77,8 @@ export default async(request)=>{
     founderStatus:founders?.[0]?.status||null,
     groupMemberships:groups,
     leaderProfile:leaderProfiles?.[0]||null,
-    peopleAssignedCount:leaderAssignments.length
+    peopleAssignedCount:leaderAssignments.length,
+    mfa:{aal,hasVerifiedTotp:verifiedTotp,requiresChallenge:verifiedTotp&&aal!=="aal2"}
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
