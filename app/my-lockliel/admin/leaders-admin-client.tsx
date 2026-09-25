@@ -76,6 +76,30 @@ export default function LeadersAdminClient(){
     await load();
   }
 
+  async function assignRequest(memberId:string,leaderId:string){
+    if(!leaderId)return;
+    setWorking(true);
+    setMessage("");
+    const r=await fetch("/api/lockliel/admin/leaders",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        action:"assignLeader",
+        memberId,
+        leaderId,
+        assignmentType:"mentor"
+      })
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+    if(!r.ok){
+      setMessage(d.error||"Unable to assign leader.");
+      return;
+    }
+    setMessage("Leader assigned and the member request was resolved.");
+    await load();
+  }
+
   async function end(memberId:string){
     setWorking(true);
     const r=await fetch("/api/lockliel/admin/leaders",{
@@ -97,6 +121,28 @@ export default function LeadersAdminClient(){
 
   const activeLeaders=data.leaders.filter((l:any)=>l.active);
   const activeAssignments=data.assignments.filter((a:any)=>a.status==="active");
+  const requests=data.requests||[];
+
+  function suggestedLeaders(member:any){
+    return [...activeLeaders].sort((a:any,b:any)=>{
+      const pa=peopleMap[a.profile_id]||{};
+      const pb=peopleMap[b.profile_id]||{};
+      const assignedA=activeAssignments.filter((x:any)=>x.leader_id===a.profile_id).length;
+      const assignedB=activeAssignments.filter((x:any)=>x.leader_id===b.profile_id).length;
+
+      function score(leader:any,profile:any,assigned:number){
+        let value=0;
+        if(member.country&&profile.country===member.country)value+=10;
+        if(member.region&&profile.region===member.region)value+=20;
+        if(member.city&&profile.city===member.city)value+=40;
+        if(leader.capacity&&assigned>=leader.capacity)value-=1000;
+        else if(leader.capacity)value+=Math.max(0,10-assigned);
+        return value;
+      }
+
+      return score(b,pb,assignedB)-score(a,pa,assignedA);
+    });
+  }
 
   return <section className="ml-leaders-admin">
     {message&&<p className="ml-share-message">{message}</p>}
@@ -105,6 +151,49 @@ export default function LeadersAdminClient(){
       <article><ShieldCheck size={18}/><strong>{activeLeaders.length}</strong><span>approved leaders</span></article>
       <article><UserCheck size={18}/><strong>{activeAssignments.length}</strong><span>active assignments</span></article>
     </div>
+
+    {requests.length>0&&<section className="ml-panel ml-leader-request-queue">
+      <div className="ml-kicker">Leader connection requests</div>
+      <h3>Members asking for a leader or mentor</h3>
+      <p>Suggestions prioritize location and available capacity only. A Lockliel reviewer makes the final assignment.</p>
+
+      {requests.map((request:any)=>{
+        const member=peopleMap[request.requester_id]||{};
+        const suggestions=suggestedLeaders(member);
+
+        return <article className="ml-leader-request-row" key={request.id}>
+          <div>
+            <b>{member.first_name||"Member"}{member.last_initial?" "+member.last_initial+".":""}</b>
+            <span><MapPin size={11}/>{[member.city,member.region,member.country].filter(Boolean).join(", ")||"Location not completed"}</span>
+            <small>{new Date(request.created_at).toLocaleDateString()}</small>
+          </div>
+
+          <select
+            defaultValue=""
+            disabled={working||!suggestions.length}
+            onChange={e=>{
+              if(e.target.value){
+                assignRequest(request.requester_id,e.target.value);
+                e.currentTarget.value="";
+              }
+            }}
+          >
+            <option value="">
+              {suggestions.length?"Choose approved leader…":"No approved leaders available"}
+            </option>
+            {suggestions.map((leader:any)=>{
+              const person=peopleMap[leader.profile_id]||{};
+              const assigned=activeAssignments.filter((a:any)=>a.leader_id===leader.profile_id).length;
+              return <option key={leader.profile_id} value={leader.profile_id}>
+                {person.first_name||"Leader"}{person.last_initial?" "+person.last_initial+".":""}
+                {" • "}{[person.city,person.region].filter(Boolean).join(", ")||"remote"}
+                {" • "}{assigned}{leader.capacity?"/"+leader.capacity:""} assigned
+              </option>;
+            })}
+          </select>
+        </article>;
+      })}
+    </section>}
 
     <div className="ml-finance-grid">
       <form className="ml-panel ml-admin-form" onSubmit={approve}>
