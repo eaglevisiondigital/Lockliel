@@ -4,8 +4,7 @@ import {
   json,
   dbHeaders,
   requireSession,
-  sessionCookies
-} from "../lib/lockliel-core.mjs";
+  sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
 const GRIP_PDFS={
   "getting-a-grip/lesson-01.pdf":"getting-a-grip-lesson-1-how-to-become-a-christian.pdf",
@@ -26,6 +25,7 @@ const GRIP_PDFS={
 export default async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
+  if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
