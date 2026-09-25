@@ -180,41 +180,21 @@ Deno.serve(async(req:Request)=>{
   const apps=await ins.json();
   const appId=apps?.[0]?.id||null;
 
-  const leadRes=await fetch(
-    url+"/rest/v1/lead_contacts?email=eq."+encodeURIComponent(email)+"&select=id&limit=1",
-    {headers:h}
-  );
-  const leads=leadRes.ok?await leadRes.json():[];
-  let leadId=leads?.[0]?.id||null;
-
-  if(leadId){
-    await fetch(url+"/rest/v1/lead_contacts?id=eq."+encodeURIComponent(leadId),{
-      method:"PATCH",
-      headers:{...h,Prefer:"return=minimal"},
-      body:JSON.stringify({
-        first_name:first,
-        last_name:last,
-        phone:payload.phone,
-        linked_profile_id:profileId
-      })
-    });
-  }else{
-    const li=await fetch(url+"/rest/v1/lead_contacts",{
+  const leadUpsert=await fetch(
+    url+"/rest/v1/rpc/upsert_public_lead_contact",
+    {
       method:"POST",
       headers:{...h,Prefer:"return=representation"},
       body:JSON.stringify({
-        email,
-        first_name:first,
-        last_name:last,
-        phone:payload.phone,
-        linked_profile_id:profileId
+        email_input:email,
+        first_name_input:first,
+        last_name_input:last,
+        phone_input:payload.phone,
+        linked_profile_input:profileId
       })
-    });
-    if(li.ok){
-      const rows=await li.json();
-      leadId=rows?.[0]?.id||null;
     }
-  }
+  );
+  const leadId=leadUpsert.ok?await leadUpsert.json().catch(()=>null):null;
 
   if(leadId){
     await fetch(url+"/rest/v1/lead_sources",{
