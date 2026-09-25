@@ -170,6 +170,31 @@ export default async(request)=>{
       return json({ok:true,reachContact:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
+    if(b.action==="setContactPermission"){
+      const otherProfileId=String(b.otherProfileId||"").trim();
+      const permissionType=String(b.permissionType||"").trim();
+      const allow=b.allow===true;
+
+      if(!otherProfileId||!["inviter_followup","leader_followup"].includes(permissionType)){
+        return json({error:"Invalid contact permission."},400);
+      }
+
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/contact_permissions?profile_id=eq."+encodeURIComponent(uid)+
+        "&other_profile_id=eq."+encodeURIComponent(otherProfileId)+
+        "&permission_type=eq."+encodeURIComponent(permissionType),
+        {
+          method:"PATCH",
+          headers:{...h,Prefer:"return=representation"},
+          body:JSON.stringify({revoked_at:allow?null:new Date().toISOString()})
+        }
+      );
+      if(!r.ok)return json({error:"Unable to update contact preference."},r.status);
+      const rows=await r.json();
+      if(!rows.length)return json({error:"Contact preference not found."},404);
+      return json({ok:true,permission:rows[0]},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
     if(b.action==="sendMessage"){
       if(!messagingEnabled)return json({error:"Internal messaging is temporarily unavailable."},403);
       const conversationId=String(b.conversationId||"");
@@ -207,7 +232,7 @@ export default async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
-  const [mine,reachRes,tr,leaderRes,requestRes]=await Promise.all([
+  const [mine,reachRes,tr,leaderRes,requestRes,permissionRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/conversation_members?profile_id=eq."+encodeURIComponent(uid)+"&left_at=is.null&select=conversation_id,member_role,joined_at",
       {headers:h}
@@ -227,6 +252,10 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=eq.connect_with_leader&status=eq.open&select=id,request_type,status,message,created_at&limit=1",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/contact_permissions?profile_id=eq."+encodeURIComponent(uid)+"&permission_type=in.(inviter_followup,leader_followup)&select=other_profile_id,permission_type,granted_at,revoked_at",
+      {headers:h}
     )
   ]);
 
@@ -237,6 +266,7 @@ export default async(request)=>{
   const leaderAssignment=leaderRows?.[0]||null;
   const leaderRequests=requestRes.ok?await requestRes.json():[];
   const leaderRequest=leaderRequests?.[0]||null;
+  const permissionRows=permissionRes.ok?await permissionRes.json():[];
   const ids=selfMemberships.map(x=>x.conversation_id);
   let conversations=[];
 
@@ -280,11 +310,27 @@ export default async(request)=>{
       return {
         id,
         type:conversationMap[id]?.conversation_type||"direct",
+        selfRole:selfMemberships.find(m=>m.conversation_id===id)?.member_role||"member",
         other:others[0]||null,
         messages:messages.filter(m=>m.conversation_id===id)
       };
     });
   }
+
+  const permissionIds=[...new Set(permissionRows.map(p=>p.other_profile_id).filter(Boolean))];
+  let permissionCards=[];
+  if(permissionIds.length){
+    const pr=await fetch(
+      SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id="+encodeURIComponent(inFilter(permissionIds))+"&select=profile_id,first_name,last_initial,city,region,country",
+      {headers:h}
+    );
+    permissionCards=pr.ok?await pr.json():[];
+  }
+  const permissionCardMap=Object.fromEntries(permissionCards.map(card=>[card.profile_id,card]));
+  const contactPermissions=permissionRows.map(permission=>({
+    ...permission,
+    person:permissionCardMap[permission.other_profile_id]||null
+  }));
 
   let leader=null;
   if(leaderAssignment?.leader_id){
@@ -302,7 +348,8 @@ export default async(request)=>{
     reachContacts,
     messagingEnabled,
     leaderAssignment:leaderAssignment?{...leaderAssignment,person:leader}:null,
-    leaderRequest
+    leaderRequest,
+    contactPermissions
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
