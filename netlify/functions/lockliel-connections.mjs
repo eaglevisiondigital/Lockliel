@@ -21,6 +21,44 @@ export default async(request)=>{
   if(request.method==="POST"){
     const b=await request.json().catch(()=>({}));
 
+    if(b.action==="requestLeader"){
+      const existing=await fetch(
+        SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=eq.connect_with_leader&status=eq.open&select=id&limit=1",
+        {headers:h}
+      );
+      const rows=existing.ok?await existing.json():[];
+      if(rows.length)return json({error:"You already have an open leader request."},409);
+
+      const r=await fetch(SUPABASE_URL+"/rest/v1/connection_requests",{
+        method:"POST",
+        headers:{...h,Prefer:"return=representation"},
+        body:JSON.stringify({
+          requester_id:uid,
+          request_type:"connect_with_leader",
+          status:"open",
+          message:"Member requested help connecting with an appropriate Lockliel leader or mentor."
+        })
+      });
+      if(!r.ok)return json({error:"Unable to submit leader request."},r.status);
+      return json({ok:true,request:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
+    if(b.action==="cancelLeaderRequest"){
+      const requestId=String(b.requestId||"");
+      if(!requestId)return json({error:"Request required."},400);
+
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/connection_requests?id=eq."+encodeURIComponent(requestId)+"&requester_id=eq."+encodeURIComponent(uid)+"&request_type=eq.connect_with_leader&status=eq.open",
+        {
+          method:"PATCH",
+          headers:{...h,Prefer:"return=representation"},
+          body:JSON.stringify({status:"closed",resolved_at:new Date().toISOString()})
+        }
+      );
+      if(!r.ok)return json({error:"Unable to cancel leader request."},r.status);
+      return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
     if(b.action==="addReachContact"){
       const displayName=String(b.displayName||"").trim();
       const relationshipContext=String(b.relationshipContext||"").trim().slice(0,500)||null;
@@ -133,7 +171,7 @@ export default async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
-  const [mine,reachRes,tr,leaderRes]=await Promise.all([
+  const [mine,reachRes,tr,leaderRes,requestRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/conversation_members?profile_id=eq."+encodeURIComponent(uid)+"&left_at=is.null&select=conversation_id,member_role,joined_at",
       {headers:h}
@@ -149,6 +187,10 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/leader_assignments?member_id=eq."+encodeURIComponent(uid)+"&status=eq.active&select=leader_id,assignment_type,assigned_at&limit=1",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=eq.connect_with_leader&status=eq.open&select=id,request_type,status,message,created_at&limit=1",
+      {headers:h}
     )
   ]);
 
@@ -157,6 +199,8 @@ export default async(request)=>{
   const tasks=tr.ok?await tr.json():[];
   const leaderRows=leaderRes.ok?await leaderRes.json():[];
   const leaderAssignment=leaderRows?.[0]||null;
+  const leaderRequests=requestRes.ok?await requestRes.json():[];
+  const leaderRequest=leaderRequests?.[0]||null;
   const ids=selfMemberships.map(x=>x.conversation_id);
   let conversations=[];
 
@@ -221,7 +265,8 @@ export default async(request)=>{
     tasks,
     reachContacts,
     messagingEnabled,
-    leaderAssignment:leaderAssignment?{...leaderAssignment,person:leader}:null
+    leaderAssignment:leaderAssignment?{...leaderAssignment,person:leader}:null,
+    leaderRequest
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
