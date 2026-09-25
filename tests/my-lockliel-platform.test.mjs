@@ -1561,6 +1561,8 @@ test("profile connection and finance cards are system-owned read models",()=>{
   assert.match(migration,/grant select[\s\S]*on table public\.profile_connection_cards[\s\S]*to authenticated/);
   assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.profile_finance_cards[\s\S]*from authenticated/);
   assert.match(migration,/grant select[\s\S]*on table public\.profile_finance_cards[\s\S]*to authenticated/);
-  assert.match(reinforce,/profile_connection_cards/);
-  assert.match(reinforce,/profile_finance_cards/);
+  assert.match(reinforce,/revoke all privileges on table public\.profile_connection_cards[\s\S]*from authenticated/);
+  assert.match(reinforce,/grant select on table public\.profile_connection_cards[\s\S]*to authenticated/);
+  assert.match(reinforce,/revoke all privileges on table public\.profile_finance_cards[\s\S]*from authenticated/);
+  assert.match(reinforce,/grant select on table public\.profile_finance_cards[\s\S]*to authenticated/);
 });
