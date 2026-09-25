@@ -174,10 +174,25 @@ export default async(request)=>{
       const activity=String(b.activity||"");
       if(!id||!["shared","followed_up"].includes(activity))return json({error:"Invalid outreach activity."},400);
 
+      const currentRes=await fetch(
+        SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+
+        "&owner_id=eq."+encodeURIComponent(uid)+
+        "&select=id,status&limit=1",
+        {headers:h}
+      );
+      const current=(currentRes.ok?await currentRes.json():[])?.[0]||null;
+      if(!current)return json({error:"My Five person not found."},404);
+
       const now=new Date();
       const patch=activity==="shared"
-        ? {last_shared_at:now.toISOString(),status:"invited"}
-        : {last_follow_up_at:now.toISOString(),next_follow_up_at:new Date(now.getTime()+7*24*60*60*1000).toISOString()};
+        ? {
+            last_shared_at:now.toISOString(),
+            ...(current.status==="praying"?{status:"invited"}:{})
+          }
+        : {
+            last_follow_up_at:now.toISOString(),
+            next_follow_up_at:new Date(now.getTime()+7*24*60*60*1000).toISOString()
+          };
 
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+"&owner_id=eq."+encodeURIComponent(uid),
