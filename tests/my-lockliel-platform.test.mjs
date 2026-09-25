@@ -1003,3 +1003,13 @@ test("pre-account CRM identity and attribution are system-owned",()=>{
   assert.match(migration,/new\.updated_at:=now\(\)/);
   assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
 });
+
+
+test("Founders reviewer connection-card access uses only the scoped policy",()=>{
+  const scoped=fs.readFileSync("supabase/migrations/20260925122007_lockliel_scope_founders_reviewer_access.sql","utf8");
+  const cleanup=fs.readFileSync("supabase/migrations/20260925122202_lockliel_remove_legacy_connection_card_policy.sql","utf8");
+
+  assert.match(scoped,/profile_connection_cards_allowed_read/);
+  assert.match(scoped,/founders50_applications fa/);
+  assert.match(cleanup,/drop policy if exists connection_cards_allowed_read/);
+});
