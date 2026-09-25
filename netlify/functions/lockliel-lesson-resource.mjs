@@ -1,5 +1,15 @@
 import {SUPABASE_URL,SUPABASE_KEY,json,dbHeaders,requireSession} from "../lib/lockliel-core.mjs";
 
+function safeHttpsUrl(value){
+  try{
+    const url=new URL(String(value||""));
+    if(url.protocol!=="https:"||url.username||url.password)return null;
+    return url.toString();
+  }catch{
+    return null;
+  }
+}
+
 export default async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
@@ -19,7 +29,9 @@ export default async(request)=>{
   const asset=assets?.[0];
   if(!asset)return json({error:"Resource unavailable"},404);
   if(asset.asset_type==="external_link"&&asset.external_url){
-    return new Response(null,{status:302,headers:{Location:asset.external_url,"Cache-Control":"no-store"}});
+    const location=safeHttpsUrl(asset.external_url);
+    if(!location)return json({error:"This external lesson resource is not available."},404);
+    return new Response(null,{status:302,headers:{Location:location,"Cache-Control":"no-store"}});
   }
   if(!asset.storage_path)return json({error:"This resource has not been uploaded yet."},404);
 

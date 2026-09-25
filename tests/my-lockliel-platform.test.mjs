@@ -2079,3 +2079,27 @@ test("referral Edge Function rate-limits direct calls and only returns local des
   assert.match(edge,/parsed\.origin!=="https:\/\/lockliel\.com"/);
   assert.match(edge,/destination:safeDestination\(link\.destination_path\)/);
 });
+
+
+test("lesson external URLs are HTTPS-only and the retired Grip importer stays disabled",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925213602_lockliel_require_https_lesson_external_urls.sql","utf8");
+  const resource=fs.readFileSync("netlify/functions/lockliel-lesson-resource.mjs","utf8");
+  const admin=fs.readFileSync("netlify/functions/lockliel-admin-content.mjs","utf8");
+  const tombstone=fs.readFileSync("supabase/functions/import-grip-pdfs/index.ts","utf8");
+
+  assert.match(migration,/lesson_assets_external_url_https/);
+  assert.match(migration,/external_url ~\* '\^https:\/\/\[\^\[:space:\]\]\+\$'/);
+  assert.match(migration,/char_length\(external_url\)<=2000/);
+  assert.match(migration,/Lesson external URLs must use HTTPS/);
+
+  assert.match(resource,/function safeHttpsUrl/);
+  assert.match(resource,/url\.protocol!=="https:"/);
+  assert.match(resource,/url\.username\|\|url\.password/);
+  assert.match(resource,/Location:location/);
+
+  assert.match(admin,/External lesson URLs must use HTTPS without embedded credentials/);
+  assert.match(admin,/safeHttpsUrl\(rawExternalUrl\)/);
+
+  assert.match(tombstone,/status:410/);
+  assert.match(tombstone,/permanently disabled/);
+});

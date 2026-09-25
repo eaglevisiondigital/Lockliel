@@ -6,6 +6,17 @@ import {
   requireSession,
   sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
+function safeHttpsUrl(value){
+  if(!value)return null;
+  try{
+    const url=new URL(String(value));
+    if(url.protocol!=="https:"||url.username||url.password)return null;
+    return url.toString();
+  }catch{
+    return null;
+  }
+}
+
 const GRIP_PDFS={
   "getting-a-grip/lesson-01.pdf":"getting-a-grip-lesson-1-how-to-become-a-christian.pdf",
   "getting-a-grip/lesson-02.pdf":"getting-a-grip-lesson-2-how-to-be-sure-you-are-a-christian.pdf",
@@ -47,12 +58,16 @@ export default async(request)=>{
       const title=String(b.title||"").trim();
       const provider=String(b.provider||"").trim()||null;
       const providerRef=String(b.providerRef||"").trim()||null;
-      const externalUrl=String(b.externalUrl||"").trim()||null;
+      const rawExternalUrl=String(b.externalUrl||"").trim()||null;
+      const externalUrl=rawExternalUrl?safeHttpsUrl(rawExternalUrl):null;
       const storagePath=String(b.storagePath||"").trim()||null;
       const duration=Number(b.durationSeconds)||null;
 
       if(!lessonId||!["video","audio","pdf","worksheet","external_link"].includes(assetType)){
         return json({error:"Lesson and asset type are required."},400);
+      }
+      if(rawExternalUrl&&!externalUrl){
+        return json({error:"External lesson URLs must use HTTPS without embedded credentials."},400);
       }
       if(!providerRef&&!externalUrl&&!storagePath){
         return json({error:"Add a provider reference, external URL, or storage path."},400);
