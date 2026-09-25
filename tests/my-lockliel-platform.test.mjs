@@ -1111,3 +1111,27 @@ test("course metadata is limited to the member's enrolled course family",()=>{
   assert.match(migration,/status='published'/);
   assert.match(migration,/grant execute on function app_private\.can_read_course/);
 });
+
+
+test("public Founders and lead intake use hashed database-backed rate limits",()=>{
+  const limiter=fs.readFileSync("supabase/migrations/20260925122850_lockliel_public_intake_rate_limits_v2.sql","utf8");
+  const founders=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
+  const capture=fs.readFileSync("supabase/functions/capture-lead/index.ts","utf8");
+
+  assert.match(limiter,/app_private\.public_rate_limits/);
+  assert.match(limiter,/consume_public_rate_limit/);
+  assert.match(limiter,/grant execute[\s\S]*to service_role/);
+  assert.match(founders,/sha256/);
+  assert.match(founders,/founders50_email/);
+  assert.match(founders,/founders50_ip/);
+  assert.match(founders,/duplicate:true/);
+  assert.match(founders,/\.slice\(0,5000\)/);
+  assert.doesNotMatch(founders,/detail:detail/);
+  assert.match(capture,/sha256/);
+  assert.match(capture,/capture_lead_email/);
+  assert.match(capture,/capture_lead_ip/);
+  assert.match(capture,/cleanObject/);
+  assert.match(capture,/duplicate=Boolean/);
+  assert.match(founders,/^\/\/ @ts-nocheck/m);
+  assert.match(capture,/^\/\/ @ts-nocheck/m);
+});
