@@ -1,0 +1,15 @@
+revoke delete on table public.connection_requests from authenticated;
+revoke delete on table public.courses from authenticated;
+revoke delete on table public.faith_profiles from authenticated;
+revoke delete on table public.founder_orientation_progress from authenticated;
+revoke delete on table public.gifts from authenticated;
+revoke delete on table public.group_members from authenticated;
+revoke delete on table public.groups from authenticated;
+revoke delete on table public.leader_assignments from authenticated;
+revoke delete on table public.leader_profiles from authenticated;
+revoke delete on table public.lesson_assets from authenticated;
+revoke delete on table public.lesson_progress from authenticated;
+revoke delete on table public.lessons from authenticated;
+revoke delete on table public.media_progress from authenticated;
+revoke delete on table public.privacy_requests from authenticated;
+revoke delete on table public.share_assets from authenticated;

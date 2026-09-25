@@ -1566,3 +1566,28 @@ test("profile connection and finance cards are system-owned read models",()=>{
   assert.match(reinforce,/revoke all privileges on table public\.profile_finance_cards[\s\S]*from authenticated/);
   assert.match(reinforce,/grant select on table public\.profile_finance_cards[\s\S]*to authenticated/);
 });
+
+
+test("tables without delete workflows do not retain dormant DELETE privileges",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925135309_lockliel_remove_dormant_delete_privileges.sql","utf8");
+
+  for(const table of [
+    "connection_requests",
+    "courses",
+    "faith_profiles",
+    "founder_orientation_progress",
+    "gifts",
+    "group_members",
+    "groups",
+    "leader_assignments",
+    "leader_profiles",
+    "lesson_assets",
+    "lesson_progress",
+    "lessons",
+    "media_progress",
+    "privacy_requests",
+    "share_assets"
+  ]){
+    assert.match(migration,new RegExp("revoke delete on table public\\."+table+" from authenticated"));
+  }
+});
