@@ -11,7 +11,7 @@ export default async(request)=>{
 
   const [pr,cr,gr,br,fr]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring,checkout_mode&order=label.asc",
+      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring,checkout_mode,checkout_adapter_ready,webhook_ready,last_verified_at&order=label.asc",
       {headers:h}
     ),
     fetch(
@@ -38,18 +38,33 @@ export default async(request)=>{
   const benefits=br.ok?await br.json():[];
   const flags=fr.ok?await fr.json():[];
   const flagMap=Object.fromEntries(flags.map(x=>[x.key,x.enabled]));
+
   const totalGiven=gifts
     .filter(g=>["succeeded","paid","completed"].includes(g.status))
     .reduce((sum,g)=>sum+Number(g.amount_cents||0),0);
 
+  const activeProvider=providers.find(p=>
+    p.status==="active" &&
+    p.checkout_adapter_ready===true &&
+    p.webhook_ready===true
+  )||null;
+
   return json({
-    providers,
     commitments,
     gifts,
     benefits,
     totalGiven,
     flags:flagMap,
-    checkoutReady:Boolean(flagMap.partner_checkout)&&providers.some(p=>p.status==="active")
+    checkoutReady:Boolean(flagMap.partner_checkout)&&Boolean(activeProvider),
+    activeProvider:activeProvider
+      ? {
+          provider:activeProvider.provider,
+          label:activeProvider.label,
+          supportsOneTime:activeProvider.supports_one_time,
+          supportsRecurring:activeProvider.supports_recurring,
+          lastVerifiedAt:activeProvider.last_verified_at
+        }
+      : null
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
