@@ -171,7 +171,7 @@ export default function ShareCenter(){
     {standard.length>0&&<>
       <h2 className="ml-section-title">Share Library</h2>
       <section className="ml-grid">
-        {standard.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy}/>)}
+        {standard.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy} onText={text} onEmail={email}/>)}
       </section>
     </>}
 
