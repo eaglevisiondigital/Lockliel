@@ -118,8 +118,7 @@ export default async(request)=>{
             display_name:displayName,
             relationship_context:relationshipContext,
             private_notes:privateNotes,
-            next_follow_up_at:nextFollowUpAt,
-            updated_at:new Date().toISOString()
+            next_follow_up_at:nextFollowUpAt
           })
         }
       );
@@ -163,7 +162,7 @@ export default async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status,updated_at:new Date().toISOString()})
+          body:JSON.stringify({status})
         }
       );
       if(!r.ok)return json({error:"Unable to update My Five."},r.status);
@@ -177,8 +176,8 @@ export default async(request)=>{
 
       const now=new Date();
       const patch=activity==="shared"
-        ? {last_shared_at:now.toISOString(),status:"invited",updated_at:now.toISOString()}
-        : {last_follow_up_at:now.toISOString(),next_follow_up_at:new Date(now.getTime()+7*24*60*60*1000).toISOString(),updated_at:now.toISOString()};
+        ? {last_shared_at:now.toISOString(),status:"invited"}
+        : {last_follow_up_at:now.toISOString(),next_follow_up_at:new Date(now.getTime()+7*24*60*60*1000).toISOString()};
 
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+"&owner_id=eq."+encodeURIComponent(uid),
