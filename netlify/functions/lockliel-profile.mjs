@@ -7,20 +7,45 @@ export default async(request)=>{
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
   const b=await request.json().catch(()=>({}));
-  const patch={
-    first_name:String(b.firstName||"").trim(),
-    last_name:String(b.lastName||"").trim(),
-    phone:String(b.phone||"").trim()||null,
-    city:String(b.city||"").trim(),
-    region:String(b.region||"").trim(),
-    country:String(b.country||"United States").trim(),
-    locale:String(b.locale||"en-US").trim().slice(0,35)||"en-US",
-    timezone:String(b.timezone||"").trim().slice(0,100)||null
-  };
+  const firstName=String(b.firstName||"").trim();
+  const lastName=String(b.lastName||"").trim();
+  const phone=String(b.phone||"").trim();
+  const city=String(b.city||"").trim();
+  const region=String(b.region||"").trim();
+  const country=String(b.country||"United States").trim();
+  const locale=String(b.locale||"en-US").trim()||"en-US";
+  const timezone=String(b.timezone||"").trim();
 
-  if(!patch.first_name||!patch.last_name||!patch.city||!patch.region||!patch.country){
+  if(!firstName||!lastName||!city||!region||!country){
     return json({error:"Please complete your name, city, state/region, and country."},400);
   }
+
+  if(firstName.length>120||lastName.length>120){
+    return json({error:"First and last names must be 120 characters or fewer."},400);
+  }
+  if(phone.length>60){
+    return json({error:"Phone number must be 60 characters or fewer."},400);
+  }
+  if(city.length>160||region.length>160||country.length>160){
+    return json({error:"City, state/region, and country must each be 160 characters or fewer."},400);
+  }
+  if(locale.length<2||locale.length>35){
+    return json({error:"Choose a valid language/locale preference."},400);
+  }
+  if(timezone.length>100){
+    return json({error:"Timezone must be 100 characters or fewer."},400);
+  }
+
+  const patch={
+    first_name:firstName,
+    last_name:lastName,
+    phone:phone||null,
+    city,
+    region,
+    country,
+    locale,
+    timezone:timezone||null
+  };
 
   const h={...dbHeaders(s.access),Prefer:"return=representation"};
   const id=encodeURIComponent(s.user.id);

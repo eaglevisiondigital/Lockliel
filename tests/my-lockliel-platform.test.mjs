@@ -1332,3 +1332,22 @@ test("conversation identity and membership are system-owned while members can st
   assert.match(migration,/grant select[\s\S]*on table public\.conversation_members[\s\S]*to authenticated/);
   assert.match(messaging,/grant insert \([\s\S]*conversation_id[\s\S]*sender_id[\s\S]*body[\s\S]*\) on table public\.messages to authenticated/);
 });
+
+
+test("member profile text fields are normalized and bounded in both API and database",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925131048_lockliel_bound_member_profile_fields.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-profile.mjs","utf8");
+
+  assert.match(migration,/profiles_first_name_length/);
+  assert.match(migration,/char_length\(first_name\) between 1 and 120/);
+  assert.match(migration,/char_length\(phone\)<=60/);
+  assert.match(migration,/char_length\(city\) between 1 and 160/);
+  assert.match(migration,/char_length\(locale\) between 2 and 35/);
+  assert.match(migration,/char_length\(timezone\)<=100/);
+  assert.match(migration,/new\.first_name:=nullif\(trim/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(api,/firstName\.length>120/);
+  assert.match(api,/phone\.length>60/);
+  assert.match(api,/city\.length>160/);
+  assert.match(api,/locale\.length<2\|\|locale\.length>35/);
+});
