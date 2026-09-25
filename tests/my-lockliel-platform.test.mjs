@@ -882,3 +882,16 @@ test("connection request status and resolution timestamps stay consistent",()=>{
   assert.match(migration,/new\.status in \('open','in_progress'\)/);
   assert.match(migration,/new\.resolved_at:=null/);
 });
+
+
+test("staff notes and audit history are append-only",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121424_lockliel_append_only_staff_notes_and_audit.sql","utf8");
+  const notesApi=fs.readFileSync("netlify/functions/lockliel-admin-notes.mjs","utf8");
+
+  assert.match(migration,/drop policy if exists member_staff_notes_author_update/);
+  assert.match(migration,/revoke insert, update, delete on table public\.member_staff_notes from authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*author_id[\s\S]*visibility[\s\S]*note_type[\s\S]*body[\s\S]*\) on table public\.member_staff_notes to authenticated/);
+  assert.match(migration,/revoke insert, update, delete on table public\.audit_events from authenticated/);
+  assert.match(notesApi,/method:"POST"/);
+  assert.doesNotMatch(notesApi,/method:"PATCH"/);
+});
