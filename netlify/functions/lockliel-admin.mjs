@@ -1,7 +1,8 @@
-import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
+import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 async function count(path,access){const r=await fetch(SUPABASE_URL+"/rest/v1/"+path,{headers:{...dbHeaders(access),Prefer:"count=exact",Range:"0-0"}});if(!r.ok)return 0;const cr=r.headers.get("content-range")||"0-0/0",total=Number(cr.split("/")[1]);return Number.isFinite(total)?total:0;}
 export default async(request)=>{
  const s=await requireSession(request);if(!s.user||!s.access)return json({error:"Unauthorized"},401);
+  if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
  const h=dbHeaders(s.access),id=encodeURIComponent(s.user.id);
  const rr=await fetch(SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+id+"&select=role",{headers:h}),roles=rr.ok?(await rr.json()).map(r=>r.role):[];
  if(!roles.length)return json({error:"Staff access required"},403);
