@@ -246,10 +246,10 @@ test("dashboard surfaces overdue My Five and host follow-through",()=>{
 });
 
 
-test("new-member onboarding flows profile to faith journey to course",()=>{
+test("new-member onboarding flows profile to faith journey to course without trapping established members",()=>{
   const profile=fs.readFileSync("app/my-lockliel/profile/profile-form.tsx","utf8");
   const faith=fs.readFileSync("app/my-lockliel/faith-profile/faith-profile-form.tsx","utf8");
-  assert.match(profile,/router\.push\("\/my-lockliel\/faith-profile"\)/);
+  assert.match(profile,/onboarding_status===\"active\"\?\"\/my-lockliel\":\"\/my-lockliel\/faith-profile\"/);
   assert.match(faith,/router\.push\("\/my-lockliel\/journey"\)/);
 });
 
