@@ -92,13 +92,6 @@ Deno.serve(async(req:Request)=>{
 
   const h={apikey:key,"Content-Type":"application/json"};
 
-  const p=await fetch(
-    url+"/rest/v1/profiles?email=eq."+encodeURIComponent(email)+"&select=id&limit=1",
-    {headers:h}
-  );
-  const profiles=p.ok?await p.json():[];
-  const profileId=profiles?.[0]?.id||null;
-
   const leadUpsert=await fetch(
     url+"/rest/v1/rpc/upsert_public_lead_contact",
     {
@@ -109,7 +102,7 @@ Deno.serve(async(req:Request)=>{
         first_name_input:firstName,
         last_name_input:lastName,
         phone_input:phone,
-        linked_profile_input:profileId
+        linked_profile_input:null
       })
     }
   );
@@ -148,34 +141,6 @@ Deno.serve(async(req:Request)=>{
     }
   }
 
-  if(profileId){
-    const slug=sourceType==="faith_boost"
-      ?"faith-boost"
-      :sourceType==="book_interest"
-        ?"book-interest"
-        :null;
-
-    if(slug){
-      const tr=await fetch(
-        url+"/rest/v1/tags?slug=eq."+encodeURIComponent(slug)+"&select=id&limit=1",
-        {headers:h}
-      );
-      const tags=tr.ok?await tr.json():[];
-      const tagId=tags?.[0]?.id;
-
-      if(tagId){
-        await fetch(url+"/rest/v1/profile_tags",{
-          method:"POST",
-          headers:{...h,Prefer:"resolution=ignore-duplicates,return=minimal"},
-          body:JSON.stringify({
-            profile_id:profileId,
-            tag_id:tagId,
-            source:"lead-capture"
-          })
-        });
-      }
-    }
-  }
 
   return new Response(JSON.stringify({ok:true,leadId,duplicate}),{status:200,headers});
 });

@@ -2116,3 +2116,27 @@ test("public rate-limit history self-cleans beyond the maximum enforcement windo
   assert.match(migration,/left\(key_hash_input,1\)='0'/);
   assert.match(migration,/grant execute on function public\.consume_public_rate_limit[\s\S]*to service_role/);
 });
+
+
+test("public lead and Founders intake never attach records to a profile from unverified submitted email",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925214457_lockliel_link_public_records_only_after_email_confirmation.sql","utf8");
+  const capture=fs.readFileSync("supabase/functions/capture-lead/index.ts","utf8");
+  const founders=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
+
+  assert.match(migration,/link_confirmed_nonfinancial_records_for_user/);
+  assert.match(migration,/email_confirmed_at is not null/);
+  assert.match(migration,/linked_profile_id is null/);
+  assert.match(migration,/profile_id is null/);
+  assert.match(migration,/link_nonfinancial_records_on_email_confirmation_trigger/);
+  assert.match(migration,/link_nonfinancial_records_for_confirmed_new_profile_trigger/);
+  assert.match(migration,/confirmed_email_nonfinancial_records_linked/);
+
+  assert.doesNotMatch(capture,/rest\/v1\/profiles\?email=eq/);
+  assert.match(capture,/linked_profile_input:null/);
+  assert.doesNotMatch(capture,/rest\/v1\/profile_tags/);
+
+  assert.doesNotMatch(founders,/rest\/v1\/profiles\?email=eq/);
+  assert.match(founders,/profile_id:null/);
+  assert.match(founders,/linked_profile_input:null/);
+  assert.match(founders,/!flagRes\.ok\|\|flags\?\.\[0\]\?\.enabled!==true/);
+});

@@ -112,7 +112,7 @@ Deno.serve(async(req:Request)=>{
     {headers:h}
   );
   const flags=flagRes.ok?await flagRes.json():[];
-  if(flags?.[0]?.enabled===false){
+  if(!flagRes.ok||flags?.[0]?.enabled!==true){
     return new Response(
       JSON.stringify({error:"Founders 50 applications are temporarily closed."}),
       {status:403,headers}
@@ -131,15 +131,8 @@ Deno.serve(async(req:Request)=>{
     return new Response(JSON.stringify({ok:true,id:duplicate.id,duplicate:true}),{status:200,headers});
   }
 
-  const profileRes=await fetch(
-    url+"/rest/v1/profiles?email=eq."+encodeURIComponent(email)+"&select=id&limit=1",
-    {headers:h}
-  );
-  const profiles=profileRes.ok?await profileRes.json():[];
-  const profileId=profiles?.[0]?.id||null;
-
   const payload={
-    profile_id:profileId,
+    profile_id:null,
     first_name:first,
     last_name:last,
     email,
@@ -190,7 +183,7 @@ Deno.serve(async(req:Request)=>{
         first_name_input:first,
         last_name_input:last,
         phone_input:payload.phone,
-        linked_profile_input:profileId
+        linked_profile_input:null
       })
     }
   );
