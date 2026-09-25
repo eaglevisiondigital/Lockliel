@@ -33,6 +33,8 @@ export default function ShareLibraryAdminClient(){
         destinationPath:f.get("destinationPath"),
         description:f.get("description"),
         shareText:f.get("shareText"),
+        languageCode:f.get("languageCode"),
+        translationKey:f.get("translationKey"),
         sortOrder:f.get("sortOrder"),
         featured:f.get("featured")==="yes",
         status:"draft"
@@ -69,6 +71,12 @@ export default function ShareLibraryAdminClient(){
         </div>
 
         <label>Destination path<input name="destinationPath" required placeholder="/faith-boost"/></label>
+
+        <div className="ml-auth-row">
+          <label>Language code<input name="languageCode" defaultValue="en" placeholder="en"/></label>
+          <label>Translation group key<input name="translationKey" placeholder="faith-boost-friday"/></label>
+        </div>
+
         <label>Description<textarea name="description" rows={3}/></label>
         <label>Approved share copy<textarea name="shareText" rows={4} placeholder="I thought this might encourage you today."/></label>
 
@@ -100,6 +108,8 @@ function ShareAssetEditor({asset,working,setWorking,setMessage,reload}:{asset:an
     destinationPath:asset.destination_path||"",
     description:asset.description||"",
     shareText:asset.share_text||"",
+    languageCode:asset.language_code||"en",
+    translationKey:asset.translation_key||asset.slug||"",
     sortOrder:String(asset.sort_order??100),
     featured:Boolean(asset.featured),
     status:asset.status||"draft"
@@ -123,7 +133,7 @@ function ShareAssetEditor({asset,working,setWorking,setMessage,reload}:{asset:an
     <div className="ml-share-admin-head">
       <div>
         <b>{asset.title}</b>
-        <span>{asset.slug} • {asset.status}</span>
+        <span>{asset.slug} • {String(asset.language_code||"en").toUpperCase()} • {asset.status}</span>
       </div>
       {form.featured&&<Star size={15}/>}
     </div>
@@ -134,6 +144,10 @@ function ShareAssetEditor({asset,working,setWorking,setMessage,reload}:{asset:an
       <input value={form.category} onChange={e=>setForm(v=>({...v,category:e.target.value}))} placeholder="Category"/>
     </div>
     <input value={form.destinationPath} onChange={e=>setForm(v=>({...v,destinationPath:e.target.value}))} placeholder="/destination"/>
+    <div className="ml-auth-row">
+      <input value={form.languageCode} onChange={e=>setForm(v=>({...v,languageCode:e.target.value}))} placeholder="en"/>
+      <input value={form.translationKey} onChange={e=>setForm(v=>({...v,translationKey:e.target.value}))} placeholder="Translation group key"/>
+    </div>
     <textarea rows={2} value={form.description} onChange={e=>setForm(v=>({...v,description:e.target.value}))} placeholder="Description"/>
     <textarea rows={3} value={form.shareText} onChange={e=>setForm(v=>({...v,shareText:e.target.value}))} placeholder="Approved share copy"/>
 
