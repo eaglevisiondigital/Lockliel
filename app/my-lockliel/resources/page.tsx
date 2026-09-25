@@ -1,3 +1,23 @@
-import Link from "next/link";import {ArrowLeft,BookOpen} from "lucide-react";import ResourcesClient from "./resources-client";import "../my-lockliel.css";
+import Link from "next/link";
+import {ArrowLeft,BookOpen,Package} from "lucide-react";
+import ResourcesClient from "./resources-client";
+import "../my-lockliel.css";
+
 export const metadata={title:"Books & Resources | My Lockliel"};
-export default function Resources(){return <main className="my-lockliel"><div className="ml-shell"><Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link><section className="ml-panel"><div className="ml-icon"><BookOpen size={21}/></div><div className="ml-kicker" style={{marginTop:16}}>Books & Resources</div><h1 style={{fontSize:"clamp(36px,5vw,60px)",margin:"10px 0"}}>Resources that help you grow and reach one.</h1><p>Your purchased, granted, and discipleship resources live here behind your My Lockliel account.</p></section><h2 className="ml-section-title">My library</h2><ResourcesClient/></div></main>}
+
+export default function Resources(){
+  return <main className="my-lockliel"><div className="ml-shell">
+    <Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link>
+    <section className="ml-panel">
+      <div className="ml-icon"><BookOpen size={21}/></div>
+      <div className="ml-kicker" style={{marginTop:16}}>Books & Resources</div>
+      <h1 style={{fontSize:"clamp(36px,5vw,60px)",margin:"10px 0"}}>Resources that help you grow and reach one.</h1>
+      <p>Your purchased, granted, and discipleship resources live here behind your My Lockliel account.</p>
+      <div className="ml-resource-actions">
+        <Link href="/my-lockliel/orders"><Package size={15}/> My Orders</Link>
+      </div>
+    </section>
+    <h2 className="ml-section-title">My library</h2>
+    <ResourcesClient/>
+  </div></main>;
+}
