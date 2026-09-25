@@ -744,3 +744,17 @@ test("lesson completion validates localized media and every worksheet field",()=
   assert.match(migration,/every worksheet or notes field has an answer/);
   assert.match(migration,/new\.completed_at:=now\(\)/);
 });
+
+
+test("progress timestamps and status ranges are database-controlled",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925115701_lockliel_normalize_progress_state.sql","utf8");
+
+  assert.match(migration,/status in \('not_started','in_progress','completed'\)/);
+  assert.match(migration,/worksheet_status in \('not_started','in_progress','completed','not_required'\)/);
+  assert.match(migration,/last_position_seconds>=0/);
+  assert.match(migration,/watched_seconds>=0/);
+  assert.match(migration,/Completed lessons cannot be moved back/);
+  assert.match(migration,/new\.last_activity_at:=now\(\)/);
+  assert.match(migration,/new\.percent_watched:=greatest/);
+  assert.match(migration,/new\.completed_at:=null/);
+});
