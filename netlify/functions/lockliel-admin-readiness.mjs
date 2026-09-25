@@ -63,7 +63,8 @@ export default async(request)=>{
     gripRes,
     productsRes,
     rolesRes,
-    verificationRes
+    verificationRes,
+    integrityRes
   ]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/feature_flags?select=key,enabled,description&order=key.asc",
@@ -92,6 +93,14 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/launch_verifications?select=key,label,verified,verified_by,verified_at,note,updated_at&order=key.asc",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/rpc/lockliel_integrity_health",
+      {
+        method:"POST",
+        headers:{...h,"Content-Type":"application/json"},
+        body:"{}"
+      }
     )
   ]);
 
@@ -101,6 +110,22 @@ export default async(request)=>{
   const products=productsRes.ok?await productsRes.json():[];
   const staffRoles=rolesRes.ok?await rolesRes.json():[];
   const verifications=verificationRes.ok?await verificationRes.json():[];
+  const integrityHealth=integrityRes.ok?await integrityRes.json():null;
+
+  const integrityIssueLabels=integrityHealth
+    ? [
+        ["profiles_without_journey","member journey rows"],
+        ["reach_count_mismatches","reach counters"],
+        ["connection_count_mismatches","connection counters"],
+        ["ineligible_primary_group_leaders","primary group leaders"],
+        ["ineligible_group_leadership_memberships","group leader/host memberships"],
+        ["primary_leader_membership_mismatches","primary leader memberships"],
+        ["checkout_state_mismatch","checkout state"],
+        ["digital_book_release_mismatch","digital book release state"],
+        ["book_benefit_release_mismatch","book benefit release state"]
+      ].filter(([key])=>Number(integrityHealth?.[key]||0)>0)
+       .map(([,label])=>label)
+    : [];
 
   const flagMap=Object.fromEntries(flags.map(f=>[f.key,f.enabled]));
   const verificationMap=Object.fromEntries(verifications.map(v=>[v.key,v]));
@@ -123,6 +148,17 @@ export default async(request)=>{
       ready:true,
       manual:false,
       detail:"Separate Supabase project, RLS, member data, admin data and audit history are in place."
+    },
+    {
+      key:"database_integrity",
+      label:"Database integrity health",
+      ready:Boolean(integrityHealth?.healthy),
+      manual:false,
+      detail:integrityHealth?.healthy
+        ?"No detected drift in member journey counters, group leadership, or release-control state."
+        :integrityHealth
+          ?Number(integrityHealth.issue_count||0)+" integrity issue"+(Number(integrityHealth.issue_count||0)===1?"":"s")+" detected"+(integrityIssueLabels.length?": "+integrityIssueLabels.join(", "):".")
+          :"Integrity health check could not be completed."
     },
     {
       key:"auth_code",
@@ -262,6 +298,7 @@ export default async(request)=>{
   return json({
     checks,
     verifications,
+    integrityHealth,
     readyCount:requiredChecks.filter(c=>c.ready).length,
     totalCount:requiredChecks.length,
     blockerCount:blockers.length,

@@ -1887,3 +1887,26 @@ test("first super administrator bootstrap is serialized and rejects invalid auth
   assert.match(migration,/A super administrator already exists/);
   assert.match(migration,/revoke execute on function app_private\.bootstrap_first_super_admin\(uuid\)/);
 });
+
+
+test("launch readiness includes an admin-only aggregate database integrity health check",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925173856_lockliel_admin_integrity_health_rpc.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/lockliel_integrity_health_internal/);
+  assert.match(migration,/Administrator access required/);
+  assert.match(migration,/profiles_without_journey/);
+  assert.match(migration,/reach_count_mismatches/);
+  assert.match(migration,/connection_count_mismatches/);
+  assert.match(migration,/ineligible_primary_group_leaders/);
+  assert.match(migration,/ineligible_group_leadership_memberships/);
+  assert.match(migration,/primary_leader_membership_mismatches/);
+  assert.match(migration,/checkout_state_mismatch/);
+  assert.match(migration,/digital_book_release_mismatch/);
+  assert.match(migration,/book_benefit_release_mismatch/);
+  assert.match(migration,/security invoker/);
+  assert.match(migration,/revoke execute on function public\.lockliel_integrity_health\(\)[\s\S]*from public, anon/);
+  assert.match(api,/rpc\/lockliel_integrity_health/);
+  assert.match(api,/Database integrity health/);
+  assert.match(api,/integrityHealth/);
+});
