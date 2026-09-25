@@ -990,3 +990,16 @@ test("Founders reviewers are scoped to Founders-specific people and tasks",()=>{
   assert.match(groupsApi,/\["super_admin","admin","discipleship_admin"\]/);
   assert.match(leadersApi,/\["super_admin","admin","discipleship_admin"\]/);
 });
+
+
+test("pre-account CRM identity and attribution are system-owned",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122051_lockliel_harden_preaccount_crm_records.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-leads.mjs","utf8");
+
+  assert.match(migration,/grant update \([\s\S]*status[\s\S]*assigned_to[\s\S]*next_follow_up_at[\s\S]*last_contacted_at[\s\S]*admin_notes[\s\S]*\) on table public\.lead_contacts to authenticated/);
+  assert.match(migration,/grant select on table public\.lead_sources to authenticated/);
+  assert.doesNotMatch(migration,/grant update .*lead_sources/);
+  assert.match(migration,/lead_operational_change/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
+});
