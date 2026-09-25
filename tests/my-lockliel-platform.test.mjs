@@ -1236,3 +1236,18 @@ test("group transition resolution is atomic and role-gated in the database",()=>
   assert.doesNotMatch(api,/let targetAdded=false/);
   assert.doesNotMatch(api,/Current active group membership not found\.[\s\S]*method:"PATCH"/);
 });
+
+
+test("group assignment and request resolution are atomic",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925124731_lockliel_atomic_group_assignment.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+
+  assert.match(migration,/lockliel_assign_member_to_group/);
+  assert.match(migration,/security invoker/);
+  assert.match(migration,/request_type='find_local_group'/);
+  assert.match(migration,/for update/);
+  assert.match(migration,/on conflict\(group_id,profile_id\)/);
+  assert.match(migration,/update public\.connection_requests[\s\S]*set status='resolved'/);
+  assert.match(api,/rest\/v1\/rpc\/lockliel_assign_member_to_group/);
+  assert.doesNotMatch(api,/on_conflict=group_id,profile_id[\s\S]*connection_requests\?id=eq/);
+});
