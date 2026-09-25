@@ -427,3 +427,16 @@ test("contact consent cannot revive stale inviter or leader relationships",()=>{
   assert.match(migration,/la\.status = 'active'/);
   assert.match(migration,/Contact relationship is no longer active/);
 });
+
+
+test("inviter and leader consent changes are audited without private contact data",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925110334_lockliel_audit_contact_consent_changes.sql","utf8");
+  assert.match(migration,/contact_permission_restored/);
+  assert.match(migration,/contact_permission_revoked/);
+  assert.match(migration,/permission_type/);
+  assert.match(migration,/'allowed'/);
+  assert.doesNotMatch(migration,/email/i);
+  assert.doesNotMatch(migration,/phone/i);
+  assert.doesNotMatch(migration,/message body/i);
+  assert.match(migration,/revoke execute on function app_private\.audit_contact_permission_change/);
+});
