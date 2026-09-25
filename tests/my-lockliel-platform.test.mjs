@@ -731,3 +731,16 @@ test("lesson and media progress writes stay inside the member's enrolled course"
   assert.match(migration,/Lesson progress identity cannot be changed/);
   assert.match(migration,/Media progress identity cannot be changed/);
 });
+
+
+test("lesson completion validates localized media and every worksheet field",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925115537_lockliel_localized_lesson_completion_integrity.sql","utf8");
+
+  assert.match(migration,/resolve_content_lesson_for_profile/);
+  assert.match(migration,/preferred_locale/);
+  assert.match(migration,/content_lesson_id/);
+  assert.match(migration,/mp\.percent_watched>=95/);
+  assert.match(migration,/new\.worksheet_answers->>\(q->>'number'\)/);
+  assert.match(migration,/every worksheet or notes field has an answer/);
+  assert.match(migration,/new\.completed_at:=now\(\)/);
+});
