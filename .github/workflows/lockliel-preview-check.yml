@@ -22,5 +22,13 @@ jobs:
         run: npm audit --omit=dev --audit-level=high || true
       - name: Build
         run: npm run build
-      - name: Existing automated tests
-        run: node --test tests/*.test.mjs
+      - name: Current Lockliel automated tests
+        # rendered-html.test.mjs and ui-components.test.mjs target the retired dist/ starter output,
+        # not the current Next.js static-export architecture. Keep those legacy files in-repo,
+        # but require the active website, form, resource, Founders 50, and My Lockliel tests here.
+        run: >
+          node --test
+          tests/book-release.test.mjs
+          tests/faith-boost-resource.test.mjs
+          tests/founders50.test.mjs
+          tests/my-lockliel-platform.test.mjs
