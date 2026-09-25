@@ -60,7 +60,7 @@ export default async(request)=>{
     }
 
     if(b.action==="addReachContact"){
-      const displayName=String(b.displayName||"").trim();
+      const displayName=String(b.displayName||"").trim().slice(0,120);
       const relationshipContext=String(b.relationshipContext||"").trim().slice(0,500)||null;
       const privateNotes=String(b.privateNotes||"").trim().slice(0,3000)||null;
       const nextRaw=String(b.nextFollowUpAt||"").trim();
@@ -95,7 +95,7 @@ export default async(request)=>{
 
     if(b.action==="updateReachDetails"){
       const id=String(b.id||"");
-      const displayName=String(b.displayName||"").trim().slice(0,160);
+      const displayName=String(b.displayName||"").trim().slice(0,120);
       const relationshipContext=String(b.relationshipContext||"").trim().slice(0,500)||null;
       const privateNotes=String(b.privateNotes||"").trim().slice(0,3000)||null;
       const nextRaw=String(b.nextFollowUpAt||"").trim();
