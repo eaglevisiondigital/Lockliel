@@ -25,7 +25,7 @@ export default async(request)=>{
    const b=await request.json().catch(()=>({}));
    if(b.assetId){
      const assetId=String(b.assetId||"");
-     const payload={profile_id:uid,asset_id:assetId,last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),played_seconds:Math.max(0,Number(b.playedSeconds)||0),percent_watched:Math.min(100,Math.max(0,Number(b.percentWatched)||0)),covered_intervals:Array.isArray(b.coveredIntervals)?b.coveredIntervals.slice(0,250):[],first_started_at:b.firstStartedAt||new Date().toISOString(),last_activity_at:new Date().toISOString(),completed_at:Number(b.percentWatched)>=95?new Date().toISOString():null};
+     const payload={profile_id:uid,asset_id:assetId,last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),played_seconds:Math.max(0,Number(b.playedSeconds)||0),percent_watched:Math.min(100,Math.max(0,Number(b.percentWatched)||0)),covered_intervals:Array.isArray(b.coveredIntervals)?b.coveredIntervals.slice(0,250):[]};
      const r=await fetch(SUPABASE_URL+"/rest/v1/media_progress?on_conflict=profile_id,asset_id",{method:"POST",headers:{...h,Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(payload)});
      if(!r.ok)return json({error:"We couldn't save media progress."},r.status);
      return json({ok:true,mediaProgress:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
@@ -34,8 +34,7 @@ export default async(request)=>{
    const lessonId=String(b.lessonId||"");
    if(!lessonId)return json({error:"Lesson required"},400);
 
-   const payload={profile_id:uid,lesson_id:lessonId,status:String(b.status||"in_progress"),last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),watched_seconds:Math.max(0,Number(b.watchedSeconds)||0),worksheet_status:String(b.worksheetStatus||"not_started"),worksheet_answers:b.worksheetAnswers&&typeof b.worksheetAnswers==="object"?b.worksheetAnswers:{},started_at:b.status==="in_progress"?new Date().toISOString():undefined,last_activity_at:new Date().toISOString(),completed_at:b.status==="completed"?new Date().toISOString():null};
-   Object.keys(payload).forEach(k=>payload[k]===undefined&&delete payload[k]);
+   const payload={profile_id:uid,lesson_id:lessonId,status:String(b.status||"in_progress"),last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),watched_seconds:Math.max(0,Number(b.watchedSeconds)||0),worksheet_status:String(b.worksheetStatus||"not_started"),worksheet_answers:b.worksheetAnswers&&typeof b.worksheetAnswers==="object"?b.worksheetAnswers:{}};
 
    const r=await fetch(SUPABASE_URL+"/rest/v1/lesson_progress?on_conflict=profile_id,lesson_id",{method:"POST",headers:{...h,Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(payload)});
    if(!r.ok)return json({error:"We couldn't save lesson progress."},r.status);
