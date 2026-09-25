@@ -5,6 +5,7 @@ import AdminSectionNav from "./admin-section-nav";
 import ContentAdminClient from "./content-admin-client";
 import FinanceAdminClient from "./finance-admin-client";
 import FounderOrientationAdminClient from "./founder-orientation-admin-client";
+import FounderReviewAdminClient from "./founder-review-admin-client";
 import GroupsAdminClient from "./groups-admin-client";
 import LeadersAdminClient from "./leaders-admin-client";
 import LeadsAdminClient from "./leads-admin-client";
@@ -58,6 +59,8 @@ export default function Admin(){
     </section>
 
     <section id="founders" className="ml-admin-section">
+      <h2 className="ml-section-title">Founder review</h2>
+      <FounderReviewAdminClient/>
       <h2 className="ml-section-title">Founder orientation</h2>
       <FounderOrientationAdminClient/>
     </section>
