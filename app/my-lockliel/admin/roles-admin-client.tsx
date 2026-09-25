@@ -60,7 +60,7 @@ export default function RolesAdminClient(){
       <div><div className="ml-kicker">Staff access</div><h2>Delegate without sharing master access.</h2></div>
       <ShieldCheck size={28}/>
     </div>
-    <p className="ml-privacy-note">Roles control permissions. Tags and Founders 50 status never grant administrative access.</p>
+    <p className="ml-privacy-note">Roles control permissions. Tags and Founders 50 status never grant administrative access. Lockliel currently has {data.superAdminCount} super administrator{data.superAdminCount===1?"":"s"}, and the database will not allow the final super administrator to be removed.</p>
     {message&&<p className="ml-share-message">{message}</p>}
     <div className="ml-role-list">
       {data.people.map((p:any)=>{
@@ -71,7 +71,15 @@ export default function RolesAdminClient(){
             <div><b>{p.display_name||p.email}</b><small>{p.email}</small></div>
           </div>
           <div className="ml-role-chips">
-            {roles.map((role:string)=><button key={role} disabled={working} onClick={()=>change("remove",p.profile_id,role)} title="Remove role"><UserMinus size={12}/>{labels[role]||role}</button>)}
+            {roles.map((role:string)=>{
+              const protectedSelf=role==="super_admin"&&p.profile_id===data.currentProfileId;
+              return <button
+                key={role}
+                disabled={working||protectedSelf}
+                onClick={()=>change("remove",p.profile_id,role)}
+                title={protectedSelf?"Your own super admin role is protected":"Remove role"}
+              ><UserMinus size={12}/>{labels[role]||role}{protectedSelf?" • protected":""}</button>;
+            })}
             {!roles.length&&<small>No staff roles</small>}
           </div>
           <label className="ml-role-add"><UserPlus size={14}/><select defaultValue="" disabled={working} onChange={e=>{if(e.target.value){change("grant",p.profile_id,e.target.value);e.currentTarget.value="";}}}><option value="">Grant role…</option>{data.allowedRoles.filter((r:string)=>!roles.includes(r)).map((r:string)=><option value={r} key={r}>{labels[r]||r}</option>)}</select></label>
