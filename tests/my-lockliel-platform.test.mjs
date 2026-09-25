@@ -1823,3 +1823,16 @@ test("active Founders 50 hosts qualify for group hosting without gaining broader
   assert.match(client,/Choose approved leader \/ host/);
   assert.doesNotMatch(eligibility,/staff_roles/);
 });
+
+
+test("Data API grants fail closed for anonymous users and future public objects",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925155851_lockliel_fail_closed_data_api_grants.sql","utf8");
+
+  assert.match(migration,/revoke all privileges on all tables in schema public from anon/);
+  assert.match(migration,/revoke all privileges on all sequences in schema public from anon/);
+  assert.match(migration,/revoke truncate, references, trigger, maintain[\s\S]*on all tables in schema public[\s\S]*from authenticated/);
+  assert.match(migration,/alter default privileges for role postgres in schema public[\s\S]*revoke all privileges on tables from anon, authenticated/);
+  assert.match(migration,/alter default privileges for role postgres in schema public[\s\S]*revoke all privileges on sequences from anon, authenticated/);
+  assert.match(migration,/revoke execute on functions from public, anon, authenticated/);
+  assert.doesNotMatch(migration,/revoke all privileges on all tables in schema public from authenticated/);
+});
