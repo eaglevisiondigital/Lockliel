@@ -784,3 +784,16 @@ test("member journey state is system-derived and read-only to members",()=>{
   assert.match(session,/rest\/v1\/member_journey\?profile_id=eq/);
   assert.doesNotMatch(session,/member_journey.*method:"PATCH"/s);
 });
+
+
+test("profile onboarding status is derived from completed required fields",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120141_lockliel_system_owned_profile_onboarding.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-profile.mjs","utf8");
+
+  assert.match(migration,/revoke update \([\s\S]*onboarding_status[\s\S]*updated_at[\s\S]*\) on table public\.profiles from authenticated/);
+  assert.match(migration,/onboarding_status in \('new','active'\)/);
+  assert.match(migration,/new\.onboarding_status:='active'/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.doesNotMatch(api,/onboarding_status:/);
+  assert.doesNotMatch(api,/updated_at:new Date/);
+});
