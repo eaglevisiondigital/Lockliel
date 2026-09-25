@@ -1013,3 +1013,18 @@ test("Founders reviewer connection-card access uses only the scoped policy",()=>
   assert.match(scoped,/founders50_applications fa/);
   assert.match(cleanup,/drop policy if exists connection_cards_allowed_read/);
 });
+
+
+test("private lesson and product storage enforce enrollment, entitlement, locale, and release flags",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122252_lockliel_enrollment_and_locale_scoped_private_storage.sql","utf8");
+
+  assert.match(migration,/ce\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/ce\.status in \('active','completed'\)/);
+  assert.match(migration,/content_course\.translation_key=enrolled_course\.translation_key/);
+  assert.match(migration,/bucket_id='lesson-assets'/);
+  assert.match(migration,/bucket_id='member-resources'/);
+  assert.match(migration,/content_product\.translation_key=source_product\.translation_key/);
+  assert.match(migration,/content_product\.status='active'/);
+  assert.match(migration,/f\.key='digital_book_delivery'/);
+  assert.match(migration,/f\.enabled=true/);
+});
