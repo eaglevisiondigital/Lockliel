@@ -2006,3 +2006,38 @@ test("every Lockliel server route is authenticated unless explicitly public and 
     assert.match(source,/\brequireSession\b/,name+" must use the shared Lockliel session guard.");
   }
 });
+
+
+test("public Auth handoffs bind access and refresh tokens to the same user and pin trusted redirects",()=>{
+  const core=fs.readFileSync("netlify/lib/lockliel-core.mjs","utf8");
+  const accept=fs.readFileSync("netlify/functions/lockliel-accept-session.mjs","utf8");
+  const reset=fs.readFileSync("netlify/functions/lockliel-reset-password.mjs","utf8");
+  const signup=fs.readFileSync("netlify/functions/lockliel-signup.mjs","utf8");
+  const recover=fs.readFileSync("netlify/functions/lockliel-recover.mjs","utf8");
+  const referral=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
+
+  assert.match(core,/LOCKLIEL_APP_ORIGIN="https:\/\/lockliel\.com"/);
+  assert.match(core,/function validatedTokenPair/);
+  assert.match(core,/refreshSession\(refresh\)/);
+  assert.match(core,/refreshedUser\.id!==accessUser\.id/);
+
+  assert.match(accept,/validatedTokenPair\(access,refresh\)/);
+  assert.match(accept,/sessionCookies\(pair\.session\)/);
+  assert.doesNotMatch(accept,/sessionCookies\(\{access_token:access,refresh_token:refresh/);
+
+  assert.match(reset,/validatedTokenPair\(access,refresh\)/);
+  assert.match(reset,/Authorization:"Bearer "\+pair\.session\.access_token/);
+  assert.match(reset,/validatedTokenPair\([\s\S]*pair\.session\.access_token[\s\S]*pair\.session\.refresh_token/);
+  assert.match(reset,/requiresSignIn:true/);
+
+  assert.match(signup,/LOCKLIEL_APP_ORIGIN\+"\/my-lockliel\/sign-in\?confirmed=1"/);
+  assert.doesNotMatch(signup,/new URL\([\s\S]*request\.url/);
+  assert.match(recover,/LOCKLIEL_APP_ORIGIN\+"\/my-lockliel\/reset-password"/);
+  assert.doesNotMatch(recover,/new URL\([\s\S]*request\.url/);
+
+  assert.match(referral,/function safeLocalDestination/);
+  assert.match(referral,/raw\.startsWith\("\/"\)/);
+  assert.match(referral,/raw\.startsWith\("\/\/"\)/);
+  assert.match(referral,/Location:location/);
+  assert.doesNotMatch(referral,/Location:dest\.toString\(\)/);
+});

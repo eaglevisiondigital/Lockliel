@@ -1,4 +1,4 @@
-import {SUPABASE_URL,SUPABASE_KEY,json,parseCookies,sessionCookies} from "../lib/lockliel-core.mjs";
+import {SUPABASE_URL,SUPABASE_KEY,LOCKLIEL_APP_ORIGIN,json,parseCookies,sessionCookies} from "../lib/lockliel-core.mjs";
 
 export default async(request)=>{
   if(request.method!=="POST")return json({error:"Method not allowed"},405);
@@ -15,7 +15,7 @@ export default async(request)=>{
     return json({error:"Please enter your name, a valid email, and a password of at least 8 characters."},400);
   }
 
-  const redirectTo=new URL("/my-lockliel/sign-in?confirmed=1",request.url).toString();
+  const redirectTo=LOCKLIEL_APP_ORIGIN+"/my-lockliel/sign-in?confirmed=1";
   const r=await fetch(
     SUPABASE_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(redirectTo),
     {

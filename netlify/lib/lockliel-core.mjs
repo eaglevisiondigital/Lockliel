@@ -1,5 +1,6 @@
 export const SUPABASE_URL="https://bsndfhbemstyrrglajat.supabase.co";
 export const SUPABASE_KEY="sb_publishable_NSyTQx-izQeHisrQm7G4FA_ROG7N_u8";
+export const LOCKLIEL_APP_ORIGIN="https://lockliel.com";
 export const ACCESS_COOKIE="lockliel_access",REFRESH_COOKIE="lockliel_refresh";
 
 export function json(data,status=200,cookies=[]){
@@ -28,6 +29,16 @@ export async function refreshSession(refresh){
  if(!refresh)return null;
  const r=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:refresh})});
  return r.ok?r.json():null;
+}
+export async function validatedTokenPair(access,refresh){
+ if(!access||!refresh)return null;
+ const accessUser=await authUser(access);
+ if(!accessUser?.id)return null;
+ const session=await refreshSession(refresh).catch(()=>null);
+ if(!session?.access_token||!session?.refresh_token)return null;
+ const refreshedUser=session.user?.id?session.user:await authUser(session.access_token);
+ if(!refreshedUser?.id||refreshedUser.id!==accessUser.id)return null;
+ return {user:refreshedUser,session};
 }
 export async function activeSession(access){
  if(!access)return false;

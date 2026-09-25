@@ -1,9 +1,9 @@
-import {SUPABASE_URL,SUPABASE_KEY,json} from "../lib/lockliel-core.mjs";
+import {SUPABASE_URL,SUPABASE_KEY,LOCKLIEL_APP_ORIGIN,json} from "../lib/lockliel-core.mjs";
 export default async(request)=>{
  if(request.method!=="POST")return json({error:"Method not allowed"},405);
  const b=await request.json().catch(()=>({})),email=String(b.email||"").trim().toLowerCase();
  if(!email)return json({error:"Enter your email address."},400);
- const redirectTo=new URL("/my-lockliel/reset-password",request.url).toString();
+ const redirectTo=LOCKLIEL_APP_ORIGIN+"/my-lockliel/reset-password";
  const r=await fetch(SUPABASE_URL+"/auth/v1/recover?redirect_to="+encodeURIComponent(redirectTo),{
   method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email})
  });
