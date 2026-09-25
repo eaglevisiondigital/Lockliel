@@ -9,20 +9,11 @@ export default async(request)=>{
 
  if(request.method==="POST"){
    const b=await request.json().catch(()=>({}));
-   if(b.action==="updateFounderStatus"){
-     if(!roles.some(r=>["super_admin","admin","founders50_reviewer"].includes(r)))return json({error:"Founder review access required"},403);
-     const applicationId=String(b.applicationId||""),status=String(b.status||"");
-     const allowed=["applied","under_review","needs_info","accepted","orientation","active_host","paused","withdrawn","declined"];
-     if(!applicationId||!allowed.includes(status))return json({error:"Invalid application update"},400);
-     const r=await fetch(SUPABASE_URL+"/rest/v1/founders50_applications?id=eq."+encodeURIComponent(applicationId),{method:"PATCH",headers:{...h,Prefer:"return=representation"},body:JSON.stringify({status,updated_at:new Date().toISOString()})});
-     if(!r.ok)return json({error:"Unable to update application."},r.status);
-     return json({ok:true,application:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
-   }
    if(b.action==="resolveConnectionRequest"){
      if(!roles.some(r=>["super_admin","admin","discipleship_admin","founders50_reviewer"].includes(r)))return json({error:"Connection review access required"},403);
      const requestId=String(b.requestId||""),status=String(b.status||"resolved");
      if(!requestId||!["resolved","closed","in_progress"].includes(status))return json({error:"Invalid connection request update"},400);
-     const patch={status,resolved_at:["resolved","closed"].includes(status)?new Date().toISOString():null};
+     const patch={status};
      const r=await fetch(SUPABASE_URL+"/rest/v1/connection_requests?id=eq."+encodeURIComponent(requestId),{method:"PATCH",headers:{...h,Prefer:"return=representation"},body:JSON.stringify(patch)});
      if(!r.ok)return json({error:"Unable to update request."},r.status);
      return json({ok:true,request:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
