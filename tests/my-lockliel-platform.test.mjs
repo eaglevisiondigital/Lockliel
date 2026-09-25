@@ -1299,3 +1299,12 @@ test("Founder orientation progress is active-step scoped, audited, and locked af
   assert.match(client,/status==="active_host"/);
   assert.match(client,/Orientation history is locked after active-host approval/);
 });
+
+
+test("Founder orientation catalog is read-only through the Data API",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925130305_lockliel_read_only_founder_orientation_catalog.sql","utf8");
+
+  assert.match(migration,/revoke all privileges on table public\.founder_orientation_steps[\s\S]*from anon/);
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.founder_orientation_steps[\s\S]*from authenticated/);
+  assert.match(migration,/grant select[\s\S]*on table public\.founder_orientation_steps[\s\S]*to authenticated/);
+});
