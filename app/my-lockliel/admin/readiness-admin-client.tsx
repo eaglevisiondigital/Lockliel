@@ -47,7 +47,7 @@ export default function ReadinessAdminClient(){
     </div>
 
     <div className="ml-readiness-meter">
-      <div><strong>{percent}%</strong><span>{data.readyCount} of {data.totalCount} foundation checks ready</span></div>
+      <div><strong>{percent}%</strong><span>{data.readyCount} of {data.totalCount} required launch checks ready{data.blockerCount? " • "+data.blockerCount+" blocker"+(data.blockerCount===1?"":"s")+" remaining":" • no required blockers"}</span></div>
       <div className="ml-course-progress"><span style={{width:percent+"%"}}/></div>
     </div>
 
@@ -57,7 +57,10 @@ export default function ReadinessAdminClient(){
       {data.checks.map((check:any)=><article className={check.ready?"ready":"pending"} key={check.key}>
         <div className="ml-readiness-icon">{check.ready?<CheckCircle2 size={17}/>:<AlertCircle size={17}/>}</div>
         <div>
-          <b>{check.label}</b>
+          <div className="ml-readiness-title-row">
+            <b>{check.label}</b>
+            {check.required===false&&<em className="ml-optional-pill">Optional</em>}
+          </div>
           <span>{check.detail}</span>
           {check.manual&&<small><ShieldCheck size={11}/> Manual verification required because this setting lives in the Supabase dashboard rather than the connected build tools.</small>}
         </div>
