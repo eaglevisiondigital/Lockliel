@@ -2140,3 +2140,15 @@ test("public lead and Founders intake never attach records to a profile from unv
   assert.match(founders,/linked_profile_input:null/);
   assert.match(founders,/!flagRes\.ok\|\|flags\?\.\[0\]\?\.enabled!==true/);
 });
+
+
+test("unverified pre-account consent never silently enables member communication preferences",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925214922_lockliel_keep_preaccount_consent_separate.sql","utf8");
+  const sourceLinkMigration=fs.readFileSync("supabase/migrations/20260925214457_lockliel_link_public_records_only_after_email_confirmation.sql","utf8");
+
+  assert.match(migration,/drop trigger if exists on_lead_contact_sync_consent/);
+  assert.match(migration,/sync_lead_consent_to_preferences/);
+  assert.match(migration,/return new/);
+  assert.doesNotMatch(migration,/update public\.communication_preferences/);
+  assert.match(sourceLinkMigration,/confirmed_email_nonfinancial_records_linked/);
+});
