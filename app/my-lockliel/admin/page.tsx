@@ -15,7 +15,7 @@ import NotesAdminClient from "./notes-admin-client";
 import LeadsAdminClient from "./leads-admin-client";
 import FounderOrientationAdminClient from "./founder-orientation-admin-client";
 import LineageAdminClient from "./lineage-admin-client";
-import AdminSectionNav from "./admin-section-nav";
+import AdminSectionNav from "./admin-section-nav";import PrivacyAdminClient from "./privacy-admin-client";
 import "../my-lockliel.css";
 
 export const metadata={title:"Lockliel Admin"};
