@@ -53,6 +53,9 @@ export default function PrivacyClient(){
   const openExport=data.requests.find(
     (r:any)=>r.request_type==="data_export"&&["submitted","in_review"].includes(r.status)
   );
+  const completedExport=data.requests.find(
+    (r:any)=>r.request_type==="data_export"&&r.status==="completed"
+  );
   const openDelete=data.requests.find(
     (r:any)=>r.request_type==="account_deletion"&&["submitted","in_review"].includes(r.status)
   );
@@ -67,22 +70,25 @@ export default function PrivacyClient(){
         <p>Download a structured JSON copy of the member data available to you through your own account, including profile, discipleship, My Five, relationships, notifications, giving, orders and resource access.</p>
 
         <div className="ml-privacy-download-actions">
-          <a className="ml-action" href="/api/lockliel/privacy-export">
-            <FileDown size={15}/> Download my data
-          </a>
+          {completedExport&&<a
+            className="ml-action"
+            href={"/api/lockliel/privacy-export?requestId="+encodeURIComponent(completedExport.id)}
+          >
+            <FileDown size={15}/> Download approved export
+          </a>}
 
           {openExport
             ? <div className="ml-request-state">
                 <ShieldCheck size={15}/>
-                <span>Formal request: {openExport.status.replaceAll("_"," ")}</span>
+                <span>Export request: {openExport.status.replaceAll("_"," ")}</span>
                 {openExport.status==="submitted"&&<button onClick={()=>cancel(openExport.id)} disabled={working}>Cancel</button>}
               </div>
             : <button className="ml-privacy-secondary" onClick={()=>create("data_export")} disabled={working}>
-                Request assisted export
+                Request data export
               </button>}
         </div>
 
-        <p className="ml-privacy-note">The self-service download does not include staff-only notes, security secrets, password data, authenticator secrets, or internal infrastructure logs.</p>
+        <p className="ml-privacy-note">Approved exports do not include staff-only notes, security secrets, password data, authenticator secrets, or internal infrastructure logs.</p>
       </article>
 
       <article className="ml-panel">
