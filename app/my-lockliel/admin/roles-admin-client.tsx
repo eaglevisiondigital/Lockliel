@@ -9,7 +9,8 @@ const labels:any={
   founders50_reviewer:"Founders 50 reviewer",
   group_leader:"Group leader",
   finance_admin:"Finance admin",
-  content_admin:"Content admin"
+  content_admin:"Content admin",
+  fulfillment_admin:"Fulfillment admin"
 };
 
 export default function RolesAdminClient(){
