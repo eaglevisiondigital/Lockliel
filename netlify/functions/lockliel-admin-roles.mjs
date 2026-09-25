@@ -71,10 +71,13 @@ export default async(request)=>{
     )
   ]);
 
+  const staff=staffRes.ok?await staffRes.json():[];
   return json({
     people:peopleRes.ok?await peopleRes.json():[],
-    staff:staffRes.ok?await staffRes.json():[],
-    allowedRoles
+    staff,
+    allowedRoles,
+    currentProfileId:s.user.id,
+    superAdminCount:staff.filter(item=>item.role==="super_admin").length
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
