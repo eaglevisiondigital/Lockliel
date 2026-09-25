@@ -198,7 +198,13 @@ function ProviderControl({
 
     <label className="ml-provider-note">
       Verification note
-      <input value={note} onChange={e=>setNote(e.target.value)} placeholder="Sandbox test, webhook verification, merchant account notes…"/>
+      <input
+        value={note}
+        onChange={e=>setNote(e.target.value)}
+        minLength={ready?20:0}
+        placeholder="Sandbox test, webhook verification, merchant account notes…"
+      />
+      <small>{ready?"Required for launch-ready status. Include what was tested and verified.":"Document sandbox tests, webhook verification, or merchant account notes as work progresses."}</small>
     </label>
 
     <div className="ml-provider-control-footer">
@@ -207,7 +213,7 @@ function ProviderControl({
           ?"Last fully verified "+new Date(provider.last_verified_at).toLocaleString()
           :"Not fully verified yet"}
       </small>
-      <button disabled={working} onClick={()=>onSave(provider.provider,status,adapter,webhook,note)}>
+      <button disabled={working||(ready&&note.trim().length<20)} onClick={()=>onSave(provider.provider,status,adapter,webhook,note)}>
         {working?"Saving…":"Save readiness"}
       </button>
     </div>
