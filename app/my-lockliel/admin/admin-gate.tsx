@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useState} from "react";
+import StaffSecurityGate from "../staff-security-gate";
 
 const ADMIN_ROLES=[
   "super_admin",
@@ -11,26 +11,7 @@ const ADMIN_ROLES=[
 ];
 
 export default function AdminGate({children}:{children:React.ReactNode}){
-  const [allowed,setAllowed]=useState(false);
-
-  useEffect(()=>{
-    fetch("/api/lockliel-auth/session",{cache:"no-store"})
-      .then(async r=>{
-        if(r.status===401){
-          location.replace("/my-lockliel/sign-in");
-          return;
-        }
-        const data=await r.json().catch(()=>({}));
-        const roles=Array.isArray(data.roles)?data.roles:[];
-        if(!roles.some((role:string)=>ADMIN_ROLES.includes(role))){
-          location.replace("/my-lockliel");
-          return;
-        }
-        setAllowed(true);
-      })
-      .catch(()=>location.replace("/my-lockliel"));
-  },[]);
-
-  if(!allowed)return <div className="ml-loading">Checking Lockliel Admin access…</div>;
-  return <>{children}</>;
+  return <StaffSecurityGate allowedRoles={ADMIN_ROLES} returnTo="/my-lockliel/admin">
+    {children}
+  </StaffSecurityGate>;
 }
