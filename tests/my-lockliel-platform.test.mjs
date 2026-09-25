@@ -591,3 +591,12 @@ test("reach counts recalculate from My Five plus unique referral signups without
   assert.match(migration,/set active_connections_count=active_connections_count\+1,[\s\S]*updated_at=now\(\)/);
   assert.doesNotMatch(migration,/reach_one_count=reach_one_count\+1/);
 });
+
+
+test("active connection counts are derived from contact permissions without manual signup increments",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113218_lockliel_authoritative_connection_count_sync.sql","utf8");
+  assert.match(migration,/insert into public\.contact_permissions/);
+  assert.match(migration,/perform app_private\.recalculate_member_reach_count\(inviter\)/);
+  assert.doesNotMatch(migration,/active_connections_count=active_connections_count\+1/);
+  assert.doesNotMatch(migration,/reach_one_count=reach_one_count\+1/);
+});
