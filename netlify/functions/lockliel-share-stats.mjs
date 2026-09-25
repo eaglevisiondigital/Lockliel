@@ -65,8 +65,17 @@ export default async(request)=>{
   }
 
 
-  const breakdown=links.map(link=>{
-    const rows=events.filter(e=>e.referral_link_id===link.id);
+  const groupedLinks=new Map();
+  for(const link of links){
+    const key=link.content_id||"link:"+link.id;
+    if(!groupedLinks.has(key))groupedLinks.set(key,[]);
+    groupedLinks.get(key).push(link);
+  }
+
+  const breakdown=[...groupedLinks.entries()].map(([key,group])=>{
+    const linkIds=new Set(group.map(link=>link.id));
+    const rows=events.filter(event=>linkIds.has(event.referral_link_id));
+    const first=group[0];
     const counts={
       shares:rows.filter(e=>e.event_type==="share_initiated").length,
       visits:rows.filter(e=>e.event_type==="visit").length,
@@ -77,13 +86,14 @@ export default async(request)=>{
       lessonCompletions:rows.filter(e=>e.event_type==="lesson_completed").length
     };
     return {
-      id:link.id,
-      code:link.code,
-      contentType:link.content_type,
-      campaign:link.campaign,
-      destinationPath:link.destination_path,
-      createdAt:link.created_at,
-      asset:assetMap[link.content_id]||null,
+      id:first.content_id||first.id,
+      code:group.length===1?first.code:null,
+      contentType:first.content_type,
+      campaign:first.campaign,
+      destinationPath:first.destination_path,
+      createdAt:first.created_at,
+      asset:assetMap[first.content_id]||null,
+      linkCount:group.length,
       counts
     };
   });
