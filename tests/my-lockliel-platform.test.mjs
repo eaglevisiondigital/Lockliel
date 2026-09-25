@@ -1190,3 +1190,19 @@ test("public intake records enforce bounded normalized identities and metadata",
   assert.match(migration,/founders50_why_interested_length/);
   assert.match(migration,/founders50_what_excites_length/);
 });
+
+
+test("launch readiness uses the authoritative Getting a Grip readiness RPC",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925123754_lockliel_authoritative_grip_readiness_rpc.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/lockliel_grip_readiness/);
+  assert.match(migration,/private_workbook_lessons/);
+  assert.match(migration,/playable_video_lessons/);
+  assert.match(migration,/app_private\.grip_course_release_ready/);
+  assert.match(migration,/Administrator access required/);
+  assert.match(api,/rest\/v1\/rpc\/lockliel_grip_readiness/);
+  assert.match(api,/gripReadiness\?\.release_ready/);
+  assert.match(api,/distinct lessons with playable teaching video/);
+  assert.doesNotMatch(api,/const gripVideos=gripAssets/);
+});
