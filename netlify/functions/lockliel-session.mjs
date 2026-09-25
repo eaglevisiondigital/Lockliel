@@ -28,7 +28,7 @@ export default async(request)=>{
 
   const [p,j,r,f,g,lp,la]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/profiles?id=eq."+id+"&select=id,first_name,last_name,email,phone,city,region,country,onboarding_status,original_inviter_id,current_leader_id",
+      SUPABASE_URL+"/rest/v1/profiles?id=eq."+id+"&select=id,first_name,last_name,email,phone,city,region,country,locale,timezone,onboarding_status,original_inviter_id,current_leader_id",
       {headers:h}
     ),
     fetch(
