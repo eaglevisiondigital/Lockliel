@@ -179,6 +179,28 @@ export default async(request)=>{
         return json({error:"Invalid contact permission."},400);
       }
 
+      if(allow){
+        if(permissionType==="inviter_followup"){
+          const rel=await fetch(
+            SUPABASE_URL+"/rest/v1/profiles?id=eq."+encodeURIComponent(uid)+
+            "&original_inviter_id=eq."+encodeURIComponent(otherProfileId)+
+            "&select=id&limit=1",
+            {headers:h}
+          );
+          const rows=rel.ok?await rel.json():[];
+          if(!rows.length)return json({error:"That inviter relationship is no longer available."},409);
+        }else{
+          const rel=await fetch(
+            SUPABASE_URL+"/rest/v1/leader_assignments?member_id=eq."+encodeURIComponent(uid)+
+            "&leader_id=eq."+encodeURIComponent(otherProfileId)+
+            "&status=eq.active&select=member_id&limit=1",
+            {headers:h}
+          );
+          const rows=rel.ok?await rel.json():[];
+          if(!rows.length)return json({error:"That leader is no longer your active Lockliel assignment."},409);
+        }
+      }
+
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/contact_permissions?profile_id=eq."+encodeURIComponent(uid)+
         "&other_profile_id=eq."+encodeURIComponent(otherProfileId)+
