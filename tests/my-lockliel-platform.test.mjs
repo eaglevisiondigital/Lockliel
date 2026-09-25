@@ -1220,3 +1220,19 @@ test("Grip readiness RPC uses caller RLS instead of SECURITY DEFINER",()=>{
   assert.match(migration,/lesson_asset_storage_read/);
   assert.match(readiness,/rpc\/lockliel_grip_readiness/);
 });
+
+
+test("group transition resolution is atomic and role-gated in the database",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925124550_lockliel_atomic_group_transition_resolution.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+
+  assert.match(migration,/lockliel_resolve_group_transition/);
+  assert.match(migration,/security invoker/);
+  assert.match(migration,/for update/);
+  assert.match(migration,/Reassign group leadership before moving or ending this leader\/host membership/);
+  assert.match(migration,/Target group is not available for assignment/);
+  assert.match(migration,/update public\.connection_requests[\s\S]*set status='resolved'/);
+  assert.match(api,/rest\/v1\/rpc\/lockliel_resolve_group_transition/);
+  assert.doesNotMatch(api,/let targetAdded=false/);
+  assert.doesNotMatch(api,/Current active group membership not found\.[\s\S]*method:"PATCH"/);
+});
