@@ -314,3 +314,15 @@ test("faith profile remains editable after onboarding",()=>{
   assert.match(form,/Save changes/);
   assert.match(profilePage,/Faith & connection preferences/);
 });
+
+
+test("Founders 50 review history stays human-reviewed and MFA-gated",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-admin-founder-reviews.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/founder-review-admin-client.tsx","utf8");
+  assert.match(endpoint,/mfa_required/);
+  assert.match(endpoint,/founders50_reviews/);
+  assert.match(endpoint,/decision/);
+  assert.match(endpoint,/rationale/);
+  assert.match(client,/Human review/);
+  assert.match(client,/not converted into an automated spiritual score/i);
+});
