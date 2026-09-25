@@ -272,3 +272,14 @@ test("gift acknowledgment avoids unverified tax claims",()=>{
   assert.match(client,/does not make a statement about tax deductibility/i);
   assert.doesNotMatch(client,/tax-deductible contribution/i);
 });
+
+
+test("account deletion completion requires documented processing",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-privacy.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/privacy-admin-client.tsx","utf8");
+  assert.match(api,/request_type==="account_deletion"/);
+  assert.match(api,/adminNote\.length<20/);
+  assert.match(client,/Mark processed/);
+  assert.match(client,/Processing note/);
+  assert.match(client,/note\.trim\(\)\.length<20/);
+});
