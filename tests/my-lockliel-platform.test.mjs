@@ -283,3 +283,23 @@ test("account deletion completion requires documented processing",()=>{
   assert.match(client,/Processing note/);
   assert.match(client,/note\.trim\(\)\.length<20/);
 });
+
+
+test("global readiness captures locale and falls back to English",()=>{
+  const profile=fs.readFileSync("app/my-lockliel/profile/profile-form.tsx","utf8");
+  const share=fs.readFileSync("netlify/functions/lockliel-share-library.mjs","utf8");
+  assert.match(profile,/navigator\.language/);
+  assert.match(profile,/resolvedOptions\(\)\.timeZone/);
+  assert.match(share,/preferred==="en"\?"en":preferred\+",en"/);
+  assert.match(share,/preferredVariant/);
+  assert.match(share,/language_code/);
+});
+
+test("leader matching uses language only as a human-reviewed signal",()=>{
+  const leaders=fs.readFileSync("app/my-lockliel/admin/leaders-admin-client.tsx","utf8");
+  const groups=fs.readFileSync("app/my-lockliel/admin/groups-admin-client.tsx","utf8");
+  assert.match(leaders,/language_code/);
+  assert.match(leaders,/A Lockliel reviewer makes the final assignment/);
+  assert.match(groups,/suggestedGroups/);
+  assert.match(groups,/language_code/);
+});
