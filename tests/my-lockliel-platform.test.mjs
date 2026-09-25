@@ -934,9 +934,10 @@ test("leadership assignments and group leadership require approved compatible ro
   assert.match(lifecycleMigration,/Reassign active members before deactivating this leader/);
   assert.match(lifecycleMigration,/Reassign active groups before deactivating this leader/);
   assert.match(leadersApi,/approved leader role does not support this assignment type/);
-  assert.match(groupsApi,/active approved group leader or regional leader/);
+  assert.match(groupsApi,/approved group leader, regional leader, or active Founders 50 host/);
   assert.match(leadersUi,/assignmentTypesFor/);
   assert.match(groupsUi,/approvedGroupLeaders/);
+  assert.match(groupsUi,/Choose approved leader \/ host/);
 });
 
 
@@ -1800,4 +1801,25 @@ test("confirmed email changes relink only unowned records and password changes a
   assert.doesNotMatch(passwordMetadata,/encrypted_password/);
   assert.match(resetApi,/password\.length>128/);
   assert.match(resetForm,/maxLength=\{128\}/);
+});
+
+
+test("active Founders 50 hosts qualify for group hosting without gaining broader admin authority",()=>{
+  const eligibility=fs.readFileSync("supabase/migrations/20260925154111_lockliel_founders_active_host_group_eligibility.sql","utf8");
+  const candidates=fs.readFileSync("supabase/migrations/20260925154343_lockliel_sanitized_group_host_candidates.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/groups-admin-client.tsx","utf8");
+
+  assert.match(eligibility,/is_active_founders50_host/);
+  assert.match(eligibility,/f\.status='active_host'/);
+  assert.match(eligibility,/or app_private\.is_active_founders50_host\(new\.leader_id\)/);
+  assert.match(eligibility,/or app_private\.is_active_founders50_host\(new\.profile_id\)/);
+  assert.match(eligibility,/Reassign active group leadership before removing this Founders 50 active-host status/);
+  assert.match(candidates,/lockliel_group_host_candidates/);
+  assert.match(candidates,/security invoker/);
+  assert.match(candidates,/discipleship_admin/);
+  assert.match(api,/rest\/v1\/rpc\/lockliel_group_host_candidates/);
+  assert.match(api,/active Founders 50 host/);
+  assert.match(client,/Choose approved leader \/ host/);
+  assert.doesNotMatch(eligibility,/staff_roles/);
 });

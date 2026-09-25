@@ -32,15 +32,33 @@ export default async(request)=>{
 
       if(!name||!leaderId)return json({error:"Group name and leader are required."},400);
 
-      const leaderRes=await fetch(
-        SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+encodeURIComponent(leaderId)+
-        "&active=eq.true&leader_type=in.(group_leader,regional_leader)"+
-        "&select=profile_id,leader_type,language_code&limit=1",
-        {headers:h}
-      );
+      const [candidateRes,leaderRes,leaderCardRes]=await Promise.all([
+        fetch(
+          SUPABASE_URL+"/rest/v1/rpc/lockliel_group_host_candidates",
+          {method:"POST",headers:{...h,"Content-Type":"application/json"},body:"{}"}
+        ),
+        fetch(
+          SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+encodeURIComponent(leaderId)+
+          "&active=eq.true&leader_type=in.(group_leader,regional_leader)"+
+          "&select=profile_id,leader_type,language_code&limit=1",
+          {headers:h}
+        ),
+        fetch(
+          SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=eq."+encodeURIComponent(leaderId)+
+          "&select=profile_id,language_code&limit=1",
+          {headers:h}
+        )
+      ]);
+
+      const candidates=candidateRes.ok?await candidateRes.json():[];
       const approvedLeader=(leaderRes.ok?await leaderRes.json():[])?.[0]||null;
-      if(!approvedLeader){
-        return json({error:"Choose an active approved group leader or regional leader."},400);
+      const leaderCard=(leaderCardRes.ok?await leaderCardRes.json():[])?.[0]||null;
+      const eligible=candidates.some(candidate=>candidate.profile_id===leaderId);
+
+      if(!eligible){
+        return json({
+          error:"Choose an approved group leader, regional leader, or active Founders 50 host."
+        },400);
       }
 
       const gr=await fetch(SUPABASE_URL+"/rest/v1/groups",{
@@ -52,7 +70,7 @@ export default async(request)=>{
           city:city||null,
           region:region||null,
           country:country||null,
-          language_code:String(b.languageCode||approvedLeader.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
+          language_code:String(b.languageCode||approvedLeader?.language_code||leaderCard?.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
           status:"forming"
         })
       });
@@ -132,7 +150,7 @@ export default async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const cutoff=new Date(Date.now()-56*24*60*60*1000).toISOString().slice(0,10);
-  const [groupsRes,peopleRes,requestsRes,checkinsRes,approvedLeadersRes]=await Promise.all([
+  const [groupsRes,peopleRes,requestsRes,checkinsRes,hostCandidatesRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/groups?select=id,name,leader_id,city,region,country,language_code,status,created_at&order=created_at.desc&limit=200",
       {headers:h}
@@ -150,8 +168,8 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/leader_profiles?active=eq.true&leader_type=in.(group_leader,regional_leader)&select=profile_id,leader_type,language_code",
-      {headers:h}
+      SUPABASE_URL+"/rest/v1/rpc/lockliel_group_host_candidates",
+      {method:"POST",headers:{...h,"Content-Type":"application/json"},body:"{}"}
     )
   ]);
 
@@ -159,7 +177,7 @@ export default async(request)=>{
   const people=peopleRes.ok?await peopleRes.json():[];
   const requests=requestsRes.ok?await requestsRes.json():[];
   const checkins=checkinsRes.ok?await checkinsRes.json():[];
-  const approvedLeaders=approvedLeadersRes.ok?await approvedLeadersRes.json():[];
+  const hostCandidates=hostCandidatesRes.ok?await hostCandidatesRes.json():[];
   const groupIds=groups.map(g=>g.id);
 
   let memberships=[];
@@ -185,7 +203,7 @@ export default async(request)=>{
     roles,
     groups,
     people,
-    approvedGroupLeaderIds:approvedLeaders.map(leader=>leader.profile_id),
+    approvedGroupLeaderIds:hostCandidates.map(candidate=>candidate.profile_id),
     requests,
     memberships,
     checkins,
