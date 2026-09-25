@@ -485,3 +485,27 @@ test("digital product release changes are audited and admin shows all release ga
   assert.match(client,/Member delivery enabled/);
   assert.match(client,/Only broader system administrators control the final platform delivery switch/);
 });
+
+
+test("group leave or change requests are reviewed and preserve membership history",()=>{
+  const memberApi=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+  const adminApi=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  const memberUi=fs.readFileSync("app/my-lockliel/group/my-group-client.tsx","utf8");
+  const adminUi=fs.readFileSync("app/my-lockliel/admin/groups-admin-client.tsx","utf8");
+  const migration=fs.readFileSync("supabase/migrations/20260925111018_lockliel_reviewed_group_transitions.sql","utf8");
+  const notifyMigration=fs.readFileSync("supabase/migrations/20260925111300_lockliel_group_transition_notifications.sql","utf8");
+
+  assert.match(migration,/leave_or_change_group/);
+  assert.match(migration,/add column if not exists left_at timestamptz/);
+  assert.match(migration,/group_membership_changed/);
+  assert.match(memberApi,/requestGroupChange/);
+  assert.match(memberApi,/requestedGroupId:groupId/);
+  assert.match(memberUi,/Need to leave or change groups/);
+  assert.match(adminApi,/resolveGroupChange/);
+  assert.match(adminApi,/Reassign group leadership before moving or ending this leader\/host membership/);
+  assert.match(adminApi,/status:"inactive",left_at:now/);
+  assert.match(adminUi,/End membership/);
+  assert.match(adminUi,/Transfer/);
+  assert.match(notifyMigration,/Your Lockliel group connection is active/);
+  assert.match(notifyMigration,/You are no longer assigned to/);
+});
