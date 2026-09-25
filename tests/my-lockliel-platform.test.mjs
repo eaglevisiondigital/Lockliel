@@ -471,3 +471,17 @@ test("digital book readiness requires file, active product, and release flag",()
   assert.match(api,/flagMap\.digital_book_delivery/);
   assert.match(api,/member delivery switch/);
 });
+
+
+test("digital product release changes are audited and admin shows all release gates",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925110808_lockliel_audit_product_release_changes.sql","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/products-admin-client.tsx","utf8");
+  assert.match(migration,/product_release_changed/);
+  assert.match(migration,/storage_path_changed/);
+  assert.match(migration,/price_cents_from/);
+  assert.match(migration,/revoke execute on function app_private\.audit_product_release_change/);
+  assert.match(client,/Protected PDF uploaded/);
+  assert.match(client,/Digital product active/);
+  assert.match(client,/Member delivery enabled/);
+  assert.match(client,/Only broader system administrators control the final platform delivery switch/);
+});
