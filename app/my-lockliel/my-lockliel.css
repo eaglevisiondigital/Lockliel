@@ -120,3 +120,6 @@
 
 
 .ml-contact-consent{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:14px 0;padding:11px 12px;border-radius:12px;background:rgba(117,156,255,.045);border:1px solid rgba(117,156,255,.09)}.ml-contact-consent>div{display:grid;gap:3px}.ml-contact-consent b{font-size:10px}.ml-contact-consent span{font-size:9px;color:#8191a8;line-height:1.4}.ml-contact-consent button{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#dce5f5;border-radius:8px;padding:7px 9px;font-size:9px;font-weight:800;cursor:pointer;white-space:nowrap}.ml-contact-consent button:disabled{opacity:.55;cursor:wait}@media(max-width:620px){.ml-contact-consent{align-items:flex-start;flex-direction:column}.ml-contact-consent button{width:100%}}
+
+
+.ml-readiness-title-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ml-optional-pill{font-style:normal;font-size:8px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;color:#9aacbf;padding:4px 6px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
