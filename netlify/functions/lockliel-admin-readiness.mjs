@@ -246,6 +246,7 @@ export default async(request)=>{
       label:"$20 book benefit",
       ready:Boolean(flagMap.heart_book_gift_benefit)&&Boolean(digitalBook?.storage_path),
       manual:false,
+      required:false,
       detail:flagMap.heart_book_gift_benefit
         ?"Benefit is active."
         :"Benefit automation is built but intentionally not activated."
@@ -270,11 +271,18 @@ export default async(request)=>{
     }
   ];
 
+  const requiredChecks=checks.filter(c=>c.required!==false);
+  const optionalChecks=checks.filter(c=>c.required===false);
+  const blockers=requiredChecks.filter(c=>!c.ready);
+
   return json({
     checks,
     verifications,
-    readyCount:checks.filter(c=>c.ready).length,
-    totalCount:checks.length
+    readyCount:requiredChecks.filter(c=>c.ready).length,
+    totalCount:requiredChecks.length,
+    blockerCount:blockers.length,
+    optionalReadyCount:optionalChecks.filter(c=>c.ready).length,
+    optionalCount:optionalChecks.length
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
