@@ -21,6 +21,7 @@ type Message={
 type Conversation={
   id:string;
   type:string;
+  selfRole:string;
   other:Card|null;
   messages:Message[];
 };
@@ -52,6 +53,7 @@ export default function ConnectionsClient(){
     messagingEnabled?:boolean;
     leaderAssignment?:any;
     leaderRequest?:any;
+    contactPermissions?:any[];
   }|null>(null);
   const [error,setError]=useState("");
   const [message,setMessage]=useState("");
@@ -115,6 +117,27 @@ export default function ConnectionsClient(){
       setMessage("Leader request cancelled.");
       await load();
     }
+  }
+
+  async function setContactPermission(permission:any,allow:boolean){
+    if(!permission?.other_profile_id||!permission?.permission_type)return;
+    setWorking(true);
+    setMessage("");
+    const r=await fetch("/api/lockliel/connections",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        action:"setContactPermission",
+        otherProfileId:permission.other_profile_id,
+        permissionType:permission.permission_type,
+        allow
+      })
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+    if(!r.ok){setMessage(d.error||"Unable to update contact preference.");return;}
+    setMessage(allow?"Messages are available again.":"Messages paused. You can turn them back on anytime.");
+    await load();
   }
 
   async function complete(taskId:string){
@@ -195,8 +218,32 @@ export default function ConnectionsClient(){
     }
   }
 
-  const leaderConversation=useMemo(()=>data?.conversations.find(c=>c.type==="leader_followup"&&c.other)||null,[data]);
-  const people=useMemo(()=>data?.conversations.filter(c=>c.type!=="leader_followup"&&c.other)||[],[data]);
+  const leaderConversation=useMemo(
+    ()=>data?.conversations.find(c=>c.type==="leader_followup"&&c.selfRole==="member"&&c.other)||null,
+    [data]
+  );
+  const inviterConversation=useMemo(
+    ()=>data?.conversations.find(c=>c.type==="inviter_followup"&&c.selfRole==="invitee"&&c.other)||null,
+    [data]
+  );
+  const inviterPermission=useMemo(
+    ()=>data?.contactPermissions?.find((p:any)=>p.permission_type==="inviter_followup")||null,
+    [data]
+  );
+  const leaderPermission=useMemo(
+    ()=>data?.contactPermissions?.find((p:any)=>
+      p.permission_type==="leader_followup"&&
+      (!data?.leaderAssignment?.leader_id||p.other_profile_id===data.leaderAssignment.leader_id)
+    )||null,
+    [data]
+  );
+  const people=useMemo(
+    ()=>data?.conversations.filter(c=>
+      (c.type==="inviter_followup"&&c.selfRole==="inviter"&&c.other)||
+      (c.type==="direct"&&c.other)
+    )||[],
+    [data]
+  );
   const activeFive=useMemo(
     ()=>data?.reachContacts.filter(c=>["praying","invited","connected","growing"].includes(c.status))||[],
     [data]
@@ -279,6 +326,38 @@ export default function ConnectionsClient(){
       </details>}
     </section>
 
+    {inviterPermission&&<section className="ml-panel ml-assigned-leader">
+      <div className="ml-kicker">My original inviter</div>
+      <div className="ml-assigned-leader-head">
+        <div className="ml-avatar">{(inviterPermission.person?.first_name||inviterConversation?.other?.first_name||"I").slice(0,1)}</div>
+        <div>
+          <h2>{inviterPermission.person?.first_name||inviterConversation?.other?.first_name||"Your original inviter"}{inviterPermission.person?.last_initial?" "+inviterPermission.person.last_initial+".":inviterConversation?.other?.last_initial?" "+inviterConversation.other.last_initial+".":""}</h2>
+          <span>Original Lockliel connection</span>
+        </div>
+      </div>
+      <p>Your original inviter remains part of your Lockliel story. You control whether direct Lockliel follow-up messages stay open.</p>
+      <div className="ml-contact-consent">
+        <div>
+          <b>{inviterPermission.revoked_at?"Inviter messages are paused":"Inviter messages are available"}</b>
+          <span>Your email and phone number are not shown here.</span>
+        </div>
+        <button disabled={working} onClick={()=>setContactPermission(inviterPermission,Boolean(inviterPermission.revoked_at))}>
+          {inviterPermission.revoked_at?"Allow messages":"Pause messages"}
+        </button>
+      </div>
+      {!inviterPermission.revoked_at&&inviterConversation&&<>
+        <div className="ml-message-thread">
+          {inviterConversation.messages.length
+            ? inviterConversation.messages.slice(-6).map(m=><p key={m.id}>{m.body}<small>{new Date(m.created_at).toLocaleString()}</small></p>)
+            : <p className="ml-empty-message">You can message your original inviter here without sharing private contact details.</p>}
+        </div>
+        <div className="ml-message-compose">
+          <input disabled={data.messagingEnabled===false} value={drafts[inviterConversation.id]||""} onChange={e=>setDrafts(v=>({...v,[inviterConversation.id]:e.target.value}))} placeholder={data.messagingEnabled===false?"Messaging temporarily unavailable":"Message my inviter…"}/>
+          <button disabled={data.messagingEnabled===false} onClick={()=>send(inviterConversation.id)} aria-label="Send message to inviter"><Send size={17}/></button>
+        </div>
+      </>}
+    </section>}
+
     {!data.leaderAssignment&&<section className="ml-panel ml-assigned-leader">
       <div className="ml-kicker">Lockliel leader / mentor</div>
       <div className="ml-assigned-leader-head">
@@ -308,7 +387,16 @@ export default function ConnectionsClient(){
         </div>
       </div>
       <p>Your original inviter remains part of your Lockliel story. This leader is the person currently assigned to help you grow and take your next step.</p>
-      {leaderConversation&&<>
+      {leaderPermission&&<div className="ml-contact-consent">
+        <div>
+          <b>{leaderPermission.revoked_at?"Leader messages are paused":"Leader messages are available"}</b>
+          <span>You can pause direct Lockliel messaging without changing your leader assignment.</span>
+        </div>
+        <button disabled={working} onClick={()=>setContactPermission(leaderPermission,Boolean(leaderPermission.revoked_at))}>
+          {leaderPermission.revoked_at?"Allow messages":"Pause messages"}
+        </button>
+      </div>}
+      {!leaderPermission?.revoked_at&&leaderConversation&&<>
         <div className="ml-message-thread">
           {leaderConversation.messages.length
             ? leaderConversation.messages.slice(-6).map(m=><p key={m.id}>{m.body}<small>{new Date(m.created_at).toLocaleString()}</small></p>)
