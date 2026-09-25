@@ -850,3 +850,26 @@ test("weekly group check-ins allow current leaders to correct reports without ch
   assert.match(migration,/new\.updated_at:=now\(\)/);
   assert.match(api,/on_conflict=group_id,week_start/);
 });
+
+
+test("Founders 50 applications are immutable and active-host approval is review-gated",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120958_lockliel_immutable_founders50_review_workflow.sql","utf8");
+  const summaryApi=fs.readFileSync("netlify/functions/lockliel-admin.mjs","utf8");
+  const summaryUi=fs.readFileSync("app/my-lockliel/admin/admin-client.tsx","utf8");
+  const reviewApi=fs.readFileSync("netlify/functions/lockliel-admin-founder-reviews.mjs","utf8");
+  const orientationUi=fs.readFileSync("app/my-lockliel/admin/founder-orientation-admin-client.tsx","utf8");
+
+  assert.match(migration,/revoke insert, update, delete on table public\.founders50_applications from authenticated/);
+  assert.match(migration,/decision in \([\s\S]*'activate_host'/);
+  assert.match(migration,/decision='note'[\s\S]*char_length\(trim\(coalesce\(rationale,''\)\)\)>=20/);
+  assert.match(migration,/current_status<>'orientation'/);
+  assert.match(migration,/complete_count<required_count/);
+  assert.match(migration,/set status='active_host'/);
+  assert.doesNotMatch(summaryApi,/updateFounderStatus/);
+  assert.doesNotMatch(summaryUi,/founderStatuses/);
+  assert.match(summaryUi,/href="#founders"/);
+  assert.match(reviewApi,/activate_host/);
+  assert.match(reviewApi,/rationale\.length<20/);
+  assert.match(orientationUi,/decision:"activate_host"/);
+  assert.match(orientationUi,/Approve active host/);
+});
