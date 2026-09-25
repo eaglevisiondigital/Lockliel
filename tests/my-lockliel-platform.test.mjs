@@ -50,11 +50,17 @@ test("branded referral links route through the server tracker",()=>{
   assert.match(source,/lockliel-referral-redirect/);
 });
 
-test("partnership checkout requires feature flag plus fully verified provider path",()=>{
+test("partnership checkout uses sanitized verified checkout state",()=>{
   const source=fs.readFileSync("netlify/functions/lockliel-partner.mjs","utf8");
-  assert.match(source,/flagMap\.partner_checkout/);
-  assert.match(source,/checkout_adapter_ready===true/);
-  assert.match(source,/webhook_ready===true/);
+  const migration=fs.readFileSync("supabase/migrations/20260925131510_lockliel_harden_release_control_surface.sql","utf8");
+
+  assert.match(source,/partner_checkout_state\?select=checkout_ready,supports_one_time,supports_recurring/);
+  assert.match(source,/checkoutReady:Boolean\(checkoutState\?\.checkout_ready\)/);
+  assert.doesNotMatch(source,/payment_provider_connections/);
+  assert.match(migration,/p\.status='active'/);
+  assert.match(migration,/p\.checkout_adapter_ready=true/);
+  assert.match(migration,/p\.webhook_ready=true/);
+  assert.match(migration,/flag_enabled and selected_provider is not null/);
 });
 
 test("signup confirmation returns to My Lockliel",()=>{
