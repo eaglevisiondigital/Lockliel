@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -14,24 +15,72 @@ import {
   UsersRound
 } from "lucide-react";
 import {useEffect,useMemo,useState} from "react";
+import NotificationsClient from "./notifications/notifications-client";
 
 type SessionData={
   authenticated:boolean;
   profile?:{first_name?:string|null;onboarding_status?:string|null};
-  journey?:{next_step_title?:string|null;next_step_path?:string|null;reach_one_count?:number;active_connections_count?:number};
+  journey?:{
+    next_step_title?:string|null;
+    next_step_path?:string|null;
+    reach_one_count?:number;
+    active_connections_count?:number;
+  };
   roles?:string[];
   founderStatus?:string|null;
   groupMemberships?:{group_id:string;role:string;joined_at:string}[];
 };
 
 const baseCards=[
-  {icon:Sprout,title:"My Journey",text:"Continue growing in the Word and pick up exactly where you left off.",href:"/my-lockliel/journey",cta:"Continue my journey"},
-  {icon:Users,title:"My Five",text:"Keep the people you are intentionally encouraging in front of you. Reach one. Follow up. Help them grow.",href:"/my-lockliel/connections",cta:"View my connections"},
-  {icon:Radio,title:"Faith Boost",text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",href:"/#faith-boost",cta:"Go to Faith Boost"},
-  {icon:Share2,title:"Share & Invite",text:"Use approved Lockliel resources and personal invitation links to reach people intentionally.",href:"/my-lockliel/share",cta:"Open Share Center"},
-  {icon:UsersRound,title:"My Group",text:"Connect with your Lockliel gathering, leader, and the people growing alongside you.",href:"/my-lockliel/group",cta:"Open my group"},
-  {icon:HeartHandshake,title:"Partner With Us",text:"Help advance the mission through one-time or monthly partnership as giving comes online.",href:"/my-lockliel/partner",cta:"Partnership"},
-  {icon:BookOpen,title:"Books & Resources",text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",href:"/my-lockliel/resources",cta:"Open my library"}
+  {
+    icon:Sprout,
+    title:"My Journey",
+    text:"Continue growing in the Word and pick up exactly where you left off.",
+    href:"/my-lockliel/journey",
+    cta:"Continue my journey"
+  },
+  {
+    icon:Users,
+    title:"My Five",
+    text:"Keep the people you are intentionally encouraging in front of you. Reach one. Follow up. Help them grow.",
+    href:"/my-lockliel/connections",
+    cta:"View my connections"
+  },
+  {
+    icon:Radio,
+    title:"Faith Boost",
+    text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",
+    href:"/#faith-boost",
+    cta:"Go to Faith Boost"
+  },
+  {
+    icon:Share2,
+    title:"Share & Invite",
+    text:"Use approved Lockliel resources and personal invitation links to reach people intentionally.",
+    href:"/my-lockliel/share",
+    cta:"Open Share Center"
+  },
+  {
+    icon:UsersRound,
+    title:"My Group",
+    text:"Connect with your Lockliel gathering, leader, and the people growing alongside you.",
+    href:"/my-lockliel/group",
+    cta:"Open my group"
+  },
+  {
+    icon:HeartHandshake,
+    title:"Partner With Us",
+    text:"Help advance the mission through one-time or monthly partnership as giving comes online.",
+    href:"/my-lockliel/partner",
+    cta:"Partnership"
+  },
+  {
+    icon:BookOpen,
+    title:"Books & Resources",
+    text:"Your Lockliel digital books, discipleship resources, and future physical orders will live here.",
+    href:"/my-lockliel/resources",
+    cta:"Open my library"
+  }
 ];
 
 export default function MyLocklielDashboard(){
@@ -40,7 +89,10 @@ export default function MyLocklielDashboard(){
   useEffect(()=>{
     fetch("/api/lockliel-auth/session",{cache:"no-store"})
       .then(async r=>{
-        if(r.status===401){location.replace("/my-lockliel/sign-in");return;}
+        if(r.status===401){
+          location.replace("/my-lockliel/sign-in");
+          return;
+        }
         setData(await r.json());
       })
       .catch(()=>location.replace("/my-lockliel/sign-in"));
@@ -53,10 +105,22 @@ export default function MyLocklielDashboard(){
 
   const cards=useMemo(()=>{
     if(!data)return baseCards;
+
     const extra:any[]=[];
-    const staffRoles=data.roles||[];
-    const founderActive=["accepted","orientation","active_host"].includes(String(data.founderStatus||""));
+    const roles=data.roles||[];
+    const founderStatus=String(data.founderStatus||"");
+    const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
+
+    if(data.founderStatus){
+      extra.push({
+        icon:ShieldCheck,
+        title:"Founders 50",
+        text:"Your Founders 50 application is "+founderStatus.replaceAll("_"," ")+". Follow your next steps and stay connected.",
+        href:"/founders-50",
+        cta:"View Founders 50"
+      });
+    }
 
     if(founderActive||isHost){
       extra.push({
@@ -68,11 +132,11 @@ export default function MyLocklielDashboard(){
       });
     }
 
-    if(staffRoles.length){
+    if(roles.length){
       extra.push({
         icon:ShieldCheck,
         title:"Lockliel Admin",
-        text:"Authorized staff tools for people, progress, Founders 50, groups, content, giving, and follow-up.",
+        text:"Authorized staff tools for people, progress, follow-up, Founders 50, groups, content, giving, and system operations.",
         href:"/my-lockliel/admin",
         cta:"Open admin"
       });
@@ -81,19 +145,22 @@ export default function MyLocklielDashboard(){
     return [...baseCards,...extra];
   },[data]);
 
-  if(!data)return <main className="my-lockliel"><div className="ml-loading">Opening My Lockliel…</div></main>;
+  if(!data){
+    return <main className="my-lockliel"><div className="ml-loading">Opening My Lockliel…</div></main>;
+  }
 
   const name=data.profile?.first_name?.trim();
   const nextTitle=data.journey?.next_step_title||"Continue Getting a Grip on the Basics";
   const nextPath=data.journey?.next_step_path||"/my-lockliel/journey";
 
-  const memberCards=[...cards];\n  if(data.founderStatus)memberCards.push({icon:ShieldCheck,title:"Founders 50",text:"Your Founders 50 application is "+data.founderStatus.replaceAll("_"," ")+". Follow your next steps here.",href:"/founders-50",cta:"View Founders 50"});\n  if((data.roles||[]).length)memberCards.push({icon:ShieldCheck,title:"Lockliel Admin",text:"Open the role-protected people, progress, follow-up, groups, content, finance, and system tools.",href:"/my-lockliel/admin",cta:"Open admin"});\n\n  return <main className="my-lockliel"><div className="ml-shell">
+  return <main className="my-lockliel"><div className="ml-shell">
     <header className="ml-member-bar">
       <div>
         <div className="ml-kicker">My Lockliel</div>
-        <span>{name ? "Welcome, "+name : "Welcome"}</span>
+        <span>{name?"Welcome, "+name:"Welcome"}</span>
       </div>
       <div className="ml-member-actions">
+        <Link href="/my-lockliel/notifications">Notifications</Link>
         <Link href="/my-lockliel/profile">Profile</Link>
         <button onClick={signOut}><LogOut size={15}/> Sign out</button>
       </div>
@@ -136,9 +203,10 @@ export default function MyLocklielDashboard(){
     </section>}
 
     <NotificationsClient compact/>
+
     <h2 className="ml-section-title">What will you do next?</h2>
     <section className="ml-grid">
-      {memberCards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
+      {cards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
         <div className="ml-icon"><Icon size={21}/></div>
         <h2>{card.title}</h2>
         <p>{card.text}</p>
