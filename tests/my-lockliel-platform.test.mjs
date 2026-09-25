@@ -758,3 +758,17 @@ test("progress timestamps and status ranges are database-controlled",()=>{
   assert.match(migration,/new\.percent_watched:=greatest/);
   assert.match(migration,/new\.completed_at:=null/);
 });
+
+
+test("system-owned records do not expose dormant member write paths",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925115908_lockliel_reduce_dormant_data_api_writes.sql","utf8");
+
+  assert.match(migration,/drop policy if exists communication_preferences_self_insert/);
+  assert.match(migration,/revoke insert, delete on table public\.communication_preferences from authenticated/);
+  assert.match(migration,/revoke insert, update, delete on table public\.course_enrollments from authenticated/);
+  assert.match(migration,/revoke insert, update, delete on table public\.checkout_sessions from authenticated/);
+  assert.match(migration,/revoke insert, update, delete on table public\.payment_events from authenticated/);
+  assert.match(migration,/revoke insert, update, delete on table public\.partner_commitments from authenticated/);
+  assert.match(migration,/revoke insert, delete on table public\.contact_permissions from authenticated/);
+  assert.match(migration,/revoke insert, delete on table public\.orders from authenticated/);
+});
