@@ -40,8 +40,7 @@ export default async(request)=>{
         country:String(b.country||"").trim()||null,
         language_code:String(b.languageCode||card?.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
         capacity:Number(b.capacity)>0?Math.min(10000,Number(b.capacity)):null,
-        approved_by:uid,
-        updated_at:new Date().toISOString()
+        approved_by:uid
       };
 
       const r=await fetch(
