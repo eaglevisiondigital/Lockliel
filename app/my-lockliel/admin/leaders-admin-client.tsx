@@ -15,6 +15,7 @@ export default function LeadersAdminClient(){
   const [hidden,setHidden]=useState(false);
   const [working,setWorking]=useState(false);
   const [message,setMessage]=useState("");
+  const [selectedLeaderId,setSelectedLeaderId]=useState("");
 
   async function load(){
     const r=await fetch("/api/lockliel/admin/leaders",{cache:"no-store"});
@@ -72,6 +73,7 @@ export default function LeadersAdminClient(){
     setWorking(false);
     if(!r.ok){setMessage(d.error||"Unable to assign leader.");return;}
     setMessage("Leader assigned and private connection opened.");
+    setSelectedLeaderId("");
     e.currentTarget.reset();
     await load();
   }
@@ -123,8 +125,25 @@ export default function LeadersAdminClient(){
   const activeAssignments=data.assignments.filter((a:any)=>a.status==="active");
   const requests=data.requests||[];
 
+  function assignmentTypesFor(leaderType:string){
+    const map:Record<string,string[]>={
+      mentor:["mentor"],
+      group_leader:["group_leader"],
+      founders_coach:["founders_coach"],
+      discipleship_leader:["mentor","discipleship_leader"],
+      regional_leader:["mentor","group_leader","founders_coach","discipleship_leader","regional_leader"]
+    };
+    return map[leaderType]||[];
+  }
+
+  const selectedLeader=activeLeaders.find((leader:any)=>leader.profile_id===selectedLeaderId)||null;
+  const manualAssignmentTypes=selectedLeader?assignmentTypesFor(selectedLeader.leader_type):[];
+
   function suggestedLeaders(member:any){
-    return [...activeLeaders].sort((a:any,b:any)=>{
+    const mentorCompatible=activeLeaders.filter((leader:any)=>
+      assignmentTypesFor(leader.leader_type).includes("mentor")
+    );
+    return [...mentorCompatible].sort((a:any,b:any)=>{
       const pa=peopleMap[a.profile_id]||{};
       const pb=peopleMap[b.profile_id]||{};
       const assignedA=activeAssignments.filter((x:any)=>x.leader_id===a.profile_id).length;
@@ -215,8 +234,8 @@ export default function LeadersAdminClient(){
         <h3>Assign a leader</h3>
         <p>The original inviter stays preserved. This assigns the person responsible for current ministry follow-up.</p>
         <label>Member<select name="memberId" required defaultValue=""><option value="" disabled>Choose member</option>{data.people.map((p:any)=><option value={p.profile_id} key={p.profile_id}>{p.first_name}{p.last_initial?" "+p.last_initial+".":""} • {[p.city,p.region].filter(Boolean).join(", ")}</option>)}</select></label>
-        <label>Approved leader<select name="leaderId" required defaultValue=""><option value="" disabled>Choose leader</option>{activeLeaders.map((l:any)=>{const p=peopleMap[l.profile_id]||{};const assigned=activeAssignments.filter((a:any)=>a.leader_id===l.profile_id).length;return <option value={l.profile_id} key={l.profile_id}>{p.first_name||"Leader"}{p.last_initial?" "+p.last_initial+".":""} • {types[l.leader_type]} • {assigned}{l.capacity?"/"+l.capacity:""} assigned</option>})}</select></label>
-        <label>Assignment type<select name="assignmentType" defaultValue="mentor">{Object.entries(types).map(([key,label])=><option key={key} value={key}>{String(label)}</option>)}</select></label>
+        <label>Approved leader<select name="leaderId" required value={selectedLeaderId} onChange={e=>setSelectedLeaderId(e.target.value)}><option value="" disabled>Choose leader</option>{activeLeaders.map((l:any)=>{const p=peopleMap[l.profile_id]||{};const assigned=activeAssignments.filter((a:any)=>a.leader_id===l.profile_id).length;return <option value={l.profile_id} key={l.profile_id}>{p.first_name||"Leader"}{p.last_initial?" "+p.last_initial+".":""} • {types[l.leader_type]} • {assigned}{l.capacity?"/"+l.capacity:""} assigned</option>})}</select></label>
+        <label>Assignment type<select name="assignmentType" key={selectedLeaderId||"none"} required disabled={!selectedLeader} defaultValue={manualAssignmentTypes[0]||""}>{!selectedLeader&&<option value="">Choose an approved leader first</option>}{manualAssignmentTypes.map((key:string)=><option key={key} value={key}>{String(types[key]||key)}</option>)}</select></label>
         <button className="ml-action" disabled={working||!activeLeaders.length}>Assign leader</button>
       </form>
     </div>
