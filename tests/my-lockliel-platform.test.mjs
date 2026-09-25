@@ -824,3 +824,16 @@ test("internal messaging release flag is enforced by RLS",()=>{
   assert.match(migration,/f\.key='internal_messaging'/);
   assert.match(migration,/f\.enabled=true/);
 });
+
+
+test("weekly group check-ins preserve identity and database timestamps",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120612_lockliel_harden_weekly_group_checkins.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+
+  assert.match(migration,/extract\(isodow from week_start\)=1/);
+  assert.match(migration,/Weekly check-in identity and week cannot be changed/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(migration,/char_length\(testimony\)<=5000/);
+  assert.match(migration,/char_length\(needs_support\)<=5000/);
+  assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
+});
