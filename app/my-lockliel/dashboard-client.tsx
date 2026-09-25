@@ -1,15 +1,30 @@
 "use client";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, HeartHandshake, LogOut, Radio, Share2, Sprout, Users, UsersRound } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  HeartHandshake,
+  LogOut,
+  Radio,
+  Share2,
+  ShieldCheck,
+  Sparkles,
+  Sprout,
+  Users,
+  UsersRound
+} from "lucide-react";
+import {useEffect,useMemo,useState} from "react";
 
 type SessionData={
   authenticated:boolean;
   profile?:{first_name?:string|null;onboarding_status?:string|null};
   journey?:{next_step_title?:string|null;next_step_path?:string|null;reach_one_count?:number;active_connections_count?:number};
+  roles?:string[];
+  founderStatus?:string|null;
+  groupMemberships?:{group_id:string;role:string;joined_at:string}[];
 };
 
-const cards=[
+const baseCards=[
   {icon:Sprout,title:"My Journey",text:"Continue growing in the Word and pick up exactly where you left off.",href:"/my-lockliel/journey",cta:"Continue my journey"},
   {icon:Users,title:"My Five",text:"Keep the people you are intentionally encouraging in front of you. Reach one. Follow up. Help them grow.",href:"/my-lockliel/connections",cta:"View my connections"},
   {icon:Radio,title:"Faith Boost",text:"Watch, grow, and personally share a Faith Boost with someone who needs encouragement today.",href:"/#faith-boost",cta:"Go to Faith Boost"},
@@ -36,6 +51,36 @@ export default function MyLocklielDashboard(){
     location.assign("/");
   }
 
+  const cards=useMemo(()=>{
+    if(!data)return baseCards;
+    const extra:any[]=[];
+    const staffRoles=data.roles||[];
+    const founderActive=["accepted","orientation","active_host"].includes(String(data.founderStatus||""));
+    const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
+
+    if(founderActive||isHost){
+      extra.push({
+        icon:Sparkles,
+        title:"Founder / Host Tools",
+        text:"Lead your gathering, submit weekly multiplication check-ins, and keep reaching people intentionally.",
+        href:"/my-lockliel/group",
+        cta:"Open host tools"
+      });
+    }
+
+    if(staffRoles.length){
+      extra.push({
+        icon:ShieldCheck,
+        title:"Lockliel Admin",
+        text:"Authorized staff tools for people, progress, Founders 50, groups, content, giving, and follow-up.",
+        href:"/my-lockliel/admin",
+        cta:"Open admin"
+      });
+    }
+
+    return [...baseCards,...extra];
+  },[data]);
+
   if(!data)return <main className="my-lockliel"><div className="ml-loading">Opening My Lockliel…</div></main>;
 
   const name=data.profile?.first_name?.trim();
@@ -44,8 +89,14 @@ export default function MyLocklielDashboard(){
 
   return <main className="my-lockliel"><div className="ml-shell">
     <header className="ml-member-bar">
-      <div><div className="ml-kicker">My Lockliel</div><span>{name ? "Welcome, "+name : "Welcome"}</span></div>
-      <div className="ml-member-actions"><Link href="/my-lockliel/profile">Profile</Link><button onClick={signOut}><LogOut size={15}/> Sign out</button></div>
+      <div>
+        <div className="ml-kicker">My Lockliel</div>
+        <span>{name ? "Welcome, "+name : "Welcome"}</span>
+      </div>
+      <div className="ml-member-actions">
+        <Link href="/my-lockliel/profile">Profile</Link>
+        <button onClick={signOut}><LogOut size={15}/> Sign out</button>
+      </div>
     </header>
 
     <section className="ml-hero">
@@ -53,18 +104,36 @@ export default function MyLocklielDashboard(){
         <div className="ml-kicker">Your next step matters</div>
         <h1>Grow. Reach one.<br/>Help them grow.</h1>
         <p>Grow in Jesus, live from who God says you are, reach people personally, and help somebody else begin doing the same.</p>
-        <div className="ml-path"><span>KNOW JESUS</span><span>GROW</span><span>REACH ONE</span><span>SHARE</span><span>FOLLOW UP</span><span>MULTIPLY</span></div>
+        <div className="ml-path">
+          <span>KNOW JESUS</span>
+          <span>GROW</span>
+          <span>REACH ONE</span>
+          <span>SHARE</span>
+          <span>FOLLOW UP</span>
+          <span>MULTIPLY</span>
+        </div>
       </div>
+
       <aside className="ml-panel ml-next">
         <div>
           <div className="ml-kicker">Your next step</div>
           <strong>{nextTitle}</strong>
           <p>Your journey is personal and trackable. Continue where you left off and keep moving forward.</p>
-          <div className="ml-mini-stats"><span><b>{data.journey?.reach_one_count||0}</b> reached</span><span><b>{data.journey?.active_connections_count||0}</b> connections</span></div>
+          <div className="ml-mini-stats">
+            <span><b>{data.journey?.reach_one_count||0}</b> reached</span>
+            <span><b>{data.journey?.active_connections_count||0}</b> connections</span>
+          </div>
         </div>
-        <Link href={nextPath}>{data.profile?.onboarding_status==="new"?"Get started":"Continue"} <ArrowUpRight size={17}/></Link>
+        <Link href={nextPath}>
+          {data.profile?.onboarding_status==="new"?"Get started":"Continue"} <ArrowUpRight size={17}/>
+        </Link>
       </aside>
     </section>
+
+    {(data.founderStatus||data.groupMemberships?.length)&&<section className="ml-member-context">
+      {data.founderStatus&&<span>Founders 50: {data.founderStatus.replaceAll("_"," ")}</span>}
+      {(data.groupMemberships||[]).map((g,index)=><span key={g.group_id+"-"+index}>Group role: {g.role.replaceAll("_"," ")}</span>)}
+    </section>}
 
     <h2 className="ml-section-title">What will you do next?</h2>
     <section className="ml-grid">
@@ -75,6 +144,7 @@ export default function MyLocklielDashboard(){
         <Link href={card.href}>{card.cta} →</Link>
       </article>)}
     </section>
+
     <p className="ml-footer-note">Reach. Teach. Train. Disciple. Multiply.</p>
   </div></main>;
 }
