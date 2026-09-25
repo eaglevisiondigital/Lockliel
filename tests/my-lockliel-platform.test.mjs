@@ -202,7 +202,7 @@ test("member connection requests remain human-reviewed",()=>{
   assert.match(groupsApi,/find_local_group/);
   assert.match(groupsApi,/explore_hosting/);
   assert.match(connectionsApi,/connect_with_leader/);
-  assert.match(leaderAdmin,/Suggestions prioritize location and available capacity only/i);
+  assert.match(leaderAdmin,/location, language, and available capacity as practical signals only/i);
   assert.match(leaderAdmin,/assignRequest/);
 });
 
