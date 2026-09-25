@@ -28,7 +28,7 @@ export default async(request)=>{
  const [cr,lr,pr]=await Promise.all([
   fetch(SUPABASE_URL+"/rest/v1/courses?id=eq."+cid+"&select=id,slug,title,description,status&limit=1",{headers:h}),
   fetch(SUPABASE_URL+"/rest/v1/lessons?course_id=eq."+cid+"&select=id,position,slug,title,video_provider,video_ref,worksheet_schema&order=position.asc",{headers:h}),
-  fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+encodeURIComponent(uid)+"&select=lesson_id,status,last_position_seconds,watched_seconds,worksheet_status,started_at,last_activity_at,completed_at",{headers:h})
+  fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+encodeURIComponent(uid)+"&select=lesson_id,status,last_position_seconds,watched_seconds,worksheet_status,worksheet_answers,started_at,last_activity_at,completed_at",{headers:h})
  ]);
  const courses=cr.ok?await cr.json():[],lessons=lr.ok?await lr.json():[],progress=pr.ok?await pr.json():[],lessonIds=lessons.map(x=>x.id);
  let assets=[],mediaProgress=[];
