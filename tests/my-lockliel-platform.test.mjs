@@ -415,3 +415,15 @@ test("members control inviter and leader messaging without changing relationship
   assert.match(migration,/set left_at=null/);
   assert.match(migration,/revoke execute on function app_private\.sync_contact_permission_conversation_state/);
 });
+
+
+test("contact consent cannot revive stale inviter or leader relationships",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const migration=fs.readFileSync("supabase/migrations/20260925110224_lockliel_contact_consent_relationship_guard.sql","utf8");
+  assert.match(api,/original_inviter_id=eq\./);
+  assert.match(api,/leader_assignments\?member_id=eq\./);
+  assert.match(api,/status=eq\.active/);
+  assert.match(migration,/p\.original_inviter_id = other_profile_id/);
+  assert.match(migration,/la\.status = 'active'/);
+  assert.match(migration,/Contact relationship is no longer active/);
+});
