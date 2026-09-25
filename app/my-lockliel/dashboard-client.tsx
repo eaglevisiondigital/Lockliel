@@ -110,7 +110,7 @@ export default function MyLocklielDashboard(){
 
     const extra:any[]=[];
     const roles=data.roles||[];
-    const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin"];
+    const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin","fulfillment_admin"];
     const hasAdminAccess=roles.some(role=>adminCapableRoles.includes(role));
     const isRoleLeader=roles.includes("group_leader");
     const hasLeaderTools=Boolean(data.leaderProfile)||Number(data.peopleAssignedCount||0)>0||isRoleLeader;
