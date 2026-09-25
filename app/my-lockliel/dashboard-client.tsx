@@ -135,6 +135,7 @@ export default function MyLocklielDashboard(){
       {(data.groupMemberships||[]).map((g,index)=><span key={g.group_id+"-"+index}>Group role: {g.role.replaceAll("_"," ")}</span>)}
     </section>}
 
+    <NotificationsClient compact/>
     <h2 className="ml-section-title">What will you do next?</h2>
     <section className="ml-grid">
       {memberCards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
