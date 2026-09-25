@@ -382,3 +382,18 @@ test("localized Resources preserve the entitled product identity",()=>{
   assert.match(endpoint,/translation_key=eq/);
   assert.match(endpoint,/entitlements\?profile_id=eq/);
 });
+
+
+test("auth session handoff is throttled and logout is POST-only",()=>{
+  const accept=fs.readFileSync("netlify/functions/lockliel-accept-session.mjs","utf8");
+  const logout=fs.readFileSync("netlify/functions/lockliel-logout.mjs","utf8");
+  assert.match(accept,/rateLimit/);
+  assert.match(logout,/request\.method!==["']POST["']/);
+  assert.match(logout,/rateLimit/);
+});
+
+test("profile edits preserve an existing locale preference",()=>{
+  const profile=fs.readFileSync("app/my-lockliel/profile/profile-form.tsx","utf8");
+  assert.match(profile,/profile\?\.locale\|\|/);
+  assert.match(profile,/navigator\.language/);
+});
