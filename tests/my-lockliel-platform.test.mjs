@@ -566,3 +566,28 @@ test("My Five limit and system-owned fields are enforced in the database",()=>{
   assert.match(api,/Pause or complete one before reactivating another/);
   assert.match(client,/Unable to update My Five/);
 });
+
+
+test("repeat shares preserve My Five progress and paused inviter contact closes only the welcome task",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const consentMigration=fs.readFileSync("supabase/migrations/20260925112829_lockliel_close_inviter_task_on_consent_revoke.sql","utf8");
+
+  assert.match(api,/current\.status==="praying"\?\{status:"invited"\}:\{\}/);
+  assert.match(api,/last_shared_at:now\.toISOString\(\)/);
+  assert.match(consentMigration,/task_type='welcome_invited_person'/);
+  assert.match(consentMigration,/subject_profile_id=new\.profile_id/);
+  assert.match(consentMigration,/assigned_to=new\.other_profile_id/);
+  assert.match(consentMigration,/status in \('open','in_progress'\)/);
+});
+
+test("reach counts recalculate from My Five plus unique referral signups without double incrementing",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113053_lockliel_authoritative_reach_count_sync.sql","utf8");
+
+  assert.match(migration,/recalculate_member_reach_count/);
+  assert.match(migration,/count\(distinct re\.member_id\)/);
+  assert.match(migration,/not exists\([\s\S]*linked_profile_id=re\.member_id/);
+  assert.match(migration,/sync_referral_signup_reach_count_trigger/);
+  assert.match(migration,/perform app_private\.recalculate_member_reach_count\(inviter\)/);
+  assert.match(migration,/set active_connections_count=active_connections_count\+1,[\s\S]*updated_at=now\(\)/);
+  assert.doesNotMatch(migration,/reach_one_count=reach_one_count\+1/);
+});
