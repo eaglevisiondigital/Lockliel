@@ -33,15 +33,18 @@ export default function ShareCenter(){
   const [message,setMessage]=useState("");
   const [stats,setStats]=useState<any>(null);
   const [library,setLibrary]=useState<any[]>([]);
+  const [reachContacts,setReachContacts]=useState<any[]>([]);
+  const [selectedReachId,setSelectedReachId]=useState("");
   const [error,setError]=useState("");
 
   async function load(){
-    const [statsRes,libraryRes]=await Promise.all([
+    const [statsRes,libraryRes,reachRes]=await Promise.all([
       fetch("/api/lockliel/share-stats",{cache:"no-store"}),
-      fetch("/api/lockliel/share-library",{cache:"no-store"})
+      fetch("/api/lockliel/share-library",{cache:"no-store"}),
+      fetch("/api/lockliel/share-link",{cache:"no-store"})
     ]);
 
-    if(statsRes.status===401||libraryRes.status===401){
+    if(statsRes.status===401||libraryRes.status===401||reachRes.status===401){
       location.assign("/my-lockliel/sign-in");
       return;
     }
@@ -55,6 +58,13 @@ export default function ShareCenter(){
       const d=await libraryRes.json().catch(()=>({}));
       setError(d.error||"Unable to load Share Library.");
     }
+
+    if(reachRes.ok){
+      const d=await reachRes.json();
+      const contacts=d.reachContacts||[];
+      setReachContacts(contacts);
+      setSelectedReachId(current=>current&&contacts.some((person:any)=>person.id===current)?current:"");
+    }
   }
 
   useEffect(()=>{load();},[]);
@@ -66,7 +76,7 @@ export default function ShareCenter(){
     const r=await fetch("/api/lockliel/share-link",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({slug,channel})
+      body:JSON.stringify({slug,channel,reachContactId:selectedReachId||null})
     });
 
     if(r.status===401){
@@ -86,11 +96,23 @@ export default function ShareCenter(){
     return d;
   }
 
+  async function markSelectedShared(){
+    if(!selectedReachId)return;
+    await fetch("/api/lockliel/connections",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"markReachActivity",id:selectedReachId,activity:"shared"})
+    }).catch(()=>null);
+  }
+
   async function copy(slug:string){
     try{
       const d=await getLink(slug,"copy");
       await navigator.clipboard.writeText(d.url);
-      setMessage("Personal link copied. Send it to someone you have in mind, then follow up.");
+      await markSelectedShared();
+      setMessage(d.reachContact
+        ?"Personal link copied for "+d.reachContact.displayName+". My Five has been updated so you can follow up."
+        :"Personal link copied. Send it to someone you have in mind, then follow up.");
     }catch{}
   }
 
@@ -104,9 +126,12 @@ export default function ShareCenter(){
           text:d.shareText||"I thought this might encourage you.",
           url:d.url
         });
+        await markSelectedShared();
+        if(d.reachContact)setMessage("Share completed for "+d.reachContact.displayName+". My Five has been updated.");
       }else{
         await navigator.clipboard.writeText(d.url);
-        setMessage("Personal link copied.");
+        await markSelectedShared();
+        setMessage(d.reachContact?"Personal link copied for "+d.reachContact.displayName+". My Five has been updated.":"Personal link copied.");
       }
     }catch{}
   }
@@ -137,6 +162,10 @@ export default function ShareCenter(){
     ["Lessons completed",totals.lesson_completed||0,CheckCircle2]
   ];
 
+  const selectedReach=useMemo(
+    ()=>reachContacts.find(person=>person.id===selectedReachId)||null,
+    [reachContacts,selectedReachId]
+  );
   const featured=useMemo(()=>library.filter(asset=>asset.featured),[library]);
   const standard=useMemo(()=>library.filter(asset=>!asset.featured),[library]);
 
@@ -157,6 +186,24 @@ export default function ShareCenter(){
         <span>{label}</span>
       </article>)}
     </section>
+
+    {reachContacts.length>0&&<section className="ml-panel ml-share-person">
+      <div>
+        <div className="ml-kicker">Optional My Five connection</div>
+        <h2>Who do you have in mind?</h2>
+        <p>Choose someone from My Five to create a private person-specific attribution path. Their name is never placed in the public link.</p>
+      </div>
+      <label>
+        Share with
+        <select value={selectedReachId} onChange={e=>setSelectedReachId(e.target.value)}>
+          <option value="">General personal link</option>
+          {reachContacts.map(person=><option key={person.id} value={person.id}>
+            {person.display_name} • {String(person.status||"").replaceAll("_"," ")}
+          </option>)}
+        </select>
+      </label>
+      {selectedReach&&<small>Selected: {selectedReach.display_name}. Confirmed native or copied shares will update this My Five person automatically.</small>}
+    </section>}
 
     {message&&<p className="ml-share-message">{message}</p>}
     {error&&<p className="ml-auth-message error">{error}</p>}
