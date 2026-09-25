@@ -99,40 +99,23 @@ Deno.serve(async(req:Request)=>{
   const profiles=p.ok?await p.json():[];
   const profileId=profiles?.[0]?.id||null;
 
-  const lr=await fetch(
-    url+"/rest/v1/lead_contacts?email=eq."+encodeURIComponent(email)+"&select=id&limit=1",
-    {headers:h}
-  );
-  const leads=lr.ok?await lr.json():[];
-  let leadId=leads?.[0]?.id||null;
-
-  if(leadId){
-    await fetch(url+"/rest/v1/lead_contacts?id=eq."+encodeURIComponent(leadId),{
-      method:"PATCH",
-      headers:{...h,Prefer:"return=minimal"},
-      body:JSON.stringify({
-        first_name:firstName,
-        last_name:lastName,
-        phone,
-        linked_profile_id:profileId
-      })
-    });
-  }else{
-    const ins=await fetch(url+"/rest/v1/lead_contacts",{
+  const leadUpsert=await fetch(
+    url+"/rest/v1/rpc/upsert_public_lead_contact",
+    {
       method:"POST",
       headers:{...h,Prefer:"return=representation"},
       body:JSON.stringify({
-        email,
-        first_name:firstName,
-        last_name:lastName,
-        phone,
-        linked_profile_id:profileId
+        email_input:email,
+        first_name_input:firstName,
+        last_name_input:lastName,
+        phone_input:phone,
+        linked_profile_input:profileId
       })
-    });
-    if(!ins.ok){
-      return new Response(JSON.stringify({error:"Lead capture failed"}),{status:500,headers});
     }
-    leadId=(await ins.json())?.[0]?.id||null;
+  );
+  const leadId=leadUpsert.ok?await leadUpsert.json().catch(()=>null):null;
+  if(!leadId){
+    return new Response(JSON.stringify({error:"Lead capture failed"}),{status:500,headers});
   }
 
   let duplicate=false;
