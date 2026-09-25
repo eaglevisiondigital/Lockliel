@@ -1516,3 +1516,20 @@ test("partner commitments keep amount and provider identity immutable",()=>{
   assert.match(migration,/partner_commitment_changed/);
   assert.match(migration,/donor_identity_changed/);
 });
+
+
+test("order items, shipping addresses, and fulfillment events are bounded system records",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925134352_lockliel_harden_fulfillment_record_integrity.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-orders.mjs","utf8");
+
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.order_items[\s\S]*from authenticated/);
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.order_shipping_addresses[\s\S]*from authenticated/);
+  assert.match(migration,/order_items_unit_price_nonnegative/);
+  assert.match(migration,/order_items_order_product_uidx/);
+  assert.match(migration,/shipping_postal_code_length/);
+  assert.match(migration,/fulfillment_tracking_length/);
+  assert.match(migration,/fulfillment_note_event_requires_note/);
+  assert.match(migration,/new\.actor_profile_id:=coalesce\(\(select auth\.uid\(\)\),new\.actor_profile_id\)/);
+  assert.match(migration,/new\.created_at:=now\(\)/);
+  assert.match(api,/actor_profile_id:s\.user\.id/);
+});
