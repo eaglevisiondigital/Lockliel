@@ -103,7 +103,7 @@ export default async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
-  const [peopleRes,leadersRes,assignmentsRes]=await Promise.all([
+  const [peopleRes,leadersRes,assignmentsRes,requestsRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/profile_connection_cards?select=profile_id,first_name,last_initial,city,region,country&order=first_name.asc&limit=5000",
       {headers:h}
@@ -115,14 +115,19 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/leader_assignments?select=member_id,leader_id,assignment_type,status,assigned_at,ended_at,updated_at&order=assigned_at.desc&limit=5000",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/connection_requests?request_type=eq.connect_with_leader&status=eq.open&select=id,requester_id,request_type,status,message,created_at&order=created_at.asc&limit=500",
+      {headers:h}
     )
   ]);
 
   const people=peopleRes.ok?await peopleRes.json():[];
   const leaders=leadersRes.ok?await leadersRes.json():[];
   const assignments=assignmentsRes.ok?await assignmentsRes.json():[];
+  const requests=requestsRes.ok?await requestsRes.json():[];
 
-  return json({roles,people,leaders,assignments},200,s.refreshed?sessionCookies(s.refreshed):[]);
+  return json({roles,people,leaders,assignments,requests},200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
 export const config={path:"/api/lockliel/admin/leaders"};
