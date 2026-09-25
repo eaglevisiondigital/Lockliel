@@ -54,7 +54,7 @@ export default async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"cancelled",updated_at:new Date().toISOString(),resolved_at:new Date().toISOString()})
+          body:JSON.stringify({status:"cancelled"})
         }
       );
       if(!r.ok)return json({error:"Unable to cancel request."},r.status);
