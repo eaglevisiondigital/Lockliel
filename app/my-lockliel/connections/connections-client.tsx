@@ -245,7 +245,7 @@ export default function ConnectionsClient(){
           <details className="ml-five-edit">
             <summary>Edit details & follow-up</summary>
             <form onSubmit={e=>saveReachDetails(e,person.id)}>
-              <label>Name<input name="displayName" required defaultValue={person.display_name}/></label>
+              <label>Name<input name="displayName" required maxLength={120} defaultValue={person.display_name}/></label>
               <label>How you know them <span>Optional</span><input name="relationshipContext" defaultValue={person.relationship_context||""} placeholder="Friend, coworker, neighbor…"/></label>
               <label>Next follow-up <span>Optional</span><input name="nextFollowUpAt" type="datetime-local" defaultValue={toLocalInput(person.next_follow_up_at)}/></label>
               <label>Private note <span>Optional</span><textarea name="privateNotes" rows={3} defaultValue={person.private_notes||""} placeholder="Only you can see this note."/></label>
@@ -262,7 +262,7 @@ export default function ConnectionsClient(){
         {activeFive.length<5&&<form className="ml-five-add" onSubmit={addPerson}>
           <div className="ml-icon"><UserPlus size={19}/></div>
           <h3>Add someone to My Five</h3>
-          <label>Name<input name="displayName" required placeholder="First name or a name you recognize"/></label>
+          <label>Name<input name="displayName" required maxLength={120} placeholder="First name or a name you recognize"/></label>
           <label>How you know them <span>Optional</span><input name="relationshipContext" placeholder="Friend, coworker, neighbor…"/></label>
           <label>Next follow-up <span>Optional</span><input name="nextFollowUpAt" type="datetime-local"/></label>
           <label>Private note <span>Optional</span><textarea name="privateNotes" rows={2} placeholder="Only you can see this note."/></label>
