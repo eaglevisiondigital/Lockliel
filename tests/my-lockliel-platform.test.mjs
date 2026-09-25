@@ -2063,3 +2063,19 @@ test("public Auth inputs are bounded before reaching Supabase Auth",()=>{
   assert.match(form,/maxLength=\{128\}/);
   assert.match(forgot,/maxLength=\{254\}/);
 });
+
+
+test("referral Edge Function rate-limits direct calls and only returns local destinations",()=>{
+  const edge=fs.readFileSync("supabase/functions/track-referral/index.ts","utf8");
+
+  assert.match(edge,/function clientIp/);
+  assert.match(edge,/consume_public_rate_limit/);
+  assert.match(edge,/scope_input:"referral_visit_ip"/);
+  assert.match(edge,/window_seconds:3600/);
+  assert.match(edge,/max_hits:600/);
+  assert.match(edge,/status:429/);
+  assert.match(edge,/function safeDestination/);
+  assert.match(edge,/!raw\.startsWith\("\/"\)\|\|raw\.startsWith\("\/\/"\)/);
+  assert.match(edge,/parsed\.origin!=="https:\/\/lockliel\.com"/);
+  assert.match(edge,/destination:safeDestination\(link\.destination_path\)/);
+});

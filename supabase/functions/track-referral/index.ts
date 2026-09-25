@@ -1,6 +1,47 @@
 // @ts-nocheck
 const headers={"content-type":"application/json","cache-control":"no-store"};
 
+function clientIp(req:Request){
+  const raw=req.headers.get("cf-connecting-ip")
+    ||req.headers.get("x-forwarded-for")
+    ||req.headers.get("x-real-ip")
+    ||"unknown";
+  return String(raw).split(",")[0].trim().slice(0,100)||"unknown";
+}
+
+async function sha256(value:string){
+  const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest)).map(v=>v.toString(16).padStart(2,"0")).join("");
+}
+
+async function rateAllowed(url:string,key:string,subject:string){
+  const keyHash=await sha256("referral_visit_ip|"+subject);
+  const r=await fetch(url+"/rest/v1/rpc/consume_public_rate_limit",{
+    method:"POST",
+    headers:{apikey:key,"Content-Type":"application/json"},
+    body:JSON.stringify({
+      scope_input:"referral_visit_ip",
+      key_hash_input:keyHash,
+      window_seconds:3600,
+      max_hits:600
+    })
+  });
+  if(!r.ok)return false;
+  return Boolean(await r.json().catch(()=>false));
+}
+
+function safeDestination(value:any){
+  const raw=String(value||"").trim();
+  if(!raw.startsWith("/")||raw.startsWith("//"))return "/my-lockliel/sign-up";
+  try{
+    const parsed=new URL(raw,"https://lockliel.com");
+    if(parsed.origin!=="https://lockliel.com")return "/my-lockliel/sign-up";
+    return parsed.pathname+parsed.search+parsed.hash;
+  }catch{
+    return "/my-lockliel/sign-up";
+  }
+}
+
 Deno.serve(async(req:Request)=>{
   if(req.method!=="POST"){
     return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers});
@@ -29,6 +70,14 @@ Deno.serve(async(req:Request)=>{
   }
 
   const serverHeaders={apikey:key};
+  const ip=clientIp(req);
+
+  if(ip!=="unknown"&&!await rateAllowed(url,key,ip)){
+    return new Response(
+      JSON.stringify({error:"Too many referral requests. Please try again later."}),
+      {status:429,headers}
+    );
+  }
 
   const linkRes=await fetch(
     url+"/rest/v1/referral_links?code=eq."+encodeURIComponent(code)+
@@ -59,7 +108,7 @@ Deno.serve(async(req:Request)=>{
   }).catch(()=>null);
 
   return new Response(
-    JSON.stringify({destination:link.destination_path||"/my-lockliel/sign-up"}),
+    JSON.stringify({destination:safeDestination(link.destination_path)}),
     {status:200,headers}
   );
 });
