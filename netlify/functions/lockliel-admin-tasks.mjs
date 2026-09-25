@@ -56,24 +56,37 @@ export default async(request)=>{
     {headers:h}
   );
   const tasks=tr.ok?await tr.json():[];
-  const ids=[...new Set(tasks.flatMap(t=>[t.subject_profile_id,t.assigned_to]).filter(Boolean))];
+  const profileIds=[...new Set(tasks.flatMap(t=>[t.subject_profile_id,t.assigned_to]).filter(Boolean))];
+  const leadIds=[...new Set(tasks.filter(t=>t.context_type==="lead"&&t.context_id).map(t=>t.context_id))];
 
   let cards=[];
-  if(ids.length){
+  if(profileIds.length){
     const cr=await fetch(
-      SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=in.("+ids.join(",")+")&select=profile_id,first_name,last_initial,city,region,country",
+      SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=in.("+profileIds.join(",")+")&select=profile_id,first_name,last_initial,city,region,country",
       {headers:h}
     );
     cards=cr.ok?await cr.json():[];
   }
+
+  let leads=[];
+  if(leadIds.length&&roles.some(r=>["super_admin","admin"].includes(r))){
+    const lr=await fetch(
+      SUPABASE_URL+"/rest/v1/lead_contacts?id=in.("+leadIds.join(",")+")&select=id,first_name,last_name,email,phone,status",
+      {headers:h}
+    );
+    leads=lr.ok?await lr.json():[];
+  }
+
   const cardMap=Object.fromEntries(cards.map(c=>[c.profile_id,c]));
+  const leadMap=Object.fromEntries(leads.map(l=>[l.id,l]));
 
   return json({
     currentUserId:uid,
     tasks:tasks.map(t=>({
       ...t,
       subject:cardMap[t.subject_profile_id]||null,
-      assignee:cardMap[t.assigned_to]||null
+      assignee:cardMap[t.assigned_to]||null,
+      lead:t.context_type==="lead"?leadMap[t.context_id]||null:null
     }))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
