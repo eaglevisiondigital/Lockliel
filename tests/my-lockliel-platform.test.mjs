@@ -213,3 +213,20 @@ test("privacy center offers self-service export without staff notes or secrets",
   assert.match(privacyUi,/privacy-export/);
   assert.match(privacyUi,/Download my data/);
 });
+
+
+test("partnership checkout requires verified adapter and webhook",()=>{
+  const partner=fs.readFileSync("netlify/functions/lockliel-partner.mjs","utf8");
+  const readiness=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+  assert.match(partner,/checkout_adapter_ready===true/);
+  assert.match(partner,/webhook_ready===true/);
+  assert.match(partner,/flagMap\.partner_checkout/);
+  assert.match(readiness,/checkout_adapter_ready===true/);
+  assert.match(readiness,/webhook_ready===true/);
+});
+
+test("member partnership page does not expose provider diagnostics",()=>{
+  const client=fs.readFileSync("app/my-lockliel/partner/partner-client.tsx","utf8");
+  assert.doesNotMatch(client,/Payment gateway readiness/);
+  assert.doesNotMatch(client,/data\.providers\.map/);
+});
