@@ -9,6 +9,20 @@ export default function GroupsAdminClient(){
  async function createGroup(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setWorking(true);setMessage("");const f=new FormData(e.currentTarget);const r=await fetch("/api/lockliel/admin/groups",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"createGroup",name:f.get("name"),leaderId:f.get("leaderId"),city:f.get("city"),region:f.get("region"),country:f.get("country")})});const d=await r.json().catch(()=>({}));setWorking(false);if(!r.ok){setMessage(d.error||"Unable to create group.");return;}setMessage("Group created.");e.currentTarget.reset();await load();}
  async function assign(requestId:string,profileId:string,groupId:string){if(!groupId)return;setWorking(true);const r=await fetch("/api/lockliel/admin/groups",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"addMember",requestId,profileId,groupId})});setWorking(false);if(r.ok){setMessage("Member connected to group.");await load();}}
  const personMap=useMemo(()=>Object.fromEntries((data?.people||[]).map((p:any)=>[p.profile_id,p])),[data]);
+
+ function suggestedGroups(person:any){
+   return [...(data?.groups||[])].sort((a:any,b:any)=>{
+     function score(group:any){
+       let value=0;
+       if(person.country&&group.country===person.country)value+=10;
+       if(person.region&&group.region===person.region)value+=20;
+       if(person.city&&group.city===person.city)value+=40;
+       if(person.language_code&&group.language_code===person.language_code)value+=25;
+       return value;
+     }
+     return score(b)-score(a);
+   });
+ }
  if(hidden)return null;if(!data)return <div className="ml-loading">Loading groups…</div>;
  return <section className="ml-groups-admin">
   {message&&<p className="ml-share-message">{message}</p>}
@@ -21,8 +35,8 @@ export default function GroupsAdminClient(){
   </section>
   <div className="ml-finance-grid">
    <form className="ml-panel ml-admin-form" onSubmit={createGroup}><div className="ml-icon"><Plus size={19}/></div><h3>Create a group</h3><p>Start with a leader and a city/region. Home addresses are not stored here.</p><label>Group name<input name="name" required placeholder="Fort Walton Beach Group 01"/></label><label>Leader<select name="leaderId" required defaultValue=""><option value="" disabled>Choose leader</option>{data.people.map((p:any)=><option key={p.profile_id} value={p.profile_id}>{p.first_name}{p.last_initial?" "+p.last_initial+".":""} • {[p.city,p.region].filter(Boolean).join(", ")}</option>)}</select></label><div className="ml-auth-row"><label>City<input name="city"/></label><label>State / region<input name="region"/></label></div><label>Country<input name="country" defaultValue="United States"/></label><button className="ml-action" disabled={working}>Create group</button></form>
-   <section className="ml-panel ml-admin-list"><div className="ml-icon"><UsersRound size={19}/></div><h3>Current groups</h3>{data.groups.length?data.groups.map((g:any)=>{const count=data.memberships.filter((m:any)=>m.group_id===g.id&&m.status==="active").length;return <div className="ml-group-admin-row" key={g.id}><div><b>{g.name}</b><span><MapPin size={11}/>{[g.city,g.region,g.country].filter(Boolean).join(", ")||"Location pending"}</span></div><div className="ml-group-admin-metrics"><strong>{count} people</strong>{data.checkins?.find((x:any)=>x.group_id===g.id)&&<small>Last check-in {new Date(data.checkins.find((x:any)=>x.group_id===g.id).week_start+"T12:00:00").toLocaleDateString()}</small>}</div></div>}):<p>No groups created yet.</p>}</section>
+   <section className="ml-panel ml-admin-list"><div className="ml-icon"><UsersRound size={19}/></div><h3>Current groups</h3>{data.groups.length?data.groups.map((g:any)=>{const count=data.memberships.filter((m:any)=>m.group_id===g.id&&m.status==="active").length;return <div className="ml-group-admin-row" key={g.id}><div><b>{g.name}</b><span><MapPin size={11}/>{[g.city,g.region,g.country].filter(Boolean).join(", ")||"Location pending"} • {String(g.language_code||"en").toUpperCase()}</span></div><div className="ml-group-admin-metrics"><strong>{count} people</strong>{data.checkins?.find((x:any)=>x.group_id===g.id)&&<small>Last check-in {new Date(data.checkins.find((x:any)=>x.group_id===g.id).week_start+"T12:00:00").toLocaleDateString()}</small>}</div></div>}):<p>No groups created yet.</p>}</section>
   </div>
-  {data.requests.length>0&&<section className="ml-panel ml-admin-list"><div className="ml-kicker">Group matching</div><h3>Open group / hosting requests</h3>{data.requests.map((r:any)=>{const p=personMap[r.requester_id]||{};return <div className="ml-group-request-row" key={r.id}><div><b>{p.first_name||"Member"}{p.last_initial?" "+p.last_initial+".":""}</b><span>{[p.city,p.region,p.country].filter(Boolean).join(", ")}</span><small>{r.request_type==="explore_hosting"?"Interested in hosting or helping lead":"Looking for a group"}</small></div>{r.request_type==="find_local_group"?<label><UserPlus size={14}/><select defaultValue="" onChange={e=>assign(r.id,r.requester_id,e.target.value)} disabled={working}><option value="">Assign to group…</option>{data.groups.map((g:any)=><option value={g.id} key={g.id}>{g.name}</option>)}</select></label>:<span className="ml-status">review for hosting</span>}</div>})}</section>}
+  {data.requests.length>0&&<section className="ml-panel ml-admin-list"><div className="ml-kicker">Group matching</div><h3>Open group / hosting requests</h3>{data.requests.map((r:any)=>{const p=personMap[r.requester_id]||{};return <div className="ml-group-request-row" key={r.id}><div><b>{p.first_name||"Member"}{p.last_initial?" "+p.last_initial+".":""}</b><span>{[p.city,p.region,p.country].filter(Boolean).join(", ")}</span><small>{r.request_type==="explore_hosting"?"Interested in hosting or helping lead":"Looking for a group"}</small></div>{r.request_type==="find_local_group"?<label><UserPlus size={14}/><select defaultValue="" onChange={e=>assign(r.id,r.requester_id,e.target.value)} disabled={working}><option value="">Assign to group…</option>{suggestedGroups(p).map((g:any)=><option value={g.id} key={g.id}>{g.name} • {String(g.language_code||"en").toUpperCase()}</option>)}</select></label>:<span className="ml-status">review for hosting</span>}</div>})}</section>}
  </section>;
 }
