@@ -1631,3 +1631,19 @@ test("group membership identity and weekly check-in timestamps are database-owne
   assert.match(migration,/Group membership identity cannot be changed after creation/);
   assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
 });
+
+
+test("group creation and staff changes are audited with compact operational metadata",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925140153_lockliel_audit_group_record_changes.sql","utf8");
+
+  assert.match(migration,/group_created/);
+  assert.match(migration,/group_changed/);
+  assert.match(migration,/leader_id_from/);
+  assert.match(migration,/leader_id_to/);
+  assert.match(migration,/status_from/);
+  assert.match(migration,/status_to/);
+  assert.match(migration,/name_changed/);
+  assert.match(migration,/location_changed/);
+  assert.match(migration,/language_changed/);
+  assert.match(migration,/after insert or update of/);
+});
