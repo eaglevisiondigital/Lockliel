@@ -121,8 +121,7 @@ export default async(request)=>{
         next_leader_identified:Boolean(b.nextLeaderIdentified),
         testimony:String(b.testimony||"").trim().slice(0,5000)||null,
         needs_support:String(b.needsSupport||"").trim().slice(0,5000)||null,
-        updated_at:new Date().toISOString()
-      };
+};
 
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/group_weekly_checkins?on_conflict=group_id,week_start",
