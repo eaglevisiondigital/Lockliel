@@ -198,12 +198,15 @@ export default function ConnectionsClient(){
   }
 
   async function updateReach(id:string,status:string){
+    setMessage("");
     const r=await fetch("/api/lockliel/connections",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({action:"updateReachContact",id,status})
     });
-    if(r.ok)await load();
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok){setMessage(d.error||"Unable to update My Five.");return;}
+    await load();
   }
 
   async function markActivity(id:string,activity:"shared"|"followed_up"){
