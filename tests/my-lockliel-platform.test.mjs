@@ -144,3 +144,40 @@ test("privileged workspaces route through MFA security gate",()=>{
   assert.match(gate,/aal2/);
   assert.match(gate,/hasVerifiedTotp/);
 });
+
+
+test("every Lockliel Admin API requires MFA",()=>{
+  const adminFiles=fs.readdirSync("netlify/functions")
+    .filter(name=>name.startsWith("lockliel-admin")&&name.endsWith(".mjs"));
+  assert.ok(adminFiles.length>=10);
+  for(const name of adminFiles){
+    const source=fs.readFileSync("netlify/functions/"+name,"utf8");
+    assert.match(source,/mfa_required/,name+" must return an MFA-required response");
+    assert.match(source,/sessionAal/,name+" must check the session assurance level");
+  }
+});
+
+test("the entire Admin route tree is behind the staff security gate",()=>{
+  const layout=fs.readFileSync("app/my-lockliel/admin/layout.tsx","utf8");
+  const gate=fs.readFileSync("app/my-lockliel/staff-security-gate.tsx","utf8");
+  assert.match(layout,/AdminGate/);
+  assert.match(gate,/mfa\.hasVerifiedTotp/);
+  assert.match(gate,/mfa\.aal!==["']aal2["']/);
+  assert.match(gate,/my-lockliel\/security/);
+});
+
+test("password sign in routes enrolled MFA users through challenge",()=>{
+  const login=fs.readFileSync("netlify/functions/lockliel-login.mjs","utf8");
+  const form=fs.readFileSync("app/my-lockliel/auth-form.tsx","utf8");
+  assert.match(login,/requiresMfa/);
+  assert.match(login,/hasVerifiedTotp/);
+  assert.match(form,/requiresMfa/);
+  assert.match(form,/my-lockliel\/security\?challenge=1/);
+});
+
+test("MFA verification replaces HttpOnly session cookies with aal2 tokens",()=>{
+  const mfa=fs.readFileSync("netlify/functions/lockliel-mfa.mjs","utf8");
+  assert.match(mfa,/\/factors\/.*\/challenge/);
+  assert.match(mfa,/\/factors\/.*\/verify/);
+  assert.match(mfa,/sessionCookies\(verified\.data\)/);
+});
