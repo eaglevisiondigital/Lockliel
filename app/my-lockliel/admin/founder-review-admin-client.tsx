@@ -96,7 +96,7 @@ export default function FounderReviewAdminClient(){
                 <option value="pause">Pause application</option>
                 <option value="decline">Decline application</option>
               </select></label>
-              <label>Rationale / private reviewer note<textarea name="rationale" rows={4} maxLength={5000} placeholder="Record the human review rationale or information needed."/></label>
+              <label>Rationale / private reviewer note <span>Required for decisions other than note, minimum 20 characters.</span><textarea name="rationale" rows={4} maxLength={5000} placeholder="Record the human review rationale or information needed."/></label>
               <button className="ml-action" disabled={working===app.id}>{working===app.id?"Saving…":"Save review"}</button>
             </form>
           </div>}
