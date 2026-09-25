@@ -1921,3 +1921,18 @@ test("integrity health uses PostgreSQL boolean aggregates rather than unsupporte
   assert.match(migration,/digital_book_delivery/);
   assert.match(migration,/heart_book_gift_benefit/);
 });
+
+
+test("privacy request history survives profile deletion without weakening member ownership",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925174623_lockliel_preserve_privacy_request_after_account_deletion.sql","utf8");
+  const adminUi=fs.readFileSync("app/my-lockliel/admin/privacy-admin-client.tsx","utf8");
+
+  assert.match(migration,/alter column profile_id drop not null/);
+  assert.match(migration,/foreign key\(profile_id\)[\s\S]*on delete set null/);
+  assert.match(migration,/Privacy request profile is required at submission/);
+  assert.match(migration,/system_fk_unlink/);
+  assert.match(migration,/actor is null/);
+  assert.match(migration,/new\.profile_id is null/);
+  assert.match(migration,/Administrator access required for privacy request processing/);
+  assert.match(adminUi,/processing record is retained/i);
+});

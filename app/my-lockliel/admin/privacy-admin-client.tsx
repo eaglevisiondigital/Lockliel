@@ -57,7 +57,7 @@ export default function PrivacyAdminClient(){
     </div>
 
     <p className="ml-privacy-note">
-      Only full administrators can access this queue. Account deletion is never automatic from the member-facing request. Mark a deletion completed only after the applicable account and personal-data processing has actually been handled.
+      Only full administrators can access this queue. Account deletion is never automatic from the member-facing request. Mark a deletion completed only after the applicable account and personal-data processing has actually been handled. The processing record is retained even if the member profile link is later removed.
     </p>
 
     {message&&<p className="ml-share-message">{message}</p>}
