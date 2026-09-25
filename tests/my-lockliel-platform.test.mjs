@@ -1910,3 +1910,14 @@ test("launch readiness includes an admin-only aggregate database integrity healt
   assert.match(api,/Database integrity health/);
   assert.match(api,/integrityHealth/);
 });
+
+
+test("integrity health uses PostgreSQL boolean aggregates rather than unsupported max(boolean)",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925174244_lockliel_fix_integrity_health_boolean_aggregation.sql","utf8");
+
+  assert.match(migration,/bool_or\(f\.enabled\)/);
+  assert.doesNotMatch(migration,/max\(f\.enabled\)/);
+  assert.match(migration,/partner_checkout/);
+  assert.match(migration,/digital_book_delivery/);
+  assert.match(migration,/heart_book_gift_benefit/);
+});
