@@ -1028,3 +1028,18 @@ test("private lesson and product storage enforce enrollment, entitlement, locale
   assert.match(migration,/f\.key='digital_book_delivery'/);
   assert.match(migration,/f\.enabled=true/);
 });
+
+
+test("private storage honors enrollment, entitlement, and release gates",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122318_lockliel_harden_private_storage_reads.sql","utf8");
+
+  assert.match(migration,/bucket_id='lesson-assets'/);
+  assert.match(migration,/ce\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/ce\.status in \('active','completed'\)/);
+  assert.match(migration,/content_course\.translation_key=enrolled_course\.translation_key/);
+  assert.match(migration,/bucket_id='member-resources'/);
+  assert.match(migration,/e\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/p\.status='active'/);
+  assert.match(migration,/f\.key='digital_book_delivery'/);
+  assert.match(migration,/f\.enabled=true/);
+});
