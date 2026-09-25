@@ -934,3 +934,18 @@ test("follow-up task lifecycle is narrow, timestamped, and audited",()=>{
   assert.match(adminApi,/status=in\.\(open,in_progress\)/);
   assert.match(memberApi,/status=in\.\(open,in_progress\)/);
 });
+
+
+test("leader assignment lifecycle timestamps and actor are database-controlled",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121546_lockliel_normalize_leader_assignment_lifecycle.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-leaders.mjs","utf8");
+
+  assert.match(migration,/Leader assignment member identity cannot be changed/);
+  assert.match(migration,/new\.assigned_at:=now\(\)/);
+  assert.match(migration,/new\.ended_at:=now\(\)/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(migration,/actor:=\(select auth\.uid\(\)\)/);
+  assert.doesNotMatch(api,/ended_at:null/);
+  assert.doesNotMatch(api,/status:"ended",ended_at/);
+  assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
+});
