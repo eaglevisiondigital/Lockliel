@@ -549,3 +549,20 @@ test("members can only change notification read state",()=>{
   assert.match(migration,/grant update \(read_at\)/);
   assert.match(api,/body:JSON\.stringify\(\{read_at:new Date\(\)\.toISOString\(\)\}\)/);
 });
+
+
+test("My Five limit and system-owned fields are enforced in the database",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925111601_lockliel_enforce_my_five_integrity.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
+
+  assert.match(migration,/revoke insert, update on table public\.reach_contacts from authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*owner_id[\s\S]*display_name[\s\S]*private_notes[\s\S]*\) on table public\.reach_contacts to authenticated/);
+  assert.match(migration,/grant update \([\s\S]*display_name[\s\S]*status[\s\S]*private_notes[\s\S]*updated_at[\s\S]*\) on table public\.reach_contacts to authenticated/);
+  assert.doesNotMatch(migration,/grant update \([\s\S]*linked_profile_id/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/active_count>=5/);
+  assert.match(migration,/My Five can contain no more than five active people/);
+  assert.match(api,/Pause or complete one before reactivating another/);
+  assert.match(client,/Unable to update My Five/);
+});
