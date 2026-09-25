@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useState} from "react";
-import {BookOpen,FileUp,PackageCheck} from "lucide-react";
+import {BookOpen,CheckCircle2,Circle,FileUp,PackageCheck} from "lucide-react";
 
 export default function ProductsAdminClient(){
   const [data,setData]=useState<any>(null);
@@ -51,13 +51,43 @@ export default function ProductsAdminClient(){
   if(!data)return <div className="ml-loading">Loading books and digital resources…</div>;
 
   const digital=data.products.filter((p:any)=>p.product_type!=="physical_book");
+  const heartBook=data.products.find((p:any)=>p.slug==="a-heart-for-the-lost-digital")||null;
+  const releaseGates=[
+    {
+      label:"Protected PDF uploaded",
+      ready:Boolean(heartBook?.storage_path),
+      detail:heartBook?.storage_path?"Private member-resource file is connected.":"Upload the final approved PDF first."
+    },
+    {
+      label:"Digital product active",
+      ready:heartBook?.status==="active",
+      detail:heartBook?.status==="active"?"Product release status is active.":"Keep the product in draft until the protected file is final."
+    },
+    {
+      label:"Member delivery enabled",
+      ready:Boolean(data.digitalDeliveryEnabled),
+      detail:data.digitalDeliveryEnabled?"System-wide delivery switch is on.":"A super admin or admin turns this on only after the first two gates are ready."
+    }
+  ];
 
   return <section className="ml-products-admin">
     {message&&<p className="ml-share-message">{message}</p>}
     <div className="ml-product-readiness">
       <PackageCheck size={19}/>
-      <div><b>Digital delivery</b><span>{data.digitalDeliveryEnabled?"Operationally enabled":"Built but currently off"}</span></div>
+      <div><b>Digital delivery</b><span>{releaseGates.every(g=>g.ready)?"A Heart for the Lost delivery path is ready":"Release path is still fail-closed"}</span></div>
     </div>
+
+    {heartBook&&<section className="ml-panel ml-product-release-gates">
+      <div className="ml-kicker">A Heart for the Lost release gates</div>
+      <h3>Three checks before member delivery goes live</h3>
+      <div className="ml-product-gate-grid">
+        {releaseGates.map((gate,index)=><article className={gate.ready?"ready":"pending"} key={gate.label}>
+          {gate.ready?<CheckCircle2 size={17}/>:<Circle size={17}/>}
+          <div><b>{index+1}. {gate.label}</b><span>{gate.detail}</span></div>
+        </article>)}
+      </div>
+      <p className="ml-privacy-note">Content administrators can upload and prepare the product. Only broader system administrators control the final platform delivery switch.</p>
+    </section>}
 
     <div className="ml-finance-grid">
       <form className="ml-panel ml-admin-form" onSubmit={upload}>
