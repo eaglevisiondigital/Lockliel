@@ -15,13 +15,13 @@ import NotesAdminClient from "./notes-admin-client";
 import LeadsAdminClient from "./leads-admin-client";
 import FounderOrientationAdminClient from "./founder-orientation-admin-client";
 import LineageAdminClient from "./lineage-admin-client";
-import AdminSectionNav from "./admin-section-nav";import PrivacyAdminClient from "./privacy-admin-client";
+import AdminSectionNav from "./admin-section-nav";import PrivacyAdminClient from "./privacy-admin-client";import AdminGate from "./admin-gate";
 import "../my-lockliel.css";
 
 export const metadata={title:"Lockliel Admin"};
 
 export default function Admin(){
-  return <main className="my-lockliel"><div className="ml-shell">
+  return <main className="my-lockliel"><AdminGate><div className="ml-shell">
     <Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link>
 
     <section className="ml-panel">
@@ -85,5 +85,5 @@ export default function Admin(){
       <h2 className="ml-section-title">System controls</h2>
       <SystemAdminClient/>
     </section>
-  </div></main>;
+  </div></AdminGate></main>;
 }
