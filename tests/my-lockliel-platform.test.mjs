@@ -691,3 +691,15 @@ test("fully verified payment providers require documented verification",()=>{
   assert.match(client,/Required for launch-ready status/);
   assert.match(client,/note\.trim\(\)\.length<20/);
 });
+
+
+test("fulfillment staff update orders only through fulfillment events",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925114433_lockliel_separate_finance_and_fulfillment_order_updates.sql","utf8");
+  const ordersApi=fs.readFileSync("netlify/functions/lockliel-admin-orders.mjs","utf8");
+
+  assert.match(migration,/orders_finance_update/);
+  assert.match(migration,/finance_admin/);
+  assert.doesNotMatch(migration,/fulfillment_admin/);
+  assert.match(ordersApi,/order_fulfillment_events/);
+  assert.doesNotMatch(ordersApi,/rest\/v1\/orders\?.*method:"PATCH"/s);
+});
