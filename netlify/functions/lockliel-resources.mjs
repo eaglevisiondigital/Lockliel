@@ -13,6 +13,40 @@ function safeName(value){
     .replace(/^-+|-+$/g,"")||"resource.pdf";
 }
 
+function normalizeLocale(value){
+  return String(value||"en-US").trim().toLowerCase().replaceAll("_","-")||"en-us";
+}
+
+function chooseTranslation(rows,locale,sourceId){
+  const exact=normalizeLocale(locale);
+  const base=exact.split("-")[0];
+  return rows.find(row=>String(row.language_code||"").toLowerCase()===exact)
+    ||rows.find(row=>String(row.language_code||"").toLowerCase()===base)
+    ||rows.find(row=>String(row.language_code||"").toLowerCase()==="en")
+    ||rows.find(row=>row.id===sourceId)
+    ||rows[0]
+    ||null;
+}
+
+function localizedProduct(source,activeProducts,locale){
+  if(!source)return null;
+  const variants=activeProducts.filter(product=>
+    product.translation_key&&source.translation_key&&product.translation_key===source.translation_key
+  );
+  const selected=chooseTranslation(
+    [...variants,source].filter((row,index,rows)=>rows.findIndex(other=>other.id===row.id)===index),
+    locale,
+    source.id
+  )||source;
+
+  return {
+    ...selected,
+    id:source.id,
+    canonical_product_id:source.id,
+    content_product_id:selected.id
+  };
+}
+
 export default async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
@@ -20,12 +54,21 @@ export default async(request)=>{
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
 
-  const flagRes=await fetch(
-    SUPABASE_URL+"/rest/v1/feature_flags?key=eq.digital_book_delivery&select=enabled&limit=1",
-    {headers:h}
-  );
+  const [flagRes,profileRes]=await Promise.all([
+    fetch(
+      SUPABASE_URL+"/rest/v1/feature_flags?key=eq.digital_book_delivery&select=enabled&limit=1",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/profiles?id=eq."+uid+"&select=locale&limit=1",
+      {headers:h}
+    )
+  ]);
+
   const flagRows=flagRes.ok?await flagRes.json():[];
   const digitalBookDelivery=Boolean(flagRows?.[0]?.enabled);
+  const profile=(profileRes.ok?await profileRes.json():[])?.[0]||null;
+  const locale=normalizeLocale(profile?.locale||"en-US");
 
   if(request.method==="GET"){
     const er=await fetch(
@@ -35,16 +78,21 @@ export default async(request)=>{
     const entitlements=er.ok?await er.json():[];
     const productIds=[...new Set(entitlements.map(e=>e.product_id).filter(Boolean))];
 
-    let products=[];
+    let sourceProducts=[];
     if(productIds.length){
       const pr=await fetch(
-        SUPABASE_URL+"/rest/v1/products?id=in.("+productIds.join(",")+")&select=id,slug,title,product_type,status,storage_path,description",
+        SUPABASE_URL+"/rest/v1/products?id=in.("+productIds.join(",")+")&select=id,slug,title,product_type,status,storage_path,description,language_code,translation_key",
         {headers:h}
       );
-      products=pr.ok?await pr.json():[];
+      sourceProducts=pr.ok?await pr.json():[];
     }
 
-    const productMap=Object.fromEntries(products.map(p=>[p.id,p]));
+    const activeRes=await fetch(
+      SUPABASE_URL+"/rest/v1/products?status=eq.active&select=id,slug,title,product_type,status,storage_path,description,language_code,translation_key&limit=2000",
+      {headers:h}
+    );
+    const activeProducts=activeRes.ok?await activeRes.json():[];
+    const sourceProductMap=Object.fromEntries(sourceProducts.map(product=>[product.id,product]));
 
     const ordersRes=await fetch(
       SUPABASE_URL+"/rest/v1/orders?profile_id=eq."+uid+"&select=id,status,currency,subtotal_cents,shipping_cents,tax_cents,total_cents,delivery_method,created_at,paid_at,fulfilled_at&order=created_at.desc&limit=50",
@@ -66,7 +114,7 @@ export default async(request)=>{
     let orderProducts=[];
     if(orderProductIds.length){
       const opr=await fetch(
-        SUPABASE_URL+"/rest/v1/products?id=in.("+orderProductIds.join(",")+")&select=id,slug,title,product_type",
+        SUPABASE_URL+"/rest/v1/products?id=in.("+orderProductIds.join(",")+")&select=id,slug,title,product_type,language_code,translation_key",
         {headers:h}
       );
       orderProducts=opr.ok?await opr.json():[];
@@ -74,14 +122,16 @@ export default async(request)=>{
     const orderProductMap=Object.fromEntries(orderProducts.map(p=>[p.id,p]));
 
     return json({
+      preferredLocale:locale,
       digitalBookDelivery,
       resources:entitlements
         .map(entitlement=>{
-          const product=productMap[entitlement.product_id]||null;
-          if(!product)return null;
+          const sourceProduct=sourceProductMap[entitlement.product_id]||null;
+          if(!sourceProduct)return null;
 
+          const product=localizedProduct(sourceProduct,activeProducts,locale);
           const deliveryAvailable=
-            Boolean(product.storage_path) &&
+            Boolean(product?.storage_path) &&
             product.status==="active" &&
             (
               product.product_type!=="digital_book" ||
@@ -119,11 +169,22 @@ export default async(request)=>{
     }
 
     const pr=await fetch(
-      SUPABASE_URL+"/rest/v1/products?id=eq."+encodeURIComponent(productId)+"&select=title,product_type,status,storage_path&limit=1",
+      SUPABASE_URL+"/rest/v1/products?id=eq."+encodeURIComponent(productId)+"&select=id,title,product_type,status,storage_path,description,language_code,translation_key&limit=1",
       {headers:h}
     );
-    const products=pr.ok?await pr.json():[];
-    const product=products?.[0];
+    const sourceProduct=(pr.ok?await pr.json():[])?.[0]||null;
+    if(!sourceProduct)return json({error:"This resource is not available."},404);
+
+    let activeProducts=[];
+    if(sourceProduct.translation_key){
+      const variantsRes=await fetch(
+        SUPABASE_URL+"/rest/v1/products?translation_key=eq."+encodeURIComponent(sourceProduct.translation_key)+"&status=eq.active&select=id,title,product_type,status,storage_path,description,language_code,translation_key",
+        {headers:h}
+      );
+      activeProducts=variantsRes.ok?await variantsRes.json():[];
+    }
+
+    const product=localizedProduct(sourceProduct,activeProducts,locale);
 
     if(!product?.storage_path){
       return json({error:"This resource is not ready for download yet."},404);
