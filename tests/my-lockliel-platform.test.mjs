@@ -1713,3 +1713,19 @@ test("member-generated text and JSON payloads are bounded in PostgreSQL",()=>{
   assert.match(journey,/Array\.isArray\(rawWorksheetAnswers\)/);
   assert.match(journey,/worksheetBytes>60000/);
 });
+
+
+test("gift-benefit access requires a currently valid qualifying gift without deleting entitlement history",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925151920_lockliel_validate_gift_benefit_access.sql","utf8");
+
+  assert.match(migration,/gifts_status_check/);
+  assert.match(migration,/'refunded'/);
+  assert.match(migration,/'chargeback'/);
+  assert.match(migration,/'reversed'/);
+  assert.match(migration,/entitlement_is_current/);
+  assert.match(migration,/g\.status in \('succeeded','paid','completed'\)/);
+  assert.match(migration,/g\.amount_cents>=br\.minimum_gift_cents/);
+  assert.match(migration,/app_private\.entitlement_is_current\([\s\S]*profile_id[\s\S]*product_id[\s\S]*reason/);
+  assert.match(migration,/bucket_id='member-resources'/);
+  assert.doesNotMatch(migration,/delete from public\.entitlements/);
+});
