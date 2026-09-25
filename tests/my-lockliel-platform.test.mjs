@@ -1163,3 +1163,30 @@ test("released course and product files cannot silently become incomplete",()=>{
   assert.match(storage,/Unpublish or deactivate the lesson asset before deleting or replacing a released course file/);
   assert.match(storage,/Archive the active product before deleting or replacing its protected file/);
 });
+
+
+test("public intake uses an atomic normalized CRM lead upsert",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925123704_lockliel_atomic_public_lead_upsert.sql","utf8");
+  const founders=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
+  const capture=fs.readFileSync("supabase/functions/capture-lead/index.ts","utf8");
+
+  assert.match(migration,/on conflict\(email\)/);
+  assert.match(migration,/normalized_email:=lower\(trim\(email_input\)\)/);
+  assert.match(migration,/grant execute[\s\S]*to service_role/);
+  assert.match(founders,/rpc\/upsert_public_lead_contact/);
+  assert.match(capture,/rpc\/upsert_public_lead_contact/);
+  assert.doesNotMatch(founders,/lead_contacts\?email=eq/);
+  assert.doesNotMatch(capture,/lead_contacts\?email=eq/);
+});
+
+test("public intake records enforce bounded normalized identities and metadata",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925123628_lockliel_harden_public_intake_records.sql","utf8");
+  assert.match(migration,/lead_contacts_email_key unique\(email\)/);
+  assert.match(migration,/email=lower\(trim\(email\)\)/);
+  assert.match(migration,/lead_sources_source_type_check/);
+  assert.match(migration,/jsonb_typeof\(attribution\)='object'/);
+  assert.match(migration,/jsonb_typeof\(consent\)='object'/);
+  assert.match(migration,/founders50_growth_interests_check/);
+  assert.match(migration,/founders50_why_interested_length/);
+  assert.match(migration,/founders50_what_excites_length/);
+});
