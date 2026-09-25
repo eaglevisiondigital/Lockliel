@@ -1043,3 +1043,14 @@ test("private storage honors enrollment, entitlement, and release gates",()=>{
   assert.match(migration,/f\.key='digital_book_delivery'/);
   assert.match(migration,/f\.enabled=true/);
 });
+
+
+test("canonical entitlements can serve approved translated product files",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122438_lockliel_restore_translated_entitlement_storage_reads.sql","utf8");
+
+  assert.match(migration,/source_product\.id=e\.product_id/);
+  assert.match(migration,/content_product\.storage_path=storage\.objects\.name/);
+  assert.match(migration,/content_product\.translation_key=source_product\.translation_key/);
+  assert.match(migration,/content_product\.status='active'/);
+  assert.match(migration,/f\.key='digital_book_delivery'/);
+});
