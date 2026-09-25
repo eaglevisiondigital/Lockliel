@@ -41,6 +41,26 @@ export default async(request)=>{
     if(action==="resolve"){
       const status=String(b.status||"");
       if(!["completed","declined"].includes(status))return json({error:"Invalid resolution."},400);
+
+      const currentRes=await fetch(
+        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&select=id,request_type,status&limit=1",
+        {headers:h}
+      );
+      const current=(currentRes.ok?await currentRes.json():[])?.[0]||null;
+      if(!current)return json({error:"Privacy request not found."},404);
+      if(current.status!=="in_review")return json({error:"Privacy request must be in review before resolution."},409);
+
+      const adminNote=String(b.adminNote||"").trim().slice(0,5000);
+      if(
+        current.request_type==="account_deletion" &&
+        status==="completed" &&
+        adminNote.length<20
+      ){
+        return json({
+          error:"Document the account and personal-data processing steps before marking a deletion request completed."
+        },400);
+      }
+
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id),
         {
@@ -49,7 +69,7 @@ export default async(request)=>{
           body:JSON.stringify({
             status,
             handled_by:s.user.id,
-            admin_note:String(b.adminNote||"").trim().slice(0,5000)||null,
+            admin_note:adminNote||null,
             updated_at:new Date().toISOString(),
             resolved_at:new Date().toISOString()
           })
