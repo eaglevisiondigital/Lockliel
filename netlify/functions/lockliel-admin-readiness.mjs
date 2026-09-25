@@ -55,9 +55,7 @@ export default async(request)=>{
   const [
     flagsRes,
     providersRes,
-    coursesRes,
-    lessonsRes,
-    assetsRes,
+    gripRes,
     productsRes,
     rolesRes,
     verificationRes
@@ -71,16 +69,12 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/courses?select=id,slug,title,status&order=created_at.asc",
-      {headers:h}
-    ),
-    fetch(
-      SUPABASE_URL+"/rest/v1/lessons?select=id,course_id,position,worksheet_schema&order=position.asc&limit=5000",
-      {headers:h}
-    ),
-    fetch(
-      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,status,provider,storage_path&limit=5000",
-      {headers:h}
+      SUPABASE_URL+"/rest/v1/rpc/lockliel_grip_readiness",
+      {
+        method:"POST",
+        headers:{...h,"Content-Type":"application/json"},
+        body:"{}"
+      }
     ),
     fetch(
       SUPABASE_URL+"/rest/v1/products?select=id,slug,title,product_type,status,storage_path&order=created_at.asc",
@@ -98,9 +92,7 @@ export default async(request)=>{
 
   const flags=flagsRes.ok?await flagsRes.json():[];
   const providers=providersRes.ok?await providersRes.json():[];
-  const courses=coursesRes.ok?await coursesRes.json():[];
-  const lessons=lessonsRes.ok?await lessonsRes.json():[];
-  const assets=assetsRes.ok?await assetsRes.json():[];
+  const gripReadiness=gripRes.ok?await gripRes.json():null;
   const products=productsRes.ok?await productsRes.json():[];
   const staffRoles=rolesRes.ok?await rolesRes.json():[];
   const verifications=verificationRes.ok?await verificationRes.json():[];
@@ -109,32 +101,9 @@ export default async(request)=>{
   const verificationMap=Object.fromEntries(verifications.map(v=>[v.key,v]));
 
   const activeProvider=providers.find(p=>p.status==="active"&&p.checkout_adapter_ready===true&&p.webhook_ready===true)||null;
-  const gripCourse=courses.find(c=>c.slug==="getting-a-grip-on-the-basics")||null;
-  const gripLessons=gripCourse?lessons.filter(l=>l.course_id===gripCourse.id):[];
-  const gripLessonIds=new Set(gripLessons.map(l=>l.id));
-  const gripAssets=assets.filter(a=>gripLessonIds.has(a.lesson_id));
-
-  const gripVideos=gripAssets.filter(
-    a=>a.asset_type==="video"&&a.status==="active"
-  ).length;
-
-  const gripPrivatePdfs=gripAssets.filter(
-    a=>a.asset_type==="pdf"&&a.status==="active"&&a.storage_path
-  ).length;
-
-  const gripStructuredLessons=gripLessons.filter(lesson=>{
-    const questions=lesson.worksheet_schema?.questions;
-    return Array.isArray(questions)&&questions.length>0;
-  }).length;
-
-  const gripEngineReady=
-    Boolean(gripCourse) &&
-    gripLessons.length===13 &&
-    gripStructuredLessons===13 &&
-    gripVideos>=10;
-
-  const gripWorkbooksReady=gripPrivatePdfs===13;
-  const gripPublished=gripCourse?.status==="published";
+  const gripEngineReady=Boolean(gripReadiness?.release_ready);
+  const gripWorkbooksReady=Number(gripReadiness?.private_workbook_lessons||0)===13;
+  const gripPublished=Boolean(gripReadiness?.published);
 
   const digitalBook=products.find(
     p=>p.slug==="a-heart-for-the-lost-digital"
@@ -194,14 +163,14 @@ export default async(request)=>{
       label:"Getting a Grip course engine",
       ready:gripEngineReady,
       manual:false,
-      detail:gripLessons.length+" of 13 lessons • "+gripStructuredLessons+" structured worksheet/note experiences • "+gripVideos+" active video assets"
+      detail:Number(gripReadiness?.lesson_count||0)+" of 13 lessons • "+Number(gripReadiness?.structured_lessons||0)+" structured worksheet/note experiences • "+Number(gripReadiness?.playable_video_lessons||0)+" distinct lessons with playable teaching video"
     },
     {
       key:"grip_workbooks",
       label:"Getting a Grip private workbook library",
       ready:gripWorkbooksReady,
       manual:false,
-      detail:gripPrivatePdfs+" of 13 private lesson PDFs are active in Lockliel storage."
+      detail:Number(gripReadiness?.private_workbook_lessons||0)+" of 13 protected lesson workbooks are present in Lockliel storage."
     },
     {
       key:"grip_published",
