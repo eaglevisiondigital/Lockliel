@@ -600,3 +600,19 @@ test("active connection counts are derived from contact permissions without manu
   assert.doesNotMatch(migration,/active_connections_count=active_connections_count\+1/);
   assert.doesNotMatch(migration,/reach_one_count=reach_one_count\+1/);
 });
+
+
+test("lesson journey sync is idempotent after completion",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113326_lockliel_idempotent_lesson_journey_sync.sql","utf8");
+  assert.match(migration,/if tg_op='UPDATE' and old\.status is not distinct from new\.status then/);
+  assert.match(migration,/where not exists\([\s\S]*You completed your foundational journey/);
+  assert.match(migration,/completed_at=coalesce\(completed_at,now\(\)\)/);
+});
+
+test("group membership dates stay consistent on leave and reactivation",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113405_lockliel_consistent_group_membership_dates.sql","utf8");
+  const adminApi=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+  assert.match(migration,/if new\.status='active' then[\s\S]*new\.left_at:=null/);
+  assert.match(migration,/old\.status='active'[\s\S]*new\.left_at:=now\(\)/);
+  assert.match(adminApi,/status:"active",[\s\S]*left_at:null/);
+});
