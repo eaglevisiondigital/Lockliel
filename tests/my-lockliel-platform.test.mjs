@@ -918,3 +918,19 @@ test("leadership assignments and group leadership require approved compatible ro
   assert.match(leadersUi,/assignmentTypesFor/);
   assert.match(groupsUi,/approvedGroupLeaders/);
 });
+
+
+test("follow-up task lifecycle is narrow, timestamped, and audited",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121541_lockliel_harden_followup_task_lifecycle.sql","utf8");
+  const adminApi=fs.readFileSync("netlify/functions/lockliel-admin-tasks.mjs","utf8");
+  const memberApi=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+
+  assert.match(migration,/grant update \([\s\S]*assigned_to[\s\S]*status[\s\S]*\) on table public\.follow_up_tasks to authenticated/);
+  assert.match(migration,/status in \('open','in_progress','completed'\)/);
+  assert.match(migration,/Completed follow-up tasks cannot be reopened/);
+  assert.match(migration,/follow_up_task_changed/);
+  assert.doesNotMatch(adminApi,/completed_at:new Date/);
+  assert.doesNotMatch(memberApi,/completed_at:new Date/);
+  assert.match(adminApi,/status=in\.\(open,in_progress\)/);
+  assert.match(memberApi,/status=in\.\(open,in_progress\)/);
+});
