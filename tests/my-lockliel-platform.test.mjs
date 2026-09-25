@@ -263,3 +263,12 @@ test("digital book download requires release flag and active product",()=>{
   assert.match(client,/deliveryAvailable/);
   assert.match(client,/Not released yet/);
 });
+
+
+test("gift acknowledgment avoids unverified tax claims",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-gift-acknowledgment.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/partner/acknowledgment/gift-acknowledgment-client.tsx","utf8");
+  assert.match(api,/status=in\.\(succeeded,paid,completed\)/);
+  assert.match(client,/does not make a statement about tax deductibility/i);
+  assert.doesNotMatch(client,/tax-deductible contribution/i);
+});
