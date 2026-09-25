@@ -521,3 +521,22 @@ test("same active leader updates preserve a member's paused messaging consent",(
   assert.match(migration,/if permission_open then/);
   assert.match(migration,/revoke execute on function app_private\.sync_leader_assignment_relationship/);
 });
+
+
+test("My Five limit and system fields are enforced in the database",()=>{
+  const integrity=fs.readFileSync("supabase/migrations/20260925111601_lockliel_enforce_my_five_integrity.sql","utf8");
+  const timestamps=fs.readFileSync("supabase/migrations/20260925111717_lockliel_system_owned_reach_contact_timestamps.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+
+  assert.match(integrity,/revoke insert, update on table public\.reach_contacts from authenticated/);
+  assert.match(integrity,/grant insert \(/);
+  assert.doesNotMatch(integrity,/grant update \([\s\S]*owner_id/);
+  assert.doesNotMatch(integrity,/grant update \([\s\S]*linked_profile_id/);
+  assert.match(integrity,/pg_advisory_xact_lock/);
+  assert.match(integrity,/active_count>=5/);
+  assert.match(integrity,/no more than five active people/);
+
+  assert.match(timestamps,/revoke update \(updated_at\)/);
+  assert.match(timestamps,/new\.updated_at:=now\(\)/);
+  assert.doesNotMatch(api,/status,updated_at:new Date/);
+});
