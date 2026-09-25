@@ -2152,3 +2152,12 @@ test("unverified pre-account consent never silently enables member communication
   assert.doesNotMatch(migration,/update public\.communication_preferences/);
   assert.match(sourceLinkMigration,/confirmed_email_nonfinancial_records_linked/);
 });
+
+
+test("legacy email-only public record linkers are permanently removed",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925215110_lockliel_remove_legacy_email_only_linkers.sql","utf8");
+
+  assert.match(migration,/drop function if exists app_private\.link_existing_founders50_application\(\)/);
+  assert.match(migration,/drop function if exists app_private\.link_existing_lead_contact\(\)/);
+  assert.doesNotMatch(migration,/cascade/i);
+});
