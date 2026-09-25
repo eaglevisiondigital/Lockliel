@@ -24,7 +24,13 @@ async function createRequest({h,uid,requestType,message,requestedGroupId=null}){
     })
   });
 
-  if(!r.ok)return {ok:false,status:r.status,error:"Unable to submit your request."};
+  if(!r.ok)return {
+    ok:false,
+    status:r.status,
+    error:r.status===409
+      ?"You already have an open request of this type."
+      :"Unable to submit your request."
+  };
   return {ok:true,request:(await r.json())?.[0]||null};
 }
 
