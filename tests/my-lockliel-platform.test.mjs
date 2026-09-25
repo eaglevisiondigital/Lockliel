@@ -1367,11 +1367,19 @@ test("product and Share Library identity fields cannot drift after creation",()=
 
   assert.match(migration,/Product identity fields cannot be changed after creation/);
   assert.match(migration,/Archive the product before changing its protected file/);
-  const productUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.products[\s\S]*?to authenticated;/)?.[1]||"";
-  assert.doesNotMatch(productUpdateGrant,/translation_key/);
+  const productSection=migration.slice(
+    migration.indexOf("grant update ("),
+    migration.indexOf("alter table public.products")
+  );
+  assert.doesNotMatch(productSection,/translation_key/);
   assert.match(migration,/share_assets_status_check/);
   assert.match(migration,/Share resource identity fields cannot be changed after creation/);
-  const shareUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.share_assets[\s\S]*?to authenticated;/)?.[1]||"";
+  const shareStart=migration.indexOf("revoke insert, update on table public.share_assets");
+  const shareSection=migration.slice(
+    shareStart,
+    migration.indexOf("create or replace function app_private.normalize_share_asset")
+  );
+  const shareUpdateGrant=shareSection.match(/grant update \(([\s\S]*?)\) on table public\.share_assets[\s\S]*?to authenticated;/)?.[1]||"";
   assert.doesNotMatch(shareUpdateGrant,/translation_key/);
   assert.doesNotMatch(shareUpdateGrant,/slug/);
   assert.match(api,/const allowedAssetTypes=\["faith_boost","graphic","book","course","invitation"\]/);
