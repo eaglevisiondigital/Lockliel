@@ -9,9 +9,9 @@ export default async(request)=>{
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
 
-  const [pr,cr,gr,br,fr]=await Promise.all([
+  const [sr,cr,gr,br,fr]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring,checkout_mode,checkout_adapter_ready,webhook_ready,last_verified_at&order=label.asc",
+      SUPABASE_URL+"/rest/v1/partner_checkout_state?select=checkout_ready,supports_one_time,supports_recurring&limit=1",
       {headers:h}
     ),
     fetch(
@@ -27,12 +27,13 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/feature_flags?key=in.(partner_checkout,heart_book_gift_benefit)&select=key,enabled",
+      SUPABASE_URL+"/rest/v1/feature_flags?key=eq.heart_book_gift_benefit&select=key,enabled",
       {headers:h}
     )
   ]);
 
-  const providers=pr.ok?await pr.json():[];
+  const checkoutRows=sr.ok?await sr.json():[];
+  const checkoutState=checkoutRows?.[0]||null;
   const commitments=cr.ok?await cr.json():[];
   const gifts=gr.ok?await gr.json():[];
   const benefits=br.ok?await br.json():[];
@@ -43,28 +44,17 @@ export default async(request)=>{
     .filter(g=>["succeeded","paid","completed"].includes(g.status))
     .reduce((sum,g)=>sum+Number(g.amount_cents||0),0);
 
-  const activeProvider=providers.find(p=>
-    p.status==="active" &&
-    p.checkout_adapter_ready===true &&
-    p.webhook_ready===true
-  )||null;
-
   return json({
     commitments,
     gifts,
     benefits,
     totalGiven,
     flags:flagMap,
-    checkoutReady:Boolean(flagMap.partner_checkout)&&Boolean(activeProvider),
-    activeProvider:activeProvider
-      ? {
-          provider:activeProvider.provider,
-          label:activeProvider.label,
-          supportsOneTime:activeProvider.supports_one_time,
-          supportsRecurring:activeProvider.supports_recurring,
-          lastVerifiedAt:activeProvider.last_verified_at
-        }
-      : null
+    checkoutReady:Boolean(checkoutState?.checkout_ready),
+    checkoutCapabilities:{
+      supportsOneTime:Boolean(checkoutState?.supports_one_time),
+      supportsRecurring:Boolean(checkoutState?.supports_recurring)
+    }
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 

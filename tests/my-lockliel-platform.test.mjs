@@ -220,11 +220,18 @@ test("privacy center offers approved export without staff notes or secrets",()=>
 test("partnership checkout requires verified adapter and webhook",()=>{
   const partner=fs.readFileSync("netlify/functions/lockliel-partner.mjs","utf8");
   const readiness=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
-  assert.match(partner,/checkout_adapter_ready===true/);
-  assert.match(partner,/webhook_ready===true/);
-  assert.match(partner,/flagMap\.partner_checkout/);
+  const migration=fs.readFileSync("supabase/migrations/20260925131510_lockliel_harden_release_control_surface.sql","utf8");
+
+  assert.match(partner,/partner_checkout_state/);
+  assert.match(partner,/checkoutReady:Boolean\(checkoutState\?\.checkout_ready\)/);
+  assert.doesNotMatch(partner,/payment_provider_connections/);
+  assert.doesNotMatch(partner,/webhook_ready/);
+  assert.doesNotMatch(partner,/verification_note/);
   assert.match(readiness,/checkout_adapter_ready===true/);
   assert.match(readiness,/webhook_ready===true/);
+  assert.match(migration,/p\.checkout_adapter_ready=true/);
+  assert.match(migration,/p\.webhook_ready=true/);
+  assert.match(migration,/f\.key='partner_checkout'/);
 });
 
 test("member partnership page does not expose provider diagnostics",()=>{
@@ -1372,4 +1379,31 @@ test("product and Share Library identity fields cannot drift after creation",()=
   assert.match(api,/status:"draft"/);
   assert.match(client,/defaultValue="graphic"/);
   assert.match(client,/locked after creation/);
+});
+
+
+test("product and share resource identity fields are protected after creation",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925131440_lockliel_harden_product_and_share_identity.sql","utf8");
+
+  assert.match(migration,/Product identity fields cannot be changed after creation/);
+  assert.match(migration,/Archive the product before changing its protected file/);
+  assert.match(migration,/Share resource identity fields cannot be changed after creation/);
+  assert.match(migration,/grant update \([\s\S]*storage_path[\s\S]*language_code[\s\S]*\) on table public\.products to authenticated/);
+  assert.doesNotMatch(migration,/grant update \([\s\S]*translation_key[\s\S]*\) on table public\.products/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+});
+
+test("release controls expose sanitized checkout state while diagnostics stay staff-only",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925131510_lockliel_harden_release_control_surface.sql","utf8");
+  const partner=fs.readFileSync("netlify/functions/lockliel-partner.mjs","utf8");
+
+  assert.match(migration,/grant update \(enabled\) on table public\.feature_flags to authenticated/);
+  assert.match(migration,/grant update \(verified,note\) on table public\.launch_verifications to authenticated/);
+  assert.match(migration,/payment_provider_staff_read/);
+  assert.match(migration,/payment_provider_staff_update/);
+  assert.match(migration,/partner_checkout_state_member_read/);
+  assert.match(migration,/refresh_partner_checkout_state/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(partner,/checkoutCapabilities/);
+  assert.doesNotMatch(partner,/activeProvider/);
 });
