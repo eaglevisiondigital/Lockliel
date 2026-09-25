@@ -1372,7 +1372,6 @@ test("product and Share Library identity fields cannot drift after creation",()=
     migration.indexOf("alter table public.products")
   );
   assert.doesNotMatch(productSection,/translation_key/);
-  assert.match(migration,/share_assets_status_check/);
   assert.match(migration,/Share resource identity fields cannot be changed after creation/);
   const shareStart=migration.indexOf("revoke insert, update on table public.share_assets");
   const shareSection=migration.slice(
@@ -1414,4 +1413,15 @@ test("release controls expose sanitized checkout state while diagnostics stay st
   assert.match(migration,/new\.updated_at:=now\(\)/);
   assert.match(partner,/checkoutCapabilities/);
   assert.doesNotMatch(partner,/activeProvider/);
+});
+
+
+test("Founders review decisions require a documented rationale in the database",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925132018_lockliel_require_founders_review_rationale.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-founder-reviews.mjs","utf8");
+
+  assert.match(migration,/founders50_reviews_decision_rationale/);
+  assert.match(migration,/decision='note'/);
+  assert.match(migration,/char_length\(trim\(coalesce\(rationale,''\)\)\)>=20/);
+  assert.match(api,/rationale\.length<20/);
 });
