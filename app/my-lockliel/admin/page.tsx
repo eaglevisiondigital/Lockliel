@@ -15,6 +15,7 @@ import PrivacyAdminClient from "./privacy-admin-client";
 import ProductsAdminClient from "./products-admin-client";
 import ReadinessAdminClient from "./readiness-admin-client";
 import RolesAdminClient from "./roles-admin-client";
+import ShareLibraryAdminClient from "./share-library-admin-client";
 import SystemAdminClient from "./system-admin-client";
 import TasksAdminClient from "./tasks-admin-client";
 import "../my-lockliel.css";
@@ -71,6 +72,8 @@ export default function Admin(){
     <section id="discipleship" className="ml-admin-section">
       <h2 className="ml-section-title">Discipleship content</h2>
       <ContentAdminClient/>
+      <h2 className="ml-section-title">Share Library</h2>
+      <ShareLibraryAdminClient/>
     </section>
 
     <section id="resources" className="ml-admin-section">
