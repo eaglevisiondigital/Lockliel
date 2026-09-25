@@ -14,8 +14,14 @@ export default async(request)=>{
   const email=String(b.email||"").trim().toLowerCase();
   const password=String(b.password||"");
 
-  if(!email||!password){
-    return json({error:"Email and password are required."},400);
+  if(
+    !email||
+    email.length>254||
+    !/^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(email)||
+    !password||
+    password.length>128
+  ){
+    return json({error:"Enter a valid email address and password."},400);
   }
 
   const r=await fetch(

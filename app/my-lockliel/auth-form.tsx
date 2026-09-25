@@ -66,17 +66,17 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
     {mode==="signup"&&<div className="ml-auth-row">
       <label>
         First name
-        <input name="firstName" autoComplete="given-name" required/>
+        <input name="firstName" autoComplete="given-name" maxLength={120} required/>
       </label>
       <label>
         Last name
-        <input name="lastName" autoComplete="family-name" required/>
+        <input name="lastName" autoComplete="family-name" maxLength={120} required/>
       </label>
     </div>}
 
     <label>
       Email address
-      <input name="email" type="email" autoComplete="email" required/>
+      <input name="email" type="email" autoComplete="email" maxLength={254} required/>
     </label>
 
     <label>
@@ -86,6 +86,7 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
         type="password"
         autoComplete={mode==="login"?"current-password":"new-password"}
         minLength={8}
+        maxLength={128}
         required
       />
     </label>

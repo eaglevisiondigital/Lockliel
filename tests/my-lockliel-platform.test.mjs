@@ -2041,3 +2041,25 @@ test("public Auth handoffs bind access and refresh tokens to the same user and p
   assert.match(referral,/Location:location/);
   assert.doesNotMatch(referral,/Location:dest\.toString\(\)/);
 });
+
+
+test("public Auth inputs are bounded before reaching Supabase Auth",()=>{
+  const signup=fs.readFileSync("netlify/functions/lockliel-signup.mjs","utf8");
+  const login=fs.readFileSync("netlify/functions/lockliel-login.mjs","utf8");
+  const recover=fs.readFileSync("netlify/functions/lockliel-recover.mjs","utf8");
+  const form=fs.readFileSync("app/my-lockliel/auth-form.tsx","utf8");
+  const forgot=fs.readFileSync("app/my-lockliel/forgot-password/forgot-password-form.tsx","utf8");
+
+  assert.match(signup,/firstName\.length>120/);
+  assert.match(signup,/lastName\.length>120/);
+  assert.match(signup,/email\.length>254/);
+  assert.match(signup,/password\.length>128/);
+  assert.match(signup,/\^\[a-z0-9\]\{6,20\}\$/);
+  assert.match(login,/email\.length>254/);
+  assert.match(login,/password\.length>128/);
+  assert.match(recover,/email\.length>254/);
+  assert.match(form,/maxLength=\{120\}/);
+  assert.match(form,/maxLength=\{254\}/);
+  assert.match(form,/maxLength=\{128\}/);
+  assert.match(forgot,/maxLength=\{254\}/);
+});

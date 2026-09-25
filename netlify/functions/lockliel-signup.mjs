@@ -9,10 +9,21 @@ export default async(request)=>{
   const lastName=String(b.lastName||"").trim();
   const email=String(b.email||"").trim().toLowerCase();
   const password=String(b.password||"");
-  const referralCode=String(b.referralCode||c.lockliel_ref||"").trim();
+  const rawReferralCode=String(b.referralCode||c.lockliel_ref||"").trim().toLowerCase();
+  const referralCode=/^[a-z0-9]{6,20}$/.test(rawReferralCode)?rawReferralCode:"";
 
-  if(!firstName||!lastName||!email||password.length<8){
-    return json({error:"Please enter your name, a valid email, and a password of at least 8 characters."},400);
+  if(
+    !firstName||
+    firstName.length>120||
+    !lastName||
+    lastName.length>120||
+    !email||
+    email.length>254||
+    !/^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(email)||
+    password.length<8||
+    password.length>128
+  ){
+    return json({error:"Please enter a valid name, email address, and password between 8 and 128 characters."},400);
   }
 
   const redirectTo=LOCKLIEL_APP_ORIGIN+"/my-lockliel/sign-in?confirmed=1";

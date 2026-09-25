@@ -2,7 +2,9 @@ import {SUPABASE_URL,SUPABASE_KEY,LOCKLIEL_APP_ORIGIN,json} from "../lib/locklie
 export default async(request)=>{
  if(request.method!=="POST")return json({error:"Method not allowed"},405);
  const b=await request.json().catch(()=>({})),email=String(b.email||"").trim().toLowerCase();
- if(!email)return json({error:"Enter your email address."},400);
+ if(!email||email.length>254||!/^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(email)){
+  return json({error:"Enter a valid email address."},400);
+ }
  const redirectTo=LOCKLIEL_APP_ORIGIN+"/my-lockliel/reset-password";
  const r=await fetch(SUPABASE_URL+"/auth/v1/recover?redirect_to="+encodeURIComponent(redirectTo),{
   method:"POST",headers:{apikey:SUPABASE_KEY,"Content-Type":"application/json"},body:JSON.stringify({email})
