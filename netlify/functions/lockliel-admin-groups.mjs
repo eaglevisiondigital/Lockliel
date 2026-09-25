@@ -102,10 +102,7 @@ export default async(request)=>{
           {
             method:"PATCH",
             headers:{...h,Prefer:"return=minimal"},
-            body:JSON.stringify({
-              status:"resolved",
-              resolved_at:new Date().toISOString()
-            })
+            body:JSON.stringify({status:"resolved"})
           }
         );
       }
@@ -211,7 +208,7 @@ export default async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"resolved",resolved_at:now})
+          body:JSON.stringify({status:"resolved"})
         }
       );
       if(!resolveRes.ok)return json({error:"Membership changed, but request status could not be resolved."},500);
