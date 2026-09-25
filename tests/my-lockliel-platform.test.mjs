@@ -181,3 +181,14 @@ test("MFA verification replaces HttpOnly session cookies with aal2 tokens",()=>{
   assert.match(mfa,/\/factors\/.*\/verify/);
   assert.match(mfa,/sessionCookies\(verified\.data\)/);
 });
+
+
+test("privacy export requires a completed member-owned request",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-privacy-export.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/privacy/privacy-client.tsx","utf8");
+  assert.match(endpoint,/requestId/);
+  assert.match(endpoint,/request_type=eq\.data_export/);
+  assert.match(endpoint,/status=eq\.completed/);
+  assert.match(client,/completedExport/);
+  assert.match(client,/privacy-export\?requestId=/);
+});
