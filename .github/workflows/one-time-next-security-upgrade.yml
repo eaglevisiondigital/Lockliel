@@ -1,0 +1,35 @@
+name: One-Time Next Security Upgrade
+on:
+  push:
+    branches: [lockliel-backend-v1]
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    if: ${{ !contains(github.event.head_commit.message, '[next-security-upgrade]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: lockliel-backend-v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Upgrade patched Next.js release
+        run: npm install next@16.3.6 --save-exact
+      - name: Commit package update
+        run: |
+          if git diff --quiet -- package.json package-lock.json; then
+            echo "Already patched."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "Upgrade Next.js security patch [next-security-upgrade]"
+          git push origin HEAD:lockliel-backend-v1
