@@ -361,3 +361,24 @@ test("share analytics aggregate person-specific links by resource",()=>{
   assert.match(stats,/const key=link\.content_id\|\|/);
   assert.match(stats,/linkCount:group\.length/);
 });
+
+
+test("localized Journey preserves canonical progress identity",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-journey.mjs","utf8");
+  assert.match(endpoint,/preferredLocale/);
+  assert.match(endpoint,/translation_key/);
+  assert.match(endpoint,/canonical_course_id/);
+  assert.match(endpoint,/canonical_lesson_id/);
+  assert.match(endpoint,/content_lesson_id/);
+  assert.match(endpoint,/lesson_id=.*inFilter\(sourceLessonIds\)/s);
+});
+
+test("localized Resources preserve the entitled product identity",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-resources.mjs","utf8");
+  assert.match(endpoint,/preferredLocale/);
+  assert.match(endpoint,/localizedProduct/);
+  assert.match(endpoint,/canonical_product_id/);
+  assert.match(endpoint,/content_product_id/);
+  assert.match(endpoint,/translation_key=eq/);
+  assert.match(endpoint,/entitlements\?profile_id=eq/);
+});
