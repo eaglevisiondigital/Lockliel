@@ -648,3 +648,18 @@ test("referral tracker requires a valid visitor token and deduplicates visits",(
   assert.match(redirect,/rateLimit/);
   assert.match(shareUi,/Unique visits/);
 });
+
+
+test("Lockliel cannot remove the final super administrator",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113917_lockliel_protect_last_super_admin.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-roles.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/roles-admin-client.tsx","utf8");
+
+  assert.match(migration,/A super administrator cannot remove their own super administrator role/);
+  assert.match(migration,/Lockliel must retain at least one super administrator/);
+  assert.match(migration,/before delete on public\.staff_roles/);
+  assert.match(api,/superAdminCount/);
+  assert.match(api,/currentProfileId:s\.user\.id/);
+  assert.match(client,/protectedSelf/);
+  assert.match(client,/final super administrator to be removed/);
+});
