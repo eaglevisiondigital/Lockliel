@@ -1135,3 +1135,31 @@ test("public Founders and lead intake use hashed database-backed rate limits",()
   assert.match(founders,/^\/\/ @ts-nocheck/m);
   assert.match(capture,/^\/\/ @ts-nocheck/m);
 });
+
+
+test("content release integrity requires valid states, playable lesson coverage, and stable asset identity",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925123400_lockliel_align_content_release_integrity.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-content.mjs","utf8");
+
+  assert.match(migration,/courses_status_check/);
+  assert.match(migration,/products_status_check/);
+  assert.match(migration,/products_price_nonnegative/);
+  assert.match(migration,/Lesson asset identity cannot be moved to another lesson/);
+  assert.match(migration,/Active video assets require a YouTube provider and video reference/);
+  assert.match(migration,/count\(distinct a\.lesson_id\)/);
+  assert.match(migration,/lower\(coalesce\(a\.provider,''\)\)='youtube'/);
+  assert.match(migration,/\)>=10/);
+  assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
+});
+
+test("released course and product files cannot silently become incomplete",()=>{
+  const dependency=fs.readFileSync("supabase/migrations/20260925123523_lockliel_protect_released_content_dependencies.sql","utf8");
+  const storage=fs.readFileSync("supabase/migrations/20260925123556_lockliel_block_released_storage_replacement.sql","utf8");
+
+  assert.match(dependency,/ensure_grip_course_ready/);
+  assert.match(dependency,/course_auto_unpublished/);
+  assert.match(dependency,/recheck_grip_course_after_lesson_change_trigger/);
+  assert.match(storage,/before delete or update/);
+  assert.match(storage,/Unpublish or deactivate the lesson asset before deleting or replacing a released course file/);
+  assert.match(storage,/Archive the active product before deleting or replacing its protected file/);
+});
