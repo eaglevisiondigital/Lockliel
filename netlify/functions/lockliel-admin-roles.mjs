@@ -7,7 +7,8 @@ const allowedRoles=[
   "founders50_reviewer",
   "group_leader",
   "finance_admin",
-  "content_admin"
+  "content_admin",
+  "fulfillment_admin"
 ];
 
 export default async(request)=>{
