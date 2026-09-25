@@ -540,3 +540,12 @@ test("My Five limit and system fields are enforced in the database",()=>{
   assert.match(timestamps,/new\.updated_at:=now\(\)/);
   assert.doesNotMatch(api,/status,updated_at:new Date/);
 });
+
+
+test("members can only change notification read state",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925111920_lockliel_protect_system_notifications.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-notifications.mjs","utf8");
+  assert.match(migration,/revoke insert, update, delete, truncate/);
+  assert.match(migration,/grant update \(read_at\)/);
+  assert.match(api,/body:JSON\.stringify\(\{read_at:new Date\(\)\.toISOString\(\)\}\)/);
+});
