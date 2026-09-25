@@ -32,6 +32,12 @@ export default async(request)=>{
 
       if(!name||!leaderId)return json({error:"Group name and leader are required."},400);
 
+      const cardRes=await fetch(
+        SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=eq."+encodeURIComponent(leaderId)+"&select=language_code&limit=1",
+        {headers:h}
+      );
+      const leaderCard=(cardRes.ok?await cardRes.json():[])?.[0]||null;
+
       const gr=await fetch(SUPABASE_URL+"/rest/v1/groups",{
         method:"POST",
         headers:{...h,Prefer:"return=representation"},
@@ -41,6 +47,7 @@ export default async(request)=>{
           city:city||null,
           region:region||null,
           country:country||null,
+          language_code:String(b.languageCode||leaderCard?.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
           status:"forming"
         })
       });
@@ -113,11 +120,11 @@ export default async(request)=>{
   const cutoff=new Date(Date.now()-56*24*60*60*1000).toISOString().slice(0,10);
   const [groupsRes,peopleRes,requestsRes,checkinsRes]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/groups?select=id,name,leader_id,city,region,country,status,created_at&order=created_at.desc&limit=200",
+      SUPABASE_URL+"/rest/v1/groups?select=id,name,leader_id,city,region,country,language_code,status,created_at&order=created_at.desc&limit=200",
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/profile_connection_cards?select=profile_id,first_name,last_initial,city,region,country&order=first_name.asc&limit=2000",
+      SUPABASE_URL+"/rest/v1/profile_connection_cards?select=profile_id,first_name,last_initial,city,region,country,language_code&order=first_name.asc&limit=2000",
       {headers:h}
     ),
     fetch(
