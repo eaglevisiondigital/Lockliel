@@ -36,11 +36,11 @@ export default async(request)=>{
 
     if(b.action==="complete"){
       const r=await fetch(
-        SUPABASE_URL+"/rest/v1/follow_up_tasks?id=eq."+encodeURIComponent(taskId),
+        SUPABASE_URL+"/rest/v1/follow_up_tasks?id=eq."+encodeURIComponent(taskId)+"&status=in.(open,in_progress)",
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"completed",completed_at:new Date().toISOString()})
+          body:JSON.stringify({status:"completed"})
         }
       );
       if(!r.ok)return json({error:"Unable to complete task."},r.status);
