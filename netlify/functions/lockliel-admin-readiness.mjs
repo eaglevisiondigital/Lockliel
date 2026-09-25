@@ -187,7 +187,7 @@ export default async(request)=>{
       manual:false,
       detail:hasSuperAdmin
         ?"A super administrator account is assigned."
-        :"Create the first real member account, then assign its staff role to super_admin directly in Supabase."
+        :"Create and confirm the first real member account, then run app_private.bootstrap_first_super_admin(profile_uuid) from the Supabase SQL Editor. The helper refuses to run after a super administrator already exists."
     },
     {
       key:"grip_engine",
