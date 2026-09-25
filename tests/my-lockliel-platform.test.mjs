@@ -1873,3 +1873,17 @@ test("manual launch readiness verification requires documented evidence",()=>{
   assert.match(client,/trimmed\.length>=20/);
   assert.match(client,/body:JSON\.stringify\(\{key,verified,note\}\)/);
 });
+
+
+test("first super administrator bootstrap is serialized and rejects invalid auth accounts",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925161117_lockliel_serialize_first_super_admin_bootstrap.sql","utf8");
+
+  assert.match(migration,/bootstrap_first_super_admin/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/lockliel:first-super-admin/);
+  assert.match(migration,/email_confirmed_at/);
+  assert.match(migration,/deleted_at/);
+  assert.match(migration,/banned_until/);
+  assert.match(migration,/A super administrator already exists/);
+  assert.match(migration,/revoke execute on function app_private\.bootstrap_first_super_admin\(uuid\)/);
+});
