@@ -719,3 +719,15 @@ test("connection request details are immutable after submission",()=>{
   assert.doesNotMatch(groups,/status:"closed",resolved_at/);
   assert.doesNotMatch(adminGroups,/status:"resolved",resolved_at/);
 });
+
+
+test("lesson and media progress writes stay inside the member's enrolled course",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925115405_lockliel_enrollment_scoped_progress_writes.sql","utf8");
+
+  assert.match(migration,/join public\.course_enrollments ce/);
+  assert.match(migration,/ce\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/ce\.status in \('active','completed'\)/);
+  assert.match(migration,/content_course\.translation_key=enrolled_course\.translation_key/);
+  assert.match(migration,/Lesson progress identity cannot be changed/);
+  assert.match(migration,/Media progress identity cannot be changed/);
+});
