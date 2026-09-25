@@ -192,3 +192,24 @@ test("privacy export requires a completed member-owned request",()=>{
   assert.match(client,/completedExport/);
   assert.match(client,/privacy-export\?requestId=/);
 });
+
+
+test("member connection requests remain human-reviewed",()=>{
+  const groupsApi=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+  const connectionsApi=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const leaderAdmin=fs.readFileSync("app/my-lockliel/admin/leaders-admin-client.tsx","utf8");
+  assert.match(groupsApi,/find_local_group/);
+  assert.match(groupsApi,/explore_hosting/);
+  assert.match(connectionsApi,/connect_with_leader/);
+  assert.match(leaderAdmin,/Suggestions prioritize location and available capacity only/i);
+  assert.match(leaderAdmin,/assignRequest/);
+});
+
+test("privacy center offers self-service export without staff notes or secrets",()=>{
+  const exportApi=fs.readFileSync("netlify/functions/lockliel-privacy-export.mjs","utf8");
+  const privacyUi=fs.readFileSync("app/my-lockliel/privacy/privacy-client.tsx","utf8");
+  assert.match(exportApi,/Private staff-only notes are not part/);
+  assert.match(exportApi,/Security secrets/);
+  assert.match(privacyUi,/privacy-export/);
+  assert.match(privacyUi,/Download my data/);
+});
