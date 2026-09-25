@@ -1,4 +1,5 @@
 name: One-Time Grip PDF Import
+# One-time trigger: v2
 on:
   push:
     branches: [lockliel-backend-v1]
