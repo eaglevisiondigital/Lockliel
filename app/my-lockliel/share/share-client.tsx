@@ -5,53 +5,57 @@ import {
   CheckCircle2,
   Copy,
   Eye,
+  FileImage,
   Radio,
   Share2,
+  Sparkles,
   Sprout,
   UserPlus,
-  Users
+  Users,
+  Video
 } from "lucide-react";
-import {useEffect,useState} from "react";
+import {useEffect,useMemo,useState} from "react";
 
-const assets=[
-  {
-    slug:"faith-boost",
-    icon:Radio,
-    title:"Faith Boost",
-    text:"Encourage someone with a Faith Boost broadcast.",
-    href:"/#faith-boost"
-  },
-  {
-    slug:"founders-50",
-    icon:Users,
-    title:"The Founders 50",
-    text:"Invite someone to discover the Founders 50 vision.",
-    href:"/founders-50"
-  },
-  {
-    slug:"heart-for-the-lost",
-    icon:BookOpen,
-    title:"A Heart for the Lost",
-    text:"Share the upcoming book and its heart to reach one.",
-    href:"/a-heart-for-the-lost"
-  }
-];
+function iconFor(asset:any){
+  const type=String(asset.category||asset.asset_type||"").toLowerCase();
+  if(type.includes("faith"))return Radio;
+  if(type.includes("book"))return BookOpen;
+  if(type.includes("video"))return Video;
+  if(type.includes("graphic")||type.includes("image"))return FileImage;
+  if(type.includes("invitation")||type.includes("founder"))return Users;
+  return Sparkles;
+}
 
 export default function ShareCenter(){
   const [working,setWorking]=useState<string|null>(null);
   const [message,setMessage]=useState("");
   const [stats,setStats]=useState<any>(null);
+  const [library,setLibrary]=useState<any[]>([]);
+  const [error,setError]=useState("");
 
-  async function loadStats(){
-    const r=await fetch("/api/lockliel/share-stats",{cache:"no-store"});
-    if(r.status===401){
+  async function load(){
+    const [statsRes,libraryRes]=await Promise.all([
+      fetch("/api/lockliel/share-stats",{cache:"no-store"}),
+      fetch("/api/lockliel/share-library",{cache:"no-store"})
+    ]);
+
+    if(statsRes.status===401||libraryRes.status===401){
       location.assign("/my-lockliel/sign-in");
       return;
     }
-    if(r.ok)setStats(await r.json());
+
+    if(statsRes.ok)setStats(await statsRes.json());
+
+    if(libraryRes.ok){
+      const d=await libraryRes.json();
+      setLibrary(d.assets||[]);
+    }else{
+      const d=await libraryRes.json().catch(()=>({}));
+      setError(d.error||"Unable to load Share Library.");
+    }
   }
 
-  useEffect(()=>{loadStats();},[]);
+  useEffect(()=>{load();},[]);
 
   async function getLink(slug:string){
     setWorking(slug);
@@ -76,7 +80,7 @@ export default function ShareCenter(){
       throw new Error(d.error);
     }
 
-    await loadStats();
+    await load();
     return d;
   }
 
@@ -91,10 +95,11 @@ export default function ShareCenter(){
   async function share(slug:string){
     try{
       const d=await getLink(slug);
+
       if(navigator.share){
         await navigator.share({
           title:d.title,
-          text:"I thought this might encourage you.",
+          text:d.shareText||"I thought this might encourage you.",
           url:d.url
         });
       }else{
@@ -112,6 +117,9 @@ export default function ShareCenter(){
     ["Discipleship starts",totals.course_started||0,Sprout],
     ["Lessons completed",totals.lesson_completed||0,CheckCircle2]
   ];
+
+  const featured=useMemo(()=>library.filter(asset=>asset.featured),[library]);
+  const standard=useMemo(()=>library.filter(asset=>!asset.featured),[library]);
 
   return <>
     <section className="ml-share-callout">
@@ -132,23 +140,27 @@ export default function ShareCenter(){
     </section>
 
     {message&&<p className="ml-share-message">{message}</p>}
+    {error&&<p className="ml-auth-message error">{error}</p>}
 
-    <section className="ml-grid">
-      {assets.map(({slug,icon:Icon,...asset})=><article className="ml-card" key={slug}>
-        <div className="ml-icon"><Icon size={21}/></div>
-        <h2>{asset.title}</h2>
-        <p>{asset.text}</p>
-        <div className="ml-share-actions">
-          <button onClick={()=>share(slug)} disabled={working===slug}>
-            <Share2 size={15}/> {working===slug?"Preparing…":"Share"}
-          </button>
-          <button onClick={()=>copy(slug)} disabled={working===slug}>
-            <Copy size={15}/> Copy link
-          </button>
-        </div>
-        <Link href={asset.href}>Preview resource →</Link>
-      </article>)}
-    </section>
+    {featured.length>0&&<>
+      <h2 className="ml-section-title">Featured to share</h2>
+      <section className="ml-grid">
+        {featured.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy}/>)}
+      </section>
+    </>}
+
+    {standard.length>0&&<>
+      <h2 className="ml-section-title">Share Library</h2>
+      <section className="ml-grid">
+        {standard.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy}/>)}
+      </section>
+    </>}
+
+    {!library.length&&!error&&<section className="ml-card">
+      <Share2 size={21}/>
+      <h2>Share resources are being prepared.</h2>
+      <p>Approved Lockliel resources will appear here automatically as they are released.</p>
+    </section>}
 
     {stats?.breakdown?.length>0&&<section className="ml-panel ml-share-breakdown">
       <div className="ml-kicker">What is reaching people?</div>
@@ -173,4 +185,40 @@ export default function ShareCenter(){
       A visit is anonymous activity, not a known person. Someone becomes a member connection only after they create an account through your personal invitation.
     </p>}
   </>;
+}
+
+function ShareAssetCard({
+  asset,
+  working,
+  onShare,
+  onCopy
+}:{
+  asset:any;
+  working:boolean;
+  onShare:(slug:string)=>void;
+  onCopy:(slug:string)=>void;
+}){
+  const Icon=iconFor(asset);
+
+  return <article className="ml-card">
+    <div className="ml-icon"><Icon size={21}/></div>
+    <h2>{asset.title}</h2>
+    <p>{asset.description||"Share this Lockliel resource with someone you have in mind."}</p>
+
+    {asset.share_text&&<p className="ml-approved-share-copy">
+      <span>Approved share copy</span>
+      {asset.share_text}
+    </p>}
+
+    <div className="ml-share-actions">
+      <button onClick={()=>onShare(asset.slug)} disabled={working}>
+        <Share2 size={15}/> {working?"Preparing…":"Share"}
+      </button>
+      <button onClick={()=>onCopy(asset.slug)} disabled={working}>
+        <Copy size={15}/> Copy link
+      </button>
+    </div>
+
+    <Link href={asset.destination_path}>Preview resource →</Link>
+  </article>;
 }
