@@ -1,10 +1,11 @@
-import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
+import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
 export default async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
+  if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
