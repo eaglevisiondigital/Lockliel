@@ -961,3 +961,16 @@ test("leader profile approval identity and timestamps are database-controlled",(
   assert.match(migration,/new\.updated_at:=now\(\)/);
   assert.doesNotMatch(api,/approved_by:uid,[\s\S]*updated_at:new Date/);
 });
+
+
+test("tags and consent history are read-only while notifications expose only read state",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925121919_lockliel_read_only_tags_consent_history_notifications.sql","utf8");
+
+  assert.match(migration,/grant select on table public\.communication_preference_events to authenticated/);
+  assert.match(migration,/grant select on table public\.tags to authenticated/);
+  assert.match(migration,/grant select on table public\.profile_tags to authenticated/);
+  assert.match(migration,/grant select on table public\.notifications to authenticated/);
+  assert.match(migration,/grant update \(read_at\) on table public\.notifications to authenticated/);
+  assert.doesNotMatch(migration,/grant insert .*communication_preference_events/);
+  assert.doesNotMatch(migration,/grant insert .*profile_tags/);
+});
