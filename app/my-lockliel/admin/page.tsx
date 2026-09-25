@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {ArrowLeft} from "lucide-react";
 import AdminClient from "./admin-client";
-import AdminGate from "./admin-gate";
 import AdminSectionNav from "./admin-section-nav";
 import ContentAdminClient from "./content-admin-client";
 import FinanceAdminClient from "./finance-admin-client";
@@ -23,7 +22,7 @@ import "../my-lockliel.css";
 export const metadata={title:"Lockliel Admin"};
 
 export default function Admin(){
-  return <main className="my-lockliel"><AdminGate><div className="ml-shell">
+  return <main className="my-lockliel"><div className="ml-shell">
     <Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link>
 
     <section className="ml-panel">
@@ -89,5 +88,5 @@ export default function Admin(){
       <h2 className="ml-section-title">System controls</h2>
       <SystemAdminClient/>
     </section>
-  </div></AdminGate></main>;
+  </div></main>;
 }
