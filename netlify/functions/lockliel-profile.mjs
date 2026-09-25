@@ -14,6 +14,8 @@ export default async(request)=>{
     city:String(b.city||"").trim(),
     region:String(b.region||"").trim(),
     country:String(b.country||"United States").trim(),
+    locale:String(b.locale||"en-US").trim().slice(0,35)||"en-US",
+    timezone:String(b.timezone||"").trim().slice(0,100)||null,
     onboarding_status:"active",
     updated_at:new Date().toISOString()
   };
