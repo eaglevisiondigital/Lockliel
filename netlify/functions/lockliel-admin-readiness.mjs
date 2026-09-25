@@ -215,11 +215,19 @@ export default async(request)=>{
     {
       key:"digital_book",
       label:"A Heart for the Lost digital delivery",
-      ready:Boolean(digitalBook?.storage_path),
+      ready:Boolean(
+        digitalBook?.storage_path &&
+        digitalBook?.status==="active" &&
+        flagMap.digital_book_delivery
+      ),
       manual:false,
-      detail:digitalBook?.storage_path
-        ?"Protected PDF is uploaded."
-        :"Digital product exists, but the final corrected protected PDF still needs to be uploaded."
+      detail:!digitalBook?.storage_path
+        ?"Digital product exists, but the final corrected protected PDF still needs to be uploaded."
+        :digitalBook?.status!=="active"
+          ?"Protected PDF is present, but the digital product is not active yet."
+          :!flagMap.digital_book_delivery
+            ?"Protected PDF and product are ready, but the digital delivery release switch is still off."
+            :"Protected PDF, active product, and member delivery switch are all ready."
     },
     {
       key:"giving_provider",
