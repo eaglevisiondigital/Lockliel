@@ -52,6 +52,7 @@ export default function LessonPlayerClient(){
   const documents=useMemo(()=>assets.filter((a:any)=>["pdf","worksheet","external_link"].includes(a.asset_type)),[assets]);
   const questions=useMemo(()=>data?.lesson?.worksheet_schema?.questions||[],[data]);
   const mediaSaved=useMemo(()=>Object.fromEntries((data?.mediaProgress||[]).map((p:any)=>[p.asset_id,p])),[data]);
+  const notesMode=questions.length===1&&String(questions[0]?.text||"").startsWith("After working through this lesson");
 
   useEffect(()=>{
     if(!hydrated.current||!data?.lesson||!questions.length)return;
@@ -125,16 +126,18 @@ export default function LessonPlayerClient(){
     </section>}
 
     {questions.length>0&&<section className="ml-panel ml-worksheet">
-      <div className="ml-kicker">Work it out</div>
-      <h2>Lesson worksheet</h2>
-      <p>Answer each question as you work through the teaching. Your answers save automatically.</p>
+      <div className="ml-kicker">{notesMode?"Reflect":"Work it out"}</div>
+      <h2>{notesMode?"Lesson notes":"Lesson worksheet"}</h2>
+      <p>{notesMode?"Capture what stood out, what you learned, and what you want to put into practice. Your notes save automatically.":"Answer each question as you work through the teaching. Your answers save automatically."}</p>
       <div className="ml-worksheet-list">
         {questions.map((q:any)=><label key={q.number}>
-          <span>{q.number}. {q.text}</span>
-          <input value={answers[String(q.number)]||""} onChange={e=>setAnswers(v=>({...v,[String(q.number)]:e.target.value}))} placeholder="Your answer"/>
+          <span>{notesMode?q.text:q.number+". "+q.text}</span>
+          {notesMode
+            ? <textarea rows={6} value={answers[String(q.number)]||""} onChange={e=>setAnswers(v=>({...v,[String(q.number)]:e.target.value}))} placeholder="Write your notes and key takeaways…"/>
+            : <input value={answers[String(q.number)]||""} onChange={e=>setAnswers(v=>({...v,[String(q.number)]:e.target.value}))} placeholder="Your answer"/>}
         </label>)}
       </div>
-      <div className="ml-worksheet-status">{questions.filter((q:any)=>String(answers[String(q.number)]||"").trim()).length} of {questions.length} answered</div>
+      <div className="ml-worksheet-status">{notesMode?(worksheetDone?"Notes saved":"Add your notes to complete this lesson"):questions.filter((q:any)=>String(answers[String(q.number)]||"").trim()).length+" of "+questions.length+" answered"}</div>
     </section>}
 
     {documents.length>0&&<section className="ml-panel ml-lesson-resources">
@@ -148,7 +151,7 @@ export default function LessonPlayerClient(){
     <section className="ml-complete-lesson">
       <div>
         <b>{completed?"Lesson complete":canComplete?"You’re ready to complete this lesson.":"Finish the lesson to continue."}</b>
-        <span>{videos.length&&!videoDone?"Watch each video to at least 95%. ":""}{questions.length&&!worksheetDone?"Complete all worksheet questions.":""}</span>
+        <span>{videos.length&&!videoDone?"Watch each video to at least 95%. ":""}{questions.length&&!worksheetDone?(notesMode?"Add your lesson notes.":"Complete all worksheet questions."):""}</span>
       </div>
       {!completed&&<button className="ml-action" disabled={!canComplete||saving} onClick={completeLesson}>{saving?"Saving…":"Complete lesson"}</button>}
     </section>
