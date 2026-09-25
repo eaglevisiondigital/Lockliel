@@ -1054,3 +1054,17 @@ test("canonical entitlements can serve approved translated product files",()=>{
   assert.match(migration,/content_product\.status='active'/);
   assert.match(migration,/f\.key='digital_book_delivery'/);
 });
+
+
+test("commerce records use least privilege and entitlement changes are audited",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122502_lockliel_harden_resource_and_order_records.sql","utf8");
+
+  assert.match(migration,/grant select on table public\.order_items to authenticated/);
+  assert.match(migration,/grant select on table public\.order_shipping_addresses to authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*order_id[\s\S]*actor_profile_id[\s\S]*event_type[\s\S]*tracking_number[\s\S]*\) on table public\.order_fulfillment_events to authenticated/);
+  assert.match(migration,/grant update \([\s\S]*status[\s\S]*price_cents[\s\S]*storage_path[\s\S]*translation_key[\s\S]*\) on table public\.products to authenticated/);
+  assert.match(migration,/grant update \(status\) on table public\.benefit_rules to authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*product_id[\s\S]*reason[\s\S]*source_ref[\s\S]*\) on table public\.entitlements to authenticated/);
+  assert.match(migration,/entitlement_granted/);
+  assert.match(migration,/entitlement_revoked/);
+});
