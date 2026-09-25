@@ -5,7 +5,9 @@ import {
   requireSession,
   sessionCookies,
   sessionAal,
-  hasVerifiedTotp
+  hasVerifiedTotp,
+  refreshSession,
+  REFRESH_COOKIE
 } from "../lib/lockliel-core.mjs";
 
 function authHeaders(access){
@@ -126,7 +128,12 @@ export default async(request)=>{
       return json({error:removed.data.msg||removed.data.message||"Unable to remove MFA factor."},removed.response.status);
     }
 
-    return json({ok:true});
+    const refreshed=await refreshSession(s.cookies?.[REFRESH_COOKIE]||"").catch(()=>null);
+    return json(
+      {ok:true,aal:refreshed?.access_token?sessionAal(refreshed.access_token):"aal1"},
+      200,
+      refreshed?.access_token?sessionCookies(refreshed):[]
+    );
   }
 
   return json({error:"Unknown MFA action."},400);
