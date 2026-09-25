@@ -18,15 +18,20 @@ export default async(request)=>{
        return json({error:"Invalid payment provider update."},400);
      }
 
+     const checkoutAdapterReady=Boolean(b.checkoutAdapterReady);
+     const webhookReady=Boolean(b.webhookReady);
+     const verificationNote=String(b.verificationNote||"").trim().slice(0,2000);
+     const fullyReady=status==="active"&&checkoutAdapterReady&&webhookReady;
+
+     if(fullyReady&&verificationNote.length<20){
+       return json({error:"Fully verified providers require a verification note of at least 20 characters."},400);
+     }
+
      const patch={
        status,
-       checkout_adapter_ready:Boolean(b.checkoutAdapterReady),
-       webhook_ready:Boolean(b.webhookReady),
-       verification_note:String(b.verificationNote||"").trim().slice(0,2000)||null,
-       last_verified_at:
-         status==="active"&&Boolean(b.checkoutAdapterReady)&&Boolean(b.webhookReady)
-           ? new Date().toISOString()
-           : null
+       checkout_adapter_ready:checkoutAdapterReady,
+       webhook_ready:webhookReady,
+       verification_note:verificationNote||null
      };
 
      const r=await fetch(
