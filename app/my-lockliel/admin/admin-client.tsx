@@ -11,12 +11,10 @@ type AdminData={
  applications:any[];
  connectionQueue:any[];
 };
-const founderStatuses=["applied","under_review","needs_info","accepted","orientation","active_host","paused","declined"];
 export default function AdminClient(){
  const [data,setData]=useState<AdminData|null>(null),[error,setError]=useState(""),[working,setWorking]=useState<string|null>(null);
  async function load(){const r=await fetch("/api/lockliel/admin/summary",{cache:"no-store"});const d=await r.json();if(!r.ok){setError(r.status===403?"Your account does not have staff access.":d.error||"Unable to load admin.");return;}setData(d);}
  useEffect(()=>{load();},[]);
- async function updateStatus(applicationId:string,status:string){setWorking(applicationId);const r=await fetch("/api/lockliel/admin/summary",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"updateFounderStatus",applicationId,status})});setWorking(null);if(r.ok)await load();}
  async function resolveRequest(requestId:string,status="resolved"){setWorking(requestId);const r=await fetch("/api/lockliel/admin/summary",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"resolveConnectionRequest",requestId,status})});setWorking(null);if(r.ok)await load();}
  if(error)return <section className="ml-panel"><h2>Admin access</h2><p>{error}</p><Link href="/my-lockliel">Return to My Lockliel →</Link></section>;
  if(!data)return <div className="ml-loading">Opening Lockliel Admin…</div>;
@@ -31,5 +29,5 @@ export default function AdminClient(){
       ?"Requesting a Lockliel leader or mentor"
       :"Interested in hosting or helping lead"
 }</small></div><div className="ml-request-actions"><span className="ml-status">{String(r.request_type).replaceAll("_"," ")}</span><button disabled={working===r.id} onClick={()=>resolveRequest(r.id)}><CheckCircle2 size={14}/> Resolved</button></div></div>})}</section>}
- <section className="ml-panel ml-admin-list"><div className="ml-kicker">Founders 50 pipeline</div><h2>People raising their hand</h2>{data.applications.length?data.applications.map(a=><div className="ml-admin-row ml-founder-row" key={a.id}><div className="ml-founder-person"><b>{a.first_name} {a.last_name}</b><span>{[a.city,a.region,a.country].filter(Boolean).join(", ")}</span><small>{a.email}{a.phone?" • "+a.phone:""}</small></div><div className="ml-founder-controls"><select value={a.status} disabled={working===a.id} onChange={e=>updateStatus(a.id,e.target.value)}>{founderStatuses.map(s=><option value={s} key={s}>{s.replaceAll("_"," ")}</option>)}</select>{a.profile_id?<span className="ml-linked-account">My Lockliel linked</span>:<span className="ml-awaiting-account">No account yet</span>}</div></div>):<p>No applications yet.</p>}</section></>;
+ <section className="ml-panel ml-admin-list"><div className="ml-kicker">Founders 50 pipeline</div><h2>People raising their hand</h2>{data.applications.length?data.applications.map(a=><div className="ml-admin-row ml-founder-row" key={a.id}><div className="ml-founder-person"><b>{a.first_name} {a.last_name}</b><span>{[a.city,a.region,a.country].filter(Boolean).join(", ")}</span><small>{a.email}{a.phone?" • "+a.phone:""}</small></div><div className="ml-founder-controls"><span className="ml-status">{a.status.replaceAll("_"," ")}</span><Link href="#founders">Review →</Link>{a.profile_id?<span className="ml-linked-account">My Lockliel linked</span>:<span className="ml-awaiting-account">No account yet</span>}</div></div>):<p>No applications yet.</p>}</section></>;
 }
