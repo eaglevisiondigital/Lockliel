@@ -36,8 +36,7 @@ export default async(request)=>{
       new_people_count:clampInt(b.newPeopleCount,10000),
       next_leader_identified:Boolean(b.nextLeaderIdentified),
       testimony:String(b.testimony||"").trim().slice(0,5000)||null,
-      needs_support:String(b.needsSupport||"").trim().slice(0,5000)||null,
-      updated_at:new Date().toISOString()
+      needs_support:String(b.needsSupport||"").trim().slice(0,5000)||null
     };
 
     const r=await fetch(

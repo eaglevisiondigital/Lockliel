@@ -1601,13 +1601,33 @@ test("group records are staff-managed while leaders use operational group tools"
   const insertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.groups to authenticated;/)?.[1]||"";
   const updateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.groups to authenticated;/)?.[1]||"";
 
-  assert.doesNotMatch(insertGrant,/id/);
-  assert.doesNotMatch(insertGrant,/created_at/);
-  assert.doesNotMatch(updateGrant,/id/);
-  assert.doesNotMatch(updateGrant,/created_at/);
+  const insertColumns=insertGrant.split(",").map(value=>value.trim()).filter(Boolean);
+  const updateColumns=updateGrant.split(",").map(value=>value.trim()).filter(Boolean);
+  assert.ok(!insertColumns.includes("id"));
+  assert.ok(!insertColumns.includes("created_at"));
+  assert.ok(!updateColumns.includes("id"));
+  assert.ok(!updateColumns.includes("created_at"));
   assert.match(migration,/\['super_admin','admin','discipleship_admin'\]/);
   assert.match(migration,/Group identity fields cannot be changed after creation/);
   assert.match(leaderApi,/request\.method!==\"GET\"/);
   assert.match(checkinApi,/group_weekly_checkins/);
   assert.doesNotMatch(checkinApi,/method:\"PATCH\"[\s\S]*rest\/v1\/groups/);
+});
+
+
+test("group membership identity and weekly check-in timestamps are database-owned",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925135825_lockliel_harden_group_membership_identity.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-group-checkin.mjs","utf8");
+
+  const insertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.group_members to authenticated;/)?.[1]||"";
+  const updateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.group_members to authenticated;/)?.[1]||"";
+  const insertColumns=insertGrant.split(",").map(value=>value.trim()).filter(Boolean);
+  const updateColumns=updateGrant.split(",").map(value=>value.trim()).filter(Boolean);
+
+  assert.ok(!insertColumns.includes("joined_at"));
+  assert.ok(!updateColumns.includes("group_id"));
+  assert.ok(!updateColumns.includes("profile_id"));
+  assert.ok(!updateColumns.includes("joined_at"));
+  assert.match(migration,/Group membership identity cannot be changed after creation/);
+  assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
 });
