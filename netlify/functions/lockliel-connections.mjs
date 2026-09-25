@@ -133,7 +133,7 @@ export default async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
-  const [mine,reachRes,tr]=await Promise.all([
+  const [mine,reachRes,tr,leaderRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/conversation_members?profile_id=eq."+encodeURIComponent(uid)+"&left_at=is.null&select=conversation_id,member_role,joined_at",
       {headers:h}
@@ -145,17 +145,23 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/follow_up_tasks?assigned_to=eq."+encodeURIComponent(uid)+"&status=eq.open&select=id,subject_profile_id,task_type,due_at,notes,created_at&order=due_at.asc",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/leader_assignments?member_id=eq."+encodeURIComponent(uid)+"&status=eq.active&select=leader_id,assignment_type,assigned_at&limit=1",
+      {headers:h}
     )
   ]);
 
   const selfMemberships=mine.ok?await mine.json():[];
   const reachContacts=reachRes.ok?await reachRes.json():[];
   const tasks=tr.ok?await tr.json():[];
+  const leaderRows=leaderRes.ok?await leaderRes.json():[];
+  const leaderAssignment=leaderRows?.[0]||null;
   const ids=selfMemberships.map(x=>x.conversation_id);
   let conversations=[];
 
   if(ids.length){
-    const [allMembersRes,messagesRes]=await Promise.all([
+    const [allMembersRes,messagesRes,conversationRes]=await Promise.all([
       fetch(
         SUPABASE_URL+"/rest/v1/conversation_members?conversation_id="+encodeURIComponent(inFilter(ids))+"&left_at=is.null&select=conversation_id,profile_id,member_role,joined_at",
         {headers:h}
@@ -163,11 +169,17 @@ export default async(request)=>{
       fetch(
         SUPABASE_URL+"/rest/v1/messages?conversation_id="+encodeURIComponent(inFilter(ids))+"&select=id,conversation_id,sender_id,body,created_at&order=created_at.asc&limit=200",
         {headers:h}
+      ),
+      fetch(
+        SUPABASE_URL+"/rest/v1/conversations?id="+encodeURIComponent(inFilter(ids))+"&select=id,conversation_type,created_at",
+        {headers:h}
       )
     ]);
 
     const allMembers=allMembersRes.ok?await allMembersRes.json():[];
     const messages=messagesRes.ok?await messagesRes.json():[];
+    const conversationRows=conversationRes.ok?await conversationRes.json():[];
+    const conversationMap=Object.fromEntries(conversationRows.map(row=>[row.id,row]));
     const otherIds=[...new Set(allMembers.filter(m=>m.profile_id!==uid).map(m=>m.profile_id))];
 
     let cards=[];
@@ -187,17 +199,29 @@ export default async(request)=>{
         .filter(Boolean);
       return {
         id,
+        type:conversationMap[id]?.conversation_type||"direct",
         other:others[0]||null,
         messages:messages.filter(m=>m.conversation_id===id)
       };
     });
   }
 
+  let leader=null;
+  if(leaderAssignment?.leader_id){
+    const lr=await fetch(
+      SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=eq."+encodeURIComponent(leaderAssignment.leader_id)+"&select=profile_id,first_name,last_initial,city,region,country&limit=1",
+      {headers:h}
+    );
+    const rows=lr.ok?await lr.json():[];
+    leader=rows?.[0]||null;
+  }
+
   return json({
     conversations,
     tasks,
     reachContacts,
-    messagingEnabled
+    messagingEnabled,
+    leaderAssignment:leaderAssignment?{...leaderAssignment,person:leader}:null
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
