@@ -6,4 +6,4 @@ export default async(request)=>{
  const user=await authUser(access);if(!user)return json({error:"This confirmation link is invalid or expired."},401);
  return json({ok:true},200,sessionCookies({access_token:access,refresh_token:refresh,expires_in:Number(b.expiresIn)||3600}));
 };
-export const config={path:"/api/lockliel-auth/accept-session"};
+export const config={path:"/api/lockliel-auth/accept-session",rateLimit:{windowLimit:20,windowSize:60,aggregateBy:["ip"]}};
