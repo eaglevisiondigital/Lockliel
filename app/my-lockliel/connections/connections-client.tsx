@@ -36,6 +36,14 @@ type ReachContact={
   private_notes?:string|null;
 };
 
+function toLocalInput(value?:string|null){
+  if(!value)return "";
+  const date=new Date(value);
+  if(Number.isNaN(date.getTime()))return "";
+  const local=new Date(date.getTime()-date.getTimezoneOffset()*60_000);
+  return local.toISOString().slice(0,16);
+}
+
 export default function ConnectionsClient(){
   const [data,setData]=useState<{
     conversations:Conversation[];
@@ -142,6 +150,30 @@ export default function ConnectionsClient(){
     await load();
   }
 
+  async function saveReachDetails(e:React.FormEvent<HTMLFormElement>,id:string){
+    e.preventDefault();
+    setWorking(true);
+    setMessage("");
+    const f=new FormData(e.currentTarget);
+    const r=await fetch("/api/lockliel/connections",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        action:"updateReachDetails",
+        id,
+        displayName:f.get("displayName"),
+        relationshipContext:f.get("relationshipContext"),
+        nextFollowUpAt:f.get("nextFollowUpAt"),
+        privateNotes:f.get("privateNotes")
+      })
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+    if(!r.ok){setMessage(d.error||"Unable to save My Five details.");return;}
+    setMessage("My Five details saved.");
+    await load();
+  }
+
   async function updateReach(id:string,status:string){
     const r=await fetch("/api/lockliel/connections",{
       method:"POST",
@@ -210,6 +242,16 @@ export default function ConnectionsClient(){
             <button onClick={()=>markActivity(person.id,"shared")}><Share2 size={14}/> I shared</button>
             <button onClick={()=>markActivity(person.id,"followed_up")}><MessageCircle size={14}/> Followed up</button>
           </div>
+          <details className="ml-five-edit">
+            <summary>Edit details & follow-up</summary>
+            <form onSubmit={e=>saveReachDetails(e,person.id)}>
+              <label>Name<input name="displayName" required defaultValue={person.display_name}/></label>
+              <label>How you know them <span>Optional</span><input name="relationshipContext" defaultValue={person.relationship_context||""} placeholder="Friend, coworker, neighbor…"/></label>
+              <label>Next follow-up <span>Optional</span><input name="nextFollowUpAt" type="datetime-local" defaultValue={toLocalInput(person.next_follow_up_at)}/></label>
+              <label>Private note <span>Optional</span><textarea name="privateNotes" rows={3} defaultValue={person.private_notes||""} placeholder="Only you can see this note."/></label>
+              <button className="ml-action" disabled={working}>{working?"Saving…":"Save details"}</button>
+            </form>
+          </details>
           <div className="ml-five-dates">
             {person.last_shared_at&&<span>Shared {new Date(person.last_shared_at).toLocaleDateString()}</span>}
             {person.last_follow_up_at&&<span>Followed up {new Date(person.last_follow_up_at).toLocaleDateString()}</span>}
