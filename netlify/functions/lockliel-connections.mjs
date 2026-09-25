@@ -273,11 +273,11 @@ export default async(request)=>{
       if(!taskId)return json({error:"Task required"},400);
 
       const r=await fetch(
-        SUPABASE_URL+"/rest/v1/follow_up_tasks?id=eq."+encodeURIComponent(taskId)+"&assigned_to=eq."+encodeURIComponent(uid),
+        SUPABASE_URL+"/rest/v1/follow_up_tasks?id=eq."+encodeURIComponent(taskId)+"&assigned_to=eq."+encodeURIComponent(uid)+"&status=in.(open,in_progress)",
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=minimal"},
-          body:JSON.stringify({status:"completed",completed_at:new Date().toISOString()})
+          body:JSON.stringify({status:"completed"})
         }
       );
       return r.ok
