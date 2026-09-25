@@ -326,3 +326,14 @@ test("Founders 50 review history stays human-reviewed and MFA-gated",()=>{
   assert.match(client,/Human review/);
   assert.match(client,/not converted into an automated spiritual score/i);
 });
+
+
+test("My Five detail edits remain owner-scoped and private",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
+  assert.match(api,/b\.action==="updateReachDetails"/);
+  assert.match(api,/reach_contacts\?id=eq\..*owner_id=eq\./s);
+  assert.match(api,/private_notes:privateNotes/);
+  assert.match(client,/Edit details & follow-up/);
+  assert.match(client,/Only you can see this note/);
+});
