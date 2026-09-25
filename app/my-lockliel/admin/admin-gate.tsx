@@ -7,8 +7,7 @@ const ADMIN_ROLES=[
   "discipleship_admin",
   "founders50_reviewer",
   "finance_admin",
-  "content_admin",
-  "fulfillment_admin"
+  "content_admin"
 ];
 
 export default function AdminGate({children}:{children:React.ReactNode}){
