@@ -1591,3 +1591,23 @@ test("tables without delete workflows do not retain dormant DELETE privileges",(
     assert.match(migration,new RegExp("revoke delete on table public\\."+table+" from authenticated"));
   }
 });
+
+
+test("group records are staff-managed while leaders use operational group tools",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925135715_lockliel_staff_owned_group_records.sql","utf8");
+  const leaderApi=fs.readFileSync("netlify/functions/lockliel-leader.mjs","utf8");
+  const checkinApi=fs.readFileSync("netlify/functions/lockliel-group-checkin.mjs","utf8");
+
+  const insertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.groups to authenticated;/)?.[1]||"";
+  const updateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.groups to authenticated;/)?.[1]||"";
+
+  assert.doesNotMatch(insertGrant,/id/);
+  assert.doesNotMatch(insertGrant,/created_at/);
+  assert.doesNotMatch(updateGrant,/id/);
+  assert.doesNotMatch(updateGrant,/created_at/);
+  assert.match(migration,/\['super_admin','admin','discipleship_admin'\]/);
+  assert.match(migration,/Group identity fields cannot be changed after creation/);
+  assert.match(leaderApi,/request\.method!==\"GET\"/);
+  assert.match(checkinApi,/group_weekly_checkins/);
+  assert.doesNotMatch(checkinApi,/method:\"PATCH\"[\s\S]*rest\/v1\/groups/);
+});
