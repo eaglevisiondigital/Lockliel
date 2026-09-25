@@ -28,8 +28,7 @@ export default async(request)=>{
           headers:{...h,Prefer:"return=representation"},
           body:JSON.stringify({
             assigned_to:s.user.id,
-            next_follow_up_at:b.nextFollowUpAt||new Date(Date.now()+24*60*60*1000).toISOString(),
-            updated_at:new Date().toISOString()
+            next_follow_up_at:b.nextFollowUpAt||new Date(Date.now()+24*60*60*1000).toISOString()
           })
         }
       );
@@ -52,8 +51,7 @@ export default async(request)=>{
         assigned_to:b.assignToMe?s.user.id:(b.keepAssignment?undefined:null),
         next_follow_up_at:nextFollowUpAt,
         admin_notes:String(b.adminNotes||"").trim().slice(0,5000)||null,
-        last_contacted_at:status==="contacted"?new Date().toISOString():undefined,
-        updated_at:new Date().toISOString()
+        last_contacted_at:status==="contacted"?new Date().toISOString():undefined
       };
       Object.keys(patch).forEach(k=>patch[k]===undefined&&delete patch[k]);
 
