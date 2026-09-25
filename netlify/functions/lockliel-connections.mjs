@@ -93,6 +93,42 @@ export default async(request)=>{
       return json({ok:true,reachContact:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
+    if(b.action==="updateReachDetails"){
+      const id=String(b.id||"");
+      const displayName=String(b.displayName||"").trim().slice(0,160);
+      const relationshipContext=String(b.relationshipContext||"").trim().slice(0,500)||null;
+      const privateNotes=String(b.privateNotes||"").trim().slice(0,3000)||null;
+      const nextRaw=String(b.nextFollowUpAt||"").trim();
+
+      if(!id||!displayName)return json({error:"Enter the person's first name or a name you will recognize."},400);
+
+      let nextFollowUpAt=null;
+      if(nextRaw){
+        const parsed=Date.parse(nextRaw);
+        if(Number.isNaN(parsed))return json({error:"Choose a valid follow-up date."},400);
+        nextFollowUpAt=new Date(parsed).toISOString();
+      }
+
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+"&owner_id=eq."+encodeURIComponent(uid),
+        {
+          method:"PATCH",
+          headers:{...h,Prefer:"return=representation"},
+          body:JSON.stringify({
+            display_name:displayName,
+            relationship_context:relationshipContext,
+            private_notes:privateNotes,
+            next_follow_up_at:nextFollowUpAt,
+            updated_at:new Date().toISOString()
+          })
+        }
+      );
+      if(!r.ok)return json({error:"Unable to update this My Five person."},r.status);
+      const rows=await r.json();
+      if(!rows.length)return json({error:"My Five person not found."},404);
+      return json({ok:true,reachContact:rows[0]},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
     if(b.action==="updateReachContact"){
       const id=String(b.id||"");
       const status=String(b.status||"");
