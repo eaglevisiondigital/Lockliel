@@ -250,7 +250,7 @@ test("new-member onboarding flows profile to faith journey to course without tra
   const profile=fs.readFileSync("app/my-lockliel/profile/profile-form.tsx","utf8");
   const faith=fs.readFileSync("app/my-lockliel/faith-profile/faith-profile-form.tsx","utf8");
   assert.match(profile,/onboarding_status===\"active\"\?\"\/my-lockliel\":\"\/my-lockliel\/faith-profile\"/);
-  assert.match(faith,/router\.push\("\/my-lockliel\/journey"\)/);
+  assert.match(faith,/router\.push\(existing\?\"\/my-lockliel\":\"\/my-lockliel\/journey\"\)/);
 });
 
 
@@ -302,4 +302,15 @@ test("leader matching uses language only as a human-reviewed signal",()=>{
   assert.match(leaders,/A Lockliel reviewer makes the final assignment/);
   assert.match(groups,/suggestedGroups/);
   assert.match(groups,/language_code/);
+});
+
+
+test("faith profile remains editable after onboarding",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-faith-profile.mjs","utf8");
+  const form=fs.readFileSync("app/my-lockliel/faith-profile/faith-profile-form.tsx","utf8");
+  const profilePage=fs.readFileSync("app/my-lockliel/profile/page.tsx","utf8");
+  assert.match(api,/request\.method===\"GET\"/);
+  assert.match(form,/setExisting\(true\)/);
+  assert.match(form,/Save changes/);
+  assert.match(profilePage,/Faith & connection preferences/);
 });
