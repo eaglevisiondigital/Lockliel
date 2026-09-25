@@ -1,6 +1,7 @@
-import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
+import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 export default async(request)=>{
  const s=await requireSession(request);if(!s.user||!s.access)return json({error:"Unauthorized"},401);
+  if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
  const h=dbHeaders(s.access),uid=encodeURIComponent(s.user.id);
  const rr=await fetch(SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+uid+"&select=role",{headers:h}),roles=rr.ok?(await rr.json()).map(r=>r.role):[];
  if(!roles.some(r=>["super_admin","admin"].includes(r)))return json({error:"System administration access required"},403);
