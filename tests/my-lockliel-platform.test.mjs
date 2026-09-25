@@ -1472,3 +1472,20 @@ test("gift benefits and gift records enforce financial integrity",()=>{
   assert.match(migration,/gift_record_changed/);
   assert.match(migration,/donor_identity_changed/);
 });
+
+
+test("orders and payment events are system-owned financial records",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925133825_lockliel_system_owned_orders_and_payment_events.sql","utf8");
+  const ordersApi=fs.readFileSync("netlify/functions/lockliel-admin-orders.mjs","utf8");
+
+  assert.match(migration,/drop policy if exists orders_finance_update/);
+  assert.match(migration,/revoke update on table public\.orders[\s\S]*from authenticated/);
+  assert.match(migration,/orders_total_matches_components/);
+  assert.match(migration,/Order financial identity and totals cannot be changed after creation/);
+  assert.match(migration,/Order payment provider cannot be replaced once recorded/);
+  assert.match(migration,/Payment event identity cannot be changed after receipt/);
+  assert.match(migration,/new\.processed_at:=coalesce/);
+  assert.match(migration,/payment_events_safe_metadata_object/);
+  assert.match(ordersApi,/order_fulfillment_events/);
+  assert.doesNotMatch(ordersApi,/rest\/v1\/orders\?.*method:"PATCH"/s);
+});
