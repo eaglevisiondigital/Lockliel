@@ -1976,3 +1976,33 @@ test("server sessions fail closed when the Supabase Auth session row is gone",()
   assert.match(core,/if\(user&&!\(await activeSession\(access\)\)\)/);
   assert.match(core,/refreshed=null/);
 });
+
+
+test("every Lockliel server route is authenticated unless explicitly public and rate-limited",()=>{
+  const publicRoutes=new Set([
+    "lockliel-accept-session.mjs",
+    "lockliel-founders50.mjs",
+    "lockliel-login.mjs",
+    "lockliel-logout.mjs",
+    "lockliel-recover.mjs",
+    "lockliel-referral-redirect.mjs",
+    "lockliel-reset-password.mjs",
+    "lockliel-signup.mjs"
+  ]);
+
+  const files=fs.readdirSync("netlify/functions")
+    .filter(name=>name.startsWith("lockliel-")&&name.endsWith(".mjs"));
+
+  assert.ok(files.length>=40);
+
+  for(const name of files){
+    const source=fs.readFileSync("netlify/functions/"+name,"utf8");
+
+    if(publicRoutes.has(name)){
+      assert.match(source,/rateLimit/,name+" must be rate-limited because it is intentionally public.");
+      continue;
+    }
+
+    assert.match(source,/\brequireSession\b/,name+" must use the shared Lockliel session guard.");
+  }
+});
