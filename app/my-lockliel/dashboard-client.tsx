@@ -110,10 +110,11 @@ export default function MyLocklielDashboard(){
 
     const extra:any[]=[];
     const roles=data.roles||[];
-    const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin","fulfillment_admin"];
+    const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin"];
     const hasAdminAccess=roles.some(role=>adminCapableRoles.includes(role));
     const isRoleLeader=roles.includes("group_leader");
     const hasLeaderTools=Boolean(data.leaderProfile)||Number(data.peopleAssignedCount||0)>0||isRoleLeader;
+    const hasFulfillmentAccess=roles.includes("fulfillment_admin");
     const founderStatus=String(data.founderStatus||"");
     const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
@@ -153,6 +154,16 @@ export default function MyLocklielDashboard(){
         text:"See the people and groups you are responsible for, follow up intentionally, and keep private member information protected.",
         href:"/my-lockliel/leader",
         cta:"Open leader tools"
+      });
+    }
+
+    if(hasFulfillmentAccess){
+      extra.push({
+        icon:BookOpen,
+        title:"Fulfillment Tools",
+        text:"Process paid orders, record shipping updates, and keep physical book delivery moving without access to finance or private ministry data.",
+        href:"/my-lockliel/fulfillment",
+        cta:"Open fulfillment"
       });
     }
 
