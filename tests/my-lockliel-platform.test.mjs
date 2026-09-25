@@ -1489,3 +1489,30 @@ test("orders and payment events are system-owned financial records",()=>{
   assert.match(ordersApi,/order_fulfillment_events/);
   assert.doesNotMatch(ordersApi,/rest\/v1\/orders\?.*method:"PATCH"/s);
 });
+
+
+test("checkout sessions have immutable financial identity and terminal lifecycle",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925134028_lockliel_harden_checkout_session_integrity.sql","utf8");
+
+  assert.match(migration,/checkout_sessions_amount_positive/);
+  assert.match(migration,/checkout_sessions_currency_format/);
+  assert.match(migration,/Checkout financial identity cannot be changed after creation/);
+  assert.match(migration,/Checkout provider session reference cannot be replaced once recorded/);
+  assert.match(migration,/Terminal checkout sessions cannot be reopened/);
+  assert.match(migration,/new\.completed_at:=coalesce/);
+  assert.match(migration,/checkout_session_status_changed/);
+});
+
+test("partner commitments keep amount and provider identity immutable",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925134147_lockliel_harden_partner_commitment_integrity.sql","utf8");
+
+  assert.match(migration,/partner_commitments_amount_positive/);
+  assert.match(migration,/partner_commitments_currency_format/);
+  assert.match(migration,/Partnership commitment identity and amount fields cannot be changed after creation/);
+  assert.match(migration,/Partnership payment provider cannot be replaced once recorded/);
+  assert.match(migration,/Partnership subscription reference cannot be replaced once recorded/);
+  assert.match(migration,/new\.started_at:=now\(\)/);
+  assert.match(migration,/new\.cancelled_at:=now\(\)/);
+  assert.match(migration,/partner_commitment_changed/);
+  assert.match(migration,/donor_identity_changed/);
+});
