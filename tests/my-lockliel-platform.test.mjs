@@ -631,3 +631,20 @@ test("referral analytics allow owner shares but block direct anonymous and destr
   assert.match(shareApi,/event_type:"share_initiated"/);
   assert.match(redirectApi,/functions\/v1\/track-referral/);
 });
+
+
+test("referral tracker requires a valid visitor token and deduplicates visits",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925113704_lockliel_dedupe_referral_visits.sql","utf8");
+  const edge=fs.readFileSync("supabase/functions/track-referral/index.ts","utf8");
+  const redirect=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
+  const shareUi=fs.readFileSync("app/my-lockliel/share/share-client.tsx","utf8");
+
+  assert.match(migration,/create unique index referral_events_unique_visitor_visit_uidx/);
+  assert.match(migration,/event_type='visit'/);
+  assert.match(edge,/Invalid visitor/);
+  assert.match(edge,/visitor_key:visitorKey/);
+  assert.match(redirect,/visitorPattern/);
+  assert.match(redirect,/crypto\.randomUUID\(\)/);
+  assert.match(redirect,/rateLimit/);
+  assert.match(shareUi,/Unique visits/);
+});
