@@ -40,7 +40,11 @@ export default async(request)=>{
           member_note:String(b.memberNote||"").trim().slice(0,3000)||null
         })
       });
-      if(!r.ok)return json({error:"Unable to submit privacy request."},r.status);
+      if(!r.ok)return json({
+        error:r.status===409
+          ?"You already have an open request of this type."
+          :"Unable to submit privacy request."
+      },r.status);
 
       return json({ok:true,request:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }

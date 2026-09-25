@@ -1533,3 +1533,21 @@ test("order items, shipping addresses, and fulfillment events are bounded system
   assert.match(migration,/new\.created_at:=now\(\)/);
   assert.match(api,/actor_profile_id:s\.user\.id/);
 });
+
+
+test("privacy request lifecycle is database-owned and race-safe",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925134636_lockliel_harden_privacy_request_lifecycle.sql","utf8");
+  const memberApi=fs.readFileSync("netlify/functions/lockliel-privacy.mjs","utf8");
+  const adminApi=fs.readFileSync("netlify/functions/lockliel-admin-privacy.mjs","utf8");
+
+  assert.match(migration,/privacy_requests_one_open_type_uidx/);
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*request_type[\s\S]*status[\s\S]*member_note[\s\S]*\) on table public\.privacy_requests/);
+  assert.match(migration,/grant update \([\s\S]*status[\s\S]*admin_note[\s\S]*\) on table public\.privacy_requests/);
+  assert.match(migration,/Privacy request identity and member submission fields cannot be changed after submission/);
+  assert.match(migration,/new\.handled_by:=actor/);
+  assert.match(migration,/new\.resolved_at:=coalesce\(old\.resolved_at,now\(\)\)/);
+  assert.match(migration,/Completed account deletion requests require documented processing details/);
+  assert.doesNotMatch(adminApi,/handled_by:s\.user\.id/);
+  assert.doesNotMatch(adminApi,/resolved_at:new Date/);
+  assert.match(memberApi,/r\.status===409[\s\S]*already have an open request of this type/);
+});

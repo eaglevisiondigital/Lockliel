@@ -27,10 +27,7 @@ export default async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({
-            status:"in_review",
-            handled_by:s.user.id
-          })
+          body:JSON.stringify({status:"in_review"})
         }
       );
       if(!r.ok)return json({error:"Unable to claim privacy request."},r.status);
@@ -67,9 +64,7 @@ export default async(request)=>{
           headers:{...h,Prefer:"return=representation"},
           body:JSON.stringify({
             status,
-            handled_by:s.user.id,
-            admin_note:adminNote||null,
-            resolved_at:new Date().toISOString()
+            admin_note:adminNote||null
           })
         }
       );
