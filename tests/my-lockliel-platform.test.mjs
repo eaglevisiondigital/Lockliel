@@ -703,3 +703,19 @@ test("fulfillment staff update orders only through fulfillment events",()=>{
   assert.match(ordersApi,/order_fulfillment_events/);
   assert.doesNotMatch(ordersApi,/rest\/v1\/orders\?.*method:"PATCH"/s);
 });
+
+
+test("connection request details are immutable after submission",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925115135_lockliel_immutable_connection_request_details.sql","utf8");
+  const connections=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const groups=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+  const adminGroups=fs.readFileSync("netlify/functions/lockliel-admin-groups.mjs","utf8");
+
+  assert.match(migration,/grant insert \([\s\S]*requester_id[\s\S]*request_type[\s\S]*message[\s\S]*\) on table public\.connection_requests to authenticated/);
+  assert.match(migration,/grant update \([\s\S]*status[\s\S]*\) on table public\.connection_requests to authenticated/);
+  assert.match(migration,/status = 'open'/);
+  assert.match(migration,/normalize_connection_request_resolution/);
+  assert.doesNotMatch(connections,/status:"closed",resolved_at/);
+  assert.doesNotMatch(groups,/status:"closed",resolved_at/);
+  assert.doesNotMatch(adminGroups,/status:"resolved",resolved_at/);
+});
