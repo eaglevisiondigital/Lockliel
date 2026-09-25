@@ -1782,3 +1782,20 @@ test("account security changes email and password through Supabase Auth with MFA
   assert.match(client,/Change password/);
   assert.match(client,/\/api\/lockliel-auth\/account-security/);
 });
+
+
+test("confirmed email changes relink only unowned records and password changes are audited without password material",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925153043_lockliel_complete_account_identity_lifecycle.sql","utf8");
+  const resetApi=fs.readFileSync("netlify/functions/lockliel-reset-password.mjs","utf8");
+  const resetForm=fs.readFileSync("app/my-lockliel/reset-password/reset-password-form.tsx","utf8");
+
+  assert.match(migration,/link_confirmed_financial_records_for_user/);
+  assert.match(migration,/new\.email_confirmed_at is not null/);
+  assert.match(migration,/Your sign-in email was updated/);
+  assert.match(migration,/account_password_changed/);
+  assert.match(migration,/after update of encrypted_password/);
+  assert.match(migration,/password_changed',true/);
+  assert.doesNotMatch(migration,/new\.encrypted_password[\s\S]*metadata/);
+  assert.match(resetApi,/password\.length>128/);
+  assert.match(resetForm,/maxLength=\{128\}/);
+});
