@@ -10,7 +10,7 @@ import GroupsAdminClient from "./groups-admin-client";
 import LeadersAdminClient from "./leaders-admin-client";
 import LeadsAdminClient from "./leads-admin-client";
 import LineageAdminClient from "./lineage-admin-client";
-import NotesAdminClient from "./notes-admin-client";
+import NotesAdminClient from "./notes-admin-client";import OrdersAdminClient from "./orders-admin-client";
 import PeopleProgressClient from "./people-progress-client";
 import PrivacyAdminClient from "./privacy-admin-client";
 import ProductsAdminClient from "./products-admin-client";
