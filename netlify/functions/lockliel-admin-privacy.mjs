@@ -47,6 +47,10 @@ export default async(request)=>{
       if(current.status!=="in_review")return json({error:"Privacy request must be in review before resolution."},409);
 
       const adminNote=String(b.adminNote||"").trim().slice(0,5000);
+      const deletionSessionsRevoked=Boolean(b.deletionSessionsRevoked);
+      const deletionAuthAccountProcessed=Boolean(b.deletionAuthAccountProcessed);
+      const deletionPersonalDataProcessed=Boolean(b.deletionPersonalDataProcessed);
+
       if(
         current.request_type==="account_deletion" &&
         status==="completed" &&
@@ -57,15 +61,39 @@ export default async(request)=>{
         },400);
       }
 
+      if(
+        current.request_type==="account_deletion" &&
+        status==="completed" &&
+        !(
+          deletionSessionsRevoked &&
+          deletionAuthAccountProcessed &&
+          deletionPersonalDataProcessed
+        )
+      ){
+        return json({
+          error:"Complete all account-deletion processing checks before marking the request completed."
+        },400);
+      }
+
+      const patch={
+        status,
+        admin_note:adminNote||null
+      };
+
+      if(current.request_type==="account_deletion"){
+        Object.assign(patch,{
+          deletion_sessions_revoked:deletionSessionsRevoked,
+          deletion_auth_account_processed:deletionAuthAccountProcessed,
+          deletion_personal_data_processed:deletionPersonalDataProcessed
+        });
+      }
+
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id),
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({
-            status,
-            admin_note:adminNote||null
-          })
+          body:JSON.stringify(patch)
         }
       );
       if(!r.ok)return json({error:"Unable to resolve privacy request."},r.status);
@@ -79,7 +107,7 @@ export default async(request)=>{
 
   const [requestsRes,peopleRes]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/privacy_requests?select=id,profile_id,request_type,status,member_note,admin_note,requested_at,updated_at,resolved_at,handled_by&order=requested_at.asc&limit=500",
+      SUPABASE_URL+"/rest/v1/privacy_requests?select=id,profile_id,request_type,status,member_note,admin_note,requested_at,updated_at,resolved_at,handled_by,deletion_sessions_revoked,deletion_auth_account_processed,deletion_personal_data_processed&order=requested_at.asc&limit=500",
       {headers:h}
     ),
     fetch(

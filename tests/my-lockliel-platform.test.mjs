@@ -1936,3 +1936,26 @@ test("privacy request history survives profile deletion without weakening member
   assert.match(migration,/Administrator access required for privacy request processing/);
   assert.match(adminUi,/processing record is retained/i);
 });
+
+
+test("account deletion completion requires session, Auth, and personal-data processing checks",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925174856_lockliel_require_account_deletion_processing_checks.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-privacy.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/privacy-admin-client.tsx","utf8");
+
+  assert.match(migration,/deletion_sessions_revoked boolean not null default false/);
+  assert.match(migration,/deletion_auth_account_processed boolean not null default false/);
+  assert.match(migration,/deletion_personal_data_processed boolean not null default false/);
+  assert.match(migration,/privacy_requests_completed_deletion_checks/);
+  assert.match(migration,/Completed account deletion requests require all deletion processing checks/);
+  assert.match(migration,/Members cannot change staff processing fields/);
+  assert.match(api,/deletionSessionsRevoked/);
+  assert.match(api,/deletionAuthAccountProcessed/);
+  assert.match(api,/deletionPersonalDataProcessed/);
+  assert.match(api,/Complete all account-deletion processing checks/);
+  assert.match(client,/Deletion processing checklist/);
+  assert.match(client,/already-issued JWT/);
+  assert.match(client,/Active sessions have been revoked or signed out/);
+  assert.match(client,/Supabase Auth account processing is complete/);
+  assert.match(client,/personal-data processing is complete/);
+});

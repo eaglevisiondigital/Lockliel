@@ -2,12 +2,19 @@
 import {useEffect,useState} from "react";
 import {CheckCircle2,FileDown,ShieldAlert,Trash2} from "lucide-react";
 
+type DeletionChecks={
+  sessionsRevoked:boolean;
+  authAccountProcessed:boolean;
+  personalDataProcessed:boolean;
+};
+
 export default function PrivacyAdminClient(){
   const [data,setData]=useState<any>(null);
   const [hidden,setHidden]=useState(false);
   const [working,setWorking]=useState<string|null>(null);
   const [message,setMessage]=useState("");
   const [notes,setNotes]=useState<Record<string,string>>({});
+  const [deletionChecks,setDeletionChecks]=useState<Record<string,DeletionChecks>>({});
 
   async function load(){
     const r=await fetch("/api/lockliel/admin/privacy",{cache:"no-store"});
@@ -18,14 +25,22 @@ export default function PrivacyAdminClient(){
 
   useEffect(()=>{load();},[]);
 
-  async function act(id:string,action:string,status?:string,adminNote?:string){
+  async function act(id:string,action:string,status?:string,adminNote?:string,checks?:DeletionChecks){
     setWorking(id);
     setMessage("");
 
     const r=await fetch("/api/lockliel/admin/privacy",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({id,action,status,adminNote})
+      body:JSON.stringify({
+        id,
+        action,
+        status,
+        adminNote,
+        deletionSessionsRevoked:checks?.sessionsRevoked,
+        deletionAuthAccountProcessed:checks?.authAccountProcessed,
+        deletionPersonalDataProcessed:checks?.personalDataProcessed
+      })
     });
 
     const d=await r.json().catch(()=>({}));
@@ -38,6 +53,11 @@ export default function PrivacyAdminClient(){
 
     setMessage("Privacy request updated.");
     setNotes(v=>({...v,[id]:""}));
+    setDeletionChecks(v=>{
+      const next={...v};
+      delete next[id];
+      return next;
+    });
     await load();
   }
 
@@ -66,6 +86,12 @@ export default function PrivacyAdminClient(){
       {open.map((r:any)=>{
         const deletion=r.request_type==="account_deletion";
         const note=notes[r.id]||"";
+        const checks=deletionChecks[r.id]||{
+          sessionsRevoked:Boolean(r.deletion_sessions_revoked),
+          authAccountProcessed:Boolean(r.deletion_auth_account_processed),
+          personalDataProcessed:Boolean(r.deletion_personal_data_processed)
+        };
+        const checksReady=checks.sessionsRevoked&&checks.authAccountProcessed&&checks.personalDataProcessed;
 
         return <article key={r.id} className={deletion?"ml-privacy-admin-request deletion":"ml-privacy-admin-request"}>
           <div className="ml-privacy-admin-icon">
@@ -77,17 +103,48 @@ export default function PrivacyAdminClient(){
             <span>{r.person?.email||""}</span>
             <small>{r.request_type.replaceAll("_"," ")} • {new Date(r.requested_at).toLocaleDateString()}</small>
 
-            {r.status==="in_review"&&deletion&&<label className="ml-privacy-processing-note">
-              Processing note
-              <textarea
-                rows={3}
-                maxLength={5000}
-                value={note}
-                onChange={e=>setNotes(v=>({...v,[r.id]:e.target.value}))}
-                placeholder="Document what account and personal-data processing was completed, plus any records retained for legitimate legal, financial, or operational obligations."
-              />
-              <span>{note.trim().length<20?"Add at least 20 characters before marking processed.":"Processing note ready."}</span>
-            </label>}
+            {r.status==="in_review"&&deletion&&<>
+              <div className="ml-privacy-deletion-checks">
+                <strong>Deletion processing checklist</strong>
+                <p>Deleting the Supabase Auth user does not by itself invalidate an already-issued JWT. Revoke active sessions before processing the Auth account.</p>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={checks.sessionsRevoked}
+                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,sessionsRevoked:e.target.checked}}))}
+                  />
+                  Active sessions have been revoked or signed out.
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={checks.authAccountProcessed}
+                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,authAccountProcessed:e.target.checked}}))}
+                  />
+                  Supabase Auth account processing is complete.
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={checks.personalDataProcessed}
+                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,personalDataProcessed:e.target.checked}}))}
+                  />
+                  Lockliel personal-data processing is complete under the approved retention requirements.
+                </label>
+              </div>
+
+              <label className="ml-privacy-processing-note">
+                Processing note
+                <textarea
+                  rows={3}
+                  maxLength={5000}
+                  value={note}
+                  onChange={e=>setNotes(v=>({...v,[r.id]:e.target.value}))}
+                  placeholder="Document what account and personal-data processing was completed, plus any records retained for legitimate legal, financial, or operational obligations."
+                />
+                <span>{note.trim().length<20?"Add at least 20 characters before marking processed.":"Processing note ready."}</span>
+              </label>
+            </>}
           </div>
 
           <div className="ml-privacy-admin-state">
@@ -117,8 +174,8 @@ export default function PrivacyAdminClient(){
 
             {r.status==="in_review"&&deletion&&<>
               <button
-                disabled={working===r.id||note.trim().length<20}
-                onClick={()=>act(r.id,"resolve","completed",note)}
+                disabled={working===r.id||note.trim().length<20||!checksReady}
+                onClick={()=>act(r.id,"resolve","completed",note,checks)}
               >
                 <CheckCircle2 size={13}/> Mark processed
               </button>
