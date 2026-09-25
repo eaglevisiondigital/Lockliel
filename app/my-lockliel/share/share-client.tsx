@@ -156,7 +156,7 @@ export default function ShareCenter(){
   const totals=stats?.totals||{};
   const impact=[
     ["Shares",totals.share_initiated||0,Share2],
-    ["Visits",totals.visit||0,Eye],
+    ["Unique visits",totals.visit||0,Eye],
     ["People joined",totals.unique_joined||0,UserPlus],
     ["Discipleship starts",totals.course_started||0,Sprout],
     ["Lessons completed",totals.lesson_completed||0,CheckCircle2]
@@ -251,7 +251,7 @@ export default function ShareCenter(){
             <b>{item.asset?.title||item.contentType||"Shared resource"}</b>
             <span>{item.asset?.asset_type?.replaceAll("_"," ")||item.campaign}</span>
           </div>
-          <div><strong>{item.counts.visits}</strong><span>visits</span></div>
+          <div><strong>{item.counts.visits}</strong><span>unique visits</span></div>
           <div><strong>{item.counts.joined}</strong><span>joined</span></div>
           <div><strong>{item.counts.courseStarts}</strong><span>started</span></div>
           <div><strong>{item.counts.lessonCompletions}</strong><span>lessons</span></div>
