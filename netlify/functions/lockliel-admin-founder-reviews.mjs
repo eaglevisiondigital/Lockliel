@@ -20,10 +20,14 @@ export default async(request)=>{
     const applicationId=String(b.applicationId||"");
     const decision=String(b.decision||"note");
     const rationale=String(b.rationale||"").trim().slice(0,5000)||null;
-    const allowed=["note","needs_info","accept","decline","pause"];
+    const allowed=["note","needs_info","accept","decline","pause","activate_host"];
 
     if(!applicationId||!allowed.includes(decision)){
       return json({error:"Choose a valid application and review action."},400);
+    }
+
+    if(decision!=="note"&&(!rationale||rationale.length<20)){
+      return json({error:"Record a review rationale of at least 20 characters for this decision."},400);
     }
 
     const r=await fetch(SUPABASE_URL+"/rest/v1/founders50_reviews",{
