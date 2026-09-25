@@ -181,6 +181,18 @@ export default function ShareCenter(){
       <p>Approved Lockliel resources will appear here automatically as they are released.</p>
     </section>}
 
+    {stats?.channels&&Object.values(stats.channels).some((value:any)=>Number(value)>0)&&<section className="ml-panel ml-share-channels">
+      <div className="ml-kicker">How you’re sharing</div>
+      <h2>Share actions by channel</h2>
+      <p>These counts show the channel you chose from My Lockliel. They do not prove a message was delivered or opened.</p>
+      <div className="ml-share-channel-grid">
+        <article><Share2 size={16}/><strong>{stats.channels.native||0}</strong><span>Native / social</span></article>
+        <article><MessageSquareText size={16}/><strong>{stats.channels.sms||0}</strong><span>Text</span></article>
+        <article><Mail size={16}/><strong>{stats.channels.email||0}</strong><span>Email</span></article>
+        <article><Copy size={16}/><strong>{stats.channels.copy||0}</strong><span>Copied link</span></article>
+      </div>
+    </section>}
+
     {stats?.breakdown?.length>0&&<section className="ml-panel ml-share-breakdown">
       <div className="ml-kicker">What is reaching people?</div>
       <h2>Impact by resource</h2>
