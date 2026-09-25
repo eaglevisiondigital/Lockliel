@@ -17,7 +17,9 @@ export default function PrivacyClient(){
   useEffect(()=>{load();},[]);
 
   async function create(requestType:string){
-    setWorking(true);setMessage("");
+    setWorking(true);
+    setMessage("");
+
     const r=await fetch("/api/lockliel/privacy",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
@@ -25,7 +27,12 @@ export default function PrivacyClient(){
     });
     const d=await r.json().catch(()=>({}));
     setWorking(false);
-    if(!r.ok){setMessage(d.error||"Unable to submit request.");return;}
+
+    if(!r.ok){
+      setMessage(d.error||"Unable to submit request.");
+      return;
+    }
+
     setMessage("Your request has been submitted.");
     await load();
   }
@@ -43,28 +50,55 @@ export default function PrivacyClient(){
 
   if(!data)return <div className="ml-loading">Loading privacy settings…</div>;
 
-  const openExport=data.requests.find((r:any)=>r.request_type==="data_export"&&["submitted","in_review"].includes(r.status));
-  const openDelete=data.requests.find((r:any)=>r.request_type==="account_deletion"&&["submitted","in_review"].includes(r.status));
+  const openExport=data.requests.find(
+    (r:any)=>r.request_type==="data_export"&&["submitted","in_review"].includes(r.status)
+  );
+  const openDelete=data.requests.find(
+    (r:any)=>r.request_type==="account_deletion"&&["submitted","in_review"].includes(r.status)
+  );
 
   return <section className="ml-privacy-center">
     {message&&<p className="ml-share-message">{message}</p>}
+
     <div className="ml-privacy-actions">
       <article className="ml-panel">
         <div className="ml-icon"><FileDown size={20}/></div>
-        <h2>Request a copy of my data</h2>
-        <p>Ask the Lockliel team for an export of the personal information connected to your account.</p>
-        {openExport
-          ? <div className="ml-request-state"><ShieldCheck size={15}/><span>{openExport.status.replaceAll("_"," ")}</span>{openExport.status==="submitted"&&<button onClick={()=>cancel(openExport.id)} disabled={working}>Cancel</button>}</div>
-          : <button className="ml-action" onClick={()=>create("data_export")} disabled={working}>Request data export</button>}
+        <h2>Download my Lockliel data</h2>
+        <p>Download a structured JSON copy of the member data available to you through your own account, including profile, discipleship, My Five, relationships, notifications, giving, orders and resource access.</p>
+
+        <div className="ml-privacy-download-actions">
+          <a className="ml-action" href="/api/lockliel/privacy-export">
+            <FileDown size={15}/> Download my data
+          </a>
+
+          {openExport
+            ? <div className="ml-request-state">
+                <ShieldCheck size={15}/>
+                <span>Formal request: {openExport.status.replaceAll("_"," ")}</span>
+                {openExport.status==="submitted"&&<button onClick={()=>cancel(openExport.id)} disabled={working}>Cancel</button>}
+              </div>
+            : <button className="ml-privacy-secondary" onClick={()=>create("data_export")} disabled={working}>
+                Request assisted export
+              </button>}
+        </div>
+
+        <p className="ml-privacy-note">The self-service download does not include staff-only notes, security secrets, password data, authenticator secrets, or internal infrastructure logs.</p>
       </article>
 
       <article className="ml-panel">
         <div className="ml-icon"><Trash2 size={20}/></div>
         <h2>Request account deletion</h2>
         <p>This submits a review request. Your account is not deleted immediately, which helps prevent accidental loss and allows required ministry or transaction records to be handled appropriately.</p>
+
         {openDelete
-          ? <div className="ml-request-state"><ShieldCheck size={15}/><span>{openDelete.status.replaceAll("_"," ")}</span>{openDelete.status==="submitted"&&<button onClick={()=>cancel(openDelete.id)} disabled={working}>Cancel</button>}</div>
-          : <button className="ml-action" onClick={()=>create("account_deletion")} disabled={working}>Request account deletion</button>}
+          ? <div className="ml-request-state">
+              <ShieldCheck size={15}/>
+              <span>{openDelete.status.replaceAll("_"," ")}</span>
+              {openDelete.status==="submitted"&&<button onClick={()=>cancel(openDelete.id)} disabled={working}>Cancel</button>}
+            </div>
+          : <button className="ml-action" onClick={()=>create("account_deletion")} disabled={working}>
+              Request account deletion
+            </button>}
       </article>
     </div>
 
@@ -73,7 +107,10 @@ export default function PrivacyClient(){
       <h2>Your privacy requests</h2>
       {data.requests.map((r:any)=><div key={r.id}>
         <ArchiveRestore size={15}/>
-        <div><b>{r.request_type.replaceAll("_"," ")}</b><span>{new Date(r.requested_at).toLocaleDateString()}</span></div>
+        <div>
+          <b>{r.request_type.replaceAll("_"," ")}</b>
+          <span>{new Date(r.requested_at).toLocaleDateString()}</span>
+        </div>
         <strong>{r.status.replaceAll("_"," ")}</strong>
       </div>)}
     </section>}
