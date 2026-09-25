@@ -813,3 +813,14 @@ test("faith profile inputs are constrained and system fields stay private",()=>{
   assert.match(api,/allowedFaithStages/);
   assert.match(api,/allowedInterests/);
 });
+
+
+test("internal messaging release flag is enforced by RLS",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120440_lockliel_enforce_messaging_release_flag.sql","utf8");
+
+  assert.match(migration,/grant insert \([\s\S]*conversation_id[\s\S]*sender_id[\s\S]*body[\s\S]*\) on table public\.messages to authenticated/);
+  assert.match(migration,/sender_id = \(select auth\.uid\(\)\)/);
+  assert.match(migration,/app_private\.is_conversation_member\(conversation_id\)/);
+  assert.match(migration,/f\.key='internal_messaging'/);
+  assert.match(migration,/f\.enabled=true/);
+});
