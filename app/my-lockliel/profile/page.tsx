@@ -12,6 +12,7 @@ export default function Profile(){
     <p>Your location helps us connect you with the right people and future Lockliel gatherings. Your private information is not displayed publicly.</p>
     <ProfileForm/>
     <div className="ml-profile-preferences-link">
+      <Link href="/my-lockliel/faith-profile">Faith & connection preferences →</Link>
       <Link href="/my-lockliel/security">Account security →</Link>
       <Link href="/my-lockliel/preferences">Communication preferences →</Link>
       <Link href="/my-lockliel/privacy">Privacy controls →</Link>
