@@ -34,7 +34,22 @@ export default async(request)=>{
    const lessonId=String(b.lessonId||"");
    if(!lessonId)return json({error:"Lesson required"},400);
 
-   const payload={profile_id:uid,lesson_id:lessonId,status:String(b.status||"in_progress"),last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),watched_seconds:Math.max(0,Number(b.watchedSeconds)||0),worksheet_status:String(b.worksheetStatus||"not_started"),worksheet_answers:b.worksheetAnswers&&typeof b.worksheetAnswers==="object"?b.worksheetAnswers:{}};
+   const rawWorksheetAnswers=b.worksheetAnswers;
+   if(rawWorksheetAnswers!==undefined&&(
+     rawWorksheetAnswers===null||
+     typeof rawWorksheetAnswers!=="object"||
+     Array.isArray(rawWorksheetAnswers)
+   )){
+     return json({error:"Worksheet answers must be an object."},400);
+   }
+
+   const worksheetAnswers=rawWorksheetAnswers||{};
+   const worksheetBytes=new TextEncoder().encode(JSON.stringify(worksheetAnswers)).length;
+   if(worksheetBytes>60000){
+     return json({error:"Worksheet answers are too large. Keep responses concise and try again."},400);
+   }
+
+   const payload={profile_id:uid,lesson_id:lessonId,status:String(b.status||"in_progress"),last_position_seconds:Math.max(0,Number(b.lastPositionSeconds)||0),watched_seconds:Math.max(0,Number(b.watchedSeconds)||0),worksheet_status:String(b.worksheetStatus||"not_started"),worksheet_answers:worksheetAnswers};
 
    const r=await fetch(SUPABASE_URL+"/rest/v1/lesson_progress?on_conflict=profile_id,lesson_id",{method:"POST",headers:{...h,Prefer:"resolution=merge-duplicates,return=representation"},body:JSON.stringify(payload)});
    if(!r.ok)return json({error:"We couldn't save lesson progress."},r.status);

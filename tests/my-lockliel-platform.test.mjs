@@ -1531,7 +1531,7 @@ test("order items, shipping addresses, and fulfillment events are bounded system
   assert.match(migration,/fulfillment_note_event_requires_note/);
   assert.match(migration,/new\.actor_profile_id:=coalesce\(\(select auth\.uid\(\)\),new\.actor_profile_id\)/);
   assert.match(migration,/new\.created_at:=now\(\)/);
-  assert.match(api,/actor_profile_id:s\.user\.id/);
+  assert.doesNotMatch(api,/actor_profile_id:s\.user\.id/);
 });
 
 
@@ -1693,4 +1693,23 @@ test("fulfillment event actor identity is database-owned",()=>{
   assert.doesNotMatch(api,/actor_profile_id:s\.user\.id/);
   assert.match(integrity,/new\.actor_profile_id:=coalesce\(\(select auth\.uid\(\)\),new\.actor_profile_id\)/);
   assert.match(integrity,/new\.created_at:=now\(\)/);
+});
+
+
+test("member-generated text and JSON payloads are bounded in PostgreSQL",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925141105_lockliel_bound_member_generated_payloads.sql","utf8");
+  const journey=fs.readFileSync("netlify/functions/lockliel-journey.mjs","utf8");
+
+  assert.match(migration,/connection_requests_message_length/);
+  assert.match(migration,/char_length\(message\)<=5000/);
+  assert.match(migration,/reach_contacts_relationship_context_length/);
+  assert.match(migration,/char_length\(relationship_context\)<=500/);
+  assert.match(migration,/reach_contacts_private_notes_length/);
+  assert.match(migration,/char_length\(private_notes\)<=3000/);
+  assert.match(migration,/jsonb_typeof\(worksheet_answers\)='object'/);
+  assert.match(migration,/pg_column_size\(worksheet_answers\)<=65536/);
+  assert.match(migration,/jsonb_typeof\(metadata\)='object'/);
+  assert.match(migration,/pg_column_size\(metadata\)<=16384/);
+  assert.match(journey,/Array\.isArray\(rawWorksheetAnswers\)/);
+  assert.match(journey,/worksheetBytes>60000/);
 });
