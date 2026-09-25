@@ -135,6 +135,7 @@ export default function LeadersAdminClient(){
         if(member.country&&profile.country===member.country)value+=10;
         if(member.region&&profile.region===member.region)value+=20;
         if(member.city&&profile.city===member.city)value+=40;
+        if(member.language_code&&leader.language_code===member.language_code)value+=25;
         if(leader.capacity&&assigned>=leader.capacity)value-=1000;
         else if(leader.capacity)value+=Math.max(0,10-assigned);
         return value;
@@ -155,7 +156,7 @@ export default function LeadersAdminClient(){
     {requests.length>0&&<section className="ml-panel ml-leader-request-queue">
       <div className="ml-kicker">Leader connection requests</div>
       <h3>Members asking for a leader or mentor</h3>
-      <p>Suggestions prioritize location and available capacity only. A Lockliel reviewer makes the final assignment.</p>
+      <p>Suggestions use location, language, and available capacity as practical signals only. A Lockliel reviewer makes the final assignment.</p>
 
       {requests.map((request:any)=>{
         const member=peopleMap[request.requester_id]||{};
@@ -187,6 +188,7 @@ export default function LeadersAdminClient(){
               return <option key={leader.profile_id} value={leader.profile_id}>
                 {person.first_name||"Leader"}{person.last_initial?" "+person.last_initial+".":""}
                 {" • "}{[person.city,person.region].filter(Boolean).join(", ")||"remote"}
+                {" • "}{String(leader.language_code||person.language_code||"en").toUpperCase()}
                 {" • "}{assigned}{leader.capacity?"/"+leader.capacity:""} assigned
               </option>;
             })}
@@ -200,7 +202,7 @@ export default function LeadersAdminClient(){
         <div className="ml-icon"><UserRoundPlus size={19}/></div>
         <h3>Approve a leader</h3>
         <p>Leadership designation controls ministry relationships. It does not grant admin access.</p>
-        <label>Person<select name="profileId" required defaultValue=""><option value="" disabled>Choose member</option>{data.people.map((p:any)=><option value={p.profile_id} key={p.profile_id}>{p.first_name}{p.last_initial?" "+p.last_initial+".":""} • {[p.city,p.region].filter(Boolean).join(", ")}</option>)}</select></label>
+        <label>Person<select name="profileId" required defaultValue=""><option value="" disabled>Choose member</option>{data.people.map((p:any)=><option value={p.profile_id} key={p.profile_id}>{p.first_name}{p.last_initial?" "+p.last_initial+".":""} • {[p.city,p.region].filter(Boolean).join(", ")} • {String(p.language_code||"en").toUpperCase()}</option>)}</select></label>
         <label>Leader type<select name="leaderType" defaultValue="mentor">{Object.entries(types).map(([key,label])=><option key={key} value={key}>{String(label)}</option>)}</select></label>
         <div className="ml-auth-row"><label>City<input name="city" placeholder="Use member city if blank"/></label><label>State / region<input name="region"/></label></div>
         <label>Country<input name="country"/></label>
