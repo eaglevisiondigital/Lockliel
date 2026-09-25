@@ -25,6 +25,12 @@ export default async(request)=>{
       const allowed=["mentor","group_leader","founders_coach","discipleship_leader","regional_leader"];
       if(!profileId||!allowed.includes(leaderType))return json({error:"Choose a valid person and leader type."},400);
 
+      const cardRes=await fetch(
+        SUPABASE_URL+"/rest/v1/profile_connection_cards?profile_id=eq."+encodeURIComponent(profileId)+"&select=language_code&limit=1",
+        {headers:h}
+      );
+      const card=(cardRes.ok?await cardRes.json():[])?.[0]||null;
+
       const payload={
         profile_id:profileId,
         leader_type:leaderType,
@@ -32,6 +38,7 @@ export default async(request)=>{
         city:String(b.city||"").trim()||null,
         region:String(b.region||"").trim()||null,
         country:String(b.country||"").trim()||null,
+        language_code:String(b.languageCode||card?.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
         capacity:Number(b.capacity)>0?Math.min(10000,Number(b.capacity)):null,
         approved_by:uid,
         updated_at:new Date().toISOString()
@@ -56,7 +63,7 @@ export default async(request)=>{
       if(!memberId||!leaderId||memberId===leaderId)return json({error:"Choose a member and a different leader."},400);
 
       const lr=await fetch(
-        SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+encodeURIComponent(leaderId)+"&active=eq.true&select=profile_id,leader_type&limit=1",
+        SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+encodeURIComponent(leaderId)+"&active=eq.true&select=profile_id,leader_type,language_code&limit=1",
         {headers:h}
       );
       const leaders=lr.ok?await lr.json():[];
@@ -105,11 +112,11 @@ export default async(request)=>{
 
   const [peopleRes,leadersRes,assignmentsRes,requestsRes]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/profile_connection_cards?select=profile_id,first_name,last_initial,city,region,country&order=first_name.asc&limit=5000",
+      SUPABASE_URL+"/rest/v1/profile_connection_cards?select=profile_id,first_name,last_initial,city,region,country,language_code&order=first_name.asc&limit=5000",
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/leader_profiles?select=profile_id,leader_type,active,city,region,country,capacity,approved_at,updated_at&order=active.desc,approved_at.asc",
+      SUPABASE_URL+"/rest/v1/leader_profiles?select=profile_id,leader_type,active,city,region,country,language_code,capacity,approved_at,updated_at&order=active.desc,approved_at.asc",
       {headers:h}
     ),
     fetch(
