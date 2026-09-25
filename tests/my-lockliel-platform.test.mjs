@@ -232,3 +232,15 @@ test("member partnership page does not expose provider diagnostics",()=>{
   assert.doesNotMatch(client,/Payment gateway readiness/);
   assert.doesNotMatch(client,/data\.providers\.map/);
 });
+
+
+test("dashboard surfaces overdue My Five and host follow-through",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-dashboard-attention.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/dashboard-attention.tsx","utf8");
+  assert.match(endpoint,/next_follow_up_at/);
+  assert.match(endpoint,/group_weekly_checkins/);
+  assert.match(endpoint,/my_five_due/);
+  assert.match(endpoint,/group_checkin/);
+  assert.match(client,/Needs your attention/);
+  assert.match(client,/Simple next actions for this week/);
+});
