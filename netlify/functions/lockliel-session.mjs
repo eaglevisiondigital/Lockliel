@@ -24,7 +24,7 @@ export default async(request)=>{
   const h=dbHeaders(s.access);
   const id=encodeURIComponent(s.user.id);
 
-  const [p,j,r,f,g]=await Promise.all([
+  const [p,j,r,f,g,lp,la]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/profiles?id=eq."+id+"&select=id,first_name,last_name,email,phone,city,region,country,onboarding_status,original_inviter_id,current_leader_id",
       {headers:h}
@@ -44,6 +44,14 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/group_members?profile_id=eq."+id+"&status=eq.active&select=group_id,role,joined_at",
       {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/leader_profiles?profile_id=eq."+id+"&active=eq.true&select=leader_type,city,region,country,capacity,approved_at&limit=1",
+      {headers:h}
+    ),
+    fetch(
+      SUPABASE_URL+"/rest/v1/leader_assignments?leader_id=eq."+id+"&status=eq.active&select=member_id",
+      {headers:h}
     )
   ]);
 
@@ -52,6 +60,8 @@ export default async(request)=>{
   const roles=r.ok?(await r.json()).map(x=>x.role):[];
   const founders=f.ok?await f.json():[];
   const groups=g.ok?await g.json():[];
+  const leaderProfiles=lp.ok?await lp.json():[];
+  const leaderAssignments=la.ok?await la.json():[];
 
   return json({
     authenticated:true,
@@ -60,7 +70,9 @@ export default async(request)=>{
     journey:journeys[0]||null,
     roles,
     founderStatus:founders?.[0]?.status||null,
-    groupMemberships:groups
+    groupMemberships:groups,
+    leaderProfile:leaderProfiles?.[0]||null,
+    peopleAssignedCount:leaderAssignments.length
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
 
