@@ -797,3 +797,19 @@ test("profile onboarding status is derived from completed required fields",()=>{
   assert.doesNotMatch(api,/onboarding_status:/);
   assert.doesNotMatch(api,/updated_at:new Date/);
 });
+
+
+test("faith profile inputs are constrained and system fields stay private",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120317_lockliel_harden_private_faith_profile.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-faith-profile.mjs","utf8");
+
+  assert.match(migration,/faith_stage in \(/);
+  assert.match(migration,/preferred_connection in \('either','local','online','not-now'\)/);
+  assert.match(migration,/growth_interests <@ array/);
+  assert.match(migration,/Faith profile identity cannot be changed/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.doesNotMatch(api,/notes:\{\}/);
+  assert.doesNotMatch(api,/updated_at:new Date/);
+  assert.match(api,/allowedFaithStages/);
+  assert.match(api,/allowedInterests/);
+});
