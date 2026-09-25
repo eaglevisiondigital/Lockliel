@@ -75,3 +75,20 @@ test("lesson progress records covered media intervals",()=>{
   assert.match(source,/delta>0&&delta<15/);
   assert.match(source,/percentWatched/);
 });
+
+
+test("group leaders receive Leader Tools instead of broad Admin access",()=>{
+  const source=fs.readFileSync("app/my-lockliel/dashboard-client.tsx","utf8");
+  assert.match(source,/adminCapableRoles/);
+  assert.match(source,/hasLeaderTools/);
+  assert.match(source,/title:"Leader Tools"/);
+  assert.match(source,/href:"\/my-lockliel\/leader"/);
+});
+
+test("Admin shell checks allowed roles before rendering",()=>{
+  const source=fs.readFileSync("app/my-lockliel/admin/admin-gate.tsx","utf8");
+  assert.match(source,/ADMIN_ROLES/);
+  assert.match(source,/discipleship_admin/);
+  assert.match(source,/finance_admin/);
+  assert.match(source,/location\.replace\("\/my-lockliel"\)/);
+});
