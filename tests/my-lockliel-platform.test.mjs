@@ -1083,3 +1083,18 @@ test("published lesson rows still require course enrollment",()=>{
   assert.match(migration,/content_course\.status='published'/);
   assert.match(migration,/content_course\.translation_key=enrolled_course\.translation_key/);
 });
+
+
+test("members cannot write system-owned progress timestamps",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122835_lockliel_limit_member_progress_columns.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-journey.mjs","utf8");
+
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*worksheet_answers[\s\S]*\) on table public\.lesson_progress to authenticated/);
+  assert.match(migration,/grant update \([\s\S]*worksheet_answers[\s\S]*\) on table public\.lesson_progress to authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*asset_id[\s\S]*covered_intervals[\s\S]*\) on table public\.media_progress to authenticated/);
+  assert.doesNotMatch(migration,/grant update \([\s\S]*completed_at/);
+  assert.doesNotMatch(migration,/grant update \([\s\S]*last_activity_at/);
+  assert.doesNotMatch(api,/first_started_at:/);
+  assert.doesNotMatch(api,/last_activity_at:new Date/);
+  assert.doesNotMatch(api,/completed_at:b\.status/);
+});
