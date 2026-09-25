@@ -1,21 +1,23 @@
 import Link from "next/link";
 import {ArrowLeft} from "lucide-react";
 import AdminClient from "./admin-client";
-import PeopleProgressClient from "./people-progress-client";
-import FinanceAdminClient from "./finance-admin-client";
-import SystemAdminClient from "./system-admin-client";
-import GroupsAdminClient from "./groups-admin-client";
+import AdminGate from "./admin-gate";
+import AdminSectionNav from "./admin-section-nav";
 import ContentAdminClient from "./content-admin-client";
-import RolesAdminClient from "./roles-admin-client";
-import TasksAdminClient from "./tasks-admin-client";
+import FinanceAdminClient from "./finance-admin-client";
+import FounderOrientationAdminClient from "./founder-orientation-admin-client";
+import GroupsAdminClient from "./groups-admin-client";
 import LeadersAdminClient from "./leaders-admin-client";
+import LeadsAdminClient from "./leads-admin-client";
+import LineageAdminClient from "./lineage-admin-client";
+import NotesAdminClient from "./notes-admin-client";
+import PeopleProgressClient from "./people-progress-client";
+import PrivacyAdminClient from "./privacy-admin-client";
 import ProductsAdminClient from "./products-admin-client";
 import ReadinessAdminClient from "./readiness-admin-client";
-import NotesAdminClient from "./notes-admin-client";
-import LeadsAdminClient from "./leads-admin-client";
-import FounderOrientationAdminClient from "./founder-orientation-admin-client";
-import LineageAdminClient from "./lineage-admin-client";
-import AdminSectionNav from "./admin-section-nav";import PrivacyAdminClient from "./privacy-admin-client";import AdminGate from "./admin-gate";
+import RolesAdminClient from "./roles-admin-client";
+import SystemAdminClient from "./system-admin-client";
+import TasksAdminClient from "./tasks-admin-client";
 import "../my-lockliel.css";
 
 export const metadata={title:"Lockliel Admin"};
@@ -82,6 +84,8 @@ export default function Admin(){
     <section id="access" className="ml-admin-section">
       <h2 className="ml-section-title">Staff roles</h2>
       <RolesAdminClient/>
+      <h2 className="ml-section-title">Privacy requests</h2>
+      <PrivacyAdminClient/>
       <h2 className="ml-section-title">System controls</h2>
       <SystemAdminClient/>
     </section>
