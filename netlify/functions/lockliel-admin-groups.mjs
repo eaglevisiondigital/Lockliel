@@ -100,113 +100,34 @@ export default async(request)=>{
     }
 
     if(b.action==="resolveGroupChange"){
-      const requestId=String(b.requestId||"");
+      const requestId=String(b.requestId||"").trim();
       const targetGroupId=String(b.targetGroupId||"").trim();
 
       if(!requestId)return json({error:"Group transition request required."},400);
 
-      const requestRes=await fetch(
-        SUPABASE_URL+"/rest/v1/connection_requests?id=eq."+encodeURIComponent(requestId)+
-        "&request_type=eq.leave_or_change_group&status=eq.open"+
-        "&select=id,requester_id,requested_group_id&limit=1",
-        {headers:h}
-      );
-      const requestRows=requestRes.ok?await requestRes.json():[];
-      const transition=requestRows?.[0]||null;
-      if(!transition?.requester_id||!transition?.requested_group_id){
-        return json({error:"Open group transition request not found."},404);
-      }
-
-      const membershipRes=await fetch(
-        SUPABASE_URL+"/rest/v1/group_members?group_id=eq."+encodeURIComponent(transition.requested_group_id)+
-        "&profile_id=eq."+encodeURIComponent(transition.requester_id)+
-        "&status=eq.active&select=group_id,profile_id,role,status&limit=1",
-        {headers:h}
-      );
-      const membership=(membershipRes.ok?await membershipRes.json():[])?.[0]||null;
-      if(!membership)return json({error:"Current active group membership not found."},404);
-
-      if(["leader","host"].includes(membership.role)){
-        return json({error:"Reassign group leadership before moving or ending this leader/host membership."},409);
-      }
-
-      if(targetGroupId&&targetGroupId===transition.requested_group_id){
-        return json({error:"Choose a different group or end the current membership."},400);
-      }
-
-      let targetAdded=false;
-      if(targetGroupId){
-        const groupRes=await fetch(
-          SUPABASE_URL+"/rest/v1/groups?id=eq."+encodeURIComponent(targetGroupId)+
-          "&status=in.(forming,active)&select=id&limit=1",
-          {headers:h}
-        );
-        const target=(groupRes.ok?await groupRes.json():[])?.[0]||null;
-        if(!target)return json({error:"Target group is not available for assignment."},404);
-
-        const addRes=await fetch(
-          SUPABASE_URL+"/rest/v1/group_members?on_conflict=group_id,profile_id",
-          {
-            method:"POST",
-            headers:{...h,Prefer:"resolution=merge-duplicates,return=minimal"},
-            body:JSON.stringify({
-              group_id:targetGroupId,
-              profile_id:transition.requester_id,
-              role:"participant",
-              status:"active",
-              left_at:null
-            })
-          }
-        );
-        if(!addRes.ok)return json({error:"Unable to add member to the new group."},addRes.status);
-        targetAdded=true;
-      }
-
-      const now=new Date().toISOString();
-      const endRes=await fetch(
-        SUPABASE_URL+"/rest/v1/group_members?group_id=eq."+encodeURIComponent(transition.requested_group_id)+
-        "&profile_id=eq."+encodeURIComponent(transition.requester_id)+
-        "&status=eq.active",
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/rpc/lockliel_resolve_group_transition",
         {
-          method:"PATCH",
-          headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"inactive",left_at:now})
+          method:"POST",
+          headers:{...h,"Content-Type":"application/json"},
+          body:JSON.stringify({
+            request_uuid:requestId,
+            target_group_uuid:targetGroupId||null
+          })
         }
       );
 
-      if(!endRes.ok){
-        if(targetAdded){
-          await fetch(
-            SUPABASE_URL+"/rest/v1/group_members?group_id=eq."+encodeURIComponent(targetGroupId)+
-            "&profile_id=eq."+encodeURIComponent(transition.requester_id),
-            {
-              method:"PATCH",
-              headers:{...h,Prefer:"return=minimal"},
-              body:JSON.stringify({status:"inactive",left_at:now})
-            }
-          ).catch(()=>null);
-        }
-        return json({error:"Unable to end the current group membership."},endRes.status);
+      const result=await r.json().catch(()=>null);
+      if(!r.ok){
+        const detail=Array.isArray(result)?result?.[0]?.message:result?.message;
+        return json({error:detail||"Unable to resolve group transition."},r.status===400?400:409);
       }
 
-      const endedRows=await endRes.json();
-      if(!endedRows.length)return json({error:"Current group membership changed before this request was processed."},409);
-
-      const resolveRes=await fetch(
-        SUPABASE_URL+"/rest/v1/connection_requests?id=eq."+encodeURIComponent(requestId)+"&status=eq.open",
-        {
-          method:"PATCH",
-          headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({status:"resolved"})
-        }
+      return json(
+        result||{ok:true,outcome:targetGroupId?"transferred":"ended",target_group_id:targetGroupId||null},
+        200,
+        s.refreshed?sessionCookies(s.refreshed):[]
       );
-      if(!resolveRes.ok)return json({error:"Membership changed, but request status could not be resolved."},500);
-
-      return json({
-        ok:true,
-        outcome:targetGroupId?"transferred":"ended",
-        targetGroupId:targetGroupId||null
-      },200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
     return json({error:"Unknown action"},400);
