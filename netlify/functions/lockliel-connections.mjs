@@ -39,7 +39,11 @@ export default async(request)=>{
           message:"Member requested help connecting with an appropriate Lockliel leader or mentor."
         })
       });
-      if(!r.ok)return json({error:"Unable to submit leader request."},r.status);
+      if(!r.ok)return json({
+        error:r.status===409
+          ?"You already have an open leader request."
+          :"Unable to submit leader request."
+      },r.status);
       return json({ok:true,request:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
