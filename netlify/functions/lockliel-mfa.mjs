@@ -77,6 +77,12 @@ export default async(request)=>{
       return json({error:"A verified authenticator is already enrolled."},409);
     }
 
+    const staleFactors=(Array.isArray(s.user.factors)?s.user.factors:[])
+      .filter(f=>f?.factor_type==="totp"&&f?.status==="unverified");
+    for(const factor of staleFactors){
+      await authJson("/factors/"+encodeURIComponent(factor.id),s.access,{method:"DELETE"});
+    }
+
     const {response,data}=await authJson("/factors",s.access,{
       method:"POST",
       body:JSON.stringify({
