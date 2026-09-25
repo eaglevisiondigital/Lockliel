@@ -244,3 +244,11 @@ test("dashboard surfaces overdue My Five and host follow-through",()=>{
   assert.match(client,/Needs your attention/);
   assert.match(client,/Simple next actions for this week/);
 });
+
+
+test("new-member onboarding flows profile to faith journey to course",()=>{
+  const profile=fs.readFileSync("app/my-lockliel/profile/profile-form.tsx","utf8");
+  const faith=fs.readFileSync("app/my-lockliel/faith-profile/faith-profile-form.tsx","utf8");
+  assert.match(profile,/router\.push\("\/my-lockliel\/faith-profile"\)/);
+  assert.match(faith,/router\.push\("\/my-lockliel\/journey"\)/);
+});
