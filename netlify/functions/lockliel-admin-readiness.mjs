@@ -67,7 +67,7 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring&order=label.asc",
+      SUPABASE_URL+"/rest/v1/payment_provider_connections?select=provider,label,status,supports_one_time,supports_recurring,checkout_adapter_ready,webhook_ready,last_verified_at&order=label.asc",
       {headers:h}
     ),
     fetch(
@@ -108,7 +108,7 @@ export default async(request)=>{
   const flagMap=Object.fromEntries(flags.map(f=>[f.key,f.enabled]));
   const verificationMap=Object.fromEntries(verifications.map(v=>[v.key,v]));
 
-  const activeProvider=providers.find(p=>p.status==="active")||null;
+  const activeProvider=providers.find(p=>p.status==="active"&&p.checkout_adapter_ready===true&&p.webhook_ready===true)||null;
   const gripCourse=courses.find(c=>c.slug==="getting-a-grip-on-the-basics")||null;
   const gripLessons=gripCourse?lessons.filter(l=>l.course_id===gripCourse.id):[];
   const gripLessonIds=new Set(gripLessons.map(l=>l.id));
@@ -227,8 +227,8 @@ export default async(request)=>{
       ready:Boolean(activeProvider),
       manual:false,
       detail:activeProvider
-        ?activeProvider.label+" is active."
-        :"No payment provider is active yet. Authorize.Net, Stripe, PayPal and Square are modeled but not connected."
+        ?activeProvider.label+" is active with checkout adapter and webhook verification complete."
+        :"No payment provider has completed all three launch gates yet: active connection, checkout adapter, and webhook verification."
     },
     {
       key:"partner_checkout",
