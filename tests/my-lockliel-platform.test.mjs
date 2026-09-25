@@ -1836,3 +1836,21 @@ test("Data API grants fail closed for anonymous users and future public objects"
   assert.match(migration,/revoke execute on functions from public, anon, authenticated/);
   assert.doesNotMatch(migration,/revoke all privileges on all tables in schema public from authenticated/);
 });
+
+
+test("group leadership eligibility changes serialize against active host and leader assignments",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925160443_lockliel_serialize_group_leadership_eligibility.sql","utf8");
+
+  assert.match(migration,/protect_active_leader_responsibilities/);
+  assert.match(migration,/validate_group_leader_approval/);
+  assert.match(migration,/validate_group_leadership_membership/);
+  assert.match(migration,/protect_active_founders_host_responsibility/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/hashtextextended/);
+  assert.match(migration,/gm\.status='active'/);
+  assert.match(migration,/gm\.role in \('leader','host'\)/);
+  assert.match(migration,/g\.status in \('forming','active'\)/);
+  assert.match(migration,/Reassign active group leadership or hosting before deactivating this leader/);
+  assert.match(migration,/must retain a group-leader compatible role/);
+  assert.match(migration,/Reassign active group leadership before removing this Founders 50 active-host status/);
+});
