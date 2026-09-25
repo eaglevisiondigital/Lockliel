@@ -4,6 +4,8 @@ import {
   BookOpen,
   CheckCircle2,
   Copy,
+  Mail,
+  MessageSquareText,
   Eye,
   FileImage,
   Radio,
@@ -57,14 +59,14 @@ export default function ShareCenter(){
 
   useEffect(()=>{load();},[]);
 
-  async function getLink(slug:string){
+  async function getLink(slug:string,channel="native"){
     setWorking(slug);
     setMessage("");
 
     const r=await fetch("/api/lockliel/share-link",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({slug})
+      body:JSON.stringify({slug,channel})
     });
 
     if(r.status===401){
@@ -86,7 +88,7 @@ export default function ShareCenter(){
 
   async function copy(slug:string){
     try{
-      const d=await getLink(slug);
+      const d=await getLink(slug,"copy");
       await navigator.clipboard.writeText(d.url);
       setMessage("Personal link copied. Send it to someone you have in mind, then follow up.");
     }catch{}
@@ -94,7 +96,7 @@ export default function ShareCenter(){
 
   async function share(slug:string){
     try{
-      const d=await getLink(slug);
+      const d=await getLink(slug,"native");
 
       if(navigator.share){
         await navigator.share({
@@ -106,6 +108,23 @@ export default function ShareCenter(){
         await navigator.clipboard.writeText(d.url);
         setMessage("Personal link copied.");
       }
+    }catch{}
+  }
+
+  async function text(slug:string){
+    try{
+      const d=await getLink(slug,"sms");
+      const body=encodeURIComponent((d.shareText||"I thought this might encourage you.")+"\n\n"+d.url);
+      window.location.href="sms:?body="+body;
+    }catch{}
+  }
+
+  async function email(slug:string){
+    try{
+      const d=await getLink(slug,"email");
+      const subject=encodeURIComponent(d.title||"Something from Lockliel");
+      const body=encodeURIComponent((d.shareText||"I thought this might encourage you.")+"\n\n"+d.url);
+      window.location.href="mailto:?subject="+subject+"&body="+body;
     }catch{}
   }
 
@@ -145,7 +164,7 @@ export default function ShareCenter(){
     {featured.length>0&&<>
       <h2 className="ml-section-title">Featured to share</h2>
       <section className="ml-grid">
-        {featured.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy}/>)}
+        {featured.map(asset=><ShareAssetCard key={asset.id} asset={asset} working={working===asset.slug} onShare={share} onCopy={copy} onText={text} onEmail={email}/>)}
       </section>
     </>}
 
@@ -191,12 +210,16 @@ function ShareAssetCard({
   asset,
   working,
   onShare,
-  onCopy
+  onCopy,
+  onText,
+  onEmail
 }:{
   asset:any;
   working:boolean;
   onShare:(slug:string)=>void;
   onCopy:(slug:string)=>void;
+  onText:(slug:string)=>void;
+  onEmail:(slug:string)=>void;
 }){
   const Icon=iconFor(asset);
 
@@ -214,8 +237,14 @@ function ShareAssetCard({
       <button onClick={()=>onShare(asset.slug)} disabled={working}>
         <Share2 size={15}/> {working?"Preparing…":"Share"}
       </button>
+      <button onClick={()=>onText(asset.slug)} disabled={working}>
+        <MessageSquareText size={15}/> Text
+      </button>
+      <button onClick={()=>onEmail(asset.slug)} disabled={working}>
+        <Mail size={15}/> Email
+      </button>
       <button onClick={()=>onCopy(asset.slug)} disabled={working}>
-        <Copy size={15}/> Copy link
+        <Copy size={15}/> Copy
       </button>
     </div>
 
