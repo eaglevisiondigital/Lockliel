@@ -13,6 +13,21 @@ export default async(request)=>{
 
   const h=dbHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
+  const url=new URL(request.url);
+  const requestId=String(url.searchParams.get("requestId")||"");
+
+  if(!requestId)return json({error:"Completed data-export request required."},400);
+
+  const approval=await fetch(
+    SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(requestId)+"&profile_id=eq."+uid+"&request_type=eq.data_export&status=eq.completed&select=id,requested_at,resolved_at&limit=1",
+    {headers:h}
+  );
+  const approvedRows=approval.ok?await approval.json():[];
+  const approvedRequest=approvedRows?.[0]||null;
+
+  if(!approvedRequest){
+    return json({error:"This data export is not ready for download."},403);
+  }
 
   const [
     profiles,
@@ -64,6 +79,11 @@ export default async(request)=>{
 
   const payload={
     generated_at:new Date().toISOString(),
+    export_request:{
+      id:approvedRequest.id,
+      requested_at:approvedRequest.requested_at,
+      resolved_at:approvedRequest.resolved_at
+    },
     account:{
       user_id:s.user.id,
       email:s.user.email,
