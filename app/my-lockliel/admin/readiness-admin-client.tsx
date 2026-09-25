@@ -1,18 +1,36 @@
 "use client";
 import {useEffect,useState} from "react";
-import {AlertCircle,CheckCircle2,ClipboardList} from "lucide-react";
+import {AlertCircle,CheckCircle2,ClipboardList,ShieldCheck} from "lucide-react";
 
 export default function ReadinessAdminClient(){
   const [data,setData]=useState<any>(null);
   const [hidden,setHidden]=useState(false);
+  const [working,setWorking]=useState<string|null>(null);
+  const [message,setMessage]=useState("");
 
-  useEffect(()=>{
-    fetch("/api/lockliel/admin/readiness",{cache:"no-store"}).then(async r=>{
-      const d=await r.json().catch(()=>({}));
-      if(r.status===403){setHidden(true);return;}
-      if(r.ok)setData(d);
+  async function load(){
+    const r=await fetch("/api/lockliel/admin/readiness",{cache:"no-store"});
+    const d=await r.json().catch(()=>({}));
+    if(r.status===403){setHidden(true);return;}
+    if(r.ok)setData(d);
+  }
+
+  useEffect(()=>{load();},[]);
+
+  async function verify(key:string,verified:boolean){
+    setWorking(key);
+    setMessage("");
+    const r=await fetch("/api/lockliel/admin/readiness",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({key,verified})
     });
-  },[]);
+    const d=await r.json().catch(()=>({}));
+    setWorking(null);
+    if(!r.ok){setMessage(d.error||"Unable to update verification.");return;}
+    setMessage(verified?"Launch item marked verified.":"Launch verification cleared.");
+    await load();
+  }
 
   if(hidden)return null;
   if(!data)return <div className="ml-loading">Checking launch readiness…</div>;
@@ -33,10 +51,21 @@ export default function ReadinessAdminClient(){
       <div className="ml-course-progress"><span style={{width:percent+"%"}}/></div>
     </div>
 
+    {message&&<p className="ml-share-message">{message}</p>}
+
     <div className="ml-readiness-list">
       {data.checks.map((check:any)=><article className={check.ready?"ready":"pending"} key={check.key}>
         <div className="ml-readiness-icon">{check.ready?<CheckCircle2 size={17}/>:<AlertCircle size={17}/>}</div>
-        <div><b>{check.label}</b><span>{check.detail}</span></div>
+        <div>
+          <b>{check.label}</b>
+          <span>{check.detail}</span>
+          {check.manual&&<small><ShieldCheck size={11}/> Manual verification required because this setting lives in the Supabase dashboard rather than the connected build tools.</small>}
+        </div>
+        {check.manual&&<button
+          className={check.ready?"ml-verified-button verified":"ml-verified-button"}
+          disabled={working===check.manualKey}
+          onClick={()=>verify(check.manualKey,!check.ready)}
+        >{check.ready?"Verified":"Mark verified"}</button>}
       </article>)}
     </div>
   </section>;
