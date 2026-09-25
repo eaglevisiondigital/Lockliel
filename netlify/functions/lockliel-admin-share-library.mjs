@@ -1,5 +1,7 @@
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
+const allowedAssetTypes=["faith_boost","graphic","book","course","invitation"];
+
 export default async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
@@ -34,9 +36,13 @@ export default async(request)=>{
     const slug=String(b.slug||"").trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
     const title=String(b.title||"").trim();
     const destinationPath=String(b.destinationPath||"").trim();
+    const assetType=String(b.assetType||"graphic").trim();
 
     if(!slug||!title||!destinationPath.startsWith("/")){
       return json({error:"Slug, title, and a Lockliel destination path are required."},400);
+    }
+    if(!allowedAssetTypes.includes(assetType)){
+      return json({error:"Choose a valid Share Library asset type."},400);
     }
 
     const r=await fetch(SUPABASE_URL+"/rest/v1/share_assets",{
@@ -45,7 +51,7 @@ export default async(request)=>{
       body:JSON.stringify({
         slug,
         title,
-        asset_type:String(b.assetType||"resource").trim()||"resource",
+        asset_type:assetType,
         description:String(b.description||"").trim().slice(0,1000)||null,
         share_text:String(b.shareText||"").trim().slice(0,1200)||null,
         category:String(b.category||"").trim().slice(0,120)||null,
@@ -53,10 +59,9 @@ export default async(request)=>{
         destination_path:destinationPath,
         language_code:String(b.languageCode||"en").trim().toLowerCase().slice(0,12)||"en",
         translation_key:String(b.translationKey||slug).trim().slice(0,200)||slug,
-        status:String(b.status||"draft"),
+        status:"draft",
         featured:Boolean(b.featured),
-        sort_order:Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100,
-        updated_at:new Date().toISOString()
+        sort_order:Math.max(0,Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100)
       })
     });
 
@@ -71,8 +76,16 @@ export default async(request)=>{
   if(action==="update"){
     const id=String(b.id||"");
     const status=String(b.status||"");
+    const assetType=String(b.assetType||"").trim();
+    const destinationPath=String(b.destinationPath||"").trim();
     if(!id||!["draft","active","archived"].includes(status)){
       return json({error:"Choose a valid resource and status."},400);
+    }
+    if(!allowedAssetTypes.includes(assetType)){
+      return json({error:"Choose a valid Share Library asset type."},400);
+    }
+    if(!destinationPath.startsWith("/")){
+      return json({error:"Share Library destinations must be Lockliel paths beginning with /."},400);
     }
 
     const r=await fetch(
@@ -82,18 +95,16 @@ export default async(request)=>{
         headers:{...h,Prefer:"return=representation"},
         body:JSON.stringify({
           title:String(b.title||"").trim(),
-          asset_type:String(b.assetType||"resource").trim()||"resource",
+          asset_type:assetType,
           description:String(b.description||"").trim().slice(0,1000)||null,
           share_text:String(b.shareText||"").trim().slice(0,1200)||null,
           category:String(b.category||"").trim().slice(0,120)||null,
           preview_image_path:String(b.previewImagePath||"").trim().slice(0,500)||null,
-          destination_path:String(b.destinationPath||"").trim(),
+          destination_path:destinationPath,
           language_code:String(b.languageCode||"en").trim().toLowerCase().slice(0,12)||"en",
-          translation_key:String(b.translationKey||"").trim().slice(0,200)||null,
           status,
           featured:Boolean(b.featured),
-          sort_order:Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100,
-          updated_at:new Date().toISOString()
+          sort_order:Math.max(0,Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):100)
         })
       }
     );

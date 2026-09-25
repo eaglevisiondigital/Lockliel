@@ -66,7 +66,7 @@ export default function ShareLibraryAdminClient(){
         </div>
 
         <div className="ml-auth-row">
-          <label>Asset type<input name="assetType" placeholder="faith_boost, graphic, book…"/></label>
+          <label>Asset type<select name="assetType" defaultValue="graphic"><option value="faith_boost">Faith Boost</option><option value="graphic">Graphic</option><option value="book">Book</option><option value="course">Course</option><option value="invitation">Invitation</option></select></label>
           <label>Category<input name="category" placeholder="faith_boost"/></label>
         </div>
 
@@ -140,13 +140,13 @@ function ShareAssetEditor({asset,working,setWorking,setMessage,reload}:{asset:an
 
     <input value={form.title} onChange={e=>setForm(v=>({...v,title:e.target.value}))}/>
     <div className="ml-auth-row">
-      <input value={form.assetType} onChange={e=>setForm(v=>({...v,assetType:e.target.value}))} placeholder="Asset type"/>
+      <select value={form.assetType} onChange={e=>setForm(v=>({...v,assetType:e.target.value}))}><option value="faith_boost">Faith Boost</option><option value="graphic">Graphic</option><option value="book">Book</option><option value="course">Course</option><option value="invitation">Invitation</option></select>
       <input value={form.category} onChange={e=>setForm(v=>({...v,category:e.target.value}))} placeholder="Category"/>
     </div>
     <input value={form.destinationPath} onChange={e=>setForm(v=>({...v,destinationPath:e.target.value}))} placeholder="/destination"/>
     <div className="ml-auth-row">
       <input value={form.languageCode} onChange={e=>setForm(v=>({...v,languageCode:e.target.value}))} placeholder="en"/>
-      <input value={form.translationKey} onChange={e=>setForm(v=>({...v,translationKey:e.target.value}))} placeholder="Translation group key"/>
+      <input value={form.translationKey} readOnly aria-label="Translation group key, locked after creation" title="Translation group key is locked after creation"/>
     </div>
     <textarea rows={2} value={form.description} onChange={e=>setForm(v=>({...v,description:e.target.value}))} placeholder="Description"/>
     <textarea rows={3} value={form.shareText} onChange={e=>setForm(v=>({...v,shareText:e.target.value}))} placeholder="Approved share copy"/>

@@ -1351,3 +1351,25 @@ test("member profile text fields are normalized and bounded in both API and data
   assert.match(api,/city\.length>160/);
   assert.match(api,/locale\.length<2\|\|locale\.length>35/);
 });
+
+
+test("product and Share Library identity fields cannot drift after creation",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925131440_lockliel_harden_product_and_share_identity.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-share-library.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/share-library-admin-client.tsx","utf8");
+
+  assert.match(migration,/Product identity fields cannot be changed after creation/);
+  assert.match(migration,/Archive the product before changing its protected file/);
+  const productUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.products[\s\S]*?to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(productUpdateGrant,/translation_key/);
+  assert.match(migration,/share_assets_status_check/);
+  assert.match(migration,/Share resource identity fields cannot be changed after creation/);
+  const shareUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.share_assets[\s\S]*?to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(shareUpdateGrant,/translation_key/);
+  assert.doesNotMatch(shareUpdateGrant,/slug/);
+  assert.match(api,/const allowedAssetTypes=\["faith_boost","graphic","book","course","invitation"\]/);
+  assert.doesNotMatch(api,/assetType\|\|"resource"/);
+  assert.match(api,/status:"draft"/);
+  assert.match(client,/defaultValue="graphic"/);
+  assert.match(client,/locked after creation/);
+});
