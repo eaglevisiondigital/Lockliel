@@ -451,3 +451,14 @@ test("approved privacy export includes member consent history",()=>{
   assert.match(endpoint,/Private staff-only notes are not part/);
   assert.match(endpoint,/Security secrets/);
 });
+
+
+test("launch readiness excludes tentative book benefit from required score",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/readiness-admin-client.tsx","utf8");
+  assert.match(api,/key:"book_benefit"[\s\S]*required:false/);
+  assert.match(api,/const requiredChecks=checks\.filter\(c=>c\.required!==false\)/);
+  assert.match(api,/blockerCount:blockers\.length/);
+  assert.match(client,/required launch checks ready/);
+  assert.match(client,/Optional/);
+});
