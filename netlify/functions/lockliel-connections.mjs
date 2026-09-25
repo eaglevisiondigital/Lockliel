@@ -25,7 +25,8 @@ export default async(request)=>{
       const displayName=String(b.displayName||"").trim();
       const relationshipContext=String(b.relationshipContext||"").trim().slice(0,500)||null;
       const privateNotes=String(b.privateNotes||"").trim().slice(0,3000)||null;
-      const nextFollowUpAt=String(b.nextFollowUpAt||"").trim()||null;
+      const nextRaw=String(b.nextFollowUpAt||"").trim();
+      const nextFollowUpAt=nextRaw&&!Number.isNaN(Date.parse(nextRaw))?new Date(nextRaw).toISOString():null;
 
       if(!displayName)return json({error:"Enter the person's first name or a name you will recognize."},400);
 
