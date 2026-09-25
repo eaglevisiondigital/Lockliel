@@ -530,8 +530,9 @@ test("My Five limit and system fields are enforced in the database",()=>{
 
   assert.match(integrity,/revoke insert, update on table public\.reach_contacts from authenticated/);
   assert.match(integrity,/grant insert \(/);
-  assert.doesNotMatch(integrity,/grant update \([\s\S]*owner_id/);
-  assert.doesNotMatch(integrity,/grant update \([\s\S]*linked_profile_id/);
+  const reachUpdateGrant=integrity.match(/grant update \(([\s\S]*?)\) on table public\.reach_contacts to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(reachUpdateGrant,/owner_id/);
+  assert.doesNotMatch(reachUpdateGrant,/linked_profile_id/);
   assert.match(integrity,/pg_advisory_xact_lock/);
   assert.match(integrity,/active_count>=5/);
   assert.match(integrity,/no more than five active people/);
@@ -845,7 +846,10 @@ test("weekly group check-ins allow current leaders to correct reports without ch
 
   assert.match(migration,/app_private\.is_group_leader\(group_id\)/);
   assert.match(migration,/grant update \([\s\S]*gathered[\s\S]*needs_support[\s\S]*\) on table public\.group_weekly_checkins to authenticated/);
-  assert.doesNotMatch(migration,/grant update \([\s\S]*group_id/);
+  const weeklyUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.group_weekly_checkins to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(weeklyUpdateGrant,/group_id/);
+  assert.doesNotMatch(weeklyUpdateGrant,/submitted_by/);
+  assert.doesNotMatch(weeklyUpdateGrant,/week_start/);
   assert.match(migration,/Weekly check-in identity cannot be changed/);
   assert.match(migration,/new\.updated_at:=now\(\)/);
   assert.match(api,/on_conflict=group_id,week_start/);
