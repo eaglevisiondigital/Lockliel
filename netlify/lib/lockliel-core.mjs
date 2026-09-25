@@ -34,3 +34,28 @@ export async function requireSession(request){
  if(!user&&c[REFRESH_COOKIE]){refreshed=await refreshSession(c[REFRESH_COOKIE]);if(refreshed?.access_token){access=refreshed.access_token;user=await authUser(access);}}
  return {user,access,refreshed,cookies:c};
 }
+
+
+export function jwtClaims(access){
+  if(!access||typeof access!=="string")return {};
+  try{
+    const payload=access.split(".")[1];
+    if(!payload)return {};
+    const normalized=payload.replace(/-/g,"+").replace(/_/g,"/");
+    const padded=normalized+"=".repeat((4-normalized.length%4)%4);
+    return JSON.parse(Buffer.from(padded,"base64").toString("utf8"));
+  }catch{
+    return {};
+  }
+}
+
+export function sessionAal(access){
+  const claims=jwtClaims(access);
+  return typeof claims.aal==="string"?claims.aal:"aal1";
+}
+
+export function hasVerifiedTotp(user){
+  return Array.isArray(user?.factors)&&user.factors.some(
+    factor=>factor?.factor_type==="totp"&&factor?.status==="verified"
+  );
+}
