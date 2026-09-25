@@ -20,6 +20,7 @@ type Message={
 
 type Conversation={
   id:string;
+  type:string;
   other:Card|null;
   messages:Message[];
 };
@@ -41,6 +42,7 @@ export default function ConnectionsClient(){
     tasks:any[];
     reachContacts:ReachContact[];
     messagingEnabled?:boolean;
+    leaderAssignment?:any;
   }|null>(null);
   const [error,setError]=useState("");
   const [message,setMessage]=useState("");
@@ -126,7 +128,8 @@ export default function ConnectionsClient(){
     }
   }
 
-  const people=useMemo(()=>data?.conversations.filter(c=>c.other)||[],[data]);
+  const leaderConversation=useMemo(()=>data?.conversations.find(c=>c.type==="leader_followup"&&c.other)||null,[data]);
+  const people=useMemo(()=>data?.conversations.filter(c=>c.type!=="leader_followup"&&c.other)||[],[data]);
   const activeFive=useMemo(
     ()=>data?.reachContacts.filter(c=>["praying","invited","connected","growing"].includes(c.status))||[],
     [data]
@@ -198,6 +201,29 @@ export default function ConnectionsClient(){
         <div>{history.map(person=><span key={person.id}>{person.display_name} • {person.status}</span>)}</div>
       </details>}
     </section>
+
+    {data.leaderAssignment&&<section className="ml-panel ml-assigned-leader">
+      <div className="ml-kicker">My assigned Lockliel leader</div>
+      <div className="ml-assigned-leader-head">
+        <div className="ml-avatar">{(data.leaderAssignment.person?.first_name||"L").slice(0,1)}</div>
+        <div>
+          <h2>{data.leaderAssignment.person?.first_name||"Lockliel leader"}{data.leaderAssignment.person?.last_initial?" "+data.leaderAssignment.person.last_initial+".":""}</h2>
+          <span>{data.leaderAssignment.assignment_type.replaceAll("_"," ")}{data.leaderAssignment.person?.city?" • "+[data.leaderAssignment.person.city,data.leaderAssignment.person.region].filter(Boolean).join(", "):""}</span>
+        </div>
+      </div>
+      <p>Your original inviter remains part of your Lockliel story. This leader is the person currently assigned to help you grow and take your next step.</p>
+      {leaderConversation&&<>
+        <div className="ml-message-thread">
+          {leaderConversation.messages.length
+            ? leaderConversation.messages.slice(-6).map(m=><p key={m.id}>{m.body}<small>{new Date(m.created_at).toLocaleString()}</small></p>)
+            : <p className="ml-empty-message">You can message your assigned leader here without exposing private contact information.</p>}
+        </div>
+        <div className="ml-message-compose">
+          <input disabled={data.messagingEnabled===false} value={drafts[leaderConversation.id]||""} onChange={e=>setDrafts(v=>({...v,[leaderConversation.id]:e.target.value}))} placeholder={data.messagingEnabled===false?"Messaging temporarily unavailable":"Message my leader…"}/>
+          <button disabled={data.messagingEnabled===false} onClick={()=>send(leaderConversation.id)} aria-label="Send message to leader"><Send size={17}/></button>
+        </div>
+      </>}
+    </section>}
 
     {data.tasks.length>0&&<section className="ml-panel ml-followups">
       <div className="ml-kicker">Follow up</div>
