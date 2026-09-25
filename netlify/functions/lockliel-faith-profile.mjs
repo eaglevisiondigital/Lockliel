@@ -20,17 +20,50 @@ export default async(request)=>{
   if(request.method!=="POST")return json({error:"Method not allowed"},405);
 
   const b=await request.json().catch(()=>({}));
+  const allowedFaithStages=new Set([
+    "exploring",
+    "new-believer",
+    "growing",
+    "established",
+    "serving-leading",
+    "prefer-not-to-answer"
+  ]);
+  const allowedConnections=new Set(["either","local","online","not-now"]);
+  const allowedInterests=new Set([
+    "biblical-foundations",
+    "identity-in-christ",
+    "prayer",
+    "faith-development",
+    "evangelism",
+    "discipleship",
+    "leadership",
+    "healing-wholeness",
+    "family-relationships"
+  ]);
+
+  const faithStage=String(b.faithStage||"").trim();
+  const preferredConnection=String(b.preferredConnection||"").trim();
+
+  if(faithStage&&!allowedFaithStages.has(faithStage)){
+    return json({error:"Choose a valid faith-journey option."},400);
+  }
+  if(preferredConnection&&!allowedConnections.has(preferredConnection)){
+    return json({error:"Choose a valid connection preference."},400);
+  }
+
+  const growthInterests=Array.isArray(b.growthInterests)
+    ? [...new Set(b.growthInterests.map(String).filter(value=>allowedInterests.has(value)))].slice(0,20)
+    : [];
+
   const payload={
     profile_id:s.user.id,
-    faith_stage:String(b.faithStage||"").trim()||null,
-    church_background:String(b.churchBackground||"").trim()||null,
-    ministry_experience:String(b.ministryExperience||"").trim()||null,
-    growth_interests:Array.isArray(b.growthInterests)?b.growthInterests.map(String).slice(0,20):[],
+    faith_stage:faithStage||null,
+    church_background:String(b.churchBackground||"").trim().slice(0,3000)||null,
+    ministry_experience:String(b.ministryExperience||"").trim().slice(0,3000)||null,
+    growth_interests:growthInterests,
     wants_group:Boolean(b.wantsGroup),
     wants_host:Boolean(b.wantsHost),
-    preferred_connection:String(b.preferredConnection||"").trim()||null,
-    notes:{},
-    updated_at:new Date().toISOString()
+    preferred_connection:preferredConnection||null
   };
 
   const r=await fetch(
