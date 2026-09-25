@@ -13,7 +13,7 @@ export default function ProfileForm(){
   country:f.get("country"),
   locale:typeof navigator!=="undefined"?(navigator.language||"en-US"):"en-US",
   timezone:typeof Intl!=="undefined"?Intl.DateTimeFormat().resolvedOptions().timeZone:null
-})});const d=await r.json();setSaving(false);if(!r.ok){setMessage(d.error||"Unable to save.");return;}router.push("/my-lockliel/faith-profile");router.refresh();}
+})});const d=await r.json();setSaving(false);if(!r.ok){setMessage(d.error||"Unable to save.");return;}router.push(profile?.onboarding_status==="active"?"/my-lockliel":"/my-lockliel/faith-profile");router.refresh();}
  if(!profile)return <p>Loading your profile…</p>;
  return <form className="ml-auth-card" onSubmit={submit}><div className="ml-auth-row"><label>First name<input name="firstName" defaultValue={profile.first_name||""} required/></label><label>Last name<input name="lastName" defaultValue={profile.last_name||""} required/></label></div><label>Mobile phone <span style={{fontWeight:400,color:"#8fa0ba"}}>Optional</span><input name="phone" type="tel" defaultValue={profile.phone||""}/></label><div className="ml-auth-row"><label>City<input name="city" defaultValue={profile.city||""} required/></label><label>State / region<input name="region" defaultValue={profile.region||""} required/></label></div><label>Country<input name="country" defaultValue={profile.country||"United States"} required/></label>{message&&<p className="ml-auth-message error">{message}</p>}<button className="ml-action" disabled={saving}>{saving?"Saving…":"Save and continue"}</button></form>
 }
