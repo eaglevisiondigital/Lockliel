@@ -1308,3 +1308,14 @@ test("Founder orientation catalog is read-only through the Data API",()=>{
   assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.founder_orientation_steps[\s\S]*from authenticated/);
   assert.match(migration,/grant select[\s\S]*on table public\.founder_orientation_steps[\s\S]*to authenticated/);
 });
+
+
+test("staff role grants have database-owned timestamps and no update surface",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925130524_lockliel_system_owned_staff_role_grants.sql","utf8");
+
+  assert.match(migration,/revoke insert, update on table public\.staff_roles[\s\S]*from authenticated/);
+  assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*role[\s\S]*\) on table public\.staff_roles[\s\S]*to authenticated/);
+  assert.doesNotMatch(migration,/grant insert \([\s\S]*granted_at/);
+  assert.match(migration,/new\.granted_at:=now\(\)/);
+  assert.match(migration,/before insert on public\.staff_roles/);
+});
