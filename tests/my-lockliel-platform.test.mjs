@@ -92,3 +92,12 @@ test("Admin shell checks allowed roles before rendering",()=>{
   assert.match(source,/finance_admin/);
   assert.match(source,/location\.replace\("\/my-lockliel"\)/);
 });
+
+
+test("fulfillment staff stay out of broad Admin and use scoped tools",()=>{
+  const dashboard=fs.readFileSync("app/my-lockliel/dashboard-client.tsx","utf8");
+  const gate=fs.readFileSync("app/my-lockliel/admin/admin-gate.tsx","utf8");
+  assert.match(dashboard,/fulfillment_admin/);
+  assert.match(dashboard,/my-lockliel\/fulfillment/);
+  assert.equal(gate.includes("fulfillment_admin"),false);
+});
