@@ -337,3 +337,27 @@ test("My Five detail edits remain owner-scoped and private",()=>{
   assert.match(client,/Edit details & follow-up/);
   assert.match(client,/Only you can see this note/);
 });
+
+
+test("My Five share attribution stays private and preserves inviter lineage",()=>{
+  const shareApi=fs.readFileSync("netlify/functions/lockliel-share-link.mjs","utf8");
+  const shareUi=fs.readFileSync("app/my-lockliel/share/share-client.tsx","utf8");
+  const migration=fs.readFileSync("supabase/migrations/20260925045124_lockliel_my_five_share_attribution.sql","utf8");
+  assert.match(shareApi,/reach_contact_id/);
+  assert.match(shareApi,/owner_id=eq\./);
+  assert.match(shareApi,/share-center-my-five/);
+  assert.match(shareUi,/selectedReachId/);
+  assert.match(shareUi,/Their name is never placed in the public link/);
+  assert.match(shareUi,/markSelectedShared/);
+  assert.match(migration,/foreign key \(reach_contact_id, owner_id\)/);
+  assert.match(migration,/original_inviter_id/);
+  assert.match(migration,/linked_profile_id = new\.id/);
+  assert.match(migration,/when status in \('praying','invited'\) then 'connected'/);
+});
+
+test("share analytics aggregate person-specific links by resource",()=>{
+  const stats=fs.readFileSync("netlify/functions/lockliel-share-stats.mjs","utf8");
+  assert.match(stats,/groupedLinks/);
+  assert.match(stats,/const key=link\.content_id\|\|/);
+  assert.match(stats,/linkCount:group\.length/);
+});
