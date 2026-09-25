@@ -1448,3 +1448,27 @@ test("member-created referral links are bound to approved Share Library content"
   assert.match(shareApi,/campaign:reachContact\?"share-center-my-five":"share-center"/);
   assert.match(shareApi,/destination_path:asset\.destination_path/);
 });
+
+
+test("gift benefits and gift records enforce financial integrity",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925133406_lockliel_harden_gift_benefit_integrity.sql","utf8");
+
+  assert.match(migration,/drop trigger if exists audit_entitlement_insert_trigger/);
+  assert.match(migration,/reason not like 'gift-benefit:%'/);
+  assert.match(migration,/reason like 'gift-benefit:%'[\s\S]*finance_admin/);
+  assert.match(migration,/Benefit rules require an active product/);
+  assert.match(migration,/Digital benefit rules require a protected product file/);
+  assert.match(migration,/A Heart for the Lost gift benefit requires its release flag to be enabled/);
+
+  const giftUpdateGrant=migration.match(/grant update \(([\s\S]*?)\) on table public\.gifts[\s\S]*?to authenticated;/)?.[1]||"";
+  assert.match(giftUpdateGrant,/status/);
+  assert.match(giftUpdateGrant,/received_at/);
+  assert.doesNotMatch(giftUpdateGrant,/amount_cents/);
+  assert.doesNotMatch(giftUpdateGrant,/provider_transaction_ref/);
+  assert.doesNotMatch(giftUpdateGrant,/profile_id/);
+
+  assert.match(migration,/Gift transaction identity and amount fields cannot be changed after creation/);
+  assert.match(migration,/new\.received_at:=now\(\)/);
+  assert.match(migration,/gift_record_changed/);
+  assert.match(migration,/donor_identity_changed/);
+});
