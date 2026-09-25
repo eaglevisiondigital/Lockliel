@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import {CheckCircle2,KeyRound,LockKeyhole,ShieldCheck,Smartphone} from "lucide-react";
+import {
+  CheckCircle2,
+  ClipboardCopy,
+  KeyRound,
+  LockKeyhole,
+  RefreshCw,
+  ShieldCheck,
+  Smartphone
+} from "lucide-react";
 import {useEffect,useMemo,useState} from "react";
 
 type Factor={
@@ -15,6 +23,9 @@ export default function SecurityClient(){
   const [data,setData]=useState<any>(null);
   const [enrollment,setEnrollment]=useState<any>(null);
   const [code,setCode]=useState("");
+  const [recoveryCode,setRecoveryCode]=useState("");
+  const [useRecovery,setUseRecovery]=useState(false);
+  const [newRecoveryCodes,setNewRecoveryCodes]=useState<string[]|null>(null);
   const [message,setMessage]=useState("");
   const [error,setError]=useState("");
   const [working,setWorking]=useState(false);
@@ -28,8 +39,14 @@ export default function SecurityClient(){
   async function load(){
     const r=await fetch("/api/lockliel-auth/mfa",{cache:"no-store"});
     const d=await r.json().catch(()=>({}));
-    if(r.status===401){location.replace("/my-lockliel/sign-in");return;}
-    if(!r.ok){setError(d.error||"Unable to load account security.");return;}
+    if(r.status===401){
+      location.replace("/my-lockliel/sign-in");
+      return;
+    }
+    if(!r.ok){
+      setError(d.error||"Unable to load account security.");
+      return;
+    }
     setData(d);
   }
 
@@ -86,6 +103,34 @@ export default function SecurityClient(){
     }
   }
 
+  async function verifyRecovery(){
+    setWorking(true);
+    setError("");
+    setMessage("");
+
+    const r=await fetch("/api/lockliel-auth/mfa",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"verifyRecoveryCode",code:recoveryCode})
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+
+    if(!r.ok){
+      setError(d.error||"Recovery code was not accepted.");
+      return;
+    }
+
+    setRecoveryCode("");
+    setMessage("Recovery code accepted. Your current session is secured at AAL2.");
+    await load();
+
+    const params=new URLSearchParams(window.location.search);
+    if(params.get("next")){
+      window.setTimeout(()=>location.replace(next),500);
+    }
+  }
+
   async function remove(factorId:string){
     if(!confirm("Remove this authenticator from your Lockliel account?"))return;
 
@@ -104,13 +149,54 @@ export default function SecurityClient(){
       return;
     }
 
-    setMessage("Authenticator removed.");
+    setNewRecoveryCodes(null);
+    setMessage("Authenticator removed and the current session was downgraded.");
     await load();
+  }
+
+  async function manageRecovery(action:"generateRecoveryCodes"|"regenerateRecoveryCodes"|"revokeRecoveryCodes"){
+    if(action==="regenerateRecoveryCodes"&&!confirm("Rotate your recovery codes? Your old unused codes will stop working."))return;
+    if(action==="revokeRecoveryCodes"&&!confirm("Revoke all recovery codes?"))return;
+
+    setWorking(true);
+    setError("");
+    setMessage("");
+
+    const r=await fetch("/api/lockliel-auth/mfa",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action})
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+
+    if(!r.ok){
+      setError(d.error||"Unable to update recovery codes.");
+      return;
+    }
+
+    if(Array.isArray(d.recoveryCodes?.codes)){
+      setNewRecoveryCodes(d.recoveryCodes.codes);
+      setMessage("Save these recovery codes now. Lockliel cannot show them again after you leave this screen.");
+    }else{
+      setNewRecoveryCodes(null);
+      setMessage("Recovery codes revoked.");
+    }
+
+    await load();
+  }
+
+  async function copyRecoveryCodes(){
+    if(!newRecoveryCodes?.length)return;
+    await navigator.clipboard.writeText(newRecoveryCodes.join("\n"));
+    setMessage("Recovery codes copied. Store them somewhere secure and separate from your authenticator.");
   }
 
   if(!data)return <div className="ml-loading">Opening account security…</div>;
 
-  const verified=(data.factors||[]).filter((f:Factor)=>f.factorType==="totp"&&f.status==="verified");
+  const verified=(data.factors||[]).filter(
+    (f:Factor)=>f.factorType==="totp"&&f.status==="verified"
+  );
   const currentFactor=verified[0]||null;
   const needsChallenge=Boolean(currentFactor)&&data.aal!=="aal2";
 
@@ -130,9 +216,9 @@ export default function SecurityClient(){
         <h2>{data.aal==="aal2"?"MFA verified for this session":currentFactor?"MFA challenge required":"Authenticator MFA is not enrolled"}</h2>
         <p>
           {data.aal==="aal2"
-            ?"Your current session has completed password plus authenticator verification."
-            :currentFactor
-              ?"Enter a fresh code from your authenticator app to continue with protected staff tools."
+            ?"Your current session has completed password plus second-factor verification."
+            : currentFactor
+              ?"Complete your second factor to continue with protected Lockliel staff tools."
               :"Add an authenticator app to protect your Lockliel account with a second factor."}
         </p>
       </div>
@@ -161,7 +247,9 @@ export default function SecurityClient(){
       <h2>Scan this QR code</h2>
       <p>Open your authenticator app and add a new account. Scan the QR code below, then enter the code it generates.</p>
 
-      {qrSource&&<div className="ml-mfa-qr"><img src={qrSource} alt="Lockliel authenticator QR code"/></div>}
+      {qrSource&&<div className="ml-mfa-qr">
+        <img src={qrSource} alt="Lockliel authenticator QR code"/>
+      </div>}
 
       {enrollment.secret&&<details className="ml-mfa-secret">
         <summary>Can’t scan the QR code?</summary>
@@ -188,33 +276,93 @@ export default function SecurityClient(){
 
     {currentFactor&&needsChallenge&&<section className="ml-panel ml-mfa-setup">
       <div className="ml-kicker">MFA challenge</div>
-      <h2>Enter your authenticator code</h2>
-      <p>Your password was accepted. Complete the second factor to open protected Lockliel staff tools.</p>
-      <div className="ml-mfa-code">
-        <label>
-          Authenticator code
-          <input
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            value={code}
-            onChange={e=>setCode(e.target.value.replace(/\D/g,"").slice(0,8))}
-            placeholder="000000"
-            autoFocus
-          />
-        </label>
-        <button className="ml-action" disabled={working||code.length<6} onClick={()=>verify(currentFactor.id)}>
-          {working?"Verifying…":"Verify code"}
-        </button>
-      </div>
+      <h2>{useRecovery?"Use a recovery code":"Enter your authenticator code"}</h2>
+      <p>
+        {useRecovery
+          ?"Use one of your unused single-use recovery codes. It will be consumed after successful verification."
+          :"Your password was accepted. Complete the second factor to open protected Lockliel staff tools."}
+      </p>
+
+      {!useRecovery
+        ? <div className="ml-mfa-code">
+            <label>
+              Authenticator code
+              <input
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                value={code}
+                onChange={e=>setCode(e.target.value.replace(/\D/g,"").slice(0,8))}
+                placeholder="000000"
+                autoFocus
+              />
+            </label>
+            <button className="ml-action" disabled={working||code.length<6} onClick={()=>verify(currentFactor.id)}>
+              {working?"Verifying…":"Verify code"}
+            </button>
+          </div>
+        : <div className="ml-mfa-code">
+            <label>
+              Recovery code
+              <input
+                value={recoveryCode}
+                onChange={e=>setRecoveryCode(e.target.value)}
+                placeholder="XXXX-XXXX-XXXX-XXXX"
+                autoFocus
+              />
+            </label>
+            <button className="ml-action" disabled={working||!recoveryCode.trim()} onClick={verifyRecovery}>
+              {working?"Verifying…":"Use recovery code"}
+            </button>
+          </div>}
+
+      {data.recoveryCodes?.enrolled&&<button
+        className="ml-security-text-button"
+        onClick={()=>setUseRecovery(v=>!v)}
+      >{useRecovery?"Use authenticator instead":"I can’t access my authenticator"}</button>}
     </section>}
 
     {currentFactor&&data.aal==="aal2"&&<section className="ml-panel ml-mfa-managed">
       <div className="ml-icon"><CheckCircle2 size={20}/></div>
       <div>
         <h2>Authenticator active</h2>
-        <p>{currentFactor.friendlyName||"Lockliel Authenticator"} protects this account. Staff access can now require MFA for every sensitive session.</p>
+        <p>{currentFactor.friendlyName||"Lockliel Authenticator"} protects this account. Privileged staff permissions now require an AAL2 session.</p>
       </div>
       <button disabled={working} onClick={()=>remove(currentFactor.id)}>Remove authenticator</button>
+    </section>}
+
+    {currentFactor&&data.aal==="aal2"&&<section className="ml-panel ml-recovery-codes">
+      <div className="ml-recovery-head">
+        <div>
+          <div className="ml-kicker">Recovery</div>
+          <h2>Recovery codes</h2>
+          <p>Single-use recovery codes give you an emergency way to reach AAL2 if your authenticator device is unavailable.</p>
+        </div>
+        <KeyRound size={24}/>
+      </div>
+
+      {newRecoveryCodes?.length
+        ? <div className="ml-recovery-once">
+            <div className="ml-admin-notice">
+              <ShieldCheck size={16}/>
+              <span>These codes are shown only now. Save them before leaving this page.</span>
+            </div>
+            <div className="ml-recovery-code-grid">
+              {newRecoveryCodes.map((item,index)=><code key={index}>{item}</code>)}
+            </div>
+            <button className="ml-action" onClick={copyRecoveryCodes}><ClipboardCopy size={15}/> Copy all codes</button>
+          </div>
+        : data.recoveryCodes?.enrolled
+          ? <div className="ml-recovery-existing">
+              <div><b>{data.recoveryCodes.remaining}</b><span>of {data.recoveryCodes.total} unused codes remain</span></div>
+              <div className="ml-share-actions">
+                <button disabled={working} onClick={()=>manageRecovery("regenerateRecoveryCodes")}><RefreshCw size={14}/> Rotate codes</button>
+                <button disabled={working} onClick={()=>manageRecovery("revokeRecoveryCodes")}>Revoke codes</button>
+              </div>
+            </div>
+          : <div className="ml-recovery-existing">
+              <p>No recovery codes are enrolled.</p>
+              <button className="ml-action" disabled={working} onClick={()=>manageRecovery("generateRecoveryCodes")}>Generate recovery codes</button>
+            </div>}
     </section>}
 
     <section className="ml-security-note">
