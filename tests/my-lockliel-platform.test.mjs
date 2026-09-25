@@ -1665,3 +1665,19 @@ test("leader approval and assignment actors are database-owned",()=>{
   assert.doesNotMatch(api,/approved_by:uid/);
   assert.doesNotMatch(api,/assigned_by:uid/);
 });
+
+
+test("weekly check-in submitter is database-owned and preserved across corrections",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925140652_lockliel_system_owned_group_checkin_submitter.sql","utf8");
+  const dedicatedApi=fs.readFileSync("netlify/functions/lockliel-group-checkin.mjs","utf8");
+  const groupsApi=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+
+  const insertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.group_weekly_checkins to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(insertGrant,/submitted_by/);
+  assert.match(migration,/new\.submitted_by:=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/new\.submitted_by:=old\.submitted_by/);
+  assert.match(migration,/old\.group_id is distinct from new\.group_id/);
+  assert.match(migration,/old\.week_start is distinct from new\.week_start/);
+  assert.doesNotMatch(dedicatedApi,/submitted_by:uid/);
+  assert.doesNotMatch(groupsApi,/submitted_by:uid/);
+});

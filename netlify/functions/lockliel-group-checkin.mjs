@@ -27,7 +27,6 @@ export default async(request)=>{
 
     const payload={
       group_id:groupId,
-      submitted_by:uid,
       week_start:weekStart,
       gathered:Boolean(b.gathered),
       attendance_count:clampInt(b.attendanceCount,10000),
