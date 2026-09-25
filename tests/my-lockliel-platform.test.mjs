@@ -1754,3 +1754,30 @@ test("launch verification audits record state changes without duplicating note t
   assert.match(migration,/new\.verified_at:=case/);
   assert.match(migration,/new\.updated_at:=now\(\)/);
 });
+
+
+test("Auth email changes synchronize the profile without exposing email values in audit metadata",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925152507_lockliel_sync_profile_email_from_auth.sql","utf8");
+
+  assert.match(migration,/after update of email[\s\S]*on auth\.users/);
+  assert.match(migration,/set email=lower\(trim\(new\.email\)\)/);
+  assert.match(migration,/account_email_changed/);
+  assert.match(migration,/jsonb_build_object\('email_changed',true\)/);
+  assert.doesNotMatch(migration,/old\.email[\s\S]*metadata/);
+});
+
+test("account security changes email and password through Supabase Auth with MFA protection",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-account-security.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/security/security-client.tsx","utf8");
+
+  assert.match(api,/hasVerifiedTotp\(s\.user\).*sessionAal\(s\.access\)!=="aal2"/s);
+  assert.match(api,/SUPABASE_URL\+"\/auth\/v1\/user"/);
+  assert.match(api,/action==="changeEmail"/);
+  assert.match(api,/action==="changePassword"/);
+  assert.match(api,/rateLimit/);
+  assert.doesNotMatch(api,/rest\/v1\/profiles/);
+  assert.match(client,/Current sign-in email/);
+  assert.match(client,/Request email change/);
+  assert.match(client,/Change password/);
+  assert.match(client,/\/api\/lockliel-auth\/account-security/);
+});

@@ -21,6 +21,7 @@ type Factor={
 
 export default function SecurityClient(){
   const [data,setData]=useState<any>(null);
+  const [account,setAccount]=useState<any>(null);
   const [enrollment,setEnrollment]=useState<any>(null);
   const [code,setCode]=useState("");
   const [recoveryCode,setRecoveryCode]=useState("");
@@ -29,6 +30,9 @@ export default function SecurityClient(){
   const [message,setMessage]=useState("");
   const [error,setError]=useState("");
   const [working,setWorking]=useState(false);
+  const [newEmail,setNewEmail]=useState("");
+  const [newPassword,setNewPassword]=useState("");
+  const [confirmPassword,setConfirmPassword]=useState("");
 
   const next=useMemo(()=>{
     if(typeof window==="undefined")return "/my-lockliel";
@@ -37,9 +41,14 @@ export default function SecurityClient(){
   },[]);
 
   async function load(){
-    const r=await fetch("/api/lockliel-auth/mfa",{cache:"no-store"});
+    const [r,sr]=await Promise.all([
+      fetch("/api/lockliel-auth/mfa",{cache:"no-store"}),
+      fetch("/api/lockliel-auth/session",{cache:"no-store"})
+    ]);
     const d=await r.json().catch(()=>({}));
-    if(r.status===401){
+    const sd=await sr.json().catch(()=>({}));
+
+    if(r.status===401||sr.status===401){
       location.replace("/my-lockliel/sign-in");
       return;
     }
@@ -47,10 +56,72 @@ export default function SecurityClient(){
       setError(d.error||"Unable to load account security.");
       return;
     }
+
     setData(d);
+    if(sr.ok)setAccount(sd);
   }
 
   useEffect(()=>{load();},[]);
+
+  async function changeEmail(e:React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    setWorking(true);
+    setError("");
+    setMessage("");
+
+    const r=await fetch("/api/lockliel-auth/account-security",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"changeEmail",email:newEmail})
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+
+    if(r.status===403&&d.code==="mfa_required"){
+      setError(d.error||"Complete MFA before changing your sign-in email.");
+      return;
+    }
+    if(!r.ok){
+      setError(d.error||"Unable to request the email change.");
+      return;
+    }
+
+    setNewEmail("");
+    setMessage(d.message||"Email change requested. Check your email for confirmation.");
+  }
+
+  async function changePassword(e:React.FormEvent<HTMLFormElement>){
+    e.preventDefault();
+    setError("");
+    setMessage("");
+
+    if(newPassword!==confirmPassword){
+      setError("The new passwords do not match.");
+      return;
+    }
+
+    setWorking(true);
+    const r=await fetch("/api/lockliel-auth/account-security",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({action:"changePassword",password:newPassword})
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+
+    if(r.status===403&&d.code==="mfa_required"){
+      setError(d.error||"Complete MFA before changing your password.");
+      return;
+    }
+    if(!r.ok){
+      setError(d.error||"Unable to update your password.");
+      return;
+    }
+
+    setNewPassword("");
+    setConfirmPassword("");
+    setMessage(d.message||"Password updated.");
+  }
 
   async function enroll(){
     setWorking(true);
@@ -199,6 +270,8 @@ export default function SecurityClient(){
   );
   const currentFactor=verified[0]||null;
   const needsChallenge=Boolean(currentFactor)&&data.aal!=="aal2";
+  const sensitiveChangesAllowed=!currentFactor||data.aal==="aal2";
+  const currentEmail=String(account?.user?.email||account?.profile?.email||"");
 
   const qrSource=enrollment?.qrCode
     ? String(enrollment.qrCode).startsWith("data:")
@@ -230,6 +303,72 @@ export default function SecurityClient(){
 
     {message&&<p className="ml-share-message">{message}</p>}
     {error&&<p className="ml-auth-message error">{error}</p>}
+
+    <section className="ml-panel ml-security-account">
+      <div>
+        <div className="ml-kicker">Sign-in & password</div>
+        <h2>Account credentials</h2>
+        <p>Your sign-in email comes from Lockliel authentication. Profile contact details cannot override it.</p>
+      </div>
+
+      <div className="ml-security-credential-grid">
+        <form onSubmit={changeEmail}>
+          <label>
+            Current sign-in email
+            <input value={currentEmail} readOnly aria-readonly="true"/>
+          </label>
+          <label>
+            New sign-in email
+            <input
+              type="email"
+              autoComplete="email"
+              value={newEmail}
+              onChange={e=>setNewEmail(e.target.value)}
+              placeholder="name@example.com"
+              maxLength={254}
+              required
+            />
+          </label>
+          <button className="ml-action" disabled={working||!sensitiveChangesAllowed||!newEmail.trim()}>
+            {working?"Saving…":"Request email change"}
+          </button>
+          <small>Lockliel will use the authentication confirmation process before the new email becomes active.</small>
+        </form>
+
+        <form onSubmit={changePassword}>
+          <label>
+            New password
+            <input
+              type="password"
+              autoComplete="new-password"
+              value={newPassword}
+              onChange={e=>setNewPassword(e.target.value)}
+              minLength={8}
+              maxLength={128}
+              required
+            />
+          </label>
+          <label>
+            Confirm new password
+            <input
+              type="password"
+              autoComplete="new-password"
+              value={confirmPassword}
+              onChange={e=>setConfirmPassword(e.target.value)}
+              minLength={8}
+              maxLength={128}
+              required
+            />
+          </label>
+          <button className="ml-action" disabled={working||!sensitiveChangesAllowed||newPassword.length<8||newPassword!==confirmPassword}>
+            {working?"Saving…":"Change password"}
+          </button>
+          <small>Password changes are sent directly to Lockliel authentication and are never stored in the profile database.</small>
+        </form>
+      </div>
+
+      {!sensitiveChangesAllowed&&<p className="ml-privacy-note">Complete the MFA challenge on this page before changing your sign-in email or password.</p>}
+    </section>
 
     {!currentFactor&&!enrollment&&<section className="ml-panel ml-security-enroll">
       <Smartphone size={28}/>
