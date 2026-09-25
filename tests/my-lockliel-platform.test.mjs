@@ -509,3 +509,15 @@ test("group leave or change requests are reviewed and preserve membership histor
   assert.match(notifyMigration,/Your Lockliel group connection is active/);
   assert.match(notifyMigration,/You are no longer assigned to/);
 });
+
+
+test("same active leader updates preserve a member's paused messaging consent",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925111422_lockliel_preserve_member_leader_message_consent.sql","utf8");
+  assert.match(migration,/activate_permission boolean := false/);
+  assert.match(migration,/if tg_op='INSERT' then/);
+  assert.match(migration,/old\.status<>'active'/);
+  assert.match(migration,/old\.leader_id is distinct from new\.leader_id/);
+  assert.match(migration,/and cp\.revoked_at is null/);
+  assert.match(migration,/if permission_open then/);
+  assert.match(migration,/revoke execute on function app_private\.sync_leader_assignment_relationship/);
+});
