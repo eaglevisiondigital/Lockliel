@@ -112,17 +112,25 @@ export default function MyLocklielDashboard(){
     const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
 
-    if(data.founderStatus){
+    if(["accepted","orientation"].includes(founderStatus)){
+      extra.push({
+        icon:Sparkles,
+        title:"Founders 50 Orientation",
+        text:"Prepare to host well: catch the vision, learn the group rhythm, practice Share With Five, and complete your readiness steps.",
+        href:"/my-lockliel/founder",
+        cta:"Continue orientation"
+      });
+    } else if(data.founderStatus){
       extra.push({
         icon:ShieldCheck,
         title:"Founders 50",
-        text:"Your Founders 50 application is "+founderStatus.replaceAll("_"," ")+". Follow your next steps and stay connected.",
+        text:"Your Founders 50 status is "+founderStatus.replaceAll("_"," ")+". Stay connected to your next steps.",
         href:"/founders-50",
         cta:"View Founders 50"
       });
     }
 
-    if(founderActive||isHost){
+    if(founderStatus==="active_host"||isHost){
       extra.push({
         icon:Sparkles,
         title:"Founder / Host Tools",
