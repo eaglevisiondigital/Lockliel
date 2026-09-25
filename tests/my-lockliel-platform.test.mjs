@@ -1647,3 +1647,21 @@ test("group creation and staff changes are audited with compact operational meta
   assert.match(migration,/language_changed/);
   assert.match(migration,/after insert or update of/);
 });
+
+
+test("leader approval and assignment actors are database-owned",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925140411_lockliel_system_owned_leadership_actors.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-leaders.mjs","utf8");
+
+  const assignmentInsert=migration.match(/grant insert \(([\s\S]*?)\) on table public\.leader_assignments to authenticated;/)?.[1]||"";
+  const assignmentUpdate=migration.match(/grant update \(([\s\S]*?)\) on table public\.leader_assignments to authenticated;/)?.[1]||"";
+  const profileInsert=migration.match(/grant insert \(([\s\S]*?)\) on table public\.leader_profiles to authenticated;/)?.[1]||"";
+  const profileUpdate=migration.match(/grant update \(([\s\S]*?)\) on table public\.leader_profiles to authenticated;/)?.[1]||"";
+
+  assert.doesNotMatch(assignmentInsert,/assigned_by/);
+  assert.doesNotMatch(assignmentUpdate,/assigned_by/);
+  assert.doesNotMatch(profileInsert,/approved_by/);
+  assert.doesNotMatch(profileUpdate,/approved_by/);
+  assert.doesNotMatch(api,/approved_by:uid/);
+  assert.doesNotMatch(api,/assigned_by:uid/);
+});

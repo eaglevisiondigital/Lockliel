@@ -39,8 +39,7 @@ export default async(request)=>{
         region:String(b.region||"").trim()||null,
         country:String(b.country||"").trim()||null,
         language_code:String(b.languageCode||card?.language_code||"en").trim().toLowerCase().slice(0,12)||"en",
-        capacity:Number(b.capacity)>0?Math.min(10000,Number(b.capacity)):null,
-        approved_by:uid
+        capacity:Number(b.capacity)>0?Math.min(10000,Number(b.capacity)):null
       };
 
       const r=await fetch(
@@ -91,8 +90,7 @@ export default async(request)=>{
             member_id:memberId,
             leader_id:leaderId,
             assignment_type:assignmentType,
-            status:"active",
-            assigned_by:uid
+            status:"active"
           })
         }
       );
