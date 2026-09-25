@@ -663,3 +663,31 @@ test("Lockliel cannot remove the final super administrator",()=>{
   assert.match(client,/protectedSelf/);
   assert.match(client,/final super administrator to be removed/);
 });
+
+
+test("release flags automatically fail closed when dependencies become unready",()=>{
+  const payment=fs.readFileSync("supabase/migrations/20260925114051_lockliel_auto_disable_unready_release_flags.sql","utf8");
+  const book=fs.readFileSync("supabase/migrations/20260925114131_lockliel_refine_book_benefit_release_sync.sql","utf8");
+
+  assert.match(payment,/where key='partner_checkout'[\s\S]*enabled=true/);
+  assert.match(payment,/status='active'[\s\S]*checkout_adapter_ready=true[\s\S]*webhook_ready=true/);
+  assert.match(payment,/new\.key='digital_book_delivery'[\s\S]*new\.enabled=false/);
+  assert.match(book,/digital_ready boolean/);
+  assert.match(book,/heart_ready boolean/);
+  assert.match(book,/key='digital_book_delivery'/);
+  assert.match(book,/key='heart_book_gift_benefit'/);
+});
+
+test("fully verified payment providers require documented verification",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925114227_lockliel_document_payment_provider_verification.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-system.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/system-admin-client.tsx","utf8");
+
+  assert.match(migration,/verification note of at least 20 characters/);
+  assert.match(migration,/new\.last_verified_at:=now\(\)/);
+  assert.match(migration,/new\.last_verified_at:=null/);
+  assert.match(api,/verificationNote\.length<20/);
+  assert.doesNotMatch(api,/last_verified_at:/);
+  assert.match(client,/Required for launch-ready status/);
+  assert.match(client,/note\.trim\(\)\.length<20/);
+});
