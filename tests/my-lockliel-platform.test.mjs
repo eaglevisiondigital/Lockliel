@@ -1681,3 +1681,16 @@ test("weekly check-in submitter is database-owned and preserved across correctio
   assert.doesNotMatch(dedicatedApi,/submitted_by:uid/);
   assert.doesNotMatch(groupsApi,/submitted_by:uid/);
 });
+
+
+test("fulfillment event actor identity is database-owned",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925140858_lockliel_system_owned_fulfillment_actor.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-orders.mjs","utf8");
+  const integrity=fs.readFileSync("supabase/migrations/20260925134352_lockliel_harden_fulfillment_record_integrity.sql","utf8");
+
+  const insertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.order_fulfillment_events to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(insertGrant,/actor_profile_id/);
+  assert.doesNotMatch(api,/actor_profile_id:s\.user\.id/);
+  assert.match(integrity,/new\.actor_profile_id:=coalesce\(\(select auth\.uid\(\)\),new\.actor_profile_id\)/);
+  assert.match(integrity,/new\.created_at:=now\(\)/);
+});

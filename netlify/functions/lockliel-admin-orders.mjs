@@ -34,7 +34,6 @@ export default async(request)=>{
       headers:{...h,Prefer:"return=representation"},
       body:JSON.stringify({
         order_id:orderId,
-        actor_profile_id:s.user.id,
         event_type:eventType,
         carrier:String(b.carrier||"").trim().slice(0,120)||null,
         tracking_number:String(b.trackingNumber||"").trim().slice(0,240)||null,
