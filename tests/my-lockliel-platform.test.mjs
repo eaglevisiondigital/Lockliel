@@ -1315,7 +1315,20 @@ test("staff role grants have database-owned timestamps and no update surface",()
 
   assert.match(migration,/revoke insert, update on table public\.staff_roles[\s\S]*from authenticated/);
   assert.match(migration,/grant insert \([\s\S]*profile_id[\s\S]*role[\s\S]*\) on table public\.staff_roles[\s\S]*to authenticated/);
-  assert.doesNotMatch(migration,/grant insert \([\s\S]*granted_at/);
+  const staffRoleInsertGrant=migration.match(/grant insert \(([\s\S]*?)\) on table public\.staff_roles[\s\S]*?to authenticated;/)?.[1]||"";
+  assert.doesNotMatch(staffRoleInsertGrant,/granted_at/);
   assert.match(migration,/new\.granted_at:=now\(\)/);
   assert.match(migration,/before insert on public\.staff_roles/);
+});
+
+
+test("conversation identity and membership are system-owned while members can still read their active conversations",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925130730_lockliel_system_owned_conversation_membership.sql","utf8");
+  const messaging=fs.readFileSync("supabase/migrations/20260925120440_lockliel_enforce_messaging_release_flag.sql","utf8");
+
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.conversations[\s\S]*from authenticated/);
+  assert.match(migration,/grant select[\s\S]*on table public\.conversations[\s\S]*to authenticated/);
+  assert.match(migration,/revoke insert, update, delete[\s\S]*on table public\.conversation_members[\s\S]*from authenticated/);
+  assert.match(migration,/grant select[\s\S]*on table public\.conversation_members[\s\S]*to authenticated/);
+  assert.match(messaging,/grant insert \([\s\S]*conversation_id[\s\S]*sender_id[\s\S]*body[\s\S]*\) on table public\.messages to authenticated/);
 });
