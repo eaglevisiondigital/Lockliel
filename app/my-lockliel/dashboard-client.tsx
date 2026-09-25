@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import {useEffect,useMemo,useState} from "react";
 import NotificationsClient from "./notifications/notifications-client";
+import DashboardAttention from "./dashboard-attention";
 
 type SessionData={
   authenticated:boolean;
@@ -236,6 +237,8 @@ export default function MyLocklielDashboard(){
       {data.founderStatus&&<span>Founders 50: {data.founderStatus.replaceAll("_"," ")}</span>}
       {(data.groupMemberships||[]).map((g,index)=><span key={g.group_id+"-"+index}>Group role: {g.role.replaceAll("_"," ")}</span>)}
     </section>}
+
+    <DashboardAttention/>
 
     <NotificationsClient compact/>
 
