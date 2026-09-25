@@ -2103,3 +2103,16 @@ test("lesson external URLs are HTTPS-only and the retired Grip importer stays di
   assert.match(tombstone,/status:410/);
   assert.match(tombstone,/permanently disabled/);
 });
+
+
+test("public rate-limit history self-cleans beyond the maximum enforcement window",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925214004_lockliel_bound_public_rate_limit_history.sql","utf8");
+
+  assert.match(migration,/public_rate_limits_updated_at_idx/);
+  assert.match(migration,/window_seconds>86400/);
+  assert.match(migration,/updated_at<now\(\)-interval '48 hours'/);
+  assert.match(migration,/limit 500/);
+  assert.match(migration,/current_hits=1/);
+  assert.match(migration,/left\(key_hash_input,1\)='0'/);
+  assert.match(migration,/grant execute on function public\.consume_public_rate_limit[\s\S]*to service_role/);
+});
