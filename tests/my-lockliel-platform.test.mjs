@@ -1068,3 +1068,14 @@ test("commerce records use least privilege and entitlement changes are audited",
   assert.match(migration,/entitlement_granted/);
   assert.match(migration,/entitlement_revoked/);
 });
+
+
+test("published lesson rows still require course enrollment",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925122548_lockliel_scope_lesson_rows_to_enrollment.sql","utf8");
+
+  assert.match(migration,/join public\.course_enrollments ce/);
+  assert.match(migration,/ce\.profile_id=\(select auth\.uid\(\)\)/);
+  assert.match(migration,/ce\.status in \('active','completed'\)/);
+  assert.match(migration,/content_course\.status='published'/);
+  assert.match(migration,/content_course\.translation_key=enrolled_course\.translation_key/);
+});
