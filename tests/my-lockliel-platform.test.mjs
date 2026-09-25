@@ -123,3 +123,24 @@ test("password login routes enrolled MFA accounts to challenge",()=>{
   assert.match(login,/hasVerifiedTotp/);
   assert.match(form,/my-lockliel\/security\?challenge=1/);
 });
+
+
+test("staff MFA flow supports recovery codes without storing plaintext codes",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-mfa.mjs","utf8");
+  const ui=fs.readFileSync("app/my-lockliel/security/security-client.tsx","utf8");
+  assert.match(api,/factors\/recovery-codes\/verify/);
+  assert.match(api,/generateRecoveryCodes/);
+  assert.match(api,/regenerateRecoveryCodes/);
+  assert.match(ui,/newRecoveryCodes/);
+  assert.match(ui,/shown only now/i);
+});
+
+test("privileged workspaces route through MFA security gate",()=>{
+  const admin=fs.readFileSync("app/my-lockliel/admin/admin-gate.tsx","utf8");
+  const fulfillment=fs.readFileSync("app/my-lockliel/fulfillment/page.tsx","utf8");
+  const gate=fs.readFileSync("app/my-lockliel/staff-security-gate.tsx","utf8");
+  assert.match(admin,/StaffSecurityGate/);
+  assert.match(fulfillment,/StaffSecurityGate/);
+  assert.match(gate,/aal2/);
+  assert.match(gate,/hasVerifiedTotp/);
+});
