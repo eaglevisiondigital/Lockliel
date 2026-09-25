@@ -21,7 +21,7 @@ export default async(request)=>{
   let events=[];
   if(ids.length){
     const er=await fetch(
-      SUPABASE_URL+"/rest/v1/referral_events?referral_link_id="+encodeURIComponent(inFilter(ids))+"&select=referral_link_id,event_type,member_id,occurred_at",
+      SUPABASE_URL+"/rest/v1/referral_events?referral_link_id="+encodeURIComponent(inFilter(ids))+"&select=referral_link_id,event_type,member_id,occurred_at,metadata",
       {headers:h}
     );
     events=er.ok?await er.json():[];
@@ -57,6 +57,13 @@ export default async(request)=>{
       .filter(e=>e.event_type==="signup"&&e.member_id)
       .map(e=>e.member_id)
   ).size;
+  const channelCounts={native:0,sms:0,email:0,copy:0,other:0};
+  for(const event of events.filter(e=>e.event_type==="share_initiated")){
+    const channel=String(event.metadata?.channel||"other");
+    if(Object.prototype.hasOwnProperty.call(channelCounts,channel))channelCounts[channel]++;
+    else channelCounts.other++;
+  }
+
 
   const breakdown=links.map(link=>{
     const rows=events.filter(e=>e.referral_link_id===link.id);
@@ -83,6 +90,7 @@ export default async(request)=>{
 
   return json({
     totals:{...totals,unique_joined:uniqueJoined},
+    channels:channelCounts,
     breakdown
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 };
