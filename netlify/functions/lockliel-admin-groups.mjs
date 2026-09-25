@@ -16,7 +16,7 @@ export default async(request)=>{
     {headers:h}
   );
   const roles=rr.ok?(await rr.json()).map(r=>r.role):[];
-  if(!roles.some(r=>["super_admin","admin","discipleship_admin","founders50_reviewer"].includes(r))){
+  if(!roles.some(r=>["super_admin","admin","discipleship_admin"].includes(r))){
     return json({error:"Group administration access required"},403);
   }
 
