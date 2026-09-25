@@ -1854,3 +1854,22 @@ test("group leadership eligibility changes serialize against active host and lea
   assert.match(migration,/must retain a group-leader compatible role/);
   assert.match(migration,/Reassign active group leadership before removing this Founders 50 active-host status/);
 });
+
+
+test("manual launch readiness verification requires documented evidence",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925160735_lockliel_require_launch_verification_evidence.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/readiness-admin-client.tsx","utf8");
+
+  assert.match(migration,/launch_verifications_verified_note_required/);
+  assert.match(migration,/char_length\(trim\(note\)\) between 20 and 3000/);
+  assert.match(migration,/Verified launch checks require a verification note of at least 20 characters/);
+  assert.match(migration,/new\.note:=nullif\(trim\(coalesce\(new\.note,''\)\),''\)/);
+  assert.match(api,/verified&&note\.length<20/);
+  assert.match(api,/note:note\|\|null/);
+  assert.match(api,/note:verificationMap\.auth_url_configuration\?\.note\|\|""/);
+  assert.match(api,/note:verificationMap\.custom_smtp\?\.note\|\|""/);
+  assert.match(client,/Verification evidence/);
+  assert.match(client,/trimmed\.length>=20/);
+  assert.match(client,/body:JSON\.stringify\(\{key,verified,note\}\)/);
+});

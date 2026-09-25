@@ -17,13 +17,13 @@ export default function ReadinessAdminClient(){
 
   useEffect(()=>{load();},[]);
 
-  async function verify(key:string,verified:boolean){
+  async function verify(key:string,verified:boolean,note:string){
     setWorking(key);
     setMessage("");
     const r=await fetch("/api/lockliel/admin/readiness",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({key,verified})
+      body:JSON.stringify({key,verified,note})
     });
     const d=await r.json().catch(()=>({}));
     setWorking(null);
@@ -64,12 +64,53 @@ export default function ReadinessAdminClient(){
           <span>{check.detail}</span>
           {check.manual&&<small><ShieldCheck size={11}/> Manual verification required because this setting lives in the Supabase dashboard rather than the connected build tools.</small>}
         </div>
-        {check.manual&&<button
-          className={check.ready?"ml-verified-button verified":"ml-verified-button"}
-          disabled={working===check.manualKey}
-          onClick={()=>verify(check.manualKey,!check.ready)}
-        >{check.ready?"Verified":"Mark verified"}</button>}
+        {check.manual&&<ManualVerificationControl
+          check={check}
+          working={working===check.manualKey}
+          onVerify={verify}
+        />}
       </article>)}
     </div>
   </section>;
+}
+
+
+function ManualVerificationControl({
+  check,
+  working,
+  onVerify
+}:{
+  check:any;
+  working:boolean;
+  onVerify:(key:string,verified:boolean,note:string)=>void;
+}){
+  const [note,setNote]=useState(check.note||"");
+
+  useEffect(()=>{
+    setNote(check.note||"");
+  },[check.note]);
+
+  const trimmed=note.trim();
+  const canVerify=check.ready||trimmed.length>=20;
+
+  return <div className="ml-manual-verification">
+    <label>
+      Verification evidence
+      <textarea
+        value={note}
+        onChange={e=>setNote(e.target.value.slice(0,3000))}
+        rows={3}
+        maxLength={3000}
+        placeholder="Record what was checked, where it was verified, and the production result."
+      />
+    </label>
+    <small>{check.ready
+      ?"Keep the evidence current. Clear verification if this production setting changes."
+      :"At least 20 characters are required before this launch check can be marked verified."}</small>
+    <button
+      className={check.ready?"ml-verified-button verified":"ml-verified-button"}
+      disabled={working||!canVerify}
+      onClick={()=>onVerify(check.manualKey,!check.ready,note)}
+    >{working?"Saving…":check.ready?"Clear verification":"Mark verified"}</button>
+  </div>;
 }

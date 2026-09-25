@@ -21,10 +21,15 @@ export default async(request)=>{
     const b=await request.json().catch(()=>({}));
     const key=String(b.key||"");
     const verified=Boolean(b.verified);
+    const note=String(b.note||"").trim().slice(0,3000);
     const allowed=["auth_url_configuration","custom_smtp"];
 
     if(!allowed.includes(key)){
       return json({error:"Unknown launch verification."},400);
+    }
+
+    if(verified&&note.length<20){
+      return json({error:"Verified launch checks require a verification note of at least 20 characters."},400);
     }
 
     const r=await fetch(
@@ -34,7 +39,7 @@ export default async(request)=>{
         headers:{...h,Prefer:"return=representation"},
         body:JSON.stringify({
           verified,
-          note:String(b.note||"").trim().slice(0,3000)||null
+          note:note||null
         })
       }
     );
@@ -139,6 +144,7 @@ export default async(request)=>{
       ready:Boolean(verificationMap.auth_url_configuration?.verified),
       manual:true,
       manualKey:"auth_url_configuration",
+      note:verificationMap.auth_url_configuration?.note||"",
       detail:"Verify Site URL = https://lockliel.com. Allow exact production redirects for https://lockliel.com/my-lockliel/sign-in and https://lockliel.com/my-lockliel/reset-password. For Netlify previews, allow https://**--lockliel.netlify.app/**."
     },
     {
@@ -147,6 +153,7 @@ export default async(request)=>{
       ready:Boolean(verificationMap.custom_smtp?.verified),
       manual:true,
       manualKey:"custom_smtp",
+      note:verificationMap.custom_smtp?.note||"",
       detail:"Verify custom SMTP is configured for production confirmation and password-recovery email delivery."
     },
     {
