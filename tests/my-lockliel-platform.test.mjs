@@ -252,3 +252,14 @@ test("new-member onboarding flows profile to faith journey to course",()=>{
   assert.match(profile,/router\.push\("\/my-lockliel\/faith-profile"\)/);
   assert.match(faith,/router\.push\("\/my-lockliel\/journey"\)/);
 });
+
+
+test("digital book download requires release flag and active product",()=>{
+  const endpoint=fs.readFileSync("netlify/functions/lockliel-resources.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/resources/resources-client.tsx","utf8");
+  assert.match(endpoint,/digital_book_delivery/);
+  assert.match(endpoint,/product\.status!==["']active["']/);
+  assert.match(endpoint,/Digital book delivery is not live yet/);
+  assert.match(client,/deliveryAvailable/);
+  assert.match(client,/Not released yet/);
+});
