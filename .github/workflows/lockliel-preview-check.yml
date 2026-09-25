@@ -1,5 +1,7 @@
 name: Lockliel Preview Check
 on:
+  push:
+    branches: [lockliel-backend-v1]
   pull_request:
     branches: [main]
   workflow_dispatch:
