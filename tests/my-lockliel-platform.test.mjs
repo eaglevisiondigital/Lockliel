@@ -397,3 +397,21 @@ test("profile edits preserve an existing locale preference",()=>{
   assert.match(profile,/profile\?\.locale\|\|/);
   assert.match(profile,/navigator\.language/);
 });
+
+
+test("members control inviter and leader messaging without changing relationship identity",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
+  const migration=fs.readFileSync("supabase/migrations/20260925045653_lockliel_member_contact_consent_controls.sql","utf8");
+  assert.match(api,/setContactPermission/);
+  assert.match(api,/revoked_at:allow\?null/);
+  assert.match(client,/My original inviter/);
+  assert.match(client,/selfRole==="invitee"/);
+  assert.match(client,/selfRole==="inviter"/);
+  assert.match(client,/Pause messages/);
+  assert.match(migration,/grant update \(revoked_at\)/);
+  assert.match(migration,/contact_permissions_self_update/);
+  assert.match(migration,/left_at = coalesce/);
+  assert.match(migration,/set left_at=null/);
+  assert.match(migration,/revoke execute on function app_private\.sync_contact_permission_conversation_state/);
+});
