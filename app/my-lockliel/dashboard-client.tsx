@@ -87,7 +87,7 @@ export default function MyLocklielDashboard(){
   const nextTitle=data.journey?.next_step_title||"Continue Getting a Grip on the Basics";
   const nextPath=data.journey?.next_step_path||"/my-lockliel/journey";
 
-  return <main className="my-lockliel"><div className="ml-shell">
+  const memberCards=[...cards];\n  if(data.founderStatus)memberCards.push({icon:ShieldCheck,title:"Founders 50",text:"Your Founders 50 application is "+data.founderStatus.replaceAll("_"," ")+". Follow your next steps here.",href:"/founders-50",cta:"View Founders 50"});\n  if((data.roles||[]).length)memberCards.push({icon:ShieldCheck,title:"Lockliel Admin",text:"Open the role-protected people, progress, follow-up, groups, content, finance, and system tools.",href:"/my-lockliel/admin",cta:"Open admin"});\n\n  return <main className="my-lockliel"><div className="ml-shell">
     <header className="ml-member-bar">
       <div>
         <div className="ml-kicker">My Lockliel</div>
@@ -137,7 +137,7 @@ export default function MyLocklielDashboard(){
 
     <h2 className="ml-section-title">What will you do next?</h2>
     <section className="ml-grid">
-      {cards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
+      {memberCards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
         <div className="ml-icon"><Icon size={21}/></div>
         <h2>{card.title}</h2>
         <p>{card.text}</p>
