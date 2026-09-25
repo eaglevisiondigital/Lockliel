@@ -2,6 +2,7 @@
 
 import {useEffect,useMemo,useState} from "react";
 import {
+  ArrowRightLeft,
   CalendarCheck2,
   CheckCircle2,
   MapPin,
@@ -82,6 +83,28 @@ export default function MyGroupClient(){
       setMessage("Request cancelled.");
       await load();
     }
+  }
+
+  async function requestGroupChange(e:React.FormEvent<HTMLFormElement>,groupId:string){
+    e.preventDefault();
+    setWorking(true);
+    setMessage("");
+    const form=new FormData(e.currentTarget);
+    const r=await fetch("/api/lockliel/groups",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        action:"requestGroupChange",
+        groupId,
+        reason:form.get("reason")
+      })
+    });
+    const d=await r.json().catch(()=>({}));
+    setWorking(false);
+    if(!r.ok){setMessage(d.error||"Unable to submit group change request.");return;}
+    setMessage("Your group change request has been sent to the Lockliel team.");
+    e.currentTarget.reset();
+    await load();
   }
 
   async function submitCheckin(e:React.FormEvent<HTMLFormElement>,groupId:string){
@@ -172,6 +195,9 @@ export default function MyGroupClient(){
     {data.groups.map((g:any)=>{
       const canCheckIn=["leader","host"].includes(g.myRole);
       const latest=g.checkins?.[0];
+      const transitionRequest=requests.find((r:any)=>
+        r.request_type==="leave_or_change_group"&&r.requested_group_id===g.id
+      );
 
       return <article className="ml-panel ml-member-group" key={g.id}>
         <div className="ml-group-title">
@@ -208,6 +234,29 @@ export default function MyGroupClient(){
             </span>
           </div>
         </div>}
+
+        <div className="ml-group-transition">
+          <div className="ml-group-transition-head">
+            <ArrowRightLeft size={17}/>
+            <div>
+              <b>Need to leave or change groups?</b>
+              <span>Your request is reviewed by the Lockliel team so the transition can be handled relationally and your history is preserved.</span>
+            </div>
+          </div>
+          {transitionRequest
+            ? <div className="ml-open-request">
+                <CheckCircle2 size={15}/>
+                <div><b>Group transition request is open</b><span>{transitionRequest.message||"The Lockliel team can help with your next group step."}</span></div>
+                <button disabled={working} onClick={()=>cancelRequest(transitionRequest.id)}><X size={13}/> Cancel</button>
+              </div>
+            : <details>
+                <summary>Request a group change</summary>
+                <form onSubmit={e=>requestGroupChange(e,g.id)}>
+                  <label>Anything we should know? <span>Optional</span><textarea name="reason" rows={2} maxLength={1500} placeholder="For example: schedule, location, season of life, or I need to step away for now."/></label>
+                  <button className="ml-action" disabled={working}>{working?"Sending…":"Send request"}</button>
+                </form>
+              </details>}
+        </div>
 
         {canCheckIn&&<form className="ml-group-checkin" onSubmit={e=>submitCheckin(e,g.id)}>
           <div className="ml-group-checkin-head">
