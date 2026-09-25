@@ -837,3 +837,16 @@ test("weekly group check-ins preserve identity and database timestamps",()=>{
   assert.match(migration,/char_length\(needs_support\)<=5000/);
   assert.doesNotMatch(api,/updated_at:new Date\(\)\.toISOString\(\)/);
 });
+
+
+test("weekly group check-ins allow current leaders to correct reports without changing identity",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925120822_lockliel_harden_group_weekly_checkins.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-groups.mjs","utf8");
+
+  assert.match(migration,/app_private\.is_group_leader\(group_id\)/);
+  assert.match(migration,/grant update \([\s\S]*gathered[\s\S]*needs_support[\s\S]*\) on table public\.group_weekly_checkins to authenticated/);
+  assert.doesNotMatch(migration,/grant update \([\s\S]*group_id/);
+  assert.match(migration,/Weekly check-in identity cannot be changed/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+  assert.match(api,/on_conflict=group_id,week_start/);
+});
