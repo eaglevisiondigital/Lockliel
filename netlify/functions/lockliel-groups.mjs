@@ -4,7 +4,7 @@ function inFilter(ids){
   return "in.("+ids.join(",")+")";
 }
 
-async function createRequest({h,uid,requestType,message}){
+async function createRequest({h,uid,requestType,message,requestedGroupId=null}){
   const existing=await fetch(
     SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=eq."+encodeURIComponent(requestType)+"&status=eq.open&select=id&limit=1",
     {headers:h}
@@ -17,6 +17,7 @@ async function createRequest({h,uid,requestType,message}){
     headers:{...h,Prefer:"return=representation"},
     body:JSON.stringify({
       requester_id:uid,
+      requested_group_id:requestedGroupId||null,
       request_type:requestType,
       status:"open",
       message
@@ -55,6 +56,31 @@ export default async(request)=>{
         uid,
         requestType:"explore_hosting",
         message:"Member requested a conversation about hosting or helping lead a Lockliel gathering."
+      });
+      if(!result.ok)return json({error:result.error},result.status);
+      return json({ok:true,request:result.request},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
+    if(action==="requestGroupChange"){
+      const groupId=String(b.groupId||"");
+      const reason=String(b.reason||"").trim().slice(0,1500);
+      if(!groupId)return json({error:"Current group required."},400);
+
+      const membershipRes=await fetch(
+        SUPABASE_URL+"/rest/v1/group_members?group_id=eq."+encodeURIComponent(groupId)+
+        "&profile_id=eq."+encodeURIComponent(uid)+
+        "&status=eq.active&select=group_id,role&limit=1",
+        {headers:h}
+      );
+      const memberships=membershipRes.ok?await membershipRes.json():[];
+      if(!memberships.length)return json({error:"Active group membership not found."},404);
+
+      const result=await createRequest({
+        h,
+        uid,
+        requestType:"leave_or_change_group",
+        requestedGroupId:groupId,
+        message:reason||"Member requested help leaving or changing their current Lockliel group."
       });
       if(!result.ok)return json({error:result.error},result.status);
       return json({ok:true,request:result.request},200,s.refreshed?sessionCookies(s.refreshed):[]);
@@ -125,7 +151,7 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=in.(find_local_group,explore_hosting)&status=eq.open&select=id,request_type,status,message,created_at",
+      SUPABASE_URL+"/rest/v1/connection_requests?requester_id=eq."+encodeURIComponent(uid)+"&request_type=in.(find_local_group,explore_hosting,leave_or_change_group)&status=eq.open&select=id,requested_group_id,request_type,status,message,created_at",
       {headers:h}
     )
   ]);
