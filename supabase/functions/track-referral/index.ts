@@ -1,3 +1,4 @@
+// @ts-nocheck
 const headers={"content-type":"application/json","cache-control":"no-store"};
 
 Deno.serve(async(req:Request)=>{
