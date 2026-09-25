@@ -1729,3 +1729,28 @@ test("gift-benefit access requires a currently valid qualifying gift without del
   assert.match(migration,/bucket_id='member-resources'/);
   assert.doesNotMatch(migration,/delete from public\.entitlements/);
 });
+
+
+test("benefit rule status changes are audited and date windows stay valid",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925152054_lockliel_audit_benefit_rule_status.sql","utf8");
+
+  assert.match(migration,/benefit_rules_date_window_check/);
+  assert.match(migration,/ends_at>=starts_at/);
+  assert.match(migration,/benefit_rule_status_changed/);
+  assert.match(migration,/status_from/);
+  assert.match(migration,/status_to/);
+  assert.match(migration,/after update of status/);
+});
+
+test("launch verification audits record state changes without duplicating note text",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260925152155_lockliel_minimize_launch_verification_audit.sql","utf8");
+
+  assert.match(migration,/launch_verification_changed/);
+  assert.match(migration,/verified_from/);
+  assert.match(migration,/verified_to/);
+  assert.match(migration,/note_changed/);
+  assert.doesNotMatch(migration,/'note',new\.note/);
+  assert.match(migration,/new\.verified_by:=case/);
+  assert.match(migration,/new\.verified_at:=case/);
+  assert.match(migration,/new\.updated_at:=now\(\)/);
+});
