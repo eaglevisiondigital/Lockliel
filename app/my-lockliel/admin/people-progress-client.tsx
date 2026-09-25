@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import {useEffect,useMemo,useState} from "react";
 import {PlayCircle,Search,UserRound} from "lucide-react";
 
@@ -64,6 +65,7 @@ export default function PeopleProgressClient(){
               <b>{p.name}</b>
               {p.email&&<small>{p.email}</small>}
               <small>{p.location||"Location not completed"}</small>
+              <Link className="ml-person-record-link" href={"/my-lockliel/admin/person?profileId="+encodeURIComponent(p.id)}>Open person record →</Link>
             </div>
           </div>
 
