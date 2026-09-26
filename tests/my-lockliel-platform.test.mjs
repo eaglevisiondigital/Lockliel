@@ -2266,3 +2266,21 @@ test("gift benefit date windows cannot end before they start",()=>{
   assert.match(migration,/ends_at is null/);
   assert.match(migration,/starts_at<=ends_at/);
 });
+
+test("member messages require a meaningful bounded body",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926002734_lockliel_require_meaningful_message_body.sql","utf8");
+
+  assert.match(migration,/messages_body_check/);
+  assert.match(migration,/char_length\(trim\(body\)\)>=1/);
+  assert.match(migration,/char_length\(body\)<=5000/);
+});
+
+
+test("staff notes require a meaningful bounded body",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926002837_lockliel_require_meaningful_staff_note_body.sql","utf8");
+
+  assert.match(migration,/member_staff_notes_body_check/);
+  assert.match(migration,/char_length\(trim\(body\)\)>=1/);
+  assert.match(migration,/char_length\(body\)<=5000/);
+});
+
