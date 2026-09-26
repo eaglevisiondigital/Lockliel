@@ -1141,7 +1141,7 @@ test("public Founders and lead intake use hashed database-backed rate limits",()
   assert.match(founders,/sha256/);
   assert.match(founders,/founders50_email/);
   assert.match(founders,/founders50_ip/);
-  assert.match(founders,/duplicate:true/);
+  assert.match(founders,/duplicate:Boolean\\(result\\?\\.is_duplicate\\)/);
   assert.match(founders,/\.slice\(0,5000\)/);
   assert.doesNotMatch(founders,/detail:detail/);
   assert.match(capture,/sha256/);
