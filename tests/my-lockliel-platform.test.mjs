@@ -2375,3 +2375,15 @@ test("manual gifts allow legitimate event timestamps without trusting a caller-s
   assert.doesNotMatch(api,/b\.receivedAt/);
 });
 
+test("media progress intervals require valid numeric forward-moving pairs",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926010707_lockliel_validate_media_progress_interval_shape.sql","utf8");
+
+  assert.match(migration,/media_progress_covered_intervals_shape/);
+  assert.match(migration,/strict \$\[\*\]/);
+  assert.match(migration,/@\.size\(\) != 2/);
+  assert.match(migration,/@\[0\]\.type\(\) != "number"/);
+  assert.match(migration,/@\[1\]\.type\(\) != "number"/);
+  assert.match(migration,/@\[0\] < 0/);
+  assert.match(migration,/@\[1\] <= @\[0\]/);
+});
+
