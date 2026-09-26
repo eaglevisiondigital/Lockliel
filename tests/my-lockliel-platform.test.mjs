@@ -2406,4 +2406,26 @@ test("fulfillment cannot advance an empty order",()=>{
   assert.match(migration,/new\.event_type in \('packed','shipped','delivered','fulfilled'\)/);
   assert.match(migration,/An order must contain at least one item before fulfillment can advance/);
 });
+test("order fulfillment requires financially consistent paid order data",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926011312_lockliel_harden_order_fulfillment_financial_integrity.sql","utf8");
+
+  assert.match(migration,/Checkout sessions linked to an order must use order purpose/);
+  assert.match(migration,/Checkout and linked order must use the same currency/);
+  assert.match(migration,/Checkout amount must match the linked order total/);
+  assert.match(migration,/Order item totals must match the recorded order subtotal/);
+  assert.match(migration,/A paid order is required before fulfillment can advance/);
+  assert.match(migration,/when status='partially_refunded' then status/);
+  assert.match(migration,/Order items cannot be changed after fulfillment packing has begun/);
+  assert.match(migration,/Shipping addresses cannot be changed after an order has shipped/);
+});
+
+test("paid order item snapshots are immutable before fulfillment packing",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926011511_lockliel_freeze_paid_order_items.sql","utf8");
+
+  assert.match(migration,/protect_fulfillment_snapshot/);
+  assert.match(migration,/paid','partially_refunded','refunded','fulfilled/);
+  assert.match(migration,/Order items cannot be changed after payment has been recorded/);
+  assert.match(migration,/Order items cannot be moved into an order after payment has been recorded/);
+  assert.match(migration,/Shipping addresses cannot be changed after an order has shipped/);
+});
 
