@@ -2618,3 +2618,29 @@ test("launch readiness names security-health drift instead of hiding it behind a
   assert.match(api,/No detected drift in RLS exposure/);
 });
 
+test("member experience payloads stay bounded and internal",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926030123_lockliel_harden_member_experience_payloads.sql","utf8");
+
+  assert.match(migration,/member_journey_next_step_type_format/);
+  assert.match(migration,/member_journey_next_step_path_internal/);
+  assert.match(migration,/member_journey_counts_nonnegative/);
+  assert.match(migration,/notifications_type_format/);
+  assert.match(migration,/notifications_href_internal/);
+  assert.match(migration,/notifications_read_after_create/);
+  assert.match(migration,/founder_orientation_steps_slug_format/);
+  assert.match(migration,/founder_orientation_steps_href_internal/);
+  assert.match(migration,/feature_flags_key_format/);
+});
+
+test("audit and communication event payloads are bounded",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926030304_lockliel_harden_system_event_payloads.sql","utf8");
+
+  assert.match(migration,/audit_events_event_type_format/);
+  assert.match(migration,/audit_events_entity_type_format/);
+  assert.match(migration,/audit_events_summary_length/);
+  assert.match(migration,/audit_events_metadata_object/);
+  assert.match(migration,/pg_column_size\(metadata\)<=65536/);
+  assert.match(migration,/communication_preference_events_key_format/);
+  assert.match(migration,/communication_preference_events_source_format/);
+});
+
