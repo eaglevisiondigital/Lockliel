@@ -2387,3 +2387,15 @@ test("media progress intervals require valid numeric forward-moving pairs",()=>{
   assert.match(migration,/@\[1\] <= @\[0\]/);
 });
 
+test("shipping and fulfillment records stay aligned with order delivery method",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926010745_lockliel_validate_shipping_fulfillment_relationships.sql","utf8");
+
+  assert.match(migration,/validate_shipping_address_order/);
+  assert.match(migration,/shipping or mixed-delivery orders/);
+  assert.match(migration,/validate_fulfillment_event_order/);
+  assert.match(migration,/new\.event_type in \('packed','shipped','delivered'\)/);
+  assert.match(migration,/A shipping address is required before recording physical fulfillment events/);
+  assert.match(migration,/new\.event_type='fulfilled'/);
+  assert.match(migration,/A shipping address is required before fulfilling a shipping or mixed-delivery order/);
+});
+
