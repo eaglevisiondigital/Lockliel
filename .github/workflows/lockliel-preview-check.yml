@@ -36,3 +36,4 @@ jobs:
           tests/faith-boost-resource.test.mjs
           tests/founders50.test.mjs
           tests/my-lockliel-platform.test.mjs
+          tests/account-deletion-worker.test.mjs

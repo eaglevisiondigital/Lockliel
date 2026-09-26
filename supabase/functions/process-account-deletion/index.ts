@@ -167,11 +167,42 @@ Deno.serve(async(req:Request)=>{
     );
   }
 
-  if(before.auth_user_exists===true){
+  const executionArgs={
+    request_id_input:requestId,
+    actor_id_input:user.id,
+    actor_session_id_input:tokenClaims.session_id
+  };
+  const {data:prepared,error:prepareError}=await admin.rpc(
+    "lockliel_prepare_account_deletion",
+    {...executionArgs,revoke_sessions_input:false}
+  );
+  if(prepareError||prepared?.target_profile_id!==targetId||
+     prepared?.request_status!=="in_review"||prepared?.handled_by!==user.id||
+     prepared?.blocker_count!==0||typeof prepared?.auth_user_exists!=="boolean"){
+    return new Response(JSON.stringify({error:"Account deletion execution could not be claimed. Refresh and retry."}),{status:409,headers});
+  }
+
+  if(prepared.auth_user_exists===true){
+    const {error:suspendError}=await admin.auth.admin.updateUserById(targetId,{ban_duration:"876000h"});
+    if(suspendError){
+      return new Response(JSON.stringify({error:"Unable to suspend account sign-in before deletion. Retry processing."}),{status:409,headers});
+    }
+  }
+  const {data:revoked,error:revokeError}=await admin.rpc(
+    "lockliel_prepare_account_deletion",
+    {...executionArgs,revoke_sessions_input:true}
+  );
+  if(revokeError||revoked?.target_profile_id!==targetId||revoked?.session_count!==0||
+     revoked?.blocker_count!==0||revoked?.request_status!=="in_review"||
+     revoked?.handled_by!==user.id||typeof revoked?.auth_user_exists!=="boolean"){
+    return new Response(JSON.stringify({error:"Session revocation could not be verified. Account deletion was not attempted; retry processing."}),{status:409,headers});
+  }
+
+  if(revoked.auth_user_exists===true){
     const {error:deleteError}=await admin.auth.admin.deleteUser(targetId);
     if(deleteError){
       return new Response(
-        JSON.stringify({error:"Supabase Auth account deletion did not complete."}),
+        JSON.stringify({error:"Supabase Auth account deletion did not complete. Sign-in remains suspended; retry processing."}),
         {status:409,headers}
       );
     }
@@ -183,9 +214,14 @@ Deno.serve(async(req:Request)=>{
   );
   if(
     afterError||
-    after?.auth_user_exists===true||
-    Number(after?.session_count||0)!==0||
-    after?.profile_exists===true
+    after?.target_profile_id!==targetId||
+    after?.request_status!=="in_review"||
+    after?.handled_by!==user.id||
+    after?.auth_user_exists!==false||
+    after?.session_count!==0||
+    after?.profile_exists!==false||
+    after?.owned_storage_objects!==0||
+    after?.blocker_count!==0
   ){
     return new Response(
       JSON.stringify({error:"Account deletion could not be verified after Auth processing."}),
@@ -197,7 +233,7 @@ Deno.serve(async(req:Request)=>{
     "lockliel_scrub_deleted_nonfinancial_records",
     {request_id_input:requestId}
   );
-  if(scrubError){
+  if(scrubError||!scrub||!["lead_contacts_deleted","founders50_applications_anonymized","founders50_review_rationales_cleared"].every(key=>Number.isInteger(scrub[key])&&scrub[key]>=0)){
     return new Response(
       JSON.stringify({error:"The Auth account was removed, but personal-data scrubbing still needs to complete. Retry this request."}),
       {status:500,headers}

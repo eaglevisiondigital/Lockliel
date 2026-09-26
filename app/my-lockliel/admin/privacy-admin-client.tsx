@@ -88,9 +88,9 @@ export default function PrivacyAdminClient(){
                   must process an administrator&apos;s own deletion request.
                 </p>
                 <p>
-                  When the checks pass, the system removes the Supabase Auth account and sessions, verifies
+                  When the checks pass, the system suspends sign-in, revokes sessions, removes the Supabase Auth account, and verifies
                   that the member profile is gone, scrubs surviving nonfinancial CRM and Founders 50 personal
-                  data, then completes the privacy record.
+                  data, then completes the privacy record. Once processing starts, retry an interrupted request to finish it; it can no longer be declined or cancelled.
                 </p>
               </div>
 
