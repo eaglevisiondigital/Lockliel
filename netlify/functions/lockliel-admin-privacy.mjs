@@ -30,6 +30,19 @@ export default async(request)=>{
     const action=String(b.action||"");
     if(!id)return json({error:"Privacy request required."},400);
 
+    if(action==="reclaimDeletion"){
+      if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)){
+        return json({error:"Invalid privacy request."},400);
+      }
+      const r=await fetch(SUPABASE_URL+"/rest/v1/rpc/lockliel_reclaim_account_deletion",{
+        method:"POST",headers:h,body:JSON.stringify({request_id_input:id})
+      }).catch(()=>null);
+      if(!r?.ok)return json({error:"Unable to recover this request. Its current handler may still have administrator access. Refresh readiness and try again."},r?409:503);
+      const result=await r.json().catch(()=>null);
+      if(result?.ok!==true||result.request_id!==id.toLowerCase())return json({error:"Request recovery could not be verified."},502);
+      return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
     if(action==="claim"){
       const r=await fetch(
         SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.submitted",
@@ -145,6 +158,7 @@ export default async(request)=>{
       const current=await loadRequest(id,h);
       if(!current)return json({error:"Privacy request not found."},404);
       if(current.status!=="in_review")return json({error:"Privacy request must be in review before resolution."},409);
+      if(current.handled_by!==s.user.id)return json({error:"Only the assigned administrator can resolve this request."},409);
 
       const adminNote=String(b.adminNote||"").trim().slice(0,5000);
 
@@ -155,7 +169,7 @@ export default async(request)=>{
       }
 
       const r=await fetch(
-        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.in_review",
+        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.in_review&handled_by=eq."+encodeURIComponent(s.user.id),
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
@@ -176,6 +190,22 @@ export default async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
+  const requestId=new URL(request.url).searchParams.get("request_id");
+  if(requestId!==null){
+    if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)){
+      return json({error:"Invalid privacy request."},400);
+    }
+    const r=await fetch(SUPABASE_URL+"/rest/v1/rpc/lockliel_admin_deletion_readiness",{
+      method:"POST",headers:h,body:JSON.stringify({request_id_input:requestId})
+    }).catch(()=>null);
+    if(!r?.ok)return json({error:"Unable to verify deletion readiness. Refresh and try again."},503);
+    const readiness=await r.json().catch(()=>null);
+    if(readiness?.request_id!==requestId.toLowerCase()||typeof readiness.terminal!=="boolean"){
+      return json({error:"Deletion readiness returned incomplete information."},502);
+    }
+    return json({readiness},200,s.refreshed?sessionCookies(s.refreshed):[]);
+  }
+
   const [requestsRes,peopleRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/privacy_requests?select=id,profile_id,request_type,status,member_note,admin_note,requested_at,updated_at,resolved_at,handled_by,deletion_sessions_revoked,deletion_auth_account_processed,deletion_personal_data_processed&order=requested_at.asc&limit=500",
@@ -187,7 +217,9 @@ export default async(request)=>{
     )
   ]);
 
-  const requests=requestsRes.ok?await requestsRes.json():[];
+  if(!requestsRes.ok)return json({error:"Unable to load privacy requests. Please retry."},503);
+  const requests=await requestsRes.json().catch(()=>null);
+  if(!Array.isArray(requests))return json({error:"Unable to load privacy requests. Please retry."},503);
   const people=peopleRes.ok?await peopleRes.json():[];
   const peopleMap=Object.fromEntries(people.map(p=>[p.profile_id,p]));
 
