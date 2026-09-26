@@ -7,7 +7,7 @@ const keys={
   group_members:['group_id','profile_id'],leader_assignments:['member_id'],
   founders50_applications:['id'],founder_orientation_progress:['profile_id','step_id'],
   notifications:['id'],gifts:['id'],partner_commitments:['id'],orders:['id'],
-  entitlements:['id'],privacy_requests:['id']
+  entitlements:['id'],privacy_requests:['id'],order_items:['id'],order_shipping_addresses:['order_id']
 };
 
 // Counts and duplicate checks detect paging drift; this is not a cross-table snapshot.

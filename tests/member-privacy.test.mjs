@@ -20,6 +20,12 @@ async function run(options={}){
       if(table==='privacy_requests'&&u.searchParams.has('id'))return reply(Object.hasOwn(options,'approval')?options.approval:[{id}],options.approvalStatus||200);
       if(options.sourceFailure===table)return reply({},500);
       if(options.malformed===table)return reply({},200,{'Content-Range':'*/0'});
+      if(options.commerce&&['orders','order_items','order_shipping_addresses'].includes(table)){
+        const data=table==='orders'?[{id:'order-1'}]:table==='order_items'
+          ?[{id:'item-1',order_id:options.unknownOrder?'other-order':'order-1',product_id:'product-1',quantity:2,unit_price_cents:1000,orders:{profile_id:options.foreignOwner?'another-member':member}}]
+          :[{order_id:'order-1',recipient_name:'Example Member',line1:'Example address',orders:{profile_id:member}}];
+        return reply(data,200,{'Content-Range':'0-0/1'});
+      }
       return reply([],200,options.missingRange?{}:{'Content-Range':options.truncated===table?'*/1001':'*/0'});
     }
     if(table==='privacy_requests'){
@@ -142,4 +148,24 @@ test('export retrieves more than the default thousand-row response limit',async(
   }});
   assert.equal(pages,3);assert.equal(result.length,1201);
   assert.deepEqual(result[1200],{title:'Notification 1200'});
+});
+
+test('commerce export includes member-owned items and addresses without join metadata',async()=>{
+  const r=await run({export:true,commerce:true});assert.equal(r.status,200);
+  assert.deepEqual(r.body.order_items,[{order_id:'order-1',product_id:'product-1',quantity:2,unit_price_cents:1000}]);
+  assert.equal(r.body.shipping_addresses[0].recipient_name,'Example Member');
+  assert.equal(r.body.shipping_addresses[0].orders,undefined);
+  for(const table of ['order_items','order_shipping_addresses']){
+    const c=r.calls.find(c=>c.url.pathname.endsWith('/'+table));
+    assert.equal(c.url.searchParams.get('orders.profile_id'),'eq.'+member);
+    assert.match(c.url.searchParams.get('select'),/orders!inner\(profile_id\)/);
+    assert.match(c.init.headers.Authorization,/Bearer test\./);
+  }
+  assert.match(r.calls.find(c=>c.url.pathname.endsWith('/group_members')).url.searchParams.get('select'),/left_at/);
+});
+test('commerce export refuses mismatched ownership and unknown parent orders',async()=>{
+  for(const options of [{foreignOwner:true},{unknownOrder:true},{sourceFailure:'order_items'},{sourceFailure:'order_shipping_addresses'}]){
+    const r=await run({export:true,commerce:true,...options});assert.equal(r.status,503);
+    assert.equal(r.headers.get('content-disposition'),null);
+  }
 });
