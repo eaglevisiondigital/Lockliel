@@ -1,0 +1,44 @@
+-- Test-only platform surface for a fresh native PostgreSQL cluster.
+-- Not a Supabase migration and not a replacement for GoTrue/Storage integration tests.
+create role anon nologin;
+create role authenticated nologin;
+create role service_role nologin bypassrls;
+create schema auth;
+create schema storage;
+create schema extensions;
+grant usage on schema public, auth, storage to anon, authenticated, service_role;
+alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
+alter default privileges in schema public grant all on sequences to anon, authenticated, service_role;
+
+create table auth.users (
+  id uuid primary key, email text, raw_user_meta_data jsonb default '{}',
+  raw_app_meta_data jsonb default '{}', email_confirmed_at timestamptz,
+  encrypted_password text, deleted_at timestamptz, banned_until timestamptz,
+  created_at timestamptz default now(), updated_at timestamptz default now()
+);
+create table auth.sessions (
+  id uuid primary key, user_id uuid references auth.users(id) on delete cascade,
+  aal text, not_after timestamptz, created_at timestamptz default now()
+);
+create table auth.refresh_tokens (
+  id bigint generated always as identity primary key, user_id text,
+  session_id uuid references auth.sessions(id) on delete cascade
+);
+create function auth.jwt() returns jsonb language sql stable as $$
+  select coalesce(nullif(current_setting('request.jwt.claims', true), ''), '{}')::jsonb;
+$$;
+create function auth.uid() returns uuid language sql stable as $$
+  select nullif(auth.jwt()->>'sub', '')::uuid;
+$$;
+create table storage.buckets (
+  id text primary key, name text, public boolean default false,
+  file_size_limit bigint, allowed_mime_types text[], created_at timestamptz default now()
+);
+create table storage.objects (
+  id uuid primary key default gen_random_uuid(), bucket_id text references storage.buckets(id),
+  name text, owner uuid, owner_id text, metadata jsonb default '{}',
+  created_at timestamptz default now(), updated_at timestamptz default now(),
+  unique(bucket_id, name)
+);
+alter table storage.objects enable row level security;
+grant all on storage.objects to anon, authenticated, service_role;

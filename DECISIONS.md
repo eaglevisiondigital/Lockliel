@@ -73,11 +73,24 @@ or additional authoritative source documents were supplied for this assignment.
 | Native app / alternate shell | Proposal only; this repository baseline proves a web application. | Chat architecture decision if prioritized |
 | Complete mockup/vision coverage | Recent handoff recovered, not every historical message or visual reviewed. | Identify the precise source when a future UX decision depends on it |
 
-## Proposed next engineering package
+## Authorized and completed local engineering package
 
-Make local validation match the current Next.js/Netlify CI contract, document
-the actual setup, and establish an isolated SQL authorization-test workflow.
-Preserve existing suites and behavior; do not delete legacy tests without
-understanding their intended coverage. This is a recommendation, not completed
-implementation or permission to modify production. See the prioritized gaps in
-`CURRENT_BUILD_STATE.md`.
+The user's subsequent pasted assignment authorized test isolation, fail-closed
+network protection, supported build validation, isolated SQL authorization tests,
+and essential hygiene. These now exist locally. It allowed narrow changes for a
+verified defect: the email-format constraint correction was prepared and tested,
+not applied. This authorization does not extend to production releases.
+
+Implementation decisions: retain Webpack; use native disposable PostgreSQL 17
+with TCP disabled; preserve useful legacy test coverage against current output;
+record incomplete migration history through explicit test-only supplements;
+retain visible full-lint debt instead of suppressing it. No product/business
+approval or public branding change is implied.
+
+## Proposed next package (not started)
+
+Reconcile missing schema history with authoritative catalog/deployment evidence,
+prove unsupplemented migration reproducibility, and prepare a reviewed release
+plan for the email constraint correction, including existing-data compatibility
+and rollback considerations. Keep production application separately authorized.
+Repository-wide lint remediation should remain a separately scoped follow-up.

@@ -91,3 +91,12 @@ and dependencies. The current build and CI use Next.js and Netlify. Do not infer
 that D1, Sites hosting, ChatGPT sign-in, or the unrelated Prime49 system is an
 active Lockliel dependency. Preserve these artifacts until a scoped cleanup
 establishes which can safely be removed.
+
+## Local validation update, 2026-09-26
+
+The supported build is now explicitly `next build --webpack`; static export is
+unchanged. README.md is authoritative for commands. CI uses all guarded Node
+tests and an independent disposable PostgreSQL 17 job. Resource signup factories
+accept a separate CRM `mirror` transport with the same production fetch default.
+SQL compatibility fixtures and catalog supplements are test infrastructure only,
+not a second application schema or proof of full Supabase service equivalence.

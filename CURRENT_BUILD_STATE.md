@@ -3,19 +3,69 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
-## Active engineering package
+## Completed local engineering package (2026-09-26)
 
-Continuity checkpoint committed as `c3e9a01`. The subsequent user assignment
-authorizes local test isolation, build validation, disposable SQL tests and
-repository hygiene, with no production changes.
+This section supersedes historical local-tooling limitations recorded below.
+Original baseline remains `47409a2796a5275e12684cb4a182cb008c4d5414`.
+Continuity checkpoint: `c3e9a01`; CRM transport/network isolation: `33ecdf3`.
+Subsequent local commits contain the SQL/build/hygiene package and this record.
+No push, deployment or production mutation was performed for this package.
 
-CRM signup transports now have an explicit injectable `mirror` dependency.
-The test preload denies fetch, HTTP(S), HTTP/2, TCP/TLS, UDP, DNS and WebSocket
-network attempts, records violations and fails even when application code catches
-the error. Both the package test entrypoint and CI load it. All 25 targeted
-network/resource checks passed, including subprocess probes and the previously
-unmocked CRM path. This is accidental-network protection, not a sandbox against
-malicious tests spawning arbitrary native programs.
+- Resource signup handlers inject Forms and CRM transports independently.
+- Fail-closed Node preload covers fetch, HTTP(S), HTTP/2, TCP/TLS, UDP, DNS and
+  WebSocket, records violations and fails even when callers catch the error.
+  Subprocess probes include the previously unmocked CRM path. This is protection
+  against accidental network calls, not an OS sandbox for arbitrary native code.
+- Full `npm test`: Webpack export plus 311 tests passed, zero skips/failures.
+  Legacy rendering tests now verify actual Next export; component/catalog CSS
+  tests remain useful through isolated Vite and PostCSS fixtures.
+- `npm run typecheck`, `npm run lint:tooling`, and `npm run validate:netlify`
+  passed (61 modules checked, 58 function handlers imported). Production npm
+  dependency audit reported zero vulnerabilities. Diff whitespace, representative
+  ignore rules, SQL connection-argument rejection and a limited changed-file
+  credential-pattern check passed.
+- Disposable PostgreSQL 17: all five SQL files passed, including actual anonymous,
+  member ownership/isolation, forbidden grants, staff AAL1 denial, staff AAL2
+  access, and revoked-session denial. Existing deletion/integrity fixtures pass.
+- README.md defines supported validation. Webpack is sufficient; Turbopack is
+  not required. Removed unsupported `next start` for static export. CI now runs
+  the full guarded suite, typecheck, Netlify validation and isolated SQL tests.
+  The edited CI workflow has not yet run remotely.
+- `.gitignore` excludes secrets and generated artifacts, preserving source,
+  migrations, templates and continuity documents.
+
+### Verified SQL findings and pending change
+
+The original 272 version/name pairs matched the connected project's ledger.
+That does not prove complete schema history: unchanged replay requires explicit
+TEST-ONLY reconstruction of `founders50_reviews` and six `share_assets` columns.
+The supplements are based on read-only live catalog evidence, not guessed
+business requirements. They are not deployable repair migrations and do not
+claim full schema equivalence. Source-history reconciliation remains open.
+
+Migration `20260926212002_lockliel_correct_profile_email_pattern.sql` is NEW and
+UNAPPLIED to production. Existing/live `profiles_email_format` uses an
+over-escaped dot and rejects normal email addresses. Read-only evaluation of
+its actual expression confirmed the defect; the replacement uses `[.]` and
+preserves normalization and length checks. Valid/invalid identity regression
+fixtures pass locally. There are now 273 local migrations versus 272 at the
+last live inspection. The live defect remains unresolved pending a separately
+authorized release and assessment of existing data compatibility.
+
+The local SQL harness supplies minimal Auth/Storage compatibility tables. It
+validates real PostgreSQL policies/functions, not full Supabase HTTP services,
+Auth configuration, Storage service behavior or production account journeys.
+
+Repository-wide ESLint remains a pre-existing failure (337 errors, 96 warnings).
+Changed tooling passes its explicit lint gate; no blanket suppression was added.
+Full lint debt and unexecuted remote CI mean this is not an all-checks-green
+release. Commits are kept local; development push and deployment-trigger behavior
+remain unverified. Main and the connected project remain unchanged.
+
+## Historical baseline evidence
+
+The sections below describe the original inspected commit and live snapshot;
+current local changes and outstanding migration are recorded above.
 
 ## Repository checkpoint
 

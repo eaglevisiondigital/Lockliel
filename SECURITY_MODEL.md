@@ -98,3 +98,26 @@ production account was created, modified or deleted for this assessment.
 Book benefits, shipping, legal classification, retention policy changes and
 payment activation require authoritative decisions. Existing draft data does
 not authorize them.
+
+## Local engineering verification, 2026-09-26
+
+The previously identified unmocked CRM test path is corrected. Both resource
+signup transports are injected in tests; the reusable Node network preload
+forces nonzero exit for unexpected calls even if caught. Eleven transport probes
+and a real unmocked signup path verify enforcement. Covered Node interfaces
+cannot accidentally write to production during protected tests. Arbitrary native
+subprocesses and intentional removal/replacement of the guard remain outside its
+security boundary. Do not supply production credentials.
+
+Representative real PostgreSQL tests verify anonymous denial, member own-row
+access and cross-row denial, forbidden staff grants/lineage changes, staff MFA
+requirements and revoked-session denial. The harness creates and identifies its
+own socket-only PostgreSQL 17 cluster, ignores connection environment variables,
+accepts no connection arguments and rolls back fixtures. Minimal Supabase stubs
+and two historical catalog supplements limit equivalence with the live service.
+
+Read-only catalog inspection and expression evaluation verified an over-escaped
+email-format constraint in the live database. A local corrective migration is
+prepared and regression-tested, but not deployed. No live RLS, grants, roles,
+authentication settings or permissions changed. Full repository ESLint debt and
+production journey validation remain unresolved.

@@ -1,0 +1,39 @@
+# Dependencies and generated web/test artifacts
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+test-results/
+playwright-report/
+*.tsbuildinfo
+next-env.d.ts
+*.log
+.sites-runtime/
+.netlify/
+.wrangler/
+
+# Local secrets; checked-in example templates remain visible
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# Local Supabase state, not migrations, functions, config or tests
+supabase/.temp/
+supabase/.branches/
+supabase/.env
+supabase/.env.*
+!supabase/.env.example
+
+# Editor and OS state
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

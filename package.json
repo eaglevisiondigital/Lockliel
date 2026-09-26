@@ -6,13 +6,18 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "install:ci": "bash scripts/install-ci.sh",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "test": "npm run build && node --import ./tests/support/network-guard.mjs --test tests/*.test.mjs",
-    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
+    "install:ci": "npm ci",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "test": "npm run build && npm run test:unit",
+    "lint": "eslint .",
+    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
+    "test:unit": "node --import ./tests/support/network-guard.mjs --test tests/*.test.mjs",
+    "test:sql": "node scripts/test-sql.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "validate:netlify": "node --import ./tests/support/network-guard.mjs scripts/validate-netlify.mjs",
+    "lint:tooling": "eslint scripts/test-sql.mjs scripts/validate-netlify.mjs tests/*.test.mjs tests/support/*.mjs netlify/functions/book-release.mjs netlify/functions/faith-boost-signup.mjs",
+    "validate": "npm run validate:netlify && npm run lint:tooling && npm test && npm run typecheck && npm run test:sql"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -61,5 +66,5 @@
     "wrangler": "4.92.0"
   },
   "type": "module",
-  "displayName": "Lockliel — Reach. Teach. Train. Disciple."
+  "displayName": "Lockliel \u2014 Reach. Teach. Train. Disciple."
 }

@@ -5,9 +5,8 @@
 Read `CURRENT_BUILD_STATE.md`, `ARCHITECTURE.md`, `SECURITY_MODEL.md`, and
 `DECISIONS.md`, then inspect the relevant implementation, migrations, tests,
 configuration, and Git status before changing anything. These documents describe
-the current Lockliel baseline. `README.md` contains older starter guidance and
-`README-V63.md` describes another project; neither establishes current Lockliel
-architecture or business approval.
+the current Lockliel baseline. `README.md` records supported local validation; `README-V63.md` describes another
+project and does not establish Lockliel architecture or business approval.
 
 ## Ownership and scope
 
@@ -23,8 +22,8 @@ architecture or business approval.
 - Preserve existing work, approved branding, and completed systems. Keep `main`
   untouched. Do not merge, deploy, change production, or alter protected systems
   without explicit authorization for that scope.
-- The 2026-09-26 continuity assignment authorizes documentation and read-only
-  inspection only. Do not apply migrations, change permissions, toggle flags,
+- The subsequent 2026-09-26 engineering assignment authorizes local test
+  isolation, disposable SQL validation, build tooling and narrow verified fixes. Do not apply migrations, change permissions, toggle flags,
   bootstrap staff, or execute SQL fixtures against the connected project for it.
 - Never recreate or rerun applied migrations. In particular,
   `20260926033358_lockliel_account_deletion_execution_support` already exists in
@@ -57,11 +56,11 @@ architecture or business approval.
 
 - Distinguish repository code, deployed evidence, approved requirements,
   proposals, unknowns, and historical claims. Passing mocks are not live RLS tests.
-- Follow the current scoped Node suite in `.github/workflows/lockliel-preview-check.yml`.
-  The broad `npm test` also includes old Vinext tests; see the baseline limitations.
-- Build before export-dependent tests. Until the CRM transport isolation gap is
-  fixed, deny unexpected outbound network requests during tests: resource signup
-  handlers currently retain unmocked live CRM calls even when Forms is mocked.
+- Use the full guarded `npm test` suite and supported commands in README.md.
+  Resource signup tests must mock both Forms and CRM transports. Keep fail-closed
+  network protection enabled, including subprocess probes for swallowed errors.
+- Run SQL fixtures only through `npm run test:sql` in its disposable PostgreSQL 17
+  cluster. Never supply linked-project credentials or execute fixtures live.
 - Run meaningful success, failure, input, ownership and authorization checks for
   changed behavior. Database fixtures require an isolated disposable environment.
 - After meaningful work update `CURRENT_BUILD_STATE.md` and affected architecture,

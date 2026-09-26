@@ -21,22 +21,27 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Check Netlify function syntax
-        run: find netlify -type f -name '*.mjs' -print0 | xargs -0 -n1 node --check
-      - name: Import Netlify function modules
-        run: node --input-type=module -e "import fs from 'node:fs'; import path from 'node:path'; const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]); for(const f of walk('netlify/functions').filter(f=>f.endsWith('.mjs'))) await import('./'+f);"
+      - run: npm run validate:netlify
+      - run: npm run lint:tooling
       - name: Production dependency audit
         run: npm audit --omit=dev --audit-level=high
       - name: Build
         run: npm run build
-      - name: Current Lockliel automated tests
-        run: >
-          node --import ./tests/support/network-guard.mjs --test
-          tests/network-isolation.test.mjs
-          tests/book-release.test.mjs
-          tests/faith-boost-resource.test.mjs
-          tests/founders50.test.mjs
-          tests/my-lockliel-platform.test.mjs
-          tests/account-deletion-worker.test.mjs
-          tests/privacy-admin-readiness.test.mjs tests/launch-readiness.test.mjs
-          tests/member-privacy.test.mjs
+      - run: npm run test:unit
+      - run: npm run typecheck
+  sql:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install PostgreSQL 17 from the official PostgreSQL repository
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+          sudo apt-get install -y postgresql-17
+          echo /usr/lib/postgresql/17/bin >> "$GITHUB_PATH"
+      - run: npm run test:sql

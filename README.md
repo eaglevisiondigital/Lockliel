@@ -1,113 +1,65 @@
-# vinext-starter
+# Lockliel
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+The supported application is Next.js static export (`out/`) with Netlify functions
+and Supabase. Read AGENTS.md and the four continuity documents before changes.
+`README-V63.md`, Sites/Vinext helpers, D1 examples and `db:generate` are legacy
+artifacts, not the member platform migration or deployment contract.
 
-## Prerequisites
+## Local validation
 
-- Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+Use Node.js >=22.13 (CI uses 22; this package verified locally on 24.20) and npm.
 
-## Sites Lifecycle
-
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
-
-This starter does not use `wrangler.jsonc`.
-
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
-
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
-
-## Included Shape
-
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```sh
+npm ci
+npm run validate:netlify
+npm run lint:tooling
+npm test
+npm run typecheck
+npm run test:sql
+npm run lint
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+`npm test` builds with Webpack, then runs every Node test with network protection.
+`npm run test:unit` reuses an existing `out/` build. `npm run validate` combines
+these supported checks except repository-wide lint, whose existing debt remains
+visible through `npm run lint`. Do not describe that narrower gate as a clean
+repository-wide lint result.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+Webpack is the supported Next.js build and development path. Turbopack is not
+required. `npm run dev` serves the frontend; it does not emulate Netlify functions.
+Static exports do not support `next start`, so that misleading script was removed.
+Netlify deploys `out/` and functions according to `netlify.toml`. No deployment is
+performed by local validation. Module validation is not Netlify cloud integration
+or browser validation. Never use real member accounts for automated tests.
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- In a Server Component, start sign-in with
-  `<a href={chatGPTSignInPath(returnTo)} target="_top">`. The auth helper
-  module is server-only; do not import it into a Client Component.
-- Do not use `fetch`, XHR, a client-side router, or a framework link that can
-  prefetch the sign-in route. SIWC must start as a top-level navigation.
-- Never request the AuthAPI authorization endpoint directly. The dispatch-owned
-  `/signin-with-chatgpt` route must start the SIWC flow.
-- Use `chatGPTSignOutPath(returnTo)` for browser sign-out links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+## Isolated SQL tests
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+Install PostgreSQL 17 and place `initdb`, `pg_ctl`, and `psql` on PATH. On macOS
+with Homebrew PostgreSQL 17, use `export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"`
+(adjust for Intel installations). Run as a normal user, not root. CI installs
+PostgreSQL 17 from its official Ubuntu package repository.
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+`npm run test:sql` creates a disposable cluster with a private Unix socket and no
+TCP listener. It accepts no connection arguments, discards database/environment
+credentials, verifies cluster identity, rolls back fixtures and removes its own
+cluster. It never connects to the linked Supabase project. No Docker is required.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Tests use real PostgreSQL RLS and repository functions, with minimal test-only
+Auth/Storage compatibility tables. They do not emulate GoTrue, PostgREST or
+Storage HTTP behavior. Two catalog-derived historical schema supplements are
+explicitly logged because the original migration history is incomplete:
+`founders50_reviews` and six `share_assets` columns. A successful supplemented
+replay does not prove clean migration reproducibility or full live schema parity.
+See CURRENT_BUILD_STATE.md for the pending email constraint correction.
 
-## Diagnostic Commands
+## Test network safety
 
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build and verify the rendered development-preview metadata
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+The Node preload blocks fetch, HTTP(S), HTTP/2, WebSocket, TCP/TLS, UDP and DNS.
+Attempts fail the process even when caught by application code. Explicit test
+transport mocks are allowed. Resource signup tests inject both Forms and CRM
+transports. The guard prevents accidental calls through covered Node interfaces;
+it is not an OS sandbox against arbitrary native child processes or malicious
+replacement of built-ins. Never supply production credentials to tests.
 
-Use build commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
-
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Keep local secrets in ignored environment files. No secrets are needed for these
+checks. Source, SQL migrations, templates and continuity documents remain tracked.
