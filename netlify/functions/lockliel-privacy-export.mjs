@@ -1,11 +1,18 @@
 import {SUPABASE_URL,json,dbHeaders,requireSession} from "../lib/lockliel-core.mjs";
 
 async function rows(url,headers){
-  const response=await fetch(url,{headers});
-  return response.ok?await response.json():[];
+  const response=await fetch(url,{headers:{...headers,Prefer:"count=exact"}});
+  if(!response.ok)throw new Error("Export source unavailable");
+  const data=await response.json();
+  const range=response.headers.get("Content-Range");
+  const count=range?.match(/^(?:\d+-\d+|\*)\/(\d+)$/);
+  if(!Array.isArray(data)||!count||Number(count[1])!==data.length){
+    throw new Error("Export source incomplete");
+  }
+  return data;
 }
 
-export default async(request)=>{
+async function handleRequest(request){
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
@@ -16,18 +23,21 @@ export default async(request)=>{
   const url=new URL(request.url);
   const requestId=String(url.searchParams.get("requestId")||"");
 
-  if(!requestId)return json({error:"Completed data-export request required."},400);
+  if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId))return json({error:"Completed data-export request required."},400);
 
   const approval=await fetch(
     SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(requestId)+"&profile_id=eq."+uid+"&request_type=eq.data_export&status=eq.completed&select=id,requested_at,resolved_at&limit=1",
     {headers:h}
   );
-  const approvedRows=approval.ok?await approval.json():[];
+  if(!approval.ok)throw new Error("Export approval unavailable");
+  const approvedRows=await approval.json();
+  if(!Array.isArray(approvedRows)||approvedRows.length>1)throw new Error("Invalid export approval");
   const approvedRequest=approvedRows?.[0]||null;
 
   if(!approvedRequest){
     return json({error:"This data export is not ready for download."},403);
   }
+  if(approvedRequest.id!==requestId.toLowerCase())throw new Error("Export approval mismatch");
 
   const [
     profiles,
@@ -145,6 +155,11 @@ export default async(request)=>{
       "X-Content-Type-Options":"nosniff"
     }
   });
+}
+
+export default async(request)=>{
+  try{return await handleRequest(request);}
+  catch{return json({error:"A complete export could not be verified. No partial download was generated. Please retry or contact support if this continues.",code:"export_incomplete"},503);}
 };
 
 export const config={

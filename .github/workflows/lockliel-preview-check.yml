@@ -38,3 +38,4 @@ jobs:
           tests/my-lockliel-platform.test.mjs
           tests/account-deletion-worker.test.mjs
           tests/privacy-admin-readiness.test.mjs tests/launch-readiness.test.mjs
+          tests/member-privacy.test.mjs

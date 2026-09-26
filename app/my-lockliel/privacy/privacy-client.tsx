@@ -8,47 +8,49 @@ export default function PrivacyClient(){
   const [working,setWorking]=useState(false);
 
   async function load(){
-    const r=await fetch("/api/lockliel/privacy",{cache:"no-store"});
-    if(r.status===401){location.assign("/my-lockliel/sign-in");return;}
-    const d=await r.json().catch(()=>({}));
-    if(r.ok)setData(d);
+    try{
+      const r=await fetch("/api/lockliel/privacy",{cache:"no-store"});
+      if(r.status===401){location.assign("/my-lockliel/sign-in");return;}
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok||!Array.isArray(d.requests))throw new Error(d.error||"Unable to load privacy requests.");
+      setData(d);
+    }catch(error){
+      setData(null);
+      setMessage(error instanceof Error?error.message:"Unable to load privacy requests.");
+    }
   }
 
   useEffect(()=>{load();},[]);
 
-  async function create(requestType:string){
+  async function act(body:Record<string,string>,success:string){
     setWorking(true);
     setMessage("");
-
-    const r=await fetch("/api/lockliel/privacy",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({action:"create",requestType})
-    });
-    const d=await r.json().catch(()=>({}));
-    setWorking(false);
-
-    if(!r.ok){
-      setMessage(d.error||"Unable to submit request.");
-      return;
+    try{
+      const r=await fetch("/api/lockliel/privacy",{
+        method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)
+      });
+      const d=await r.json().catch(()=>({}));
+      if(!r.ok||d.ok!==true)throw new Error(d.error||"Request update could not be confirmed.");
+      setMessage(success);
+    }catch(error){
+      setMessage(error instanceof Error?error.message:"Connection interrupted. Refresh request history before retrying.");
+    }finally{
+      await load();
+      setWorking(false);
     }
-
-    setMessage("Your request has been submitted.");
-    await load();
   }
 
+  async function create(requestType:string){
+    await act({action:"create",requestType},"Your request has been submitted.");
+  }
   async function cancel(id:string){
-    setWorking(true);
-    const r=await fetch("/api/lockliel/privacy",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({action:"cancel",id})
-    });
-    setWorking(false);
-    if(r.ok)await load();
+    await act({action:"cancel",id},"Your request has been cancelled.");
   }
 
-  if(!data)return <div className="ml-loading">Loading privacy settings…</div>;
+  if(!data)return <div className="ml-loading" role="status">
+    {message||"Loading privacy settings…"}
+    {message&&<button disabled={working} onClick={()=>{setMessage("");load();}}>Retry loading</button>}
+  </div>;
 
   const openExport=data.requests.find(
     (r:any)=>r.request_type==="data_export"&&["submitted","in_review"].includes(r.status)
