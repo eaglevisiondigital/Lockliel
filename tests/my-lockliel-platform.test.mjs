@@ -2247,3 +2247,12 @@ test("Founders 50 allows only one non-terminal application per email or linked p
   assert.match(edge,/if\(ins\.status===409\)/);
   assert.match(edge,/duplicate:true/);
 });
+
+
+test("non-null CRM source references are idempotent per lead and source type",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926002052_lockliel_unique_referenced_lead_sources.sql","utf8");
+
+  assert.match(migration,/lead_sources_unique_referenced_event_uidx/);
+  assert.match(migration,/\(lead_id,source_type,source_ref\)/);
+  assert.match(migration,/where source_ref is not null/);
+});
