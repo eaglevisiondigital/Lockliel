@@ -20,7 +20,8 @@ export default async(request)=>{
   if(request.method==="POST"){
     const b=await request.json().catch(()=>({}));
     const key=String(b.key||"");
-    const verified=Boolean(b.verified);
+    if(typeof b.verified!=="boolean")return json({error:"Verification must be true or false."},400);
+    const verified=b.verified;
     const note=String(b.note||"").trim().slice(0,3000);
     const allowed=["auth_url_configuration","custom_smtp"];
 
@@ -46,8 +47,12 @@ export default async(request)=>{
 
     if(!r.ok)return json({error:"Unable to update launch verification."},r.status);
 
+    const rows=await r.json().catch(()=>null);
+    if(!Array.isArray(rows)||rows.length!==1||rows[0]?.key!==key||rows[0]?.verified!==verified){
+      return json({error:"Launch verification update could not be confirmed."},502);
+    }
     return json(
-      {ok:true,verification:(await r.json())?.[0]||null},
+      {ok:true,verification:rows[0]},
       200,
       s.refreshed?sessionCookies(s.refreshed):[]
     );
@@ -110,7 +115,14 @@ export default async(request)=>{
   const products=productsRes.ok?await productsRes.json():[];
   const staffRoles=rolesRes.ok?await rolesRes.json():[];
   const verifications=verificationRes.ok?await verificationRes.json():[];
-  const integrityHealth=integrityRes.ok?await integrityRes.json():null;
+  const integrityPayload=integrityRes.ok?await integrityRes.json().catch(()=>null):null;
+  const integrityValid=integrityPayload!==null&&typeof integrityPayload==="object"&&!Array.isArray(integrityPayload)
+    &&typeof integrityPayload.healthy==="boolean"
+    &&["issue_count","security_issue_count","media_evidence_issue_count"].every(key=>Number.isSafeInteger(integrityPayload[key])&&integrityPayload[key]>=0)
+    &&integrityPayload.healthy===(integrityPayload.issue_count===0)
+    &&integrityPayload.issue_count>=integrityPayload.security_issue_count+integrityPayload.media_evidence_issue_count
+    &&Object.entries(integrityPayload).every(([key,value])=>key==="healthy"||(Number.isSafeInteger(value)&&value>=0&&(integrityPayload.issue_count!==0||value===0)));
+  const integrityHealth=integrityValid?integrityPayload:null;
 
   const integrityIssueLabels=integrityHealth
     ? [
@@ -144,9 +156,9 @@ export default async(request)=>{
   const verificationMap=Object.fromEntries(verifications.map(v=>[v.key,v]));
 
   const activeProvider=providers.find(p=>p.status==="active"&&p.checkout_adapter_ready===true&&p.webhook_ready===true)||null;
-  const gripEngineReady=Boolean(gripReadiness?.release_ready);
+  const gripEngineReady=gripReadiness?.release_ready===true;
   const gripWorkbooksReady=Number(gripReadiness?.private_workbook_lessons||0)===13;
-  const gripPublished=Boolean(gripReadiness?.published);
+  const gripPublished=gripReadiness?.published===true;
   const gripVideoDurationTotal=Number(gripReadiness?.video_assets_total||0);
   const gripVideoDurationVerified=Number(gripReadiness?.video_assets_with_verified_duration||0);
 
@@ -167,7 +179,7 @@ export default async(request)=>{
     {
       key:"database_integrity",
       label:"Database integrity health",
-      ready:Boolean(integrityHealth?.healthy),
+      ready:integrityHealth?.healthy===true,
       manual:false,
       detail:integrityHealth?.healthy
         ?"No detected drift in RLS exposure, private-function access, protected Storage, member journey counters, group leadership, referral/CRM attribution, course enrollment, verified media watch evidence, release-control state, financial relationships, lifecycle timestamps, or media-progress payloads."
@@ -192,7 +204,7 @@ export default async(request)=>{
     {
       key:"auth_url_configuration",
       label:"Supabase Auth URL configuration",
-      ready:Boolean(verificationMap.auth_url_configuration?.verified),
+      ready:verificationMap.auth_url_configuration?.verified===true,
       manual:true,
       manualKey:"auth_url_configuration",
       note:verificationMap.auth_url_configuration?.note||"",
@@ -201,7 +213,7 @@ export default async(request)=>{
     {
       key:"custom_smtp",
       label:"Production Auth email delivery",
-      ready:Boolean(verificationMap.custom_smtp?.verified),
+      ready:verificationMap.custom_smtp?.verified===true,
       manual:true,
       manualKey:"custom_smtp",
       note:verificationMap.custom_smtp?.note||"",
