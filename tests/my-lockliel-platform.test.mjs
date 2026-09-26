@@ -2644,3 +2644,32 @@ test("audit and communication event payloads are bounded",()=>{
   assert.match(migration,/communication_preference_events_source_format/);
 });
 
+test("media playback seconds derive from merged interval evidence",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926030813_lockliel_derive_media_progress_from_interval_evidence.sql","utf8");
+
+  assert.match(migration,/media_covered_seconds/);
+  assert.match(migration,/range_agg/);
+  assert.match(migration,/new\.played_seconds:=covered_seconds/);
+  assert.match(migration,/Media progress cannot exceed the verified asset duration/);
+  assert.match(migration,/derived_percent/);
+});
+
+test("verified media durations are audited and visible without changing Grip release readiness",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926031037_lockliel_track_verified_media_durations.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-content.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/content-admin-client.tsx","utf8");
+  const readiness=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/duration_verified_at/);
+  assert.match(migration,/lesson_asset_duration_verified/);
+  assert.match(migration,/video_assets_with_verified_duration/);
+  assert.match(migration,/playable_video_lessons>=10/);
+  assert.match(api,/action==="updateAssetDuration"/);
+  assert.match(api,/duration_seconds:duration/);
+  assert.match(api,/duration_verified_at/);
+  assert.match(client,/Verify existing video duration/);
+  assert.match(client,/duration pending/);
+  assert.match(readiness,/key:"grip_video_durations"/);
+  assert.match(readiness,/required:false/);
+});
+

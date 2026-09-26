@@ -146,6 +146,8 @@ export default async(request)=>{
   const gripEngineReady=Boolean(gripReadiness?.release_ready);
   const gripWorkbooksReady=Number(gripReadiness?.private_workbook_lessons||0)===13;
   const gripPublished=Boolean(gripReadiness?.published);
+  const gripVideoDurationTotal=Number(gripReadiness?.video_assets_total||0);
+  const gripVideoDurationVerified=Number(gripReadiness?.video_assets_with_verified_duration||0);
 
   const digitalBook=products.find(
     p=>p.slug==="a-heart-for-the-lost-digital"
@@ -235,6 +237,14 @@ export default async(request)=>{
       detail:gripPublished
         ?"Course is published."
         :"Course remains in draft until the private workbook library is imported and reviewed."
+    },
+    {
+      key:"grip_video_durations",
+      label:"Verified teaching video durations",
+      ready:gripVideoDurationTotal>0&&gripVideoDurationVerified===gripVideoDurationTotal,
+      manual:false,
+      required:false,
+      detail:gripVideoDurationVerified+" of "+gripVideoDurationTotal+" active YouTube teaching assets have a verified duration. Verified assets derive watched percent from interval evidence instead of trusting a browser-supplied percentage."
     },
     {
       key:"digital_book",

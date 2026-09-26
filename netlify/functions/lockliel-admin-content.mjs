@@ -61,13 +61,17 @@ export default async(request)=>{
       const rawExternalUrl=String(b.externalUrl||"").trim()||null;
       const externalUrl=rawExternalUrl?safeHttpsUrl(rawExternalUrl):null;
       const storagePath=String(b.storagePath||"").trim()||null;
-      const duration=Number(b.durationSeconds)||null;
+      const rawDuration=String(b.durationSeconds??"").trim();
+      const duration=rawDuration===""?null:Number(rawDuration);
 
       if(!lessonId||!["video","audio","pdf","worksheet","external_link"].includes(assetType)){
         return json({error:"Lesson and asset type are required."},400);
       }
       if(rawExternalUrl&&!externalUrl){
         return json({error:"External lesson URLs must use HTTPS without embedded credentials."},400);
+      }
+      if(duration!==null&&(!Number.isFinite(duration)||duration<=0||duration>86400)){
+        return json({error:"Media duration must be between 1 and 86,400 seconds."},400);
       }
       if(!providerRef&&!externalUrl&&!storagePath){
         return json({error:"Add a provider reference, external URL, or storage path."},400);
@@ -90,6 +94,27 @@ export default async(request)=>{
       });
       if(!r.ok)return json({error:"Unable to add lesson asset."},r.status);
       return json({ok:true,asset:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
+    if(b.action==="updateAssetDuration"){
+      const assetId=String(b.assetId||"");
+      const duration=Number(b.durationSeconds);
+      if(!assetId||!Number.isFinite(duration)||duration<=0||duration>86400){
+        return json({error:"Choose a video and enter a duration between 1 and 86,400 seconds."},400);
+      }
+
+      const r=await fetch(
+        SUPABASE_URL+"/rest/v1/lesson_assets?id=eq."+encodeURIComponent(assetId)+"&asset_type=eq.video",
+        {
+          method:"PATCH",
+          headers:{...h,Prefer:"return=representation"},
+          body:JSON.stringify({duration_seconds:duration})
+        }
+      );
+      if(!r.ok)return json({error:"Unable to verify video duration."},r.status);
+      const asset=(await r.json())?.[0]||null;
+      if(!asset)return json({error:"Video asset not found."},404);
+      return json({ok:true,asset},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
     if(b.action==="setCourseStatus"){
@@ -180,7 +205,7 @@ export default async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,title,provider,provider_ref,storage_path,external_url,duration_seconds,sort_order,status,created_at&order=lesson_id.asc,sort_order.asc",
+      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,title,provider,provider_ref,storage_path,external_url,duration_seconds,duration_verified_at,sort_order,status,created_at&order=lesson_id.asc,sort_order.asc",
       {headers:h}
     )
   ]);
