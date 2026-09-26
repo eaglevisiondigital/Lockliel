@@ -2722,3 +2722,14 @@ test("protected resource delivery rechecks MIME type",()=>{
   assert.match(lessonResource,/X-Content-Type-Options/);
 });
 
+test("historical records survive deletion of their staff or submitter actor",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926032021_lockliel_preserve_historical_actor_records.sql","utf8");
+
+  assert.match(migration,/founders50_reviews[\s\S]*reviewer_id drop not null/);
+  assert.match(migration,/founders50_reviews_reviewer_id_fkey[\s\S]*on delete set null/);
+  assert.match(migration,/group_weekly_checkins[\s\S]*submitted_by drop not null/);
+  assert.match(migration,/group_weekly_checkins_submitted_by_fkey[\s\S]*on delete set null/);
+  assert.match(migration,/member_staff_notes[\s\S]*author_id drop not null/);
+  assert.match(migration,/member_staff_notes_author_id_fkey[\s\S]*on delete set null/);
+});
+
