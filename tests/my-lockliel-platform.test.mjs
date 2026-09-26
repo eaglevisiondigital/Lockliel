@@ -2256,3 +2256,13 @@ test("non-null CRM source references are idempotent per lead and source type",()
   assert.match(migration,/\(lead_id,source_type,source_ref\)/);
   assert.match(migration,/where source_ref is not null/);
 });
+
+
+test("gift benefit date windows cannot end before they start",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926002609_lockliel_valid_benefit_rule_window.sql","utf8");
+
+  assert.match(migration,/benefit_rules_valid_date_window/);
+  assert.match(migration,/starts_at is null/);
+  assert.match(migration,/ends_at is null/);
+  assert.match(migration,/starts_at<=ends_at/);
+});
