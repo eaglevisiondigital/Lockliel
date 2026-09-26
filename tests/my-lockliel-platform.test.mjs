@@ -2484,3 +2484,84 @@ test("group membership history keeps active and departure timestamps consistent"
   assert.match(migration,/new\.left_at:=null/);
 });
 
+test("referral signup and lesson progress attribution is idempotent",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926013137_lockliel_idempotent_referral_progress_attribution.sql","utf8");
+
+  assert.match(migration,/referral_events_one_signup_per_member_uidx/);
+  assert.match(migration,/referral_events_one_lesson_completion_uidx/);
+  assert.match(migration,/event_type='lesson_completed'/);
+  assert.match(migration,/on conflict do nothing/);
+  assert.match(migration,/track_referred_discipleship_progress/);
+});
+
+test("referral course starts dedupe per member and course",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926013636_lockliel_course_scoped_referral_progress_attribution.sql","utf8");
+
+  assert.match(migration,/referral_events_one_course_start_per_member_uidx/);
+  assert.match(migration,/metadata->>'course_id'/);
+  assert.match(migration,/nullif\(metadata->>'course_id',''\) is not null/);
+  assert.match(migration,/select l\.course_id/);
+  assert.match(migration,/'course_id',lesson_course/);
+});
+
+test("remaining content metadata is bounded and worksheet schemas are typed",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926013812_lockliel_bound_remaining_content_metadata.sql","utf8");
+
+  assert.match(migration,/courses_title_length/);
+  assert.match(migration,/lesson_assets_provider_ref_length/);
+  assert.match(migration,/lessons_worksheet_schema_object/);
+  assert.match(migration,/lessons_worksheet_schema_size/);
+  assert.match(migration,/lessons_worksheet_questions_array/);
+  assert.match(migration,/jsonb_array_length\(worksheet_schema->'questions'\)<=100/);
+  assert.match(migration,/products_storage_path_length/);
+  assert.match(migration,/referral_links_campaign_length/);
+});
+
+test("course enrollments have monotonic database-owned lifecycle",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926014000_lockliel_harden_course_enrollment_and_referral_validation.sql","utf8");
+
+  assert.match(migration,/course_enrollments_status_check/);
+  assert.match(migration,/course_enrollments_completed_after_enrolled/);
+  assert.match(migration,/course_enrollments_completion_state/);
+  assert.match(migration,/Course enrollment identity and enrollment time cannot be changed/);
+  assert.match(migration,/Completed course enrollments cannot be reopened/);
+  assert.match(migration,/validate constraint referral_events_visit_member_check/);
+});
+
+test("protected lesson documents require uploaded PDF objects",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926014252_lockliel_verify_protected_document_mime.sql","utf8");
+
+  assert.match(migration,/Active stored document assets require an uploaded PDF object/);
+  assert.match(migration,/o\.bucket_id='lesson-assets'/);
+  assert.match(migration,/metadata->>'mimetype'/);
+  assert.match(migration,/application\/pdf/);
+  assert.match(migration,/grip_course_release_ready/);
+  assert.match(migration,/lockliel_grip_readiness/);
+});
+
+test("unreferenced CRM attribution is globally idempotent",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926014429_lockliel_dedupe_unreferenced_lead_attribution.sql","utf8");
+
+  assert.match(migration,/lead_sources_unique_unreferenced_attribution_uidx/);
+  assert.match(migration,/partition by lead_id,source_type,coalesce\(campaign,''\)/);
+  assert.match(migration,/where source_ref is null/);
+  assert.match(migration,/capture_public_lead_atomic/);
+  assert.match(migration,/on conflict do nothing/);
+});
+
+test("app_private helper execution fails closed by default",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926014457_lockliel_close_private_function_execute_surface.sql","utf8");
+
+  assert.match(migration,/alter default privileges in schema app_private/);
+  assert.match(migration,/revoke execute on functions from public/);
+  assert.match(migration,/resolve_course_translation\(uuid,text\)/);
+  assert.match(migration,/validate_feature_activation\(\)/);
+  assert.match(migration,/validate_product_release\(\)/);
+});
+
+test("one-time grip importer remains permanently disabled",()=>{
+  const source=fs.readFileSync("supabase/functions/import-grip-pdfs/index.ts","utf8");
+
+  assert.match(source,/permanently disabled/);
+  assert.match(source,/status:410/);
+});

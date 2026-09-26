@@ -1,4 +1,3 @@
-// @ts-nocheck
 Deno.serve((_req:Request)=>{
   return new Response(JSON.stringify({
     error:"This one-time importer has been permanently disabled."
