@@ -2565,3 +2565,20 @@ test("one-time grip importer remains permanently disabled",()=>{
   assert.match(source,/permanently disabled/);
   assert.match(source,/status:410/);
 });
+
+test("integrity health continuously audits database and storage security invariants",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926023758_lockliel_expand_security_integrity_health.sql","utf8");
+
+  assert.match(migration,/lockliel_security_health_internal/);
+  assert.match(migration,/public_tables_without_rls/);
+  assert.match(migration,/public_views_without_security_invoker/);
+  assert.match(migration,/anonymous_public_table_grants/);
+  assert.match(migration,/unexpected_private_function_execute/);
+  assert.match(migration,/unvalidated_constraints/);
+  assert.match(migration,/course_enrollment_mismatches/);
+  assert.match(migration,/referral_identity_mismatches/);
+  assert.match(migration,/duplicate_unreferenced_lead_attribution/);
+  assert.match(migration,/protected_storage_mismatches/);
+  assert.match(migration,/base_issues\+security_issues/);
+});
+
