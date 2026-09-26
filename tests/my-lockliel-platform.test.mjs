@@ -2216,3 +2216,18 @@ test("one inviter cannot link the same member to multiple My Five rows",()=>{
   assert.match(migration,/\(owner_id,linked_profile_id\)/);
   assert.match(migration,/where linked_profile_id is not null/);
 });
+
+
+test("referral links can only target their approved active Share Center asset route",()=>{
+  const referral=fs.readFileSync("supabase/migrations/20260926001516_lockliel_bind_referral_destination_to_asset.sql","utf8");
+  const assets=fs.readFileSync("supabase/migrations/20260926001548_lockliel_local_share_asset_destinations.sql","utf8");
+  const redirect=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
+
+  assert.match(referral,/sa\.destination_path=referral_links\.destination_path/);
+  assert.match(referral,/sa\.status='active'/);
+  assert.match(referral,/left\(destination_path,2\)<>'\/\/'/);
+  assert.match(assets,/share_assets_destination_local_path/);
+  assert.match(assets,/left\(destination_path,2\)<>'\/\/'/);
+  assert.match(redirect,/safeLocalDestination/);
+  assert.match(redirect,/raw\.startsWith\("\/\/"\)/);
+});
