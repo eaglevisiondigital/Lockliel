@@ -2761,3 +2761,18 @@ test("lesson translations stay inside their course family and keep equivalent po
   assert.match(migration,/l\.position=source_lesson\.position/);
 });
 
+test("account deletion blocks unresolved operational responsibilities",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926032933_lockliel_account_deletion_preflight_and_guard.sql","utf8");
+
+  assert.match(migration,/privacy_requests_completed_deletion_profile_removed/);
+  assert.match(migration,/account_deletion_responsibility_counts/);
+  assert.match(migration,/staff_roles/);
+  assert.match(migration,/primary_groups/);
+  assert.match(migration,/active_leader_assignments/);
+  assert.match(migration,/active_leader_or_host_memberships/);
+  assert.match(migration,/active_founders_host_records/);
+  assert.match(migration,/open_assigned_followups/);
+  assert.match(migration,/guard_profile_deletion_responsibilities/);
+  assert.match(migration,/Profile deletion blocked until staff, leadership, hosting, and assigned follow-up responsibilities are resolved/);
+});
+
