@@ -2582,3 +2582,15 @@ test("integrity health continuously audits database and storage security invaria
   assert.match(migration,/base_issues\+security_issues/);
 });
 
+test("Lockliel web edge rejects malformed cookies without crashing and blocks framing",()=>{
+  const core=fs.readFileSync("netlify/lib/lockliel-core.mjs","utf8");
+  const netlify=fs.readFileSync("netlify.toml","utf8");
+
+  assert.match(core,/try\{out\[name\]=decodeURIComponent\(value\);\}catch\{continue;\}/);
+  assert.match(core,/branch-deploy/);
+  assert.match(core,/clearCookie\(name\)\{return cookie\(name,"",0\);\}/);
+  assert.match(core,/X-Content-Type-Options/);
+  assert.match(netlify,/X-Frame-Options = "DENY"/);
+  assert.match(netlify,/Content-Security-Policy = "frame-ancestors 'none'"/);
+});
+
