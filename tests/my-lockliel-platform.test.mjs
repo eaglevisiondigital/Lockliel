@@ -2207,3 +2207,12 @@ test("order money fields cannot be negative",()=>{
   assert.match(migration,/orders_total_nonnegative/);
   assert.match(migration,/total_cents>=0/);
 });
+
+
+test("one inviter cannot link the same member to multiple My Five rows",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926001333_lockliel_unique_linked_my_five_member.sql","utf8");
+
+  assert.match(migration,/reach_contacts_owner_linked_profile_uidx/);
+  assert.match(migration,/\(owner_id,linked_profile_id\)/);
+  assert.match(migration,/where linked_profile_id is not null/);
+});
