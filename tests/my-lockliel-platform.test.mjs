@@ -2231,3 +2231,19 @@ test("referral links can only target their approved active Share Center asset ro
   assert.match(redirect,/safeLocalDestination/);
   assert.match(redirect,/raw\.startsWith\("\/\/"\)/);
 });
+
+
+test("Founders 50 allows only one non-terminal application per email or linked profile",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926001759_lockliel_one_active_founders_application.sql","utf8");
+  const edge=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
+
+  assert.match(migration,/founders50_one_active_email_uidx/);
+  assert.match(migration,/on public\.founders50_applications\(email\)/);
+  assert.match(migration,/status not in \('withdrawn','declined'\)/);
+  assert.match(migration,/founders50_one_active_profile_uidx/);
+  assert.match(migration,/profile_id is not null/);
+  assert.match(edge,/activeFounderStatuses="interested,applied,under_review,needs_info,accepted,orientation,active_host,paused"/);
+  assert.doesNotMatch(edge,/recentSince/);
+  assert.match(edge,/if\(ins\.status===409\)/);
+  assert.match(edge,/duplicate:true/);
+});

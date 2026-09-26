@@ -119,16 +119,19 @@ Deno.serve(async(req:Request)=>{
     );
   }
 
-  const recentSince=new Date(Date.now()-15*60*1000).toISOString();
-  const duplicateRes=await fetch(
+  const activeFounderStatuses="interested,applied,under_review,needs_info,accepted,orientation,active_host,paused";
+  const existingUrl=
     url+"/rest/v1/founders50_applications?email=eq."+encodeURIComponent(email)+
-    "&created_at=gte."+encodeURIComponent(recentSince)+
-    "&select=id,status,created_at&order=created_at.desc&limit=1",
-    {headers:h}
-  );
+    "&status=in.("+activeFounderStatuses+")"+
+    "&select=id,status,created_at&order=created_at.desc&limit=1";
+
+  const duplicateRes=await fetch(existingUrl,{headers:h});
   const duplicate=(duplicateRes.ok?await duplicateRes.json():[])?.[0]||null;
   if(duplicate?.id){
-    return new Response(JSON.stringify({ok:true,id:duplicate.id,duplicate:true}),{status:200,headers});
+    return new Response(
+      JSON.stringify({ok:true,id:duplicate.id,duplicate:true}),
+      {status:200,headers}
+    );
   }
 
   const payload={
@@ -164,6 +167,17 @@ Deno.serve(async(req:Request)=>{
   });
 
   if(!ins.ok){
+    if(ins.status===409){
+      const existingRes=await fetch(existingUrl,{headers:h});
+      const existing=(existingRes.ok?await existingRes.json():[])?.[0]||null;
+      if(existing?.id){
+        return new Response(
+          JSON.stringify({ok:true,id:existing.id,duplicate:true}),
+          {status:200,headers}
+        );
+      }
+    }
+
     return new Response(
       JSON.stringify({error:"We couldn't save your application."}),
       {status:500,headers}
