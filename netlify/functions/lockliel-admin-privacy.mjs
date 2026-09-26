@@ -1,5 +1,10 @@
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
+function confirmedRequest(rows,id,status,handler){
+  return Array.isArray(rows)&&rows.length===1&&rows[0]?.id===id
+    &&rows[0]?.status===status&&rows[0]?.handled_by===handler;
+}
+
 async function loadRequest(id,h){
   const r=await fetch(
     SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+
@@ -26,9 +31,10 @@ export default async(request)=>{
 
   if(request.method==="POST"){
     const b=await request.json().catch(()=>({}));
-    const id=String(b.id||"");
+    if(!b||typeof b!=="object"||Array.isArray(b))return json({error:"Invalid privacy request."},400);
+    const id=String(b.id||"").toLowerCase();
     const action=String(b.action||"");
-    if(!id)return json({error:"Privacy request required."},400);
+    if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id))return json({error:"Invalid privacy request."},400);
 
     if(action==="reclaimDeletion"){
       if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)){
@@ -54,7 +60,7 @@ export default async(request)=>{
       );
       if(!r.ok)return json({error:"Unable to claim privacy request."},r.status);
       const rows=await r.json().catch(()=>[]);
-      if(!rows.length)return json({error:"Privacy request is no longer available to claim."},409);
+      if(!confirmedRequest(rows,id,"in_review",s.user.id))return json({error:"Privacy request claim could not be confirmed. Refresh the queue."},409);
       return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
@@ -138,7 +144,7 @@ export default async(request)=>{
         },500);
       }
       const finalized=await finalize.json().catch(()=>[]);
-      if(!finalized.length){
+      if(!confirmedRequest(finalized,id,"completed",s.user.id)){
         return json({
           error:"Account deletion completed, but the privacy request changed before finalization. Review the request history."
         },409);
@@ -181,7 +187,7 @@ export default async(request)=>{
       );
       if(!r.ok)return json({error:"Unable to resolve privacy request."},r.status);
       const rows=await r.json().catch(()=>[]);
-      if(!rows.length)return json({error:"Privacy request changed before resolution."},409);
+      if(!confirmedRequest(rows,id,status,s.user.id))return json({error:"Privacy request changed before resolution."},409);
       return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 

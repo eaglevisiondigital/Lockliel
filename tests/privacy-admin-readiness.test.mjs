@@ -23,7 +23,7 @@ async function run(options={}){
       return reply(Object.hasOwn(options,'recovery')?options.recovery:{ok:true,request_id:id},options.rpcStatus||200);
     }
     if(u.pathname.endsWith('/privacy_requests')){
-      if(init.method==='PATCH')return reply([{id,status:'declined'}]);
+      if(init.method==='PATCH')return reply(Object.hasOwn(options,'updated')?options.updated:[{id,status:options.action==='claim'?'in_review':'declined',handled_by:staff}]);
       return reply(options.queueMalformed?{}:[{id,request_type:options.type||'account_deletion',status:'in_review',handled_by:options.otherHandler?'another-admin':staff}],options.queueStatus||200);
     }
     if(u.pathname.endsWith('/profile_finance_cards'))return reply([]);
@@ -90,4 +90,19 @@ test('resolving exports and declining deletions require the assigned handler',as
   const r=await run({action:'resolve',type:'data_export'});
   assert.equal(r.status,200);
   assert.equal(r.calls.find(c=>c.init.method==='PATCH').url.searchParams.get('handled_by'),'eq.'+staff);
+});
+
+for(const action of ['claim','resolve']){
+  test(action+' requires a matching persisted request and handler',async()=>{
+    assert.equal((await run({action})).status,200);
+    for(const updated of [[],null,{},[{id,status:'completed',handled_by:staff}],[{id:'different',status:'in_review',handled_by:staff}],[{id,status:action==='claim'?'in_review':'declined',handled_by:'other'}]]){
+      assert.equal((await run({action,updated})).status,409);
+    }
+  });
+}
+test('every mutation rejects invalid request identifiers before writing',async()=>{
+  for(const action of ['claim','resolve','executeDeletion']){
+    const r=await run({action,requestId:'bad-id'});assert.equal(r.status,400);
+    assert.ok(!r.calls.some(c=>c.init.method==='PATCH'||c.url.pathname.includes('/functions/')));
+  }
 });
