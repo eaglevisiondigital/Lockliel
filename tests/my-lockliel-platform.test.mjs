@@ -2835,6 +2835,7 @@ test("privacy deletion finalization requires complete server verification",async
         return reply(Object.hasOwn(options,"result")?options.result:verified,options.edgeStatus||200);
       }
       if(u.pathname.endsWith("/privacy_requests")&&init.method==="PATCH"){
+        if(options.finalizeDisconnect)throw new Error("Simulated lost finalization response");
         return reply(options.finalizeEmpty?[]:options.finalizeRows??[{id:requestId,status:"completed",handled_by:staffId}],options.finalizeStatus||200);
       }
       throw new Error("Unexpected upstream request: "+u.pathname);
@@ -2885,6 +2886,13 @@ test("privacy deletion finalization requires complete server verification",async
     const payload=JSON.parse(init.body);
     assert.equal(payload.status,"completed");
     for(const key of ["deletion_sessions_revoked","deletion_auth_account_processed","deletion_personal_data_processed"])assert.equal(payload[key],true);
+  });
+  await t.test("lost finalization response preserves the verified deletion distinction",async()=>{
+    const r=await runCase({finalizeDisconnect:true});
+    assert.equal(r.status,503);
+    assert.equal(r.body.code,"finalization_unconfirmed");
+    assert.match(r.body.error,/Refresh the request history/);
+    assert.equal(r.patches.length,1);
   });
   await t.test("finalization requires matching identity, completion state, and handler",async()=>{
     for(const finalizeRows of [{},[{id:requestId,status:"completed"}],[{id:requestId,status:"in_review",handled_by:staffId}],[{id:"different",status:"completed",handled_by:staffId}],[{id:requestId,status:"completed",handled_by:"another-admin"}]]){

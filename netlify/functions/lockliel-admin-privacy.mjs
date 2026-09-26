@@ -11,10 +11,18 @@ async function loadRequest(id,h){
       "&select=id,profile_id,request_type,status,handled_by&limit=1",
     {headers:h}
   );
-  return (r.ok?await r.json():[])?.[0]||null;
+  if(!r.ok)throw new Error("Privacy request lookup unavailable");
+  const rows=await r.json();
+  if(!Array.isArray(rows)||rows.length>1||
+     (rows.length===1&&(!rows[0]||rows[0].id!==id||
+       !["account_deletion","data_export"].includes(rows[0].request_type)||
+       typeof rows[0].status!=="string"))){
+    throw new Error("Invalid privacy request lookup");
+  }
+  return rows[0]||null;
 }
 
-export default async(request)=>{
+async function handleRequest(request){
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
@@ -24,7 +32,10 @@ export default async(request)=>{
     SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+encodeURIComponent(s.user.id)+"&select=role",
     {headers:h}
   );
-  const roles=rr.ok?(await rr.json()).map(r=>r.role):[];
+  if(!rr.ok)throw new Error("Staff role lookup unavailable");
+  const roleRows=await rr.json();
+  if(!Array.isArray(roleRows)||roleRows.some(r=>!r||typeof r.role!=="string"))throw new Error("Invalid staff roles");
+  const roles=roleRows.map(r=>r.role);
   if(!roles.some(r=>["super_admin","admin"].includes(r))){
     return json({error:"Administrator access required"},403);
   }
@@ -137,7 +148,10 @@ export default async(request)=>{
             deletion_personal_data_processed:true
           })
         }
-      );
+      ).catch(()=>null);
+      if(!finalize){
+        return json({error:"Account deletion was verified, but saving the processing record could not be confirmed. Refresh the request history before retrying.",code:"finalization_unconfirmed"},503);
+      }
       if(!finalize.ok){
         return json({
           error:"Account deletion completed, but the privacy processing record still needs finalization. Retry this request."
@@ -220,17 +234,20 @@ export default async(request)=>{
     fetch(
       SUPABASE_URL+"/rest/v1/profile_finance_cards?select=profile_id,display_name,email,city,region,country&limit=5000",
       {headers:h}
-    )
+    ).catch(()=>null)
   ]);
 
   if(!requestsRes.ok)return json({error:"Unable to load privacy requests. Please retry."},503);
   const requests=await requestsRes.json().catch(()=>null);
   if(!Array.isArray(requests))return json({error:"Unable to load privacy requests. Please retry."},503);
-  const people=peopleRes.ok?await peopleRes.json():[];
+  const peoplePayload=peopleRes?.ok?await peopleRes.json().catch(()=>null):null;
+  const peopleAvailable=Array.isArray(peoplePayload)&&peoplePayload.every(p=>p&&typeof p.profile_id==="string");
+  const people=peopleAvailable?peoplePayload:[];
   const peopleMap=Object.fromEntries(people.map(p=>[p.profile_id,p]));
 
   return json({
     currentUserId:s.user.id,
+    peopleUnavailable:!peopleAvailable,
     requests:requests.map(r=>({
       ...r,
       person:peopleMap[r.profile_id]||null,
@@ -238,6 +255,13 @@ export default async(request)=>{
     })),
     openCount:requests.filter(r=>["submitted","in_review"].includes(r.status)).length
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
+}
+
+export default async(request)=>{
+  try{return await handleRequest(request);}
+  catch{
+    return json({error:"Privacy processing is temporarily unavailable. A submitted change may have been saved. Refresh the request history before retrying.",code:"privacy_upstream_unavailable"},503);
+  }
 };
 
 export const config={path:"/api/lockliel/admin/privacy"};

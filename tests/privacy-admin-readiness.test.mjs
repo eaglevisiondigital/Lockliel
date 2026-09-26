@@ -11,9 +11,10 @@ async function run(options={}){
   const reply=(value,status=200)=>new Response(JSON.stringify(value),{status});
   globalThis.fetch=async(url,init={})=>{
     const u=new URL(url);calls.push({url:u,init});
+    if(options.disconnect===u.pathname.split('/').pop()&&(!options.disconnectMethod||init.method===options.disconnectMethod))throw Error('Sensitive upstream diagnostic');
     if(u.pathname==='/auth/v1/user')return reply({id:staff});
     if(u.pathname.endsWith('/lockliel_current_session_active'))return reply(true);
-    if(u.pathname.endsWith('/staff_roles'))return reply([{role:options.role||'admin'}]);
+    if(u.pathname.endsWith('/staff_roles'))return reply(options.rolesMalformed?{}:[{role:options.role||'admin'}]);
     if(u.pathname.endsWith('/lockliel_admin_deletion_readiness')){
       if(options.networkError)throw Error('Fixture network failure');
       return reply(Object.hasOwn(options,'readiness')?options.readiness:{request_id:id,terminal:false,can_execute:true},options.rpcStatus||200);
@@ -24,9 +25,9 @@ async function run(options={}){
     }
     if(u.pathname.endsWith('/privacy_requests')){
       if(init.method==='PATCH')return reply(Object.hasOwn(options,'updated')?options.updated:[{id,status:options.action==='claim'?'in_review':'declined',handled_by:staff}]);
-      return reply(options.queueMalformed?{}:[{id,request_type:options.type||'account_deletion',status:'in_review',handled_by:options.otherHandler?'another-admin':staff}],options.queueStatus||200);
+      return reply(Object.hasOwn(options,'lookup')?options.lookup:options.queueMalformed?{}:[{id,request_type:options.type||'account_deletion',status:'in_review',handled_by:options.otherHandler?'another-admin':staff}],options.queueStatus||200);
     }
-    if(u.pathname.endsWith('/profile_finance_cards'))return reply([]);
+    if(u.pathname.endsWith('/profile_finance_cards'))return reply(options.peopleMalformed?{}:[]);
     throw Error('Unexpected upstream call '+u.pathname);
   };
   try{
@@ -37,7 +38,7 @@ async function run(options={}){
       ...(method==='POST'?{body:JSON.stringify({id:options.requestId??id,action:options.action,status:'declined'})}:{})
     });
     const response=await handler(request);
-    return {status:response.status,body:await response.json(),calls};
+    return {status:response.status,body:await response.json(),calls,headers:response.headers};
   }finally{globalThis.fetch=original;}
 }
 
@@ -104,5 +105,30 @@ test('every mutation rejects invalid request identifiers before writing',async()
   for(const action of ['claim','resolve','executeDeletion']){
     const r=await run({action,requestId:'bad-id'});assert.equal(r.status,400);
     assert.ok(!r.calls.some(c=>c.init.method==='PATCH'||c.url.pathname.includes('/functions/')));
+  }
+});
+
+test('lookup outages and malformed identities never masquerade as missing requests',async()=>{
+  for(const action of ['resolve','executeDeletion']){
+    for(const options of [{queueStatus:500},{queueMalformed:true},{disconnect:'privacy_requests'},{lookup:[{id:'different',request_type:'account_deletion',status:'in_review'}]}]){
+      const r=await run({action,...options});assert.equal(r.status,503);
+      assert.ok(!r.calls.some(c=>c.init.method==='PATCH'||c.url.pathname.includes('/functions/')));
+    }
+    assert.equal((await run({action,lookup:[]})).status,404);
+  }
+});
+test('authorization and mutation disconnects return sanitized no-store errors',async()=>{
+  for(const options of [{rolesMalformed:true},{disconnect:'staff_roles'},{queue:true,disconnect:'privacy_requests'},{action:'claim',disconnect:'privacy_requests',disconnectMethod:'PATCH'},{action:'resolve',disconnect:'privacy_requests',disconnectMethod:'PATCH'}]){
+    const r=await run(options);assert.equal(r.status,503);
+    assert.match(r.headers.get('cache-control'),/no-store/);
+    assert.doesNotMatch(r.body.error,/Sensitive upstream diagnostic/);
+    assert.match(r.body.error,/Refresh the request history/);
+  }
+});
+test('unavailable people directory does not hide the privacy queue',async()=>{
+  for(const options of [{disconnect:'profile_finance_cards'},{peopleMalformed:true}]){
+    const r=await run({queue:true,...options});assert.equal(r.status,200);
+    assert.equal(r.body.requests.length,1);assert.equal(r.body.peopleUnavailable,true);
+    assert.equal(r.body.requests[0].person,null);
   }
 });

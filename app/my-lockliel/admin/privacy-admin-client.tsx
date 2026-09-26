@@ -18,7 +18,11 @@ export default function PrivacyAdminClient(){
       if(r.status===403){setHidden(true);return;}
       if(!r.ok||!Array.isArray(d.requests))throw new Error(d.error||"Unable to load privacy requests.");
       setData(d);
-    }catch(error){setMessage(error instanceof Error?error.message:"Unable to load privacy requests.");}
+    }catch(error){
+      setData(null);
+      setReadiness({});
+      setMessage(error instanceof Error?error.message:"Unable to load privacy requests.");
+    }
   }
 
   useEffect(()=>{load();},[]);
@@ -86,6 +90,7 @@ export default function PrivacyAdminClient(){
     </p>
 
     {message&&<p className="ml-share-message" role="status" aria-live="polite">{message}</p>}
+    {data.peopleUnavailable&&<p className="ml-share-message" role="status">Member names and contact details are temporarily unavailable. The request queue is still available. <button disabled={working!==null} onClick={()=>load()}>Reload details</button></p>}
 
     <div className="ml-privacy-admin-list">
       {open.map((r:any)=>{
