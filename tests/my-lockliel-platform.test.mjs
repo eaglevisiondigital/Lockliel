@@ -2317,3 +2317,22 @@ test("financial lifecycle timestamps remain consistent with database-owned state
   assert.ok(migration.includes("partner_commitments_closed_timestamp"));
 });
 
+test("financial provider events cannot be cross-linked or silently reassigned",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926005556_lockliel_validate_financial_cross_links.sql","utf8");
+
+  assert.ok(migration.includes("validate_checkout_order_relationship"));
+  assert.ok(migration.includes("Checkout and linked order must use the same payment provider."));
+  assert.ok(migration.includes("Checkout and linked order must belong to the same member."));
+  assert.ok(migration.includes("validate_payment_event_relationships"));
+  assert.ok(migration.includes("Payment event checkout link cannot be replaced once recorded."));
+  assert.ok(migration.includes("Payment event gift link cannot be replaced once recorded."));
+  assert.ok(migration.includes("Payment event order link cannot be replaced once recorded."));
+  assert.ok(migration.includes("Payment event commitment link cannot be replaced once recorded."));
+  assert.ok(migration.includes("Linked payment records must belong to the same member."));
+  assert.ok(migration.includes("validate_order_provider_relationships"));
+  assert.ok(migration.includes("Order provider must match its linked payment event provider."));
+  assert.ok(migration.includes("validate_commitment_provider_relationships"));
+  assert.ok(migration.includes("Commitment provider must match its linked payment event provider."));
+  assert.ok(migration.includes("from public,anon,authenticated"));
+});
+
