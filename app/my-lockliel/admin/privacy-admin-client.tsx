@@ -157,7 +157,7 @@ export default function PrivacyAdminClient(){
           <b>No open privacy requests.</b>
           <span>New data export or account-deletion requests will appear here.</span>
         </div>
-      </div>
+      </div>}
     </div>
 
     {closed.length>0&&<details className="ml-five-history">
