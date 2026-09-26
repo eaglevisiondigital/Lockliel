@@ -2,19 +2,12 @@
 import {useEffect,useState} from "react";
 import {CheckCircle2,FileDown,ShieldAlert,Trash2} from "lucide-react";
 
-type DeletionChecks={
-  sessionsRevoked:boolean;
-  authAccountProcessed:boolean;
-  personalDataProcessed:boolean;
-};
-
 export default function PrivacyAdminClient(){
   const [data,setData]=useState<any>(null);
   const [hidden,setHidden]=useState(false);
   const [working,setWorking]=useState<string|null>(null);
   const [message,setMessage]=useState("");
   const [notes,setNotes]=useState<Record<string,string>>({});
-  const [deletionChecks,setDeletionChecks]=useState<Record<string,DeletionChecks>>({});
 
   async function load(){
     const r=await fetch("/api/lockliel/admin/privacy",{cache:"no-store"});
@@ -25,22 +18,14 @@ export default function PrivacyAdminClient(){
 
   useEffect(()=>{load();},[]);
 
-  async function act(id:string,action:string,status?:string,adminNote?:string,checks?:DeletionChecks){
+  async function act(id:string,action:string,status?:string,adminNote?:string){
     setWorking(id);
     setMessage("");
 
     const r=await fetch("/api/lockliel/admin/privacy",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        id,
-        action,
-        status,
-        adminNote,
-        deletionSessionsRevoked:checks?.sessionsRevoked,
-        deletionAuthAccountProcessed:checks?.authAccountProcessed,
-        deletionPersonalDataProcessed:checks?.personalDataProcessed
-      })
+      body:JSON.stringify({id,action,status,adminNote})
     });
 
     const d=await r.json().catch(()=>({}));
@@ -51,13 +36,10 @@ export default function PrivacyAdminClient(){
       return;
     }
 
-    setMessage("Privacy request updated.");
+    setMessage(action==="executeDeletion"
+      ?"Account deletion completed and verified."
+      :"Privacy request updated.");
     setNotes(v=>({...v,[id]:""}));
-    setDeletionChecks(v=>{
-      const next={...v};
-      delete next[id];
-      return next;
-    });
     await load();
   }
 
@@ -77,7 +59,7 @@ export default function PrivacyAdminClient(){
     </div>
 
     <p className="ml-privacy-note">
-      Only full administrators can access this queue. Account deletion is never automatic from the member-facing request. Mark a deletion completed only after the applicable account and personal-data processing has actually been handled. The processing record is retained even if the member profile link is later removed.
+      Only full administrators can access this queue. Account deletion is never automatic from the member-facing request. The system verifies MFA, Auth/session removal, operational responsibilities, protected Storage ownership, and nonfinancial personal-data scrubbing before a deletion request can be completed. Financial and legally required operational records may remain under approved retention requirements.
     </p>
 
     {message&&<p className="ml-share-message">{message}</p>}
@@ -86,12 +68,6 @@ export default function PrivacyAdminClient(){
       {open.map((r:any)=>{
         const deletion=r.request_type==="account_deletion";
         const note=notes[r.id]||"";
-        const checks=deletionChecks[r.id]||{
-          sessionsRevoked:Boolean(r.deletion_sessions_revoked),
-          authAccountProcessed:Boolean(r.deletion_auth_account_processed),
-          personalDataProcessed:Boolean(r.deletion_personal_data_processed)
-        };
-        const checksReady=checks.sessionsRevoked&&checks.authAccountProcessed&&checks.personalDataProcessed;
 
         return <article key={r.id} className={deletion?"ml-privacy-admin-request deletion":"ml-privacy-admin-request"}>
           <div className="ml-privacy-admin-icon">
@@ -105,32 +81,17 @@ export default function PrivacyAdminClient(){
 
             {r.status==="in_review"&&deletion&&<>
               <div className="ml-privacy-deletion-checks">
-                <strong>Deletion processing checklist</strong>
-                <p>Deleting the Supabase Auth user does not by itself invalidate an already-issued JWT. Revoke active sessions before processing the Auth account.</p>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checks.sessionsRevoked}
-                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,sessionsRevoked:e.target.checked}}))}
-                  />
-                  Active sessions have been revoked or signed out.
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checks.authAccountProcessed}
-                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,authAccountProcessed:e.target.checked}}))}
-                  />
-                  Supabase Auth account processing is complete.
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checks.personalDataProcessed}
-                    onChange={e=>setDeletionChecks(v=>({...v,[r.id]:{...checks,personalDataProcessed:e.target.checked}}))}
-                  />
-                  Lockliel personal-data processing is complete under the approved retention requirements.
-                </label>
+                <strong>Verified deletion processing</strong>
+                <p>
+                  Lockliel will refuse deletion until staff roles, leadership or hosting responsibilities,
+                  assigned follow-ups, and member-owned Storage objects are resolved. A different administrator
+                  must process an administrator&apos;s own deletion request.
+                </p>
+                <p>
+                  When the checks pass, the system removes the Supabase Auth account and sessions, verifies
+                  that the member profile is gone, scrubs surviving nonfinancial CRM and Founders 50 personal
+                  data, then completes the privacy record.
+                </p>
               </div>
 
               <label className="ml-privacy-processing-note">
@@ -140,9 +101,9 @@ export default function PrivacyAdminClient(){
                   maxLength={5000}
                   value={note}
                   onChange={e=>setNotes(v=>({...v,[r.id]:e.target.value}))}
-                  placeholder="Document what account and personal-data processing was completed, plus any records retained for legitimate legal, financial, or operational obligations."
+                  placeholder="Document the deletion processing and any financial, legal, or operational records retained under the approved retention requirements."
                 />
-                <span>{note.trim().length<20?"Add at least 20 characters before marking processed.":"Processing note ready."}</span>
+                <span>{note.trim().length<20?"Add at least 20 characters before processing deletion.":"Processing note ready."}</span>
               </label>
             </>}
           </div>
@@ -174,10 +135,10 @@ export default function PrivacyAdminClient(){
 
             {r.status==="in_review"&&deletion&&<>
               <button
-                disabled={working===r.id||note.trim().length<20||!checksReady}
-                onClick={()=>act(r.id,"resolve","completed",note,checks)}
+                disabled={working===r.id||note.trim().length<20}
+                onClick={()=>act(r.id,"executeDeletion",undefined,note)}
               >
-                <CheckCircle2 size={13}/> Mark processed
+                <Trash2 size={13}/> Process account deletion
               </button>
               <button
                 disabled={working===r.id}
@@ -196,7 +157,7 @@ export default function PrivacyAdminClient(){
           <b>No open privacy requests.</b>
           <span>New data export or account-deletion requests will appear here.</span>
         </div>
-      </div>}
+      </div>
     </div>
 
     {closed.length>0&&<details className="ml-five-history">

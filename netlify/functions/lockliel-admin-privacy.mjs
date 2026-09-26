@@ -1,5 +1,14 @@
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
+async function loadRequest(id,h){
+  const r=await fetch(
+    SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+
+      "&select=id,profile_id,request_type,status,handled_by&limit=1",
+    {headers:h}
+  );
+  return (r.ok?await r.json():[])?.[0]||null;
+}
+
 export default async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
@@ -31,72 +40,126 @@ export default async(request)=>{
         }
       );
       if(!r.ok)return json({error:"Unable to claim privacy request."},r.status);
+      const rows=await r.json().catch(()=>[]);
+      if(!rows.length)return json({error:"Privacy request is no longer available to claim."},409);
       return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
+    }
+
+    if(action==="executeDeletion"){
+      const current=await loadRequest(id,h);
+      if(!current)return json({error:"Privacy request not found."},404);
+      if(current.request_type!=="account_deletion"){
+        return json({error:"This action only processes account-deletion requests."},400);
+      }
+      if(current.status!=="in_review"){
+        return json({error:"Account deletion request must be in review before processing."},409);
+      }
+      if(current.handled_by!==s.user.id){
+        return json({error:"Claim this deletion request before processing it."},409);
+      }
+
+      const adminNote=String(b.adminNote||"").trim().slice(0,5000);
+      if(adminNote.length<20){
+        return json({
+          error:"Document the deletion processing and any retained financial or legal records before continuing."
+        },400);
+      }
+
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),45000);
+      let deletionResponse;
+      try{
+        deletionResponse=await fetch(
+          SUPABASE_URL+"/functions/v1/process-account-deletion",
+          {
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json",
+              Authorization:"Bearer "+s.access
+            },
+            body:JSON.stringify({request_id:id}),
+            signal:controller.signal
+          }
+        );
+      }catch{
+        clearTimeout(timeout);
+        return json({error:"Account deletion processing could not be confirmed. Please retry."},503);
+      }
+      clearTimeout(timeout);
+
+      const deletion=await deletionResponse.json().catch(()=>({}));
+      if(!deletionResponse.ok){
+        const blockerText=Array.isArray(deletion.blockers)&&deletion.blockers.length
+          ?" Resolve: "+deletion.blockers.join(", ")+"."
+          :"";
+        return json({
+          error:(deletion.error||"Account deletion could not be completed.")+blockerText
+        },deletionResponse.status);
+      }
+
+      const finalize=await fetch(
+        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.in_review",
+        {
+          method:"PATCH",
+          headers:{...h,Prefer:"return=representation"},
+          body:JSON.stringify({
+            status:"completed",
+            admin_note:adminNote,
+            deletion_sessions_revoked:true,
+            deletion_auth_account_processed:true,
+            deletion_personal_data_processed:true
+          })
+        }
+      );
+      if(!finalize.ok){
+        return json({
+          error:"Account deletion completed, but the privacy processing record still needs finalization. Retry this request."
+        },500);
+      }
+      const finalized=await finalize.json().catch(()=>[]);
+      if(!finalized.length){
+        return json({
+          error:"Account deletion completed, but the privacy request changed before finalization. Review the request history."
+        },409);
+      }
+
+      return json(
+        {ok:true,deletion},
+        200,
+        s.refreshed?sessionCookies(s.refreshed):[]
+      );
     }
 
     if(action==="resolve"){
       const status=String(b.status||"");
       if(!["completed","declined"].includes(status))return json({error:"Invalid resolution."},400);
 
-      const currentRes=await fetch(
-        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&select=id,request_type,status&limit=1",
-        {headers:h}
-      );
-      const current=(currentRes.ok?await currentRes.json():[])?.[0]||null;
+      const current=await loadRequest(id,h);
       if(!current)return json({error:"Privacy request not found."},404);
       if(current.status!=="in_review")return json({error:"Privacy request must be in review before resolution."},409);
 
       const adminNote=String(b.adminNote||"").trim().slice(0,5000);
-      const deletionSessionsRevoked=Boolean(b.deletionSessionsRevoked);
-      const deletionAuthAccountProcessed=Boolean(b.deletionAuthAccountProcessed);
-      const deletionPersonalDataProcessed=Boolean(b.deletionPersonalDataProcessed);
 
-      if(
-        current.request_type==="account_deletion" &&
-        status==="completed" &&
-        adminNote.length<20
-      ){
+      if(current.request_type==="account_deletion"&&status==="completed"){
         return json({
-          error:"Document the account and personal-data processing steps before marking a deletion request completed."
-        },400);
-      }
-
-      if(
-        current.request_type==="account_deletion" &&
-        status==="completed" &&
-        !(
-          deletionSessionsRevoked &&
-          deletionAuthAccountProcessed &&
-          deletionPersonalDataProcessed
-        )
-      ){
-        return json({
-          error:"Complete all account-deletion processing checks before marking the request completed."
-        },400);
-      }
-
-      const patch={
-        status,
-        admin_note:adminNote||null
-      };
-
-      if(current.request_type==="account_deletion"){
-        Object.assign(patch,{
-          deletion_sessions_revoked:deletionSessionsRevoked,
-          deletion_auth_account_processed:deletionAuthAccountProcessed,
-          deletion_personal_data_processed:deletionPersonalDataProcessed
-        });
+          error:"Use verified account-deletion processing instead of manually marking this request completed."
+        },409);
       }
 
       const r=await fetch(
-        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id),
+        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.in_review",
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify(patch)
+          body:JSON.stringify({
+            status,
+            admin_note:adminNote||null
+          })
         }
       );
       if(!r.ok)return json({error:"Unable to resolve privacy request."},r.status);
+      const rows=await r.json().catch(()=>[]);
+      if(!rows.length)return json({error:"Privacy request changed before resolution."},409);
       return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 

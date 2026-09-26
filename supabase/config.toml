@@ -9,3 +9,6 @@ verify_jwt = false
 
 [functions.import-grip-pdfs]
 verify_jwt = true
+
+[functions.process-account-deletion]
+verify_jwt = false

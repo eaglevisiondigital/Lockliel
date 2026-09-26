@@ -2776,3 +2776,35 @@ test("account deletion blocks unresolved operational responsibilities",()=>{
   assert.match(migration,/Profile deletion blocked until staff, leadership, hosting, and assigned follow-up responsibilities are resolved/);
 });
 
+test("account deletion executes through verified Auth removal and retry-safe scrubbing",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926033358_lockliel_account_deletion_execution_support.sql","utf8");
+  const edge=fs.readFileSync("supabase/functions/process-account-deletion/index.ts","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-privacy.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/admin/privacy-admin-client.tsx","utf8");
+  const config=fs.readFileSync("supabase/config.toml","utf8");
+
+  assert.match(migration,/account_deletion_targets/);
+  assert.match(migration,/lockliel_account_deletion_state/);
+  assert.match(migration,/owned_storage_objects/);
+  assert.match(migration,/lockliel_scrub_deleted_nonfinancial_records/);
+  assert.match(migration,/delete from public\.lead_contacts/);
+  assert.match(migration,/founders50_review_rationales_cleared/);
+
+  assert.match(edge,/npm:@supabase\/supabase-js@2\.117\.1/);
+  assert.match(edge,/\/auth\/v1\/user/);
+  assert.match(edge,/tokenClaims\?\.aal!==["']aal2["']/);
+  assert.match(edge,/lockliel_current_session_active/);
+  assert.match(edge,/auth\.admin\.deleteUser/);
+  assert.match(edge,/Another administrator must process your own account-deletion request/);
+  assert.match(edge,/lockliel_scrub_deleted_nonfinancial_records/);
+
+  assert.match(api,/action==="executeDeletion"/);
+  assert.match(api,/functions\/v1\/process-account-deletion/);
+  assert.match(api,/deletion_sessions_revoked:true/);
+  assert.match(api,/Use verified account-deletion processing/);
+  assert.doesNotMatch(client,/DeletionChecks/);
+  assert.doesNotMatch(client,/type="checkbox"/);
+  assert.match(client,/Process account deletion/);
+  assert.match(config,/\[functions\.process-account-deletion\][\s\S]*verify_jwt = false/);
+});
+
