@@ -292,7 +292,7 @@ test("account deletion completion requires documented processing",()=>{
   const client=fs.readFileSync("app/my-lockliel/admin/privacy-admin-client.tsx","utf8");
   assert.match(api,/request_type==="account_deletion"/);
   assert.match(api,/adminNote\.length<20/);
-  assert.match(client,/Mark processed/);
+  assert.match(client,/Process account deletion/);
   assert.match(client,/Processing note/);
   assert.match(client,/note\.trim\(\)\.length<20/);
 });
@@ -1941,7 +1941,7 @@ test("privacy request history survives profile deletion without weakening member
   assert.match(migration,/actor is null/);
   assert.match(migration,/new\.profile_id is null/);
   assert.match(migration,/Administrator access required for privacy request processing/);
-  assert.match(adminUi,/processing record is retained/i);
+  assert.match(adminUi,/Resolved privacy requests/i);
 });
 
 
@@ -1956,15 +1956,13 @@ test("account deletion completion requires session, Auth, and personal-data proc
   assert.match(migration,/privacy_requests_completed_deletion_checks/);
   assert.match(migration,/Completed account deletion requests require all deletion processing checks/);
   assert.match(migration,/Members cannot change staff processing fields/);
-  assert.match(api,/deletionSessionsRevoked/);
-  assert.match(api,/deletionAuthAccountProcessed/);
-  assert.match(api,/deletionPersonalDataProcessed/);
-  assert.match(api,/Complete all account-deletion processing checks/);
-  assert.match(client,/Deletion processing checklist/);
-  assert.match(client,/already-issued JWT/);
-  assert.match(client,/Active sessions have been revoked or signed out/);
-  assert.match(client,/Supabase Auth account processing is complete/);
-  assert.match(client,/personal-data processing is complete/);
+  assert.match(api,/deletion_sessions_revoked:true/);
+  assert.match(api,/deletion_auth_account_processed:true/);
+  assert.match(api,/deletion_personal_data_processed:true/);
+  assert.match(api,/Use verified account-deletion processing/);
+  assert.match(client,/Verified deletion processing/);
+  assert.match(client,/operational responsibilities/);
+  assert.match(client,/nonfinancial personal-data scrubbing/);
 });
 
 
@@ -2808,3 +2806,99 @@ test("account deletion executes through verified Auth removal and retry-safe scr
   assert.match(config,/\[functions\.process-account-deletion\][\s\S]*verify_jwt = false/);
 });
 
+
+// Exercise the real Netlify handler with mocked upstream responses. No real
+// account, database, or Auth mutation occurs in these tests.
+test("privacy deletion finalization requires complete server verification",async(t)=>{
+  const {default:handler}=await import("../netlify/functions/lockliel-admin-privacy.mjs");
+  const staffId="11111111-1111-4111-8111-111111111111";
+  const requestId="22222222-2222-4222-8222-222222222222";
+  const verified={ok:true,sessionsRevoked:true,authAccountProcessed:true,personalDataProcessed:true};
+
+  async function runCase(options={}){
+    const calls=[];
+    const originalFetch=globalThis.fetch;
+    const access="test."+Buffer.from(JSON.stringify({aal:"aal2"})).toString("base64url")+".test";
+    const reply=(data,status=200)=>new Response(JSON.stringify(data),{status});
+    globalThis.fetch=async(url,init={})=>{
+      const u=new URL(url);
+      calls.push({url:u,init});
+      if(u.pathname==="/auth/v1/user")return reply({id:staffId});
+      if(u.pathname.endsWith("/rpc/lockliel_current_session_active"))return reply(true);
+      if(u.pathname.endsWith("/staff_roles"))return reply([{role:"admin"}]);
+      if(u.pathname.endsWith("/privacy_requests")&&init.method!=="PATCH"){
+        return reply([{id:requestId,request_type:"account_deletion",status:"in_review",handled_by:options.otherHandler?"someone-else":staffId}]);
+      }
+      if(u.pathname==="/functions/v1/process-account-deletion"){
+        if(options.networkFailure)throw new Error("Simulated disconnect");
+        if(options.invalidJson)return new Response("not JSON",{status:200});
+        return reply(Object.hasOwn(options,"result")?options.result:verified,options.edgeStatus||200);
+      }
+      if(u.pathname.endsWith("/privacy_requests")&&init.method==="PATCH"){
+        return reply(options.finalizeEmpty?[]:[{id:requestId,status:"completed"}],options.finalizeStatus||200);
+      }
+      throw new Error("Unexpected upstream request: "+u.pathname);
+    };
+    try{
+      const response=await handler(new Request("https://lockliel.com/api/lockliel/admin/privacy",{
+        method:"POST",
+        headers:{"Content-Type":"application/json",cookie:"lockliel_access="+access},
+        body:JSON.stringify({id:requestId,action:options.action||"executeDeletion",status:"completed",adminNote:"Reviewed retained records and documented deletion processing."})
+      }));
+      return {status:response.status,body:await response.json(),calls,patches:calls.filter(c=>c.init.method==="PATCH")};
+    }finally{globalThis.fetch=originalFetch;}
+  }
+
+  for(const field of Object.keys(verified)){
+    await t.test("missing or false "+field+" cannot finalize",async()=>{
+      for(const value of [undefined,false,"true"]){
+        const result={...verified,[field]:value};
+        const r=await runCase({result});
+        assert.equal(r.status,502);
+        assert.equal(r.patches.length,0);
+      }
+    });
+  }
+  await t.test("malformed success responses cannot finalize",async()=>{
+    for(const options of [{result:null},{result:{}},{invalidJson:true}]){
+      const r=await runCase(options);
+      assert.equal(r.status,502);
+      assert.equal(r.patches.length,0);
+    }
+  });
+  await t.test("upstream failures and blockers leave request open",async()=>{
+    for(const options of [{networkFailure:true},{edgeStatus:409,result:{error:"Blocked",blockers:["staff roles"]}}]){
+      const r=await runCase(options);
+      assert.ok([409,503].includes(r.status));
+      assert.equal(r.patches.length,0);
+    }
+  });
+  await t.test("verified completion is restricted to the current handler and request state",async()=>{
+    const r=await runCase();
+    assert.equal(r.status,200);
+    assert.equal(r.patches.length,1);
+    const {url,init}=r.patches[0];
+    assert.equal(url.searchParams.get("id"),"eq."+requestId);
+    assert.equal(url.searchParams.get("status"),"eq.in_review");
+    assert.equal(url.searchParams.get("request_type"),"eq.account_deletion");
+    assert.equal(url.searchParams.get("handled_by"),"eq."+staffId);
+    const payload=JSON.parse(init.body);
+    assert.equal(payload.status,"completed");
+    for(const key of ["deletion_sessions_revoked","deletion_auth_account_processed","deletion_personal_data_processed"])assert.equal(payload[key],true);
+  });
+  await t.test("a changed request or failed finalization is never reported as completed",async()=>{
+    for(const [options,status] of [[{finalizeEmpty:true},409],[{finalizeStatus:500},500]]){
+      const r=await runCase(options);
+      assert.equal(r.status,status);
+      assert.equal(r.body.ok,undefined);
+    }
+  });
+  await t.test("another handler and manual completion cannot invoke deletion",async()=>{
+    for(const options of [{otherHandler:true},{action:"resolve"}]){
+      const r=await runCase(options);
+      assert.equal(r.status,409);
+      assert.equal(r.patches.length,0);
+      assert.equal(r.calls.filter(c=>c.url.pathname.includes("/functions/")).length,0);
+    }
+  });
+});

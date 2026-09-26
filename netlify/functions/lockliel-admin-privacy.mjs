@@ -87,7 +87,7 @@ export default async(request)=>{
       }
       clearTimeout(timeout);
 
-      const deletion=await deletionResponse.json().catch(()=>({}));
+      const deletion=(await deletionResponse.json().catch(()=>null))||{};
       if(!deletionResponse.ok){
         const blockerText=Array.isArray(deletion.blockers)&&deletion.blockers.length
           ?" Resolve: "+deletion.blockers.join(", ")+"."
@@ -97,8 +97,16 @@ export default async(request)=>{
         },deletionResponse.status);
       }
 
+      if(deletion.ok!==true||deletion.sessionsRevoked!==true||
+         deletion.authAccountProcessed!==true||deletion.personalDataProcessed!==true){
+        return json({
+          error:"Account deletion processing returned incomplete verification. The request remains open; retry processing."
+        },502);
+      }
+
       const finalize=await fetch(
-        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+"&status=eq.in_review",
+        SUPABASE_URL+"/rest/v1/privacy_requests?id=eq."+encodeURIComponent(id)+
+          "&status=eq.in_review&request_type=eq.account_deletion&handled_by=eq."+encodeURIComponent(s.user.id),
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
