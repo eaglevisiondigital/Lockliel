@@ -3,6 +3,64 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Current reconciliation package (2026-09-26)
+
+Baseline preserved: `c3e9a01`, `33ecdf3`, `0008a43`. Reconciliation and
+regression tests committed as `f74e4a6`. Original applied migration
+bodies and validated commits remain unchanged. No main change, push, deployment,
+live migration, data update or permission/configuration change occurred.
+
+VERIFIED: migration version/name parity concealed uncaptured DDL. Neither Git
+history nor the 272 populated live ledger bodies contains the review table
+creation or Share Library column additions. Original execution time/actor remain
+UNKNOWN. See `docs/migration-reconciliation.md` for source evidence and limits.
+
+- New ordered compatibility migration `20260925035350` reconstructs the missing
+  review table/indexes/policies/trigger and six share columns, status constraint,
+  ordering index and staff write policies. Its timestamp is an explicitly assigned
+  dependency-order version, not an original execution date. Matching existing
+  schemas are validated with no DDL/DML; conflicting/partial schemas abort.
+- All 274 authoritative migrations replay from zero in disposable PostgreSQL 17
+  without the retired historical supplements. Legitimate platform stubs remain.
+- Targeted live catalog parity passes: 22 columns, 22 constraints, eight indexes,
+  five policies, four user triggers, RLS and anon/authenticated/service-role table
+  and column grants. Existing-environment replay passes read-only and no-DDL tests;
+  missing column/index and disabled RLS cases are rejected. This is not a claim of
+  complete database or hosted Supabase service equivalence.
+- Seven SQL files pass, covering the previous five plus email compatibility and
+  restored review/share policies. A synthetic incompatible legacy address confirms
+  failed migration validation preserves the previous constraint. All 311 JavaScript tests and Webpack build passed again;
+  TypeScript, 61 Netlify module checks and targeted tooling lint passed. Full lint
+  debt remains separately scoped; no repository-wide lint cleanup was attempted.
+- Pending email correction `20260926212002` is unchanged and unapplied. Live
+  aggregate preflight found profiles=0 and Auth users=0, with zero incompatible
+  values. Current database regex rejects normal addresses. Re-run preflight at
+  release; the existing-data result can become stale. External direct Auth imports
+  must use normalized compatible input. No live rows were remediated.
+- Release/recovery plan is prepared in `docs/migration-reconciliation.md` with
+  backup, ordering, lock limits, preflight, verification, abort and forward-repair
+  requirements. Production release is NOT approved or executed.
+
+### Push status
+
+Local validation is suitable for review. PUSH NOT CLEARED: GitHub workflow is
+validation-only; default Actions permission is read and repository webhooks are
+empty. PR #3 has a verified Netlify preview status, so branch updates can trigger
+preview deployment. Netlify production-branch/build-plugin settings and Supabase
+GitHub auto-migration configuration remain unverified. Netlify settings require
+sign-in in the available browser. No push will occur on this evidence.
+
+Next proposed package: read-only hosting/integration verification, then a separately
+scoped controlled development push/remote CI and migration release review. No new
+features, live migration or launch operation started. A complete Work assignment
+is included in the release document. Repository-wide lint remains separate.
+
+## Previous local engineering package (historical)
+
+The older sections below preserve the evidence from the prior package. Current
+reconciliation results above supersede their references to replay supplements,
+273 local migrations, five SQL files and unverified GitHub webhook/token settings.
+
 ## Completed local engineering package (2026-09-26)
 
 This section supersedes historical local-tooling limitations recorded below.

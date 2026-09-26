@@ -121,3 +121,23 @@ email-format constraint in the live database. A local corrective migration is
 prepared and regression-tested, but not deployed. No live RLS, grants, roles,
 authentication settings or permissions changed. Full repository ESLint debt and
 production journey validation remain unresolved.
+
+## Reconciliation verification, 2026-09-26
+
+Fresh replay no longer relies on historical schema supplements. Restored review
+policies reject anonymous/member writes and AAL1 staff; AAL2 staff can record a
+review only as themselves. Review insertion applies its decision and creates an
+audit event; review edits remain denied. Acceptance does not grant staff rights.
+Share staff insert/update policies and active-only member read behavior are
+covered with real RLS fixtures. Catalog parity includes policies, RLS and grants.
+Matching existing schemas accept the bridge in a read-only transaction; deliberate
+partial schema, index loss and RLS disablement are rejected. No live permissions
+were altered. The observed live Security Advisor has no findings.
+
+The email correction remains unapplied. Read-only aggregate inspection found zero
+profiles/users and no incompatible data. That preflight expires as data changes.
+SQL regression covers NULL, normalization, malformed/overlength/raw-import inputs.
+An incompatible legacy-email fixture also proves migration failure preserves the
+previous constraint. The release plan requires verified recovery capability and prefers forward repair
+over restoring the broken regex after valid new accounts exist. Hosting-side
+push effects remain incompletely verified, so no push is cleared.

@@ -46,11 +46,11 @@ cluster. It never connects to the linked Supabase project. No Docker is required
 
 Tests use real PostgreSQL RLS and repository functions, with minimal test-only
 Auth/Storage compatibility tables. They do not emulate GoTrue, PostgREST or
-Storage HTTP behavior. Two catalog-derived historical schema supplements are
-explicitly logged because the original migration history is incomplete:
-`founders50_reviews` and six `share_assets` columns. A successful supplemented
-replay does not prove clean migration reproducibility or full live schema parity.
-See CURRENT_BUILD_STATE.md for the pending email constraint correction.
+Storage HTTP behavior. The authoritative chain now includes a guarded reconstruction of missing historical
+review/share DDL. It replays without historical test supplements. The ordering
+exception, existing-environment safety, targeted schema comparison and pending
+email release plan are documented in [the reconciliation record](docs/migration-reconciliation.md).
+Do not run linked database pushes or history repairs as local validation.
 
 ## Test network safety
 

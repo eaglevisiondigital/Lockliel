@@ -100,3 +100,14 @@ tests and an independent disposable PostgreSQL 17 job. Resource signup factories
 accept a separate CRM `mirror` transport with the same production fetch default.
 SQL compatibility fixtures and catalog supplements are test infrastructure only,
 not a second application schema or proof of full Supabase service equivalence.
+
+## Reconciled migration chain, 2026-09-26
+
+The authoritative chain includes the documented reconstruction at ordering version
+`20260925035350`. Historical test-only supplements were removed. Targeted catalog
+parity for review/share objects is checked by the same query used for live reads.
+The bridge creates missing fresh-environment objects or verifies a matching
+completed existing schema without DDL/DML. Other partial schemas fail closed.
+Platform compatibility stubs remain distinct from migrations and test data.
+See `docs/migration-reconciliation.md` for why normal chronological forward-only
+DDL cannot repair the earlier replay failure without this bounded exception.

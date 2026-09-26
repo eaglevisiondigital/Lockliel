@@ -22,10 +22,14 @@ project and does not establish Lockliel architecture or business approval.
 - Preserve existing work, approved branding, and completed systems. Keep `main`
   untouched. Do not merge, deploy, change production, or alter protected systems
   without explicit authorization for that scope.
-- The subsequent 2026-09-26 engineering assignment authorizes local test
-  isolation, disposable SQL validation, build tooling and narrow verified fixes. Do not apply migrations, change permissions, toggle flags,
+- The current 2026-09-26 assignment authorizes local migration-history
+  reconciliation, compatibility/recovery planning and isolated validation. Do not apply migrations, change permissions, toggle flags,
   bootstrap staff, or execute SQL fixtures against the connected project for it.
-- Never recreate or rerun applied migrations. In particular,
+- Read `docs/migration-reconciliation.md` before future database releases. The
+  reconstructed version `20260925035350` is an explicit ordering exception, not a
+  recovered original timestamp. Do not edit existing migration bodies or bypass
+  its catalog guard. Keep pushes blocked until hosting triggers are verified.
+- Never recreate or rerun applied migrations against an existing live environment. In particular,
   `20260926033358_lockliel_account_deletion_execution_support` already exists in
   both histories. Recheck migration parity before future database work.
 
