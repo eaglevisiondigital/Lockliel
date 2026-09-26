@@ -2298,3 +2298,22 @@ test("staff notes require a meaningful bounded body",()=>{
   assert.match(migration,/char_length\(body\)<=5000/);
 });
 
+test("financial lifecycle timestamps remain consistent with database-owned states",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926005116_lockliel_financial_temporal_integrity.sql","utf8");
+
+  assert.ok(migration.includes("checkout_sessions_completed_after_creation"));
+  assert.ok(migration.includes("checkout_sessions_completion_state"));
+  assert.ok(migration.includes("payment_events_processed_after_receipt"));
+  assert.ok(migration.includes("payment_events_processing_state"));
+  assert.ok(migration.includes("gifts_received_after_creation"));
+  assert.ok(migration.includes("gifts_success_timestamp"));
+  assert.ok(migration.includes("orders_paid_after_creation"));
+  assert.ok(migration.includes("orders_fulfilled_after_payment"));
+  assert.ok(migration.includes("orders_paid_state_timestamp"));
+  assert.ok(migration.includes("orders_fulfilled_timestamp"));
+  assert.ok(migration.includes("partner_commitments_started_after_creation"));
+  assert.ok(migration.includes("partner_commitments_cancelled_after_start"));
+  assert.ok(migration.includes("partner_commitments_active_timestamp"));
+  assert.ok(migration.includes("partner_commitments_closed_timestamp"));
+});
+
