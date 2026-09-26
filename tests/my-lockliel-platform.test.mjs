@@ -2594,3 +2594,12 @@ test("Lockliel web edge rejects malformed cookies without crashing and blocks fr
   assert.match(netlify,/Content-Security-Policy = "frame-ancestors 'none'"/);
 });
 
+test("conversation membership roles and departure history stay valid",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926024249_lockliel_harden_conversation_membership_history.sql","utf8");
+
+  assert.match(migration,/conversation_members_role_check/);
+  assert.match(migration,/member_role in \('inviter','invitee','leader','member'\)/);
+  assert.match(migration,/conversation_members_left_after_join/);
+  assert.match(migration,/left_at is null or left_at>=joined_at/);
+});
+
