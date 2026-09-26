@@ -134,7 +134,8 @@ export default async(request)=>{
         ["course_enrollment_mismatches","course enrollment lifecycle"],
         ["referral_identity_mismatches","referral attribution identity"],
         ["duplicate_unreferenced_lead_attribution","duplicate CRM attribution"],
-        ["protected_storage_mismatches","protected Storage references"]
+        ["protected_storage_mismatches","protected Storage references"],
+        ["verified_media_evidence_mismatches","verified media watch evidence"]
       ].filter(([key])=>Number(integrityHealth?.[key]||0)>0)
        .map(([,label])=>label)
     : [];
@@ -169,7 +170,7 @@ export default async(request)=>{
       ready:Boolean(integrityHealth?.healthy),
       manual:false,
       detail:integrityHealth?.healthy
-        ?"No detected drift in RLS exposure, private-function access, protected Storage, member journey counters, group leadership, referral/CRM attribution, course enrollment, release-control state, financial relationships, lifecycle timestamps, or media-progress evidence."
+        ?"No detected drift in RLS exposure, private-function access, protected Storage, member journey counters, group leadership, referral/CRM attribution, course enrollment, verified media watch evidence, release-control state, financial relationships, lifecycle timestamps, or media-progress payloads."
         :integrityHealth
           ?Number(integrityHealth.issue_count||0)+" integrity issue"+(Number(integrityHealth.issue_count||0)===1?"":"s")+" detected"+(integrityIssueLabels.length?": "+integrityIssueLabels.join(", "):".")
           :"Integrity health check could not be completed."

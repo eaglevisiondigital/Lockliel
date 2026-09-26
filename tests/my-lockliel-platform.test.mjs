@@ -2673,3 +2673,39 @@ test("verified media durations are audited and visible without changing Grip rel
   assert.match(readiness,/required:false/);
 });
 
+test("media interval evidence survives stale or concurrent progress updates",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926031528_lockliel_preserve_media_interval_evidence.sql","utf8");
+
+  assert.match(migration,/media_canonical_intervals/);
+  assert.match(migration,/existing_intervals/);
+  assert.match(migration,/incoming_intervals/);
+  assert.match(migration,/range_agg/);
+  assert.match(migration,/new\.covered_intervals:=app_private\.media_canonical_intervals/);
+  assert.match(migration,/new\.played_seconds:=covered_seconds/);
+  assert.match(migration,/new\.percent_watched:=derived_percent/);
+  assert.match(migration,/rederive_media_progress_after_duration/);
+});
+
+test("digital-book release requires a protected PDF dependency",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926031559_lockliel_require_pdf_for_digital_book_release.sql","utf8");
+
+  assert.match(migration,/validate_product_release/);
+  assert.match(migration,/member-resources/);
+  assert.match(migration,/application\/pdf/);
+  assert.match(migration,/digital_book_delivery/);
+  assert.match(migration,/heart_book_gift_benefit/);
+  assert.match(migration,/sync_digital_delivery_release_flags/);
+});
+
+test("verified media evidence drift is included in launch integrity health",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926031611_lockliel_monitor_verified_media_evidence.sql","utf8");
+  const readiness=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/lockliel_media_evidence_health_internal/);
+  assert.match(migration,/verified_media_evidence_mismatches/);
+  assert.match(migration,/media_covered_seconds/);
+  assert.match(migration,/media_evidence_issue_count/);
+  assert.match(migration,/base_issues\+security_issues\+media_issues/);
+  assert.match(readiness,/verified media watch evidence/);
+});
+
