@@ -218,10 +218,23 @@ export default async(request)=>{
       },file.status===404?404:502);
     }
 
+    const contentType=(file.headers.get("content-type")||"application/octet-stream")
+      .split(";")[0].trim().toLowerCase();
+
+    if(product.product_type==="digital_book"&&contentType!=="application/pdf"){
+      return json({error:"This digital book file failed protected PDF validation."},502);
+    }
+
+    const sourceName=String(product.storage_path||"").split("/").pop()||product.title||"resource";
+    const downloadName=product.product_type==="digital_book"
+      ?safeName(product.title)+".pdf"
+      :safeName(sourceName);
+
     const headers=new Headers({
-      "Content-Type":file.headers.get("content-type")||"application/pdf",
-      "Content-Disposition":'inline; filename="'+safeName(product.title)+'.pdf"',
-      "Cache-Control":"private, no-store"
+      "Content-Type":contentType,
+      "Content-Disposition":'inline; filename="'+downloadName+'"',
+      "Cache-Control":"private, no-store",
+      "X-Content-Type-Options":"nosniff"
     });
 
     return new Response(file.body,{status:200,headers});

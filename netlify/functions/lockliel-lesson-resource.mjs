@@ -41,9 +41,17 @@ export default async(request)=>{
   });
   if(!file.ok)return json({error:"Unable to open this lesson resource."},file.status===404?404:502);
 
+  const contentType=(file.headers.get("content-type")||"application/octet-stream")
+    .split(";")[0].trim().toLowerCase();
+
+  if(["pdf","worksheet"].includes(asset.asset_type)&&contentType!=="application/pdf"){
+    return json({error:"This protected lesson document failed PDF validation."},502);
+  }
+
   const headers=new Headers({
-    "Content-Type":file.headers.get("content-type")||"application/octet-stream",
-    "Cache-Control":"private, no-store"
+    "Content-Type":contentType,
+    "Cache-Control":"private, no-store",
+    "X-Content-Type-Options":"nosniff"
   });
   return new Response(file.body,{status:200,headers});
 };

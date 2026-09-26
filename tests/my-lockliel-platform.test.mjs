@@ -2709,3 +2709,16 @@ test("verified media evidence drift is included in launch integrity health",()=>
   assert.match(readiness,/verified media watch evidence/);
 });
 
+test("protected resource delivery rechecks MIME type",()=>{
+  const resources=fs.readFileSync("netlify/functions/lockliel-resources.mjs","utf8");
+  const lessonResource=fs.readFileSync("netlify/functions/lockliel-lesson-resource.mjs","utf8");
+
+  assert.match(resources,/digital book file failed protected PDF validation/);
+  assert.match(resources,/contentType!=="application\/pdf"/);
+  assert.match(resources,/safeName\(sourceName\)/);
+  assert.match(resources,/X-Content-Type-Options/);
+  assert.match(lessonResource,/protected lesson document failed PDF validation/);
+  assert.match(lessonResource,/\["pdf","worksheet"\]\.includes\(asset\.asset_type\)/);
+  assert.match(lessonResource,/X-Content-Type-Options/);
+});
+
