@@ -2171,3 +2171,16 @@ test("Founder orientation completion creates only one completion task and notifi
   assert.doesNotMatch(migration,/f\.status in \('open','in_progress'\)/);
   assert.match(migration,/status in \('accepted','orientation'\)/);
 });
+
+
+test("fulfillment events are idempotent for order stages and shipment tracking",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926000830_lockliel_idempotent_fulfillment_events.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-orders.mjs","utf8");
+
+  assert.match(migration,/order_fulfillment_one_stage_uidx/);
+  assert.match(migration,/event_type in \('processing','packed','delivered','fulfilled'\)/);
+  assert.match(migration,/order_fulfillment_shipment_uidx/);
+  assert.match(migration,/coalesce\(tracking_number,''\)/);
+  assert.match(migration,/where event_type='shipped'/);
+  assert.match(api,/r\.status===409[\s\S]*already recorded for this order/);
+});

@@ -40,7 +40,11 @@ export default async(request)=>{
         note:String(b.note||"").trim().slice(0,2000)||null
       })
     });
-    if(!r.ok)return json({error:"Unable to save fulfillment update."},r.status);
+    if(!r.ok)return json({
+      error:r.status===409
+        ?"That fulfillment update is already recorded for this order."
+        :"Unable to save fulfillment update."
+    },r.status);
 
     return json({ok:true,event:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
   }
