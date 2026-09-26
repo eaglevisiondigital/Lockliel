@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
 
 if (process.argv.length !== 2) throw new Error('SQL tests accept no connection arguments.');
 const repo = fileURLToPath(new URL('../', import.meta.url));
@@ -48,23 +49,69 @@ try {
     throw new Error('Refusing SQL tests: disposable socket-only cluster identity not verified.');
   }
   sql(readFileSync(join(repo, 'tests/support/supabase-compat.sql'), 'utf8'));
+  const catalogQuery = readFileSync(join(repo, 'supabase/verification/review-share-catalog.sql'), 'utf8');
+  const catalogExpected = JSON.parse(readFileSync(join(repo, 'supabase/verification/review-share-live-20260926.json'), 'utf8'));
+  const bridge = readFileSync(join(repo, 'supabase/migrations/20260925035350_lockliel_reconstructed_review_share_history.sql'), 'utf8');
+  function verifyReconciliation() {
+    const before = JSON.parse(sql(catalogQuery));
+    // This compares only two tables and the explicitly listed catalog properties.
+    for (const key of Object.keys(catalogExpected)) {
+      assert.deepEqual(before[key], catalogExpected[key], `Targeted live catalog differs: ${key}`);
+    }
+    sql('begin read only;\n' + bridge + '\nrollback;');
+    // Reapplying to a completed existing environment must execute no DDL/DML.
+    // Event trigger rejects any attempted DDL, even if the end schema is identical.
+    sql(`begin;
+      create function public.reject_bridge_ddl() returns event_trigger language plpgsql as $body$
+      begin raise exception 'Existing-environment bridge attempted DDL'; end; $body$;
+      create event trigger reject_bridge_ddl on ddl_command_start execute function public.reject_bridge_ddl();
+      ${bridge}
+      rollback;`);
+    assert.deepEqual(JSON.parse(sql(catalogQuery)), before, 'Bridge changed existing schema');
+    // These mutations exist only in rolled-back disposable sessions.
+    for (const drift of [
+      'alter table public.share_assets drop column share_text cascade;',
+      'drop index public.founders50_reviews_application_idx;',
+      'alter table public.founders50_reviews disable row level security;',
+    ]) {
+      assert.throws(() => sql('begin;\n' + drift + '\n' + bridge + '\nrollback;'), /Reconciliation refused/);
+    }
+    assert.deepEqual(JSON.parse(sql(catalogQuery)), before, 'Drift fixture did not roll back');
+    console.log('PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.');
+  }
+  function verifyEmailRecovery(pendingMigration) {
+    // A legacy value admitted by the broken rule must abort the correction,
+    // preserving the old constraint. The entire synthetic scenario is rolled back.
+    sql(String.raw`begin;
+      do $test$
+      declare old_check text; rejected boolean := false;
+      begin
+        select pg_get_constraintdef(oid) into old_check from pg_constraint
+          where conrelid='public.profiles'::regclass and conname='profiles_email_format';
+        insert into auth.users(id,email) values(gen_random_uuid(),$email$legacy@domain\xx$email$);
+        begin
+          execute $pending$${pendingMigration}$pending$;
+        exception when check_violation then rejected:=true; end;
+        assert rejected, 'Incompatible legacy row did not abort email migration';
+        assert (select pg_get_constraintdef(oid)=old_check from pg_constraint
+          where conrelid='public.profiles'::regclass and conname='profiles_email_format'),
+          'Failed email correction did not restore previous constraint';
+      end;
+      $test$;
+      rollback;`);
+    console.log('PASS incompatible legacy email abort and transactional constraint recovery.');
+  }
   const migrations = readdirSync(join(repo, 'supabase/migrations')).filter(f => f.endsWith('.sql')).sort();
   for (const file of migrations) {
-    if (file === '20260925131440_lockliel_harden_product_and_share_identity.sql') {
-      console.log('REPLAY GAP: loading explicit test-only share_assets column reconstruction.');
-      sql(readFileSync(join(repo, 'tests/support/legacy-share-columns.sql'), 'utf8'));
-    }
-    if (file === '20260925120958_lockliel_immutable_founders50_review_workflow.sql') {
-      console.log('REPLAY GAP: loading explicit test-only founders50_reviews catalog reconstruction.');
-      sql(readFileSync(join(repo, 'tests/support/legacy-founders-review.sql'), 'utf8'));
+    if (file === '20260926212002_lockliel_correct_profile_email_pattern.sql') {
+      verifyReconciliation();
+      verifyEmailRecovery(readFileSync(join(repo, 'supabase/migrations', file), 'utf8'));
     }
     try { sql('begin;\n' + readFileSync(join(repo, 'supabase/migrations', file), 'utf8') + '\ncommit;'); }
     catch (error) { throw new Error(`Migration replay failed at ${file}: ${error.message}`); }
-    if (file === '20260925120958_lockliel_immutable_founders50_review_workflow.sql') {
-      sql('create trigger apply_founders50_review_decision_trigger after insert on public.founders50_reviews for each row execute function app_private.apply_founders50_review_decision();');
-    }
+
   }
-  console.log(`Replayed ${migrations.length} unchanged migrations in disposable PostgreSQL 17 (TCP disabled).`);
+  console.log(`Replayed ${migrations.length} authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).`);
   const tests = readdirSync(join(repo, 'supabase/tests')).filter(f => f.endsWith('.sql')).sort();
   for (const file of tests) {
     try { sql('begin;\n' + readFileSync(join(repo, 'supabase/tests', file), 'utf8') + '\nrollback;'); }

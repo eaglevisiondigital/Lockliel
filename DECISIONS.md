@@ -87,10 +87,60 @@ record incomplete migration history through explicit test-only supplements;
 retain visible full-lint debt instead of suppressing it. No product/business
 approval or public branding change is implied.
 
-## Proposed next package (not started)
+## Reconciliation assignment now authorized (historical proposal)
 
 Reconcile missing schema history with authoritative catalog/deployment evidence,
 prove unsupplemented migration reproducibility, and prepare a reviewed release
 plan for the email constraint correction, including existing-data compatibility
 and rollback considerations. Keep production application separately authorized.
 Repository-wide lint remediation should remain a separately scoped follow-up.
+
+## Reconciliation strategy recorded before implementation (2026-09-26)
+
+Verified: both Git history and all 272 non-null remote ledger bodies lack the
+Founders review creation DDL and the six Share Library column additions. Original
+execution time/actor and original SQL cannot be recovered from those sources.
+The live catalog provides current structure, not historical execution provenance.
+A forward-only migration cannot repair fresh replay because older files fail
+before it is reached. Replacing historical files or squashing the whole database
+would obscure more evidence and affect unrelated systems.
+
+Chosen bounded exception: add one explicitly reconstructed compatibility migration
+at the logical replay boundary immediately before the locale foundation
+`20260925035351`. Generate its file with the pinned CLI, then assign the documented
+ordering version `20260925035350`. That version is a dependency-order identifier,
+NOT a claim about its original execution time or a restored historical file.
+Original migration bytes and validated commits remain unchanged. The bridge
+captures the missing table, columns, indexes, policies and review trigger, using
+read-only catalog evidence plus the existing review function definition. Later
+historical migrations retain their original hardening responsibilities.
+
+On matching existing environments the bridge must perform no schema/data changes;
+it must reject partial/conflicting states instead of silently repairing them.
+Test fresh replay, repeat application on completed schema, and rejection of drift.
+This is authoritative application migration DDL, not a test supplement. The native
+PostgreSQL test harness retains only platform compatibility stubs and test data.
+
+The connected environment already has the objects but lacks this version. A
+future operator must compare the schema and ledger, review exactly the inserted
+version, and use the CLI's supported older-migration handling only in a separately
+authorized release. Never mass-mark history, rerun all historical migrations or
+assume default `db push` will accept this older missing version. No history repair
+or migration execution is authorized against production in this package.
+
+### Reconciliation outcome and remaining approval boundary
+
+Fresh replay succeeds with the authoritative bridge, with all historical migration
+bodies preserved. Catalog comparison additionally found and captured the missing
+share status constraint, supporting index and staff write policies. Seven SQL
+files exercise the resulting schema; the original 311 JavaScript checks pass.
+Email compatibility preflight found zero users/profiles, so no existing-data
+remediation is indicated. Release preflight must be repeated. The prepared email
+migration remains unchanged. `docs/migration-reconciliation.md` records release
+and recovery gates and the limits of structural parity.
+
+No production release or push is approved by these findings. Known GitHub checks
+are read-only validation and Netlify previews are evidenced; hosting-side branch
+selection and Supabase auto-migration settings still need read-only verification.
+The next recommended package is that verification and controlled remote review,
+followed by separately authorized database release work. Do not start features.

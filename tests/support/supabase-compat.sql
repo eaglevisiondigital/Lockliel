@@ -7,7 +7,7 @@ create schema auth;
 create schema storage;
 create schema extensions;
 grant usage on schema public, auth, storage to anon, authenticated, service_role;
-alter default privileges in schema public grant all on tables to anon, authenticated, service_role;
+alter default privileges in schema public grant select, insert, update, delete, truncate, references, trigger on tables to anon, authenticated, service_role;
 alter default privileges in schema public grant all on sequences to anon, authenticated, service_role;
 
 create table auth.users (
