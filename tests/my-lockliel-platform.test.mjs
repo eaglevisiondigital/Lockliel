@@ -2193,3 +2193,17 @@ test("recurring partner subscription references are provider-unique",()=>{
   assert.match(migration,/\(provider,provider_subscription_ref\)/);
   assert.match(migration,/where provider_subscription_ref is not null/);
 });
+
+
+test("order money fields cannot be negative",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926001148_lockliel_nonnegative_order_totals.sql","utf8");
+
+  assert.match(migration,/orders_subtotal_nonnegative/);
+  assert.match(migration,/subtotal_cents>=0/);
+  assert.match(migration,/orders_shipping_nonnegative/);
+  assert.match(migration,/shipping_cents>=0/);
+  assert.match(migration,/orders_tax_nonnegative/);
+  assert.match(migration,/tax_cents>=0/);
+  assert.match(migration,/orders_total_nonnegative/);
+  assert.match(migration,/total_cents>=0/);
+});
