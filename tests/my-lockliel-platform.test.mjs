@@ -2399,3 +2399,11 @@ test("shipping and fulfillment records stay aligned with order delivery method",
   assert.match(migration,/A shipping address is required before fulfilling a shipping or mixed-delivery order/);
 });
 
+test("fulfillment cannot advance an empty order",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926010924_lockliel_require_order_items_for_fulfillment.sql","utf8");
+
+  assert.match(migration,/select exists\([\s\S]*from public\.order_items/);
+  assert.match(migration,/new\.event_type in \('packed','shipped','delivered','fulfilled'\)/);
+  assert.match(migration,/An order must contain at least one item before fulfillment can advance/);
+});
+
