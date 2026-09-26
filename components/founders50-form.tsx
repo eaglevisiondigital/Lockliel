@@ -45,7 +45,7 @@ export default function Founders50Form() {
     const timeout = window.setTimeout(() => controller.abort(), 20000);
     try {
       const payload: Record<string,string> = {};
-      data.forEach((value, key) => { if (key !== "bot-field" && key !== "form-name") payload[key] = String(value); });
+      data.forEach((value, key) => { if (key !== "form-name") payload[key] = String(value); });
       const response = await fetch("/api/lockliel/founders50", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

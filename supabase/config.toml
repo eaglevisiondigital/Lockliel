@@ -1,0 +1,11 @@
+[functions.track-referral]
+verify_jwt = false
+
+[functions.submit-founders50]
+verify_jwt = false
+
+[functions.capture-lead]
+verify_jwt = false
+
+[functions.import-grip-pdfs]
+verify_jwt = true
