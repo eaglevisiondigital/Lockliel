@@ -2456,4 +2456,31 @@ test("active contact permissions require current relationships and stale group c
   assert.match(migration,/sync_group_status_contact_permissions/);
   assert.match(migration,/g.status in \('forming','active'\)/);
 });
+test("group records enforce the supported operational lifecycle and normalized identity",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926012755_lockliel_harden_group_record_lifecycle.sql","utf8");
+
+  assert.match(migration,/groups_status_check/);
+  assert.match(migration,/status in \('forming','active'\)/);
+  assert.match(migration,/groups_active_requires_leader/);
+  assert.match(migration,/Active groups require an approved primary leader/);
+  assert.match(migration,/groups_name_length/);
+  assert.match(migration,/groups_language_code_length/);
+  assert.match(migration,/new\.name:=trim\(new\.name\)/);
+  assert.match(migration,/new\.language_code:=lower\(trim\(coalesce\(new\.language_code,'en'\)\)\)/);
+  assert.match(migration,/before insert or update/);
+});
+
+test("group membership history keeps active and departure timestamps consistent",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926012757_lockliel_harden_group_membership_history.sql","utf8");
+
+  assert.match(migration,/group_members_left_after_join/);
+  assert.match(migration,/left_at>=joined_at/);
+  assert.match(migration,/group_members_status_left_at_consistency/);
+  assert.match(migration,/status='active' and left_at is null/);
+  assert.match(migration,/status='inactive' and left_at is not null/);
+  assert.match(migration,/new\.status='inactive'/);
+  assert.match(migration,/new\.left_at:=now\(\)/);
+  assert.match(migration,/new\.status='active'/);
+  assert.match(migration,/new\.left_at:=null/);
+});
 
