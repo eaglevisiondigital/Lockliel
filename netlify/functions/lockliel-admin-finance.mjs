@@ -14,7 +14,7 @@ export default async(request)=>{
      const amount=cents(b.amount),profileId=String(b.profileId||"").trim()||null,donorEmail=String(b.donorEmail||"").trim().toLowerCase()||null,donorName=String(b.donorName||"").trim()||null;
      if(amount<=0)return json({error:"Enter a valid gift amount."},400);
      const tx="manual-"+crypto.randomUUID();
-     const payload={profile_id:profileId,provider:"manual",provider_transaction_ref:tx,amount_cents:amount,currency:"USD",status:"succeeded",designation:String(b.designation||"general"),campaign:String(b.campaign||"manual-entry")||null,donor_email:donorEmail,donor_name:donorName,received_at:String(b.receivedAt||new Date().toISOString())};
+     const payload={profile_id:profileId,provider:"manual",provider_transaction_ref:tx,amount_cents:amount,currency:"USD",status:"succeeded",designation:String(b.designation||"general"),campaign:String(b.campaign||"manual-entry")||null,donor_email:donorEmail,donor_name:donorName,received_at:new Date().toISOString()};
      const r=await fetch(SUPABASE_URL+"/rest/v1/gifts",{method:"POST",headers:{...h,Prefer:"return=representation"},body:JSON.stringify(payload)});
      if(!r.ok)return json({error:"Unable to record gift."},r.status);
      return json({ok:true,gift:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);

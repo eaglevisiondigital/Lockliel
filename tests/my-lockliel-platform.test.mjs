@@ -2364,3 +2364,14 @@ test("integrity health includes financial and media-progress drift detection",()
   assert.match(api,/media progress evidence/);
 });
 
+test("manual gifts allow legitimate event timestamps without trusting a caller-supplied date",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926010432_lockliel_allow_manual_gift_event_timestamps.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-finance.mjs","utf8");
+
+  assert.match(migration,/drop constraint if exists gifts_received_after_creation/);
+  assert.match(migration,/status in \('succeeded','paid','completed'\)[\s\S]*received_at is null/);
+  assert.doesNotMatch(migration,/received_at is not null and received_at<created_at/);
+  assert.match(api,/received_at:new Date\(\)\.toISOString\(\)/);
+  assert.doesNotMatch(api,/b\.receivedAt/);
+});
+
