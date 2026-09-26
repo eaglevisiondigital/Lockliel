@@ -125,7 +125,16 @@ export default async(request)=>{
         ["book_benefit_release_mismatch","book benefit release state"],
         ["financial_cross_link_mismatches","financial record links"],
         ["financial_temporal_mismatches","financial lifecycle timestamps"],
-        ["media_progress_payload_mismatches","media progress evidence"]
+        ["media_progress_payload_mismatches","media progress evidence"],
+        ["public_tables_without_rls","public tables without RLS"],
+        ["public_views_without_security_invoker","public views bypassing caller security"],
+        ["anonymous_public_table_grants","anonymous Data API grants"],
+        ["unexpected_private_function_execute","private function execute exposure"],
+        ["unvalidated_constraints","unvalidated database constraints"],
+        ["course_enrollment_mismatches","course enrollment lifecycle"],
+        ["referral_identity_mismatches","referral attribution identity"],
+        ["duplicate_unreferenced_lead_attribution","duplicate CRM attribution"],
+        ["protected_storage_mismatches","protected Storage references"]
       ].filter(([key])=>Number(integrityHealth?.[key]||0)>0)
        .map(([,label])=>label)
     : [];
@@ -158,7 +167,7 @@ export default async(request)=>{
       ready:Boolean(integrityHealth?.healthy),
       manual:false,
       detail:integrityHealth?.healthy
-        ?"No detected drift in member journey counters, group leadership, release-control state, financial relationships, lifecycle timestamps, or media-progress evidence."
+        ?"No detected drift in RLS exposure, private-function access, protected Storage, member journey counters, group leadership, referral/CRM attribution, course enrollment, release-control state, financial relationships, lifecycle timestamps, or media-progress evidence."
         :integrityHealth
           ?Number(integrityHealth.issue_count||0)+" integrity issue"+(Number(integrityHealth.issue_count||0)===1?"":"s")+" detected"+(integrityIssueLabels.length?": "+integrityIssueLabels.join(", "):".")
           :"Integrity health check could not be completed."

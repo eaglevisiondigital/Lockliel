@@ -2603,3 +2603,18 @@ test("conversation membership roles and departure history stay valid",()=>{
   assert.match(migration,/left_at is null or left_at>=joined_at/);
 });
 
+test("launch readiness names security-health drift instead of hiding it behind a generic count",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(api,/public tables without RLS/);
+  assert.match(api,/public views bypassing caller security/);
+  assert.match(api,/anonymous Data API grants/);
+  assert.match(api,/private function execute exposure/);
+  assert.match(api,/unvalidated database constraints/);
+  assert.match(api,/course enrollment lifecycle/);
+  assert.match(api,/referral attribution identity/);
+  assert.match(api,/duplicate CRM attribution/);
+  assert.match(api,/protected Storage references/);
+  assert.match(api,/No detected drift in RLS exposure/);
+});
+
