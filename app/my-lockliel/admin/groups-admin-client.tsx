@@ -1,0 +1,47 @@
+"use client";
+import {useEffect,useMemo,useState} from "react";
+import {ArrowRightLeft,CalendarCheck2,MapPin,Plus,Sparkles,UserPlus,UsersRound} from "lucide-react";
+
+export default function GroupsAdminClient(){
+ const [data,setData]=useState<any>(null),[hidden,setHidden]=useState(false),[message,setMessage]=useState(""),[working,setWorking]=useState(false),[transitionTargets,setTransitionTargets]=useState<Record<string,string>>({});
+ async function load(){const r=await fetch("/api/lockliel/admin/groups",{cache:"no-store"});const d=await r.json().catch(()=>({}));if(r.status===403){setHidden(true);return;}if(r.ok)setData(d);}
+ useEffect(()=>{load();},[]);
+ async function createGroup(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setWorking(true);setMessage("");const f=new FormData(e.currentTarget);const r=await fetch("/api/lockliel/admin/groups",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"createGroup",name:f.get("name"),leaderId:f.get("leaderId"),city:f.get("city"),region:f.get("region"),country:f.get("country")})});const d=await r.json().catch(()=>({}));setWorking(false);if(!r.ok){setMessage(d.error||"Unable to create group.");return;}setMessage("Group created.");e.currentTarget.reset();await load();}
+ async function assign(requestId:string,profileId:string,groupId:string){if(!groupId)return;setWorking(true);const r=await fetch("/api/lockliel/admin/groups",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"addMember",requestId,profileId,groupId})});setWorking(false);if(r.ok){setMessage("Member connected to group.");await load();}}
+ async function resolveTransition(requestId:string,targetGroupId=""){setWorking(true);setMessage("");const r=await fetch("/api/lockliel/admin/groups",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"resolveGroupChange",requestId,targetGroupId})});const d=await r.json().catch(()=>({}));setWorking(false);if(!r.ok){setMessage(d.error||"Unable to resolve group transition.");return;}setMessage(targetGroupId?"Member transferred to the new group.":"Current group membership ended.");setTransitionTargets(v=>({...v,[requestId]:""}));await load();}
+ const personMap=useMemo(()=>Object.fromEntries((data?.people||[]).map((p:any)=>[p.profile_id,p])),[data]);
+ const approvedGroupLeaders=useMemo(()=>{
+   const ids=new Set(data?.approvedGroupLeaderIds||[]);
+   return (data?.people||[]).filter((p:any)=>ids.has(p.profile_id));
+ },[data]);
+
+ function suggestedGroups(person:any){
+   return [...(data?.groups||[])].sort((a:any,b:any)=>{
+     function score(group:any){
+       let value=0;
+       if(person.country&&group.country===person.country)value+=10;
+       if(person.region&&group.region===person.region)value+=20;
+       if(person.city&&group.city===person.city)value+=40;
+       if(person.language_code&&group.language_code===person.language_code)value+=25;
+       return value;
+     }
+     return score(b)-score(a);
+   });
+ }
+ if(hidden)return null;if(!data)return <div className="ml-loading">Loading groups…</div>;
+ return <section className="ml-groups-admin">
+  {message&&<p className="ml-share-message">{message}</p>}
+  <section className="ml-group-pulse">
+   <article><CalendarCheck2 size={18}/><strong>{data.pulse?.gatherings||0}</strong><span>gatherings • 8 weeks</span></article>
+   <article><UsersRound size={18}/><strong>{data.pulse?.attendance||0}</strong><span>total attendance</span></article>
+   <article><Sparkles size={18}/><strong>{data.pulse?.peopleSharedWith||0}</strong><span>people shared with</span></article>
+   <article><UserPlus size={18}/><strong>{data.pulse?.newPeople||0}</strong><span>new people</span></article>
+   <article><UsersRound size={18}/><strong>{data.pulse?.nextLeaders||0}</strong><span>leader signals</span></article>
+  </section>
+  <div className="ml-finance-grid">
+   <form className="ml-panel ml-admin-form" onSubmit={createGroup}><div className="ml-icon"><Plus size={19}/></div><h3>Create a group</h3><p>Start with a leader and a city/region. Home addresses are not stored here.</p><label>Group name<input name="name" required placeholder="Fort Walton Beach Group 01"/></label><label>Leader<select name="leaderId" required defaultValue=""><option value="" disabled>Choose approved leader / host</option>{approvedGroupLeaders.map((p:any)=><option key={p.profile_id} value={p.profile_id}>{p.first_name}{p.last_initial?" "+p.last_initial+".":""} • {[p.city,p.region].filter(Boolean).join(", ")}</option>)}</select></label>{!approvedGroupLeaders.length&&<p className="ml-privacy-note">Approve a group/regional leader or activate a Founders 50 host first, then return here to create the group.</p>}<div className="ml-auth-row"><label>City<input name="city"/></label><label>State / region<input name="region"/></label></div><label>Country<input name="country" defaultValue="United States"/></label><button className="ml-action" disabled={working}>Create group</button></form>
+   <section className="ml-panel ml-admin-list"><div className="ml-icon"><UsersRound size={19}/></div><h3>Current groups</h3>{data.groups.length?data.groups.map((g:any)=>{const count=data.memberships.filter((m:any)=>m.group_id===g.id&&m.status==="active").length;return <div className="ml-group-admin-row" key={g.id}><div><b>{g.name}</b><span><MapPin size={11}/>{[g.city,g.region,g.country].filter(Boolean).join(", ")||"Location pending"} • {String(g.language_code||"en").toUpperCase()}</span></div><div className="ml-group-admin-metrics"><strong>{count} people</strong>{data.checkins?.find((x:any)=>x.group_id===g.id)&&<small>Last check-in {new Date(data.checkins.find((x:any)=>x.group_id===g.id).week_start+"T12:00:00").toLocaleDateString()}</small>}</div></div>}):<p>No groups created yet.</p>}</section>
+  </div>
+  {data.requests.length>0&&<section className="ml-panel ml-admin-list"><div className="ml-kicker">Group matching</div><h3>Open group / hosting requests</h3>{data.requests.map((r:any)=>{const p=personMap[r.requester_id]||{};const currentGroup=data.groups.find((g:any)=>g.id===r.requested_group_id);if(r.request_type==="leave_or_change_group"){const target=transitionTargets[r.id]||"";return <div className="ml-group-request-row ml-group-transition-request" key={r.id}><div><b>{p.first_name||"Member"}{p.last_initial?" "+p.last_initial+".":""}</b><span>{[p.city,p.region,p.country].filter(Boolean).join(", ")}</span><small><ArrowRightLeft size={11}/> Leave/change request • current group: {currentGroup?.name||"Unknown group"}</small>{r.message&&<small>{r.message}</small>}</div><div className="ml-group-transition-admin"><select value={target} onChange={e=>setTransitionTargets(v=>({...v,[r.id]:e.target.value}))} disabled={working}><option value="">Choose a new group…</option>{suggestedGroups(p).filter((g:any)=>g.id!==r.requested_group_id).map((g:any)=><option value={g.id} key={g.id}>{g.name} • {String(g.language_code||"en").toUpperCase()}</option>)}</select><button disabled={working||!target} onClick={()=>resolveTransition(r.id,target)}>Transfer</button><button className="secondary" disabled={working} onClick={()=>resolveTransition(r.id,"")}>End membership</button></div></div>}return <div className="ml-group-request-row" key={r.id}><div><b>{p.first_name||"Member"}{p.last_initial?" "+p.last_initial+".":""}</b><span>{[p.city,p.region,p.country].filter(Boolean).join(", ")}</span><small>{r.request_type==="explore_hosting"?"Interested in hosting or helping lead":"Looking for a group"}</small></div>{r.request_type==="find_local_group"?<label><UserPlus size={14}/><select defaultValue="" onChange={e=>assign(r.id,r.requester_id,e.target.value)} disabled={working}><option value="">Assign to group…</option>{suggestedGroups(p).map((g:any)=><option value={g.id} key={g.id}>{g.name} • {String(g.language_code||"en").toUpperCase()}</option>)}</select></label>:<span className="ml-status">review for hosting</span>}</div>})}</section>}
+ </section>;
+}

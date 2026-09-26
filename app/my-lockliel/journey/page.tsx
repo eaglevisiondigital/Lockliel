@@ -1,0 +1,3 @@
+import Link from "next/link";import {ArrowLeft} from "lucide-react";import JourneyClient from "./journey-client";import "../my-lockliel.css";
+export const metadata={title:"My Journey | My Lockliel"};
+export default function Journey(){return <main className="my-lockliel"><div className="ml-shell"><Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link><section className="ml-panel"><div className="ml-kicker">My Journey</div><h1 style={{fontSize:"clamp(36px,5vw,60px)",margin:"10px 0"}}>Grow yourself. Then help someone else grow.</h1><p>Your discipleship home remembers your lessons, progress, worksheets, and next step.</p></section><h2 className="ml-section-title">Continue growing</h2><JourneyClient/></div></main>}

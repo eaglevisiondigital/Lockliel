@@ -57,3 +57,26 @@ test("The thank-you state confirms interest and explains the review", async () =
   assert.match(html, /noindex/);
   assert.doesNotMatch(html, /You are (?:now )?an approved Founder/i);
 });
+
+
+test("Founders 50 intake contract stays aligned across browser, proxy, and Edge validation", async () => {
+  const form = await read("components/founders50-form.tsx");
+  const proxy = await read("netlify/functions/lockliel-founders50.mjs");
+  const edge = await read("supabase/functions/submit-founders50/index.ts");
+  const config = await read("supabase/config.toml");
+
+  assert.match(form, /key !== "form-name"/);
+  assert.doesNotMatch(form, /key !== "bot-field"/);
+  assert.match(proxy, /LOCKLIEL_APP_ORIGIN/);
+  assert.match(proxy, /body\["bot-field"\]/);
+  assert.match(edge, /faithStage!==null&&!allowedFaithStages\.includes\(faithStage\)/);
+  assert.match(edge, /interestPath!==null&&!allowedInterestPaths\.includes\(interestPath\)/);
+  assert.match(edge, /!phone\|\|/);
+  assert.match(edge, /!city\|\|/);
+  assert.match(edge, /!country\|\|/);
+  assert.match(edge, /allowedGatheringPlaces\.includes\(gatheringPlace\)/);
+  assert.match(edge, /allowedInviteCounts\.includes\(inviteCount\)/);
+  assert.match(edge, /trainingWillingness!=="Yes"/);
+  assert.match(config, /\[functions\.submit-founders50\][\s\S]*verify_jwt = false/);
+  assert.match(config, /\[functions\.import-grip-pdfs\][\s\S]*verify_jwt = true/);
+});

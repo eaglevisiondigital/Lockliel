@@ -1,0 +1,3 @@
+import Link from "next/link";import { ArrowLeft } from "lucide-react";import ShareCenter from "./share-client";import "../my-lockliel.css";
+export const metadata={title:"Share & Invite | My Lockliel"};
+export default function Share(){return <main className="my-lockliel"><div className="ml-shell"><Link href="/my-lockliel" className="ml-auth-home"><ArrowLeft size={16}/> My Lockliel</Link><section className="ml-panel"><div className="ml-kicker">Share & Invite</div><h1 style={{fontSize:"clamp(36px,5vw,60px)",margin:"10px 0"}}>Who can you reach today?</h1><p>Don't just post. Think of a person. Send something that can encourage them, then follow up.</p></section><h2 className="ml-section-title">Choose something to share</h2><ShareCenter/></div></main>}

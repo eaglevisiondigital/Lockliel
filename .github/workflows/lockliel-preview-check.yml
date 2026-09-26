@@ -1,0 +1,41 @@
+name: Lockliel Preview Check
+on:
+  push:
+    branches: [lockliel-backend-v1]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: lockliel-preview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check Netlify function syntax
+        run: find netlify -type f -name '*.mjs' -print0 | xargs -0 -n1 node --check
+      - name: Import Netlify function modules
+        run: node --input-type=module -e "import fs from 'node:fs'; import path from 'node:path'; const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):[path.join(d,e.name)]); for(const f of walk('netlify/functions').filter(f=>f.endsWith('.mjs'))) await import('./'+f);"
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build
+        run: npm run build
+      - name: Current Lockliel automated tests
+        run: >
+          node --test
+          tests/book-release.test.mjs
+          tests/faith-boost-resource.test.mjs
+          tests/founders50.test.mjs
+          tests/my-lockliel-platform.test.mjs
+          tests/account-deletion-worker.test.mjs
+          tests/privacy-admin-readiness.test.mjs tests/launch-readiness.test.mjs
+          tests/member-privacy.test.mjs

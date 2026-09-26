@@ -1,0 +1,3 @@
+import Link from "next/link";import ForgotPasswordForm from "./forgot-password-form";import "../my-lockliel.css";
+export const metadata={title:"Reset password | My Lockliel"};
+export default function ForgotPassword(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/my-lockliel/sign-in" className="ml-auth-home">← Back to sign in</Link><div className="ml-kicker">Account recovery</div><h1>Reset your password.</h1><p>Enter the email address connected to your My Lockliel account. We’ll send a secure recovery link.</p><ForgotPasswordForm/></div></main>}
