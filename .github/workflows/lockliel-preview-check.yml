@@ -31,7 +31,8 @@ jobs:
         run: npm run build
       - name: Current Lockliel automated tests
         run: >
-          node --test
+          node --import ./tests/support/network-guard.mjs --test
+          tests/network-isolation.test.mjs
           tests/book-release.test.mjs
           tests/faith-boost-resource.test.mjs
           tests/founders50.test.mjs

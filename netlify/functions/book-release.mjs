@@ -13,7 +13,8 @@ const consentText = "By signing up, you agree to receive email notifications abo
 
 export function createReleaseSignup({
   storeFor = () => getStore({ name: "book-release-notifications", consistency: "strong" }),
-  post = fetch
+  post = fetch,
+  mirror = fetch
 } = {}) {
   return async (request, context = {}) => {
     if (request.method !== "POST") return json({ ok: false }, 405, { Allow: "POST" });
@@ -107,7 +108,7 @@ export function createReleaseSignup({
       }
 
       try {
-        await fetch(SUPABASE_URL + "/functions/v1/capture-lead", {
+        await mirror(SUPABASE_URL + "/functions/v1/capture-lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

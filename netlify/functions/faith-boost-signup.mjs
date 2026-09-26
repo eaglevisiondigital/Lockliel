@@ -14,7 +14,8 @@ import { SUPABASE_URL } from "../lib/lockliel-core.mjs";
 
 export function createSignup({
   storeFor = () => getStore({ name: "faith-boost-resource", consistency: "strong" }),
-  post = fetch
+  post = fetch,
+  mirror = fetch
 } = {}) {
   return async (request, context = {}) => {
     if (request.method !== "POST") return json({ ok: false }, 405, { Allow: "POST" });
@@ -92,7 +93,7 @@ export function createSignup({
       }
 
       try {
-        await fetch(SUPABASE_URL + "/functions/v1/capture-lead", {
+        await mirror(SUPABASE_URL + "/functions/v1/capture-lead", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

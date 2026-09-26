@@ -3,6 +3,20 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Active engineering package
+
+Continuity checkpoint committed as `c3e9a01`. The subsequent user assignment
+authorizes local test isolation, build validation, disposable SQL tests and
+repository hygiene, with no production changes.
+
+CRM signup transports now have an explicit injectable `mirror` dependency.
+The test preload denies fetch, HTTP(S), HTTP/2, TCP/TLS, UDP, DNS and WebSocket
+network attempts, records violations and fails even when application code catches
+the error. Both the package test entrypoint and CI load it. All 25 targeted
+network/resource checks passed, including subprocess probes and the previously
+unmocked CRM path. This is accidental-network protection, not a sandbox against
+malicious tests spawning arbitrary native programs.
+
 ## Repository checkpoint
 
 - Repository: <https://github.com/eaglevisiondigital/Lockliel>
