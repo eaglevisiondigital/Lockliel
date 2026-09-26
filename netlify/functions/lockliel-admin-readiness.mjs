@@ -122,7 +122,10 @@ export default async(request)=>{
         ["primary_leader_membership_mismatches","primary leader memberships"],
         ["checkout_state_mismatch","checkout state"],
         ["digital_book_release_mismatch","digital book release state"],
-        ["book_benefit_release_mismatch","book benefit release state"]
+        ["book_benefit_release_mismatch","book benefit release state"],
+        ["financial_cross_link_mismatches","financial record links"],
+        ["financial_temporal_mismatches","financial lifecycle timestamps"],
+        ["media_progress_payload_mismatches","media progress evidence"]
       ].filter(([key])=>Number(integrityHealth?.[key]||0)>0)
        .map(([,label])=>label)
     : [];
@@ -155,7 +158,7 @@ export default async(request)=>{
       ready:Boolean(integrityHealth?.healthy),
       manual:false,
       detail:integrityHealth?.healthy
-        ?"No detected drift in member journey counters, group leadership, or release-control state."
+        ?"No detected drift in member journey counters, group leadership, release-control state, financial relationships, lifecycle timestamps, or media-progress evidence."
         :integrityHealth
           ?Number(integrityHealth.issue_count||0)+" integrity issue"+(Number(integrityHealth.issue_count||0)===1?"":"s")+" detected"+(integrityIssueLabels.length?": "+integrityIssueLabels.join(", "):".")
           :"Integrity health check could not be completed."

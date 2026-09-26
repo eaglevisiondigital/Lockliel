@@ -2347,3 +2347,20 @@ test("media progress interval evidence is bounded to the player contract",()=>{
   assert.match(player,/return merged\.slice\(-250\)/);
 });
 
+test("integrity health includes financial and media-progress drift detection",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926010140_lockliel_expand_integrity_health_checks.sql","utf8");
+  const api=fs.readFileSync("netlify/functions/lockliel-admin-readiness.mjs","utf8");
+
+  assert.match(migration,/financial_cross_link_mismatches/);
+  assert.match(migration,/financial_temporal_mismatches/);
+  assert.match(migration,/media_progress_payload_mismatches/);
+  assert.match(migration,/checkout_sessions/);
+  assert.match(migration,/payment_events/);
+  assert.match(migration,/partner_commitments/);
+  assert.match(migration,/jsonb_array_length\(mp\.covered_intervals\)>250/);
+  assert.match(migration,/pg_column_size\(mp\.covered_intervals\)>32768/);
+  assert.match(api,/financial record links/);
+  assert.match(api,/financial lifecycle timestamps/);
+  assert.match(api,/media progress evidence/);
+});
+
