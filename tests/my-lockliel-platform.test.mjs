@@ -2749,3 +2749,15 @@ test("translation families preserve product and share asset identity",()=>{
   assert.match(share,/compatibleVariants/);
 });
 
+test("lesson translations stay inside their course family and keep equivalent positions",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926032854_lockliel_harden_lesson_translation_family_resolution.sql","utf8");
+
+  assert.match(migration,/validate_lesson_translation_family/);
+  assert.match(migration,/same course translation family/);
+  assert.match(migration,/same lesson position/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/resolve_content_lesson_for_profile/);
+  assert.match(migration,/c\.translation_key=source_course_translation_key/);
+  assert.match(migration,/l\.position=source_lesson\.position/);
+});
+
