@@ -48,23 +48,13 @@ Deno.serve(async(req:Request)=>{
   const whatExcites=String(b["what-excites-you"]||"").trim().slice(0,5000);
 
   const allowedFaithStages=[
-    "exploring",
-    "new-believer",
-    "growing",
-    "established",
-    "serving-leading",
-    "prefer-not-to-answer"
+    "exploring","new-believer","growing","established",
+    "serving-leading","prefer-not-to-answer"
   ];
   const allowedInterestPaths=["host","join-group","either","explore"];
   const allowedGrowthInterests=[
-    "biblical-foundations",
-    "identity-in-christ",
-    "prayer",
-    "faith-development",
-    "evangelism",
-    "discipleship",
-    "leadership",
-    "healing-wholeness",
+    "biblical-foundations","identity-in-christ","prayer","faith-development",
+    "evangelism","discipleship","leadership","healing-wholeness",
     "family-relationships"
   ];
 
@@ -119,23 +109,7 @@ Deno.serve(async(req:Request)=>{
     );
   }
 
-  const activeFounderStatuses="interested,applied,under_review,needs_info,accepted,orientation,active_host,paused";
-  const existingUrl=
-    url+"/rest/v1/founders50_applications?email=eq."+encodeURIComponent(email)+
-    "&status=in.("+activeFounderStatuses+")"+
-    "&select=id,status,created_at&order=created_at.desc&limit=1";
-
-  const duplicateRes=await fetch(existingUrl,{headers:h});
-  const duplicate=(duplicateRes.ok?await duplicateRes.json():[])?.[0]||null;
-  if(duplicate?.id){
-    return new Response(
-      JSON.stringify({ok:true,id:duplicate.id,duplicate:true}),
-      {status:200,headers}
-    );
-  }
-
   const payload={
-    profile_id:null,
     first_name:first,
     last_name:last,
     email,
@@ -155,72 +129,44 @@ Deno.serve(async(req:Request)=>{
     what_excites_you:whatExcites,
     share_with_five:String(b["share-with-five"]||"").trim().slice(0,500)||null,
     gather_weekly:String(b["gather-weekly"]||"").trim().slice(0,500)||null,
-    training_willingness:String(b["training-willingness"]||"").toLowerCase()==="yes",
-    status:"applied",
-    source_campaign:"founders50"
+    training_willingness:String(b["training-willingness"]||"").toLowerCase()==="yes"
   };
 
-  const ins=await fetch(url+"/rest/v1/founders50_applications",{
-    method:"POST",
-    headers:{...h,Prefer:"return=representation"},
-    body:JSON.stringify(payload)
-  });
-
-  if(!ins.ok){
-    if(ins.status===409){
-      const existingRes=await fetch(existingUrl,{headers:h});
-      const existing=(existingRes.ok?await existingRes.json():[])?.[0]||null;
-      if(existing?.id){
-        return new Response(
-          JSON.stringify({ok:true,id:existing.id,duplicate:true}),
-          {status:200,headers}
-        );
-      }
+  const atomic=await fetch(
+    url+"/rest/v1/rpc/submit_public_founders50_application_atomic",
+    {
+      method:"POST",
+      headers:h,
+      body:JSON.stringify({application_input:payload})
     }
+  );
 
+  if(!atomic.ok){
+    const detail=await atomic.text().catch(()=>"");
+    if(detail.includes("Founders 50 applications are closed")){
+      return new Response(
+        JSON.stringify({error:"Founders 50 applications are temporarily closed."}),
+        {status:403,headers}
+      );
+    }
     return new Response(
       JSON.stringify({error:"We couldn't save your application."}),
       {status:500,headers}
     );
   }
 
-  const apps=await ins.json();
-  const appId=apps?.[0]?.id||null;
-
-  const leadUpsert=await fetch(
-    url+"/rest/v1/rpc/upsert_public_lead_contact",
-    {
-      method:"POST",
-      headers:{...h,Prefer:"return=representation"},
-      body:JSON.stringify({
-        email_input:email,
-        first_name_input:first,
-        last_name_input:last,
-        phone_input:payload.phone,
-        linked_profile_input:null
-      })
-    }
-  );
-  const leadId=leadUpsert.ok?await leadUpsert.json().catch(()=>null):null;
-
-  if(leadId){
-    await fetch(url+"/rest/v1/lead_sources",{
-      method:"POST",
-      headers:{...h,Prefer:"return=minimal"},
-      body:JSON.stringify({
-        lead_id:leadId,
-        source_type:"founders50",
-        source_ref:appId,
-        campaign:"founders50",
-        attribution:{entry:"website",interest_path:interestPath},
-        consent:{
-          purpose:"founders50_followup",
-          submitted:true,
-          faith_context_self_reported:true
-        }
-      })
-    });
+  const rows=await atomic.json().catch(()=>[]);
+  const result=(Array.isArray(rows)?rows[0]:rows)||null;
+  const appId=result?.submitted_application_id||null;
+  if(!appId){
+    return new Response(
+      JSON.stringify({error:"We couldn't save your application."}),
+      {status:500,headers}
+    );
   }
 
-  return new Response(JSON.stringify({ok:true,id:appId}),{status:200,headers});
+  return new Response(
+    JSON.stringify({ok:true,id:appId,duplicate:Boolean(result?.is_duplicate)}),
+    {status:200,headers}
+  );
 });

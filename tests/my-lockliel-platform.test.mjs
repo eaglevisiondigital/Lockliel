@@ -1182,18 +1182,25 @@ test("released course and product files cannot silently become incomplete",()=>{
 });
 
 
-test("public intake uses an atomic normalized CRM lead upsert",()=>{
-  const migration=fs.readFileSync("supabase/migrations/20260925123704_lockliel_atomic_public_lead_upsert.sql","utf8");
+test("public intake uses atomic database workflows for CRM attribution",()=>{
+  const leadUpsert=fs.readFileSync("supabase/migrations/20260925123704_lockliel_atomic_public_lead_upsert.sql","utf8");
+  const atomic=fs.readFileSync("supabase/migrations/20260926003840_lockliel_atomic_public_intake_workflows.sql","utf8");
   const founders=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
   const capture=fs.readFileSync("supabase/functions/capture-lead/index.ts","utf8");
 
-  assert.match(migration,/on conflict\(email\)/);
-  assert.match(migration,/normalized_email:=lower\(trim\(email_input\)\)/);
-  assert.match(migration,/grant execute[\s\S]*to service_role/);
-  assert.match(founders,/rpc\/upsert_public_lead_contact/);
-  assert.match(capture,/rpc\/upsert_public_lead_contact/);
-  assert.doesNotMatch(founders,/lead_contacts\?email=eq/);
-  assert.doesNotMatch(capture,/lead_contacts\?email=eq/);
+  assert.match(leadUpsert,/on conflict\(email\)/);
+  assert.match(leadUpsert,/normalized_email:=lower\(trim\(email_input\)\)/);
+  assert.match(atomic,/capture_public_lead_atomic/);
+  assert.match(atomic,/submit_public_founders50_application_atomic/);
+  assert.match(atomic,/security invoker/);
+  assert.match(atomic,/grant execute[\s\S]*to service_role/);
+  assert.match(capture,/rpc\/capture_public_lead_atomic/);
+  assert.match(founders,/rpc\/submit_public_founders50_application_atomic/);
+  assert.doesNotMatch(capture,/rpc\/upsert_public_lead_contact/);
+  assert.doesNotMatch(founders,/rpc\/upsert_public_lead_contact/);
+  assert.doesNotMatch(capture,/rest\/v1\/lead_sources/);
+  assert.doesNotMatch(founders,/rest\/v1\/lead_sources/);
+  assert.doesNotMatch(founders,/rest\/v1\/founders50_applications/);
 });
 
 test("public intake records enforce bounded normalized identities and metadata",()=>{
@@ -2120,6 +2127,7 @@ test("public rate-limit history self-cleans beyond the maximum enforcement windo
 
 test("public lead and Founders intake never attach records to a profile from unverified submitted email",()=>{
   const migration=fs.readFileSync("supabase/migrations/20260925214457_lockliel_link_public_records_only_after_email_confirmation.sql","utf8");
+  const atomic=fs.readFileSync("supabase/migrations/20260926003840_lockliel_atomic_public_intake_workflows.sql","utf8");
   const capture=fs.readFileSync("supabase/functions/capture-lead/index.ts","utf8");
   const founders=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
 
@@ -2131,13 +2139,13 @@ test("public lead and Founders intake never attach records to a profile from unv
   assert.match(migration,/link_nonfinancial_records_for_confirmed_new_profile_trigger/);
   assert.match(migration,/confirmed_email_nonfinancial_records_linked/);
 
+  assert.match(atomic,/public\.upsert_public_lead_contact\([\s\S]*null/);
+  assert.match(atomic,/insert into public\.founders50_applications\([\s\S]*profile_id[\s\S]*values\([\s\S]*null/);
   assert.doesNotMatch(capture,/rest\/v1\/profiles\?email=eq/);
-  assert.match(capture,/linked_profile_input:null/);
   assert.doesNotMatch(capture,/rest\/v1\/profile_tags/);
-
   assert.doesNotMatch(founders,/rest\/v1\/profiles\?email=eq/);
-  assert.match(founders,/profile_id:null/);
-  assert.match(founders,/linked_profile_input:null/);
+  assert.doesNotMatch(capture,/linked_profile_input/);
+  assert.doesNotMatch(founders,/linked_profile_input/);
   assert.match(founders,/!flagRes\.ok\|\|flags\?\.\[0\]\?\.enabled!==true/);
 });
 
@@ -2234,27 +2242,33 @@ test("referral links can only target their approved active Share Center asset ro
 
 
 test("Founders 50 allows only one non-terminal application per email or linked profile",()=>{
-  const migration=fs.readFileSync("supabase/migrations/20260926001759_lockliel_one_active_founders_application.sql","utf8");
+  const uniqueness=fs.readFileSync("supabase/migrations/20260926001759_lockliel_one_active_founders_application.sql","utf8");
+  const atomic=fs.readFileSync("supabase/migrations/20260926003840_lockliel_atomic_public_intake_workflows.sql","utf8");
   const edge=fs.readFileSync("supabase/functions/submit-founders50/index.ts","utf8");
 
-  assert.match(migration,/founders50_one_active_email_uidx/);
-  assert.match(migration,/on public\.founders50_applications\(email\)/);
-  assert.match(migration,/status not in \('withdrawn','declined'\)/);
-  assert.match(migration,/founders50_one_active_profile_uidx/);
-  assert.match(migration,/profile_id is not null/);
-  assert.match(edge,/activeFounderStatuses="interested,applied,under_review,needs_info,accepted,orientation,active_host,paused"/);
-  assert.doesNotMatch(edge,/recentSince/);
-  assert.match(edge,/if\(ins\.status===409\)/);
-  assert.match(edge,/duplicate:true/);
+  assert.match(uniqueness,/founders50_one_active_email_uidx/);
+  assert.match(uniqueness,/on public\.founders50_applications\(email\)/);
+  assert.match(uniqueness,/status not in \('withdrawn','declined'\)/);
+  assert.match(uniqueness,/founders50_one_active_profile_uidx/);
+  assert.match(uniqueness,/profile_id is not null/);
+  assert.match(atomic,/fa\.status not in \('withdrawn','declined'\)/);
+  assert.match(atomic,/when unique_violation/);
+  assert.match(atomic,/submit_public_founders50_application_atomic/);
+  assert.match(edge,/rpc\/submit_public_founders50_application_atomic/);
+  assert.match(edge,/duplicate:Boolean\(result\?\.is_duplicate\)/);
 });
 
 
 test("non-null CRM source references are idempotent per lead and source type",()=>{
-  const migration=fs.readFileSync("supabase/migrations/20260926002052_lockliel_unique_referenced_lead_sources.sql","utf8");
+  const uniqueness=fs.readFileSync("supabase/migrations/20260926002052_lockliel_unique_referenced_lead_sources.sql","utf8");
+  const atomic=fs.readFileSync("supabase/migrations/20260926003840_lockliel_atomic_public_intake_workflows.sql","utf8");
 
-  assert.match(migration,/lead_sources_unique_referenced_event_uidx/);
-  assert.match(migration,/\(lead_id,source_type,source_ref\)/);
-  assert.match(migration,/where source_ref is not null/);
+  assert.match(uniqueness,/lead_sources_unique_referenced_event_uidx/);
+  assert.match(uniqueness,/\(lead_id,source_type,source_ref\)/);
+  assert.match(uniqueness,/where source_ref is not null/);
+  assert.match(atomic,/on conflict\(lead_id,source_type,source_ref\)/);
+  assert.match(atomic,/return query select _lead_id, \(_source_id is null\)/);
+  assert.match(atomic,/pg_advisory_xact_lock/);
 });
 
 

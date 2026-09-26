@@ -90,57 +90,35 @@ Deno.serve(async(req:Request)=>{
     return new Response(JSON.stringify({error:"Too many submissions. Please try again later."}),{status:429,headers});
   }
 
-  const h={apikey:key,"Content-Type":"application/json"};
+  const atomic=await fetch(url+"/rest/v1/rpc/capture_public_lead_atomic",{
+    method:"POST",
+    headers:{apikey:key,"Content-Type":"application/json"},
+    body:JSON.stringify({
+      email_input:email,
+      first_name_input:firstName,
+      last_name_input:lastName,
+      phone_input:phone,
+      source_type_input:sourceType,
+      source_ref_input:sourceRef,
+      campaign_input:campaign,
+      attribution_input:attribution,
+      consent_input:consent
+    })
+  });
 
-  const leadUpsert=await fetch(
-    url+"/rest/v1/rpc/upsert_public_lead_contact",
-    {
-      method:"POST",
-      headers:{...h,Prefer:"return=representation"},
-      body:JSON.stringify({
-        email_input:email,
-        first_name_input:firstName,
-        last_name_input:lastName,
-        phone_input:phone,
-        linked_profile_input:null
-      })
-    }
-  );
-  const leadId=leadUpsert.ok?await leadUpsert.json().catch(()=>null):null;
+  if(!atomic.ok){
+    return new Response(JSON.stringify({error:"Lead capture failed"}),{status:500,headers});
+  }
+
+  const rows=await atomic.json().catch(()=>[]);
+  const result=(Array.isArray(rows)?rows[0]:rows)||null;
+  const leadId=result?.captured_lead_id||null;
   if(!leadId){
     return new Response(JSON.stringify({error:"Lead capture failed"}),{status:500,headers});
   }
 
-  let duplicate=false;
-  if(leadId){
-    const recentSince=new Date(Date.now()-15*60*1000).toISOString();
-    const recentRes=await fetch(
-      url+"/rest/v1/lead_sources?lead_id=eq."+encodeURIComponent(leadId)+
-      "&source_type=eq."+encodeURIComponent(sourceType)+
-      "&campaign=eq."+encodeURIComponent(campaign)+
-      "&created_at=gte."+encodeURIComponent(recentSince)+
-      "&select=id&order=created_at.desc&limit=1",
-      {headers:h}
-    );
-    const recent=(recentRes.ok?await recentRes.json():[])?.[0]||null;
-    duplicate=Boolean(recent?.id);
-
-    if(!duplicate){
-      await fetch(url+"/rest/v1/lead_sources",{
-        method:"POST",
-        headers:{...h,Prefer:"return=minimal"},
-        body:JSON.stringify({
-          lead_id:leadId,
-          source_type:sourceType,
-          source_ref:sourceRef,
-          campaign,
-          attribution,
-          consent
-        })
-      });
-    }
-  }
-
-
-  return new Response(JSON.stringify({ok:true,leadId,duplicate}),{status:200,headers});
+  return new Response(
+    JSON.stringify({ok:true,leadId,duplicate:Boolean(result?.is_duplicate)}),
+    {status:200,headers}
+  );
 });
