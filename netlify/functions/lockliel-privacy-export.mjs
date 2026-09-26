@@ -1,16 +1,5 @@
 import {SUPABASE_URL,json,dbHeaders,requireSession} from "../lib/lockliel-core.mjs";
-
-async function rows(url,headers){
-  const response=await fetch(url,{headers:{...headers,Prefer:"count=exact"}});
-  if(!response.ok)throw new Error("Export source unavailable");
-  const data=await response.json();
-  const range=response.headers.get("Content-Range");
-  const count=range?.match(/^(?:\d+-\d+|\*)\/(\d+)$/);
-  if(!Array.isArray(data)||!count||Number(count[1])!==data.length){
-    throw new Error("Export source incomplete");
-  }
-  return data;
-}
+import {exportRows} from "../lib/lockliel-export-pages.mjs";
 
 async function handleRequest(request){
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
@@ -38,6 +27,9 @@ async function handleRequest(request){
     return json({error:"This data export is not ready for download."},403);
   }
   if(approvedRequest.id!==requestId.toLowerCase())throw new Error("Export approval mismatch");
+
+  const budget={bytes:0,maxBytes:4000000};
+  const rows=(url,headers)=>exportRows(url,headers,{budget});
 
   const [
     profiles,
@@ -146,7 +138,9 @@ async function handleRequest(request){
   };
 
   const filename="lockliel-data-"+new Date().toISOString().slice(0,10)+".json";
-  return new Response(JSON.stringify(payload,null,2),{
+  const encoded=JSON.stringify(payload);
+  if(new TextEncoder().encode(encoded).length>4000000)throw new Error("Export byte limit exceeded");
+  return new Response(encoded,{
     status:200,
     headers:{
       "Content-Type":"application/json; charset=utf-8",
