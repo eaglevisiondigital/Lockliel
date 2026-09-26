@@ -2184,3 +2184,12 @@ test("fulfillment events are idempotent for order stages and shipment tracking",
   assert.match(migration,/where event_type='shipped'/);
   assert.match(api,/r\.status===409[\s\S]*already recorded for this order/);
 });
+
+
+test("recurring partner subscription references are provider-unique",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926001005_lockliel_unique_partner_subscription_refs.sql","utf8");
+
+  assert.match(migration,/partner_commitments_provider_subscription_uidx/);
+  assert.match(migration,/\(provider,provider_subscription_ref\)/);
+  assert.match(migration,/where provider_subscription_ref is not null/);
+});
