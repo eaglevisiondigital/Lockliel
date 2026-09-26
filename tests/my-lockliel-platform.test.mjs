@@ -2428,4 +2428,32 @@ test("paid order item snapshots are immutable before fulfillment packing",()=>{
   assert.match(migration,/Order items cannot be moved into an order after payment has been recorded/);
   assert.match(migration,/Shipping addresses cannot be changed after an order has shipped/);
 });
+test("relationship graph blocks self links, inviter cycles, and invalid leader pointers",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926012203_lockliel_harden_relationship_graph_integrity.sql","utf8");
+
+  assert.match(migration,/profiles_original_inviter_not_self/);
+  assert.match(migration,/profiles_current_leader_not_self/);
+  assert.match(migration,/reach_contacts_linked_profile_not_owner/);
+  assert.match(migration,/contact_permissions_not_self/);
+  assert.match(migration,/guard_original_inviter_lineage/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/Original inviter lineage cannot be reassigned once established/);
+  assert.match(migration,/Original inviter lineage cannot contain a cycle/);
+  assert.match(migration,/guard_current_leader_pointer/);
+  assert.match(migration,/Current leader must match an active leader assignment/);
+});
+
+test("active contact permissions require current relationships and stale group contact revokes",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926012423_lockliel_enforce_contact_relationship_lifecycle.sql","utf8");
+
+  assert.match(migration,/validate_contact_permission_relationship/);
+  assert.match(migration,/permission_type='inviter_followup'/);
+  assert.match(migration,/permission_type='leader_followup'/);
+  assert.match(migration,/permission_type='group_contact'/);
+  assert.match(migration,/Active contact permission requires a valid current relationship/);
+  assert.match(migration,/revoke_stale_group_contacts_for_member/);
+  assert.match(migration,/sync_group_contact_permission_lifecycle/);
+  assert.match(migration,/sync_group_status_contact_permissions/);
+  assert.match(migration,/g.status in \('forming','active'\)/);
+});
 
