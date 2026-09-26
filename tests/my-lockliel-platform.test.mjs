@@ -2336,3 +2336,14 @@ test("financial provider events cannot be cross-linked or silently reassigned",(
   assert.ok(migration.includes("from public,anon,authenticated"));
 });
 
+test("media progress interval evidence is bounded to the player contract",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926005808_lockliel_bound_media_progress_intervals.sql","utf8");
+  const player=fs.readFileSync("app/my-lockliel/journey/lesson/youtube-progress-player.tsx","utf8");
+
+  assert.match(migration,/media_progress_covered_intervals_count/);
+  assert.match(migration,/jsonb_array_length\(covered_intervals\)<=250/);
+  assert.match(migration,/media_progress_covered_intervals_size/);
+  assert.match(migration,/pg_column_size\(covered_intervals\)<=32768/);
+  assert.match(player,/return merged\.slice\(-250\)/);
+});
+
