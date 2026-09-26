@@ -2161,3 +2161,13 @@ test("legacy email-only public record linkers are permanently removed",()=>{
   assert.match(migration,/drop function if exists app_private\.link_existing_lead_contact\(\)/);
   assert.doesNotMatch(migration,/cascade/i);
 });
+
+
+test("Founder orientation completion creates only one completion task and notification",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926000636_lockliel_dedupe_founder_orientation_completion.sql","utf8");
+
+  assert.match(migration,/task_type='founder_orientation_complete'/);
+  assert.match(migration,/where not exists\([\s\S]*notification_type='founders50'[\s\S]*title='Founders 50 orientation complete'/);
+  assert.doesNotMatch(migration,/f\.status in \('open','in_progress'\)/);
+  assert.match(migration,/status in \('accepted','orientation'\)/);
+});
