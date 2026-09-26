@@ -31,7 +31,10 @@ function chooseTranslation(rows,locale,sourceId){
 function localizedProduct(source,activeProducts,locale){
   if(!source)return null;
   const variants=activeProducts.filter(product=>
-    product.translation_key&&source.translation_key&&product.translation_key===source.translation_key
+    product.translation_key&&
+    source.translation_key&&
+    product.translation_key===source.translation_key&&
+    product.product_type===source.product_type
   );
   const selected=chooseTranslation(
     [...variants,source].filter((row,index,rows)=>rows.findIndex(other=>other.id===row.id)===index),

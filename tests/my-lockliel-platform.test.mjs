@@ -2733,3 +2733,19 @@ test("historical records survive deletion of their staff or submitter actor",()=
   assert.match(migration,/member_staff_notes_author_id_fkey[\s\S]*on delete set null/);
 });
 
+test("translation families preserve product and share asset identity",()=>{
+  const migration=fs.readFileSync("supabase/migrations/20260926032137_lockliel_enforce_translation_family_identity.sql","utf8");
+  const resources=fs.readFileSync("netlify/functions/lockliel-resources.mjs","utf8");
+  const share=fs.readFileSync("netlify/functions/lockliel-share-library.mjs","utf8");
+
+  assert.match(migration,/validate_product_translation_family/);
+  assert.match(migration,/Translated product variants must use the same product type/);
+  assert.match(migration,/validate_share_asset_translation_family/);
+  assert.match(migration,/Translated Share Center variants must use the same asset type/);
+  assert.match(migration,/pg_advisory_xact_lock/);
+  assert.match(migration,/p\.product_type=s\.product_type/);
+  assert.match(migration,/a\.asset_type=s\.asset_type/);
+  assert.match(resources,/product\.product_type===source\.product_type/);
+  assert.match(share,/compatibleVariants/);
+});
+

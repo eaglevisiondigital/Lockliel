@@ -33,9 +33,11 @@ export default async(request)=>{
     if(seen.has(key))continue;
 
     const variants=rows.filter(item=>(item.translation_key||item.slug)===key);
-    const preferredVariant=variants.find(item=>item.language_code===preferred)
-      ||variants.find(item=>item.language_code==="en")
-      ||variants[0];
+    const familyType=variants[0]?.asset_type;
+    const compatibleVariants=variants.filter(item=>item.asset_type===familyType);
+    const preferredVariant=compatibleVariants.find(item=>item.language_code===preferred)
+      ||compatibleVariants.find(item=>item.language_code==="en")
+      ||compatibleVariants[0];
 
     if(preferredVariant){
       selected.push(preferredVariant);
