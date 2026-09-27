@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import {matchesShareSelection} from "@/lib/share-selection.mjs";
 import {
   BookOpen,
   CheckCircle2,
@@ -181,7 +182,7 @@ export default function ShareCenter(){
     ()=>reachContacts.find(person=>person.id===selectedReachId)||null,
     [reachContacts,selectedReachId]
   );
-  const results=useMemo(()=>library.filter(asset=>(!lane||asset.lanes?.includes(lane))&&(!kind||asset.asset_type===kind)),[library,lane,kind]);
+  const results=useMemo(()=>library.filter(asset=>matchesShareSelection(asset,lane,kind)),[library,lane,kind]);
   const featured=results.filter(asset=>asset.featured);
   const standard=results.filter(asset=>!asset.featured);
   const invalidPerson=Boolean(selectedReachId&&!selectedReach);
@@ -222,7 +223,7 @@ export default function ShareCenter(){
       {selectedReach&&<small>Selected: {selectedReach.display_name}. Preparing a link never marks it delivered. Confirm a share after sending it.</small>}
     </section>}
 
-    <section className="ml-panel ml-share-lanes" style={{marginBottom:20}}><h2>What would help this person right now?</h2><p>Choose a need they have shared with you. These lanes use released library categories; some may not have a resource yet.</p><div className="ml-share-actions"><button aria-pressed={!lane} onClick={()=>setLane("")}>All resources</button>{lanes.map(item=><button key={item.id} aria-pressed={lane===item.id} onClick={()=>setLane(item.id)}>{item.label}</button>)}</div>{kind&&<p>Showing released invitations. <button onClick={()=>setKind("")}>Show all resource types</button></p>}</section>
+    <section className="ml-panel ml-share-lanes" style={{marginBottom:20}}><h2>What would help this person right now?</h2><p>Choose a need they have shared with you. These lanes use released library categories; some may not have a resource yet.</p><div className="ml-share-actions"><button aria-pressed={!lane} onClick={()=>setLane("")}>All resources</button>{lanes.map(item=><button key={item.id} aria-pressed={lane===item.id} onClick={()=>setLane(item.id)}>{item.label}</button>)}</div>{kind&&<p>Showing released invitations and courses. <button onClick={()=>setKind("")}>Show all resource types</button></p>}</section>
     {invalidPerson&&<p role="alert">This person is unavailable. Choose an active My Five person or explicitly select “Share normally.”</p>}
     {prepared&&<section className="ml-panel"><p>Did you send the resource to {prepared.name}? Copying or opening a share app does not confirm delivery.</p><button disabled={Boolean(working)} onClick={markSelectedShared}>I shared this</button> <Link href={"/my-lockliel/connections/person?id="+encodeURIComponent(prepared.id)}>Plan follow-up</Link></section>}
     {!results.length&&!error&&<p>No released resources match this selection. Choose another lane or check back later.</p>}

@@ -1,0 +1,16 @@
+{
+  "release_status": "APPROVED FOR FUTURE RELEASE / NOT YET ACTIVE IN PRODUCTION",
+  "asset": {
+    "slug": "getting-a-grip-on-the-basics",
+    "title": "Getting a Grip on the Basics",
+    "asset_type": "course",
+    "category": "biblical-foundations",
+    "destination_path": "/getting-a-grip",
+    "language_code": "en",
+    "translation_key": "getting-a-grip-on-the-basics",
+    "featured": true,
+    "sort_order": 10,
+    "description": "A simple, Scripture-based 13-lesson course designed to help you build a strong biblical foundation and take practical next steps in your walk with God.",
+    "share_text": "I thought of you and wanted to send you this. Getting a Grip on the Basics is a 13-lesson Lockliel course that walks through foundational biblical truths one step at a time. I’d love for you to check it out."
+  }
+}

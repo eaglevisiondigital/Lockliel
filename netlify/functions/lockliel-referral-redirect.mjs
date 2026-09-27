@@ -16,7 +16,7 @@ function safeLocalDestination(value){
   }
 }
 
-export default withProductionBackend(async(request)=>{
+export function createReferralRedirectHandler({fetcher=(...args)=>globalThis.fetch(...args)}={}){return async(request)=>{
   const u=new URL(request.url);
   const code=String(u.searchParams.get("code")||"").trim().toLowerCase();
   const cookies=parseCookies(request);
@@ -30,7 +30,7 @@ export default withProductionBackend(async(request)=>{
   let destination=fallbackDestination;
 
   try{
-    const r=await fetch(SUPABASE_URL+"/functions/v1/track-referral",{
+    const r=await fetcher(SUPABASE_URL+"/functions/v1/track-referral",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({code,visitor_key:visitor})
@@ -49,7 +49,9 @@ export default withProductionBackend(async(request)=>{
   h.append("Set-Cookie",cookie("lockliel_visitor",visitor,60*60*24*90));
   h.append("Set-Cookie",cookie("lockliel_ref",code,60*60*24*30));
   return new Response(null,{status:302,headers:h});
-});
+};}
+
+export default withProductionBackend(createReferralRedirectHandler());
 
 export const config={
   rateLimit:{windowLimit:240,windowSize:60,aggregateBy:["ip"]}

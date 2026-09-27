@@ -4,6 +4,21 @@ Baseline: 2026-09-26, development commit
 `47409a2796a5275e12684cb4a182cb008c4d5414`.
 See `CURRENT_BUILD_STATE.md` for live evidence and verification limits.
 
+## Getting a Grip invitation (local, 2026-09-27)
+
+`/getting-a-grip` is a static public invitation, not a course reader. It imports
+approved title/description from a passive release manifest, with signup/sign-in
+links only. The existing whole-site referral cookie feeds signup Auth metadata;
+existing bootstrap resolves lineage and the faith-profile trigger enrolls eligible
+profiles into a published foundational course. No duplicate enrollment service.
+
+The manifest is not imported into the Share Library APIs. Existing admin draft and
+active release controls remain required. `lib/share-selection.mjs` allows both
+course and invitation assets in the My Five invitation filter, after the active
+library API response. Category/type mapping still yields exactly new-faith, bible,
+and discipleship without changing the ten-lane taxonomy. See
+`docs/getting-a-grip-invitation.md` for release limits and verification evidence.
+
 ## My Five guided follow-up (local, 2026-09-27)
 
 `my-five.mjs` owns pure stage, reminder, next-action and timeline projections.

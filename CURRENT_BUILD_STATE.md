@@ -3,6 +3,28 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Getting a Grip invitation (local, 2026-09-27)
+
+Implemented on `559639baf90aa60e8dac3423d78fa599b135b789`, preserving remote
+`9eee9ee50cd6a21e0dde804b00725d17d6d31f93`. Public `/getting-a-grip` uses the
+approved copy and exact signup/sign-in CTAs. Passive content manifest is
+**APPROVED FOR FUTURE RELEASE / NOT YET ACTIVE IN PRODUCTION**. No library row
+was created in production and no runtime fallback exposes the unreleased asset.
+
+Existing referral cookies, signup attribution and published foundational-course
+profile enrollment were verified using mocks/disposable SQL. The existing My Five
+invitation filter now includes course assets; ten lanes and explicit confirmation
+remain intact. 456 JS tests, 274 migration replay, 10 SQL/RLS files, build, types,
+Netlify validation, configured/targeted lint and zero-vulnerability production audit
+passed. Synthetic browser checks passed at 390/768/1365 widths with local-only
+networking. All 274 historical migration hashes remain unchanged.
+
+No push, migration, production write, content activation, settings change, main
+change or website publication. No live authenticated course readiness was inferred.
+See `docs/getting-a-grip-invitation.md`. Next: separately authorize a controlled
+development checkpoint, then inspect its exact preview. Production activation is
+separate and requires destination/course readiness verification.
+
 ## My Five remote checkpoint (2026-09-27 UTC)
 
 **MY FIVE REMOTE CHECKPOINT VERIFIED.** One authorized normal development push

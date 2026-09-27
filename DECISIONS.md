@@ -3,6 +3,25 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Approved Getting a Grip invitation (2026-09-27)
+
+APPROVED: the subsequent Chat assignment authorizes a development-only public
+`/getting-a-grip` invitation and the exact content recorded in
+`content/share-library/getting-a-grip.json`, with scoped existing branding and
+signup/sign-in CTAs. APPROVED FOR FUTURE RELEASE / NOT YET ACTIVE IN PRODUCTION.
+Local implementation, isolated validation and local commits are authorized.
+No push, content activation, production release or migration is authorized.
+
+IMPLEMENTED: passive canonical manifest, static invitation, tested existing
+referral/enrollment handoff, and a narrow My Five invitation filter correction to
+include course assets. No taxonomy, lineage, consent or permission changes.
+
+UNKNOWN: present live foundational-course release readiness. This package proves
+its integration only in disposable SQL and mocks. A future authorized content
+release must verify course and destination readiness and use existing admin draft/
+activation controls. Production publication and substantial visual redesign still
+require their separate assignments. See `docs/getting-a-grip-invitation.md`.
+
 ## My Five checkpoint authorization and outcome (2026-09-27)
 
 AUTHORIZED by the subsequent checkpoint assignment: one normal development push

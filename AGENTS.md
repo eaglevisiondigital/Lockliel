@@ -89,6 +89,20 @@ project and does not establish Lockliel architecture or business approval.
   `20260926033358_lockliel_account_deletion_execution_support` already exists in
   both histories. Recheck migration parity before future database work.
 
+## Getting a Grip invitation assignment (2026-09-27)
+
+- The new assignment authorizes local invitation implementation, isolated tests,
+  documentation and local commits on top of `559639b`. It does not authorize push,
+  publication or content activation. Read `docs/getting-a-grip-invitation.md`.
+- Preserve the approved passive manifest at
+  `content/share-library/getting-a-grip.json`. It is APPROVED FOR FUTURE RELEASE /
+  NOT YET ACTIVE IN PRODUCTION. Do not seed it through a migration or inject it
+  into the active-only Share Library response.
+- Preserve existing cookie/signup attribution, faith-profile enrollment into a
+  published foundational course, My Five consent and explicit share confirmation.
+  Verify live destination/course readiness before any separately authorized
+  production content release through the existing admin workflow.
+
 ## Permanent product and security constraints
 
 - Preserve original inviter independently of latest campaign, assigned mentor or

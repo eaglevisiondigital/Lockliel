@@ -1,7 +1,7 @@
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,SUPABASE_KEY,LOCKLIEL_APP_ORIGIN,json,parseCookies,sessionCookies} from "../lib/lockliel-core.mjs";
 
-export default withProductionBackend(async(request)=>{
+export function createSignupHandler({fetcher=(...args)=>globalThis.fetch(...args)}={}){return async(request)=>{
   if(request.method!=="POST")return json({error:"Method not allowed"},405);
 
   const b=await request.json().catch(()=>({}));
@@ -28,7 +28,7 @@ export default withProductionBackend(async(request)=>{
   }
 
   const redirectTo=LOCKLIEL_APP_ORIGIN+"/my-lockliel/sign-in?confirmed=1";
-  const r=await fetch(
+  const r=await fetcher(
     SUPABASE_URL+"/auth/v1/signup?redirect_to="+encodeURIComponent(redirectTo),
     {
       method:"POST",
@@ -54,7 +54,9 @@ export default withProductionBackend(async(request)=>{
     200,
     d.access_token?sessionCookies(d):[]
   );
-});
+};}
+
+export default withProductionBackend(createSignupHandler());
 
 export const config={
   path:"/api/lockliel-auth/signup",

@@ -4,6 +4,22 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Getting a Grip invitation boundary (local, 2026-09-27)
+
+The public page renders approved static copy only: no private query reflection,
+recipient identity, protected lesson media/storage paths, or member data fetch.
+Referral and signup injectable factories preserve guarded default exports and
+rate limits. The whole-site HttpOnly referral cookie remains authoritative fallback;
+original inviter resolution stays in existing database bootstrap.
+
+New isolated SQL evidence covers immutable inviter, owner-private notes, no staff
+grant, draft exclusion, published-course idempotent enrollment and unenrolled
+lesson denial. Generic/person sharing still prepares only, with consent checks and
+explicit share confirmation. Production-backend preview guards remain fail-closed.
+Local tests had OS production network denial; browser APIs were synthetic mocks.
+No production service was changed or contacted. This is not fresh live production
+readiness evidence. See `docs/getting-a-grip-invitation.md`.
+
 ## My Five deployed preview verification (2026-09-27)
 
 Exact implementation `9eee9ee` produced ready preview
