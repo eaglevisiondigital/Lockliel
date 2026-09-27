@@ -4,6 +4,30 @@ Baseline: 2026-09-26, development commit
 `47409a2796a5275e12684cb4a182cb008c4d5414`.
 See `CURRENT_BUILD_STATE.md` for live evidence and verification limits.
 
+## My Five guided follow-up (local, 2026-09-27)
+
+`my-five.mjs` owns pure stage, reminder, next-action and timeline projections.
+`my-five-data.mjs` reads the caller's contact first, then owner-scoped links and
+share preparations. `lockliel-my-five` exposes a small person DTO and explicit
+note/reminder/follow-up/share-confirmation operations. Notes use `updated_at`
+optimistic concurrency; writes remain caller-JWT PostgREST operations under RLS.
+
+The static person route uses a query ID; its private data comes only from the
+protected API. Existing list, messaging and consent architecture remains intact.
+`next_follow_up_at` is the private reminder store. Staff-purpose `follow_up_tasks`
+remain in the existing Connections experience and are not repurposed for notes.
+No scheduler or recipient messaging transport was added.
+
+Member Journey uses the same pure person action at priority six for due reminders
+or a confirmed share not yet followed up. Mandatory onboarding/course order is
+preserved. Share need lanes in `share-guidance.mjs` project existing categories
+and types; unknown/empty categories do not manufacture released content.
+Existing locale/type-compatible selection survives. Share assets describe
+approved navigation, not entitlements. Protected delivery remains on its existing
+entitlement-checked API and Storage policies. Raw files, reader/download/API
+paths, external destinations and query-bearing share targets are excluded.
+See `docs/my-five-guided-follow-up.md` for bounded history and implementation limits.
+
 ## Member Journey Core, local implementation (2026-09-27)
 
 The authenticated member experience now has four short onboarding steps and one

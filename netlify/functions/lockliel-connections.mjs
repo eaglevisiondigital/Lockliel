@@ -416,4 +416,4 @@ export default withProductionBackend(async(request)=>{
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 });
 
-export const config={path:"/api/lockliel/connections"};
+export const config={path:"/api/lockliel/connections",rateLimit:{windowLimit:60,windowSize:60,aggregateBy:["ip","domain"]}};

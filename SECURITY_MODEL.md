@@ -4,6 +4,38 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## My Five guided follow-up (local, 2026-09-27)
+
+The new person endpoint authenticates an active session, validates the contact ID,
+loads by ID plus caller owner, and stops on a missing contact before related reads.
+It uses the caller JWT, not service credentials. Existing owner-only contact RLS
+still denies other members and even AAL2 staff access to private notes. The new
+SQL fixture proves those boundaries and preserves the five-active limit via the
+existing fixture. No policy, column grant or role changes were made.
+
+Notes are at most 3,000 characters, rendered as React text, and saved with a
+version condition to reject concurrent edits. New endpoint and sharing are rate
+limited to 30 requests/minute/IP/domain; existing Connections now has a 60 limit.
+POST origin checks supplement existing SameSite session cookies on new person
+and share paths. No private notes enter referral metadata or staff-visible tasks.
+
+Linked engagement requires current `inviter_followup` consent for the exact
+subject/caller pair and an exact linked-member signup/course-start event on the
+caller's person-specific links. Only a coarse engagement sentence is returned.
+Anonymous visits, raw events, recipient timestamps, assessments, contacts and
+faith answers are not included. Revoked/absent linked consent blocks new guided
+follow-up/share writes and recommendations. Own note/history access remains.
+This is application filtering over existing RLS, not a new database consent policy.
+An unlinked contact's private name is not proof of a platform recipient's identity.
+
+Share preparation records only `share_initiated`. Explicit member confirmation
+updates their own latest-share field. No delivery/open claim, automatic send,
+bulk send, new entitlement or original-inviter overwrite occurs. Approved landing
+navigation does not bypass protected delivery. All default Netlify handlers remain
+behind the trusted production-context guard; previews cannot use the live backend.
+Tests use mocks/disposable SQL only. Neither passing them nor a synthetic browser
+run establishes live authenticated integration. See the focused implementation record.
+
 ## Member Journey deployed preview verification (2026-09-27)
 
 Authorized development push `cc6f430` produced ready preview

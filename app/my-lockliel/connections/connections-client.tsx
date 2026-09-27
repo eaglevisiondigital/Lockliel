@@ -1,6 +1,7 @@
 "use client";
+import Link from "next/link";
 import {useEffect,useMemo,useState} from "react";
-import {Check,Heart,MessageCircle,Send,Share2,UserPlus,Users} from "lucide-react";
+import {Check,Heart,MessageCircle,Send,UserPlus,Users} from "lucide-react";
 
 type Card={
   profile_id:string;
@@ -45,15 +46,16 @@ function toLocalInput(value?:string|null){
   return local.toISOString().slice(0,16);
 }
 
+type ContactPermission={other_profile_id:string;permission_type:string;revoked_at?:string|null;person?:Card};
 export default function ConnectionsClient(){
   const [data,setData]=useState<{
     conversations:Conversation[];
-    tasks:any[];
+    tasks:{id:string;notes?:string;due_at?:string}[];
     reachContacts:ReachContact[];
     messagingEnabled?:boolean;
-    leaderAssignment?:any;
-    leaderRequest?:any;
-    contactPermissions?:any[];
+    leaderAssignment?:{leader_id:string;assignment_type:string;person?:Card};
+    leaderRequest?:{id:string};
+    contactPermissions?:ContactPermission[];
   }|null>(null);
   const [error,setError]=useState("");
   const [message,setMessage]=useState("");
@@ -68,7 +70,7 @@ export default function ConnectionsClient(){
     setData(d);
   }
 
-  useEffect(()=>{load();},[]);
+  useEffect(()=>{Promise.resolve().then(load).catch(()=>setError("Unable to load connections."));},[]);
 
   async function send(id:string){
     if(data?.messagingEnabled===false)return;
@@ -119,7 +121,7 @@ export default function ConnectionsClient(){
     }
   }
 
-  async function setContactPermission(permission:any,allow:boolean){
+  async function setContactPermission(permission:ContactPermission,allow:boolean){
     if(!permission?.other_profile_id||!permission?.permission_type)return;
     setWorking(true);
     setMessage("");
@@ -209,18 +211,6 @@ export default function ConnectionsClient(){
     await load();
   }
 
-  async function markActivity(id:string,activity:"shared"|"followed_up"){
-    const r=await fetch("/api/lockliel/connections",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({action:"markReachActivity",id,activity})
-    });
-    if(r.ok){
-      setMessage(activity==="shared"?"Share activity recorded. Follow up personally.":"Follow-up recorded. We’ll keep this person on your radar.");
-      await load();
-    }
-  }
-
   const leaderConversation=useMemo(
     ()=>data?.conversations.find(c=>c.type==="leader_followup"&&c.selfRole==="member"&&c.other)||null,
     [data]
@@ -230,11 +220,11 @@ export default function ConnectionsClient(){
     [data]
   );
   const inviterPermission=useMemo(
-    ()=>data?.contactPermissions?.find((p:any)=>p.permission_type==="inviter_followup")||null,
+    ()=>data?.contactPermissions?.find(p=>p.permission_type==="inviter_followup")||null,
     [data]
   );
   const leaderPermission=useMemo(
-    ()=>data?.contactPermissions?.find((p:any)=>
+    ()=>data?.contactPermissions?.find(p=>
       p.permission_type==="leader_followup"&&
       (!data?.leaderAssignment?.leader_id||p.other_profile_id===data.leaderAssignment.leader_id)
     )||null,
@@ -276,7 +266,7 @@ export default function ConnectionsClient(){
         {activeFive.map(person=><article className="ml-five-person" key={person.id}>
           <div className="ml-five-person-top">
             <div className="ml-avatar">{person.display_name.slice(0,1).toUpperCase()}</div>
-            <div><h3>{person.display_name}</h3><span>{person.relationship_context||"Someone I’m intentionally reaching"}</span></div>
+            <div><h3><Link href={"/my-lockliel/connections/person?id="+encodeURIComponent(person.id)}>{person.display_name}</Link></h3><span>{person.relationship_context||"Someone I’m intentionally reaching"}</span></div>
           </div>
           <div className="ml-five-status">
             <select value={person.status} onChange={e=>updateReach(person.id,e.target.value)}>
@@ -284,13 +274,12 @@ export default function ConnectionsClient(){
               <option value="invited">Invited / shared</option>
               <option value="connected">Connected</option>
               <option value="growing">Growing</option>
-              <option value="completed">Completed / multiplying</option>
+              <option value="completed">Completed</option>
               <option value="paused">Pause</option>
             </select>
           </div>
           <div className="ml-five-actions">
-            <button onClick={()=>markActivity(person.id,"shared")}><Share2 size={14}/> I shared</button>
-            <button onClick={()=>markActivity(person.id,"followed_up")}><MessageCircle size={14}/> Followed up</button>
+            <Link href={"/my-lockliel/connections/person?id="+encodeURIComponent(person.id)}>Pray, share & follow up →</Link>
           </div>
           <details className="ml-five-edit">
             <summary>Edit details & follow-up</summary>
@@ -298,7 +287,7 @@ export default function ConnectionsClient(){
               <label>Name<input name="displayName" required maxLength={120} defaultValue={person.display_name}/></label>
               <label>How you know them <span>Optional</span><input name="relationshipContext" defaultValue={person.relationship_context||""} placeholder="Friend, coworker, neighbor…"/></label>
               <label>Next follow-up <span>Optional</span><input name="nextFollowUpAt" type="datetime-local" defaultValue={toLocalInput(person.next_follow_up_at)}/></label>
-              <label>Private note <span>Optional</span><textarea name="privateNotes" rows={3} defaultValue={person.private_notes||""} placeholder="Only you can see this note."/></label>
+              <label>Private note <span>Optional</span><textarea name="privateNotes" maxLength={3000} rows={3} defaultValue={person.private_notes||""} placeholder="Only you can see this note."/></label>
               <button className="ml-action" disabled={working}>{working?"Saving…":"Save details"}</button>
             </form>
           </details>
@@ -315,7 +304,7 @@ export default function ConnectionsClient(){
           <label>Name<input name="displayName" required maxLength={120} placeholder="First name or a name you recognize"/></label>
           <label>How you know them <span>Optional</span><input name="relationshipContext" placeholder="Friend, coworker, neighbor…"/></label>
           <label>Next follow-up <span>Optional</span><input name="nextFollowUpAt" type="datetime-local"/></label>
-          <label>Private note <span>Optional</span><textarea name="privateNotes" rows={2} placeholder="Only you can see this note."/></label>
+          <label>Private note <span>Optional</span><textarea name="privateNotes" maxLength={3000} rows={2} placeholder="Only you can see this note."/></label>
           <button className="ml-action" disabled={working}>{working?"Adding…":"Add to My Five"}</button>
         </form>}
       </div>
@@ -325,7 +314,7 @@ export default function ConnectionsClient(){
 
       {history.length>0&&<details className="ml-five-history">
         <summary>View completed / paused people ({history.length})</summary>
-        <div>{history.map(person=><span key={person.id}>{person.display_name} • {person.status}</span>)}</div>
+        <div>{history.map(person=><Link key={person.id} href={"/my-lockliel/connections/person?id="+encodeURIComponent(person.id)}>{person.display_name} • {person.status}</Link>)}</div>
       </details>}
     </section>
 
@@ -433,7 +422,7 @@ export default function ConnectionsClient(){
             <div className="ml-message-thread">
               {c.messages.length
                 ? c.messages.slice(-6).map(m=><p key={m.id}>{m.body}<small>{new Date(m.created_at).toLocaleString()}</small></p>)
-                : <p className="ml-empty-message">Send a welcome message when you're ready.</p>}
+                : <p className="ml-empty-message">Send a welcome message when you’re ready.</p>}
             </div>
             <div className="ml-message-compose">
               <input disabled={data.messagingEnabled===false} value={drafts[c.id]||""} onChange={e=>setDrafts(v=>({...v,[c.id]:e.target.value}))} placeholder={data.messagingEnabled===false?"Messaging temporarily unavailable":"Write a message…"}/>

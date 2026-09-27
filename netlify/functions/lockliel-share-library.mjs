@@ -1,3 +1,4 @@
+import {guidedAsset,shareLanes} from '../lib/share-guidance.mjs';
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
@@ -54,7 +55,8 @@ export default withProductionBackend(async(request)=>{
 
   return json({
     preferredLanguage:preferred,
-    assets:selected
+    lanes:shareLanes.map(({id,label})=>({id,label})),
+    assets:selected.map(guidedAsset).filter(Boolean)
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 });
 

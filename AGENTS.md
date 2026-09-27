@@ -57,6 +57,14 @@ project and does not establish Lockliel architecture or business approval.
   Read `docs/member-journey-remote-checkpoint-2026-09-27.md`. Post-checkpoint
   evidence documentation remains local. No second push, production release or
   next My Five / Share Center package is authorized by that completed assignment.
+- The subsequent My Five + Share Center assignment authorizes this local guided
+  person/follow-up/share package. Read `docs/my-five-guided-follow-up.md`.
+  Preserve the centralized pure person guidance, consent-scoped read model,
+  bounded/versioned private notes, and explicit share confirmation. Link
+  preparation is not delivery; prayer has no durable event. Use existing private
+  contact reminder fields, never staff-visible task notes. All 274 migration bytes
+  remain unchanged. Report controlled-checkpoint readiness; do not push or begin
+  the next package automatically. Synthetic browser tests are not live integration.
 - Preserve both the published ChatGPT Site version 25 and Netlify production.
   Before future substantial frontend changes, Chat must identify the authoritative
   visual version and retain recoverable source/assets. Neither site's served

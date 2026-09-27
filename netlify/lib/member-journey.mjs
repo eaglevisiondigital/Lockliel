@@ -1,3 +1,4 @@
+import {nextPersonAction} from './my-five.mjs';
 // Pure member guidance. This module never writes data or grants authorization.
 export const ACTIVE_REACH_STATUSES = ['praying','invited','connected','growing'];
 export const JOURNEY_STAGES = ['Starting','Growing','Sharing','Discipling','Leading','Multiplying'];
@@ -64,7 +65,8 @@ export function buildMemberJourney(state, now = new Date()) {
   const complete = onboardingComplete(state.profile,state.faith);
   const course = courseState(state.course);
   const active = (state.reach || []).filter(row => ACTIVE_REACH_STATUSES.includes(row.status));
-  const due = active.filter(row => row.next_follow_up_at && Date.parse(row.next_follow_up_at) <= Number(now));
+  const personal=nextPersonAction(active,now);
+  const due = active.filter(row => row.followupAllowed!==false && row.next_follow_up_at && Date.parse(row.next_follow_up_at) <= Number(now));
   const operational = (state.groups || []).filter(group => ['forming','active'].includes(group.status));
   const pendingGroup = (state.requests || []).some(row => row.status === 'open' && ['find_local_group','join_group'].includes(row.request_type));
   const communityState = operational.some(group => group.status === 'active') ? 'active' : operational.length || pendingGroup ? 'forming' : 'none';
@@ -81,6 +83,7 @@ export function buildMemberJourney(state, now = new Date()) {
     nextStep = step('lesson_requirement',3,'Finish your lesson','Return to the teaching and worksheet to complete the lesson requirements.','Open lesson',course.href,progress);
   } else if (course.available && !course.started && !course.complete) nextStep = step('grip_start',4,'Start Getting a Grip on the Basics','Build a foundation through 13 lessons, teaching videos and worksheets.','Start my first lesson',course.href,progress);
   else if (!active.length) nextStep = step('my_five_empty',5,'Begin your My Five','Choose one person to pray for and encourage. You can keep up to five active people here.','Add my first person',paths.five);
+  else if (personal) nextStep = step('my_five_followup',6,personal.action.label+' with '+personal.person.display_name,personal.action.description,'Open person',personal.action.href);
   else if (due.length) nextStep = step('my_five_followup',6,'Make a thoughtful follow-up','A follow-up you planned is ready. Review your private My Five list and choose an appropriate next action.','Review my follow-ups',paths.five);
   else if (state.groupCheckinDue) nextStep = step('group_checkin',7,'Check in with your group','Record this week’s gathering and any support your group needs.','Open my group',paths.group);
   else if (communityState === 'none' && state.faith?.wants_group && state.faith?.preferred_connection !== 'not-now') nextStep = step('community',7,'Explore Christian community','Review your connection options. You decide whether to request help finding a group.','Explore my community',paths.group);
