@@ -65,6 +65,12 @@ project and does not establish Lockliel architecture or business approval.
   contact reminder fields, never staff-visible task notes. All 274 migration bytes
   remain unchanged. Report controlled-checkpoint readiness; do not push or begin
   the next package automatically. Synthetic browser tests are not live integration.
+- The subsequent My Five checkpoint assignment authorized one normal development
+  push through `9eee9ee50cd6a21e0dde804b00725d17d6d31f93`. It is complete;
+  both CI runs, preview denial checks and inspected preservation baselines passed.
+  Read `docs/my-five-remote-checkpoint-2026-09-27.md`. Post-checkpoint evidence
+  stays local. No second push, production release or next product work is authorized
+  by that completed assignment. Preview identity must be rechecked after any push.
 - Preserve both the published ChatGPT Site version 25 and Netlify production.
   Before future substantial frontend changes, Chat must identify the authoritative
   visual version and retain recoverable source/assets. Neither site's served

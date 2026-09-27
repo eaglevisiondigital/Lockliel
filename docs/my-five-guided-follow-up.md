@@ -6,6 +6,13 @@ Assignment: 2026-09-27. Local starting commit
 Local implementation only. No push, production write, settings change or site
 publication is part of this package.
 
+## Subsequent authorized remote checkpoint
+
+Implementation `9eee9ee50cd6a21e0dde804b00725d17d6d31f93` is now remotely
+verified. Both CI runs and exact-preview denial checks passed; inspected production
+baselines are unchanged. See `my-five-remote-checkpoint-2026-09-27.md`. The local-only
+statements below describe implementation time, before this separate assignment.
+
 ## Inventory and schema decision before implementation
 
 - `reach_contacts` owns private names/context/notes, six stored statuses, latest

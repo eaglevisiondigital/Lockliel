@@ -3,6 +3,33 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## My Five remote checkpoint (2026-09-27 UTC)
+
+**MY FIVE REMOTE CHECKPOINT VERIFIED.** One authorized normal development push
+advanced `cc6f430a1e03ba55a44774e8ade8fa05edec4617` through local evidence
+`2b31eafd4ba67489cab4b2ecb8b24dab2ef46fd1` to implementation
+`9eee9ee50cd6a21e0dde804b00725d17d6d31f93`. Initial tree was clean; all 274
+migration hashes and the release-preparation package remain unchanged.
+
+Both push/PR CI runs passed: 447 JavaScript tests, 274 fresh migrations, nine SQL
+files, build, types, 72-module/62-handler validation, configured lint and zero
+production dependency vulnerabilities. Ready deploy-preview
+`6ab908caa929c30008a61d79` matches the exact implementation. All 26 harmless
+GET/empty POST probes were denied safely; ten static pages passed, including the
+new person page. Connected preview features remain blocked by design.
+
+Main and other refs are unchanged. PR #3 is open against main with auto-merge off.
+Before/after Netlify production identity/homepage hashes, Sites version 25/source/
+publication/access metadata, and Supabase ledger/security/function/write-counter
+baselines match. Production still has 272 migrations; both pending remain absent.
+No production DB write, migration, publication, settings/permission change, merge
+or real-data test occurred. No next feature package started.
+
+Full evidence and limits: `docs/my-five-remote-checkpoint-2026-09-27.md`.
+Post-verification documentation remains local and is not part of a second push.
+Next recommendation: one approved Getting a Grip Share Library invitation, after
+Chat supplies the content/destination/readiness decision. Do not start automatically.
+
 ## My Five + Share Center, local package (2026-09-27)
 
 Implemented from clean local continuity commit

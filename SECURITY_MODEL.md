@@ -4,6 +4,21 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## My Five deployed preview verification (2026-09-27)
+
+Exact implementation `9eee9ee` produced ready preview
+`6ab908caa929c30008a61d79`. Twenty-six unauthenticated GET/empty POST checks,
+including new My Five and sharing routes/direct function paths, returned no-store
+503 production-backend denial without cookies or redirects. Ten static pages
+passed; public detection attributes remain removed. No guard bypass or real-data
+write tested this boundary. Source/CI checks complement the edge HTTP evidence.
+
+Production preservation compares 272-entry migration ledger, RLS/ACL/function
+fingerprints, five Edge Function versions and 93-table write counters, along with
+both website publication baselines. All inspected before/after values match.
+This does not establish live authenticated integration or a complete settings audit.
+See `docs/my-five-remote-checkpoint-2026-09-27.md`.
+
 ## My Five guided follow-up (local, 2026-09-27)
 
 The new person endpoint authenticates an active session, validates the contact ID,

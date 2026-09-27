@@ -3,6 +3,20 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## My Five checkpoint authorization and outcome (2026-09-27)
+
+AUTHORIZED by the subsequent checkpoint assignment: one normal development push
+of the clean validated history through `9eee9ee50cd6a21e0dde804b00725d17d6d31f93`,
+followed by remote CI, harmless preview checks and read-only preservation checks.
+This superseded the local-only restriction for that exact implementation only.
+
+COMPLETED: remote implementation matches, both CI runs passed, preview guards
+passed and inspected production baselines match. PR #3 remains open against main
+with auto-merge disabled. No second push, production release, pending migration
+execution, settings change, real-data testing or subsequent product package was
+authorized or performed. Evidence documentation stays local. See
+`docs/my-five-remote-checkpoint-2026-09-27.md`.
+
 ## My Five + Share Center package (2026-09-27)
 
 AUTHORIZED by the subsequent primary Chat assignment: local guided My Five person
