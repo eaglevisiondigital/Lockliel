@@ -4,6 +4,49 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Release security and recovery gates (2026-09-27)
+
+Production remains at 272 migrations. No live schema, ledger, data, permissions or
+settings changed. Read-only project/security evidence remains ACTIVE_HEALTHY with
+no Security Advisor findings. The full aggregate/catalog baseline and exact release
+preflight live under `supabase/verification/release-*`; no PII/secrets are recorded.
+
+Dave's manual dashboard evidence, accepted by Chat, shows Pro scheduled physical
+backups at 2026-09-26 07:28:11, 2026-09-25 07:26:32 and 2026-09-24 21:09:11 UTC.
+Restore and Restore to new project are offered. PITR is disabled. Retention duration
+and actual restore success are unverified. These observations establish visible
+backup availability, not complete disaster recovery. A fresh completed backup,
+timestamp, Restore action and Owner recovery access must be reverified immediately
+before release; conversation screenshots cannot satisfy that gate indefinitely.
+
+There is one visible organization member, an Owner with MFA disabled. Engineering
+recommendation: **OWNER MFA REQUIRED BEFORE MIGRATION**, because that control-plane
+account governs the database and recovery. This is a security gate, not a technical
+requirement of PostgreSQL or a claim that settings were changed. Verify a secured
+backup factor/recovery access separately; do not collect secrets. Additional trusted
+administrative coverage is a broader resilience follow-up. MFA setup is outside
+this preparation package.
+
+PITR is not required for these two files on the verified zero-profile database:
+bridge is catalog verification only, email has no DML, and a recent recoverable
+physical backup is the proposed release gate. Storage object bytes are excluded
+from database backups. Neither file accesses or changes those bytes; separate
+protected-asset recovery is required before broader launch, not for this release.
+
+The pinned CLI's actual sessions were observed at lock_timeout=5s and
+statement_timeout=30s. Independent 272/273/274 checkpoints, ledger-failure injection,
+real timeouts and pre-commit connection termination proved atomic schema/ledger
+rollback. The rehearsal used generated local credentials, SCRAM, private sockets,
+no TCP listener, and verified OS-level IP egress denial. No production credential
+was used. Whole-public-table data fingerprints remained unchanged at success.
+Post-commit lost acknowledgment is covered by a decision tree, not a claimed test.
+
+Follow `docs/production-migration-runbook.md`: STOP, read ledger, read catalog, read
+health, determine commit state, then decide. Never blindly retry, bypass the bridge,
+rewrite historical files, repair the ledger, relax RLS or remediate live rows to
+make a migration pass. Owner MFA, fresh recovery/health/data/traffic evidence,
+verified direct TLS connectivity and explicit separate authorization remain gates.
+
 ## Remote guard verification (2026-09-26 America/Chicago)
 
 The single authorized push of `b2adf96` produced Netlify preview deploy
@@ -188,9 +231,11 @@ own socket-only PostgreSQL 17 cluster, ignores connection environment variables,
 accepts no connection arguments and rolls back fixtures. Minimal Supabase stubs
 and two historical catalog supplements limit equivalence with the live service.
 
-Read-only catalog inspection and expression evaluation verified an over-escaped
-email-format constraint in the live database. A local corrective migration is
-prepared and regression-tested, but not deployed. No live RLS, grants, roles,
+Correction recorded 2026-09-27: the previous claim of an over-escaped live email
+constraint was incorrect. Current production accepts ordinary addresses; its live
+stored SQL uses one backslash. The historical repository file has two and remains
+immutable. The pending canonical `[.]` migration is prepared and regression-tested
+for convergence/replay consistency, but not deployed. No live RLS, grants, roles,
 authentication settings or permissions changed. Full repository ESLint debt and
 production journey validation remain unresolved.
 
@@ -211,6 +256,7 @@ profiles/users and no incompatible data. That preflight expires as data changes.
 SQL regression covers NULL, normalization, malformed/overlength/raw-import inputs.
 An incompatible legacy-email fixture also proves migration failure preserves the
 previous constraint. The release plan requires verified recovery capability and prefers forward repair
-over restoring the broken regex after valid new accounts exist. The historical
+over restoring the historical repository expression, which does not match the
+actual live single-backslash baseline. The historical
 hosting verification gap is superseded by the current preview isolation section.
 Its technical push recommendation is not authorization to push or release SQL.

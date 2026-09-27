@@ -73,3 +73,40 @@ replacement of built-ins. Never supply production credentials to tests.
 
 Keep local secrets in ignored environment files. No secrets are needed for these
 checks. Source, SQL migrations, templates and continuity documents remain tracked.
+
+## Exact migration-release rehearsal
+
+This additional release gate is distinct from the all-274 fresh replay. It starts
+at a reconstructed 272-entry live-like ledger, then uses the actual pinned
+Supabase CLI 2.118.0 to reach 273 and 274 independently. It accepts no connection
+arguments and never uses production credentials. Supported here: macOS arm64,
+PostgreSQL 17, the reviewed CLI binary and an OS-level outbound IP deny policy.
+Do not substitute a production connection or run these fixtures live.
+
+Install the pinned CLI outside the repository as described in
+[the runbook](docs/production-migration-runbook.md). Set `LOCKLIEL_SUPABASE_BIN` to
+its absolute darwin-arm64 binary path. Its version and SHA-256 are enforced by the
+rehearsal. On macOS, run with native subprocess/socket permission as needed:
+
+```bash
+/usr/bin/sandbox-exec \
+  -p '(version 1)(allow default)(deny network-outbound)(allow network-outbound (subpath "/private/var/folders") (subpath "/private/tmp"))' \
+  /usr/bin/env -i PATH="$PATH" TMPDIR=/private/tmp \
+  LOCKLIEL_SUPABASE_BIN="$LOCKLIEL_SUPABASE_BIN" \
+  node scripts/rehearse-migration-release.mjs
+./node_modules/.bin/eslint scripts/prepare-migration-release.mjs \
+  scripts/check-migration-preflight.mjs scripts/rehearse-migration-release.mjs \
+  tests/migration-release-preflight.test.mjs
+```
+
+It fails closed if IP egress denial is not verified, uses generated local SCRAM
+credentials, verifies its private cluster and removes only that disposable cluster.
+The statement-timeout negative test intentionally takes about 30 seconds.
+Seven SQL files run at each checkpoint, with transaction rollback. Platform stubs
+and reconstructed ledger statement formatting limit full Supabase equivalence.
+The six offline packaging/preflight tests are included in the standard Node suite.
+
+`prepare-migration-release.mjs` only copies hash-verified files into a new external
+directory. `check-migration-preflight.mjs` only checks JSON captures offline. Neither
+connects to the database. Read the runbook's manual gates and STOP conditions;
+passing scripts alone does not authorize production release or account changes.

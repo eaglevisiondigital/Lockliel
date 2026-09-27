@@ -3,6 +3,48 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Release preparation decision record (2026-09-27)
+
+AUTHORIZED by the current Chat assignment: correct continuity, preserve all existing
+migration bytes, select/pin/rehearse the exact production runner locally, prepare
+read-only preflight and a runbook, run validation, and create one local commit.
+No production execution, push, merge, deploy, dependency update, setting change,
+MFA setup, backup/restore operation or new feature is authorized.
+
+ACCEPTED CORRECTION: current live email SQL/CHECK uses one backslash and accepts
+ordinary addresses. Historical repository migration `20260925153612` has two.
+Do not rewrite applied history. Pending `20260926212002` supplies canonical `[.]`
+convergence and replay consistency, not proof of repairing an active signup failure.
+
+ACCEPTED MANUAL EVIDENCE from Dave: correct Lockliel Platform project, Pro,
+ACTIVE_HEALTHY, three completed physical backups, latest 2026-09-26 07:28:11 UTC,
+Restore and Restore to new project available. PITR disabled, retention duration
+unverified, Storage bytes excluded; one visible Owner with MFA disabled. No restore
+was performed. Release-time dashboard evidence must be refreshed.
+
+ENGINEERING SELECTION, VERIFIED LOCALLY: Supabase CLI 2.118.0, pinned macOS arm64
+binary, `db push --include-all --skip-vault`, explicit URL and two isolated file
+sets, bridge first then email. Both timeouts and atomic migration-plus-ledger
+behavior passed actual-runner tests. No custom production migration executor was
+introduced. Historical filenames/bodies/order and both pending hashes are unchanged.
+See `docs/production-migration-runbook.md` and `docs/release-preparation-2026-09-27.md`.
+
+SECURITY RECOMMENDATION awaiting fulfillment: **OWNER MFA REQUIRED BEFORE MIGRATION**.
+A single privileged account without MFA exposes release and recovery control.
+PITR is not required for these two no-DML migrations with zero profiles and a fresh
+recoverable physical backup; do not enable it automatically. Storage byte recovery
+is a broader launch requirement, not a blocker for these two files. Proposed backup
+maximum age is 24 hours unless Chat explicitly accepts another recovery point.
+Retention-duration uncertainty alone is not a blocker when a current completed
+recoverable backup is visibly available. None of these statements certifies full
+recovery readiness or authorizes account changes.
+
+CONDITIONALLY READY TO REQUEST PRODUCTION MIGRATION AUTHORIZATION: complete Owner
+MFA/recovery-factor verification separately, refresh all manual/database gates,
+verify direct password/TLS connectivity read-only, and obtain an explicit assignment
+for the exact release commit/versions. Any data/schema/history/security/traffic drift
+requires renewed assessment. Keep dependency triage and frontend decisions separate.
+
 ## Completed controlled development push (2026-09-26 America/Chicago)
 
 AUTHORIZED by Dave's follow-up assignment: one normal push of exactly `b2adf96`

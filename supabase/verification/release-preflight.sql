@@ -1,0 +1,31 @@
+-- READ ONLY. Aggregate release gates. Never repair rows or objects here.
+begin read only;
+select jsonb_build_object(
+ 'observed_at_utc',now(),
+ 'server_version',current_setting('server_version'),
+ 'search_path',current_setting('search_path'),
+ 'standard_conforming_strings',current_setting('standard_conforming_strings'),
+ 'ledger_columns_ready',(select count(*)=3 from pg_attribute where attrelid='supabase_migrations.schema_migrations'::regclass and attname in ('version','name','statements') and not attisdropped),
+ 'email_constraint_md5',(select md5(pg_get_constraintdef(oid)) from pg_constraint where conrelid='public.profiles'::regclass and conname='profiles_email_format'),
+ 'current_profiles',(select count(*) from public.profiles),
+ 'current_auth_users',(select count(*) from auth.users),
+ 'tables',(select jsonb_agg(jsonb_build_object('schema',n.nspname,'table',c.relname,'approx_rows',c.reltuples,'heap_bytes',pg_relation_size(c.oid),'total_bytes',pg_total_relation_size(c.oid),'rls',c.relrowsecurity,'force_rls',c.relforcerowsecurity) order by n.nspname,c.relname) from pg_class c join pg_namespace n on n.oid=c.relnamespace where c.oid in ('public.profiles'::regclass,'public.founders50_reviews'::regclass,'public.share_assets'::regclass,'public.founders50_applications'::regclass,'auth.users'::regclass)),
+ 'counts',jsonb_build_object('reviews',(select count(*) from public.founders50_reviews),'shares',(select count(*) from public.share_assets),'applications',(select count(*) from public.founders50_applications),'staff_roles',(select count(*) from public.staff_roles)),
+ 'review_integrity',(select jsonb_build_object('null_application',count(*) filter(where application_id is null),'null_reviewer',count(*) filter(where reviewer_id is null),'null_decision',count(*) filter(where decision is null),'bad_decision',count(*) filter(where decision not in ('note','needs_info','accept','decline','pause','activate_host')),'orphan_application',count(*) filter(where not exists(select 1 from public.founders50_applications a where a.id=r.application_id)),'orphan_reviewer',count(*) filter(where reviewer_id is not null and not exists(select 1 from public.profiles p where p.id=r.reviewer_id))) from public.founders50_reviews r),
+ 'share_integrity',(select jsonb_build_object('bad_status',count(*) filter(where status not in ('draft','active','archived')),'null_required',count(*) filter(where status is null or slug is null or sort_order is null or featured is null or updated_at is null or language_code is null or translation_key is null),'negative_sort',count(*) filter(where sort_order<0),'bad_local_path',count(*) filter(where left(destination_path,1)<>'/' or left(destination_path,2)='//'),'noncanonical_slug',count(*) filter(where slug<>lower(trim(slug)))) from public.share_assets),
+ 'share_duplicate_slug_groups',(select count(*) from(select slug from public.share_assets group by slug having count(*)>1)x),
+ 'share_duplicate_translation_groups',(select count(*) from(select translation_key,language_code from public.share_assets group by translation_key,language_code having count(*)>1)x),
+ 'share_status_counts',(select jsonb_object_agg(status,n) from(select status,count(*) n from public.share_assets group by status)x),
+ 'auth_integrity',(select jsonb_build_object('null_email',count(*) filter(where email is null),'uppercase',count(*) filter(where email<>lower(email)),'whitespace',count(*) filter(where email<>trim(email))) from auth.users),
+ 'orphan_profiles',(select count(*) from public.profiles p where not exists(select 1 from auth.users u where u.id=p.id)),
+ 'auth_without_profile',(select count(*) from auth.users u where not exists(select 1 from public.profiles p where p.id=u.id)),
+ 'constraints',(select jsonb_agg(jsonb_build_object('name',conname,'definition',pg_get_constraintdef(oid),'validated',convalidated) order by conname) from pg_constraint where conrelid='public.profiles'::regclass),
+ 'profile_indexes',(select jsonb_agg(jsonb_build_object('name',ci.relname,'valid',i.indisvalid,'ready',i.indisready,'definition',pg_get_indexdef(i.indexrelid)) order by ci.relname) from pg_index i join pg_class ci on ci.oid=i.indexrelid where i.indrelid='public.profiles'::regclass),
+ 'invalid_related_indexes',(select count(*) from pg_index where indrelid in('public.profiles'::regclass,'public.founders50_reviews'::regclass,'public.share_assets'::regclass) and (not indisvalid or not indisready)),
+ 'unvalidated_related_constraints',(select count(*) from pg_constraint where conrelid in('public.profiles'::regclass,'public.founders50_reviews'::regclass,'public.share_assets'::regclass) and not convalidated),
+ 'profile_fk_dependents',(select count(*) from pg_constraint where contype='f' and confrelid='public.profiles'::regclass),
+ 'event_triggers',(select coalesce(jsonb_agg(jsonb_build_object('name',evtname,'event',evtevent,'enabled',evtenabled,'function',evtfoid::regproc::text) order by evtname),'[]'::jsonb) from pg_event_trigger),
+ 'write_statistics',jsonb_build_object('stats_reset',(select stats_reset from pg_stat_database where datname=current_database()),'counters',(select jsonb_agg(jsonb_build_object('schema',schemaname,'table',relname,'inserts',n_tup_ins,'updates',n_tup_upd,'deletes',n_tup_del) order by schemaname,relname) from pg_stat_all_tables where schemaname in ('public','auth','storage'))),
+ 'lock_snapshot',jsonb_build_object('waiting_locks',(select count(*) from pg_locks where not granted and database=(select oid from pg_database where datname=current_database())),'other_target_locks',(select coalesce(jsonb_agg(jsonb_build_object('table',c.relname,'mode',l.mode,'granted',l.granted)),'[]'::jsonb) from pg_locks l join pg_class c on c.oid=l.relation where l.pid<>pg_backend_pid() and l.relation in('public.profiles'::regclass,'public.founders50_reviews'::regclass,'public.share_assets'::regclass)),'old_transactions_over_5s',(select count(*) from pg_stat_activity where datname=current_database() and pid<>pg_backend_pid() and xact_start<now()-interval '5 seconds'),'idle_in_transaction',(select count(*) from pg_stat_activity where datname=current_database() and pid<>pg_backend_pid() and state like 'idle in transaction%'))
+) as release_preflight;
+commit;

@@ -3,6 +3,66 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Current release preparation (2026-09-27 UTC)
+
+**CONDITIONALLY READY TO REQUEST PRODUCTION MIGRATION AUTHORIZATION.** This
+package prepares a release only. No production migration/write, settings change,
+push, merge or deployment occurred. Starting clean local HEAD was `f03fb3207bcd631a315fc2f304eaba9854ec56bd`,
+above remote development `b2adf96e988380c36e3b3b0275f7b866067e078c`.
+Remote main remains `77d1d1918793bc6a25f38721e882f3d011903bad`.
+
+- Fresh read-only evidence: project ACTIVE_HEALTHY, 272 ledger entries, zero
+  profiles/Auth users/reviews/applications/staff, three active shares, unchanged
+  target catalog/security fingerprints, all 56 public tables RLS-enabled and no
+  Security Advisor findings. The committed aggregate/catalog baseline is
+  `supabase/verification/release-live-baseline-20260927.json`; its captures are
+  point-in-time evidence, not a future release authorization.
+- **Email correction:** production already accepts ordinary addresses. Live
+  historical SQL/current CHECK use one backslash; the historical repository file
+  uses two. Preserve it unchanged. Pending `20260926212002` standardizes `[.]` and
+  repository replay. It is not a verified fix for currently broken production signup.
+- Supabase CLI **2.118.0**, checksum-pinned macOS arm64 binary, was rehearsed
+  against a disposable production-like **272 -> 273 -> 274** ledger. It discovered
+  exactly the older bridge plus email with `--include-all --skip-vault`. Separate
+  workdirs enforce bridge-only then email-only execution. Ledger bookkeeping is
+  atomic with each file for these exact inputs. No seed/role/Vault/config deploy.
+- Actual CLI sessions honored 5-second lock and 30-second statement timeouts.
+  Bridge drift, ledger failures, incompatible input, contention, timeout and
+  pre-commit connection loss aborted without partial state/false ledger entries.
+  Whole-public-table data fingerprints, target catalog and security were unchanged
+  except the intended email CHECK and two truthful ledger additions. Seven SQL
+  files passed at each of the three checkpoints, 21 executions total.
+- Local validation: supported build plus original 377 JavaScript tests passed;
+  final guarded suite has **383 passing tests**, including six release gate tests.
+  Types, Netlify validation (63 modules, 59 imported handlers), targeted lint,
+  all-274 fresh migration replay and seven SQL files passed. Production-only npm
+  audit has zero findings. Historical full-install 19 findings/13 high remain
+  separate; no dependency updates or broad lint cleanup occurred.
+- Chat accepted Dave's manual dashboard evidence: Pro, three completed physical
+  backups, latest observed **2026-09-26 07:28:11 UTC**; Restore and Restore to new
+  project available. PITR disabled; retention duration unverified; Storage object
+  bytes excluded. One visible organization Owner, **MFA disabled**. No restore or
+  account-setting operation was performed. This is not full recovery readiness.
+
+Engineering recommendation: **OWNER MFA REQUIRED BEFORE MIGRATION**. PITR and
+Storage byte recovery are not additional blockers for these two no-DML files at
+zero profiles, provided a recent completed recoverable physical backup is verified
+immediately before release. Storage recovery remains a broader launch requirement.
+
+See `docs/production-migration-runbook.md` for exact commands, expected results,
+STOP conditions, backup/MFA/traffic/health gates and ambiguous-client recovery.
+See `docs/release-preparation-2026-09-27.md` for the complete handoff. Production
+password/TLS connectivity through the pinned CLI remains unverified; MCP reads do
+not prove it. Local PostgreSQL 17.11/platform stubs are not hosted Supabase 17.6 or
+full Auth/Storage integration. Both migration files and all historical files are
+byte-identical. Application source, package manifests and workflows are unchanged.
+
+Next smallest step: Owner enables/verifies MFA in a separately authorized account
+security step and verifies recovery-factor access, then refresh release-time backup,
+health, traffic and read-only preflight evidence. Chat must issue a separate explicit
+production assignment naming the approved commit and two versions. Do not run the
+migration commands, restore, change settings or push automatically.
+
 ## Current remote development baseline (2026-09-26 America/Chicago)
 
 **REMOTE DEVELOPMENT BASELINE VERIFIED.** One normal push advanced only
@@ -44,9 +104,9 @@ No dependency repair or repository-wide lint cleanup was attempted.
 
 This documentation is committed locally after the single push and is not pushed.
 No second push, main merge, production release, feature work or real-data testing
-is authorized by this checkpoint. Next proposed work is a narrow review of the
-two pending database migrations and release prerequisites, with a separate Chat
-decision before any production execution. Dependency findings need scoped triage.
+is authorized by this checkpoint. That checkpoint proposed a review of the two pending database migrations; the
+current release-preparation section above now records the completed review and
+rehearsal. A separate Chat assignment remains required before production execution. Dependency findings need scoped triage.
 
 ## Previous deployment safety package (2026-09-26, historical)
 
@@ -134,7 +194,9 @@ UNKNOWN. See `docs/migration-reconciliation.md` for source evidence and limits.
   debt remains separately scoped; no repository-wide lint cleanup was attempted.
 - Pending email correction `20260926212002` is unchanged and unapplied. Live
   aggregate preflight found profiles=0 and Auth users=0, with zero incompatible
-  values. Current database regex rejects normal addresses. Re-run preflight at
+  values. Correction recorded 2026-09-27: current production already accepts normal
+  addresses; the double-backslash discrepancy is in the historical repository
+  file, not the live stored SQL/constraint. Re-run preflight at
   release; the existing-data result can become stale. External direct Auth imports
   must use normalized compatible input. No live rows were remediated.
 - Release/recovery plan is prepared in `docs/migration-reconciliation.md` with
@@ -201,14 +263,16 @@ The supplements are based on read-only live catalog evidence, not guessed
 business requirements. They are not deployable repair migrations and do not
 claim full schema equivalence. Source-history reconciliation remains open.
 
-Migration `20260926212002_lockliel_correct_profile_email_pattern.sql` is NEW and
-UNAPPLIED to production. Existing/live `profiles_email_format` uses an
-over-escaped dot and rejects normal email addresses. Read-only evaluation of
-its actual expression confirmed the defect; the replacement uses `[.]` and
-preserves normalization and length checks. Valid/invalid identity regression
-fixtures pass locally. There are now 273 local migrations versus 272 at the
-last live inspection. The live defect remains unresolved pending a separately
-authorized release and assessment of existing data compatibility.
+Migration `20260926212002_lockliel_correct_profile_email_pattern.sql` was new and
+unapplied at this historical checkpoint. The earlier claim that the live database
+rejected ordinary email addresses was incorrect and is superseded by fresh
+2026-09-27 inspection: live stored historical SQL and the actual live constraint
+use a single backslash and accept ordinary addresses. Only the repository copy
+of applied migration `20260925153612` contains the double-backslash discrepancy.
+Do not rewrite that immutable historical file. The pending `[.]` migration provides
+canonical convergence and repository replay consistency, not a verified repair
+of an active production signup failure. There were 273 local files at this earlier
+checkpoint; the current set has 274 and production still has 272 applied versions.
 
 The local SQL harness supplies minimal Auth/Storage compatibility tables. It
 validates real PostgreSQL policies/functions, not full Supabase HTTP services,

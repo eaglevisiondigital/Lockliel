@@ -99,12 +99,15 @@ Security Advisor returned no findings at inspection. That is not a launch audit.
 ## Email compatibility findings
 
 Pending migration `20260926212002_lockliel_correct_profile_email_pattern.sql`
-remains unchanged and unapplied. With standard-conforming strings enabled, the
-current double-escaped dot matches a backslash followed by an arbitrary character,
-not the intended literal dot. It rejects ordinary addresses and can admit some
-malformed backslash addresses. `[.]` corrects the delimiter. NULL remains allowed;
-length <=254 and lowercase/trimmed storage remain required. This remains a simple
-shape check, not exhaustive RFC validation, deliverability or ownership proof.
+remains unchanged and unapplied. **Correction recorded 2026-09-27:** the historical
+repository file `20260925153612` contains a double-backslash discrepancy, but live
+stored historical SQL and the actual production CHECK use a single backslash and
+already accept ordinary email addresses. The earlier production-defect claim was
+incorrect. Preserve the applied file byte-for-byte. Pending `[.]` provides canonical
+convergence and repository replay consistency, not a verified repair of an active
+production signup failure. NULL remains allowed; length <=254 and lowercase/trimmed
+storage remain required. This is a shape check, not exhaustive RFC validation,
+deliverability or ownership proof.
 
 Read-only preflight: profiles=0, Auth users=0. All incompatibility categories are
 zero: malformed, overlength, unnormalized, would-fail and normalization collision
@@ -124,74 +127,35 @@ The SQL regression tests cover ordinary creation, NULL, normalized Auth updates,
 raw uppercase/space imports, malformed values and overlength. No normalization
 of live rows or weakening of checks was performed.
 
-## Release plan: prepare only, separate authorization required
+## Current release procedure, separate authorization required
 
-1. Verify the exact project, branch/SHA, migration file hashes and ledger. Quiesce
-   concurrent schema changes. Run both verification SELECT files using a read-only
-   session; compare the target catalog and require would-fail=0 and no new unknown
-   migration versions. Verify the current email constraint and unique email index.
-2. Establish an actual recoverable backup/PITR point, retention window, restore
-   owner, access and tested restore procedure. None was verified here. Restoring a
-   whole database can lose subsequent writes and must not be represented as a
-   harmless per-migration undo. Do not proceed without this recovery evidence.
-3. Use a pinned reviewed CLI. Its `db push --help` confirms `--include-all` for
-   older missing versions and `--skip-vault` to prevent vault-config updates.
-   A FUTURE dry run is `supabase db push --linked --include-all --skip-vault --dry-run`.
-   It was not executed here. Its pending list must contain exactly the reconstructed
-   `20260925035350` bridge and `20260926212002` email correction. Any extra item,
-   skipped version, configuration mutation or surprising plan is an abort.
-   Do not use `--include-seed`, `--include-roles`, blanket ledger repair or replay
-   applied migrations. Do not mark the bridge applied without verifying its guard.
-4. Order: guarded bridge first, email correction second. A matching existing
-   database receives no bridge DDL/DML, only normal migration-runner bookkeeping.
-   Test the runner transaction boundaries in staging. Run each migration atomically
-   with bounded lock_timeout (initially 5s) and statement_timeout (initially 30s),
-   verified on the actual migration session. If the runner cannot enforce those
-   settings, stop and choose a reviewed mechanism. Never store credentials in commands.
-5. Email drop/add is one ALTER TABLE operation: it takes ACCESS EXCLUSIVE and scans
-   existing rows for validation. At the observed zero-row size the scan is trivial,
-   but concurrent locks can still block. Reassess duration/traffic if counts change.
-   If large/incompatible data appears, abort this direct plan. Design an explicit
-   staged NOT VALID constraint rollout and reviewed remediation separately.
-   NOT VALID skips the historical scan but still checks subsequent writes, including
-   updates of old rows. VALIDATE uses SHARE UPDATE EXCLUSIVE and still scans data.
-6. Verify only the two intended ledger additions, validated email constraint,
-   unchanged unique email index, zero incompatibilities and unchanged target catalog.
-   Recheck relevant security advisors. Real signup/email-change smoke tests require
-   separately authorized controlled accounts; no production fixture execution.
-7. No application deployment is required before this database correction: current
-   application validators already expect the corrected email shape. Local tests
-   and docs are independent of website deployment. Do not combine this release
-   with staff bootstrap, Auth/SMTP settings or new features.
+The former unproven linked-CLI outline is superseded by the exact pinned and
+locally rehearsed [production migration runbook](production-migration-runbook.md).
+Supabase CLI 2.118.0 with `--include-all --skip-vault` and explicit session options
+proved separate 272 -> 273 -> 274 execution, atomic SQL/ledger bookkeeping,
+5-second lock timeout, 30-second statement timeout and failure rollback. No
+production migration was applied. All 274 migration files remain unchanged.
 
-### Abort and recovery
+Dave's accepted manual evidence establishes completed scheduled physical backups,
+latest observed 2026-09-26 07:28:11 UTC, and available Restore/Restore to new project.
+Retention is unverified, PITR disabled, Storage bytes excluded. One visible Owner
+has MFA disabled. Engineering recommendation: OWNER MFA REQUIRED BEFORE MIGRATION.
+Fresh recoverable backup evidence remains mandatory immediately before release.
+PITR and Storage byte recovery are not additional blockers for these two files on
+zero profiles; broader launch still needs protected-asset recovery planning.
 
-Abort on schema drift, unexpected pending migrations, nonzero incompatible rows,
-normalization collisions, missing backup evidence, lock timeout, failing staging
-checks, changed target identity, or unexplained authorization/health failures.
-Transaction failure should leave that migration unapplied; re-read the ledger and
-catalog because a prior migration may already have committed. Do not retry blindly.
-The matching-environment bridge has no schema changes to undo; keep its truthful
-ledger record after successful bookkeeping. Never drop existing review/share
-objects as a supposed rollback.
-
-After the email correction commits, reverting the old regex would reject newly
-created valid addresses and may fail validation. Prefer a reviewed forward repair
-while retaining normalization, uniqueness and authorization constraints. If data
-remediation becomes necessary, preserve an access-controlled original mapping
-outside Git, reconcile Auth/profile identity together, and address collisions
-without merging identities automatically. Backup restore is a last-resort recovery
-with an explicit write-loss assessment, not a casual down migration.
-
-Technical references: [Supabase migration tracking](https://supabase.com/docs/guides/deployment/database-migrations)
-and [PostgreSQL 17 ALTER TABLE locking/validation](https://www.postgresql.org/docs/17/sql-altertable.html).
+The runbook supplies exact commands, all expected/STOP results, immutable hashes,
+traffic/lock/security gates and the required ambiguous-client decision sequence.
+Never blindly retry, bypass the guard, alter historical files, repair the ledger,
+relax RLS or change data to force validation. Restore is a separately authorized
+last resort, not a per-migration undo. No application deployment is required.
 
 ## Historical development push review
 
 Superseded for push assessment by `deployment-safety-review.md`: Work completed
 the requested read-only hosting investigation on September 26, and the next
-package added code-only preview isolation. The release/rollback requirements in
-this document still apply to any future separately authorized database release.
+package added code-only preview isolation. The superseding runbook requirements
+still apply to any future separately authorized database release.
 The assignment below is retained as history, not an outstanding request.
 
 Verified read-only on 2026-09-26:

@@ -28,6 +28,15 @@ project and does not establish Lockliel architecture or business approval.
   requires a new assignment. Read `docs/remote-validation-2026-09-26.md`.
   Do not apply migrations, change permissions, toggle flags,
   bootstrap staff, or execute SQL fixtures against the connected project for it.
+- The 2026-09-27 preparation assignment authorizes continuity/runbook scripts,
+  disposable exact-runner rehearsal and one local commit only. No production
+  migration, credential/configuration change, push or deployment is authorized.
+  Read `docs/production-migration-runbook.md` before any future release. Pin CLI
+  2.118.0 and its reviewed binary hash; preserve all 274 migration hashes. Recheck
+  Owner MFA, fresh recoverable physical backup, project/site health, traffic and
+  database preflight, then require a separate explicit execution assignment.
+  Production already accepts ordinary emails. The pending `[.]` migration provides
+  convergence/replay consistency; do not describe a verified live signup outage.
 - Read `docs/migration-reconciliation.md` before future database releases. The
   reconstructed version `20260925035350` is an explicit ordering exception, not a
   recovered original timestamp. Do not edit existing migration bodies or bypass
@@ -82,7 +91,9 @@ project and does not establish Lockliel architecture or business approval.
   Resource signup tests must mock both Forms and CRM transports. Keep fail-closed
   network protection enabled, including subprocess probes for swallowed errors.
 - Run SQL fixtures only through `npm run test:sql` in its disposable PostgreSQL 17
-  cluster. Never supply linked-project credentials or execute fixtures live.
+  cluster, or through the documented `scripts/rehearse-migration-release.mjs`
+  disposable runner rehearsal with verified OS IP egress denial. Never supply
+  linked-project credentials or execute fixtures live.
 - Run meaningful success, failure, input, ownership and authorization checks for
   changed behavior. Database fixtures require an isolated disposable environment.
 - After meaningful work update `CURRENT_BUILD_STATE.md` and affected architecture,

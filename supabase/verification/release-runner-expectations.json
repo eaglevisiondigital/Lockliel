@@ -1,0 +1,15 @@
+{
+  "ledger": [
+    {
+      "name": "lockliel_reconstructed_review_share_history",
+      "version": "20260925035350",
+      "statements_md5": "62f2222e39bc23c69f33def662c4904f"
+    },
+    {
+      "name": "lockliel_correct_profile_email_pattern",
+      "version": "20260926212002",
+      "statements_md5": "362ca23f83b0814e803cf537e583e077"
+    }
+  ],
+  "email_constraint_md5": "091fd4560de7211e3e1c63eb2569d6e0"
+}

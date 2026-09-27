@@ -143,3 +143,14 @@ completed existing schema without DDL/DML. Other partial schemas fail closed.
 Platform compatibility stubs remain distinct from migrations and test data.
 See `docs/migration-reconciliation.md` for why normal chronological forward-only
 DDL cannot repair the earlier replay failure without this bounded exception.
+
+## Prepared migration release boundary, 2026-09-27
+
+The official pinned Supabase CLI 2.118.0 performs future version-preserving SQL
+release. Repository helpers only prepare byte-verified external workdirs and check
+read-only captures; the rehearsal creates its own offline PostgreSQL 17 cluster.
+Two workdirs enforce 272 -> bridge-only 273 -> email-only 274. No application,
+Netlify, Sites, Edge Function, seed, role or Vault deployment is combined with it.
+Existing production email semantics are valid; canonical `[.]` provides convergence
+with immutable repository replay history. Follow the production migration runbook
+for the independent authorization/recovery/MFA gates. No live release occurred.
