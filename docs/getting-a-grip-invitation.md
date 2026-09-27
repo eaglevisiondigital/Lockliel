@@ -6,6 +6,14 @@ remote implementation `9eee9ee50cd6a21e0dde804b00725d17d6d31f93`.
 This package authorizes local implementation, isolated tests, documentation and a
 local commit only. It does not authorize pushing, publishing or content activation.
 
+## Subsequent development checkpoint
+
+Implementation `48a9e10640ae430638d9921917209a023774bdc2` is now remotely verified
+under a separate one-push assignment. Both GitHub runs and exact preview checks
+passed. Production content remains inactive. See
+`getting-a-grip-remote-checkpoint-2026-09-27.md`. The local-only implementation
+statements below describe the original package before that separate authorization.
+
 ## Approved definition and release status
 
 **APPROVED FOR FUTURE RELEASE / NOT YET ACTIVE IN PRODUCTION**

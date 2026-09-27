@@ -103,6 +103,14 @@ project and does not establish Lockliel architecture or business approval.
   Verify live destination/course readiness before any separately authorized
   production content release through the existing admin workflow.
 
+## Getting a Grip remote checkpoint (2026-09-27)
+
+- The subsequent assignment authorized one normal push of `48a9e106` only. It is
+  complete. Read `docs/getting-a-grip-remote-checkpoint-2026-09-27.md` for CI,
+  exact preview and production preservation evidence. Documentation remains local;
+  no second push is authorized. Share Library content is still not active in
+  production. Both pending production migrations remain unapplied.
+
 ## Permanent product and security constraints
 
 - Preserve original inviter independently of latest campaign, assigned mentor or

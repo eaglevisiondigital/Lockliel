@@ -3,6 +3,27 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Getting a Grip remote checkpoint (2026-09-27)
+
+**GETTING A GRIP REMOTE CHECKPOINT VERIFIED.** One authorized normal development
+push advanced `9eee9ee` through local evidence `559639b` to
+`48a9e10640ae430638d9921917209a023774bdc2`. Both push and PR CI passed: 456 JS
+checks, 274 replayed migrations, 10 SQL/RLS files, build, types, Netlify validation,
+configured lint and zero production dependency vulnerabilities.
+
+Ready preview `6ab928cc144ffe0008903f15` represents the exact implementation.
+`/getting-a-grip` returns approved copy and correct account links without protected
+resource exposure. All 26 harmless backend probes returned expected denial.
+Main and PR status, Netlify production identity/homepage hashes, ChatGPT Site
+version 25, Supabase migration/security/content/write fingerprints and Edge
+Function metadata are preserved. Production remains at 272 migrations with zero
+Getting a Grip Share Library rows. No production write, activation, migration,
+settings change or deployment occurred. Post-checkpoint documentation stays local.
+
+See `docs/getting-a-grip-remote-checkpoint-2026-09-27.md` for exact runs, commits,
+checks and evidence limits. Next proposal: a separately assigned read-only course
+production-readiness inventory. Do not start or activate content automatically.
+
 ## Getting a Grip invitation (local, 2026-09-27)
 
 Implemented on `559639baf90aa60e8dac3423d78fa599b135b789`, preserving remote

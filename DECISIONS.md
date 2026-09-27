@@ -3,6 +3,16 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Getting a Grip checkpoint authorization and outcome (2026-09-27)
+
+AUTHORIZED by the subsequent user assignment: exactly one normal development
+push through `48a9e10640ae430638d9921917209a023774bdc2`, remote CI/preview checks
+and read-only preservation inspection. COMPLETED: both workflows and exact preview
+passed; inspected production baselines match. This supersedes the earlier local-
+only restriction for that implementation commit only. Post-verification docs stay
+local. No second push, activation, pending migration, production publication or
+next package is authorized. See `docs/getting-a-grip-remote-checkpoint-2026-09-27.md`.
+
 ## Approved Getting a Grip invitation (2026-09-27)
 
 APPROVED: the subsequent Chat assignment authorizes a development-only public
