@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  ArrowUpRight,
   BookOpen,
   HeartHandshake,
   LogOut,
@@ -14,9 +13,12 @@ import {
   Users,
   UsersRound
 } from "lucide-react";
-import {useEffect,useMemo,useState} from "react";
+import {useEffect,useMemo,useRef,useState} from "react";
 import NotificationsClient from "./notifications/notifications-client";
 import DashboardAttention from "./dashboard-attention";
+import MemberJourneyPanels,{NextStepCard} from "./member-journey-panels";
+import type {MemberJourney} from "@/lib/member-journey-types";
+import {journeyEvent} from "@/lib/member-journey-events.mjs";
 
 type SessionData={
   authenticated:boolean;
@@ -88,17 +90,28 @@ const baseCards=[
 
 export default function MyLocklielDashboard(){
   const [data,setData]=useState<SessionData|null>(null);
+  const [journey,setJourney]=useState<MemberJourney|null>(null);
+  const [error,setError]=useState("");
+  const viewed=useRef(false);
 
   useEffect(()=>{
-    fetch("/api/lockliel-auth/session",{cache:"no-store"})
-      .then(async r=>{
-        if(r.status===401){
-          location.replace("/my-lockliel/sign-in");
-          return;
-        }
-        setData(await r.json());
-      })
-      .catch(()=>location.replace("/my-lockliel/sign-in"));
+    let active=true;
+    Promise.all([
+      fetch("/api/lockliel-auth/session",{cache:"no-store"}),
+      fetch("/api/lockliel/next-step",{cache:"no-store"})
+    ]).then(async([sessionResponse,nextResponse])=>{
+      if(sessionResponse.status===401||nextResponse.status===401){location.replace("/my-lockliel/sign-in");return;}
+      if(!sessionResponse.ok)throw new Error("Member features are temporarily unavailable.");
+      const session=await sessionResponse.json();
+      if(!active)return;
+      setData(session);
+      if(!nextResponse.ok)throw new Error("Your next step is temporarily unavailable. Your existing tools are still below.");
+      const result=await nextResponse.json();
+      if(!active)return;
+      setJourney(result);
+      if(!viewed.current){journeyEvent("next_step_viewed");viewed.current=true;}
+    }).catch(reason=>{if(active)setError(reason instanceof Error?reason.message:"Unable to load My Lockliel.");});
+    return ()=>{active=false;};
   },[]);
 
   async function signOut(){
@@ -109,7 +122,7 @@ export default function MyLocklielDashboard(){
   const cards=useMemo(()=>{
     if(!data)return baseCards;
 
-    const extra:any[]=[];
+    const extra:typeof baseCards=[];
     const roles=data.roles||[];
     const adminCapableRoles=["super_admin","admin","discipleship_admin","founders50_reviewer","finance_admin","content_admin"];
     const hasAdminAccess=roles.some(role=>adminCapableRoles.includes(role));
@@ -117,7 +130,6 @@ export default function MyLocklielDashboard(){
     const hasLeaderTools=Boolean(data.leaderProfile)||Number(data.peopleAssignedCount||0)>0||isRoleLeader;
     const hasFulfillmentAccess=roles.includes("fulfillment_admin");
     const founderStatus=String(data.founderStatus||"");
-    const founderActive=["accepted","orientation","active_host"].includes(founderStatus);
     const isHost=(data.groupMemberships||[]).some(g=>["leader","host"].includes(g.role));
 
     if(["accepted","orientation"].includes(founderStatus)){
@@ -182,12 +194,10 @@ export default function MyLocklielDashboard(){
   },[data]);
 
   if(!data){
-    return <main className="my-lockliel"><div className="ml-loading">Opening My Lockliel…</div></main>;
+    return <main className="my-lockliel"><div className="ml-loading" role="status">{error||"Opening My Lockliel…"}{error&&<p><button className="ml-action" onClick={()=>location.reload()}>Try again</button></p>}</div></main>;
   }
 
   const name=data.profile?.first_name?.trim();
-  const nextTitle=data.journey?.next_step_title||"Continue Getting a Grip on the Basics";
-  const nextPath=data.journey?.next_step_path||"/my-lockliel/journey";
 
   return <main className="my-lockliel"><div className="ml-shell">
     <header className="ml-member-bar">
@@ -202,38 +212,14 @@ export default function MyLocklielDashboard(){
       </div>
     </header>
 
-    <section className="ml-hero">
-      <div className="ml-panel">
-        <div className="ml-kicker">Your next step matters</div>
-        <h1>Grow. Reach one.<br/>Help them grow.</h1>
-        <p>Grow in Jesus, live from who God says you are, reach people personally, and help somebody else begin doing the same.</p>
-        <div className="ml-path">
-          <span>KNOW JESUS</span>
-          <span>GROW</span>
-          <span>REACH ONE</span>
-          <span>SHARE</span>
-          <span>FOLLOW UP</span>
-          <span>MULTIPLY</span>
-        </div>
-      </div>
-
-      <aside className="ml-panel ml-next">
-        <div>
-          <div className="ml-kicker">Your next step</div>
-          <strong>{nextTitle}</strong>
-          <p>Your journey is personal and trackable. Continue where you left off and keep moving forward.</p>
-          <div className="ml-mini-stats">
-            <span><b>{data.journey?.reach_one_count||0}</b> reached</span>
-            <span><b>{data.journey?.active_connections_count||0}</b> connections</span>
-          </div>
-        </div>
-        <Link href={nextPath}>
-          {data.profile?.onboarding_status==="new"?"Get started":"Continue"} <ArrowUpRight size={17}/>
-        </Link>
-      </aside>
+    {error&&<p className="ml-auth-message error" role="alert">{error} <button onClick={()=>location.reload()}>Try again</button></p>}
+    <section className="ml-hero ml-member-hero">
+      {journey?<NextStepCard step={journey.nextStep}/>:<section className="ml-panel"><h1>What should I do next?</h1><p>Your personal guidance is unavailable right now. You can still explore your member tools below.</p></section>}
+      <aside className="ml-panel ml-member-mission"><div className="ml-kicker">Reach. Teach. Train. Disciple.</div><h2>Grow. Reach one.<br/>Help them grow.</h2><p>Grow in Jesus, live from who God says you are, and help somebody else take their next step.</p><Link href="/my-lockliel/faith-profile">My growth preferences →</Link></aside>
     </section>
+    {journey&&<MemberJourneyPanels data={journey}/>}
 
-    {(data.founderStatus||data.groupMemberships?.length)&&<section className="ml-member-context">
+    {Boolean(data.founderStatus||data.groupMemberships?.length)&&<section className="ml-member-context">
       {data.founderStatus&&<span>Founders 50: {data.founderStatus.replaceAll("_"," ")}</span>}
       {(data.groupMemberships||[]).map((g,index)=><span key={g.group_id+"-"+index}>Group role: {g.role.replaceAll("_"," ")}</span>)}
     </section>}
@@ -242,7 +228,7 @@ export default function MyLocklielDashboard(){
 
     <NotificationsClient compact/>
 
-    <h2 className="ml-section-title">What will you do next?</h2>
+    <h2 className="ml-section-title">Explore your member tools</h2>
     <section className="ml-grid">
       {cards.map(({icon:Icon,...card})=><article className="ml-card" key={card.title}>
         <div className="ml-icon"><Icon size={21}/></div>

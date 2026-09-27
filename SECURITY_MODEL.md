@@ -4,6 +4,37 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Member Journey Core privacy boundary (2026-09-27, local only)
+
+New recommendation/onboarding handlers retain active-session validation, the
+caller's JWT and existing row-level policies. They do not use a service-role key
+or accept a caller-selected member ID/role. Responses use the existing no-store
+helper. Recommendation reads select only required fields and return counts and
+navigation, without faith answers, contact identities, notes, worksheet answers,
+storage URLs or a sensitive explanation trace. Failed reads return unavailable;
+they are not treated as empty accounts or proof of completion.
+
+The onboarding write is a bounded, allowlisted minimal upsert of the caller's
+growth interests and explicitly chosen new-believer stage. It requires profile
+completion and privacy acknowledgment, rejects a mismatched Origin, and preserves
+other fields. Empty optional answers are valid. It never writes group/hosting
+preferences: existing triggers on `wants_group`/`wants_host` create or close
+staff-visible requests. No onboarding change grants contact consent, a leadership
+role or staff access. Stage names never enter authorization decisions. Existing
+MFA/AAL2, deletion, financial and purpose-based access controls are unchanged.
+
+Both handlers fail closed outside trusted production invocation context. Local
+tests mock transports with network protection; disposable PostgreSQL tests prove
+member ownership, cross-member read/write denial, protected onboarding/journey
+fields, preserved connection requests, five-active-person enforcement and no role
+grant from faith selections. Those tests do not claim live RLS/Auth/Storage parity.
+Synthetic browser validation made zero external requests. No production fixtures,
+migrations, member data, credentials or configuration were used or changed.
+
+UI telemetry hooks expose allowlisted event names only, respect Do Not Track, and
+have no persistence or collector. A future durable analytics design requires its
+own privacy scope. See `docs/member-journey-core.md` for validation and limitations.
+
 ## Release security and recovery gates (2026-09-27)
 
 Production remains at 272 migrations. No live schema, ledger, data, permissions or

@@ -42,6 +42,15 @@ project and does not establish Lockliel architecture or business approval.
   recovered original timestamp. Do not edit existing migration bodies or bypass
   its catalog guard. Read `docs/deployment-safety-review.md` for the exact reviewed
   range, Work's verified hosting findings and the controlled-push recommendation.
+- The subsequent Member Journey Core assignment authorizes local member UI,
+  deterministic guidance, private onboarding and isolated validation. Read
+  `docs/member-journey-core.md`. Keep the pure recommendation domain centralized;
+  derived stages are never permission grants. Do not write `wants_group` or
+  `wants_host` from the private short onboarding survey, because existing triggers
+  create/close staff-visible requests. New UI event hooks have no durable collector.
+  No new schema was needed. Preserve all 274 migration bytes and the separate
+  release-preparation files. Report development-push readiness without pushing
+  automatically. Live authenticated browser testing needs an isolated backend.
 - Preserve both the published ChatGPT Site version 25 and Netlify production.
   Before future substantial frontend changes, Chat must identify the authoritative
   visual version and retain recoverable source/assets. Neither site's served

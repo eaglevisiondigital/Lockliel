@@ -377,7 +377,7 @@ test("share analytics aggregate person-specific links by resource",()=>{
 
 
 test("localized Journey preserves canonical progress identity",()=>{
-  const endpoint=fs.readFileSync("netlify/functions/lockliel-journey.mjs","utf8");
+  const endpoint=fs.readFileSync("netlify/lib/course-journey.mjs","utf8");
   assert.match(endpoint,/preferredLocale/);
   assert.match(endpoint,/translation_key/);
   assert.match(endpoint,/canonical_course_id/);

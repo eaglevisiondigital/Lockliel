@@ -4,6 +4,44 @@ Baseline: 2026-09-26, development commit
 `47409a2796a5275e12684cb4a182cb008c4d5414`.
 See `CURRENT_BUILD_STATE.md` for live evidence and verification limits.
 
+## Member Journey Core, local implementation (2026-09-27)
+
+The authenticated member experience now has four short onboarding steps and one
+primary recommendation. `netlify/lib/member-journey.mjs` is the pure deterministic
+domain boundary; `member-journey-data.mjs` reads narrow caller-scoped data; the new
+`lockliel-next-step` handler returns a rendering projection. It does not persist
+recommendations, invoke AI, write progress or confer eligibility. UI components
+consume this decision instead of duplicating priorities or the older persisted
+`member_journey.next_step_*` labels.
+
+Priority is onboarding, active Grip lesson, unfinished requirement, unstarted Grip,
+empty My Five, due follow-up, actionable community, approved host orientation,
+ranked resource, healthy growth. Video/worksheet requirements refine an active
+lesson CTA. `course-journey.mjs` extracts the existing translated player reader
+without changing the POST/completion path; its summary mode excludes worksheet
+answers and storage paths. Enrollment alone is not course activity. Unavailable
+content never implies a fabricated enrollment or lesson entitlement.
+
+Onboarding reuses `/api/lockliel/profile` for the protected profile transition and
+`/api/lockliel/onboarding` for optional private interests/new-believer selection.
+Completion derives from an active profile and an existing faith-profile row,
+including an intentionally empty selection. Existing members satisfying those
+conditions need not repeat onboarding. Profile and preference saves are separate
+retryable requests, not an atomic multi-table transaction. There is no duplicate
+profile, survey, consent or recommendation store and no new migration.
+
+My Five uses existing statuses and due dates. Community reads actual memberships
+and pending requests. Resource ranking uses active Share Library category and
+locale variants, with safe local destinations. Journey stages are descriptive;
+Multiplying is displayed as an ongoing goal without a fabricated achievement.
+New browser-local event-name hooks respect Do Not Track and have no transport or
+collector. Existing durable module events remain authoritative for actual actions.
+
+Both new default handlers retain `withProductionBackend`. The local count is now
+61 imported handlers/68 Netlify modules; the deployed baseline below predates this
+package. No manifests, workflows, dependency versions, public landing pages or
+published websites changed. Read `docs/member-journey-core.md` for API and test scope.
+
 ## Current deployment boundary (2026-09-26)
 
 Work verified production branch main, PR previews enabled, standalone branch

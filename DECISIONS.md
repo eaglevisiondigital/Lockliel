@@ -3,9 +3,48 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
-## Release preparation decision record (2026-09-27)
+## Member Journey Core phase 1 decision record (2026-09-27)
 
-AUTHORIZED by the current Chat assignment: correct continuity, preserve all existing
+AUTHORIZED by the subsequent Chat assignment: implement guided onboarding,
+authenticated dashboard improvements and centralized deterministic recommendations
+on the existing development branch, reuse established systems, run isolated tests
+and update continuity. Preserve both local documentation/release commits and both
+published sites. This supersedes the prior preparation-only restriction for this
+local feature package. It does not authorize a production migration, merge, site
+publication, configuration change or automatic development push.
+
+IMPLEMENTED LOCALLY: four-step onboarding and one prioritized Next Best Step with
+course, My Five, community, approved orientation and resource integration. Private
+growth choices remain optional. Existing course completion, 95 percent watch
+threshold, worksheets, My Five maximum, membership permissions and staff MFA remain
+authoritative. UI changes reuse current member styling and committed source/assets;
+the broader published visual-source decision remains open.
+
+IMPLEMENTATION CHOICES: derive onboarding completion from active profile plus a
+faith-profile row; derive recommendations on demand; reuse existing category/locale
+metadata; keep stages descriptive. No schema migration is needed. Never write
+`wants_group`/`wants_host` from the private short survey, because their existing
+trigger creates/closes staff-visible requests. Community actions stay explicit in
+the established group flow. SQL tests verify that unrelated preferences and
+requests survive the new upsert. UI lifecycle events use names-only browser hooks;
+no existing generic member analytics collector was found or repurposed.
+
+VERIFIED LOCALLY: 411 JavaScript tests, 274-migration fresh replay, eight SQL/RLS
+files, build, types, Netlify module validation and targeted lint. Mocked browser
+checks cover onboarding, dashboard states and responsive layout with zero external
+requests. This establishes local implementation, not a deployed or live-tested
+feature. No release file/migration bytes changed; prior production evidence remains
+point-in-time. See `docs/member-journey-core.md`.
+
+PROPOSED ONLY: guided My Five follow-up and resource-sharing refinement, preserving
+current statuses, consent, original inviter and campaign attribution. Do not start
+without another assignment. Durable UI analytics and authenticated preview testing
+against an isolated backend remain separately scoped work. Neither pending
+production migration is approved for execution by this product package.
+
+## Previous release preparation decision record (2026-09-27)
+
+AUTHORIZED by that preparation assignment: correct continuity, preserve all existing
 migration bytes, select/pin/rehearse the exact production runner locally, prepare
 read-only preflight and a runbook, run validation, and create one local commit.
 No production execution, push, merge, deploy, dependency update, setting change,

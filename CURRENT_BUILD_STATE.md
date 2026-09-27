@@ -3,7 +3,57 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
-## Current release preparation (2026-09-27 UTC)
+## Current local Member Journey Core package (2026-09-27 UTC)
+
+**IMPLEMENTED AND VALIDATED LOCALLY; NOT PUSHED OR DEPLOYED.** Started from clean
+`fc78dcea390df434c7378da58566e35cf88f4bf5` on `lockliel-backend-v1`. Both this
+release-preparation commit and its parent `f03fb3207bcd631a315fc2f304eaba9854ec56bd`
+are preserved. The recorded remote development/main SHAs below were not refreshed
+in this implementation package. No remote ref, production data or setting changed.
+
+- Added four-step onboarding, one prominent deterministic Next Best Step, and
+  dashboard course, My Five, resources, community and descriptive progress panels.
+  Existing member CSS, tools and operational role checks are retained. The starting
+  commit retains the recoverable local source/assets baseline. Neither published
+  website was edited, and no broader visual-source selection is implied.
+- Reused the protected profile-completion trigger, private faith profile, Grip
+  enrollments and canonical translated lesson/media progress, My Five, group and
+  orientation state, and active Share Library. No new schema or migration. All
+  274 migration files and the separate release-preparation files remain unchanged.
+- New caller-scoped `/api/lockliel/next-step` and `/api/lockliel/onboarding` handlers
+  use active sessions, existing JWT/RLS and the nonproduction backend guard.
+  Recommendations contain navigation and counts, without private answers, contact
+  identities/notes, or sensitive reasoning. Journey labels grant no permissions.
+- Private onboarding writes do not touch `wants_group` or `wants_host`, whose
+  existing trigger would create/close staff-visible requests. Optional answers may
+  be skipped. Existing preferences and contact consent are preserved. UI event
+  hooks carry names only and are browser-local, not new durable analytics.
+- Validation: **411 JavaScript tests passed**, including 26 new focused tests and
+  coverage of both new default handlers by the existing preview-isolation suite.
+  Webpack export, TypeScript, 68 Netlify modules/61 handlers, tooling and targeted
+  lint passed. Fresh replay of 274 migrations and **8 SQL/RLS files passed** in
+  disposable PostgreSQL 17. Real RLS tests are local; no live fixtures ran.
+- Mocked Chrome validation covered the four onboarding steps, dashboard empty and
+  populated states, worksheet navigation, failure recovery, and 390/768/1365 widths.
+  All API responses were synthetic; external browser requests numbered zero.
+  Build/tests used cleared credentials and OS-level outbound network denial.
+
+No production inspection was repeated here. **272 applied production migrations**
+is the last verified release-preparation observation, not a fresh measurement.
+Both pending migrations still require the separate release gates below. The new
+application introduces no build-time write or publishing command. It is ready for
+review and a separately authorized development push; previews remain static-only
+for connected features until an isolated backend exists.
+
+Detailed implementation, file map, evidence and limitations:
+`docs/member-journey-core.md`. New UI hooks have no collector; Multiplying remains
+an aspirational label, and mocked browser checks do not prove hosted Auth/PostgREST
+integration. Repository-wide lint debt is unchanged. Recommended next product
+package, not started: guided My Five follow-up and resource sharing using existing
+statuses, consent, attribution and the deterministic service. Live authenticated
+browser testing requires a separately scoped isolated environment.
+
+## Separate release preparation baseline (2026-09-27 UTC)
 
 **CONDITIONALLY READY TO REQUEST PRODUCTION MIGRATION AUTHORIZATION.** This
 package prepares a release only. No production migration/write, settings change,
