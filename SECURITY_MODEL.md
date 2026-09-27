@@ -4,7 +4,39 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
-## Current preview isolation (2026-09-26)
+## Remote guard verification (2026-09-26 America/Chicago)
+
+The single authorized push of `b2adf96` produced Netlify preview deploy
+`6ab8807f33f3d00009cbf189`, with 58 serverless functions and the edge guard. All
+12 harmless unauthenticated probes returned the expected no-store 503 code and
+no cookies/redirects. Native form POSTs had empty bodies and no form-name;
+the referral GET used an invalid code that could not create a tracking record
+even under the old handler. Five served form pages lack detection attributes.
+This verifies the deployed boundary on representative paths, not an exhaustive
+production account journey. Neither guard was disabled or bypassed for testing.
+
+Push and PR CI both passed 377 Node tests and seven SQL files after 274 migrations
+in disposable PostgreSQL. All four job tokens had Contents, Metadata and Packages
+read permissions; only expected CI cache writes occurred. No migration/deployment
+command ran against production. Full install audit reported 19 findings, while
+the explicit production dependency audit reported zero; do not conflate them.
+
+Supabase migration history and Edge Function metadata match before/after. RLS/ACL,
+policy/function-definition fingerprints and 91 application/Auth/Storage table
+write counters are unchanged. These statistics corroborate absence of database
+writes during the inspection window, but are not an exhaustive external activity
+or hosted Auth configuration audit. Production Netlify deploy identity/body hash
+and Sites version/publication metadata also match. No real-data test was run.
+Authenticated Netlify Forms/Blobs audit access was unavailable. Empty requests
+were rejected before application handling, and no valid form submission was sent.
+
+See `docs/remote-validation-2026-09-26.md` for exact routes and evidence. Older
+immutable preview deployments remain unsafe; the PR alias is now protected but
+must be tied to the reviewed deploy before future testing. No isolated writable
+backend was created. Production release, permissions and business rules remain
+outside this completed validation package.
+
+## Preview isolation implementation (2026-09-26)
 
 At `47409a2` through `ce7439f`, previews shared production-connected functions.
 `SUPABASE_URL` and `SUPABASE_KEY` are source constants in `lockliel-core.mjs`, not

@@ -3,7 +3,52 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
-## Current deployment safety package (2026-09-26)
+## Current remote development baseline (2026-09-26 America/Chicago)
+
+**REMOTE DEVELOPMENT BASELINE VERIFIED.** One normal push advanced only
+`origin/lockliel-backend-v1` from `47409a2796a5275e12684cb4a182cb008c4d5414` to
+`b2adf96e988380c36e3b3b0275f7b866067e078c`. All six reviewed commits were pushed
+without rewriting history. Remote main remains
+`77d1d1918793bc6a25f38721e882f3d011903bad`; other branches and the empty tag list
+are unchanged. PR #3 remains open against main, unmerged, with auto-merge disabled.
+
+- GitHub `Lockliel Preview Check` push run `36288861605` and PR run `36288863602`
+  both passed build and SQL jobs. Logs confirm 377 Node tests, 274-migration fresh
+  replay, seven SQL files, types, Netlify validation, targeted lint and a clean
+  production dependency audit. Job tokens had Contents/Metadata/Packages read
+  permissions. Expected Actions cache writes occurred; no release/migration step.
+- Netlify deploy `6ab8807f33f3d00009cbf189` is ready, context `deploy-preview`,
+  branch `lockliel-backend-v1`, exact commit `b2adf96`, review #3. Its summary lists
+  58 serverless functions and one edge function. Created September 27 at
+  02:33:35 UTC, still September 26 in America/Chicago.
+- Twelve unauthenticated harmless GET/empty-POST probes returned 503 with
+  `production_backend_disabled`, no-store and no cookies/redirects. This includes
+  direct/API/session/referral/reader/resource routes and native form paths. Five
+  served form pages returned 200 with no Netlify form-detection attributes.
+- Production Netlify deploy `6ab3f0887cb1200008eb8e9f`, main commit, publication
+  time and homepage content hash remained unchanged. No production deploy appeared.
+- Supabase still has 272 applied migrations and the same five Edge Function
+  versions. Profile/Auth-user/audit/referral counts remain zero; public RLS/ACL,
+  policy/function-definition fingerprints and write counters for 91 public/Auth/
+  Storage tables match before/after. No production SQL migration or write ran.
+- Sites connector confirms saved version 25, its source archive fingerprint and
+  August 27 successful publication unchanged. Neither published site was edited.
+
+Full evidence, links, probe list and limitations:
+`docs/remote-validation-2026-09-26.md`. Netlify Forms/Blobs administrative audits
+were unavailable; no valid submission or personal data was sent. These scoped
+checks are not a full production-data or Auth/payment configuration audit.
+Older immutable previews remain unsafe. Full dependency installation reports
+19 findings (1 low, 5 moderate, 13 high); the production-only audit reports zero.
+No dependency repair or repository-wide lint cleanup was attempted.
+
+This documentation is committed locally after the single push and is not pushed.
+No second push, main merge, production release, feature work or real-data testing
+is authorized by this checkpoint. Next proposed work is a narrow review of the
+two pending database migrations and release prerequisites, with a separate Chat
+decision before any production execution. Dependency findings need scoped triage.
+
+## Previous deployment safety package (2026-09-26, historical)
 
 Reviewed branch: `lockliel-backend-v1`, remote baseline
 `47409a2796a5275e12684cb4a182cb008c4d5414`, five-commit checkpoint

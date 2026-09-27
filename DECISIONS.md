@@ -3,7 +3,27 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
-## Current deployment safety decision (2026-09-26)
+## Completed controlled development push (2026-09-26 America/Chicago)
+
+AUTHORIZED by Dave's follow-up assignment: one normal push of exactly `b2adf96`
+on `lockliel-backend-v1`, then read-only remote inspection and harmless preview
+guard verification. This superseded the earlier no-push scope for that one action.
+COMPLETED: all six reviewed commits are remote; main and other refs are unchanged;
+PR #3 remains open/unmerged; push/PR CI passed; the exact new preview passed 12
+guard probes and five form-export checks. Production preservation checks match.
+Evidence and limits are in `docs/remote-validation-2026-09-26.md`.
+
+The post-push evidence documentation is LOCAL ONLY. No second push is authorized.
+No frontend decision, site redesign, migration execution, Auth/SMTP/payment setup,
+permission change or feature work was approved or performed. Older previews are
+still unsafe, and the protected preview has no writable production backend.
+
+PROPOSED ONLY: review the two pending database migrations and their documented
+release prerequisites for a separate Chat release decision. Triage the full
+dependency audit's 19 findings in a separate narrow package. Do not begin either
+as an automatic continuation of this successful remote checkpoint.
+
+## Previous deployment safety decision (2026-09-26, historical)
 
 AUTHORIZED by Dave's current engineering handoff: preserve the five local commits,
 review push effects, implement the smallest code-only preview isolation, validate

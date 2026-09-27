@@ -22,8 +22,10 @@ project and does not establish Lockliel architecture or business approval.
 - Preserve existing work, approved branding, and completed systems. Keep `main`
   untouched. Do not merge, deploy, change production, or alter protected systems
   without explicit authorization for that scope.
-- The current 2026-09-26 assignment authorizes deployment review, code-only preview
-  isolation, isolated validation and local commits. It does not authorize a push.
+- The subsequent 2026-09-26 assignment authorized exactly one normal development
+  push of `b2adf96e988380c36e3b3b0275f7b866067e078c`. It is complete; remote CI
+  and preview guards passed. Post-push documentation stays local. Another push
+  requires a new assignment. Read `docs/remote-validation-2026-09-26.md`.
   Do not apply migrations, change permissions, toggle flags,
   bootstrap staff, or execute SQL fixtures against the connected project for it.
 - Read `docs/migration-reconciliation.md` before future database releases. The
@@ -40,8 +42,11 @@ project and does not establish Lockliel architecture or business approval.
   Keep the edge POST guard and nonproduction form-detection removal. Do not use
   hostname, request headers, NODE_ENV or an environment override to bypass them.
   Local frontend development and mocked tests remain supported; local functions
-  have no live backend. Older previews remain unsafe and must not be used for
-  write-based testing. New previews require verification of the deployed guard.
+  have no live backend. Older immutable previews remain unsafe. PR preview #3
+  was verified at deploy `6ab8807f33f3d00009cbf189`, commit `b2adf96`; its alias
+  can change on future pushes. Recheck exact deploy identity before validation.
+  Use unauthenticated GETs or empty POSTs without form names/personal data. Never
+  test a guard by permitting a production write or switching context to production.
 - Never recreate or rerun applied migrations against an existing live environment. In particular,
   `20260926033358_lockliel_account_deletion_execution_support` already exists in
   both histories. Recheck migration parity before future database work.
