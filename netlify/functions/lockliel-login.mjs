@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   SUPABASE_KEY,
@@ -7,7 +8,7 @@ import {
   hasVerifiedTotp
 } from "../lib/lockliel-core.mjs";
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="POST")return json({error:"Method not allowed"},405);
 
   const b=await request.json().catch(()=>({}));
@@ -48,7 +49,7 @@ export default async(request)=>{
     200,
     sessionCookies(d)
   );
-};
+});
 
 export const config={
   path:"/api/lockliel-auth/login",

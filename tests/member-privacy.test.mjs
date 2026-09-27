@@ -40,7 +40,7 @@ async function run(options={}){
       method:options.body?'POST':'GET',headers:{cookie:'lockliel_access='+token,'Content-Type':'application/json'},
       ...(options.body?{body:JSON.stringify(options.body)}:{})
     });
-    const r=await (options.export?exportData:privacy)(req);
+    const r=await (options.export?exportData:privacy)(req,{deploy:{context:'production'}});
     return {status:r.status,body:await r.json(),headers:r.headers,calls};
   }finally{globalThis.fetch=original;}
 }

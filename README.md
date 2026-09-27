@@ -32,6 +32,16 @@ Netlify deploys `out/` and functions according to `netlify.toml`. No deployment 
 performed by local validation. Module validation is not Netlify cloud integration
 or browser validation. Never use real member accounts for automated tests.
 
+Deploy previews and local/unknown Netlify contexts render static pages but return
+503 for connected features. All handlers require trusted invocation
+`context.deploy.context === 'production'`; there is no local environment-variable
+bypass. Handler tests explicitly supply simulated production context and fake
+transports under the network guard. Do not point local development at live data.
+Builds strip Netlify form-detection attributes unless build CONTEXT is production;
+the production build preserves the original forms. An edge guard separately
+blocks native form submissions and connected GET routes in previews. See
+`docs/deployment-safety-review.md` before any controlled push or browser testing.
+
 ## Isolated SQL tests
 
 Install PostgreSQL 17 and place `initdb`, `pg_ctl`, and `psql` on PATH. On macOS

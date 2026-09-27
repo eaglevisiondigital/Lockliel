@@ -4,6 +4,46 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Current preview isolation (2026-09-26)
+
+At `47409a2` through `ce7439f`, previews shared production-connected functions.
+`SUPABASE_URL` and `SUPABASE_KEY` are source constants in `lockliel-core.mjs`, not
+deploy-context environment configuration. Resource handlers POST to production
+Netlify Forms and mirror CRM leads; `getStore` uses shared site-wide Blobs.
+Referral GETs can write events and session GETs can refresh Auth tokens.
+Blocking only mutation methods would not isolate the backend.
+
+The forward security package rejects nonproduction, local and unknown contexts
+at every serverless entrypoint using trusted Netlify `context.deploy.context`.
+Only the exact value `production` permits execution. Headers, hostname,
+NODE_ENV and build CONTEXT cannot grant runtime access. The edge guard rejects
+native form POSTs to any path and connected GETs, and is configured `onError: fail`.
+Preview export removes Netlify form-registration attributes before deployment.
+Blocked responses contain no data/cookies/redirect and have no-store caching.
+They expose the common message that no information was submitted. Production
+handler bodies, Auth/session checks, AAL2 requirements and RLS remain unchanged.
+
+Work verified main-only production publishing, enabled PR previews, disabled
+standalone branch deploys, no listed build hooks/plugins/dashboard variables,
+empty repository webhooks, disabled Pages and no Supabase Git connection/branches.
+These scoped observations do not remove Netlify's built-in Blob credentials.
+See `docs/deployment-safety-review.md` for the full trace and per-commit risks.
+
+All 58 entrypoints were tested across ten blocked contexts and seven methods
+under the fail-closed network preload. Production pass-through, representative
+tracking, auth denial, edge routing, form export and unknown context cases pass.
+The full build/tests also passed with OS outbound traffic denied. This is local
+evidence, not deployed CDN/Forms or full hosted Supabase validation.
+
+Older immutable preview deployments remain unsafe. The guard does not revoke
+direct access to public production endpoints, protect unrelated origins or stop
+someone intentionally leaving the preview for production. Public external video
+and social links can still contact third parties. No cross-origin production
+browser transport was found in the current app. Do not perform write-based
+browser testing before confirming the new deployed guard, and never use real
+accounts. Future backend browser testing needs a separately scoped isolated
+environment or mocks. Preserve both published visual experiences unchanged.
+
 ## Identity and authorization
 
 - Member requests use Supabase Auth and caller-scoped REST/RPC access. Netlify
@@ -139,5 +179,6 @@ profiles/users and no incompatible data. That preflight expires as data changes.
 SQL regression covers NULL, normalization, malformed/overlength/raw-import inputs.
 An incompatible legacy-email fixture also proves migration failure preserves the
 previous constraint. The release plan requires verified recovery capability and prefers forward repair
-over restoring the broken regex after valid new accounts exist. Hosting-side
-push effects remain incompletely verified, so no push is cleared.
+over restoring the broken regex after valid new accounts exist. The historical
+hosting verification gap is superseded by the current preview isolation section.
+Its technical push recommendation is not authorization to push or release SQL.

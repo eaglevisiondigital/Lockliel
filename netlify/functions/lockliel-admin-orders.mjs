@@ -1,8 +1,9 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
 function inFilter(ids){return "in.("+ids.join(",")+")";}
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
@@ -93,6 +94,6 @@ export default async(request)=>{
       events:events.filter(e=>e.order_id===order.id)
     }))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/admin/orders"};

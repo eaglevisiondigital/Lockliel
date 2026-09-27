@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   SUPABASE_KEY,
@@ -50,7 +51,7 @@ function localizedProduct(source,activeProducts,locale){
   };
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -244,6 +245,6 @@ export default async(request)=>{
   }
 
   return json({error:"Method not allowed"},405);
-};
+});
 
 export const config={path:"/api/lockliel/resources"};

@@ -186,7 +186,13 @@ with an explicit write-loss assessment, not a casual down migration.
 Technical references: [Supabase migration tracking](https://supabase.com/docs/guides/deployment/database-migrations)
 and [PostgreSQL 17 ALTER TABLE locking/validation](https://www.postgresql.org/docs/17/sql-altertable.html).
 
-## Development push review
+## Historical development push review
+
+Superseded for push assessment by `deployment-safety-review.md`: Work completed
+the requested read-only hosting investigation on September 26, and the next
+package added code-only preview isolation. The release/rollback requirements in
+this document still apply to any future separately authorized database release.
+The assignment below is retained as history, not an outstanding request.
 
 Verified read-only on 2026-09-26:
 

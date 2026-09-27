@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import { getStore } from "@netlify/blobs";
 import {
   allowedOrigin,
@@ -140,7 +141,7 @@ export function createReleaseSignup({
   };
 }
 
-export default createReleaseSignup();
+export default withProductionBackend(createReleaseSignup());
 
 export const config = {
   path: "/api/book-release",

@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import { getStore } from "@netlify/blobs";
 import {
   RESOURCE,
@@ -138,7 +139,7 @@ export function createSignup({
   };
 }
 
-export default createSignup();
+export default withProductionBackend(createSignup());
 
 export const config = {
   path: "/api/faith-boost/signup",

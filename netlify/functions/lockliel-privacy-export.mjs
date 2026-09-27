@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession} from "../lib/lockliel-core.mjs";
 import {exportRows} from "../lib/lockliel-export-pages.mjs";
 
@@ -165,10 +166,10 @@ async function handleRequest(request){
   });
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   try{return await handleRequest(request);}
   catch{return json({error:"A complete export could not be verified. No partial download was generated. Please retry or contact support if this continues.",code:"export_incomplete"},503);}
-};
+});
 
 export const config={
   path:"/api/lockliel/privacy-export",

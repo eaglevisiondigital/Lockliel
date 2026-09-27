@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
 function confirmedRequest(rows,id,status,handler){
@@ -257,11 +258,11 @@ async function handleRequest(request){
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   try{return await handleRequest(request);}
   catch{
     return json({error:"Privacy processing is temporarily unavailable. A submitted change may have been saved. Refresh the request history before retrying.",code:"privacy_upstream_unavailable"},503);
   }
-};
+});
 
 export const config={path:"/api/lockliel/admin/privacy"};

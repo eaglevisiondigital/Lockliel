@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -66,6 +67,6 @@ export default async(request)=>{
     total:steps.length,
     percent:steps.length?Math.round((complete/steps.length)*100):0
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/founder-orientation"};

@@ -1,5 +1,6 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,SUPABASE_KEY,LOCKLIEL_APP_ORIGIN,json} from "../lib/lockliel-core.mjs";
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
  if(request.method!=="POST")return json({error:"Method not allowed"},405);
  const b=await request.json().catch(()=>({})),email=String(b.email||"").trim().toLowerCase();
  if(!email||email.length>254||!/^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(email)){
@@ -11,5 +12,5 @@ export default async(request)=>{
  });
  if(!r.ok){const d=await r.json().catch(()=>({}));return json({error:d.msg||d.error_description||"Unable to send reset email."},r.status);}
  return json({ok:true,message:"If an account exists for that email, a password reset link has been sent."});
-};
+});
 export const config={path:"/api/lockliel-auth/recover",rateLimit:{windowLimit:8,windowSize:60,aggregateBy:["ip"]}};

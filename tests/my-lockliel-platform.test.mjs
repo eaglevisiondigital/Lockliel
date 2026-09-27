@@ -2845,7 +2845,7 @@ test("privacy deletion finalization requires complete server verification",async
         method:"POST",
         headers:{"Content-Type":"application/json",cookie:"lockliel_access="+access},
         body:JSON.stringify({id:requestId,action:options.action||"executeDeletion",status:"completed",adminNote:"Reviewed retained records and documented deletion processing."})
-      }));
+      }),{deploy:{context:'production'}});
       return {status:response.status,body:await response.json(),calls,patches:calls.filter(c=>c.init.method==="PATCH")};
     }finally{globalThis.fetch=originalFetch;}
   }

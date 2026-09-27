@@ -9,8 +9,8 @@ function walk(dir) {
     return entry.isDirectory() ? walk(path) : [path];
   });
 }
-const modules = walk('netlify').filter(path => path.endsWith('.mjs'));
+const modules = walk('netlify').filter(path => /\.(?:mjs|js)$/.test(path));
 for (const path of modules) execFileSync(process.execPath, ['--check', path]);
-const handlers = modules.filter(path => path.startsWith('netlify/functions/'));
+const handlers = modules.filter(path => /^netlify\/(?:edge-functions|functions)\//.test(path));
 for (const path of handlers) await import(pathToFileURL(join(process.cwd(), path)).href);
 console.log(`Validated ${modules.length} Netlify modules; imported ${handlers.length} handlers.`);

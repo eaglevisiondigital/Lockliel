@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -108,6 +109,6 @@ export default async(request)=>{
     shareText:asset.share_text||"I thought this might encourage you.",
     reachContact:reachContact?{id:reachContact.id,displayName:reachContact.display_name}:null
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/share-link"};

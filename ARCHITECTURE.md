@@ -4,6 +4,38 @@ Baseline: 2026-09-26, development commit
 `47409a2796a5275e12684cb4a182cb008c4d5414`.
 See `CURRENT_BUILD_STATE.md` for live evidence and verification limits.
 
+## Current deployment boundary (2026-09-26)
+
+Work verified production branch main, PR previews enabled, standalone branch
+deploys disabled, no listed build hooks/plugins/dashboard project variables,
+empty GitHub repository webhooks and disabled Pages. Supabase has no connected
+repository and no branches. Netlify and ChatGPT Codex Connector are installed
+repository apps. An empty webhook list does not disable app-based previews.
+Full provenance and limits: `docs/deployment-safety-review.md`.
+
+The separate ChatGPT Site version 25 remains active, with last successful
+publication August 27, 2026 and no custom domains. Its source binding is unknown;
+do not infer a publishing route from the historical Sites files in this repo.
+Preserve it and Netlify production until Chat selects a visual source and a
+recoverable source/assets baseline is retained before substantial frontend work.
+
+New request boundary: `netlify/edge-functions/preview-isolation.js` runs for all
+paths with fail-closed error handling. Outside trusted production context it
+blocks every method except static GET/HEAD, plus API, direct-function, referral
+and protected-reader GET/HEAD paths. Each of the 58 serverless handlers also uses
+`netlify/lib/deployment-safety.mjs` to reject every nonproduction invocation
+before its existing body runs, including direct function URLs. Explicit trusted
+production context passes through without changing authentication or responses.
+
+The build remains Webpack static export, followed by
+`scripts/isolate-preview-forms.mjs`. For production CONTEXT the exported HTML is
+unchanged. Every other build context removes only form-detection attributes so
+preview deployment cannot register/update shared Netlify form definitions. The
+edge guard independently handles runtime submissions to already known names.
+No additional backend or preview credential exists. Local frontend development
+continues; backend behavior is tested using mocks and disposable SQL. Previews
+are for static review until an isolated backend is separately approved.
+
 ## Implemented application shape
 
 `package.json` uses Next.js 16.3.6, React 19.2.6 and TypeScript. `next.config.ts`

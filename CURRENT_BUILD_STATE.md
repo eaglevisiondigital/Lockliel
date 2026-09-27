@@ -3,7 +3,62 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
-## Current reconciliation package (2026-09-26)
+## Current deployment safety package (2026-09-26)
+
+Reviewed branch: `lockliel-backend-v1`, remote baseline
+`47409a2796a5275e12684cb4a182cb008c4d5414`, five-commit checkpoint
+`ce7439fa7ac69887d217f1c7bb4536168b7a02bf`. All five commits are preserved.
+The forward security commit containing this section records the implemented guard.
+See `docs/deployment-safety-review.md` for the exact per-commit file inventory,
+deployment routes, connection trace, evidence sources and remaining limits.
+
+VERIFIED BY WORK, supplied by Dave on September 26: Netlify production tracks
+main; standalone branch deploys are disabled; PR previews are enabled and PR #3
+targets main. Build is `npm run build`, publish `out`, functions
+`netlify/functions`. No enabled build plugins, listed build hooks or dashboard
+project environment variables were shown. GitHub webhooks are empty, Pages is
+disabled, and installed repository apps are Netlify and ChatGPT Codex Connector.
+Dave's Supabase screenshot shows no repository connected and no branches.
+These are Work's observations, not a new Codex dashboard inspection. They do not
+prove absence of platform-provided credentials or account-level configuration.
+
+VERIFIED IN REPOSITORY: the old preview could write production Supabase, native
+Netlify Forms and site-wide Blobs. It was not isolated. The new code requires
+trusted production invocation context before any of the 58 serverless handlers
+execute. An edge guard also blocks nonproduction form POSTs and connected GETs;
+nonproduction builds remove form-registration attributes from exported HTML.
+Preview/local static pages remain available, but connected features return 503.
+No new environment, credential, migration or dashboard configuration was created.
+
+Checks passed with OS-level outbound access denied: Webpack export, all 377 Node
+tests (311 previous plus 66 guard checks), TypeScript, targeted tooling lint, and
+63 Netlify modules / 59 imported serverless and edge handlers. The unchanged SQL
+chain passed this assignment: 274 migrations replayed from zero and seven SQL
+files passed in disposable PostgreSQL 17 with IP egress denied. All existing
+handler bodies/configuration are byte-identical after removing the new wrapper
+and import. Offline edge bundling also passed. Remote CI and cloud routing have
+not been exercised for this package.
+
+ASSESSMENT: SAFE TO PUSH DEVELOPMENT BRANCH for the reviewed code and verified
+deployment settings, subject to a separate controlled-push assignment. A push
+would run validation and an eligible PR preview. It does not authorize or execute
+a main merge, production publish, Supabase release or production-data testing.
+No push occurred. The recommendation does not retrofit older immutable previews.
+Confirm the new preview's guard before any browser form/account testing.
+
+PRESERVATION: both existing sites remain untouched. Work reports the separate
+[ChatGPT Site](https://lockliel-vision.dfowler4200.chatgpt.site) at saved version 25,
+last successful publication August 27, 2026, with no custom domains. Its current
+source binding was not exposed and no push-trigger connection was established.
+Neither its source nor the currently served Netlify source/assets have been
+captured as a recoverable visual baseline. That future Chat decision is out of
+scope. Frontend source, branding and assets remain unchanged in this package.
+
+Next recommended package: explicitly authorized controlled development push,
+remote CI review and verification that the new PR preview serves the guard.
+No production migration, feature work or frontend redesign is included.
+
+## Previous reconciliation package (2026-09-26, historical)
 
 Baseline preserved: `c3e9a01`, `33ecdf3`, `0008a43`. Reconciliation and
 regression tests committed as `f74e4a6`. Original applied migration
@@ -41,7 +96,7 @@ UNKNOWN. See `docs/migration-reconciliation.md` for source evidence and limits.
   backup, ordering, lock limits, preflight, verification, abort and forward-repair
   requirements. Production release is NOT approved or executed.
 
-### Push status
+### Historical push status, superseded by deployment safety package above
 
 Local validation is suitable for review. PUSH NOT CLEARED: GitHub workflow is
 validation-only; default Actions permission is read and repository webhooks are

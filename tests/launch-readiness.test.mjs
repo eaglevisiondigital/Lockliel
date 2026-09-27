@@ -22,7 +22,7 @@ async function run(options={}){
     const r=await handler(new Request('https://lockliel.com/api/lockliel/admin/readiness',{
       method:options.body?'POST':'GET',headers:{cookie:'lockliel_access='+token,'Content-Type':'application/json'},
       ...(options.body?{body:JSON.stringify(options.body)}:{})
-    }));
+    }),{deploy:{context:'production'}});
     return {status:r.status,body:await r.json(),calls};
   }finally{globalThis.fetch=original;}
 }

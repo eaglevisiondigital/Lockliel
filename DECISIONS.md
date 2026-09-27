@@ -3,6 +3,39 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Current deployment safety decision (2026-09-26)
+
+AUTHORIZED by Dave's current engineering handoff: preserve the five local commits,
+review push effects, implement the smallest code-only preview isolation, validate
+without production access and create a local security commit. No push, merge,
+publishing, live migration, settings change or second Supabase project is approved.
+
+VERIFIED BY WORK: Netlify production tracks main; standalone branch deploys are
+disabled; PR #3 targets main with previews enabled; no listed build hooks/enabled
+plugins/dashboard project variables; no GitHub webhooks; Pages disabled; installed
+apps Netlify and ChatGPT Codex Connector. Dave's Supabase screenshot shows no
+repository connected and no branches. The separate ChatGPT Site has saved version
+25, successful publication August 27, 2026 and no custom domains. Its source
+binding was not exposed and no push trigger to it was established.
+
+IMPLEMENTED LOCALLY: permit existing backend behavior only for trusted production
+invocations; block all connected functions in previews and unknown/local contexts;
+add edge protection for native forms and unsafe GETs; remove form-registration
+attributes from nonproduction exports. This contains the current shared-backend
+risk without changing credentials, namespace configuration or production business
+logic. An environment-variable-only guard was avoided because build variables
+are not sufficient evidence of a serverless invocation's deployment context.
+
+PRESERVATION REQUIREMENT: retain both existing websites. Before future substantial
+frontend changes, Chat must choose which visual implementation is authoritative
+and retain a recoverable source/assets baseline. This decision is unresolved and
+outside this package. The guard adds only a blocked-feature response, no redesign.
+
+PROPOSAL, NOT STARTED: a separately authorized controlled development push,
+remote CI and new-preview guard verification. The exact technical assessment and
+limitations are in `docs/deployment-safety-review.md`. Production SQL release,
+business decisions and isolated backend browser testing remain separate work.
+
 ## Approved constraints
 
 The current user's continuity handoff is authoritative for these requirements:
@@ -139,8 +172,6 @@ remediation is indicated. Release preflight must be repeated. The prepared email
 migration remains unchanged. `docs/migration-reconciliation.md` records release
 and recovery gates and the limits of structural parity.
 
-No production release or push is approved by these findings. Known GitHub checks
-are read-only validation and Netlify previews are evidenced; hosting-side branch
-selection and Supabase auto-migration settings still need read-only verification.
-The next recommended package is that verification and controlled remote review,
-followed by separately authorized database release work. Do not start features.
+No production release or push was approved by the reconciliation findings.
+The former hosting verification gap and next-package recommendation are superseded
+by the current deployment safety decision at the top of this document.

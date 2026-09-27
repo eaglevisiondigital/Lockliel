@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   SUPABASE_KEY,
@@ -13,7 +14,7 @@ function safeSlug(value){
     .replace(/^-+|-+$/g,"")||"resource";
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
@@ -131,6 +132,6 @@ export default async(request)=>{
   }
 
   return json({error:"Unknown action"},400);
-};
+});
 
 export const config={path:"/api/lockliel/admin/products"};

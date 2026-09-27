@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   SUPABASE_KEY,
@@ -27,7 +28,7 @@ async function authJson(path,access,options={}){
   return {response,data};
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -246,7 +247,7 @@ export default async(request)=>{
   }
 
   return json({error:"Unknown MFA action."},400);
-};
+});
 
 export const config={
   path:"/api/lockliel-auth/mfa",

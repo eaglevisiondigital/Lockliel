@@ -22,13 +22,26 @@ project and does not establish Lockliel architecture or business approval.
 - Preserve existing work, approved branding, and completed systems. Keep `main`
   untouched. Do not merge, deploy, change production, or alter protected systems
   without explicit authorization for that scope.
-- The current 2026-09-26 assignment authorizes local migration-history
-  reconciliation, compatibility/recovery planning and isolated validation. Do not apply migrations, change permissions, toggle flags,
+- The current 2026-09-26 assignment authorizes deployment review, code-only preview
+  isolation, isolated validation and local commits. It does not authorize a push.
+  Do not apply migrations, change permissions, toggle flags,
   bootstrap staff, or execute SQL fixtures against the connected project for it.
 - Read `docs/migration-reconciliation.md` before future database releases. The
   reconstructed version `20260925035350` is an explicit ordering exception, not a
   recovered original timestamp. Do not edit existing migration bodies or bypass
-  its catalog guard. Keep pushes blocked until hosting triggers are verified.
+  its catalog guard. Read `docs/deployment-safety-review.md` for the exact reviewed
+  range, Work's verified hosting findings and the controlled-push recommendation.
+- Preserve both the published ChatGPT Site version 25 and Netlify production.
+  Before future substantial frontend changes, Chat must identify the authoritative
+  visual version and retain recoverable source/assets. Neither site's served
+  source baseline has been established by this backend review.
+- Keep all Netlify default handlers behind `withProductionBackend`. Only trusted
+  invocation `context.deploy.context === 'production'` permits the live backend.
+  Keep the edge POST guard and nonproduction form-detection removal. Do not use
+  hostname, request headers, NODE_ENV or an environment override to bypass them.
+  Local frontend development and mocked tests remain supported; local functions
+  have no live backend. Older previews remain unsafe and must not be used for
+  write-based testing. New previews require verification of the deployed guard.
 - Never recreate or rerun applied migrations against an existing live environment. In particular,
   `20260926033358_lockliel_account_deletion_execution_support` already exists in
   both histories. Recheck migration parity before future database work.

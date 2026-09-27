@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   SUPABASE_KEY,
@@ -33,7 +34,7 @@ const GRIP_PDFS={
   "getting-a-grip/lesson-13.pdf":"getting-a-grip-lesson-13-how-to-serve-god.pdf"
 };
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
@@ -216,6 +217,6 @@ export default async(request)=>{
     lessons:lr.ok?await lr.json():[],
     assets:ar.ok?await ar.json():[]
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/admin/content"};

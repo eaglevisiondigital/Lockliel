@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,SUPABASE_KEY,json,dbHeaders,requireSession} from "../lib/lockliel-core.mjs";
 
 function safeHttpsUrl(value){
@@ -10,7 +11,7 @@ function safeHttpsUrl(value){
   }
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
@@ -54,6 +55,6 @@ export default async(request)=>{
     "X-Content-Type-Options":"nosniff"
   });
   return new Response(file.body,{status:200,headers});
-};
+});
 
 export const config={path:"/api/lockliel/lesson-resource"};

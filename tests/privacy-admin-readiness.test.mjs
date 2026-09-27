@@ -37,7 +37,7 @@ async function run(options={}){
       method,headers:{cookie:'lockliel_access='+token,'Content-Type':'application/json'},
       ...(method==='POST'?{body:JSON.stringify({id:options.requestId??id,action:options.action,status:'declined'})}:{})
     });
-    const response=await handler(request);
+    const response=await handler(request,{deploy:{context:'production'}});
     return {status:response.status,body:await response.json(),calls,headers:response.headers};
   }finally{globalThis.fetch=original;}
 }

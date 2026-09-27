@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
 async function handleRequest(request){
@@ -86,9 +87,9 @@ async function handleRequest(request){
   return json({error:"Method not allowed"},405);
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   try{return await handleRequest(request);}
   catch{return json({error:"Privacy requests are temporarily unavailable. Refresh your request history before retrying.",code:"privacy_upstream_unavailable"},503);}
-};
+});
 
 export const config={path:"/api/lockliel/privacy"};

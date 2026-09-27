@@ -1,10 +1,11 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
 function inFilter(ids){
   return "in.("+ids.join(",")+")";
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
@@ -79,6 +80,6 @@ export default async(request)=>{
     groups,
     tasks:tasks.map(t=>({...t,person:taskPeopleMap[t.subject_profile_id]||null}))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/leader"};

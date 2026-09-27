@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
 function inFilter(ids){
@@ -9,7 +10,7 @@ function clampInt(value,max){
   return Math.min(max,Math.max(0,n));
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -79,6 +80,6 @@ export default async(request)=>{
     groups:groupsRes.ok?await groupsRes.json():[],
     checkins:checkinsRes.ok?await checkinsRes.json():[]
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/group-checkin"};

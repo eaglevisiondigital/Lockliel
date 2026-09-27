@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 async function count(path,access){const r=await fetch(SUPABASE_URL+"/rest/v1/"+path,{headers:{...dbHeaders(access),Prefer:"count=exact",Range:"0-0"}});if(!r.ok)return 0;const cr=r.headers.get("content-range")||"0-0/0",total=Number(cr.split("/")[1]);return Number.isFinite(total)?total:0;}
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
  const s=await requireSession(request);if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
  const h=dbHeaders(s.access),id=encodeURIComponent(s.user.id);
@@ -51,5 +52,5 @@ export default async(request)=>{
  for(const row of referralRows)if(Object.prototype.hasOwnProperty.call(activity,row.event_type))activity[row.event_type]++;
  const sourceCounts={};for(const row of leadSourceRows){const key=row.source_type||"other";sourceCounts[key]=(sourceCounts[key]||0)+1;}
  return json({roles,counts:{people,founders,activeCourses,gifts,leads,followups,connectionRequests},activity,sourceCounts,applications,connectionQueue},200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 export const config={path:"/api/lockliel/admin/summary"};

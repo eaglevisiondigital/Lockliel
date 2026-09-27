@@ -16,7 +16,8 @@ test("Founders 50 form fields match the Netlify detection form", async () => {
   assert.deepEqual([...fieldNames(await read("out/__founders50.html"))].sort(), expected);
   assert.match(form, /method="POST"/);
   assert.match(form, /action="\/founders-50\/thank-you"/);
-  assert.match(form, /data-netlify="true"/);
+  if (process.env.CONTEXT === 'production') assert.match(form, /data-netlify="true"/);
+  else assert.doesNotMatch(form, /data-netlify="true"/);
   assert.match(form, /data-netlify-honeypot="bot-field"/);
   const church = form.match(/<input\b[^>]*name="church-affiliation"[^>]*>/)?.[0];
   assert.ok(church);

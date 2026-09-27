@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,LOCKLIEL_APP_ORIGIN,json} from "../lib/lockliel-core.mjs";
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="POST")return json({error:"Method not allowed"},405);
 
   const origin=request.headers.get("origin");
@@ -22,7 +23,7 @@ export default async(request)=>{
   });
   const d=await r.json().catch(()=>({error:"Submission failed"}));
   return json(d,r.status);
-};
+});
 
 export const config={
   path:"/api/lockliel/founders50",

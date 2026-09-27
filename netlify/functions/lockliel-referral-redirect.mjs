@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,cookie,parseCookies} from "../lib/lockliel-core.mjs";
 
 const visitorPattern=/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -15,7 +16,7 @@ function safeLocalDestination(value){
   }
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const u=new URL(request.url);
   const code=String(u.searchParams.get("code")||"").trim().toLowerCase();
   const cookies=parseCookies(request);
@@ -48,7 +49,7 @@ export default async(request)=>{
   h.append("Set-Cookie",cookie("lockliel_visitor",visitor,60*60*24*90));
   h.append("Set-Cookie",cookie("lockliel_ref",code,60*60*24*30));
   return new Response(null,{status:302,headers:h});
-};
+});
 
 export const config={
   rateLimit:{windowLimit:240,windowSize:60,aggregateBy:["ip"]}

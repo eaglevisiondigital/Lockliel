@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
 function mondayIso(){
@@ -8,7 +9,7 @@ function mondayIso(){
   return d.toISOString().slice(0,10);
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
@@ -101,6 +102,6 @@ export default async(request)=>{
     unreadNotifications:notifications.length,
     groupCheckinDue:checkinDue
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/dashboard-attention"};

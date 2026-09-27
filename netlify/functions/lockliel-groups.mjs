@@ -1,3 +1,4 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
 function inFilter(ids){
@@ -34,7 +35,7 @@ async function createRequest({h,uid,requestType,message,requestedGroupId=null}){
   return {ok:true,request:(await r.json())?.[0]||null};
 }
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -210,6 +211,6 @@ export default async(request)=>{
       checkins:checkins.filter(c=>c.group_id===g.id)
     }))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/groups"};

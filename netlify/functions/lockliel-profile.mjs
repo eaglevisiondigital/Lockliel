@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
-export default async(request)=>{
+export default withProductionBackend(async(request)=>{
   if(request.method!=="PATCH")return json({error:"Method not allowed"},405);
 
   const s=await requireSession(request);
@@ -56,6 +57,6 @@ export default async(request)=>{
   if(!p.ok)return json({error:"We couldn't save your profile."},500);
 
   return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
-};
+});
 
 export const config={path:"/api/lockliel/profile"};
