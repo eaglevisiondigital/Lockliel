@@ -3,9 +3,41 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
-## Current local Member Journey Core package (2026-09-27 UTC)
+## Current Member Journey remote checkpoint (2026-09-27 UTC)
 
-**IMPLEMENTED AND VALIDATED LOCALLY; NOT PUSHED OR DEPLOYED.** Started from clean
+**MEMBER JOURNEY REMOTE CHECKPOINT VERIFIED.** The single authorized non-force
+development push advanced `b2adf96e988380c36e3b3b0275f7b866067e078c` to exact
+Member Journey commit `cc6f430a1e03ba55a44774e8ade8fa05edec4617`, preserving both
+local evidence/release commits. Initial tree was clean and all 274 migration hashes
+matched. Main remains `77d1d1918793bc6a25f38721e882f3d011903bad`; PR #3 is open
+against main with auto-merge disabled. No second push or production release ran.
+
+- Push CI `36315118426` and PR CI `36315120777` both passed: 411 JavaScript tests,
+  build, types, 68-module/61-handler validation, configured lint, 274 fresh migration
+  replay and eight SQL/RLS files. Production dependency audit remains clean;
+  known full-install findings remain outside this package.
+- Netlify preview `6ab8fab5b738c40008b06835` is ready at exact `cc6f430`, review 3,
+  context deploy-preview, with 60 functions and one edge function. Seventeen
+  harmless probes, including new onboarding/next-step routes, returned expected
+  no-store 503 denial, no cookies/redirects. Seven static pages passed; the five
+  public form pages have no Netlify detection attributes. Connected preview
+  features remain blocked by design.
+- Before/after production deploy/commit/publication and both homepage hashes
+  match. Sites version 25/source archive/publication/access metadata match.
+  Supabase remains ACTIVE_HEALTHY at 272 migrations, with identical ledger,
+  security fingerprints, five function versions and 93-table write counters.
+  No production data, schema, settings, permission, site or main change occurred.
+
+Full evidence and limits: `docs/member-journey-remote-checkpoint-2026-09-27.md`.
+Post-checkpoint continuity documentation is local only. No new feature development
+or My Five / Share Center package started. Production migration gates remain
+separate; authenticated browser validation still needs an isolated backend.
+
+## Member Journey local implementation baseline (2026-09-27 UTC, before checkpoint)
+
+At completion this package was **IMPLEMENTED AND VALIDATED LOCALLY**. The later
+authorized remote checkpoint above supersedes its original no-push status.
+Started from clean
 `fc78dcea390df434c7378da58566e35cf88f4bf5` on `lockliel-backend-v1`. Both this
 release-preparation commit and its parent `f03fb3207bcd631a315fc2f304eaba9854ec56bd`
 are preserved. The recorded remote development/main SHAs below were not refreshed

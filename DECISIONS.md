@@ -3,6 +3,26 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Member Journey checkpoint authorization and outcome (2026-09-27)
+
+AUTHORIZED by the subsequent checkpoint assignment: one normal non-force push of
+the clean verified development branch, followed by remote CI, harmless preview
+denial checks and read-only production preservation. This superseded the previous
+no-push restriction for the exact three-commit range ending at
+`cc6f430a1e03ba55a44774e8ade8fa05edec4617` only.
+
+COMPLETED: remote development matches that SHA; main is unchanged; PR #3 remains
+open against main with auto-merge off. Push and PR CI passed all configured gates,
+including 411 JavaScript tests and eight SQL files after 274 fresh migrations.
+Netlify preview `6ab8fab5b738c40008b06835` matches the commit and passed 17 denial
+probes. Production Netlify, Sites version 25 and inspected Supabase baselines match
+before/after. See `docs/member-journey-remote-checkpoint-2026-09-27.md` for evidence.
+
+No production execution, settings/permissions change, real-data test or next
+feature package was approved or performed. Both pending migrations remain under
+their separate release process. Follow-up evidence documentation is local only;
+another push and the My Five / Share Center package require another assignment.
+
 ## Member Journey Core phase 1 decision record (2026-09-27)
 
 AUTHORIZED by the subsequent Chat assignment: implement guided onboarding,

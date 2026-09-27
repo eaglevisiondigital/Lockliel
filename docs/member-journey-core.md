@@ -1,5 +1,11 @@
 # Member Journey Core, phase 1
 
+Subsequent status: exact implementation `cc6f430a1e03ba55a44774e8ade8fa05edec4617`
+was pushed under the separate checkpoint assignment. Remote CI and protected
+preview verification passed. See `member-journey-remote-checkpoint-2026-09-27.md`.
+The local-only wording below records the original implementation handoff, before
+that authorization. No production release followed.
+
 Assignment: 2026-09-27. Starting commit: fc78dcea390df434c7378da58566e35cf88f4bf5,
 branch lockliel-backend-v1. This is local member-experience implementation, not a
 production release or permission change. Preserve both published websites and the

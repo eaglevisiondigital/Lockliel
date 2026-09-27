@@ -4,6 +4,24 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Member Journey deployed preview verification (2026-09-27)
+
+Authorized development push `cc6f430` produced ready preview
+`6ab8fab5b738c40008b06835`, with 60 serverless functions and one edge function.
+Seventeen harmless unauthenticated probes, including onboarding/next-step APIs and
+direct function paths, returned expected 503/no-store denial without cookies or
+redirects. Five public form pages lack detection attributes. No connected backend
+was enabled. Edge denials plus exact-source CI guard tests support this boundary;
+they do not establish successful authenticated preview integration.
+
+Before/after read-only preservation found identical production deploy/page hashes,
+Sites version 25/publication/access metadata, 272-entry Supabase ledger fingerprint,
+table/column ACL, RLS/policy/function fingerprints, five Edge Function definitions
+and write counters for 93 tables. No production write, migration, settings or
+permission change was performed. These are scoped observations, not exhaustive
+management-settings or third-party-activity auditing. Full evidence and limits:
+`docs/member-journey-remote-checkpoint-2026-09-27.md`.
+
 ## Member Journey Core privacy boundary (2026-09-27, local only)
 
 New recommendation/onboarding handlers retain active-session validation, the
