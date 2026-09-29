@@ -3,6 +3,10 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Authorized direct release stopped at workdir guard (2026-09-29)
+
+AUTHORIZED: exactly two staged migrations using restored direct hotspot IPv6. VERIFIED: fresh preflight and exact pinned dry-run passed. NOT EXECUTED: generated CLI cache made the prepared-workdir verifier stop before 273; ledger remains 272. No guard bypass, cache deletion or blind retry. The earlier pooler result was confounded by helper URL encoding and is not proof of intrinsic pooler incompatibility; pooler remains unapproved. See `docs/production-migration-release-2026-09-29.md`.
+
 ## Session Pooler fallback rejected by rehearsal (2026-09-29)
 
 VERIFIED: the explicit read-only review reached the project Session Pooler with strict TLS and valid database authentication, but required startup settings were not preserved. STOPPED before preflight and pinned CLI dry-run. No automatic fallback, relaxed guards, script changes or migration execution are approved. PROPOSAL: separately investigate direct IPv6 connectivity or a demonstrably compatible connection method. See `docs/session-pooler-rehearsal-2026-09-29.md`.

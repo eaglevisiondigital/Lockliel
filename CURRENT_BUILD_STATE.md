@@ -3,6 +3,10 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Direct release stopped before writes (2026-09-29)
+
+Direct hotspot IPv6, strict TLS, authentication, startup safeguards, fresh stage-272 preflight and pinned CLI dry-run all passed. The dry-run generated `.temp/cli-latest`; the unchanged prepared-workdir verifier rejected that extra directory before any write command. Recovery confirms ledger 272, both migrations pending, unchanged catalog/security/content and quiet counters. No restore, push or deployment. See `docs/production-migration-release-2026-09-29.md`. Next is a local tooling compatibility fix/rehearsal, followed by separately authorized production retry.
+
 ## Session Pooler rehearsal blocked (2026-09-29)
 
 Project-specific Session Pooler TLS and authentication passed, but requested startup safeguards did not: read-only was off, lock timeout 0 and statement timeout 2min. The helper stopped before release preflight or CLI dry-run. No production mutation or push occurred; all 274 migration hashes remain intact. Session Pooler is NOT approved for this runner. See `docs/session-pooler-rehearsal-2026-09-29.md`. A new execution assignment is required after a compatible connection and fresh gates are verified.

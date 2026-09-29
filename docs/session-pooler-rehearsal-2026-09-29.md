@@ -4,6 +4,10 @@ Observed 2026-09-29 11:00:41 UTC. Inspected clean development HEAD:
 `3851f6d0caeb59b771feb6a3dfafa66cb07bc46a` on `lockliel-backend-v1`.
 This assignment permits read-only connection review only, not migration execution.
 
+## Subsequent diagnostic correction
+
+The helper used plus encoding for spaces, which a subsequent direct test showed was invalid for libpq startup options. The observed pooler settings remain real, but their cause is confounded by that client encoding defect. They do not establish intrinsic pooler incompatibility. No pooler retest has occurred and no pooler is approved. See `production-migration-release-2026-09-29.md`.
+
 ## Endpoint and TLS
 
 Authenticated project dashboard Connect dialog identified Session Pooler for

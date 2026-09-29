@@ -5,6 +5,10 @@ explicit assignment from primary Lockliel Chat.** Do not run the write commands
 below under the release-preparation assignment. No push or deployment is needed.
 Preserve Netlify production and published ChatGPT Sites version 25.
 
+## Execution blocker found by direct rehearsal (2026-09-29)
+
+Do not execute this sequence until the workdir-cache compatibility issue is separately fixed and rehearsed. The pinned direct dry-run succeeds but generates `supabase/.temp/cli-latest`; the next unchanged verifyPreparedRelease rejects that extra directory. The attempted release stopped before any write, with ledger still 272. Do not delete cache ad hoc or bypass verification. Use percent-20 encoding for spaces in libpq URL options; plus encoding is not interchangeable. See `production-migration-release-2026-09-29.md`.
+
 ## Session Pooler review outcome (2026-09-29)
 
 The separately assigned Session Pooler rehearsal did not qualify this fallback. TLS and authentication passed, but startup read-only and timeout settings were not preserved. Do not substitute the pooler in the commands below or bypass the startup assertion. No preflight or CLI database dry-run ran through it. See `docs/session-pooler-rehearsal-2026-09-29.md`. This note changes no release tooling or safety requirements.
