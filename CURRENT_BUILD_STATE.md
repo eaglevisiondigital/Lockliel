@@ -1,5 +1,9 @@
 # Lockliel verified continuity baseline
 
+## Production application release verified (2026-09-29)
+
+PR #3 merged normally at approved head `9a4129a`. Main is now `1599ab271e0120a5cdc4e38e225ba749dd214721`; Netlify production deploy `6abbb27a1cdd6d00081b0e8e` published 2026-09-29 12:44:51.484 UTC. Seven public/member routes, preserved homepage sections/assets, noindex/security headers and unauthenticated production session behavior pass. Database remains 274, zero pending, RLS/advisor and content/write fingerprints unchanged. ChatGPT Site version 25 unchanged. No signup/account, staff grant, email test or content activation. See `docs/production-application-release-2026-09-29.md`. Prior no-production-release statements below are historical. Next: separately authorized controlled signup and Resend confirmation test.
+
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 

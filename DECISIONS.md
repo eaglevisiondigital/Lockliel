@@ -1,5 +1,9 @@
 # Lockliel decisions and open questions
 
+## Production application release authorized and completed (2026-09-29)
+
+The explicit production application assignment superseded earlier merge/deploy prohibitions only for exact PR #3 head `9a4129a`. Normal merge `1599ab271e0120a5cdc4e38e225ba749dd214721` and Git-triggered Netlify production deploy `6abbb27a1cdd6d00081b0e8e` passed scoped verification. It did not authorize signup/email tests, staff assignment, migrations, settings changes or Share Library activation. Existing public design and ChatGPT Site version 25 preserved. Post-release documentation stays local. See `docs/production-application-release-2026-09-29.md`.
+
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 

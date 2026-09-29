@@ -1,5 +1,9 @@
 # Lockliel engineering instructions
 
+## Production application release completed (2026-09-29)
+
+The separately authorized PR #3 production release is complete: normal merge `1599ab271e0120a5cdc4e38e225ba749dd214721`, Netlify deploy `6abbb27a1cdd6d00081b0e8e`, database 274 with zero pending. Read `docs/production-application-release-2026-09-29.md`. Earlier prohibitions/outcomes below are historical; this authorization is consumed. Local documentation remains unpushed. Require a separate assignment for controlled real signup/Resend testing, first super-admin setup, further release or Getting a Grip Share Library activation. Do not rerun either already applied migration.
+
 ## Read first
 
 Read `CURRENT_BUILD_STATE.md`, `ARCHITECTURE.md`, `SECURITY_MODEL.md`, and

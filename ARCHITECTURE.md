@@ -1,5 +1,9 @@
 # Lockliel architecture
 
+## Production deployment baseline (2026-09-29)
+
+The My Lockliel application and Getting a Grip invitation are now published on Netlify main at merge `1599ab271e0120a5cdc4e38e225ba749dd214721`, deploy `6abbb27a1cdd6d00081b0e8e`. Supabase remains at 274. Public design is preserved with the My Lockliel nav addition. The passive Share Library manifest is still not active production content. Preview handlers remain fail-closed; production unauthenticated session responds 401 correctly. See `docs/production-application-release-2026-09-29.md`. Earlier local-only feature labels describe prior checkpoints.
+
 Baseline: 2026-09-26, development commit
 `47409a2796a5275e12684cb4a182cb008c4d5414`.
 See `CURRENT_BUILD_STATE.md` for live evidence and verification limits.

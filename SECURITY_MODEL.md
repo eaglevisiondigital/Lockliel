@@ -1,5 +1,9 @@
 # Lockliel security model
 
+## Production application verification (2026-09-29)
+
+Exact approved PR #3 release is live. GET-only verification confirms member noindex and framing/referrer/content-type headers, production unauthenticated session 401, and no protected course path exposure in invitation HTML. Read-only before/after database fingerprints and write counters match, 274 migrations remain, all 56 public tables retain RLS and Security Advisor is clear. No accounts, grants, settings changes, payments or content activation. Full Auth/SMTP settings and delivery were not independently tested. See `docs/production-application-release-2026-09-29.md`.
+
 Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
