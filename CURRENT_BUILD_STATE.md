@@ -3,6 +3,19 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Migration resume: direct network blocked (2026-09-28 local)
+
+The new handoff confirms Owner MFA with two factors and operator possession of
+the database password. Fresh 2026-09-29 03:52 UTC read-only stage-272 preflight
+passes, with unchanged catalog/security, zero incompatible emails and no write
+activity across 44.501 seconds. Both migrations remain unapplied.
+
+Approved direct endpoint is IPv6-only and this host returns `No route to host`.
+No password was collected, no migration was attempted, and no reviewed pooler
+fallback exists in the runbook. Resolve direct connectivity or separately review
+and rehearse a pooler before secure input and renewed release gates. No production
+mutation or push. See `docs/production-migration-release-2026-09-28.md`.
+
 ## Production migration attempt: blocked before execution (2026-09-28 local)
 
 The new assignment authorizes exactly the two pending production migrations.

@@ -3,6 +3,46 @@
 Assignment date: 2026-09-28 America/Chicago. Read-only capture:
 2026-09-29 03:27 UTC. No production migration command was executed.
 
+## Resume attempt, 2026-09-29 03:52 UTC
+
+The subsequent assignment confirms Owner MFA enabled with two authenticator
+factors and the operator holding the existing DB password. Those confirmations
+supersede the earlier unconfirmed-MFA/password-availability statements below.
+No password was requested, received, printed, logged or persisted in this attempt.
+
+Clean starting HEAD: `56fc52a684cfdbd235d87e45ad3c72f7feaf455e` on
+`lockliel-backend-v1`. Fresh connector read-only capture passed the existing
+stage-272 checker: exact pending versions unchanged, all migration hashes intact,
+review/share catalog and security baseline matched, zero incompatible email rows,
+zero profiles/Auth users. Project ACTIVE_HEALTHY; Security Advisor empty. Two
+snapshots 44.501 seconds apart had identical write counters and reset timestamp.
+Provided September 28 07:23:45 UTC physical backup was about 20.49 hours old.
+
+The approved direct database hostname resolves in DNS to an IPv6 address only.
+System address resolution failed; direct DNS inspection confirmed an AAAA record
+and no IPv4 A record. A TCP probe of that same DNS-returned endpoint failed with
+`No route to host` (errno 65). Control DNS resolution worked. No authentication,
+TLS session, SQL write or migration command was attempted through that endpoint.
+Do not confuse the working connector with direct CLI network reachability.
+
+Runbook lines 182-186 require stopping if direct access is unavailable. No
+already-reviewed session-pooler fallback is documented: it explicitly requires a
+separate identity/TLS/actual-runner review. Therefore no fallback was invented and
+no password prompt was opened for an unreachable endpoint. The full approved CLI
+read-only dry-run cannot yet run. No TLS relaxation or hostname/IP substitution
+was used for an authenticated connection.
+
+Both migrations remain unapplied at ledger 272. Main and remote development are
+unchanged. Netlify production identity and homepage hash still match the prior
+baseline. No unrelated production mutation or restore occurred. Outcome remains
+**PRODUCTION MIGRATION RELEASE FAILED**, blocked before execution, not SQL failure.
+
+Next: restore IPv6 reachability to the approved direct endpoint on this machine,
+or separately review a project-specific session-pooler method and rehearse it
+before changing the runbook. Once an approved connection is reachable, obtain the
+password through hidden local input and refresh all release-time gates. Existing
+migration authorization remains scoped to the two named versions only.
+
 ## Authorization and repository
 
 The assignment authorizes exactly the two pending migrations, independently with

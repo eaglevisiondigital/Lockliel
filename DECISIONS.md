@@ -3,6 +3,16 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Migration resume prerequisites and network boundary (2026-09-28)
+
+USER-CONFIRMED: Owner MFA enabled, two authenticator factors configured, existing
+production DB password available to the operator. Do not ask for secrets in chat.
+The two-migration authorization persists. VERIFIED: fresh database snapshot passes,
+but approved direct IPv6 endpoint is unreachable from this host. STOPPED before
+execution. The runbook does not approve a session-pooler fallback; changing
+connection method requires separate review/rehearsal, not an improvised bypass.
+See `docs/production-migration-release-2026-09-28.md`.
+
 ## Two-migration production authorization (2026-09-28)
 
 AUTHORIZED: apply only pending versions `20260925035350` and `20260926212002`
