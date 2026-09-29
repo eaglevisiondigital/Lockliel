@@ -142,5 +142,7 @@ guards must remain fail-closed. A deliberate material-version rewatch/reset oper
 is designed as a separately authorized future management operation, not implemented
 or silently applied to existing completions. Cosmetic edits do not erase completion.
 
-Remote checkpoint evidence will be recorded after the authorized development push.
+Remote checkpoint: `ca5f09b` pushed, draft PR #4, both CI runs passed. Exact ready
+preview `6abc3af1948f010008be427f` passed 32 blocked backend probes and 14 static pages.
+See `course-engine-standard-result-2026-09-29.md` for full evidence and limits.
 Until these gaps are resolved: LOCKLIEL COURSE ENGINE STANDARD NOT READY.

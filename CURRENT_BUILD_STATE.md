@@ -1,5 +1,16 @@
 # Lockliel verified continuity baseline
 
+## Course engine remote checkpoint verified (2026-09-29)
+
+Development commit `ca5f09b85fee2689329b716b95d07e199746a6a2` is pushed. Draft PR #4
+is open against main with auto-merge disabled. Both CI runs pass (524 JS, 275 fresh
+migrations, 12 SQL/RLS files, build/type/lint/Netlify and zero dependency vulnerabilities).
+Exact preview `6abc3af1948f010008be427f` passes 32 denial probes and 14 static routes.
+Production remains main `1599ab2`, deploy `6abbb27a1cdd6d00081b0e8e`, Supabase 274 and
+Sites version 25. The new migration is unapplied. NOT READY: duration/content decisions
+and isolated hosted persistence acceptance remain. Read
+`docs/course-engine-standard-result-2026-09-29.md`. Evidence documentation stays local.
+
 ## Course engine development candidate (2026-09-29)
 
 The shared course workspace and persistence fix are implemented on top of `d915ae1`,
