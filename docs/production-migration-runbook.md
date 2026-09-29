@@ -5,6 +5,10 @@ explicit assignment from primary Lockliel Chat.** Do not run the write commands
 below under the release-preparation assignment. No push or deployment is needed.
 Preserve Netlify production and published ChatGPT Sites version 25.
 
+## Release history: completed at 274 (2026-09-29)
+
+The final authorized retry from `ea1a31056813902e4cc2dc75b0773f58e4cf9508` completed both stages: 273 success at 11:55:39 UTC, 274 success at 11:56:34 UTC. Final ledger 274 and empty dry-run plan passed; canonical email CHECK, catalog/security, RLS, content and hosting preservation checks passed. No restore was needed. See `production-migration-release-274-2026-09-29.md`. The stage-272 and write examples below are historical procedure, not commands to rerun on this project. Check current ledger before future work; any new database release requires its own reviewed scope and authorization.
+
 ## Exact CLI cache allowance (local fix, 2026-09-29)
 
 The verifier now permits only the optional regular file

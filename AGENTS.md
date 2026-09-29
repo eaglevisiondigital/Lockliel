@@ -8,6 +8,17 @@ configuration, and Git status before changing anything. These documents describe
 the current Lockliel baseline. `README.md` records supported local validation; `README-V63.md` describes another
 project and does not establish Lockliel architecture or business approval.
 
+## Current production migration state (2026-09-29)
+
+- The final explicit production retry from `ea1a310` completed and verified both
+  `20260925035350` and `20260926212002`. Production ledger is **274**, with no
+  pending repository migrations. Read
+  `docs/production-migration-release-274-2026-09-29.md` before future DB work.
+- Earlier statements below about two pending migrations or a 272-entry production
+  baseline are historical. Never rerun these applied migrations. New production
+  writes require a new assignment; this completed release authorizes no app
+  deployment, account/signup test, content activation or documentation push.
+
 ## Ownership and scope
 
 - Chat owns product strategy, priorities, business rules, UX and architecture decisions.

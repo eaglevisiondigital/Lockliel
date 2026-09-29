@@ -3,6 +3,10 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Two-stage production migration release completed (2026-09-29)
+
+EXECUTED AND VERIFIED under the final retry assignment: bridge `20260925035350`, then email `20260926212002`, using pinned CLI/direct hotspot TLS and complete intervening verification. Production now has 274 migrations with none pending. Do not rerun either migration or treat prior failed attempts as current state. No production app release, account/signup test or content activation was authorized or performed. Read `docs/production-migration-release-274-2026-09-29.md`. New work needs a separate assignment; no automatic push.
+
 ## Exact ephemeral cache allowance approved and verified locally (2026-09-29)
 
 AUTHORIZED by the local-only assignment: permit only `supabase/.temp/cli-latest`. IMPLEMENTED: optional single regular cache file; exact contents of package/stage roots, manifest, config and migrations remain enforced, with symlink substitutions rejected. VERIFIED: actual pinned CLI creates the offline cache and the verifier passes; tampering cases fail; no change to release expectations or production. This resolves the prior local cache blocker, not production readiness gates. See `docs/release-verifier-cache-fix-2026-09-29.md`.

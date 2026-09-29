@@ -3,6 +3,10 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Production migration baseline verified at 274 (2026-09-29)
+
+Completed the separately authorized direct-hotspot release from `ea1a31056813902e4cc2dc75b0773f58e4cf9508`. Bridge migration 273 and email migration 274 applied independently with passing intermediate/final checks. Production ledger is 274, pending count zero, canonical validated email CHECK active, all 56 public tables retain RLS, Security Advisor empty and health normal. Original 272 entries, security/catalog and protected content fingerprints are preserved. Only expected ledger additions and email constraint changed; no deployment, activation, signup test, push or main change. Both websites unchanged. See `docs/production-migration-release-274-2026-09-29.md` for timing, backup and evidence limits. Earlier 272/pending statements below are historical. Next proposed package: read-only Getting a Grip production-readiness inventory.
+
 ## Exact CLI-cache verifier fix complete locally (2026-09-29)
 
 The release verifier now tolerates only the optional regular `supabase/.temp/cli-latest` file in each prepared stage. All other paths, config/manifest bytes, migration hashes and symlink boundaries remain fail-closed. Full build and 501 JS tests pass, including 51 packaging/preflight regressions. The actual pinned CLI generated the cache under OS IP denial and passed the complete disposable 272 -> 273 -> 274 rehearsal. All 274 migration hashes are unchanged. No production connection or mutation, push or deployment. Last verified production state remains 272. See `docs/release-verifier-cache-fix-2026-09-29.md`; a new explicit production retry assignment and fresh gates are required.

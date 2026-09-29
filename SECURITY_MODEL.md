@@ -4,6 +4,10 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Production release verification at 274 (2026-09-29)
+
+The two authorized migrations completed with unchanged release security fingerprints: RLS/ACL, column grants, policies, public/app_private functions, public/Auth triggers and event triggers. All 56 public tables retain RLS, Security Advisor is clear, public/Auth/Storage row-write counters are unchanged, and the canonical email CHECK is validated. Only expected ledger additions and the CHECK changed. Protected content/configuration fingerprints and hosting identities match; Auth/SMTP were not modified, but no complete independent settings snapshot is claimed. See `docs/production-migration-release-274-2026-09-29.md`.
+
 ## Prepared release cache boundary (2026-09-29)
 
 The only optional generated path is a regular `supabase/.temp/cli-latest` in each prepared stage, under a real directory with no other children. The update-cache contents are not executable selection or migration input. Every prepared migration hash, config and manifest byte remains checked; root/stage siblings and symlink substitutions fail closed. Actual pinned-CLI regression ran against a private disposable PostgreSQL cluster with verified OS IP egress denial. Production TLS, timeouts, authorization, backup/MFA and staged stop/recovery requirements remain unchanged. See `docs/release-verifier-cache-fix-2026-09-29.md`.
