@@ -3,6 +3,20 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Two-migration production authorization (2026-09-28)
+
+AUTHORIZED: apply only pending versions `20260925035350` and `20260926212002`
+using the reviewed separate-stage runner with pre/post verification. This
+supersedes prior no-migration scope for these two versions only. No deployment,
+content activation, account/role creation or settings change is authorized.
+
+NOT EXECUTED: database snapshot preflight passed, but Owner MFA/recovery and the
+approved direct password/TLS connection remain unverified/unavailable. No runner
+substitution or safeguard bypass. Read `docs/production-migration-release-2026-09-28.md`.
+Supplied physical backup evidence was within 24 hours at inspection; refresh on
+resume. Current production still accepts ordinary emails; convergence is not a
+verified signup-outage repair.
+
 ## Getting a Grip checkpoint authorization and outcome (2026-09-27)
 
 AUTHORIZED by the subsequent user assignment: exactly one normal development

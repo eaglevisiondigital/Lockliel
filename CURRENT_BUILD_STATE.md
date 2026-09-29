@@ -3,6 +3,22 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Production migration attempt: blocked before execution (2026-09-28 local)
+
+The new assignment authorizes exactly the two pending production migrations.
+Read-only checks at 2026-09-29 03:27 UTC passed the existing stage-272 checker:
+ledger/catalog/security match, zero incompatible emails, normal health, no Security
+Advisor findings and unchanged write counters across 51.669 seconds. All 274
+migration hashes and pinned CLI 2.118.0 binary hash are intact. User-supplied
+September 28 07:23:45 UTC physical backup was about 20 hours old.
+
+No migration was attempted. Execution remains blocked by unconfirmed Owner MFA/
+recovery access and unavailable password-authenticated direct TLS connection.
+Production remains at 272; both pending versions are unapplied. No push, production
+mutation, deployment or activation. See `docs/production-migration-release-2026-09-28.md`.
+Resume only after those gates are satisfied and fresh preflight/CLI dry-run checks
+pass. The supplied Auth/SMTP changes are user-reported and were not modified here.
+
 ## Getting a Grip remote checkpoint (2026-09-27)
 
 **GETTING A GRIP REMOTE CHECKPOINT VERIFIED.** One authorized normal development
