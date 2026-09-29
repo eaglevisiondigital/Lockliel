@@ -19,6 +19,16 @@ project and does not establish Lockliel architecture or business approval.
   writes require a new assignment; this completed release authorizes no app
   deployment, account/signup test, content activation or documentation push.
 
+## Completed development sync (2026-09-29)
+
+- The subsequent assignment authorized one normal development push through
+  `9a4129aeaafeaf43e15fc6df9f8d262b8a63ec3f`. It is complete. Both remote CI
+  runs and exact preview checks passed; production remains at 274 and both
+  published websites/main are preserved. Read
+  `docs/development-branch-sync-2026-09-29.md`. New evidence documentation stays
+  local. No second push, main merge, production deployment, account testing or
+  content activation is authorized by this completed checkpoint.
+
 ## Ownership and scope
 
 - Chat owns product strategy, priorities, business rules, UX and architecture decisions.

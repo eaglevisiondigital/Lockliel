@@ -3,6 +3,10 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Development branch remote sync verified (2026-09-29)
+
+One authorized normal push synchronized all seven local commits through `9a4129aeaafeaf43e15fc6df9f8d262b8a63ec3f`. Both push/PR workflows passed: 501 JS tests, 274 replayed migrations, 10 SQL/RLS files, build/type/Netlify/lint and zero production dependency vulnerabilities. Exact preview `6abbabb1f3101300082e9778` is ready; 26 backend denial probes and 11 static pages including Getting a Grip pass. Supabase remains 274 with unchanged ledger/security/content/write counters; main and both published websites unchanged. PR #3 remains open with auto-merge disabled. See `docs/development-branch-sync-2026-09-29.md`. Post-verification evidence remains local; no second push. Next: separate production application-release review, not merge/deploy approval.
+
 ## Production migration baseline verified at 274 (2026-09-29)
 
 Completed the separately authorized direct-hotspot release from `ea1a31056813902e4cc2dc75b0773f58e4cf9508`. Bridge migration 273 and email migration 274 applied independently with passing intermediate/final checks. Production ledger is 274, pending count zero, canonical validated email CHECK active, all 56 public tables retain RLS, Security Advisor empty and health normal. Original 272 entries, security/catalog and protected content fingerprints are preserved. Only expected ledger additions and email constraint changed; no deployment, activation, signup test, push or main change. Both websites unchanged. See `docs/production-migration-release-274-2026-09-29.md` for timing, backup and evidence limits. Earlier 272/pending statements below are historical. Next proposed package: read-only Getting a Grip production-readiness inventory.
