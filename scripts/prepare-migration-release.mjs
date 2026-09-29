@@ -1,7 +1,7 @@
 // Prepares verified file copies only. This script never connects to a database.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { copyFileSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { copyFileSync, lstatSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -47,13 +47,36 @@ export function prepareRelease(destination) {
 
 export function verifyPreparedRelease(root) {
   const files = verifyMigrationBytes();
+  const directoryOnly = path => assert(lstatSync(path).isDirectory(), `STOP: expected real directory: ${path}`);
+  const fileOnly = path => assert(lstatSync(path).isFile(), `STOP: expected regular file: ${path}`);
+  directoryOnly(root);
+  assert.deepEqual(readdirSync(root).sort(), ['all', 'bridge', 'manifest.json'], 'STOP: unexpected release package files.');
+  fileOnly(join(root, 'manifest.json'));
+  assert.equal(readFileSync(join(root, 'manifest.json'), 'utf8'), JSON.stringify({ runnerVersion, runnerDarwinArm64Sha256, migrations: manifest }, null, 2) + '\n', 'STOP: release manifest changed.');
   for (const stage of ['all', 'bridge']) {
+    directoryOnly(join(root, stage));
+    assert.deepEqual(readdirSync(join(root, stage)), ['supabase'], 'STOP: unexpected stage files.');
     const directory = join(root, stage, 'supabase');
+    directoryOnly(directory);
     const expected = files.filter(file => stage !== 'bridge' || file !== emailFile);
-    assert.deepEqual(readdirSync(directory).sort(), ['config.toml', 'migrations'], 'STOP: unexpected release configuration files.');
+    const entries = readdirSync(directory).sort();
+    const hasCache = entries.includes('.temp');
+    assert.deepEqual(entries, hasCache ? ['.temp', 'config.toml', 'migrations'] : ['config.toml', 'migrations'], 'STOP: unexpected release configuration files.');
+    if (hasCache) {
+      // CLI update-check metadata only, never migration input. No .temp/** exemption.
+      const cache = join(directory, '.temp');
+      directoryOnly(cache);
+      assert.deepEqual(readdirSync(cache), ['cli-latest'], 'STOP: unexpected CLI cache contents.');
+      fileOnly(join(cache, 'cli-latest'));
+    }
+    fileOnly(join(directory, 'config.toml'));
     assert.equal(readFileSync(join(directory, 'config.toml'), 'utf8'), config);
+    directoryOnly(join(directory, 'migrations'));
     assert.deepEqual(readdirSync(join(directory, 'migrations')).sort(), expected, 'STOP: staged migration set differs.');
-    for (const file of expected) assert.equal(sha256(readFileSync(join(directory, 'migrations', file))), manifest[file], `STOP: staged bytes changed: ${file}`);
+    for (const file of expected) {
+      fileOnly(join(directory, 'migrations', file));
+      assert.equal(sha256(readFileSync(join(directory, 'migrations', file))), manifest[file], `STOP: staged bytes changed: ${file}`);
+    }
   }
   return true;
 }

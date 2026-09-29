@@ -3,6 +3,10 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Exact ephemeral cache allowance approved and verified locally (2026-09-29)
+
+AUTHORIZED by the local-only assignment: permit only `supabase/.temp/cli-latest`. IMPLEMENTED: optional single regular cache file; exact contents of package/stage roots, manifest, config and migrations remain enforced, with symlink substitutions rejected. VERIFIED: actual pinned CLI creates the offline cache and the verifier passes; tampering cases fail; no change to release expectations or production. This resolves the prior local cache blocker, not production readiness gates. See `docs/release-verifier-cache-fix-2026-09-29.md`.
+
 ## Authorized direct release stopped at workdir guard (2026-09-29)
 
 AUTHORIZED: exactly two staged migrations using restored direct hotspot IPv6. VERIFIED: fresh preflight and exact pinned dry-run passed. NOT EXECUTED: generated CLI cache made the prepared-workdir verifier stop before 273; ledger remains 272. No guard bypass, cache deletion or blind retry. The earlier pooler result was confounded by helper URL encoding and is not proof of intrinsic pooler incompatibility; pooler remains unapproved. See `docs/production-migration-release-2026-09-29.md`.

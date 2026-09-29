@@ -5,9 +5,34 @@ explicit assignment from primary Lockliel Chat.** Do not run the write commands
 below under the release-preparation assignment. No push or deployment is needed.
 Preserve Netlify production and published ChatGPT Sites version 25.
 
+## Exact CLI cache allowance (local fix, 2026-09-29)
+
+The verifier now permits only the optional regular file
+`<all|bridge>/supabase/.temp/cli-latest` as ephemeral CLI update-check metadata.
+Supabase CLI 2.118.0 creates this path after a successful command. Its contents
+can be a release version tag or empty offline-backoff value. They are not migration
+input and do not select the executable: the pinned binary version/hash is still
+required. The actual pinned CLI generated the empty file during the disposable
+network-denied rehearsal; the unchanged two-migration stage-272 plan and subsequent
+verification passed. See `release-verifier-cache-fix-2026-09-29.md`.
+
+This is not a `.temp/**` or hidden-file exemption. If `.temp` exists it must be a
+real directory containing exactly one regular `cli-latest` file. Empty directories,
+extra children, nested directories and symlinks fail. Package root, stage roots,
+manifest, config and migration sets remain exact; every migration byte stays
+hash-verified. Config/manifest edits, missing or extra files, seed/role files and
+symlink substitutions fail even when the approved cache is present. Cache presence
+does not authorize deleting unexpected files or ignoring any failed check.
+
+All other release gates, direct verify-full connection, percent-20 option encoding,
+CLI flags, 5s/30s timeouts and the 272/273/274 checkpoint/failure sequence are
+unchanged. This local fix does not authorize a production retry; obtain another
+explicit assignment and refresh network, identity, backup, MFA, health and database
+gates first. Production last verified at 272, both migrations pending.
+
 ## Execution blocker found by direct rehearsal (2026-09-29)
 
-Do not execute this sequence until the workdir-cache compatibility issue is separately fixed and rehearsed. The pinned direct dry-run succeeds but generates `supabase/.temp/cli-latest`; the next unchanged verifyPreparedRelease rejects that extra directory. The attempted release stopped before any write, with ledger still 272. Do not delete cache ad hoc or bypass verification. Use percent-20 encoding for spaces in libpq URL options; plus encoding is not interchangeable. See `production-migration-release-2026-09-29.md`.
+Historical stop, resolved locally by the exact allowance above; production retry still requires a new assignment. The pinned direct dry-run succeeds but generates `supabase/.temp/cli-latest`; the next unchanged verifyPreparedRelease rejects that extra directory. The attempted release stopped before any write, with ledger still 272. Do not delete cache ad hoc or bypass verification. Use percent-20 encoding for spaces in libpq URL options; plus encoding is not interchangeable. See `production-migration-release-2026-09-29.md`.
 
 ## Session Pooler review outcome (2026-09-29)
 

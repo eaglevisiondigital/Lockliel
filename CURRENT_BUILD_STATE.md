@@ -3,6 +3,10 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Exact CLI-cache verifier fix complete locally (2026-09-29)
+
+The release verifier now tolerates only the optional regular `supabase/.temp/cli-latest` file in each prepared stage. All other paths, config/manifest bytes, migration hashes and symlink boundaries remain fail-closed. Full build and 501 JS tests pass, including 51 packaging/preflight regressions. The actual pinned CLI generated the cache under OS IP denial and passed the complete disposable 272 -> 273 -> 274 rehearsal. All 274 migration hashes are unchanged. No production connection or mutation, push or deployment. Last verified production state remains 272. See `docs/release-verifier-cache-fix-2026-09-29.md`; a new explicit production retry assignment and fresh gates are required.
+
 ## Direct release stopped before writes (2026-09-29)
 
 Direct hotspot IPv6, strict TLS, authentication, startup safeguards, fresh stage-272 preflight and pinned CLI dry-run all passed. The dry-run generated `.temp/cli-latest`; the unchanged prepared-workdir verifier rejected that extra directory before any write command. Recovery confirms ledger 272, both migrations pending, unchanged catalog/security/content and quiet counters. No restore, push or deployment. See `docs/production-migration-release-2026-09-29.md`. Next is a local tooling compatibility fix/rehearsal, followed by separately authorized production retry.

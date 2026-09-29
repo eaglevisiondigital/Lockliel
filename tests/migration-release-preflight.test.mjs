@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { baseline, expectations, checkMigrationPreflight } from '../scripts/check-migration-preflight.mjs';
@@ -66,7 +66,78 @@ test('release packaging copies immutable migrations and refuses existing/reposit
     assert.throws(() => prepareRelease(root), /EEXIST/);
     assert.equal(readFileSync(join(root, 'preserve.txt'), 'utf8'), 'existing work');
     assert.throws(() => prepareRelease(join(repo, 'release-test-forbidden')), /outside/);
+    rmSync(join(root, 'preserve.txt'));
     writeFileSync(join(root, 'bridge/supabase/migrations', bridgeFile), 'tampered');
     assert.throws(() => verifyPreparedRelease(root), /staged bytes changed/);
   } finally { rmSync(parent, {recursive:true, force:true}); }
 });
+
+function preparedCase(run) {
+  const parent = mkdtempSync(join(tmpdir(), 'lockliel-cache-unit-'));
+  try { run(prepareRelease(join(parent, 'package')), parent); }
+  finally { rmSync(parent, { recursive: true, force: true }); }
+}
+function addCache(root, stage) {
+  const path = join(root, stage, 'supabase/.temp');
+  mkdirSync(path);
+  writeFileSync(join(path, 'cli-latest'), 'v2.118.0');
+  return path;
+}
+test('release cache is optional and accepted independently in both stages', () => {
+  preparedCase(root => {
+    assert.equal(verifyPreparedRelease(root), true);
+    addCache(root, 'all');
+    assert.equal(verifyPreparedRelease(root), true);
+    addCache(root, 'bridge');
+    assert.equal(verifyPreparedRelease(root), true);
+  });
+});
+for (const stage of ['all', 'bridge']) {
+  const mutations = {
+    'extra cache file': (root, cache) => writeFileSync(join(cache, 'project-ref'), 'unexpected'),
+    'extra cache directory': (root, cache) => mkdirSync(join(cache, 'nested')),
+    'empty cache directory': (root, cache) => rmSync(join(cache, 'cli-latest')),
+    'cache path is a directory': (root, cache) => { rmSync(join(cache, 'cli-latest')); mkdirSync(join(cache, 'cli-latest')); },
+    'extra hidden config': root => writeFileSync(join(root, stage, 'supabase/.env'), 'unexpected'),
+    'extra config directory': root => mkdirSync(join(root, stage, 'supabase/generated')),
+    'extra seed': root => writeFileSync(join(root, stage, 'supabase/seed.sql'), 'select 1;'),
+    'extra roles': root => writeFileSync(join(root, stage, 'supabase/roles.sql'), 'select 1;'),
+    'modified migration': root => writeFileSync(join(root, stage, 'supabase/migrations', bridgeFile), 'tampered'),
+    'extra migration': root => writeFileSync(join(root, stage, 'supabase/migrations/unexpected.sql'), 'select 1;'),
+    'missing migration': root => rmSync(join(root, stage, 'supabase/migrations', bridgeFile)),
+    'modified config': root => writeFileSync(join(root, stage, 'supabase/config.toml'), 'project_id="changed"'),
+    'missing config': root => rmSync(join(root, stage, 'supabase/config.toml')),
+    'extra stage file': root => writeFileSync(join(root, stage, '.env'), 'unexpected'),
+  };
+  for (const [name, mutate] of Object.entries(mutations)) {
+    test(`release ${stage} cache cannot mask ${name}`, () => preparedCase(root => {
+      const cache = addCache(root, stage);
+      mutate(root, cache);
+      assert.throws(() => verifyPreparedRelease(root));
+    }));
+  }
+  for (const path of ['supabase/.temp/cli-latest', 'supabase/.temp', 'supabase/config.toml', `supabase/migrations/${bridgeFile}`, 'supabase/migrations', 'supabase']) {
+    test(`release ${stage} refuses symlink substitution of ${path}`, () => preparedCase((root, parent) => {
+      addCache(root, stage);
+      const target = join(root, stage, path);
+      // Preserve the original bytes/tree so a content-only verifier would accept it.
+      const saved = join(parent, 'saved');
+      // Rename keeps directory contents intact and avoids following the test symlink.
+      renameSync(target, saved);
+      symlinkSync(saved, target);
+      assert.throws(() => verifyPreparedRelease(root));
+    }));
+  }
+}
+for (const [name, mutate] of Object.entries({
+  'extra root file': root => writeFileSync(join(root, '.env'), 'unexpected'),
+  'extra root directory': root => mkdirSync(join(root, 'generated')),
+  'changed manifest': root => writeFileSync(join(root, 'manifest.json'), '{}'),
+  'missing manifest': root => rmSync(join(root, 'manifest.json')),
+})) {
+  test(`release refuses ${name} even with cache present`, () => preparedCase(root => {
+    addCache(root, 'all');
+    mutate(root);
+    assert.throws(() => verifyPreparedRelease(root));
+  }));
+}

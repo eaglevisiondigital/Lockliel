@@ -4,6 +4,10 @@ Baseline: 2026-09-26 at `47409a2796a5275e12684cb4a182cb008c4d5414`.
 This is a focused continuity assessment, not a complete penetration test or
 certification. Evidence and omissions are recorded in `CURRENT_BUILD_STATE.md`.
 
+## Prepared release cache boundary (2026-09-29)
+
+The only optional generated path is a regular `supabase/.temp/cli-latest` in each prepared stage, under a real directory with no other children. The update-cache contents are not executable selection or migration input. Every prepared migration hash, config and manifest byte remains checked; root/stage siblings and symlink substitutions fail closed. Actual pinned-CLI regression ran against a private disposable PostgreSQL cluster with verified OS IP egress denial. Production TLS, timeouts, authorization, backup/MFA and staged stop/recovery requirements remain unchanged. See `docs/release-verifier-cache-fix-2026-09-29.md`.
+
 ## Getting a Grip invitation boundary (local, 2026-09-27)
 
 The public page renders approved static copy only: no private query reflection,

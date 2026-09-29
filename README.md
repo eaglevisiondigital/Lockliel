@@ -104,7 +104,11 @@ credentials, verifies its private cluster and removes only that disposable clust
 The statement-timeout negative test intentionally takes about 30 seconds.
 Seven SQL files run at each checkpoint, with transaction rollback. Platform stubs
 and reconstructed ledger statement formatting limit full Supabase equivalence.
-The six offline packaging/preflight tests are included in the standard Node suite.
+The offline packaging/preflight regressions are included in the standard Node suite.
+The rehearsal also proves the actual CLI generates only the permitted
+`supabase/.temp/cli-latest` cache after dry-run, verifies the package again, and
+rejects an extra cache child. All other package paths and migration hashes remain
+exact; symlink substitutions are rejected.
 
 `prepare-migration-release.mjs` only copies hash-verified files into a new external
 directory. `check-migration-preflight.mjs` only checks JSON captures offline. Neither

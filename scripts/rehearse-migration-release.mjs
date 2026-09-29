@@ -2,12 +2,12 @@
 // No connection arguments, caller database variables, linked project, or live credentials.
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { lstatSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { createConnection } from 'node:net';
-import { bridgeFile, emailFile, manifest, prepareRelease, repo, runnerDarwinArm64Sha256, runnerVersion, sha256, verifyMigrationBytes } from './prepare-migration-release.mjs';
+import { bridgeFile, emailFile, manifest, prepareRelease, repo, runnerDarwinArm64Sha256, runnerVersion, sha256, verifyMigrationBytes, verifyPreparedRelease } from './prepare-migration-release.mjs';
 
 assert.equal(process.argv.length, 2, 'Rehearsal accepts no connection arguments.');
 assert(process.platform === 'darwin' && process.arch === 'arm64', 'This pinned binary rehearsal currently supports macOS arm64 only.');
@@ -136,12 +136,27 @@ try {
   const release = prepareRelease(join(root, 'release'));
   const allStage = join(release, 'all');
   const bridgeStage = join(release, 'bridge');
+  assert.equal(verifyPreparedRelease(release), true);
+  assert.deepEqual(readdirSync(join(allStage, 'supabase')).sort(), ['config.toml', 'migrations']);
   const originalLedger = ledger('postgres');
   const discovery = successful(cli(allStage, 'postgres', { dryRun: true }));
   assert.deepEqual(discovery.migrations, [bridgeFile, emailFile]);
   assert.deepEqual(discovery.seeds, []);
   assert.deepEqual(discovery.roles, []);
   assert.deepEqual(ledger('postgres'), originalLedger);
+  const cache = join(allStage, 'supabase/.temp');
+  assert.deepEqual(readdirSync(cache), ['cli-latest']);
+  assert(lstatSync(join(cache, 'cli-latest')).isFile());
+  // The actual CLI writes an empty update-check backoff cache when IP egress is denied.
+  // Do not manufacture the approved artifact or enable network to fetch a version.
+  assert.equal(readFileSync(join(cache, 'cli-latest'), 'utf8'), '');
+  assert.equal(verifyPreparedRelease(release), true);
+  const unexpected = join(cache, 'unexpected');
+  writeFileSync(unexpected, 'local negative-test fixture');
+  assert.throws(() => verifyPreparedRelease(release), /unexpected CLI cache contents/);
+  rmSync(unexpected);
+  assert.equal(verifyPreparedRelease(release), true);
+  console.log('PASS actual pinned CLI cache regression: clean package -> stage-272 dry-run -> only .temp/cli-latest -> verifier passes; extra cache file fails.');
   failure(cli(allStage, 'postgres', { dryRun: true, includeAll: false }), /inserted before|include-all/);
   console.log('PASS read-only discovery: exactly bridge then email; default chronological mode refuses the older gap.');
   sql(`create schema rehearsal;
@@ -195,6 +210,7 @@ try {
   const beforeEmail = email('postgres');
   const beforeApplicationData = applicationData('postgres');
   const bridgeResult = successful(cli(bridgeStage, 'postgres'));
+  assert.equal(verifyPreparedRelease(release), true);
   assert.deepEqual(bridgeResult.migrations, [bridgeFile]);
   assert.equal(ledger('postgres').length, 273);
   assert.equal(ledger('postgres').find(x => x.version === bridgeFile.slice(0,14)).name, bridgeFile.slice(15,-4));
@@ -268,6 +284,7 @@ try {
   testSql('274 checkpoint');
   const finalPlan = successful(cli(allStage, 'postgres', { dryRun: true }));
   assert.deepEqual(finalPlan.migrations, []);
+  assert.equal(verifyPreparedRelease(release), true);
   console.log('PASS actual CLI email checkpoint: 274; canonical CHECK, unique index, other constraints and security unchanged; no pending migrations.');
   console.log('TIMEOUT OBSERVATIONS ' + sql('select jsonb_agg(to_jsonb(o) order by version) from rehearsal.observed o;'));
   console.log('RELEASE EXPECTATIONS ' + sql("select jsonb_build_object('email_constraint_md5',(select md5(pg_get_constraintdef(oid)) from pg_constraint where conrelid='public.profiles'::regclass and conname='profiles_email_format'),'ledger',(select jsonb_agg(jsonb_build_object('version',version,'name',name,'statements_md5',md5(array_to_string(statements,E'\\n'))) order by version) from supabase_migrations.schema_migrations where version in ('20260925035350','20260926212002')));"));
