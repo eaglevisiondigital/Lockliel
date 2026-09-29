@@ -1,0 +1,3 @@
+import Link from "next/link";import FaithProfileForm from "./faith-profile-form";import "../my-lockliel.css";
+export const metadata={title:"My Faith Journey | My Lockliel"};
+export default function FaithProfile(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/my-lockliel" className="ml-auth-home">← My Lockliel</Link><div className="ml-kicker">Your journey</div><h1>Meet us where you are.</h1><p>Lockliel is built to help people grow from where they are now. Share only what you are comfortable sharing so we can serve you better and help you take a meaningful next step.</p><FaithProfileForm/></div></main>}

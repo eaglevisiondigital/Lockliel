@@ -1,0 +1,3 @@
+import Link from "next/link";import {ArrowLeft} from "lucide-react";import PreferencesClient from "./preferences-client";import "../my-lockliel.css";
+export const metadata={title:"Communication Preferences | My Lockliel"};
+export default function Preferences(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/my-lockliel/profile" className="ml-auth-home"><ArrowLeft size={16}/> My profile</Link><div className="ml-kicker">My Lockliel</div><h1>Communication preferences.</h1><p>Choose what you want to receive from Lockliel. Your preferences can be changed at any time.</p><PreferencesClient/></div></main>}

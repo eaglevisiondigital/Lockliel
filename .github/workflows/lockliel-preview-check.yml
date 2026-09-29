@@ -1,0 +1,47 @@
+name: Lockliel Preview Check
+on:
+  push:
+    branches: [lockliel-backend-v1]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: lockliel-preview-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate:netlify
+      - run: npm run lint:tooling
+      - name: Production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build
+        run: npm run build
+      - run: npm run test:unit
+      - run: npm run typecheck
+  sql:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install PostgreSQL 17 from the official PostgreSQL repository
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-common
+          sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+          sudo apt-get install -y postgresql-17
+          echo /usr/lib/postgresql/17/bin >> "$GITHUB_PATH"
+      - run: npm run test:sql

@@ -1,0 +1,3 @@
+create unique index if not exists partner_commitments_provider_subscription_uidx
+on public.partner_commitments(provider,provider_subscription_ref)
+where provider_subscription_ref is not null;

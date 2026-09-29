@@ -1,0 +1,3 @@
+import Link from "next/link";import ResetPasswordForm from "./reset-password-form";import "../my-lockliel.css";
+export const metadata={title:"Choose a new password | My Lockliel"};
+export default function ResetPassword(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/" className="ml-auth-home">← Lockliel</Link><div className="ml-kicker">Secure account recovery</div><h1>Choose a new password.</h1><p>Set a new password for your My Lockliel account.</p><ResetPasswordForm/></div></main>}

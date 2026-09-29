@@ -1,113 +1,116 @@
-# vinext-starter
+# Lockliel
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+The supported application is Next.js static export (`out/`) with Netlify functions
+and Supabase. Read AGENTS.md and the four continuity documents before changes.
+`README-V63.md`, Sites/Vinext helpers, D1 examples and `db:generate` are legacy
+artifacts, not the member platform migration or deployment contract.
 
-## Prerequisites
+## Local validation
 
-- Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+Use Node.js >=22.13 (CI uses 22; this package verified locally on 24.20) and npm.
 
-## Sites Lifecycle
-
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
-
-This starter does not use `wrangler.jsonc`.
-
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
-
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
-
-## Included Shape
-
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```sh
+npm ci
+npm run validate:netlify
+npm run lint:tooling
+npm test
+npm run typecheck
+npm run test:sql
+npm run lint
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+`npm test` builds with Webpack, then runs every Node test with network protection.
+`npm run test:unit` reuses an existing `out/` build. `npm run validate` combines
+these supported checks except repository-wide lint, whose existing debt remains
+visible through `npm run lint`. Do not describe that narrower gate as a clean
+repository-wide lint result.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+Webpack is the supported Next.js build and development path. Turbopack is not
+required. `npm run dev` serves the frontend; it does not emulate Netlify functions.
+Static exports do not support `next start`, so that misleading script was removed.
+Netlify deploys `out/` and functions according to `netlify.toml`. No deployment is
+performed by local validation. Module validation is not Netlify cloud integration
+or browser validation. Never use real member accounts for automated tests.
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- In a Server Component, start sign-in with
-  `<a href={chatGPTSignInPath(returnTo)} target="_top">`. The auth helper
-  module is server-only; do not import it into a Client Component.
-- Do not use `fetch`, XHR, a client-side router, or a framework link that can
-  prefetch the sign-in route. SIWC must start as a top-level navigation.
-- Never request the AuthAPI authorization endpoint directly. The dispatch-owned
-  `/signin-with-chatgpt` route must start the SIWC flow.
-- Use `chatGPTSignOutPath(returnTo)` for browser sign-out links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+Deploy previews and local/unknown Netlify contexts render static pages but return
+503 for connected features. All handlers require trusted invocation
+`context.deploy.context === 'production'`; there is no local environment-variable
+bypass. Handler tests explicitly supply simulated production context and fake
+transports under the network guard. Do not point local development at live data.
+Builds strip Netlify form-detection attributes unless build CONTEXT is production;
+the production build preserves the original forms. An edge guard separately
+blocks native form submissions and connected GET routes in previews. See
+`docs/deployment-safety-review.md` before any controlled push or browser testing.
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+## Isolated SQL tests
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+Install PostgreSQL 17 and place `initdb`, `pg_ctl`, and `psql` on PATH. On macOS
+with Homebrew PostgreSQL 17, use `export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"`
+(adjust for Intel installations). Run as a normal user, not root. CI installs
+PostgreSQL 17 from its official Ubuntu package repository.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+`npm run test:sql` creates a disposable cluster with a private Unix socket and no
+TCP listener. It accepts no connection arguments, discards database/environment
+credentials, verifies cluster identity, rolls back fixtures and removes its own
+cluster. It never connects to the linked Supabase project. No Docker is required.
 
-## Diagnostic Commands
+Tests use real PostgreSQL RLS and repository functions, with minimal test-only
+Auth/Storage compatibility tables. They do not emulate GoTrue, PostgREST or
+Storage HTTP behavior. The authoritative chain now includes a guarded reconstruction of missing historical
+review/share DDL. It replays without historical test supplements. The ordering
+exception, existing-environment safety, targeted schema comparison and pending
+email release plan are documented in [the reconciliation record](docs/migration-reconciliation.md).
+Do not run linked database pushes or history repairs as local validation.
 
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build and verify the rendered development-preview metadata
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+## Test network safety
 
-Use build commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
+The Node preload blocks fetch, HTTP(S), HTTP/2, WebSocket, TCP/TLS, UDP and DNS.
+Attempts fail the process even when caught by application code. Explicit test
+transport mocks are allowed. Resource signup tests inject both Forms and CRM
+transports. The guard prevents accidental calls through covered Node interfaces;
+it is not an OS sandbox against arbitrary native child processes or malicious
+replacement of built-ins. Never supply production credentials to tests.
 
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
+Keep local secrets in ignored environment files. No secrets are needed for these
+checks. Source, SQL migrations, templates and continuity documents remain tracked.
 
-## Learn More
+## Exact migration-release rehearsal
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+This additional release gate is distinct from the all-274 fresh replay. It starts
+at a reconstructed 272-entry live-like ledger, then uses the actual pinned
+Supabase CLI 2.118.0 to reach 273 and 274 independently. It accepts no connection
+arguments and never uses production credentials. Supported here: macOS arm64,
+PostgreSQL 17, the reviewed CLI binary and an OS-level outbound IP deny policy.
+Do not substitute a production connection or run these fixtures live.
+
+Install the pinned CLI outside the repository as described in
+[the runbook](docs/production-migration-runbook.md). Set `LOCKLIEL_SUPABASE_BIN` to
+its absolute darwin-arm64 binary path. Its version and SHA-256 are enforced by the
+rehearsal. On macOS, run with native subprocess/socket permission as needed:
+
+```bash
+/usr/bin/sandbox-exec \
+  -p '(version 1)(allow default)(deny network-outbound)(allow network-outbound (subpath "/private/var/folders") (subpath "/private/tmp"))' \
+  /usr/bin/env -i PATH="$PATH" TMPDIR=/private/tmp \
+  LOCKLIEL_SUPABASE_BIN="$LOCKLIEL_SUPABASE_BIN" \
+  node scripts/rehearse-migration-release.mjs
+./node_modules/.bin/eslint scripts/prepare-migration-release.mjs \
+  scripts/check-migration-preflight.mjs scripts/rehearse-migration-release.mjs \
+  tests/migration-release-preflight.test.mjs
+```
+
+It fails closed if IP egress denial is not verified, uses generated local SCRAM
+credentials, verifies its private cluster and removes only that disposable cluster.
+The statement-timeout negative test intentionally takes about 30 seconds.
+Seven SQL files run at each checkpoint, with transaction rollback. Platform stubs
+and reconstructed ledger statement formatting limit full Supabase equivalence.
+The offline packaging/preflight regressions are included in the standard Node suite.
+The rehearsal also proves the actual CLI generates only the permitted
+`supabase/.temp/cli-latest` cache after dry-run, verifies the package again, and
+rejects an extra cache child. All other package paths and migration hashes remain
+exact; symlink substitutions are rejected.
+
+`prepare-migration-release.mjs` only copies hash-verified files into a new external
+directory. `check-migration-preflight.mjs` only checks JSON captures offline. Neither
+connects to the database. Read the runbook's manual gates and STOP conditions;
+passing scripts alone does not authorize production release or account changes.

@@ -1,6 +1,7 @@
+import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import { getStore } from "@netlify/blobs";
 import { json, sessionFor } from "../lib/faith-boost-core.mjs";
-export default async request => {
+export default withProductionBackend(async request => {
   if (request.method !== "GET") return json({ ok: false }, 405);
   try {
     const store = getStore({ name: "faith-boost-resource", consistency: "strong" });
@@ -10,5 +11,5 @@ export default async request => {
     if (!lead) return json({ ok: false }, 401);
     return json({ ok: true });
   } catch { return json({ ok: false }, 503); }
-};
+});
 export const config = { path: "/api/faith-boost/access" };

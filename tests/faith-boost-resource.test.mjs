@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
-import { createSignup } from "../netlify/functions/faith-boost-signup.mjs";
+import { createSignup as createHandler } from "../netlify/functions/faith-boost-signup.mjs";
 import { COOKIE, allowedOrigin, hash, sessionFor } from "../netlify/lib/faith-boost-core.mjs";
 
 function memoryStore() {
@@ -68,3 +68,25 @@ test("export contains the opt-in page and cover, not an ungated PDF or book-page
   const reader=await readFile("resources/faith-boost-reader/index.html","utf8");assert.match(reader,/noindex,nofollow/);
   const book=await readdir("resources/faith-boost-reader/pages");assert.equal(book.length,10);
 });
+
+// CRM failures preserve the established best-effort resource signup behavior.
+test("CRM mirroring uses injected transport and keeps consent scope", async () => {
+  const calls = [];
+  const handler = createSignup({
+    storeFor: () => memoryStore(),
+    post: async () => new Response(null, {status: 204}),
+    mirror: async (url, init) => {
+      calls.push({url, body: JSON.parse(init.body)});
+      throw new Error('CRM offline');
+    }
+  });
+  assert.equal((await handler(request(valid))).status, 200);
+  assert.equal(calls.length, 1);
+  assert.match(calls[0].url, /\/functions\/v1\/capture-lead$/);
+  assert.equal(calls[0].body.sourceType, "faith_boost");
+  assert.equal(calls[0].body.consent.sms, false);
+});
+
+function createSignup(options = {}) {
+  return createHandler({mirror: async () => new Response(null, {status: 204}), ...options});
+}

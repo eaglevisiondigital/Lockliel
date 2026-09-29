@@ -1,33 +1,22 @@
-import assert from "node:assert/strict";
-import test from "node:test";
+import assert from 'node:assert/strict';
+import { readFile, access } from 'node:fs/promises';
+import test from 'node:test';
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+// The Vinext worker/preview contract is retired. Check the actual Netlify export.
+test('Next export contains the Lockliel homepage and resolvable build assets', async () => {
+  const html = await readFile('out/index.html', 'utf8');
+  assert.match(html, /<title>Lockliel/);
+  assert.match(html, /<main[\s>]/);
+  assert.match(html, /Reach[\s\S]*Teach[\s\S]*Train[\s\S]*Disciple/);
+  const assets = [...html.matchAll(/(?:src|href)="(\/_next\/[^"?#]+)(?:[^" ]*)"/g)];
+  assert(assets.length > 0, 'No Next.js assets were emitted');
+  for (const [, asset] of assets) await access('out' + asset);
+});
 
-test("renders development preview metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-
-  assert.equal(response.status, 200);
-  assert.match(
-    response.headers.get("content-type") ?? "",
-    /^text\/html\b/i,
-  );
-  assert.match(await response.text(), developmentPreviewMeta);
+test('member and public entrypoints are statically exported', async () => {
+  for (const page of ['my-lockliel/sign-in', 'my-lockliel/privacy', 'my-lockliel/admin', 'founders-50', 'a-heart-for-the-lost']) {
+    const html = await readFile(`out/${page}.html`, 'utf8');
+    assert.match(html, /<html/);
+    assert.match(html, /<body/);
+  }
 });

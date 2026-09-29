@@ -1,0 +1,3 @@
+import Link from "next/link";import LocklielAuthForm from "../auth-form";import AuthRedirectHandler from "../auth-redirect-handler";import "../my-lockliel.css";
+export const metadata={title:"Sign in | My Lockliel"};
+export default function SignIn(){return <main className="my-lockliel"><div className="ml-auth-shell"><Link href="/" className="ml-auth-home">← Lockliel</Link><div className="ml-kicker">My Lockliel</div><h1>Welcome back.</h1><p>Continue growing, reaching one, and helping someone else take their next step.</p><AuthRedirectHandler/><LocklielAuthForm mode="login"/></div></main>}

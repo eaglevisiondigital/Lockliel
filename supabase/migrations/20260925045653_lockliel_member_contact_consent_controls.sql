@@ -1,0 +1,113 @@
+revoke update on table public.contact_permissions from authenticated;
+grant update (revoked_at) on table public.contact_permissions to authenticated;
+
+drop policy if exists contact_permissions_self_update on public.contact_permissions;
+
+create policy contact_permissions_self_update
+on public.contact_permissions
+for update
+to authenticated
+using ((select auth.uid()) = profile_id)
+with check ((select auth.uid()) = profile_id);
+
+create or replace function app_private.sync_contact_permission_conversation_state()
+returns trigger
+language plpgsql
+security definer
+set search_path to ''
+as $function$
+declare
+  convo uuid;
+  convo_type text;
+begin
+  if old.revoked_at is not distinct from new.revoked_at then
+    return new;
+  end if;
+
+  if new.permission_type not in ('inviter_followup','leader_followup') then
+    return new;
+  end if;
+
+  convo_type := new.permission_type;
+
+  if new.revoked_at is not null then
+    update public.conversation_members cm
+    set left_at = coalesce(cm.left_at, now())
+    from public.conversations c
+    where c.id = cm.conversation_id
+      and c.conversation_type = convo_type
+      and cm.profile_id in (new.profile_id,new.other_profile_id)
+      and exists(
+        select 1
+        from public.conversation_members a
+        where a.conversation_id=c.id
+          and a.profile_id=new.profile_id
+      )
+      and exists(
+        select 1
+        from public.conversation_members b
+        where b.conversation_id=c.id
+          and b.profile_id=new.other_profile_id
+      );
+  else
+    select c.id
+      into convo
+    from public.conversations c
+    where c.conversation_type = convo_type
+      and exists(
+        select 1
+        from public.conversation_members a
+        where a.conversation_id=c.id
+          and a.profile_id=new.profile_id
+      )
+      and exists(
+        select 1
+        from public.conversation_members b
+        where b.conversation_id=c.id
+          and b.profile_id=new.other_profile_id
+      )
+    order by c.created_at desc
+    limit 1;
+
+    if convo is null then
+      insert into public.conversations(conversation_type)
+      values(convo_type)
+      returning id into convo;
+
+      if new.permission_type='inviter_followup' then
+        insert into public.conversation_members(
+          conversation_id, profile_id, member_role
+        )
+        values
+          (convo,new.profile_id,'invitee'),
+          (convo,new.other_profile_id,'inviter');
+      else
+        insert into public.conversation_members(
+          conversation_id, profile_id, member_role
+        )
+        values
+          (convo,new.profile_id,'member'),
+          (convo,new.other_profile_id,'leader');
+      end if;
+    else
+      update public.conversation_members
+      set left_at=null
+      where conversation_id=convo
+        and profile_id in (new.profile_id,new.other_profile_id);
+    end if;
+  end if;
+
+  return new;
+end;
+$function$;
+
+revoke execute on function app_private.sync_contact_permission_conversation_state()
+from public, anon, authenticated;
+
+drop trigger if exists sync_contact_permission_conversation_state_trigger
+on public.contact_permissions;
+
+create trigger sync_contact_permission_conversation_state_trigger
+after update of revoked_at on public.contact_permissions
+for each row
+execute function app_private.sync_contact_permission_conversation_state();

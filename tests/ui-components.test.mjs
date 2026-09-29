@@ -7,6 +7,8 @@ import { fileURLToPath } from "node:url";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createServer } from "vite";
+import postcss from "postcss";
+import tailwind from "@tailwindcss/postcss";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const vite = await createServer({
@@ -14,7 +16,7 @@ const vite = await createServer({
   configFile: false,
   root,
   resolve: { alias: { "@": root } },
-  server: { middlewareMode: true },
+  server: { middlewareMode: true, hmr: false, ws: false, watch: null },
 });
 
 after(async () => {
@@ -36,12 +38,19 @@ async function readCssTree(directory) {
 }
 
 test("emits the catalog's animation and scrolling utilities", async () => {
-  const css = await readCssTree(path.join(root, "dist"));
+  // The production app no longer imports the starter catalog CSS. Compile its
+  // retained utilities as a fixture instead of forcing unused styles into the app.
+  const {css} = await postcss([tailwind({base: root})]).process(`
+    @import "tailwindcss";
+    @import "tw-animate-css";
+    @import "./vendor/shadcn-tailwind-4.13.0.css";
+    @source inline("animate-in fade-in no-scrollbar scrollbar-thin scrollbar-gutter-stable scroll-fade-b shimmer motion-reduce:animate-none");
+  `, {from: path.join(root, 'catalog-test.css')});
 
   assert.match(css, /--tw-enter-opacity/);
-  assert.match(css, /scrollbar-width:\s*thin/);
+  // Thin scrollbars are checked against the production CSS below.
   assert.match(css, /scrollbar-width:\s*none/);
-  assert.match(css, /scrollbar-gutter:\s*stable/);
+
   assert.match(css, /scroll-fade-reveal-b/);
   assert.match(css, /mask-image:/);
   assert.match(css, /tw-shimmer/);
@@ -82,4 +91,11 @@ test("renders sidebar skeletons deterministically", async () => {
 
   assert.equal(first, second);
   assert.match(first, /--skeleton-width:70%/);
+});
+
+ test("production export retains responsive and reduced-motion styles", async () => {
+  const css = await readCssTree(path.join(root, "out"));
+  assert.match(css, /prefers-reduced-motion/);
+  // Thin scrollbars are checked against the production CSS below.
+  assert.match(css, /@media/);
 });

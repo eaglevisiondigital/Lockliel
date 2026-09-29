@@ -1,0 +1,1357 @@
+{
+  "rls": [
+    {
+      "rls": true,
+      "force": false,
+      "table": "founders50_reviews"
+    },
+    {
+      "rls": true,
+      "force": false,
+      "table": "share_assets"
+    }
+  ],
+  "grants": [
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "DELETE"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "TRIGGER"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "grantable": "NO",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "DELETE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "TRIGGER"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "TRUNCATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "grantable": "NO",
+      "privilege": "UPDATE"
+    }
+  ],
+  "columns": [
+    {
+      "type": "uuid",
+      "table": "founders50_reviews",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "nullable": "NO"
+    },
+    {
+      "type": "uuid",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "uuid",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "timestamptz",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": "NO"
+    },
+    {
+      "type": "uuid",
+      "table": "share_assets",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "slug",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "title",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "asset_type",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "description",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "destination_path",
+      "default": null,
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "status",
+      "default": "'draft'::text",
+      "nullable": "NO"
+    },
+    {
+      "type": "timestamptz",
+      "table": "share_assets",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "share_text",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "category",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "default": null,
+      "nullable": "YES"
+    },
+    {
+      "type": "int4",
+      "table": "share_assets",
+      "column": "sort_order",
+      "default": "100",
+      "nullable": "NO"
+    },
+    {
+      "type": "bool",
+      "table": "share_assets",
+      "column": "featured",
+      "default": "false",
+      "nullable": "NO"
+    },
+    {
+      "type": "timestamptz",
+      "table": "share_assets",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "language_code",
+      "default": "'en'::text",
+      "nullable": "NO"
+    },
+    {
+      "type": "text",
+      "table": "share_assets",
+      "column": "translation_key",
+      "default": null,
+      "nullable": "NO"
+    }
+  ],
+  "indexes": [
+    {
+      "name": "founders50_reviews_application_idx",
+      "table": "founders50_reviews",
+      "definition": "CREATE INDEX founders50_reviews_application_idx ON public.founders50_reviews USING btree (application_id, created_at DESC)"
+    },
+    {
+      "name": "founders50_reviews_pkey",
+      "table": "founders50_reviews",
+      "definition": "CREATE UNIQUE INDEX founders50_reviews_pkey ON public.founders50_reviews USING btree (id)"
+    },
+    {
+      "name": "founders50_reviews_reviewer_idx",
+      "table": "founders50_reviews",
+      "definition": "CREATE INDEX founders50_reviews_reviewer_idx ON public.founders50_reviews USING btree (reviewer_id, created_at DESC)"
+    },
+    {
+      "name": "share_assets_pkey",
+      "table": "share_assets",
+      "definition": "CREATE UNIQUE INDEX share_assets_pkey ON public.share_assets USING btree (id)"
+    },
+    {
+      "name": "share_assets_slug_key",
+      "table": "share_assets",
+      "definition": "CREATE UNIQUE INDEX share_assets_slug_key ON public.share_assets USING btree (slug)"
+    },
+    {
+      "name": "share_assets_status_sort_idx",
+      "table": "share_assets",
+      "definition": "CREATE INDEX share_assets_status_sort_idx ON public.share_assets USING btree (status, featured DESC, sort_order, title)"
+    },
+    {
+      "name": "share_assets_translation_idx",
+      "table": "share_assets",
+      "definition": "CREATE INDEX share_assets_translation_idx ON public.share_assets USING btree (translation_key, language_code, status)"
+    },
+    {
+      "name": "share_assets_translation_language_unique",
+      "table": "share_assets",
+      "definition": "CREATE UNIQUE INDEX share_assets_translation_language_unique ON public.share_assets USING btree (translation_key, language_code)"
+    }
+  ],
+  "policies": [
+    {
+      "cmd": "INSERT",
+      "name": "founders50_reviews_staff_insert",
+      "qual": null,
+      "check": "((reviewer_id = ( SELECT auth.uid() AS uid)) AND app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'founders50_reviewer'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "founders50_reviews",
+      "permissive": "PERMISSIVE"
+    },
+    {
+      "cmd": "SELECT",
+      "name": "founders50_reviews_staff_read",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'founders50_reviewer'::text])",
+      "check": null,
+      "roles": [
+        "authenticated"
+      ],
+      "table": "founders50_reviews",
+      "permissive": "PERMISSIVE"
+    },
+    {
+      "cmd": "SELECT",
+      "name": "share_assets_member_read",
+      "qual": "(status = 'active'::text)",
+      "check": null,
+      "roles": [
+        "authenticated"
+      ],
+      "table": "share_assets",
+      "permissive": "PERMISSIVE"
+    },
+    {
+      "cmd": "INSERT",
+      "name": "share_assets_staff_insert",
+      "qual": null,
+      "check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "share_assets",
+      "permissive": "PERMISSIVE"
+    },
+    {
+      "cmd": "UPDATE",
+      "name": "share_assets_staff_update",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+      "check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "table": "share_assets",
+      "permissive": "PERMISSIVE"
+    }
+  ],
+  "triggers": [
+    {
+      "name": "apply_founders50_review_decision_trigger",
+      "table": "founders50_reviews",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER apply_founders50_review_decision_trigger AFTER INSERT ON public.founders50_reviews FOR EACH ROW EXECUTE FUNCTION app_private.apply_founders50_review_decision()"
+    },
+    {
+      "name": "default_share_translation_key_trigger",
+      "table": "share_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER default_share_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "name": "normalize_share_asset_trigger",
+      "table": "share_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_share_asset_trigger BEFORE INSERT OR UPDATE ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_share_asset()"
+    },
+    {
+      "name": "validate_share_asset_translation_family_trigger",
+      "table": "share_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER validate_share_asset_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, asset_type ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.validate_share_asset_translation_family()"
+    }
+  ],
+  "constraints": [
+    {
+      "name": "founders50_reviews_application_id_fkey",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "FOREIGN KEY (application_id) REFERENCES founders50_applications(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "founders50_reviews_decision_check",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "CHECK ((decision = ANY (ARRAY['note'::text, 'needs_info'::text, 'accept'::text, 'decline'::text, 'pause'::text, 'activate_host'::text])))"
+    },
+    {
+      "name": "founders50_reviews_decision_rationale",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "CHECK (((decision = 'note'::text) OR (char_length(TRIM(BOTH FROM COALESCE(rationale, ''::text))) >= 20)))"
+    },
+    {
+      "name": "founders50_reviews_pkey",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "founders50_reviews_rationale_length",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "CHECK (((rationale IS NULL) OR (char_length(rationale) <= 5000)))"
+    },
+    {
+      "name": "founders50_reviews_reviewer_id_fkey",
+      "table": "founders50_reviews",
+      "validated": true,
+      "definition": "FOREIGN KEY (reviewer_id) REFERENCES profiles(id) ON DELETE SET NULL"
+    },
+    {
+      "name": "share_assets_asset_type_check",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK ((asset_type = ANY (ARRAY['faith_boost'::text, 'graphic'::text, 'book'::text, 'course'::text, 'invitation'::text])))"
+    },
+    {
+      "name": "share_assets_category_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((category IS NULL) OR (char_length(category) <= 120)))"
+    },
+    {
+      "name": "share_assets_description_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((description IS NULL) OR (char_length(description) <= 1000)))"
+    },
+    {
+      "name": "share_assets_destination_local_path",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((char_length(destination_path) >= 1) AND (char_length(destination_path) <= 500) AND (\"left\"(destination_path, 1) = '/'::text) AND (\"left\"(destination_path, 2) <> '//'::text)))"
+    },
+    {
+      "name": "share_assets_destination_path_check",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK ((((char_length(destination_path) >= 1) AND (char_length(destination_path) <= 500)) AND (\"left\"(destination_path, 1) = '/'::text)))"
+    },
+    {
+      "name": "share_assets_language_code_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((char_length(language_code) >= 2) AND (char_length(language_code) <= 12)))"
+    },
+    {
+      "name": "share_assets_pkey",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "share_assets_preview_path_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((preview_image_path IS NULL) OR (char_length(preview_image_path) <= 500)))"
+    },
+    {
+      "name": "share_assets_share_text_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((share_text IS NULL) OR (char_length(share_text) <= 1200)))"
+    },
+    {
+      "name": "share_assets_slug_format",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text) AND (char_length(slug) <= 160)))"
+    },
+    {
+      "name": "share_assets_slug_key",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "name": "share_assets_sort_order_nonnegative",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK ((sort_order >= 0))"
+    },
+    {
+      "name": "share_assets_status_check",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'active'::text, 'archived'::text])))"
+    },
+    {
+      "name": "share_assets_title_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((char_length(title) >= 1) AND (char_length(title) <= 300)))"
+    },
+    {
+      "name": "share_assets_translation_key_length",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "CHECK (((char_length(translation_key) >= 1) AND (char_length(translation_key) <= 200)))"
+    },
+    {
+      "name": "share_assets_translation_language_unique",
+      "table": "share_assets",
+      "validated": true,
+      "definition": "UNIQUE (translation_key, language_code)"
+    }
+  ],
+  "column_grants": [
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "application_id",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "created_at",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "decision",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "id",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "id",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "rationale",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "founders50_reviews",
+      "column": "reviewer_id",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "asset_type",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "category",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "created_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "created_at",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "created_at",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "created_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "created_at",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "description",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "destination_path",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "featured",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "id",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "id",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "id",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "id",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "language_code",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "preview_image_path",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "share_text",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "slug",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "sort_order",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "status",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "title",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "translation_key",
+      "privilege": "UPDATE"
+    },
+    {
+      "role": "authenticated",
+      "table": "share_assets",
+      "column": "updated_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "updated_at",
+      "privilege": "INSERT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "updated_at",
+      "privilege": "REFERENCES"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "updated_at",
+      "privilege": "SELECT"
+    },
+    {
+      "role": "service_role",
+      "table": "share_assets",
+      "column": "updated_at",
+      "privilege": "UPDATE"
+    }
+  ]
+}

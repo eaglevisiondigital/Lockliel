@@ -1,0 +1,3633 @@
+{
+  "release-ledger": [
+    {
+      "name": "lockliel_v1_core_foundation",
+      "version": "20260924211046",
+      "statements_md5": "3faab3674f58dd61ee12bc98e6ac72b3"
+    },
+    {
+      "name": "lockliel_v1_indexes_and_member_policies",
+      "version": "20260924211057",
+      "statements_md5": "b9c72e3f5eb715ac2f7b5e54c2ddd136"
+    },
+    {
+      "name": "lockliel_referral_event_owner_read",
+      "version": "20260924211102",
+      "statements_md5": "8e9e7c94d4f741d4472729345e6b4a2a"
+    },
+    {
+      "name": "lockliel_v1_member_dashboard_foundation",
+      "version": "20260924223806",
+      "statements_md5": "37179dc0acd433b54c15eb0d319839ad"
+    },
+    {
+      "name": "lockliel_auth_profile_bootstrap",
+      "version": "20260924224412",
+      "statements_md5": "15965f97a19cea52b6339043eb9d1d92"
+    },
+    {
+      "name": "lockliel_default_referrals_and_visit_tracking",
+      "version": "20260924224706",
+      "statements_md5": "55f1973c7d6fca42610f279f2616023a"
+    },
+    {
+      "name": "lockliel_faith_profile_and_founders_linkage",
+      "version": "20260924224953",
+      "statements_md5": "21e97376298a697d1d5328d1687497a1"
+    },
+    {
+      "name": "lockliel_staff_authorization_policies",
+      "version": "20260924225103",
+      "statements_md5": "175cf13b9db1fa99600987e5ee72a56a"
+    },
+    {
+      "name": "lockliel_referral_source_tags_and_grip_lessons",
+      "version": "20260924225240",
+      "statements_md5": "402aab4e7dae06a6d3759b10fa725bc4"
+    },
+    {
+      "name": "lockliel_faith_interest_tag_sync",
+      "version": "20260924225729",
+      "statements_md5": "20623821c6c94c10f9b1dd001ba208cf"
+    },
+    {
+      "name": "lockliel_private_followup_messaging",
+      "version": "20260924225926",
+      "statements_md5": "fa764269db54f53ee56145a17d2022c0"
+    },
+    {
+      "name": "lockliel_safe_connection_cards",
+      "version": "20260924230011",
+      "statements_md5": "bc9bfbcb60cf0b042c5b13144b2338fd"
+    },
+    {
+      "name": "lockliel_private_course_enrollment",
+      "version": "20260924230210",
+      "statements_md5": "d4fca67fd55ce6c547abff4ceb15d2c8"
+    },
+    {
+      "name": "lockliel_preaccount_lead_crm",
+      "version": "20260924230352",
+      "statements_md5": "9699ce243edd01bec50382e7c58298e1"
+    },
+    {
+      "name": "lockliel_giving_and_book_order_foundation_v2",
+      "version": "20260924230541",
+      "statements_md5": "f131c7492b6c8ec7b40b17135a19a439"
+    },
+    {
+      "name": "lockliel_missing_fk_indexes",
+      "version": "20260924230613",
+      "statements_md5": "d5cd42e7c800f02f6c16b8d9a3634e66"
+    },
+    {
+      "name": "lockliel_consolidate_rls_policies",
+      "version": "20260924230645",
+      "statements_md5": "6bd39c915f11209922471a9120ca8e27"
+    },
+    {
+      "name": "lockliel_founders50_account_tag_link",
+      "version": "20260924230729",
+      "statements_md5": "6537ec4a7edd2ec2f5e282d776f7cafc"
+    },
+    {
+      "name": "lockliel_referral_discipleship_attribution",
+      "version": "20260924230830",
+      "statements_md5": "4a029e19a5898d4de4a330f6c47a4a16"
+    },
+    {
+      "name": "lockliel_admin_source_analytics_access",
+      "version": "20260924231306",
+      "statements_md5": "a5266ea858c194cf11816a02fe99c1f3"
+    },
+    {
+      "name": "lockliel_group_and_host_request_queue",
+      "version": "20260924231552",
+      "statements_md5": "3c0be15d39aa975c7c30d29f6f6fd880"
+    },
+    {
+      "name": "lockliel_safe_discipleship_directory_access",
+      "version": "20260924231747",
+      "statements_md5": "ab8937cfcf435d7b9e121b102a198fe0"
+    },
+    {
+      "name": "lockliel_private_member_resources",
+      "version": "20260924231926",
+      "statements_md5": "c55f95df1ac8646faad903a0b6a41864"
+    },
+    {
+      "name": "lockliel_entitled_product_visibility",
+      "version": "20260924231945",
+      "statements_md5": "4e39732b94dd2da972a8016162b07917"
+    },
+    {
+      "name": "lockliel_finance_admin_and_gift_benefit_automation",
+      "version": "20260924232824",
+      "statements_md5": "41893341e806aa35211df19e6eefdf05"
+    },
+    {
+      "name": "lockliel_finance_identity_and_manual_gifts",
+      "version": "20260924232848",
+      "statements_md5": "9155794a2bfde35594a86eda682f50cf"
+    },
+    {
+      "name": "lockliel_feature_flags_and_audit_history",
+      "version": "20260924233100",
+      "statements_md5": "331b66948793552d38d5863453184ad5"
+    },
+    {
+      "name": "lockliel_feature_flag_audit",
+      "version": "20260924233126",
+      "statements_md5": "f36cf27fa89d143def0cd7cad62929f1"
+    },
+    {
+      "name": "lockliel_sync_operational_flags",
+      "version": "20260924233159",
+      "statements_md5": "849aaa24c783a1f254bbbef94e323f69"
+    },
+    {
+      "name": "lockliel_secure_admin_bootstrap",
+      "version": "20260924233549",
+      "statements_md5": "61be50c869a19854a30423dd81c160fc"
+    },
+    {
+      "name": "lockliel_remove_public_admin_bootstrap",
+      "version": "20260924233620",
+      "statements_md5": "ea6fca129a104dc8cbb4ef0ba9e0a7d2"
+    },
+    {
+      "name": "lockliel_group_operations_foundation",
+      "version": "20260924233918",
+      "statements_md5": "3e8e72f79b63cad3cc6df0c68d74619c"
+    },
+    {
+      "name": "lockliel_safe_group_roster_access",
+      "version": "20260924233943",
+      "statements_md5": "79c4565247e64e9d16efef0fd7578910"
+    },
+    {
+      "name": "lockliel_extensible_lesson_media_tracking",
+      "version": "20260924234138",
+      "statements_md5": "3ab974f3771004997a72c394c3048fe4"
+    },
+    {
+      "name": "lockliel_private_lesson_asset_storage",
+      "version": "20260924234246",
+      "statements_md5": "b20e49338ed70fcc3a7f683ee80e7235"
+    },
+    {
+      "name": "lockliel_content_admin_course_permissions",
+      "version": "20260924234314",
+      "statements_md5": "6e28f43f5bc29b7563e9c2e53ecac739"
+    },
+    {
+      "name": "lockliel_communication_preferences_and_consent_history",
+      "version": "20260924234437",
+      "statements_md5": "f866b81ffc24298bd6a6019dab61c7f8"
+    },
+    {
+      "name": "lockliel_communication_preferences_self_insert",
+      "version": "20260924234454",
+      "statements_md5": "e0f9cd961beb2952973f5f31f8efe73f"
+    },
+    {
+      "name": "lockliel_superadmin_role_management",
+      "version": "20260924235357",
+      "statements_md5": "0f584d2a52907cd48e866e56354fb2be"
+    },
+    {
+      "name": "lockliel_weekly_group_checkins",
+      "version": "20260924235530",
+      "statements_md5": "a47e32a96c04e034dae41d3288c1894b"
+    },
+    {
+      "name": "lockliel_map_existing_grip_assets",
+      "version": "20260924235939",
+      "statements_md5": "2e9523d43ef843168ec3a54bca9cb349"
+    },
+    {
+      "name": "lockliel_private_my_five_reach_contacts",
+      "version": "20260925003134",
+      "statements_md5": "72a3445fc7947bf70fdbd24b5bc69e50"
+    },
+    {
+      "name": "lockliel_reach_count_combines_my_five_and_referrals",
+      "version": "20260925003150",
+      "statements_md5": "979dfa2ba285cdcb31a1a3bdbc820c5a"
+    },
+    {
+      "name": "lockliel_group_checkin_followup_automation",
+      "version": "20260925003435",
+      "statements_md5": "aa836c02f4cbc60e0a1e5f4b594fdcbc"
+    },
+    {
+      "name": "lockliel_seed_existing_grip_course_assets",
+      "version": "20260925003719",
+      "statements_md5": "ad07d8cd640760a2543ec1bf2aaa61b5"
+    },
+    {
+      "name": "lockliel_preserve_true_progress_start_times",
+      "version": "20260925004036",
+      "statements_md5": "4f09fc95fb0a9e949be2ad8845550d64"
+    },
+    {
+      "name": "lockliel_archive_external_champion_grip_pdfs",
+      "version": "20260925004236",
+      "statements_md5": "d27d47446a108ff61c362c42d39b1fe1"
+    },
+    {
+      "name": "lockliel_protect_profile_relationship_columns",
+      "version": "20260925004344",
+      "statements_md5": "b76698715ff090b011af1e3852c350e8"
+    },
+    {
+      "name": "lockliel_protect_system_journey_and_consent_fields",
+      "version": "20260925004419",
+      "statements_md5": "da2fee1212f8813541b45045a6a2fa14"
+    },
+    {
+      "name": "lockliel_leader_profiles_and_assignments",
+      "version": "20260925004840",
+      "statements_md5": "de828844488956126bd99bfda1b743de"
+    },
+    {
+      "name": "lockliel_derive_active_connection_counts",
+      "version": "20260925005104",
+      "statements_md5": "3dd9ad8b4eb734059183be73247825bd"
+    },
+    {
+      "name": "lockliel_private_product_upload_permissions",
+      "version": "20260925005155",
+      "statements_md5": "c91bb4cf70852cd731c3c146f5f646e1"
+    },
+    {
+      "name": "lockliel_provider_neutral_checkout_events",
+      "version": "20260925005337",
+      "statements_md5": "c8f80af018a66dffabadf9083989663c"
+    },
+    {
+      "name": "lockliel_preserve_preaccount_source_tags",
+      "version": "20260925005420",
+      "statements_md5": "eaedcb8f4b70a9efdf2a03aae978d918"
+    },
+    {
+      "name": "lockliel_physical_order_fulfillment_permissions",
+      "version": "20260925010007",
+      "statements_md5": "5fa25276e0b37858b795e9d69d7ce390"
+    },
+    {
+      "name": "lockliel_founders50_followup_automation",
+      "version": "20260925010154",
+      "statements_md5": "28db00d7be948942f5a7eb4eaddffa45"
+    },
+    {
+      "name": "lockliel_member_notifications",
+      "version": "20260925010254",
+      "statements_md5": "9ad50c3a8529cc3a9fed030509182796"
+    },
+    {
+      "name": "lockliel_private_staff_notes",
+      "version": "20260925010642",
+      "statements_md5": "7fa1b4b01fd90894c7edf9b3b24b05e4"
+    },
+    {
+      "name": "lockliel_notification_gap_triggers",
+      "version": "20260925010923",
+      "statements_md5": "da30eaa8a9de778bf504da7301072c39"
+    },
+    {
+      "name": "lockliel_course_completion_integrity_and_next_steps",
+      "version": "20260925011026",
+      "statements_md5": "78d5f3c775eb0819a86957a306d92416"
+    },
+    {
+      "name": "lockliel_new_relationship_fk_indexes",
+      "version": "20260925011105",
+      "statements_md5": "aa00b960a3f3948c2dfcfbc6e25ed54c"
+    },
+    {
+      "name": "lockliel_preaccount_lead_pipeline",
+      "version": "20260925011502",
+      "statements_md5": "75e01db54bd3dc39c04566aaf376dfd9"
+    },
+    {
+      "name": "lockliel_lead_followup_task_sync",
+      "version": "20260925011641",
+      "statements_md5": "1648897af4d145da836d2d7d9781e1b4"
+    },
+    {
+      "name": "lockliel_founders50_orientation",
+      "version": "20260925011753",
+      "statements_md5": "2e1041d18900a6517fc8b6a8f0af6d98"
+    },
+    {
+      "name": "lockliel_member_privacy_requests",
+      "version": "20260925013113",
+      "statements_md5": "2ae3f3f0746393be5e296a8b0a690289"
+    },
+    {
+      "name": "lockliel_audited_manual_launch_verifications",
+      "version": "20260925013327",
+      "statements_md5": "e1b933277137999f89e0e3f7f57b019a"
+    },
+    {
+      "name": "lockliel_grip_lessons_5_13_notes_completion",
+      "version": "20260925013559",
+      "statements_md5": "ff88fc2e13b2b83ba9b611a135e38cf8"
+    },
+    {
+      "name": "lockliel_launch_verification_fk_index",
+      "version": "20260925014133",
+      "statements_md5": "1c6e4bdb6498912cc563cb94d5e898b8"
+    },
+    {
+      "name": "lockliel_link_guest_records_after_email_confirmation",
+      "version": "20260925014250",
+      "statements_md5": "6b745f865e8944c49609ea7178ad6a73"
+    },
+    {
+      "name": "lockliel_order_fulfillment_foundation",
+      "version": "20260925014401",
+      "statements_md5": "fc30f963900af85c32c1a8005a181a86"
+    },
+    {
+      "name": "lockliel_require_mfa_for_privileged_staff_rls",
+      "version": "20260925015823",
+      "statements_md5": "f26340fe34c06f5780628d5a436f442e"
+    },
+    {
+      "name": "lockliel_require_aal2_for_staff_authorization",
+      "version": "20260925015831",
+      "statements_md5": "f26340fe34c06f5780628d5a436f442e"
+    },
+    {
+      "name": "lockliel_member_connection_request_control",
+      "version": "20260925020557",
+      "statements_md5": "81a53b07331b1b867402935e0c774d59"
+    },
+    {
+      "name": "lockliel_payment_provider_launch_readiness",
+      "version": "20260925020701",
+      "statements_md5": "3f1e3f7e470aec208150ae4d982847a5"
+    },
+    {
+      "name": "lockliel_resolve_leader_request_on_assignment",
+      "version": "20260925020904",
+      "statements_md5": "3d43d8a7a20e0815de916a0d52a5fc75"
+    },
+    {
+      "name": "lockliel_founders50_richer_human_review_context",
+      "version": "20260925021200",
+      "statements_md5": "5020b08f84deb9fd356142420774c0a3"
+    },
+    {
+      "name": "lockliel_clear_stale_digital_book_storage_reference",
+      "version": "20260925021738",
+      "statements_md5": "6b172cae3ad2c5394cf0f607370ee9a8"
+    },
+    {
+      "name": "lockliel_sync_deleted_storage_references",
+      "version": "20260925021811",
+      "statements_md5": "bd8d2b42e7911604e35d4d4b9a4e3bb8"
+    },
+    {
+      "name": "lockliel_apply_gift_benefits_when_guest_gift_links",
+      "version": "20260925022357",
+      "statements_md5": "8cda27639deb9791a14a337aa428c27e"
+    },
+    {
+      "name": "lockliel_enforce_release_readiness_in_database",
+      "version": "20260925022621",
+      "statements_md5": "da719dd885c45c5d0ca6f3ef2c0bdf35"
+    },
+    {
+      "name": "lockliel_one_time_job_guard",
+      "version": "20260925034409",
+      "statements_md5": "ddc9fed5203a8dfbbee606ba44682e08"
+    },
+    {
+      "name": "lockliel_public_service_only_one_time_job_guard",
+      "version": "20260925034630",
+      "statements_md5": "e4126a59e1779eca4bd3ad8887884246"
+    },
+    {
+      "name": "lockliel_publish_getting_a_grip_after_asset_verification",
+      "version": "20260925034805",
+      "statements_md5": "a873814acb933287cc2dd24d324518e7"
+    },
+    {
+      "name": "lockliel_remove_completed_one_time_import_guards",
+      "version": "20260925034818",
+      "statements_md5": "cf64281ee376107c2fd92542e15186d5"
+    },
+    {
+      "name": "lockliel_safe_first_super_admin_bootstrap",
+      "version": "20260925035159",
+      "statements_md5": "d44eaa5b0790836216aed3e21ed48b24"
+    },
+    {
+      "name": "lockliel_global_locale_and_translation_foundation",
+      "version": "20260925035351",
+      "statements_md5": "ee55e5e4697a72a9e723188a13a65275"
+    },
+    {
+      "name": "lockliel_language_aware_foundational_course_enrollment",
+      "version": "20260925035500",
+      "statements_md5": "d4de17c2bc14ae6c46d61bcd46854737"
+    },
+    {
+      "name": "lockliel_language_aware_connection_matching",
+      "version": "20260925035642",
+      "statements_md5": "0c6357d7a4e68219a3531e6095e3d7c0"
+    },
+    {
+      "name": "lockliel_course_release_integrity_guard",
+      "version": "20260925035839",
+      "statements_md5": "a8c4e891e065e02981586e5f213655e4"
+    },
+    {
+      "name": "lockliel_consolidate_remaining_permissive_policies",
+      "version": "20260925044341",
+      "statements_md5": "5c24403894cf4206984f03aa5719bf4b"
+    },
+    {
+      "name": "lockliel_translation_identity_and_lesson_mapping",
+      "version": "20260925044635",
+      "statements_md5": "8de83f55fb44f0395d60613b981e1fc2"
+    },
+    {
+      "name": "lockliel_localized_content_resolution",
+      "version": "20260925044759",
+      "statements_md5": "4a00dbff16d498dffac7170247a3e35c"
+    },
+    {
+      "name": "lockliel_my_five_share_attribution",
+      "version": "20260925045124",
+      "statements_md5": "30990fa2b8ed42c81ef74c2e63860b3d"
+    },
+    {
+      "name": "lockliel_index_my_five_share_fk",
+      "version": "20260925045350",
+      "statements_md5": "7ab0b6e758de9df0b5d4883523f3c45b"
+    },
+    {
+      "name": "lockliel_member_contact_consent_controls",
+      "version": "20260925045653",
+      "statements_md5": "6a76ec94f49c2fa38487e0e9de5cdf6b"
+    },
+    {
+      "name": "lockliel_contact_consent_relationship_guard",
+      "version": "20260925110224",
+      "statements_md5": "1264f8fab2e0a168b8cfee11086f2028"
+    },
+    {
+      "name": "lockliel_audit_contact_consent_changes",
+      "version": "20260925110334",
+      "statements_md5": "d0193a66cc42f1c123fa59309b946c2f"
+    },
+    {
+      "name": "lockliel_audit_product_release_changes",
+      "version": "20260925110808",
+      "statements_md5": "126c4f1ad7d33d52b771938191e10154"
+    },
+    {
+      "name": "lockliel_reviewed_group_transitions",
+      "version": "20260925111018",
+      "statements_md5": "9159166d8a0126c65c945b3749b9834b"
+    },
+    {
+      "name": "lockliel_group_transition_notifications",
+      "version": "20260925111300",
+      "statements_md5": "7eef8e217aef459fa0ea28a5362e4f81"
+    },
+    {
+      "name": "lockliel_preserve_member_leader_message_consent",
+      "version": "20260925111422",
+      "statements_md5": "6a57cf742d01b05c44f46e8fc9a440fd"
+    },
+    {
+      "name": "lockliel_enforce_my_five_integrity",
+      "version": "20260925111601",
+      "statements_md5": "e1b14af31a1db22f90539ac4a0a076db"
+    },
+    {
+      "name": "lockliel_system_owned_reach_contact_timestamps",
+      "version": "20260925111717",
+      "statements_md5": "4d11afb7be465858463165a6d48174d8"
+    },
+    {
+      "name": "lockliel_protect_system_notifications",
+      "version": "20260925111920",
+      "statements_md5": "3430d447265806622f3d1f13f5af15a8"
+    },
+    {
+      "name": "lockliel_guard_privacy_request_member_fields",
+      "version": "20260925112057",
+      "statements_md5": "340cbdd1a8c061630022dbda0f394ab2"
+    },
+    {
+      "name": "lockliel_guard_privacy_request_creation",
+      "version": "20260925112150",
+      "statements_md5": "664438bbd8c7d6cf223ec41a88187c59"
+    },
+    {
+      "name": "lockliel_close_inviter_task_on_consent_revoke",
+      "version": "20260925112829",
+      "statements_md5": "db544770682e82a5cd8514fea5d4d2ee"
+    },
+    {
+      "name": "lockliel_authoritative_reach_count_sync",
+      "version": "20260925113053",
+      "statements_md5": "9a8594d40a74fdcf39bb229e86e2564f"
+    },
+    {
+      "name": "lockliel_authoritative_connection_count_sync",
+      "version": "20260925113218",
+      "statements_md5": "ff2565bf5b786cbd62de52d85976f070"
+    },
+    {
+      "name": "lockliel_idempotent_lesson_journey_sync",
+      "version": "20260925113326",
+      "statements_md5": "0cb742775fe962b3a50594e8e843b229"
+    },
+    {
+      "name": "lockliel_consistent_group_membership_dates",
+      "version": "20260925113405",
+      "statements_md5": "13759a90f23933a32e1ad931649ab3c9"
+    },
+    {
+      "name": "lockliel_harden_referral_analytics_writes",
+      "version": "20260925113543",
+      "statements_md5": "81f074874c0b79d156007ded91979142"
+    },
+    {
+      "name": "lockliel_dedupe_referral_visits",
+      "version": "20260925113704",
+      "statements_md5": "b181211dab952c3f1d6678d2ca020c9f"
+    },
+    {
+      "name": "lockliel_protect_last_super_admin",
+      "version": "20260925113917",
+      "statements_md5": "67eeb0eafdb336efd382b143d9eb0935"
+    },
+    {
+      "name": "lockliel_auto_disable_unready_release_flags",
+      "version": "20260925114051",
+      "statements_md5": "6974e2fd3f62e72e8c650f4e77469e80"
+    },
+    {
+      "name": "lockliel_refine_book_benefit_release_sync",
+      "version": "20260925114131",
+      "statements_md5": "6223d5e46fc358b8ca2d86e9d33dff18"
+    },
+    {
+      "name": "lockliel_document_payment_provider_verification",
+      "version": "20260925114227",
+      "statements_md5": "b939bab690b670b7144bbc2465a523f2"
+    },
+    {
+      "name": "lockliel_separate_finance_and_fulfillment_order_updates",
+      "version": "20260925114433",
+      "statements_md5": "1e36905efab6b4fd8fcfebf4a1ac3c8c"
+    },
+    {
+      "name": "lockliel_immutable_connection_request_details",
+      "version": "20260925115135",
+      "statements_md5": "c59a74e10aa7eb15db4eb629ec96479a"
+    },
+    {
+      "name": "lockliel_enrollment_scoped_progress_writes",
+      "version": "20260925115405",
+      "statements_md5": "20bce7b26b0d1f8ad5eee074bce47e6c"
+    },
+    {
+      "name": "lockliel_localized_lesson_completion_integrity",
+      "version": "20260925115537",
+      "statements_md5": "e4e3e20ad62f05433893372c27debf13"
+    },
+    {
+      "name": "lockliel_normalize_progress_state",
+      "version": "20260925115701",
+      "statements_md5": "61b30c336bac376abe4a88b57337ca15"
+    },
+    {
+      "name": "lockliel_reduce_dormant_data_api_writes",
+      "version": "20260925115908",
+      "statements_md5": "52bef45dc041109f24d29e850ab3f4cf"
+    },
+    {
+      "name": "lockliel_system_owned_member_journey",
+      "version": "20260925120028",
+      "statements_md5": "bf63405366b46f715215856d34630bca"
+    },
+    {
+      "name": "lockliel_system_owned_profile_onboarding",
+      "version": "20260925120141",
+      "statements_md5": "a19313d8dc3b76f3206c57d808263aaa"
+    },
+    {
+      "name": "lockliel_harden_private_faith_profile",
+      "version": "20260925120317",
+      "statements_md5": "0876f4e3c3ffb4c6471b31fb7e0b1951"
+    },
+    {
+      "name": "lockliel_enforce_messaging_release_flag",
+      "version": "20260925120440",
+      "statements_md5": "bbafdfc4aed82de6cdd43ee64c7f4f3a"
+    },
+    {
+      "name": "lockliel_harden_weekly_group_checkins",
+      "version": "20260925120612",
+      "statements_md5": "b0102af74e4e0372dd92c5e7f8941f78"
+    },
+    {
+      "name": "lockliel_harden_group_weekly_checkins",
+      "version": "20260925120822",
+      "statements_md5": "be9149d37f0fd807967f1ea3f74c0665"
+    },
+    {
+      "name": "lockliel_immutable_founders50_review_workflow",
+      "version": "20260925120958",
+      "statements_md5": "de0cd1cf947856307a4fa9b1b9f581fb"
+    },
+    {
+      "name": "lockliel_enforce_approved_leadership_roles",
+      "version": "20260925121010",
+      "statements_md5": "4227819098e07f196272e1a3acbd260b"
+    },
+    {
+      "name": "lockliel_guard_group_leadership_memberships",
+      "version": "20260925121116",
+      "statements_md5": "ac6ccbc43f6e1fbd68a28c139052b226"
+    },
+    {
+      "name": "lockliel_normalize_connection_request_status",
+      "version": "20260925121239",
+      "statements_md5": "eb91760e1cfe8e5a157226412829ed07"
+    },
+    {
+      "name": "lockliel_protect_active_leader_responsibilities",
+      "version": "20260925121355",
+      "statements_md5": "3e7ae0f0f4b789f47e9565e9d6d586b5"
+    },
+    {
+      "name": "lockliel_append_only_staff_notes_and_audit",
+      "version": "20260925121424",
+      "statements_md5": "1d3d9988c8e8b6ed6e4e6f0f41e4c7c5"
+    },
+    {
+      "name": "lockliel_harden_followup_task_lifecycle",
+      "version": "20260925121541",
+      "statements_md5": "90a9ddc1576314d63d0b47ebb014bd6b"
+    },
+    {
+      "name": "lockliel_normalize_leader_assignment_lifecycle",
+      "version": "20260925121546",
+      "statements_md5": "53a9fda0835d9d38dee969f7dae6de58"
+    },
+    {
+      "name": "lockliel_normalize_leader_profile_approval",
+      "version": "20260925121721",
+      "statements_md5": "42d01ca6c4d889a1c95828cb1ee9ec64"
+    },
+    {
+      "name": "lockliel_read_only_tags_consent_history_notifications",
+      "version": "20260925121919",
+      "statements_md5": "e7560456ce0538d46433ab69a6204161"
+    },
+    {
+      "name": "lockliel_scope_founders_reviewer_access",
+      "version": "20260925122007",
+      "statements_md5": "280734bdfe8ab00c30513f2532e8124c"
+    },
+    {
+      "name": "lockliel_harden_preaccount_crm_records",
+      "version": "20260925122051",
+      "statements_md5": "cc21b13435cdffb9893a93de95196c42"
+    },
+    {
+      "name": "lockliel_remove_legacy_connection_card_policy",
+      "version": "20260925122202",
+      "statements_md5": "40e293de7f6c85ef5f701d248d26392b"
+    },
+    {
+      "name": "lockliel_enrollment_and_locale_scoped_private_storage",
+      "version": "20260925122252",
+      "statements_md5": "4047286085ce18b9da3c3ab49bb06105"
+    },
+    {
+      "name": "lockliel_harden_private_storage_reads",
+      "version": "20260925122318",
+      "statements_md5": "943e03ec97c85c1208e24b0f676d33a9"
+    },
+    {
+      "name": "lockliel_restore_translated_entitlement_storage_reads",
+      "version": "20260925122438",
+      "statements_md5": "5962ece0c5dfaad9c7af904b55d9493a"
+    },
+    {
+      "name": "lockliel_harden_resource_and_order_records",
+      "version": "20260925122502",
+      "statements_md5": "ab76995d1028b1305129328f3931c885"
+    },
+    {
+      "name": "lockliel_scope_lesson_rows_to_enrollment",
+      "version": "20260925122548",
+      "statements_md5": "b4dbed46490a8230fae9e59e651774a4"
+    },
+    {
+      "name": "lockliel_limit_member_progress_columns",
+      "version": "20260925122835",
+      "statements_md5": "dab16a925f9a827bbc6266453640f9d4"
+    },
+    {
+      "name": "lockliel_public_intake_rate_limits_v2",
+      "version": "20260925122850",
+      "statements_md5": "eec9397941b06003db4e462c66be7661"
+    },
+    {
+      "name": "lockliel_scope_course_rows_to_enrollment",
+      "version": "20260925122945",
+      "statements_md5": "a4a039f649c72c3633caf3ae3e11fea3"
+    },
+    {
+      "name": "lockliel_nonrecursive_course_access_scope",
+      "version": "20260925123002",
+      "statements_md5": "8ac428d6270718e931148674106efa15"
+    },
+    {
+      "name": "lockliel_align_content_release_integrity",
+      "version": "20260925123400",
+      "statements_md5": "29fa858d391536eb23de2e4e5395e3ed"
+    },
+    {
+      "name": "lockliel_protect_released_content_dependencies",
+      "version": "20260925123523",
+      "statements_md5": "5a6671c25026272260b0a330500ac29f"
+    },
+    {
+      "name": "lockliel_block_released_storage_replacement",
+      "version": "20260925123556",
+      "statements_md5": "fb11d9aa7b5e4f132002c01a7f5a79dd"
+    },
+    {
+      "name": "lockliel_harden_public_intake_records",
+      "version": "20260925123628",
+      "statements_md5": "78ee81a73096556f371e1ba9d5052aa3"
+    },
+    {
+      "name": "lockliel_atomic_public_lead_upsert",
+      "version": "20260925123704",
+      "statements_md5": "e75a5895b8a229af8ca809be11240f25"
+    },
+    {
+      "name": "lockliel_authoritative_grip_readiness_rpc",
+      "version": "20260925123754",
+      "statements_md5": "fa22ce337316f2fca1211cd1e5669e82"
+    },
+    {
+      "name": "lockliel_invoker_grip_readiness",
+      "version": "20260925124013",
+      "statements_md5": "a9a9a935a48473adb3c2d8e88ca1365c"
+    },
+    {
+      "name": "lockliel_make_grip_readiness_security_invoker",
+      "version": "20260925124032",
+      "statements_md5": "f2df47998786cbe5c5523d2c33d98347"
+    },
+    {
+      "name": "lockliel_harden_course_and_lesson_records",
+      "version": "20260925124208",
+      "statements_md5": "2439ab46888ffa8da256fc69bf882816"
+    },
+    {
+      "name": "lockliel_scope_group_access_to_operational_memberships",
+      "version": "20260925124306",
+      "statements_md5": "7142216e1fdca497d86173adb5700307"
+    },
+    {
+      "name": "lockliel_align_public_grip_readiness_threshold",
+      "version": "20260925124314",
+      "statements_md5": "21656ccb962913739e57f5f103a4a813"
+    },
+    {
+      "name": "lockliel_atomic_group_transition_resolution",
+      "version": "20260925124550",
+      "statements_md5": "5b6abe6fdb8632a12f27bbc7a30d7c7c"
+    },
+    {
+      "name": "lockliel_atomic_group_assignment",
+      "version": "20260925124731",
+      "statements_md5": "26d8ea1dde0ef32cd7681dc1f701770c"
+    },
+    {
+      "name": "lockliel_unique_open_connection_requests",
+      "version": "20260925124859",
+      "statements_md5": "fe704393b702030cbfcaaef596d46119"
+    },
+    {
+      "name": "lockliel_atomic_group_member_assignment",
+      "version": "20260925125053",
+      "statements_md5": "494b482643cce2ee3c7ffc706c1a87b5"
+    },
+    {
+      "name": "lockliel_remove_redundant_group_assignment_rpc",
+      "version": "20260925125130",
+      "statements_md5": "6b11476a38f92bf48b9417ee80f65b58"
+    },
+    {
+      "name": "lockliel_sync_group_checkin_followup_tasks",
+      "version": "20260925125135",
+      "statements_md5": "d04248dc0ee8c8c192ffd4a62cb37862"
+    },
+    {
+      "name": "lockliel_audit_group_checkin_updates",
+      "version": "20260925125731",
+      "statements_md5": "484f21d0a70d6df0f923584447f884be"
+    },
+    {
+      "name": "lockliel_harden_founder_orientation_progress",
+      "version": "20260925130031",
+      "statements_md5": "598047195272db397d796206083d63fa"
+    },
+    {
+      "name": "lockliel_read_only_founder_orientation_catalog",
+      "version": "20260925130305",
+      "statements_md5": "25b582131a2a73b177bf3f6f289a6273"
+    },
+    {
+      "name": "lockliel_system_owned_staff_role_grants",
+      "version": "20260925130524",
+      "statements_md5": "8dda6eaf19407b9d0c1721d1848fcc78"
+    },
+    {
+      "name": "lockliel_system_owned_conversation_membership",
+      "version": "20260925130730",
+      "statements_md5": "e7197d5f0f2ba3e584248cfa7932d4e2"
+    },
+    {
+      "name": "lockliel_bound_member_profile_fields",
+      "version": "20260925131048",
+      "statements_md5": "1d6a7ba0cfb2dd6c5f5e2d2e8062df31"
+    },
+    {
+      "name": "lockliel_harden_product_and_share_identity",
+      "version": "20260925131440",
+      "statements_md5": "3a263669e1b0cceff5f4fdc7064facaf"
+    },
+    {
+      "name": "lockliel_harden_release_control_surface",
+      "version": "20260925131510",
+      "statements_md5": "7dc6b2c7b51673af2e9f3ed443b455f9"
+    },
+    {
+      "name": "lockliel_require_founders_review_rationale",
+      "version": "20260925132018",
+      "statements_md5": "fecedb9a84413a0d6938a674de74ede7"
+    },
+    {
+      "name": "lockliel_bind_referral_links_to_approved_content",
+      "version": "20260925133008",
+      "statements_md5": "e524099c8f4b6f33b0f38cb53ecea0b1"
+    },
+    {
+      "name": "lockliel_harden_gift_benefit_integrity",
+      "version": "20260925133406",
+      "statements_md5": "96de97427366550e84a4a2bd172e1218"
+    },
+    {
+      "name": "lockliel_system_owned_orders_and_payment_events",
+      "version": "20260925133825",
+      "statements_md5": "e43c560ae19dcf24c843f85fa431744e"
+    },
+    {
+      "name": "lockliel_harden_checkout_session_integrity",
+      "version": "20260925134028",
+      "statements_md5": "f7758192bbbbb91a60563173bc24e41c"
+    },
+    {
+      "name": "lockliel_harden_partner_commitment_integrity",
+      "version": "20260925134147",
+      "statements_md5": "90c023635439e24b61cd82b1802269ca"
+    },
+    {
+      "name": "lockliel_harden_fulfillment_record_integrity",
+      "version": "20260925134352",
+      "statements_md5": "9ef6c1712b59ccefced31902922b0788"
+    },
+    {
+      "name": "lockliel_harden_privacy_request_lifecycle",
+      "version": "20260925134636",
+      "statements_md5": "247ac45b71a71561488165c95bab5ead"
+    },
+    {
+      "name": "lockliel_system_owned_profile_cards",
+      "version": "20260925134935",
+      "statements_md5": "92e3efa3eb408cd21467735c5cdbb260"
+    },
+    {
+      "name": "lockliel_read_only_profile_card_tables",
+      "version": "20260925134949",
+      "statements_md5": "fd61e8936d123b2a3f1613294d65ecbe"
+    },
+    {
+      "name": "lockliel_remove_dormant_delete_privileges",
+      "version": "20260925135309",
+      "statements_md5": "f0a47de8d2c752a75b29d533826cfde6"
+    },
+    {
+      "name": "lockliel_staff_owned_group_records",
+      "version": "20260925135715",
+      "statements_md5": "50aceb20449a7b1855fbde37de778ac1"
+    },
+    {
+      "name": "lockliel_harden_group_membership_identity",
+      "version": "20260925135825",
+      "statements_md5": "0e29949037d22880a90d7a4b3b195b94"
+    },
+    {
+      "name": "lockliel_audit_group_record_changes",
+      "version": "20260925140153",
+      "statements_md5": "392c01db1b8208eae19405bf32b9a007"
+    },
+    {
+      "name": "lockliel_system_owned_leadership_actors",
+      "version": "20260925140411",
+      "statements_md5": "d1bec78f4b71a3bd823c467ba9fc53c3"
+    },
+    {
+      "name": "lockliel_system_owned_group_checkin_submitter",
+      "version": "20260925140652",
+      "statements_md5": "83026229097d0a38043238de148f268b"
+    },
+    {
+      "name": "lockliel_system_owned_fulfillment_actor",
+      "version": "20260925140858",
+      "statements_md5": "1c91b4601a03cc37ba1d306b9e20806f"
+    },
+    {
+      "name": "lockliel_bound_member_generated_payloads",
+      "version": "20260925141105",
+      "statements_md5": "00dbb3aef2506f35ef2108fd78ece7df"
+    },
+    {
+      "name": "lockliel_bound_gift_and_entitlement_metadata",
+      "version": "20260925141804",
+      "statements_md5": "8800739ccacf68b53f17024c0254b563"
+    },
+    {
+      "name": "lockliel_validate_gift_benefit_access",
+      "version": "20260925151920",
+      "statements_md5": "376c9c2784d1d83e6630437b24598e2e"
+    },
+    {
+      "name": "lockliel_audit_benefit_rule_status",
+      "version": "20260925152054",
+      "statements_md5": "7faa6236cc87a33d3d5b5036178b6921"
+    },
+    {
+      "name": "lockliel_minimize_launch_verification_audit",
+      "version": "20260925152155",
+      "statements_md5": "d9da6b43f352ffd3d3e16911b8d4b1a3"
+    },
+    {
+      "name": "lockliel_sync_profile_email_from_auth",
+      "version": "20260925152507",
+      "statements_md5": "e70d697f91a51977be4b2a564e319ef8"
+    },
+    {
+      "name": "lockliel_complete_account_identity_lifecycle",
+      "version": "20260925153043",
+      "statements_md5": "0d5aeacf2bb9a9e8d38357731ff8a81d"
+    },
+    {
+      "name": "lockliel_enforce_profile_email_identity",
+      "version": "20260925153612",
+      "statements_md5": "e602fc2830ef4161932249b54b6e0169"
+    },
+    {
+      "name": "lockliel_founders_active_host_group_eligibility",
+      "version": "20260925154111",
+      "statements_md5": "a971d6e3ace38e6d932cd8c048ba1877"
+    },
+    {
+      "name": "lockliel_sanitized_group_host_candidates",
+      "version": "20260925154343",
+      "statements_md5": "0cec9326c53bdeada1920e04aeef677e"
+    },
+    {
+      "name": "lockliel_fail_closed_data_api_grants",
+      "version": "20260925155851",
+      "statements_md5": "2e176ae001768a7b5a41b4c4647ba43c"
+    },
+    {
+      "name": "lockliel_serialize_group_leadership_eligibility",
+      "version": "20260925160443",
+      "statements_md5": "2d3875fe097543590ebc8e1fb8eb3666"
+    },
+    {
+      "name": "lockliel_require_launch_verification_evidence",
+      "version": "20260925160735",
+      "statements_md5": "c000d91e9b498f0f75c5e82b4d8927b8"
+    },
+    {
+      "name": "lockliel_serialize_first_super_admin_bootstrap",
+      "version": "20260925161117",
+      "statements_md5": "84e098813c3da8f92c571c30eb50b97b"
+    },
+    {
+      "name": "lockliel_serialize_partner_checkout_readiness",
+      "version": "20260925161334",
+      "statements_md5": "396d8caf005a0185f50a3f40dcf3f2fe"
+    },
+    {
+      "name": "lockliel_admin_integrity_health_rpc",
+      "version": "20260925173856",
+      "statements_md5": "717f5dcab1fe4901e6b1d794febd3395"
+    },
+    {
+      "name": "lockliel_fix_integrity_health_boolean_aggregation",
+      "version": "20260925174244",
+      "statements_md5": "e41e3711bb608e84268c2da83690f5f8"
+    },
+    {
+      "name": "lockliel_preserve_privacy_request_after_account_deletion",
+      "version": "20260925174623",
+      "statements_md5": "854274025cb6b4293a7965cd8655c92d"
+    },
+    {
+      "name": "lockliel_require_account_deletion_processing_checks",
+      "version": "20260925174856",
+      "statements_md5": "92a8c0cc8997067364b156c94a55ce5e"
+    },
+    {
+      "name": "lockliel_require_active_session_for_staff_access",
+      "version": "20260925175229",
+      "statements_md5": "dda3cd3eb44ff4728ec386e0edcd6acc"
+    },
+    {
+      "name": "lockliel_require_https_lesson_external_urls",
+      "version": "20260925213602",
+      "statements_md5": "8cf574d2e879b90b9d8b54be71992881"
+    },
+    {
+      "name": "lockliel_bound_public_rate_limit_history",
+      "version": "20260925214004",
+      "statements_md5": "4c7e725cfa5d42dd3bcfdf0248e6ce9a"
+    },
+    {
+      "name": "lockliel_link_public_records_only_after_email_confirmation",
+      "version": "20260925214457",
+      "statements_md5": "d8dfca75b5b8c654374c4b4b798c8783"
+    },
+    {
+      "name": "lockliel_keep_preaccount_consent_separate",
+      "version": "20260925214922",
+      "statements_md5": "0e7a13b8b308bb22650e5379b51d4714"
+    },
+    {
+      "name": "lockliel_remove_legacy_email_only_linkers",
+      "version": "20260925215110",
+      "statements_md5": "dec3d68664a106d112232c18bcaa3b70"
+    },
+    {
+      "name": "lockliel_dedupe_founder_orientation_completion",
+      "version": "20260926000636",
+      "statements_md5": "1e5fa089cd827c210c5d79428f77e062"
+    },
+    {
+      "name": "lockliel_idempotent_fulfillment_events",
+      "version": "20260926000830",
+      "statements_md5": "a24153fa46eb41d24eb2da856361912c"
+    },
+    {
+      "name": "lockliel_unique_partner_subscription_refs",
+      "version": "20260926001005",
+      "statements_md5": "b0f9084c95d0bbe08d22500921d0f75c"
+    },
+    {
+      "name": "lockliel_nonnegative_order_totals",
+      "version": "20260926001148",
+      "statements_md5": "e9e9cfd37fc84d9e6a5b31c651ff93ea"
+    },
+    {
+      "name": "lockliel_unique_linked_my_five_member",
+      "version": "20260926001333",
+      "statements_md5": "97bc54a2b1df05c3c6c4203674d3916b"
+    },
+    {
+      "name": "lockliel_bind_referral_destination_to_asset",
+      "version": "20260926001516",
+      "statements_md5": "906d62529a39b4acb1008785e21b9cbb"
+    },
+    {
+      "name": "lockliel_local_share_asset_destinations",
+      "version": "20260926001548",
+      "statements_md5": "43b60898d645e289ae34c4fbb978498e"
+    },
+    {
+      "name": "lockliel_one_active_founders_application",
+      "version": "20260926001759",
+      "statements_md5": "be483ba035776647070ac97116666039"
+    },
+    {
+      "name": "lockliel_unique_referenced_lead_sources",
+      "version": "20260926002052",
+      "statements_md5": "1fe57293ba7b68efa44a1f11595eb35a"
+    },
+    {
+      "name": "lockliel_valid_benefit_rule_window",
+      "version": "20260926002609",
+      "statements_md5": "ea5b8c536d3e5ddff578e8e2d053f755"
+    },
+    {
+      "name": "lockliel_require_meaningful_message_body",
+      "version": "20260926002734",
+      "statements_md5": "3abb69c18b0eaf7c5ab47f33e9e81a15"
+    },
+    {
+      "name": "lockliel_require_meaningful_staff_note_body",
+      "version": "20260926002837",
+      "statements_md5": "1b19fe53515b6228e025efc518b6576f"
+    },
+    {
+      "name": "lockliel_atomic_public_intake_workflows",
+      "version": "20260926003840",
+      "statements_md5": "a6ec0993e1406b56cb85f56f41691b97"
+    },
+    {
+      "name": "lockliel_financial_temporal_integrity",
+      "version": "20260926005116",
+      "statements_md5": "393bd6657d9f2dff627d41a5b52e8025"
+    },
+    {
+      "name": "lockliel_validate_financial_cross_links",
+      "version": "20260926005556",
+      "statements_md5": "86d91af79f91fe5ee782054840cb22bb"
+    },
+    {
+      "name": "lockliel_bound_media_progress_intervals",
+      "version": "20260926005808",
+      "statements_md5": "1a84cd54a239553e32160580fe27b245"
+    },
+    {
+      "name": "lockliel_expand_integrity_health_checks",
+      "version": "20260926010140",
+      "statements_md5": "b8ecca0f4242d255d62b75a7239d4523"
+    },
+    {
+      "name": "lockliel_allow_manual_gift_event_timestamps",
+      "version": "20260926010432",
+      "statements_md5": "176da295d66ecda5f5413a48d9a3147c"
+    },
+    {
+      "name": "lockliel_validate_media_progress_interval_shape",
+      "version": "20260926010707",
+      "statements_md5": "34d5142d34ad676ff83e9d10b54541c4"
+    },
+    {
+      "name": "lockliel_validate_shipping_fulfillment_relationships",
+      "version": "20260926010745",
+      "statements_md5": "c153f20d6424d3d9d4eb9da323a84e9b"
+    },
+    {
+      "name": "lockliel_require_order_items_for_fulfillment",
+      "version": "20260926010924",
+      "statements_md5": "7b77498d62dd2b586b66a76282918b88"
+    },
+    {
+      "name": "lockliel_harden_order_fulfillment_financial_integrity",
+      "version": "20260926011312",
+      "statements_md5": "8c8903eee2920ca542c4cb39b128270e"
+    },
+    {
+      "name": "lockliel_freeze_paid_order_items",
+      "version": "20260926011511",
+      "statements_md5": "530cbbd04d3b6e787b806d56a4b95cb4"
+    },
+    {
+      "name": "lockliel_harden_relationship_graph_integrity",
+      "version": "20260926012203",
+      "statements_md5": "7100412433b840289badabb4195567df"
+    },
+    {
+      "name": "lockliel_enforce_contact_relationship_lifecycle",
+      "version": "20260926012423",
+      "statements_md5": "ca27b93d772070428504d0398b61fcb2"
+    },
+    {
+      "name": "lockliel_harden_group_record_lifecycle",
+      "version": "20260926012755",
+      "statements_md5": "ac085ff90bcebeeb09e99415ce9915d5"
+    },
+    {
+      "name": "lockliel_harden_group_membership_history",
+      "version": "20260926012757",
+      "statements_md5": "3f00f2c1bd47ac229554a9b30035d6cf"
+    },
+    {
+      "name": "lockliel_idempotent_referral_progress_attribution",
+      "version": "20260926013137",
+      "statements_md5": "547ca7b699ec6f3ec3de50d4f6ab43d9"
+    },
+    {
+      "name": "lockliel_course_scoped_referral_progress_attribution",
+      "version": "20260926013636",
+      "statements_md5": "9968169a4b92704bf180bd27cc494117"
+    },
+    {
+      "name": "lockliel_bound_remaining_content_metadata",
+      "version": "20260926013812",
+      "statements_md5": "872d4c415d644390bd40a99412a35fdb"
+    },
+    {
+      "name": "lockliel_harden_course_enrollment_and_referral_validation",
+      "version": "20260926014000",
+      "statements_md5": "3e31bec52243536139a0915cd1746231"
+    },
+    {
+      "name": "lockliel_verify_protected_document_mime",
+      "version": "20260926014252",
+      "statements_md5": "36d99825972fa7ab3733f013c6f74374"
+    },
+    {
+      "name": "lockliel_dedupe_unreferenced_lead_attribution",
+      "version": "20260926014429",
+      "statements_md5": "5802f24ee01608b5c7f1a8ab908bc0a8"
+    },
+    {
+      "name": "lockliel_close_private_function_execute_surface",
+      "version": "20260926014457",
+      "statements_md5": "380141917be5fe041b54927644a88ebc"
+    },
+    {
+      "name": "lockliel_expand_security_integrity_health",
+      "version": "20260926023758",
+      "statements_md5": "fe037dc9f6ee9817e34222c71c13b6f0"
+    },
+    {
+      "name": "lockliel_harden_conversation_membership_history",
+      "version": "20260926024249",
+      "statements_md5": "5f2320e19571f5b7dff1ac86786dbf2d"
+    },
+    {
+      "name": "lockliel_harden_member_experience_payloads",
+      "version": "20260926030123",
+      "statements_md5": "6791123f28e8e6aa4852b7053c99ae4b"
+    },
+    {
+      "name": "lockliel_harden_system_event_payloads",
+      "version": "20260926030304",
+      "statements_md5": "f71b864adbe5ea94f9511eeadd360777"
+    },
+    {
+      "name": "lockliel_derive_media_progress_from_interval_evidence",
+      "version": "20260926030813",
+      "statements_md5": "a1134b0c51770770dd8e883dfd35e2d2"
+    },
+    {
+      "name": "lockliel_track_verified_media_durations",
+      "version": "20260926031037",
+      "statements_md5": "d7c8947ef8d2cb3de5008df56a1f4b2a"
+    },
+    {
+      "name": "lockliel_preserve_media_interval_evidence",
+      "version": "20260926031528",
+      "statements_md5": "e620b3fe853c2ba47d5e9c4b3ad30ce3"
+    },
+    {
+      "name": "lockliel_require_pdf_for_digital_book_release",
+      "version": "20260926031559",
+      "statements_md5": "223a23ce8de1b50b9cadf3478ef6ad8f"
+    },
+    {
+      "name": "lockliel_monitor_verified_media_evidence",
+      "version": "20260926031611",
+      "statements_md5": "930e063ca3bd9132345d0ddddb4368e9"
+    },
+    {
+      "name": "lockliel_preserve_historical_actor_records",
+      "version": "20260926032021",
+      "statements_md5": "1931c277e41d2041c716f21202dc38e1"
+    },
+    {
+      "name": "lockliel_enforce_translation_family_identity",
+      "version": "20260926032137",
+      "statements_md5": "8e615d1bf7c1078de685acb39f2fe0fa"
+    },
+    {
+      "name": "lockliel_harden_lesson_translation_family_resolution",
+      "version": "20260926032854",
+      "statements_md5": "7c5680f66f94b7cbb641b04ed3a268b1"
+    },
+    {
+      "name": "lockliel_account_deletion_preflight_and_guard",
+      "version": "20260926032933",
+      "statements_md5": "234a498fb4c5277056180b847103b7b7"
+    },
+    {
+      "name": "lockliel_account_deletion_execution_support",
+      "version": "20260926033358",
+      "statements_md5": "a50eb0b2a88c93f830c24706884b14b2"
+    },
+    {
+      "name": "lockliel_verified_deletion_execution",
+      "version": "20260926035543",
+      "statements_md5": "f2309d2a28bf3a66c5ffbcd40314451f"
+    },
+    {
+      "name": "lockliel_private_deletion_target_policy",
+      "version": "20260926035646",
+      "statements_md5": "5f95906bfb6d1ec4365b117b44cf47b4"
+    },
+    {
+      "name": "lockliel_admin_deletion_readiness_and_recovery",
+      "version": "20260926040641",
+      "statements_md5": "ee226595dce84bbc83d42adec2d4e4b5"
+    },
+    {
+      "name": "lockliel_private_deletion_admin_implementations",
+      "version": "20260926040919",
+      "statements_md5": "7f4acd7088251817650bb64356dfbc2d"
+    },
+    {
+      "name": "lockliel_integrity_staff_execution",
+      "version": "20260926041931",
+      "statements_md5": "e989658b7ba29c3958794885bfff9083"
+    },
+    {
+      "name": "lockliel_staff_deletion_preflight_access",
+      "version": "20260926051230",
+      "statements_md5": "fdfdc90b975cb98a175c91c21edf6255"
+    }
+  ],
+  "release-security": {
+    "rls_acl_md5": "f0c6bc7e071e9af08a1e5f0514765a22",
+    "policies_md5": "87ffe512f7132c7eea59d7725761b529",
+    "rls_disabled": 0,
+    "triggers_md5": "533174cbda16bcf1f9757681b71b4925",
+    "functions_md5": "e83922ba8557e82bd60a2ac3723601b0",
+    "column_acl_md5": "2ef82aaa69ada1375e2ab7ea239d0275",
+    "event_triggers_md5": "c0aed4dca79c41824396c45cd74dfae2",
+    "public_table_count": 56
+  },
+  "release-preflight": {
+    "counts": {
+      "shares": 3,
+      "reviews": 0,
+      "staff_roles": 0,
+      "applications": 0
+    },
+    "tables": [
+      {
+        "rls": true,
+        "table": "users",
+        "schema": "auth",
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "approx_rows": -1,
+        "total_bytes": 212992
+      },
+      {
+        "rls": true,
+        "table": "founders50_applications",
+        "schema": "public",
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "approx_rows": -1,
+        "total_bytes": 81920
+      },
+      {
+        "rls": true,
+        "table": "founders50_reviews",
+        "schema": "public",
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "approx_rows": -1,
+        "total_bytes": 65536
+      },
+      {
+        "rls": true,
+        "table": "profiles",
+        "schema": "public",
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "approx_rows": -1,
+        "total_bytes": 81920
+      },
+      {
+        "rls": true,
+        "table": "share_assets",
+        "schema": "public",
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "approx_rows": 3,
+        "total_bytes": 98304
+      }
+    ],
+    "constraints": [
+      {
+        "name": "profiles_city_length",
+        "validated": true,
+        "definition": "CHECK (((city IS NULL) OR ((char_length(city) >= 1) AND (char_length(city) <= 160))))"
+      },
+      {
+        "name": "profiles_country_length",
+        "validated": true,
+        "definition": "CHECK (((country IS NULL) OR ((char_length(country) >= 1) AND (char_length(country) <= 160))))"
+      },
+      {
+        "name": "profiles_current_leader_id_fkey",
+        "validated": true,
+        "definition": "FOREIGN KEY (current_leader_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "profiles_current_leader_not_self",
+        "validated": true,
+        "definition": "CHECK (((current_leader_id IS NULL) OR (current_leader_id <> id)))"
+      },
+      {
+        "name": "profiles_email_format",
+        "validated": true,
+        "definition": "CHECK (((email IS NULL) OR ((char_length(email) <= 254) AND (email = lower(TRIM(BOTH FROM email))) AND (email ~ '^[^[:space:]<>@]+@[^[:space:]<>@]+\\.[^[:space:]<>@]+$'::text))))"
+      },
+      {
+        "name": "profiles_first_name_length",
+        "validated": true,
+        "definition": "CHECK (((first_name IS NULL) OR ((char_length(first_name) >= 1) AND (char_length(first_name) <= 120))))"
+      },
+      {
+        "name": "profiles_id_fkey",
+        "validated": true,
+        "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "profiles_last_name_length",
+        "validated": true,
+        "definition": "CHECK (((last_name IS NULL) OR ((char_length(last_name) >= 1) AND (char_length(last_name) <= 120))))"
+      },
+      {
+        "name": "profiles_locale_length",
+        "validated": true,
+        "definition": "CHECK (((char_length(locale) >= 2) AND (char_length(locale) <= 35)))"
+      },
+      {
+        "name": "profiles_onboarding_status_check",
+        "validated": true,
+        "definition": "CHECK ((onboarding_status = ANY (ARRAY['new'::text, 'active'::text])))"
+      },
+      {
+        "name": "profiles_original_inviter_id_fkey",
+        "validated": true,
+        "definition": "FOREIGN KEY (original_inviter_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "profiles_original_inviter_not_self",
+        "validated": true,
+        "definition": "CHECK (((original_inviter_id IS NULL) OR (original_inviter_id <> id)))"
+      },
+      {
+        "name": "profiles_phone_length",
+        "validated": true,
+        "definition": "CHECK (((phone IS NULL) OR (char_length(phone) <= 60)))"
+      },
+      {
+        "name": "profiles_pkey",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "profiles_region_length",
+        "validated": true,
+        "definition": "CHECK (((region IS NULL) OR ((char_length(region) >= 1) AND (char_length(region) <= 160))))"
+      },
+      {
+        "name": "profiles_timezone_length",
+        "validated": true,
+        "definition": "CHECK (((timezone IS NULL) OR (char_length(timezone) <= 100)))"
+      }
+    ],
+    "search_path": "\"\\$user\", public, extensions",
+    "lock_snapshot": {
+      "waiting_locks": 0,
+      "other_target_locks": [],
+      "idle_in_transaction": 0,
+      "old_transactions_over_5s": 0
+    },
+    "auth_integrity": {
+      "uppercase": 0,
+      "null_email": 0,
+      "whitespace": 0
+    },
+    "event_triggers": [
+      {
+        "name": "issue_graphql_placeholder",
+        "event": "sql_drop",
+        "enabled": "O",
+        "function": "set_graphql_placeholder"
+      },
+      {
+        "name": "issue_pg_cron_access",
+        "event": "ddl_command_end",
+        "enabled": "O",
+        "function": "grant_pg_cron_access"
+      },
+      {
+        "name": "issue_pg_graphql_access",
+        "event": "ddl_command_end",
+        "enabled": "O",
+        "function": "grant_pg_graphql_access"
+      },
+      {
+        "name": "issue_pg_net_access",
+        "event": "ddl_command_end",
+        "enabled": "O",
+        "function": "grant_pg_net_access"
+      },
+      {
+        "name": "pgrst_ddl_watch",
+        "event": "ddl_command_end",
+        "enabled": "O",
+        "function": "pgrst_ddl_watch"
+      },
+      {
+        "name": "pgrst_drop_watch",
+        "event": "sql_drop",
+        "enabled": "O",
+        "function": "pgrst_drop_watch"
+      }
+    ],
+    "server_version": "17.6",
+    "observed_at_utc": "2026-09-27T05:23:20.431265+00:00",
+    "orphan_profiles": 0,
+    "profile_indexes": [
+      {
+        "name": "idx_profiles_inviter",
+        "ready": true,
+        "valid": true,
+        "definition": "CREATE INDEX idx_profiles_inviter ON public.profiles USING btree (original_inviter_id)"
+      },
+      {
+        "name": "idx_profiles_leader",
+        "ready": true,
+        "valid": true,
+        "definition": "CREATE INDEX idx_profiles_leader ON public.profiles USING btree (current_leader_id)"
+      },
+      {
+        "name": "profiles_email_uidx",
+        "ready": true,
+        "valid": true,
+        "definition": "CREATE UNIQUE INDEX profiles_email_uidx ON public.profiles USING btree (email) WHERE (email IS NOT NULL)"
+      },
+      {
+        "name": "profiles_pkey",
+        "ready": true,
+        "valid": true,
+        "definition": "CREATE UNIQUE INDEX profiles_pkey ON public.profiles USING btree (id)"
+      }
+    ],
+    "share_integrity": {
+      "bad_status": 0,
+      "negative_sort": 0,
+      "null_required": 0,
+      "bad_local_path": 0,
+      "noncanonical_slug": 0
+    },
+    "current_profiles": 0,
+    "review_integrity": {
+      "bad_decision": 0,
+      "null_decision": 0,
+      "null_reviewer": 0,
+      "orphan_reviewer": 0,
+      "null_application": 0,
+      "orphan_application": 0
+    },
+    "write_statistics": {
+      "counters": [
+        {
+          "table": "audit_log_entries",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "custom_oauth_providers",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "flow_state",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "identities",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "instances",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "mfa_amr_claims",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "mfa_challenges",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "mfa_factors",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "mfa_recovery_code_sets",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "mfa_recovery_codes",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "oauth_authorizations",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "oauth_client_states",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "oauth_clients",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "oauth_consents",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "one_time_tokens",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "refresh_tokens",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "saml_providers",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "saml_relay_states",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "schema_migrations",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 75,
+          "updates": 0
+        },
+        {
+          "table": "scim_tokens",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "scim_users",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "sessions",
+          "schema": "auth",
+          "deletes": 11,
+          "inserts": 29,
+          "updates": 0
+        },
+        {
+          "table": "sso_domains",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "sso_providers",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "users",
+          "schema": "auth",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 3
+        },
+        {
+          "table": "webauthn_challenges",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "webauthn_credentials",
+          "schema": "auth",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "audit_events",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 85,
+          "updates": 3
+        },
+        {
+          "table": "benefit_rules",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 1,
+          "updates": 0
+        },
+        {
+          "table": "checkout_sessions",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 4,
+          "updates": 0
+        },
+        {
+          "table": "communication_preference_events",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "communication_preferences",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "connection_requests",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "contact_permissions",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "conversation_members",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "conversations",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "course_enrollments",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "courses",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 1,
+          "updates": 2
+        },
+        {
+          "table": "entitlements",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "faith_profiles",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "feature_flags",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 5,
+          "updates": 0
+        },
+        {
+          "table": "follow_up_tasks",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "founder_orientation_progress",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "founder_orientation_steps",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 7,
+          "updates": 0
+        },
+        {
+          "table": "founders50_applications",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 5,
+          "updates": 6
+        },
+        {
+          "table": "founders50_reviews",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 2,
+          "updates": 2
+        },
+        {
+          "table": "gifts",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 1,
+          "updates": 0
+        },
+        {
+          "table": "group_members",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "group_weekly_checkins",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "groups",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "launch_verifications",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 2,
+          "updates": 0
+        },
+        {
+          "table": "lead_contacts",
+          "schema": "public",
+          "deletes": 2,
+          "inserts": 14,
+          "updates": 4576
+        },
+        {
+          "table": "lead_sources",
+          "schema": "public",
+          "deletes": 7932,
+          "inserts": 3975,
+          "updates": 0
+        },
+        {
+          "table": "leader_assignments",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "leader_profiles",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "lesson_assets",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 40,
+          "updates": 27
+        },
+        {
+          "table": "lesson_progress",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "lessons",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 13,
+          "updates": 30
+        },
+        {
+          "table": "media_progress",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "member_journey",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "member_staff_notes",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "messages",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "notifications",
+          "schema": "public",
+          "deletes": 2,
+          "inserts": 2,
+          "updates": 0
+        },
+        {
+          "table": "order_fulfillment_events",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 7,
+          "updates": 0
+        },
+        {
+          "table": "order_items",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 8,
+          "updates": 2
+        },
+        {
+          "table": "order_shipping_addresses",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 2,
+          "updates": 0
+        },
+        {
+          "table": "orders",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 15,
+          "updates": 5
+        },
+        {
+          "table": "partner_checkout_state",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 1,
+          "updates": 0
+        },
+        {
+          "table": "partner_commitments",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 3,
+          "updates": 0
+        },
+        {
+          "table": "payment_events",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 4,
+          "updates": 0
+        },
+        {
+          "table": "payment_provider_connections",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 4,
+          "updates": 0
+        },
+        {
+          "table": "privacy_requests",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 8,
+          "updates": 18
+        },
+        {
+          "table": "products",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 2,
+          "updates": 4
+        },
+        {
+          "table": "profile_connection_cards",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "profile_finance_cards",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "profile_tags",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "profiles",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "reach_contacts",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "referral_events",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "referral_links",
+          "schema": "public",
+          "deletes": 3,
+          "inserts": 33,
+          "updates": 0
+        },
+        {
+          "table": "share_assets",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 3,
+          "updates": 6
+        },
+        {
+          "table": "staff_roles",
+          "schema": "public",
+          "deletes": 8,
+          "inserts": 24,
+          "updates": 0
+        },
+        {
+          "table": "tags",
+          "schema": "public",
+          "deletes": 0,
+          "inserts": 16,
+          "updates": 0
+        },
+        {
+          "table": "buckets",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 2,
+          "updates": 0
+        },
+        {
+          "table": "buckets_analytics",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "buckets_vectors",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "migrations",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 73,
+          "updates": 0
+        },
+        {
+          "table": "objects",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 26,
+          "updates": 0
+        },
+        {
+          "table": "s3_multipart_uploads",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "s3_multipart_uploads_parts",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        },
+        {
+          "table": "vector_indexes",
+          "schema": "storage",
+          "deletes": 0,
+          "inserts": 0,
+          "updates": 0
+        }
+      ],
+      "stats_reset": "2026-08-25T20:33:23.891825+00:00"
+    },
+    "current_auth_users": 0,
+    "share_status_counts": {
+      "active": 3
+    },
+    "auth_without_profile": 0,
+    "email_constraint_md5": "94e6b49228249e4f9e0c3b0a9e36c4d0",
+    "ledger_columns_ready": true,
+    "profile_fk_dependents": 51,
+    "invalid_related_indexes": 0,
+    "share_duplicate_slug_groups": 0,
+    "standard_conforming_strings": "on",
+    "unvalidated_related_constraints": 0,
+    "share_duplicate_translation_groups": 0
+  },
+  "email-preflight": {
+    "auth": {
+      "total": 0,
+      "normalized_would_fail": 0
+    },
+    "profiles": {
+      "total": 0,
+      "malformed": 0,
+      "null_email": 0,
+      "overlength": 0,
+      "would_fail": 0,
+      "unnormalized": 0
+    },
+    "normalization_collision_groups": 0
+  },
+  "review-share-catalog": {
+    "rls": [
+      {
+        "rls": true,
+        "force": false,
+        "table": "founders50_reviews"
+      },
+      {
+        "rls": true,
+        "force": false,
+        "table": "share_assets"
+      }
+    ],
+    "grants": [
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "DELETE"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "grantable": "NO",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "DELETE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "grantable": "NO",
+        "privilege": "UPDATE"
+      }
+    ],
+    "columns": [
+      {
+        "type": "uuid",
+        "table": "founders50_reviews",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "share_assets",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "slug",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "asset_type",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "description",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "destination_path",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "status",
+        "default": "'draft'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "share_assets",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "share_text",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "category",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int4",
+        "table": "share_assets",
+        "column": "sort_order",
+        "default": "100",
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "share_assets",
+        "column": "featured",
+        "default": "false",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "share_assets",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "language_code",
+        "default": "'en'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "share_assets",
+        "column": "translation_key",
+        "default": null,
+        "nullable": "NO"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "founders50_reviews_application_idx",
+        "table": "founders50_reviews",
+        "definition": "CREATE INDEX founders50_reviews_application_idx ON public.founders50_reviews USING btree (application_id, created_at DESC)"
+      },
+      {
+        "name": "founders50_reviews_pkey",
+        "table": "founders50_reviews",
+        "definition": "CREATE UNIQUE INDEX founders50_reviews_pkey ON public.founders50_reviews USING btree (id)"
+      },
+      {
+        "name": "founders50_reviews_reviewer_idx",
+        "table": "founders50_reviews",
+        "definition": "CREATE INDEX founders50_reviews_reviewer_idx ON public.founders50_reviews USING btree (reviewer_id, created_at DESC)"
+      },
+      {
+        "name": "share_assets_pkey",
+        "table": "share_assets",
+        "definition": "CREATE UNIQUE INDEX share_assets_pkey ON public.share_assets USING btree (id)"
+      },
+      {
+        "name": "share_assets_slug_key",
+        "table": "share_assets",
+        "definition": "CREATE UNIQUE INDEX share_assets_slug_key ON public.share_assets USING btree (slug)"
+      },
+      {
+        "name": "share_assets_status_sort_idx",
+        "table": "share_assets",
+        "definition": "CREATE INDEX share_assets_status_sort_idx ON public.share_assets USING btree (status, featured DESC, sort_order, title)"
+      },
+      {
+        "name": "share_assets_translation_idx",
+        "table": "share_assets",
+        "definition": "CREATE INDEX share_assets_translation_idx ON public.share_assets USING btree (translation_key, language_code, status)"
+      },
+      {
+        "name": "share_assets_translation_language_unique",
+        "table": "share_assets",
+        "definition": "CREATE UNIQUE INDEX share_assets_translation_language_unique ON public.share_assets USING btree (translation_key, language_code)"
+      }
+    ],
+    "policies": [
+      {
+        "cmd": "INSERT",
+        "name": "founders50_reviews_staff_insert",
+        "qual": null,
+        "check": "((reviewer_id = ( SELECT auth.uid() AS uid)) AND app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'founders50_reviewer'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "table": "founders50_reviews",
+        "permissive": "PERMISSIVE"
+      },
+      {
+        "cmd": "SELECT",
+        "name": "founders50_reviews_staff_read",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'founders50_reviewer'::text])",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "founders50_reviews",
+        "permissive": "PERMISSIVE"
+      },
+      {
+        "cmd": "SELECT",
+        "name": "share_assets_member_read",
+        "qual": "(status = 'active'::text)",
+        "check": null,
+        "roles": [
+          "authenticated"
+        ],
+        "table": "share_assets",
+        "permissive": "PERMISSIVE"
+      },
+      {
+        "cmd": "INSERT",
+        "name": "share_assets_staff_insert",
+        "qual": null,
+        "check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "table": "share_assets",
+        "permissive": "PERMISSIVE"
+      },
+      {
+        "cmd": "UPDATE",
+        "name": "share_assets_staff_update",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+        "check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "table": "share_assets",
+        "permissive": "PERMISSIVE"
+      }
+    ],
+    "triggers": [
+      {
+        "name": "apply_founders50_review_decision_trigger",
+        "table": "founders50_reviews",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER apply_founders50_review_decision_trigger AFTER INSERT ON public.founders50_reviews FOR EACH ROW EXECUTE FUNCTION app_private.apply_founders50_review_decision()"
+      },
+      {
+        "name": "default_share_translation_key_trigger",
+        "table": "share_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER default_share_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+      },
+      {
+        "name": "normalize_share_asset_trigger",
+        "table": "share_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_share_asset_trigger BEFORE INSERT OR UPDATE ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_share_asset()"
+      },
+      {
+        "name": "validate_share_asset_translation_family_trigger",
+        "table": "share_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_share_asset_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, asset_type ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.validate_share_asset_translation_family()"
+      }
+    ],
+    "constraints": [
+      {
+        "name": "founders50_reviews_application_id_fkey",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "FOREIGN KEY (application_id) REFERENCES founders50_applications(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "founders50_reviews_decision_check",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "CHECK ((decision = ANY (ARRAY['note'::text, 'needs_info'::text, 'accept'::text, 'decline'::text, 'pause'::text, 'activate_host'::text])))"
+      },
+      {
+        "name": "founders50_reviews_decision_rationale",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "CHECK (((decision = 'note'::text) OR (char_length(TRIM(BOTH FROM COALESCE(rationale, ''::text))) >= 20)))"
+      },
+      {
+        "name": "founders50_reviews_pkey",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "founders50_reviews_rationale_length",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "CHECK (((rationale IS NULL) OR (char_length(rationale) <= 5000)))"
+      },
+      {
+        "name": "founders50_reviews_reviewer_id_fkey",
+        "table": "founders50_reviews",
+        "validated": true,
+        "definition": "FOREIGN KEY (reviewer_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "share_assets_asset_type_check",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK ((asset_type = ANY (ARRAY['faith_boost'::text, 'graphic'::text, 'book'::text, 'course'::text, 'invitation'::text])))"
+      },
+      {
+        "name": "share_assets_category_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((category IS NULL) OR (char_length(category) <= 120)))"
+      },
+      {
+        "name": "share_assets_description_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((description IS NULL) OR (char_length(description) <= 1000)))"
+      },
+      {
+        "name": "share_assets_destination_local_path",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((char_length(destination_path) >= 1) AND (char_length(destination_path) <= 500) AND (\"left\"(destination_path, 1) = '/'::text) AND (\"left\"(destination_path, 2) <> '//'::text)))"
+      },
+      {
+        "name": "share_assets_destination_path_check",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK ((((char_length(destination_path) >= 1) AND (char_length(destination_path) <= 500)) AND (\"left\"(destination_path, 1) = '/'::text)))"
+      },
+      {
+        "name": "share_assets_language_code_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((char_length(language_code) >= 2) AND (char_length(language_code) <= 12)))"
+      },
+      {
+        "name": "share_assets_pkey",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "share_assets_preview_path_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((preview_image_path IS NULL) OR (char_length(preview_image_path) <= 500)))"
+      },
+      {
+        "name": "share_assets_share_text_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((share_text IS NULL) OR (char_length(share_text) <= 1200)))"
+      },
+      {
+        "name": "share_assets_slug_format",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'::text) AND (char_length(slug) <= 160)))"
+      },
+      {
+        "name": "share_assets_slug_key",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "UNIQUE (slug)"
+      },
+      {
+        "name": "share_assets_sort_order_nonnegative",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK ((sort_order >= 0))"
+      },
+      {
+        "name": "share_assets_status_check",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'active'::text, 'archived'::text])))"
+      },
+      {
+        "name": "share_assets_title_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((char_length(title) >= 1) AND (char_length(title) <= 300)))"
+      },
+      {
+        "name": "share_assets_translation_key_length",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "CHECK (((char_length(translation_key) >= 1) AND (char_length(translation_key) <= 200)))"
+      },
+      {
+        "name": "share_assets_translation_language_unique",
+        "table": "share_assets",
+        "validated": true,
+        "definition": "UNIQUE (translation_key, language_code)"
+      }
+    ],
+    "column_grants": [
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "application_id",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "created_at",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "decision",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "id",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "id",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "rationale",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "founders50_reviews",
+        "column": "reviewer_id",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "asset_type",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "category",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "created_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "created_at",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "created_at",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "created_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "created_at",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "description",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "destination_path",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "featured",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "id",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "id",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "id",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "id",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "language_code",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "preview_image_path",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "share_text",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "slug",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "sort_order",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "status",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "title",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "translation_key",
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "share_assets",
+        "column": "updated_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "updated_at",
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "updated_at",
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "updated_at",
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "share_assets",
+        "column": "updated_at",
+        "privilege": "UPDATE"
+      }
+    ]
+  }
+}
