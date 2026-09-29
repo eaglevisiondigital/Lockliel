@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import {safeResourcePath} from "../../netlify/lib/member-journey.mjs";
 import {useMemo,useState} from "react";
 
 export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
@@ -50,12 +51,14 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
         return;
       }
 
+      const intended=safeResourcePath(new URLSearchParams(location.search).get("next"))||"/my-lockliel";
+      try{localStorage.setItem("lockliel:auth-change",String(Date.now()));}catch{}
       if(mode==="login"&&body.requiresMfa){
-        window.location.assign("/my-lockliel/security?challenge=1&next="+encodeURIComponent("/my-lockliel"));
+        window.location.assign("/my-lockliel/security?challenge=1&next="+encodeURIComponent(intended));
         return;
       }
 
-      window.location.assign("/my-lockliel");
+      window.location.assign(intended);
     }catch(error){
       setStatus("error");
       setMessage(error instanceof Error?error.message:"Something went wrong.");

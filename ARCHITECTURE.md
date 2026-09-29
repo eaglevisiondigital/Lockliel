@@ -1,5 +1,18 @@
 # Lockliel architecture
 
+## Reusable course engine candidate (2026-09-29)
+
+The approved Champion Life finished course standard is implemented through the
+existing Lockliel course/enrollment/content/translation/progress architecture.
+`course-engine.mjs` projects server gates; one React workspace renders every lesson;
+`lib/course/autosave.mjs` owns resilient drafts and revision saves. New atomic lesson
+and server-timed media RPCs replace identity-column REST upserts. Minimal new tables
+hold learner-private notes and nonpublic versioned grading keys. Configurable models
+A/B/C/D separate advancement, worksheet, score and reviewed completion. Snapshots
+retain answered prompts/media identity; existing completion and attribution remain.
+See `docs/course-engine-reconciliation.md` for schema, future management limits and
+release dependencies. The one new migration remains unapplied in production.
+
 ## Production deployment baseline (2026-09-29)
 
 The My Lockliel application and Getting a Grip invitation are now published on Netlify main at merge `1599ab271e0120a5cdc4e38e225ba749dd214721`, deploy `6abbb27a1cdd6d00081b0e8e`. Supabase remains at 274. Public design is preserved with the My Lockliel nav addition. The passive Share Library manifest is still not active production content. Preview handlers remain fail-closed; production unauthenticated session responds 401 correctly. See `docs/production-application-release-2026-09-29.md`. Earlier local-only feature labels describe prior checkpoints.

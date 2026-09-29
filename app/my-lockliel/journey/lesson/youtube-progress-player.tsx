@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useRef,useState} from "react";
+import {useEffect,useEffectEvent,useRef,useState} from "react";
 
 declare global {
   interface Window {
@@ -30,121 +30,34 @@ function ensureYouTube(){
   return window.__locklielYouTubePromise;
 }
 
-function mergeIntervals(input:number[][]){
-  const sorted=input
-    .map(v=>[Math.max(0,Number(v[0])||0),Math.max(0,Number(v[1])||0)])
-    .filter(v=>v[1]>v[0])
-    .sort((a,b)=>a[0]-b[0]);
-  const merged:number[][]=[];
-  for(const interval of sorted){
-    const last=merged[merged.length-1];
-    if(!last||interval[0]>last[1]+1)merged.push([...interval]);
-    else last[1]=Math.max(last[1],interval[1]);
+export default function YouTubeProgressPlayer({asset,saved,learnerId,onProgress}:{asset:any;saved:any;learnerId:string;onProgress:(assetId:string,percent:number)=>void}){
+ const hostId="yt-"+asset.id.replaceAll("-","");
+ const initialPosition=useRef(Number(saved?.last_position_seconds)||0);
+ const notify=useEffectEvent((pct:number)=>onProgress(asset.id,pct));
+ const playerRef=useRef<any>(null),playingRef=useRef(false),busy=useRef(false);
+ const [percent,setPercent]=useState(Number(saved?.percent_watched)||0),[error,setError]=useState('');
+ useEffect(()=>{
+  let cancelled=false,timer:number|undefined;const abort=new AbortController();
+  async function sample(playing:boolean){
+   if(cancelled||busy.current||!playerRef.current)return;
+   busy.current=true;
+   try{
+    const response=await fetch('/api/lockliel/journey',{method:'POST',signal:abort.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedUserId:learnerId,assetId:asset.id,positionSeconds:Number(playerRef.current.getCurrentTime())||0,playing})});
+    const body=await response.json();if(!response.ok)throw Error(body.error||'Watch progress could not be saved.');
+    if(!cancelled){const pct=Number(body.mediaProgress?.percent_watched)||0;setPercent(pct);setError('');if(pct>=(asset.watch_threshold||95))notify(pct);}
+   }catch(e){if(!cancelled)setError(e instanceof Error?e.message:'Watch progress could not be saved.');}finally{busy.current=false;}
   }
-  return merged.slice(-250);
-}
-
-export default function YouTubeProgressPlayer({
-  asset,
-  saved,
-  onProgress
-}:{
-  asset:any;
-  saved:any;
-  onProgress:(assetId:string,percent:number)=>void;
-}){
-  const hostId=useRef("yt-"+asset.id.replaceAll("-",""));
-  const playerRef=useRef<any>(null);
-  const playingRef=useRef(false);
-  const lastSampleRef=useRef<number|null>(null);
-  const intervalsRef=useRef<number[][]>(Array.isArray(saved?.covered_intervals)?saved.covered_intervals:[]);
-  const lastSaveRef=useRef(0);
-  const [percent,setPercent]=useState(Number(saved?.percent_watched)||0);
-
-  async function persist(current:number,duration:number,force=false){
-    const merged=mergeIntervals(intervalsRef.current);
-    intervalsRef.current=merged;
-    const played=merged.reduce((sum,v)=>sum+Math.max(0,v[1]-v[0]),0);
-    const pct=duration>0?Math.min(100,Math.round((played/duration)*1000)/10):0;
-    setPercent(pct);
-    onProgress(asset.id,pct);
-
-    const now=Date.now();
-    if(!force&&now-lastSaveRef.current<12000)return;
-    lastSaveRef.current=now;
-
-    await fetch("/api/lockliel/journey",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        assetId:asset.id,
-        lastPositionSeconds:current,
-        playedSeconds:played,
-        percentWatched:pct,
-        coveredIntervals:merged,
-        firstStartedAt:saved?.first_started_at||new Date().toISOString()
-      })
-    }).catch(()=>{});
-  }
-
-  useEffect(()=>{
-    let timer:number|undefined;
-    let cancelled=false;
-
-    ensureYouTube().then(()=>{
-      if(cancelled||!window.YT?.Player)return;
-      playerRef.current=new window.YT.Player(hostId.current,{
-        videoId:asset.provider_ref,
-        playerVars:{playsinline:1,rel:0},
-        events:{
-          onReady:(event:any)=>{
-            const resume=Number(saved?.last_position_seconds)||0;
-            if(resume>5)event.target.seekTo(resume,true);
-          },
-          onStateChange:(event:any)=>{
-            playingRef.current=event.data===1;
-            if(event.data===1){
-              lastSampleRef.current=Number(event.target.getCurrentTime())||0;
-            }else{
-              const current=Number(event.target.getCurrentTime())||0;
-              const duration=Number(event.target.getDuration())||0;
-              const last=lastSampleRef.current;
-              if(last!==null){
-                const delta=current-last;
-                if(delta>0&&delta<15)intervalsRef.current.push([last,current]);
-              }
-              lastSampleRef.current=current;
-              persist(current,duration,true);
-            }
-          }
-        }
-      });
-
-      timer=window.setInterval(()=>{
-        const player=playerRef.current;
-        if(!player||!playingRef.current||document.visibilityState!=="visible")return;
-        const current=Number(player.getCurrentTime?.())||0;
-        const duration=Number(player.getDuration?.())||0;
-        const last=lastSampleRef.current;
-        if(last!==null){
-          const delta=current-last;
-          if(delta>0&&delta<15)intervalsRef.current.push([last,current]);
-        }
-        lastSampleRef.current=current;
-        persist(current,duration,false);
-      },5000);
-    });
-
-    return ()=>{
-      cancelled=true;
-      if(timer)window.clearInterval(timer);
-      try{playerRef.current?.destroy?.();}catch{}
-    };
-  },[asset.id,asset.provider_ref]);
-
-  return <div className="ml-video-progress-card">
-    <div className="ml-video-frame"><div id={hostId.current}/></div>
-    <div className="ml-video-progress-meta"><span>Watched</span><strong>{Math.round(percent)}%</strong></div>
-    <div className="ml-course-progress"><span style={{width:Math.min(100,percent)+"%"}}/></div>
-  </div>;
+  ensureYouTube().then(()=>{
+   if(cancelled||!window.YT?.Player)return;
+   playerRef.current=new window.YT.Player(hostId,{videoId:asset.provider_ref,playerVars:{playsinline:1,rel:0},events:{
+    onReady:(event:any)=>{if(initialPosition.current>5)event.target.seekTo(initialPosition.current,true);},
+    onStateChange:(event:any)=>{playingRef.current=event.data===1;void sample(false);},
+    onError:()=>setError('This video could not be loaded. Your worksheet is retained.')
+   }});
+   timer=window.setInterval(()=>{if(playingRef.current&&document.visibilityState==='visible')void sample(true);},5000);
+  });
+  const visibility=()=>{if(document.visibilityState==='visible')void sample(false);};document.addEventListener('visibilitychange',visibility);
+  return()=>{cancelled=true;abort.abort();if(timer)clearInterval(timer);document.removeEventListener('visibilitychange',visibility);try{playerRef.current?.destroy?.();}catch{}};
+ },[asset.id,asset.provider_ref,asset.watch_threshold,learnerId,hostId]);
+ return <div className="ml-video-progress-card"><div className="ml-video-frame"><div id={hostId}/></div><div className="ml-video-progress-meta"><span>Video Progress</span><strong>{Math.floor(percent)}% Watched</strong></div><progress value={percent} max={100} aria-label="Video Watch Progress"/>{error&&<p role="alert">{error}</p>}</div>;
 }

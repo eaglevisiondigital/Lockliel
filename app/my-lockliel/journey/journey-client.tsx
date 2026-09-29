@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import {useEffect,useMemo,useState} from "react";
+import {learningState} from "../../../netlify/lib/course-engine.mjs";
+import "./lesson/workspace.css";
 import {BookOpen,CheckCircle2,Circle,Clock3,PlayCircle} from "lucide-react";
 
 export default function JourneyClient(){
@@ -17,10 +19,6 @@ export default function JourneyClient(){
 
   useEffect(()=>{load();},[]);
 
-  const progressMap=useMemo(
-    ()=>Object.fromEntries((data?.progress||[]).map((p:any)=>[p.lesson_id,p])),
-    [data]
-  );
 
   const assetMap=useMemo(()=>{
     const out:Record<string,any[]>={};
@@ -40,7 +38,8 @@ export default function JourneyClient(){
     <p>Complete your profile and faith journey so we can open your foundational discipleship path.</p>
   </section>;
 
-  const completed=(data.progress||[]).filter((p:any)=>p.status==="completed").length;
+  const learning=learningState(data);
+  const completed=learning.completed;
   const total=data.lessons.length;
   const percent=total?Math.round(completed/total*100):0;
 
@@ -59,13 +58,13 @@ export default function JourneyClient(){
 
     <div className="ml-course-progress"><span style={{width:percent+"%"}}/></div>
 
+    <div className="course-overview-actions">{learning.current&&<Link href={learning.href}>Continue Course →</Link>}{learning.complete&&<div><h2>Course Completed</h2><p>You have completed all {total} lessons. Your answers remain available for review.</p></div>}</div>
     <section className="ml-lesson-list">
-      {data.lessons.map((lesson:any)=>{
-        const p=progressMap[lesson.id];
-        const status=p?.status||"not_started";
+      {learning.lessons.map((lesson:any)=>{
+        const status=lesson.state;
         const assets=assetMap[lesson.id]||[];
         const questions=lesson.worksheet_schema?.questions||[];
-        const ready=assets.length>0||questions.length>0;
+        const ready=lesson.unlocked&&(assets.length>0||questions.length>0);
 
         return <article className={"ml-lesson-row "+status} key={lesson.id}>
           <div className="ml-lesson-number">
@@ -84,17 +83,18 @@ export default function JourneyClient(){
               {status==="completed"
                 ? "Completed"
                 : status==="in_progress"
-                  ? "In progress"
+                  ? "In Progress"
                   : ready
-                    ? "Ready"
-                    : "Content being prepared"}
+                    ? "Available"
+                    : lesson.unlocked?"Content Being Prepared":"Locked"}
             </small>
+            <p>{assets.some((a:any)=>a.asset_type==='video')?'Video Available':'Video Not Configured'} · {questions.length} Worksheet Questions · {assets.filter((a:any)=>a.asset_type!=='video').length} Resources</p>
           </div>
           {ready
             ? <Link className="ml-lesson-open" href={"/my-lockliel/journey/lesson?lesson="+encodeURIComponent(lesson.slug)}>
                 {status==="completed"?"Review":status==="in_progress"?"Continue":"Start"}
               </Link>
-            : <span className="ml-lesson-coming">Coming soon</span>}
+            : <span className="ml-lesson-coming">Locked</span>}
         </article>;
       })}
     </section>

@@ -1,10 +1,21 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { test, after } from 'node:test';
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { baseline, expectations, checkMigrationPreflight } from '../scripts/check-migration-preflight.mjs';
-import { prepareRelease, verifyPreparedRelease, verifyMigrationBytes, bridgeFile, emailFile, repo } from '../scripts/prepare-migration-release.mjs';
+import * as currentRelease from '../scripts/prepare-migration-release.mjs';
+// Exercise the historical 274-file release package in its own verified source tree.
+// The real runner remains fail-closed when this development branch adds migration 275.
+const historicalRoot=mkdtempSync(join(tmpdir(),'lockliel-historical-release-'));
+for(const folder of ['scripts','supabase/migrations','supabase/verification'])mkdirSync(join(historicalRoot,folder),{recursive:true});
+for(const file of Object.keys(currentRelease.manifest))copyFileSync(join(currentRelease.repo,'supabase/migrations',file),join(historicalRoot,'supabase/migrations',file));
+for(const file of ['scripts/prepare-migration-release.mjs','supabase/verification/release-migrations.json'])copyFileSync(join(currentRelease.repo,file),join(historicalRoot,file));
+const {prepareRelease,verifyPreparedRelease,verifyMigrationBytes,bridgeFile,emailFile,repo}=await import(new URL('file://'+join(historicalRoot,'scripts/prepare-migration-release.mjs')));
+after(()=>rmSync(historicalRoot,{recursive:true,force:true}));
+test('historical production release runner refuses the new unreviewed development migration',()=>{
+ assert.throws(()=>currentRelease.verifyMigrationBytes(),/migration set changed/);
+});
 
 const now = Date.parse(baseline['release-preflight'].observed_at_utc);
 function checkpoint(stage = 272) {

@@ -14,6 +14,7 @@ export default withProductionBackend(async(request)=>{
   );
   const roles=rr.ok?(await rr.json()).map(r=>r.role):[];
   const elevated=roles.some(r=>["super_admin","admin"].includes(r));
+  const courseManager=roles.some(r=>["super_admin","admin","discipleship_admin"].includes(r));
   const ministry=roles.some(r=>["super_admin","admin","discipleship_admin","founders50_reviewer"].includes(r));
   const finance=roles.some(r=>["super_admin","admin","finance_admin"].includes(r));
   if(!ministry&&!finance)return json({error:"Person record access required"},403);
@@ -40,7 +41,7 @@ export default withProductionBackend(async(request)=>{
       ? fetch(SUPABASE_URL+"/rest/v1/course_enrollments?profile_id=eq."+safeId+"&select=id,course_id,status,enrolled_at,completed_at&order=enrolled_at.desc",{headers:h})
       : Promise.resolve(null),
     ministry
-      ? fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+safeId+"&select=lesson_id,status,worksheet_status,last_position_seconds,watched_seconds,started_at,last_activity_at,completed_at&order=last_activity_at.desc",{headers:h})
+      ? fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+safeId+"&select=lesson_id,status,worksheet_status,last_position_seconds,watched_seconds,started_at,last_activity_at,completed_at"+(courseManager?",worksheet_answers,content_snapshot":"")+"&order=last_activity_at.desc",{headers:h})
       : Promise.resolve(null),
     ministry
       ? fetch(SUPABASE_URL+"/rest/v1/media_progress?profile_id=eq."+safeId+"&select=asset_id,last_position_seconds,played_seconds,percent_watched,last_activity_at,completed_at&order=last_activity_at.desc&limit=1000",{headers:h})
@@ -191,7 +192,7 @@ export default withProductionBackend(async(request)=>{
     courses:enrollmentRows.map(e=>({
       ...e,
       course:courseMap[e.course_id]||null,
-      lessons:progressRows.filter(p=>lessonMap[p.lesson_id]?.course_id===e.course_id).map(p=>({...p,lesson:lessonMap[p.lesson_id]||null})),
+      lessons:progressRows.filter(p=>lessonMap[p.lesson_id]?.course_id===e.course_id).map(p=>({...p,worksheet_answers:courseManager&&p.status==="completed"?p.worksheet_answers:undefined,content_snapshot:courseManager&&p.status==="completed"?p.content_snapshot:undefined,lesson:lessonMap[p.lesson_id]||null})),
       media:mediaRows.filter(mp=>lessonMap[assetMap[mp.asset_id]?.lesson_id]?.course_id===e.course_id).map(mp=>({...mp,asset:assetMap[mp.asset_id]||null,lesson:lessonMap[assetMap[mp.asset_id]?.lesson_id]||null}))
     }))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);

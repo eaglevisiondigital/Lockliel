@@ -1,5 +1,18 @@
 # Lockliel engineering instructions
 
+## Current course-engine assignment (2026-09-29)
+
+Read `docs/course-engine-reconciliation.md`. The latest assignment authorizes the
+reusable engine, local migration 275, isolated validation and development push/PR
+preview only. Main is production `1599ab2`; PR #3 is already merged. Earlier open-PR
+and two-pending-migration statements below are historical. Production has 274 applied;
+this course migration is not applied. Keep all 274 original hashes intact. Never use
+the old 274-release runner for this new migration. Model A is Watch to Advance,
+Answer to Complete at 95%, with no score. Notes stay owner-only and absent from admin
+views. Do not bypass preview production-backend guards to run acceptance tests.
+Release needs duration/content decisions and a genuinely isolated backend. No main
+merge, production deploy, production data/settings changes or content activation.
+
 ## Production application release completed (2026-09-29)
 
 The separately authorized PR #3 production release is complete: normal merge `1599ab271e0120a5cdc4e38e225ba749dd214721`, Netlify deploy `6abbb27a1cdd6d00081b0e8e`, database 274 with zero pending. Read `docs/production-application-release-2026-09-29.md`. Earlier prohibitions/outcomes below are historical; this authorization is consumed. Local documentation remains unpushed. Require a separate assignment for controlled real signup/Resend testing, first super-admin setup, further release or Getting a Grip Share Library activation. Do not rerun either already applied migration.

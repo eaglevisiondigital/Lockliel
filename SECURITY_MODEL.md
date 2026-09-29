@@ -1,5 +1,20 @@
 # Lockliel security model
 
+## Course engine candidate boundaries (2026-09-29)
+
+New save RPCs bind expected identity to auth.uid(), active session, published enrolled
+course and trusted lesson gate. Optimistic revisions and completed-answer immutability
+stop stale overwrites; same-payload retries acknowledge an already committed result.
+Configured courses deny direct member progress writes through restrictive RLS. Media
+samples use server elapsed time and interval-derived thresholds, never posted percent.
+Notes are owner-only in separate storage, absent from every staff/admin query. Explicit
+course-manager roles/MFA retain submitted-answer access, not notes. Versioned score
+keys remain private. Configuration audit contains no responses or notes. Inputs are
+bounded and React escapes text. Unsynced browser drafts are account/lesson-scoped,
+not encrypted storage against someone controlling the device. Preview production
+backend and form guards remain intact. Migration 275 is local/development only;
+real hosted acceptance requires isolated infrastructure. See reconciliation evidence.
+
 ## Production application verification (2026-09-29)
 
 Exact approved PR #3 release is live. GET-only verification confirms member noindex and framing/referrer/content-type headers, production unauthenticated session 401, and no protected course path exposure in invitation HTML. Read-only before/after database fingerprints and write counters match, 274 migrations remain, all 56 public tables retain RLS and Security Advisor is clear. No accounts, grants, settings changes, payments or content activation. Full Auth/SMTP settings and delivery were not independently tested. See `docs/production-application-release-2026-09-29.md`.

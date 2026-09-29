@@ -127,7 +127,7 @@ export default function PersonRecordClient(){
         <div className="ml-person-lesson-list">
           {course.lessons.map((lesson:any)=><div key={lesson.lesson_id}>
             <span>{lesson.status==="completed"?<CheckCircle2 size={13}/>:<BookOpen size={13}/>}</span>
-            <div><b>Lesson {lesson.lesson?.position}: {lesson.lesson?.title||"Lesson"}</b><small>{lesson.status.replaceAll("_"," ")} • worksheet {lesson.worksheet_status.replaceAll("_"," ")}</small></div>
+            <div><b>Lesson {lesson.lesson?.position}: {lesson.lesson?.title||"Lesson"}</b><small>{lesson.status.replaceAll("_"," ")} • worksheet {lesson.worksheet_status.replaceAll("_"," ")}</small>{lesson.worksheet_answers&&<details><summary>Submitted Answers</summary>{(lesson.content_snapshot?.questions||[]).map((q:any)=><p key={String(q.number??q.id)}><b>{q.text||q.prompt}</b><br/>{lesson.worksheet_answers[String(q.number??q.id)]||""}</p>)}</details>}</div>
             <span>{lesson.last_activity_at?new Date(lesson.last_activity_at).toLocaleDateString():""}</span>
           </div>)}
         </div>

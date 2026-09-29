@@ -1,5 +1,17 @@
 # Lockliel verified continuity baseline
 
+## Course engine development candidate (2026-09-29)
+
+The shared course workspace and persistence fix are implemented on top of `d915ae1`,
+with one new unapplied migration `20260929215159`. All 274 historical hashes remain
+unchanged. Full local checks pass: 524 JS tests, 275 replayed migrations, 12 SQL/RLS
+files, build/type/Netlify/configured lint and zero production dependency vulnerabilities.
+Synthetic responsive/account/save tests pass. Production remains main `1599ab2`,
+274 applied migrations; the live persistence bug is not yet changed by this local work.
+Read `docs/course-engine-reconciliation.md` for evidence, privacy, versioning and
+remaining duration/content/isolated-backend acceptance gaps. NOT READY for production.
+The current assignment authorizes development push/PR preview, not merge or release.
+
 ## Production application release verified (2026-09-29)
 
 PR #3 merged normally at approved head `9a4129a`. Main is now `1599ab271e0120a5cdc4e38e225ba749dd214721`; Netlify production deploy `6abbb27a1cdd6d00081b0e8e` published 2026-09-29 12:44:51.484 UTC. Seven public/member routes, preserved homepage sections/assets, noindex/security headers and unauthenticated production session behavior pass. Database remains 274, zero pending, RLS/advisor and content/write fingerprints unchanged. ChatGPT Site version 25 unchanged. No signup/account, staff grant, email test or content activation. See `docs/production-application-release-2026-09-29.md`. Prior no-production-release statements below are historical. Next: separately authorized controlled signup and Resend confirmation test.

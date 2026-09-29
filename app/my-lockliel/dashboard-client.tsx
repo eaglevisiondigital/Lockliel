@@ -116,6 +116,7 @@ export default function MyLocklielDashboard(){
 
   async function signOut(){
     await fetch("/api/lockliel-auth/logout",{method:"POST"});
+    try{localStorage.setItem("lockliel:auth-change",String(Date.now()));}catch{}
     location.assign("/");
   }
 

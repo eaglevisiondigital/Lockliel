@@ -1,5 +1,24 @@
 # Lockliel decisions and open questions
 
+## Approved cross-platform course standard (2026-09-29)
+
+APPROVED: The Champion Life Getting a Grip UX and finished course-engine behavior
+are the reusable standard for Lockliel, Champion Life, Global Propel and Revitalized
+Academy unless explicitly overridden. Preserve each platform's branding, identity,
+tenant boundaries and permissions. Reuse Lockliel infrastructure without duplicate
+course systems. Desktop sticky media plus worksheet; mobile minimize; cloud-authoritative
+autosave, local resilience, private Personal Notes, trusted watch telemetry, account
+isolation, authorized course administration and historical content versions apply.
+Getting a Grip permanently uses WATCH TO ADVANCE, ANSWER TO COMPLETE at 95%, with
+no score requirement. Engine configuration supports separate score/simple/review models.
+
+IMPLEMENTED in development, not production: the shared engine, atomic persistence,
+private notes and one new migration. APPROVED scope includes development push and
+preview only. UNKNOWN/DECISION NEEDED: trusted duration handling under the existing
+optional-duration release policy, lessons 11–13 without video, and isolated hosted
+acceptance infrastructure. No content exception, production migration or release is
+approved by inference. See `docs/course-engine-reconciliation.md`.
+
 ## Production application release authorized and completed (2026-09-29)
 
 The explicit production application assignment superseded earlier merge/deploy prohibitions only for exact PR #3 head `9a4129a`. Normal merge `1599ab271e0120a5cdc4e38e225ba749dd214721` and Git-triggered Netlify production deploy `6abbb27a1cdd6d00081b0e8e` passed scoped verification. It did not authorize signup/email tests, staff assignment, migrations, settings changes or Share Library activation. Existing public design and ChatGPT Site version 25 preserved. Post-release documentation stays local. See `docs/production-application-release-2026-09-29.md`.
