@@ -3,6 +3,10 @@
 Recorded 2026-09-26. Status labels distinguish user-approved constraints from
 implementation facts and proposals. Code or a seeded row is not business approval.
 
+## Session Pooler fallback rejected by rehearsal (2026-09-29)
+
+VERIFIED: the explicit read-only review reached the project Session Pooler with strict TLS and valid database authentication, but required startup settings were not preserved. STOPPED before preflight and pinned CLI dry-run. No automatic fallback, relaxed guards, script changes or migration execution are approved. PROPOSAL: separately investigate direct IPv6 connectivity or a demonstrably compatible connection method. See `docs/session-pooler-rehearsal-2026-09-29.md`.
+
 ## Migration resume prerequisites and network boundary (2026-09-28)
 
 USER-CONFIRMED: Owner MFA enabled, two authenticator factors configured, existing

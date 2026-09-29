@@ -5,6 +5,10 @@ explicit assignment from primary Lockliel Chat.** Do not run the write commands
 below under the release-preparation assignment. No push or deployment is needed.
 Preserve Netlify production and published ChatGPT Sites version 25.
 
+## Session Pooler review outcome (2026-09-29)
+
+The separately assigned Session Pooler rehearsal did not qualify this fallback. TLS and authentication passed, but startup read-only and timeout settings were not preserved. Do not substitute the pooler in the commands below or bypass the startup assertion. No preflight or CLI database dry-run ran through it. See `docs/session-pooler-rehearsal-2026-09-29.md`. This note changes no release tooling or safety requirements.
+
 ## Scope and immutable inputs
 
 Repository `eaglevisiondigital/Lockliel`, branch `lockliel-backend-v1`.

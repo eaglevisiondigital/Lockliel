@@ -3,6 +3,10 @@
 Inspection date: 2026-09-26 UTC. Repository and Supabase observations below are
 separate evidence sources. They are point-in-time findings, not a launch approval.
 
+## Session Pooler rehearsal blocked (2026-09-29)
+
+Project-specific Session Pooler TLS and authentication passed, but requested startup safeguards did not: read-only was off, lock timeout 0 and statement timeout 2min. The helper stopped before release preflight or CLI dry-run. No production mutation or push occurred; all 274 migration hashes remain intact. Session Pooler is NOT approved for this runner. See `docs/session-pooler-rehearsal-2026-09-29.md`. A new execution assignment is required after a compatible connection and fresh gates are verified.
+
 ## Migration resume: direct network blocked (2026-09-28 local)
 
 The new handoff confirms Owner MFA with two factors and operator possession of
