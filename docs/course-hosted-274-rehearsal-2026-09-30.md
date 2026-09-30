@@ -1,5 +1,9 @@
 # Full hosted 274 to 278 cutover rehearsal: connectivity blocked
 
+> Superseded continuation: see `course-hosted-275-stop-2026-09-30.md`.
+> Connectivity is restored, migration275 applied, exact verifier UNKNOWN_STOP,
+> maintenance ON. Do not use the historical resume instructions below.
+
 Assignment: user handoff85eb986b, 2026-09-30. Inspected localHEAD
 e71fbeda62909a68460a0db484153fa66ac3a686, development branch lockliel-backend-v1.
 **FULL HOSTED COURSE CUTOVER REHEARSAL FAILED**: execution prerequisites are missing;

@@ -1,5 +1,26 @@
 # Lockliel decisions and open questions
 
+## Hosted cutover stopped at applied 275 (2026-09-30)
+
+Read `docs/course-hosted-275-stop-2026-09-30.md`. Hotspot direct IPv6/TLS verify-full
+and CLI authentication now work. New isolated qjksggxorghaxvpyslip started274,
+received synthetic fixtures and maintenance, then exact CLI migration275 committed.
+Catalog verification returned UNKNOWN_STOP: new lesson_private_notes inherits hosted
+service_role Dxtm instead of disposable arwdDxt. All other catalog rows and separate
+semantic checks match, but exact verification is NOT passed. Maintenance remains ON,
+schemaReady=false. Do not replay275, apply276–278, deploy candidate or reopen.
+
+Original1599ab2 app reads/login/MFA worked in dedicated isolated site70b03a42;
+autosave403 exposed an existing identity-column upsert grant conflict. Original
+media scripts continued requests while paused; no course write succeeded. Do not
+mark old retry UX or full transition passed. Candidate0cfcf405 has exact isolated
+configuration binding and is prepared only. Full local558JS/278replay/15SQL,
+build/type/Netlify/lint/audit pass; all278 hashes unchanged. No push this task.
+Production remains274/main1599ab2 and both published sites unchanged. Preserve both
+isolated branches/sites. Next: default-ACL-aware expected catalog review and read-only
+classification of already-applied275, with separate authorization before resuming.
+Earlier clean274/network-blocked statements below are historical.
+
 ## Final hosted maintenance rehearsal, full hosted transition still blocked (2026-09-30)
 
 Read `docs/course-cutover-final-rehearsal-2026-09-30.md` and the updated release
