@@ -44,7 +44,7 @@ create policy cutover_read_guard on public.lesson_assets as restrictive for sele
 create policy cutover_read_guard on public.lesson_progress as restrictive for select to authenticated using(not coalesce((public.lockliel_course_cutover_status()->>'paused')::boolean,true));
 create policy cutover_read_guard on public.media_progress as restrictive for select to authenticated using(not coalesce((public.lockliel_course_cutover_status()->>'paused')::boolean,true));
 -- PostgREST path guard covers direct RPCs as well as ordinary table endpoints.
-create function public.lockliel_course_cutover_request() returns void language plpgsql security definer set search_path='' as $$
+create function lockliel_cutover.request() returns void language plpgsql security definer set search_path='' as $$
 declare path text:=current_setting('request.path',true); method text:=current_setting('request.method',true); headers jsonb:=coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb; state jsonb;
 begin
  if path is null or method is null then raise sqlstate 'PT503' using message='Course request context unavailable.';end if;
@@ -52,15 +52,16 @@ begin
  or path ~ '^/rpc/(lockliel_(sample_media|save_lesson|course_gates|grip_readiness)|.*course.*|.*lesson.*)$' and path not in ('/rpc/lockliel_course_cutover_status','/rpc/lockliel_course_cutover_request') then
   state:=public.lockliel_course_cutover_status();
   if coalesce((state->>'paused')::boolean,true) then raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';end if;
-  if method not in ('GET','HEAD','OPTIONS') and headers->>'x-lockliel-course-protocol' is distinct from state->>'protocol' then raise sqlstate 'PT426' using message='Reload Getting a Grip before saving. Keep a copy of unsaved answers.';end if;
+  if method not in ('GET','HEAD','OPTIONS') and path not in ('/rpc/lockliel_course_gates','/rpc/lockliel_grip_readiness') and headers->>'x-lockliel-course-protocol' is distinct from state->>'protocol' then raise sqlstate 'PT426' using message='Reload Getting a Grip before saving. Keep a copy of unsaved answers.';end if;
  end if;
 end;$$;
-revoke all on function public.lockliel_course_cutover_request() from public;
-grant execute on function public.lockliel_course_cutover_request() to anon,authenticated,service_role;
+revoke all on function lockliel_cutover.request() from public;
+grant usage on schema lockliel_cutover to anon,authenticated,service_role;
+grant execute on function lockliel_cutover.request() to anon,authenticated,service_role;
 -- Refuse to replace an existing pre-request hook. Chaining needs separate review.
 do $$begin
  if exists(select 1 from pg_db_role_setting s join pg_roles r on r.oid=s.setrole where r.rolname='authenticator' and exists(select 1 from unnest(s.setconfig) c where c like 'pgrst.db_pre_request=%')) then raise exception 'Existing pre-request hook requires reviewed chaining';end if;
 end$$;
-alter role authenticator set pgrst.db_pre_request='public.lockliel_course_cutover_request';
+alter role authenticator set pgrst.db_pre_request='lockliel_cutover.request';
 notify pgrst,'reload config';
 commit;

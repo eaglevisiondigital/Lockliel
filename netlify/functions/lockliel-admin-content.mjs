@@ -1,9 +1,9 @@
+import {courseHeaders} from '../lib/course-cutover.mjs';
 import {courseReadiness} from "../lib/course-engine.mjs";
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
   json,
-  dbHeaders,
   requireSession,
   sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
@@ -25,7 +25,7 @@ export function createContentHandler({sessionFor=requireSession,fetcher=(...args
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
-  const h=dbHeaders(s.access);
+  const h=courseHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
   const rr=await fetch(
     SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+uid+"&select=role",

@@ -130,14 +130,14 @@ try{
  assert(cut,'Server never committed during TCP test');assert.notEqual(networkStatus,0,'Client unexpectedly acknowledged before network cut');
  assert.equal(classify(networkBefore,references[275],catalog(network)),'COMMITTED');evidence.failures.push({mode:'tcp_loss_after_commit',state:'COMMITTED',clientStatus:networkStatus});console.log('PASS actual TCP loss after commit: read-only verifier recognizes committed state');
  // Hook tests exercise the actual SQL guard without requiring a PostgREST binary.
- const guard=(db,path,method='POST',protocol='')=>sql(`begin;select set_config('request.path',${quote(path)},true),set_config('request.method',${quote(method)},true),set_config('request.headers',${quote(JSON.stringify({'x-lockliel-course-protocol':protocol}))},true);select public.lockliel_course_cutover_request();rollback;`,db);
+ const guard=(db,path,method='POST',protocol='')=>sql(`begin;select set_config('request.path',${quote(path)},true),set_config('request.method',${quote(method)},true),set_config('request.headers',${quote(JSON.stringify({'x-lockliel-course-protocol':protocol}))},true);select lockliel_cutover.request();rollback;`,db);
  for(const stage of [274,278]){
  const db=stage===274?'baseline':'happy';assert.throws(()=>guard(db,'/rpc/lockliel_sample_media'),/being updated/);assert.throws(()=>guard(db,'/lesson_progress'),/being updated/);guard(db,'/profiles');guard(db,'/rpc/lockliel_course_cutover_status');
  assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",db),'true');
  }
  sql("update lockliel_cutover.control set paused=false",happy);
- assert.throws(()=>guard(happy,'/rpc/lockliel_sample_media'),/Reload/);guard(happy,'/rpc/lockliel_sample_media','POST','278-v1');guard(happy,'/courses','GET');guard(happy,'/profiles');
- evidence.maintenance={inflightDrained:true,laterDirectWriteRejected:true,schema274Paused:true,schema278Paused:true,oldProtocolRejectedAfterReopen:true,newProtocolAcceptedAfterReopen:true,unrelatedProfilesRouteAllowed:true,hostedPostgrestAndMixedApp:'NOT YET REHEARSED'};
+ assert.throws(()=>guard(happy,'/rpc/lockliel_sample_media'),/Reload/);guard(happy,'/rpc/lockliel_sample_media','POST','278-v1');guard(happy,'/courses','GET');guard(happy,'/rpc/lockliel_course_gates');guard(happy,'/rpc/lockliel_grip_readiness');guard(happy,'/profiles');
+ evidence.maintenance={inflightDrained:true,laterDirectWriteRejected:true,schema274Paused:true,schema278Paused:true,oldProtocolRejectedAfterReopen:true,newProtocolAcceptedAfterReopen:true,unrelatedProfilesRouteAllowed:true,scope:'Disposable PostgreSQL only; hosted evidence is reported separately'};
  // Two-session publication race: sampling holds publication locks until commit;
  // an unpublication that wins the lock first must cause the waiting sampler to deny.
  const fixture=JSON.parse(sql(`do $$declare u uuid:=gen_random_uuid();sid uuid:=gen_random_uuid();c uuid;l uuid;a uuid;begin
@@ -154,7 +154,7 @@ try{
  const unpublisher=await hold("update public.courses set status='draft' where id='"+fixture.course+"';");
  assert.throws(()=>sql('begin;'+sampleSQL+'commit;',happy),/not available|eligible|unavailable/i);assert.equal(await unpublisher.done,0);
  evidence.publicationConcurrency={samplingLocksPublication:true,unpublishFirstRejectsWaitingSampler:true};console.log('PASS publication concurrency in both lock orders');
- evidence.pending='Full hosted mixed-app maintenance and stale legacy-tab decision remain pending';
+ evidence.pending='Full hosted old-app/schema274 to new-app/schema278 transition requires a second disposable hosted branch; manual copy-and-close policy is approved';
  writeFileSync(join(repo,'docs/evidence/course-release-review-2026-09-30/rehearsal-278.json'),JSON.stringify(evidence,null,2)+'\n');
  console.log('Staged runner and failure rehearsal evidence saved; remaining maintenance cases explicitly pending');
 }finally{cleanup();}

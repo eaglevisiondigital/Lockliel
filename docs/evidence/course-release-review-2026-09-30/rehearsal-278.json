@@ -28,6 +28,30 @@
   ],
   "failures": [
     {
+      "mode": "stage_275_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_276_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_277_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_278_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
       "mode": "sql_error",
       "state": "ROLLED_BACK"
     },
@@ -87,11 +111,11 @@
     "oldProtocolRejectedAfterReopen": true,
     "newProtocolAcceptedAfterReopen": true,
     "unrelatedProfilesRouteAllowed": true,
-    "hostedPostgrestAndMixedApp": "NOT YET REHEARSED"
+    "scope": "Disposable PostgreSQL only; hosted evidence is reported separately"
   },
   "publicationConcurrency": {
     "samplingLocksPublication": true,
     "unpublishFirstRejectsWaitingSampler": true
   },
-  "pending": "Full hosted mixed-app maintenance and stale legacy-tab decision remain pending"
+  "pending": "Full hosted old-app/schema274 to new-app/schema278 transition requires a second disposable hosted branch; manual copy-and-close policy is approved"
 }
