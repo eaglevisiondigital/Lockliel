@@ -1,14 +1,17 @@
+import {courseCutover,staleCourseClient,courseHeaders} from '../lib/course-cutover.mjs';
 import {withProductionBackend} from '../lib/deployment-safety.mjs';
 import {loadCourseJourney} from '../lib/course-journey.mjs';
 import {lessonExport} from '../lib/course-engine.mjs';
-import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from '../lib/lockliel-core.mjs';
+import {SUPABASE_URL,json,requireSession,sessionCookies} from '../lib/lockliel-core.mjs';
 
-export function createJourneyHandler({sessionFor=requireSession,fetcher=globalThis.fetch,loader=loadCourseJourney}={}) {
+export function createJourneyHandler({sessionFor=requireSession,fetcher=globalThis.fetch,loader=loadCourseJourney,cutoverFor=courseCutover}={}) {
  return async request=>{
   if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
   const s=await sessionFor(request);
   if(!s.user||!s.access)return json({error:'Unauthorized'},401);
   const cookies=s.refreshed?sessionCookies(s.refreshed):[];
+  const gate=await cutoverFor(s.access,{fetcher});if(gate)return gate;
+  const stale=staleCourseClient(request);if(stale)return stale;
   if(request.method==='GET'){
    try {
     const data=await loader(s.access,s.user.id,{fetcher});
@@ -33,9 +36,10 @@ export function createJourneyHandler({sessionFor=requireSession,fetcher=globalTh
    rpc='lockliel_save_lesson';payload={expected_user:s.user.id,target_lesson:body.lessonId,expected_revision:body.expectedRevision,answers:body.answers,notes:body.notes,complete:body.complete===true};
   }
   try{
-   const r=await fetcher(SUPABASE_URL+'/rest/v1/rpc/'+rpc,{method:'POST',headers:dbHeaders(s.access),body:JSON.stringify(payload)});
+   const r=await fetcher(SUPABASE_URL+'/rest/v1/rpc/'+rpc,{method:'POST',headers:courseHeaders(s.access),body:JSON.stringify(payload)});
    const value=await r.json();
    if(!r.ok){
+    if(value.code==='PT503'||value.code==='PT426')return json({error:value.code==='PT503'?'Getting a Grip is being updated. Your draft is retained.':'Reload Getting a Grip before saving. Your draft is retained.',code:value.code==='PT503'?'course_maintenance':'course_reload_required'},value.code==='PT503'?503:426,cookies);
     const status=['PT409','40001'].includes(value.code)?409:value.code==='54000'?429:r.status;
     return json({error:status===409?'Newer cloud work exists. Reload before saving.':status===429?'Save paused briefly. Retrying.':'We could not save. Your draft is retained.',code:status===409?'revision_conflict':'save_failed'},status,cookies);
    }

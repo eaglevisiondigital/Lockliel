@@ -21,7 +21,7 @@ export default function LessonPlayerClient(){
    if(cancelled)return;
    const cloud={...lesson.progress,notes:d.notes?.find((n:any)=>n.lesson_id===lesson.id)?.body||''};
    const instance=createLessonSaver({isOnline:()=>navigator.onLine,user:d.learnerId,lesson:lesson.id,cloud,storage:{getItem:(key:string)=>window.localStorage.getItem(key),setItem:(key:string,value:string)=>window.localStorage.setItem(key,value)},onChange:setSave,
-    send:async(payload:any)=>{const response=await fetch('/api/lockliel/journey',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const body=await response.json();if(!response.ok)throw Object.assign(Error(body.error),{code:body.code});return body.progress;}});
+    send:async(payload:any)=>{const response=await fetch('/api/lockliel/journey',{method:'POST',headers:{'Content-Type':'application/json','x-lockliel-course-protocol':'278-v1'},body:JSON.stringify(payload)});const body=await response.json();if(!response.ok)throw Object.assign(Error(body.error),{code:body.code});return body.progress;}});
    saver.current=Object.assign(instance,{identity:d.learnerId});setSave(instance.snapshot());setData({...d,lesson,courseState:state});
   }catch(e){if(!cancelled)setError(e instanceof Error?e.message:'Course unavailable.');}}
   void load();
@@ -76,6 +76,7 @@ export default function LessonPlayerClient(){
    <section className="course-worksheet" aria-label="Digital Lesson Worksheet">
     <header><p className="course-eyebrow">Digital Lesson Worksheet</p><h2>{lesson.title}</h2><p role="status" aria-live="polite" className="course-save">{save.state}{save.state==='Saved'&&save.lastSaved?' · Last Saved '+new Date(save.lastSaved).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):''}</p>
      {(save.state.includes('Failed')||save.state==='Cloud Sync Needed')&&<button disabled={save.blocked} onClick={()=>void saver.current.retry()}>Retry Cloud Save</button>}
+     {save.blocked&&!save.conflictDraft&&save.state!=='Account Changed'&&<div role="alert"><p>Getting a Grip is being updated. Keep a copy of your unsaved answers and notes before reloading. Your last saved cloud progress is safe.</p><details><summary>View My Unsaved Draft</summary><pre>{JSON.stringify(save.value,null,2)}</pre></details><button onClick={()=>location.reload()}>Reload Course</button></div>}
      {save.conflictDraft&&<div role="alert"><p>{save.blocked?'Newer cloud work exists. Keep your local draft and continue with the latest cloud work.':'Your earlier local draft is retained below for reference. Cloud saving is available.'}</p><details><summary>View Unsynced Draft</summary><pre>{JSON.stringify(save.conflictDraft,null,2)}</pre></details><button disabled={!save.blocked} onClick={()=>void useCloudWork()}>Keep Draft and Use Cloud Work</button></div>}
      <p>Worksheet: {worksheet.answered} of {worksheet.total} Answered</p><progress value={worksheet.answered} max={Math.max(1,worksheet.total)} aria-label="Worksheet Progress"/>
      <p>Video: {lesson.watchMet?'Watch Requirement Met':'Watch Requirement Pending'}</p>

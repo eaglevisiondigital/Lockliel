@@ -42,7 +42,7 @@ export default function YouTubeProgressPlayer({asset,saved,learnerId,onProgress}
    if(cancelled||busy.current||!playerRef.current)return;
    busy.current=true;
    try{
-    const response=await fetch('/api/lockliel/journey',{method:'POST',signal:abort.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedUserId:learnerId,assetId:asset.id,positionSeconds:Number(playerRef.current.getCurrentTime())||0,playing})});
+    const response=await fetch('/api/lockliel/journey',{method:'POST',signal:abort.signal,headers:{'Content-Type':'application/json','x-lockliel-course-protocol':'278-v1'},body:JSON.stringify({expectedUserId:learnerId,assetId:asset.id,positionSeconds:Number(playerRef.current.getCurrentTime())||0,playing})});
     const body=await response.json();if(!response.ok)throw Error(body.error||'Watch progress could not be saved.');
     if(!cancelled){const pct=Number(body.mediaProgress?.percent_watched)||0;setPercent(pct);setError('');if(pct>=(asset.watch_threshold||95))notify(pct);}
    }catch(e){if(!cancelled)setError(e instanceof Error?e.message:'Watch progress could not be saved.');}finally{busy.current=false;}
