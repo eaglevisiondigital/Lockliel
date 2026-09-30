@@ -1,5 +1,18 @@
 # Lockliel security model
 
+## Isolated acceptance boundary (2026-09-30)
+
+The temporary acceptance artifact pins a distinct Netlify site/project, rejects
+production invocation context and forged request-header identities, and rejects
+production/SMTP/other outbound fetch targets. This is a separately compiled binding,
+not an environment switch that enables production-backed ordinary previews. No service
+credential is included. Anonymous hosted notes/gates access is denied. Authenticated
+A/B and manager privacy checks remain unexecuted. The Supabase branch inherited custom
+SMTP; no Auth write/email was attempted and signup is absent from the current runtime
+until branch-only isolation is approved. Do not mistake runtime egress denial for
+control over Supabase Auth's configured downstream email service.
+
+
 ## Course readiness hardening (2026-09-30)
 
 Trusted duration requires stored seconds, server verification timestamp and provenance.

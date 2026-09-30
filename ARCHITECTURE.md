@@ -1,5 +1,15 @@
 # Lockliel architecture
 
+## Dedicated acceptance artifact (2026-09-30)
+
+`scripts/acceptance/prepare-runtime.mjs` builds a separate temporary artifact from
+existing handlers, with exact site `60579b8e-d0ca-4ac1-abe5-7128f4243e8b` and backend
+`jxtgtfffdiwzxocxoqxk` compiled into its binding. Original production core/guards are
+unchanged. Only allowlisted member/course handlers ship; all outbound fetches except
+that isolated origin fail closed and redirects are rejected. Signup is omitted while
+email-isolation approval is pending. Read the isolated acceptance report before reuse.
+
+
 ## Course configuration readiness (2026-09-30)
 
 `lessonReadiness` / `courseReadiness` in the existing pure engine distinguish active

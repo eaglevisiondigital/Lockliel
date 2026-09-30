@@ -1,5 +1,17 @@
 # Lockliel decisions and open questions
 
+## Isolated hosted acceptance authorization (2026-09-30)
+
+Dave authorizes healthy branch `course-engine-acceptance` (`jxtgtfffdiwzxocxoqxk`),
+its candidate migration, synthetic identities/data and a separate temporary runtime.
+This supersedes the earlier infrastructure-preparation-only scope. Production remains
+excluded. The inherited custom SMTP connection was discovered before signup testing.
+A branch-only change to disable custom SMTP and email confirmation is awaiting the
+browser policy's action-time confirmation; it has not been made or assumed approved.
+See `docs/course-engine-isolated-acceptance-2026-09-30.md` for completed preparation
+and unexecuted acceptance checks. Do not interpret local tests as hosted acceptance.
+
+
 ## Approved course completion decisions (2026-09-30)
 
 Source: Dave's attached course-engine completion assignment. Proceed without waiting

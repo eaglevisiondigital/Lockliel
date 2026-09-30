@@ -1,5 +1,17 @@
 # Lockliel verified continuity baseline
 
+## Isolated hosted acceptance blocked on email isolation (2026-09-30)
+
+Isolated branch `course-engine-acceptance` / `jxtgtfffdiwzxocxoqxk` is healthy,
+with_data=false, initially zero Auth users and matching 274-entry history. Candidate
+275 applied only there, recorded by MCP as `20260930083553` (repository candidate
+`20260929215159`). Do not rerun it. Dedicated acceptance site is deployed with signup
+unavailable. The branch inherited enabled Resend SMTP; branch-only SMTP/confirmation
+isolation approval is pending. No synthetic accounts or authenticated acceptance yet.
+Local validation passes 547 JS / 275 replay / 13 SQL files. Production remains 274.
+See `docs/course-engine-isolated-acceptance-2026-09-30.md`. No release approval.
+
+
 ## Course engine completion checkpoint verified (2026-09-30)
 
 Implementation `f11a97afb051f9c90b15faca95265698363cfaf1` is on remote development.
