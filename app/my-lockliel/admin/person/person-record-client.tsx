@@ -122,8 +122,10 @@ export default function PersonRecordClient(){
       {data.courses.map((course:any)=><article key={course.id||course.course_id} className="ml-person-course">
         <div className="ml-person-course-head">
           <div><BookOpen size={18}/><div><b>{course.course?.title||"Course"}</b><span>{course.status}</span></div></div>
-          <strong>{course.lessons.filter((l:any)=>l.status==="completed").length}/{course.lessons.length||13}</strong>
+          <strong>{course.lessons.filter((l:any)=>l.status==="completed").length}/{course.totalLessons}</strong>
         </div>
+        <p>Overall progress: {course.totalLessons?Math.round(100*course.lessons.filter((l:any)=>l.status==="completed").length/course.totalLessons):0}%</p>
+        <p>Current lesson: {course.currentLesson?`Lesson ${course.currentLesson.position}: ${course.currentLesson.title}`:"Course completed"}</p>
         <div className="ml-person-lesson-list">
           {course.lessons.map((lesson:any)=><div key={lesson.lesson_id}>
             <span>{lesson.status==="completed"?<CheckCircle2 size={13}/>:<BookOpen size={13}/>}</span>

@@ -36,7 +36,7 @@ export function createJourneyHandler({sessionFor=requireSession,fetcher=globalTh
    const r=await fetcher(SUPABASE_URL+'/rest/v1/rpc/'+rpc,{method:'POST',headers:dbHeaders(s.access),body:JSON.stringify(payload)});
    const value=await r.json();
    if(!r.ok){
-    const status=value.code==='40001'?409:value.code==='54000'?429:r.status;
+    const status=['PT409','40001'].includes(value.code)?409:value.code==='54000'?429:r.status;
     return json({error:status===409?'Newer cloud work exists. Reload before saving.':status===429?'Save paused briefly. Retrying.':'We could not save. Your draft is retained.',code:status===409?'revision_conflict':'save_failed'},status,cookies);
    }
    return json({ok:true,...(body.assetId?{mediaProgress:value}:{progress:value})},200,cookies);

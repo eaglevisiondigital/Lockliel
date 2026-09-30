@@ -44,6 +44,15 @@ export default function LessonPlayerClient(){
  const resources=assets.filter((a:any)=>a.asset_type!=='video');
  const next=data.courseState.lessons.find((l:any)=>l.position>lesson.position&&l.unlocked);
  async function navigate(href:string){const ok=await saver.current.flush();if(ok||window.confirm('Cloud sync is pending. Keep your local draft and leave this lesson?'))location.assign(href);}
+ async function useCloudWork(){
+  try{
+   const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(!r.ok)throw Error();
+   const d=await r.json();if(d.learnerId!==data.learnerId){saver.current.invalidate();return;}
+   const p=d.progress.find((row:any)=>row.lesson_id===lesson.id);if(!p)throw Error();
+   const notes=d.notes.find((row:any)=>row.lesson_id===lesson.id)?.body||'';
+   if(saver.current.useCloud({...p,notes}))location.reload();
+  }catch{setMessage('Cloud work could not be loaded. Your draft remains on this device.');}
+ }
  async function complete(){setMessage('');if(await saver.current.flush(true))location.reload();else setMessage('Completion was not saved. Your answers are retained. Resolve the save status and try again.');}
  async function refreshMedia(){const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(!r.ok)return;const d=await r.json();if(d.learnerId!==data.learnerId){saver.current.invalidate();return;}const state=learningState(d);setData({...d,lesson:state.lessons.find((l:any)=>l.id===lesson.id),courseState:state});}
  return <section className="course-experience">
@@ -67,7 +76,7 @@ export default function LessonPlayerClient(){
    <section className="course-worksheet" aria-label="Digital Lesson Worksheet">
     <header><p className="course-eyebrow">Digital Lesson Worksheet</p><h2>{lesson.title}</h2><p role="status" aria-live="polite" className="course-save">{save.state}{save.state==='Saved'&&save.lastSaved?' · Last Saved '+new Date(save.lastSaved).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):''}</p>
      {(save.state.includes('Failed')||save.state==='Cloud Sync Needed')&&<button disabled={save.blocked} onClick={()=>void saver.current.retry()}>Retry Cloud Save</button>}
-     {save.conflictDraft&&<div role="alert"><p>Newer cloud work exists. Your local draft is retained separately. Copy any unsynced answers before reloading; it will not overwrite cloud work.</p><details><summary>View Unsynced Draft</summary><pre>{JSON.stringify(save.conflictDraft,null,2)}</pre></details><button onClick={()=>location.reload()}>Reload Cloud Work</button></div>}
+     {save.conflictDraft&&<div role="alert"><p>{save.blocked?'Newer cloud work exists. Keep your local draft and continue with the latest cloud work.':'Your earlier local draft is retained below for reference. Cloud saving is available.'}</p><details><summary>View Unsynced Draft</summary><pre>{JSON.stringify(save.conflictDraft,null,2)}</pre></details><button disabled={!save.blocked} onClick={()=>void useCloudWork()}>Keep Draft and Use Cloud Work</button></div>}
      <p>Worksheet: {worksheet.answered} of {worksheet.total} Answered</p><progress value={worksheet.answered} max={Math.max(1,worksheet.total)} aria-label="Worksheet Progress"/>
      <p>Video: {lesson.watchMet?'Watch Requirement Met':'Watch Requirement Pending'}</p>
     </header>

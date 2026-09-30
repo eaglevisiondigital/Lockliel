@@ -18,7 +18,7 @@ begin
  r:=public.lockliel_save_lesson(a,l1,0,'{"1":"Private answer A"}','Private notes A',false);
  assert r->>'revision'='1','Initial save did not return revision';
  assert (select body='Private notes A' from public.lesson_private_notes where lesson_id=l1),'Own notes not restored';
- denied:=false;begin perform public.lockliel_save_lesson(a,l1,0,'{}','',false);exception when serialization_failure then denied:=true;end;
+ denied:=false;begin perform public.lockliel_save_lesson(a,l1,0,'{}','',false);exception when sqlstate 'PT409' then denied:=true;end;
  assert denied,'Stale blank save overwrote newer work';
  denied:=false;begin perform public.lockliel_save_lesson(b,l1,1,'{}','',false);exception when insufficient_privilege then denied:=true;end;
  assert denied,'Stale account save accepted';

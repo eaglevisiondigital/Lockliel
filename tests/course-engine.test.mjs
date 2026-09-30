@@ -30,3 +30,16 @@ test('completed lessons restore unsynced notes without changing completed answer
 test('offline state says draft saved without claiming a cloud save',()=>{const s=fixture();s.update({answers:{1:'Offline'},notes:''});s.offline();assert.equal(s.snapshot().state,'Offline Draft Saved');s.close();});
 test('unauthenticated handlers deny reads and exports before loading data',async()=>{const h=createJourneyHandler({sessionFor:async()=>({}),loader:()=>{throw Error('Must not load');}});assert.equal((await h(new Request('https://lockliel.com/api/lockliel/journey?export='+lesson))).status,401);});
 test('media handler forwards position samples only, ignores forged percentage and intervals',async()=>{let sent;const h=createJourneyHandler({sessionFor:async()=>({user:{id:uid},access:'synthetic'}),fetcher:async(_u,o)=>{sent=JSON.parse(o.body);return Response.json({percent_watched:0});}});assert.equal((await h(req({expectedUserId:uid,assetId:lesson,positionSeconds:99,playing:false,percentWatched:100,coveredIntervals:[[0,99999]]}))).status,200);assert.deepEqual(sent,{expected_user:uid,target_asset:lesson,position_seconds:99,playing:false});});
+
+test('save handler reports non-retryable hosted CAS conflict honestly',async()=>{const h=createJourneyHandler({sessionFor:async()=>({user:{id:uid},access:'synthetic'}),fetcher:async()=>Response.json({code:'PT409',message:'private SQL details'},{status:409})});const r=await h(req(payload));assert.equal(r.status,409);assert.equal((await r.json()).code,'revision_conflict');});
+
+test('explicit conflict recovery preserves draft while restoring editable cloud work',async()=>{
+ const storage=memory(),s=fixture({storage,send:async()=>{throw Object.assign(Error('conflict'),{code:'revision_conflict'});}});
+ s.update({answers:{1:'Retained conflict'},notes:'Private draft'});await s.flush();
+ assert.equal(s.useCloud({revision:3,worksheet_answers:{1:'New cloud'},notes:'Cloud note'}),true);
+ assert.equal(s.snapshot().blocked,false);assert.equal(s.snapshot().dirty,false);s.close();
+ const restored=fixture({storage,cloud:{revision:3,worksheet_answers:{1:'New cloud'},notes:'Cloud note'},send:async()=>({revision:4})});
+ assert.equal(restored.snapshot().value.answers[1],'New cloud');assert.equal(restored.snapshot().conflictDraft.answers[1],'Retained conflict');
+ restored.update({answers:{1:'Further edit'},notes:'Cloud note'});await restored.flush();assert.equal(restored.snapshot().state,'Saved');
+ assert.equal(JSON.parse(storage.getItem(draftKey(uid,lesson)+':conflict')).value.answers[1],'Retained conflict');restored.close();
+});

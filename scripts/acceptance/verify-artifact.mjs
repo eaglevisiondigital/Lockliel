@@ -7,6 +7,7 @@ assert.equal(id.ref,'jxtgtfffdiwzxocxoqxk');
 for(const file of await readdir(root+'/functions')){
  const source=await readFile(root+'/functions/'+file,'utf8');
  assert.doesNotMatch(source,/bsndfhbemstyrrglajat|sb_publishable_NSyTQx|https:\/\/lockliel\.com|@netlify\/blobs|service_role/);
+ if(file==='lockliel-login.mjs')assert.match(source,/const secure = true;/,'HTTPS acceptance cookies must always be Secure');
 }
 let calls=0;
 globalThis.fetch=async(input,options)=>{calls++;assert.equal(new URL(input).origin,'https://'+id.ref+'.supabase.co');assert.equal(options.redirect,'error');return Response.json({error:'Synthetic unauthorized response'},{status:401});};
