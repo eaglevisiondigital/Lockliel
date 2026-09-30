@@ -1,5 +1,18 @@
 # Lockliel verified continuity baseline
 
+## New clean274 hosted rehearsal branch verified, network/auth blocked (2026-09-30)
+
+Read `docs/course-hosted-274-rehearsal-2026-09-30.md`. New explicitly authorized
+branch course-cutover-rehearsal-274, project qjksggxorghaxvpyslip, is healthy and
+exactly274 with repository ledger parity and zero members/progress. Earlier missing-
+branch/cost questions are superseded. Current direct IPv6 TCP returns No route to
+host and pinned Supabase CLI is not signed in. User hotspot/login action is pending.
+No hosted mutations, accounts, migrations, deploys or pushes occurred in this
+assignment. Full local556JS/278replay/15SQL and configured validation passed again.
+Sealed stage workdirs exist at /private/tmp/lockliel-hosted274-stages. Reconfirm274
+before resuming. Preserve existing acceptance jxtgtfffdiwzxocxoqxk and production.
+
+
 ## Final cutover development checkpoint consumed (2026-09-30)
 
 Authorized development push completed through3a7b7b9. Both remote CI runs pass556JS,
