@@ -1,5 +1,15 @@
 # Lockliel engineering instructions
 
+## Course completion checkpoint consumed (2026-09-30)
+
+The authorized development push is complete through `f11a97a`. Draft PR4, exact
+preview `6abcc54b2ec109000875c2b6` and both CI runs pass (547 JS, 275 replay, 13 SQL).
+Production remains main `1599ab2`, database 274, migration275 unapplied. Read
+`docs/course-engine-completion-2026-09-30.md`. Evidence documentation stays local.
+Next assignment must authorize isolated infrastructure/binding and hosted acceptance.
+No further push, production release, migration or content activation follows implicitly.
+
+
 ## Course engine completion follow-up (2026-09-30)
 
 The explicit follow-up approves media-pending lessons 11–13 without waiting or a

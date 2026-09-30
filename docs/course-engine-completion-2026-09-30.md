@@ -102,3 +102,60 @@ This is architecture ready for isolated acceptance, not approval to merge, apply
 deploy production. The currently deployed persistence bug remains until a separate
 migration/application release. Lessons 11–13 will still await approved media; current
 videos await authoritative duration values. Getting a Grip Share Library remains inactive.
+
+## Remote checkpoint and preview verified
+
+One normal non-force development push carried documentation `0e89446` and implementation
+`f11a97afb051f9c90b15faca95265698363cfaf1` from previous remote `ca5f09b`.
+Remote development HEAD and draft PR #4 head match `f11a97a`; PR remains open against
+main, unmerged, auto-merge disabled. No branch/tag other than development was pushed.
+Post-checkpoint evidence is local only; no second push.
+
+Both [push CI](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36688660239)
+and [PR CI](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36688666885)
+passed at this SHA. Their logs confirm 547 JavaScript tests, 275 replayed migrations,
+13 SQL/RLS files, build/static export, TypeScript, Netlify validation, configured lint
+and zero production dependency vulnerabilities. The unfiltered npm install audit still
+reports 19 development-inclusive advisories (1 low, 5 moderate, 13 high); this is not a
+claim of zero vulnerabilities across the development toolchain. No dependency cleanup.
+
+[Deploy Preview #4](https://deploy-preview-4--lockliel.netlify.app):
+`6abcc54b2ec109000875c2b6`, exact `f11a97afb051f9c90b15faca95265698363cfaf1`,
+ready in deploy-preview context, no production publication timestamp. Sixteen static
+route checks pass, including Getting a Grip copy/CTAs, overview/lesson shells and admin.
+Thirty-six harmless GET/empty-POST checks return 503 `production_backend_disabled`,
+no-store, no cookies or redirect. Admin content, journey/export and connected write
+paths remain guarded. Nonproduction form detection is absent. No valid form/account,
+real member data, payment, email, SMS or production write was tested.
+
+The hosted preview proves static deployment and backend denial, not authenticated
+course rendering or persistence. Pending-media/member responsive UX was verified with
+local synthetic data only. Real provider playback/fullscreen/casting, physical keyboard
+and hosted cross-device Auth remain in the isolated acceptance plan.
+
+## Production preservation
+
+Main remains `1599ab271e0120a5cdc4e38e225ba749dd214721`. Netlify production remains
+`6abbb27a1cdd6d00081b0e8e`; both served homepage hashes match the before snapshot
+`a184c485520cc5fa6bd5cee0b0e47cdaf46575e1e9794f9afa25743466cfbe00`.
+ChatGPT Site is still active at version 25, last updated August 27, 2026.
+
+Supabase remains 274 applied migrations, candidate 275 absent. Before/after staff,
+course and lesson-asset fingerprints match. Public table count remains 56, zero public
+RLS-disabled tables; policy, table/column ACL, function, trigger and event-trigger
+fingerprints match. No production data writes, migration, Auth/SMTP/payment/staff/settings
+changes, content activation or Share Library change were performed. Full Auth/SMTP and
+payment dashboards were not independently fingerprinted; action scope and the inspected
+preservation baselines are the evidence, not a delivery/payment test.
+
+## Assessment and next recommended build
+
+LOCKLIEL COURSE ENGINE COMPLETE AND READY FOR ISOLATED HOSTED ACCEPTANCE
+
+The engine/readiness package and development checkpoint are complete. Production
+migration/application release remains unauthorized and unverified. The smallest next
+package is authorization and setup of the dedicated isolated acceptance project/site
+and reviewed backend binding, followed by the exact synthetic hosted matrix in
+`course-engine-hosted-acceptance.md`. Supply authoritative durations and approved
+11–13 videos independently; do not waive their media requirements. Do not merge or
+apply migration 275 as part of environment preparation.

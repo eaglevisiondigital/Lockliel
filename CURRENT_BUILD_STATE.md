@@ -1,5 +1,17 @@
 # Lockliel verified continuity baseline
 
+## Course engine completion checkpoint verified (2026-09-30)
+
+Implementation `f11a97afb051f9c90b15faca95265698363cfaf1` is on remote development.
+Draft PR #4 remains open, unmerged, auto-merge disabled. Push CI `36688660239` and
+PR CI `36688666885` pass: 547 JS, 275 replay, 13 SQL/RLS files and all configured
+validation. Preview `6abcc54b2ec109000875c2b6` matches the SHA; 36 denial probes and
+16 static routes pass. Main `1599ab2`, production deploy `6abbb27a1cdd6d00081b0e8e`,
+Supabase 274 and Sites version 25 are preserved. Candidate 275 remains unapplied.
+Engine is ready for isolated hosted acceptance, not production release. See
+`docs/course-engine-completion-2026-09-30.md`. Post-checkpoint evidence stays local.
+
+
 ## Course engine completion package (2026-09-30)
 
 The new assignment explicitly keeps lessons 11–13 media-required and pending approved
