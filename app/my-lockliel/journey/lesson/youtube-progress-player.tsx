@@ -35,17 +35,20 @@ export default function YouTubeProgressPlayer({asset,saved,learnerId,onProgress}
  const initialPosition=useRef(Number(saved?.last_position_seconds)||0);
  const notify=useEffectEvent((pct:number)=>onProgress(asset.id,pct));
  const playerRef=useRef<any>(null),playingRef=useRef(false),busy=useRef(false);
- const [percent,setPercent]=useState(Number(saved?.percent_watched)||0),[error,setError]=useState('');
+ const [percent,setPercent]=useState(Number(saved?.percent_watched)||0),[error,setError]=useState(''),[reloadRequired,setReloadRequired]=useState(false);
  useEffect(()=>{
-  let cancelled=false,timer:number|undefined;const abort=new AbortController();
+  let cancelled=false,stopped=false,failures=0,timer:number|undefined;const abort=new AbortController();
   async function sample(playing:boolean){
-   if(cancelled||busy.current||!playerRef.current)return;
+   if(cancelled||stopped||busy.current||!playerRef.current)return;
    busy.current=true;
    try{
     const response=await fetch('/api/lockliel/journey',{method:'POST',signal:abort.signal,headers:{'Content-Type':'application/json','x-lockliel-course-protocol':'278-v1'},body:JSON.stringify({expectedUserId:learnerId,assetId:asset.id,positionSeconds:Number(playerRef.current.getCurrentTime())||0,playing})});
-    const body=await response.json();if(!response.ok)throw Error(body.error||'Watch progress could not be saved.');
+    const body=await response.json();
+    if([401,403,426,503].includes(response.status)){stopped=true;if(timer)clearInterval(timer);setReloadRequired(true);playerRef.current?.pauseVideo?.();setError(body.error||'Watch progress is paused. Reload the course before continuing.');return;}
+    if(!response.ok)throw Error(body.error||'Watch progress could not be saved.');
+    failures=0;
     if(!cancelled){const pct=Number(body.mediaProgress?.percent_watched)||0;setPercent(pct);setError('');if(pct>=(asset.watch_threshold||95))notify(pct);}
-   }catch(e){if(!cancelled)setError(e instanceof Error?e.message:'Watch progress could not be saved.');}finally{busy.current=false;}
+   }catch(e){if(!cancelled){failures++;if(failures>=5){stopped=true;if(timer)clearInterval(timer);setReloadRequired(true);}setError(e instanceof Error?e.message:'Watch progress could not be saved.');}}finally{busy.current=false;}
   }
   ensureYouTube().then(()=>{
    if(cancelled||!window.YT?.Player)return;
@@ -59,5 +62,5 @@ export default function YouTubeProgressPlayer({asset,saved,learnerId,onProgress}
   const visibility=()=>{if(document.visibilityState==='visible')void sample(false);};document.addEventListener('visibilitychange',visibility);
   return()=>{cancelled=true;abort.abort();if(timer)clearInterval(timer);document.removeEventListener('visibilitychange',visibility);try{playerRef.current?.destroy?.();}catch{}};
  },[asset.id,asset.provider_ref,asset.watch_threshold,learnerId,hostId]);
- return <div className="ml-video-progress-card"><div className="ml-video-frame"><div id={hostId}/></div><div className="ml-video-progress-meta"><span>Video Progress</span><strong>{Math.floor(percent)}% Watched</strong></div><progress value={percent} max={100} aria-label="Video Watch Progress"/>{error&&<p role="alert">{error}</p>}</div>;
+ return <div className="ml-video-progress-card"><div className="ml-video-frame"><div id={hostId}/></div><div className="ml-video-progress-meta"><span>Video Progress</span><strong>{Math.floor(percent)}% Watched</strong></div><progress value={percent} max={100} aria-label="Video Watch Progress"/>{error&&<p role="alert">{error}</p>}{reloadRequired&&<button onClick={()=>location.reload()}>Reload Course</button>}</div>;
 }

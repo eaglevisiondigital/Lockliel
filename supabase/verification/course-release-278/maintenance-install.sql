@@ -24,7 +24,7 @@ begin
  -- Only a direct maintenance/migration connection with no request claims may bypass.
  if session_user='postgres' and coalesce(current_setting('request.jwt.claims',true),'') in ('','{}') then return case when tg_op='DELETE' then old else new end; end if;
  if coalesce((public.lockliel_course_cutover_status()->>'paused')::boolean,true) then
-  raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your saved progress is safe. Keep this tab open if you have unsaved changes.';
+  raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';
  end if;
  return case when tg_op='DELETE' then old else new end;
 end;$$;
@@ -51,7 +51,7 @@ begin
  if path ~ '^/(courses|lessons|lesson_assets|course_enrollments|lesson_progress|media_progress|lesson_private_notes)(/|$)'
  or path ~ '^/rpc/(lockliel_(sample_media|save_lesson|course_gates|grip_readiness)|.*course.*|.*lesson.*)$' and path not in ('/rpc/lockliel_course_cutover_status','/rpc/lockliel_course_cutover_request') then
   state:=public.lockliel_course_cutover_status();
-  if coalesce((state->>'paused')::boolean,true) then raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your saved progress is safe. Keep this tab open if you have unsaved changes.';end if;
+  if coalesce((state->>'paused')::boolean,true) then raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';end if;
   if method not in ('GET','HEAD','OPTIONS') and headers->>'x-lockliel-course-protocol' is distinct from state->>'protocol' then raise sqlstate 'PT426' using message='Reload Getting a Grip before saving. Keep a copy of unsaved answers.';end if;
  end if;
 end;$$;

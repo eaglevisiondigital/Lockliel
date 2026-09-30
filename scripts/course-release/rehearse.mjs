@@ -80,7 +80,14 @@ try{
  const r=executeStage({binary,root:release,stage,connection:c,env,authorized:true,expected});assert.equal(r.state,'COMMITTED');assert.equal(r.clientSucceeded,true);
  const after=inspect(c,env).catalog;assert.equal(after.ledger.length,stage);references[stage]=after;assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",happy),'true');
  evidence.stages.push({stage,only:files[stage-1],ledger:stage,tlsAndTimeoutsAssertedOnWriter:true});console.log('PASS exact pinned CLI stage '+stage+', catalog/ledger captured, maintenance stays closed');
- assert.equal(classify(before,after,after),'COMMITTED');
+ assert.equal(classify(before,after,after),'COMMITTED');clone('stage_'+stage,happy);
+ }
+ // Each migration stage failure independently leaves hosted-equivalent maintenance closed.
+ for(const stage of [275,276,277,278]){
+  const db=clone('closed_failure_'+stage,stage===275?'baseline':'stage_'+(stage-1));sql("update rehearsal.control set mode='permission'",db);
+  const before=catalog(db),expected=expectedTransition(before,references[stage-1],references[stage]);
+  const r=executeStage({binary,root:release,stage,connection:connection(db),env,authorized:true,expected});assert.equal(r.state,'ROLLED_BACK');assert.equal(r.clientSucceeded,false);assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",db),'true');
+  evidence.failures.push({mode:'stage_'+stage+'_failure',state:r.state,maintenance:'ON',operator:'STOP / INVESTIGATE'});
  }
  // Verify reference deltas preserve pre-existing production-only grants rather than replacing the catalog wholesale.
  for(const stage of [275,276,277,278])assert.deepEqual(expectedTransition(references[stage-1],references[stage-1],references[stage]),normalize(references[stage]));
