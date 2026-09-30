@@ -2021,7 +2021,8 @@ test("public Auth handoffs bind access and refresh tokens to the same user and p
   const recover=fs.readFileSync("netlify/functions/lockliel-recover.mjs","utf8");
   const referral=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
 
-  assert.match(core,/LOCKLIEL_APP_ORIGIN="https:\/\/lockliel\.com"/);
+  assert.match(core,/LOCKLIEL_APP_ORIGIN=backendConfig\.origin/);
+  assert.match(fs.readFileSync('netlify/lib/backend-config.mjs','utf8'),/origin: 'https:\/\/lockliel\.com'/);
   assert.match(core,/function validatedTokenPair/);
   assert.match(core,/refreshSession\(refresh\)/);
   assert.match(core,/refreshedUser\.id!==accessUser\.id/);

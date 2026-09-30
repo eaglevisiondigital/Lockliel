@@ -5,7 +5,7 @@ import {spawnSync} from 'node:child_process';
 import {manifest,hashes,repo,verifyPrepared,verifyBinary} from './prepare.mjs';
 export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-278/catalog.sql'),'utf8');
 export function connectionURL({host,port=5432,database='postgres',user='postgres',ca},readonly){
- assert(host==='db.bsndfhbemstyrrglajat.supabase.co'||host==='localhost','Direct endpoint only');
+ assert(['db.bsndfhbemstyrrglajat.supabase.co','db.qjksggxorghaxvpyslip.supabase.co','localhost'].includes(host),'Direct endpoint only');
  assert(ca&&ca.startsWith('/'),'Trusted CA path required');
  const u=new URL(`postgresql://${user}@${host}:${port}/${database}`);
  u.searchParams.set('sslmode','verify-full');u.searchParams.set('sslrootcert',ca);
