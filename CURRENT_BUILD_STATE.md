@@ -1,5 +1,23 @@
 # Lockliel verified continuity baseline
 
+## Latest: migration278 fixed, transition preparation incomplete (2026-09-30)
+
+Read `docs/course-release-278-transition-2026-09-30.md` for the authoritative new
+state, evidence and gates.278 commit678f9a962e767dd5127f0bc2a280837214e57c13 closes
+direct media sampling after canonical/content unpublication; only that function and
+its narrow grants change. Original277 hashes remain intact. Isolated acceptance now
+has278 (alias20260930145615), affected authenticated RPC paths pass. Production274.
+
+556JS,278 fresh replay,15SQL/RLS, build/type/Netlify/lint/audit pass. New local
+four-stage CLI runner and temporary maintenance SQL pass disposable TLS, stage,
+failure, draining and publication race checks. New-client maintenance drafts are
+retained. Hosted maintenance/old-app→new-app acceptance is NOT VERIFIED. Legacy
+production tabs cannot gain draft persistence retroactively; a confirmed copy-and-
+close gate was proposed and awaits Dave's decision. No development push or release.
+Duration inventory and Auth/PITR plans are complete as documentation;13 authoritative
+production durations and live recovery/security prerequisites remain unresolved.
+Earlier STOP/no278 assertions below are historical and superseded by this assignment.
+
 ## Course transition preparation blocked by confirmed RPC defect (2026-09-30)
 
 Read `docs/course-release-transition-preparation-2026-09-30.md`. From parent c6b7be4,

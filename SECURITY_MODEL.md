@@ -1,5 +1,25 @@
 # Lockliel security model
 
+## Publication authorization correction and cutover boundary (2026-09-30)
+
+278 replaces only the sampling RPC and retains active identity/session, enrollment,
+server-derived intervals, unlock, least privilege and empty privileged search_path.
+Canonical and selected content courses must remain published, with locked/rechecked
+lesson/media mapping. Direct authenticated/staff learner calls cannot bypass this.
+Historical earned credit survives unpublication. Disposable races and isolated
+publication/translation cases pass. Production still runs274.
+
+New temporary maintenance guards are disposable-only, outside migration history.
+Course writes pause at database level, including direct web RPCs; direct postgres
+maintenance sessions with no web claims are the narrow exception. Requests cannot
+control session_user. A protocol header cannot replace Auth/RLS checks. New-client
+drafts remain per-account/per-lesson; browser storage failure is visible. No claim
+is made that old1599ab2 memory-only drafts are automatically recovered.
+
+Read `docs/course-release-recovery-auth-2026-09-30.md`: production leaked-password
+protection still warns, PITR/recovery and operator MFA/restore permissions need
+separate authorization/verification. No production settings were changed.
+
 ## Confirmed publication-state authorization defect (2026-09-30)
 
 The previously unverified media-sampling edge case is confirmed in a disposable 277

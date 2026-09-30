@@ -1,5 +1,21 @@
 # Lockliel architecture
 
+## Local course cutover preparation and278 (2026-09-30)
+
+Migration278 narrows lockliel_sample_media publication eligibility, locks relevant
+canonical/content rows, then rechecks before any credit write. No engine redesign or
+backfill. See `docs/course-release-278-transition-2026-09-30.md`.
+
+Temporary operational SQL (outside the migration ledger) implements a closed private
+control, course-table drain/write triggers, restrictive reads and PostgREST pre-request
+protocol check. The candidate journey handler fails closed on missing maintenance
+status. Schema count/final-function fingerprint gates prevent premature reopen.
+New client protocol278-v1 is compatibility metadata, never authorization. The saver
+retains drafts and stops retries on503/426. Operational installation, hosted
+PostgREST behavior and exact app cutover remain unverified outside disposable tests;
+there is no implicit deployment approval. Old production tabs require an unresolved
+copy-and-close decision. The published artifact is unchanged.
+
 ## Media publication boundary requires a database correction (2026-09-30)
 
 Disposable 277 tests prove `lockliel_sample_media` remains writable for enrolled draft/

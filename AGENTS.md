@@ -1,5 +1,21 @@
 # Lockliel engineering instructions
 
+## Migration278 correction and transition preparation (2026-09-30)
+
+Read `docs/course-release-278-transition-2026-09-30.md` and
+`docs/course-release-278-runbook.md`. The latest assignment supersedes the earlier
+278 STOP proposal. Minimal278 is committed as678f9a9; historical277 hashes unchanged.
+Isolated project jxtgtfffdiwzxocxoqxk has278 under MCP alias20260930145615. Never rerun
+that migration there. Production remains274; main1599ab2 and both sites unchanged.
+Local validation:556JS,278replay,15SQL plus four-stage pinned-CLI failure/TLS/drain/
+publication concurrency rehearsal. Temporary maintenance operational SQL and client
+changes are local only; no hosted hook or new maintenance artifact was deployed.
+Preparation is INCOMPLETE: full hosted mixed-app acceptance and Dave's explicit
+old-tab copy-and-close decision remain pending. Do not describe new-client draft
+persistence as protecting already-open1599ab2 tabs. Production gate installation
+changes schema/permissions/PostgREST settings and needs separate authorization.
+No push, production release, Auth/PITR/content/staff change or cleanup follows.
+
 ## Transition preparation stopped at migration boundary (2026-09-30)
 
 Read `docs/course-release-transition-preparation-2026-09-30.md`. Disposable tests

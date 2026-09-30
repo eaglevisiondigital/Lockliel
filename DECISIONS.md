@@ -1,5 +1,24 @@
 # Lockliel decisions and open questions
 
+## Authorized278 and pending cutover decision (2026-09-30)
+
+Approved by the latest assignment: exactly one minimal migration278, preserve all
+277 prior bytes, local/disposable/isolated validation, expand release preparation to
+275–278, logical development commits. No production change follows. Implemented
+278 as20260930145334, isolated alias20260930145615. See the new transition report.
+
+Proposed, NOT approved: mandatory confirmed copy-and-close of every already-open
+production course tab after manually preserving unsaved answers/notes. Old1599ab2
+code cannot receive persistence/error-handling retroactively. Dave's answer is
+pending; automatic draft recovery has not been promised or silently waived.
+Hosted maintenance and full candidate browser cutover remain incomplete. Temporary
+operational DDL is not another numbered migration or implicit production approval.
+
+Near-zero-loss recovery and trusted timing before reopening Lessons1–10 remain
+requirements. Duration acquisition, leaked-password-protection enablement, PITR
+purchase/enablement, operator verification and a production release each remain
+separate gates. Lessons11–13 media-pending approval is unchanged.
+
 ## Approved transition prerequisites and explicit stop (2026-09-30)
 
 The latest assignment approves a short coordinated course maintenance window rather
