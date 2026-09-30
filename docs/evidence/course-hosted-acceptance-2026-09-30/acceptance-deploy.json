@@ -1,0 +1,9 @@
+{
+  "id": "6abcdb0c84404e24a9880ac6",
+  "site_id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+  "state": "ready",
+  "context": "branch-deploy",
+  "published_at": null,
+  "commit_ref": null,
+  "deploy_ssl_url": "https://acceptance--lockliel-course-acceptance-jxtgtfff.netlify.app"
+}

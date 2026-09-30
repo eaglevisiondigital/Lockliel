@@ -1,5 +1,16 @@
 # Lockliel verified continuity baseline
 
+
+## Hosted acceptance remote checkpoint verified (2026-09-30)
+
+The authorized development push is consumed through `a58626b`. Implementation is
+`91611ad`; both remote CI runs pass 550 JS / 277 replay / 14 SQL plus configured checks.
+Draft PR4 stays unmerged, ordinary preview `6abcdbeb2e554100082d3a1f` passes 36 denial
+and 16 static checks. Dedicated acceptance deploy `6abcdb0c84404e24a9880ac6` passes
+hosted acceptance. Production remains main `1599ab2`, database 274 and prior Netlify
+production/Sites25. See the isolated acceptance report. New evidence stays local;
+no further push, production release/migration/content activation or cleanup is implicit.
+
 ## Isolated hosted acceptance completed with fixes (2026-09-30)
 
 Implementation `91611ad89933333891bdf2bb3791314fdd03012e` resolves hosted conflict

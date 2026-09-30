@@ -2,6 +2,8 @@
 
 ## Result and scope
 
+LOCKLIEL COURSE ENGINE PASSED ISOLATED HOSTED ACCEPTANCE
+
 The authenticated isolated matrix passed after narrow fixes. Production release is
 not authorized. Exact implementation: `91611ad89933333891bdf2bb3791314fdd03012e`.
 Development checkpoint and remote CI evidence are recorded separately below when
@@ -177,3 +179,33 @@ merge, production release or content activation follows automatically. The small
 next package is a separate production release REVIEW covering migrations 275–277 and
 the application fixes, backups/recovery and authoritative production duration/content
 readiness. Review must reconcile isolated ledger aliases without reapplying SQL.
+
+## Consumed development checkpoint and remote verification
+
+One normal non-force push advanced `lockliel-backend-v1` from `f11a97a` through
+`a58626b2f0a46b2fad84e1f79e88dbfb13c81a22`. Four commits were carried:
+`57358b5` prior checkpoint documentation, `02062da` isolated preparation,
+`91611ad` validated hosted fixes, and `a58626b` acceptance evidence. Main was not pushed.
+The final acceptance artifact is pinned to exact application implementation `91611ad`;
+`a58626b` changes documentation only, with identical application/migration bytes.
+
+- [Push CI 36698905067](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36698905067): success.
+- [PR CI 36698909952](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36698909952): success.
+- Both logs confirm 550 JS passed/zero failed, 277 fresh replay, 14 SQL/RLS files,
+  build/static export, TypeScript, Netlify validation, configured lint and zero
+  production dependency vulnerabilities.
+- [PR #4](https://github.com/eaglevisiondigital/Lockliel/pull/4) remains open, draft,
+  targets main, auto-merge null and mergedAt null, with head `a58626b`.
+- Ordinary PR preview `6abcdbeb2e554100082d3a1f` is ready in deploy-preview context,
+  exact `a58626b`, published_at null. Thirty-six GET/empty-POST denial probes returned
+  503/production_backend_disabled with no cookies/redirects; 16 static pages passed,
+  including Getting a Grip approved copy/CTA and protected-path exclusion checks.
+- Acceptance deploy `6abcdb0c84404e24a9880ac6` was independently read through the
+  authenticated Netlify API: ready, dedicated site identity, branch-deploy,
+  published_at null, commit_ref null as expected for the manually pinned artifact.
+- Production main/deploy/homepage hashes still match the preservation section.
+  No Supabase release step exists in the inspected CI workflow; production remains 274.
+
+Post-checkpoint documentation is local-only. No second push was performed or needed.
+Physical casting and physical mobile keyboard remain device-only checks. This result
+is not production migration/application release authorization.
