@@ -1,5 +1,19 @@
 # Lockliel engineering instructions
 
+## Final cutover development checkpoint consumed (2026-09-30)
+
+Authorized development push completed through3a7b7b9. Both remote CI runs pass556JS,
+278 replay,15SQL and configured checks. PR4 remains draft/open/unmerged; preview
+6abd366442bf580008d496b6 passes36 guard denials/16static checks. Dedicated acceptance
+candidate d604a97 deploy6abd3507530787bcad461764 is ready, isolated278 maintenance
+currently OPEN after verified synthetic checks. Production remains main1599ab2,
+database274 and both published sites unchanged. Final evidence stays local.
+Read `docs/course-cutover-final-rehearsal-2026-09-30.md`. Full hosted274→278 remains
+unverified: a new disposable branch requires user organization/cost confirmation.
+Do not reset retained acceptance, repeat migrations, push again, merge, release,
+change production or delete acceptance infrastructure implicitly.
+
+
 ## Final hosted maintenance rehearsal, full hosted transition still blocked (2026-09-30)
 
 Read `docs/course-cutover-final-rehearsal-2026-09-30.md` and the updated release

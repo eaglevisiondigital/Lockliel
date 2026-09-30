@@ -187,7 +187,7 @@ FAIL includes pending or unverified; it does not necessarily mean a defect.
 | L Owner/restore capability | FAIL | Fresh MFA, permissions and recovery access required |
 | M Direct IPv6 | FAIL | Fresh production route/TLS/read-only test required |
 | N Stability | FAIL | Fresh release-window provider/network verification required |
-| O Exact PR4 candidate/CI | FAIL | Pending authorized development push and remote checks below |
+| O Exact PR4 candidate/CI | PASS | Exact3a7b7b9, both workflows and guarded preview pass |
 | P Rollback plan | PASS | Fail-closed classification/restore plan documented; execution blocked byK/L |
 | Q Production preservation | PASS | No production mutation, observed baseline identities unchanged |
 
@@ -212,3 +212,25 @@ discrepancy, not evidence of a failed server-side deployment. Final CLOSED probe
 returned503, unrelated profile200; after explicit bounded-lock reopen, fresh
 journey200/13lessons, old application426 and old direct RPC426. Current isolated
 maintenance flag is OPEN with schemaReady=true. Production remains unaffected.
+
+## Completed development checkpoint and final evidence
+
+One normal development push completed: a58626b→3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d,
+9 commits. Remote and PR4 head match. PR4 stays draft/open/unmerged, auto-mergeNULL.
+Main1599ab2 unchanged. No force push, tag, main merge or production deployment.
+Exact candidate code is d604a97;3a7b7b9 adds only documentation/evidence.
+
+[Push CI](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36743265928)
+and [PR CI](https://github.com/eaglevisiondigital/Lockliel/actions/runs/36743273182)
+both PASS:556JS,278 fresh replay,15SQL, build, TypeScript, Netlify validation,
+configured lint and zero production dependency vulnerabilities.
+Ordinary PR preview6abd366442bf580008d496b6 is ready/deploy-preview at exactly3a7b7b9.
+36 production-backend denials and16 static checks PASS, including Getting a Grip
+copy/CTAs and member routes. No valid forms, accounts, payments or real data used.
+
+Final dedicated candidate fresh browser showed Saved, restored the candidate's
+synthetic local draft AFTER reopening and saved revision7, verified directly in the
+isolated database. This is separate from the unsafe historical memory-only policy.
+Production still274, no maintenance hook;13 required video durationsNULL and zero
+active videos in11–13. Published production deployment/homepage hash unchanged.
+Final evidence is local-only; no second push is necessary.
