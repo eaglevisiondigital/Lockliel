@@ -67,13 +67,12 @@ PostgREST or browser cutover certificate.
 ## Maintenance mechanism and order
 
 `maintenance-install.sql` is **temporary operational DDL outside the migration
-ledger**, not a hidden migration279. It is currently disposable-only. Installing it
+ledger**, not a hidden migration279. It is proven in the retained isolated hosted278 project. Installing it
 in production changes schema/permissions and PostgREST role configuration and needs
 an explicit production assignment covering those operations as well as275–278.
 Never use an apply-migration API to add it as an extra numbered release migration.
 Capture prior PostgREST settings; an existing pre-request hook causes an abort and
-requires reviewed chaining. It must be tested in the hosted isolated environment
-before production use.
+requires reviewed chaining. Hosted278 hook behavior is proven; the full hosted274 transition remains blocked.
 
 It starts closed. Table locks drain in-flight course/progress/media writes before
 the installation commits. Private control, restrictive SELECT policies, row write
@@ -99,12 +98,53 @@ trusted durations and recovery gates; explicitly reopen. Do not reopen on a time
 `maintenance-reopen.sql` deliberately contains only a gated operator template.
 Keep protocol enforcement until old clients are retired and cleanup is authorized.
 
-## Remaining boundary
+## Approved manual stale-tab policy and remaining boundary
 
 The production1599ab2 browser ignores autosave response failures and holds drafts
-only in memory. No server patch can make already-running JavaScript persist those
-drafts or force an honest reload notice. A confirmed copy-and-close gate is proposed
-and pending Dave's decision. The current task does not approve losing those drafts.
-The hosted maintenance install/hook and complete old-app→new-app browser transition
-have not yet been exercised. Keep the release blocked and preserve the acceptance
-site and its current artifact while resolving this boundary.
+only in memory. Before maintenance, Dave must copy/save needed unsynced worksheet
+answers and Personal Notes, close ALL course/lesson tabs, and explicitly confirm
+closure. Abort before maintenance if confirmation is missing. Use a fresh tab after
+release. Never promise recovery of drafts held only in an already-running old tab.
+This policy is approved by Primary Chat, not pending. A deliberately retained stale
+client must still fail closed; server denial cannot retrofit old-client UX.
+
+## COURSE WRITE PATH DRAINED
+
+1. Confirm the approved copy-and-close gate and accepted recovery boundary.
+2. Install/pause with lock_timeout=5s, statement_timeout=30s. Initial installation
+   locks courses, lessons, lesson_assets, lesson_progress and media_progress in
+   SHARE ROW EXCLUSIVE mode before CLOSED commit. Verify current hook configuration.
+3. Verify authenticated application/direct save, notes, sample, completion and
+   progression paths return503; unrelated safe Auth/profile paths remain available.
+4. Inspect pg_stat_activity/pg_locks for active or idle-in-transaction course work.
+   After the pause, obtain the same bounded table locks in a transaction, then
+   record zero unresolved course writers/locks and release the locks. Do not kill
+   unrelated sessions. Completion of locks proves prior writes drained; inspection
+   alone or a zero-count snapshot is insufficient.
+5. Record CLOSED status and schema/app/backend identity plus the pre-cutover
+   ledger/catalog snapshot. Proceed only with no ambiguous requests/transactions.
+   Timeout, missing status, wrong identity or uncertain activity means STOP / INVESTIGATE.
+
+The final disposable rehearsal proves an actual in-flight write completes before
+the pause lock commits and later writes are denied. Retained hosted278 inspection
+and denial checks pass. Exact hosted274 old application has not been rehearsed.
+
+## Explicit reopen and failure handling
+
+Every275/276/277/278 failure, deployment failure, verifier failure or ambiguous
+commit state keeps maintenance closed. No automatic reopen or blind retry. Reconnect
+read-only; compare exact ledger AND catalog against pre/post-stage expectations.
+ROLLED_BACK does not authorize retry. COMMITTED does not authorize next stage until
+semantic verification passes. UNKNOWN always means STOP / INVESTIGATE.
+
+While closed, verify artifact identity, correct backend binding, fresh static UI,
+maintenance response, schema readiness and all production prerequisites. Successful
+business writes cannot be tested while a fail-closed pause is ON. After all gates
+pass, explicitly reopen, immediately test permitted fresh-client behavior, and
+reclose on any failure. In this isolated rehearsal the initial read-only RPC mismatch
+caused a fresh read503 after reopening; maintenance was immediately reclosed, the
+read-only exemption fixed, and the checks repeated before further synthetic writes.
+This is recorded as a detected verification failure, not a perfect first attempt.
+
+The retained hosted278 environment is preserved. Full hosted274→275→276→277→278
+needs a second disposable Supabase branch. No downgrade or reapplication is allowed.

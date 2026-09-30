@@ -70,3 +70,31 @@ After any new-engine writes, rolling back the frontend alone to the 274 app is n
 safe. Near-zero-loss restoration and any wider write freeze must be a separately
 approved incident decision. Preserve evidence and newer member drafts; never claim
 an older backup restores unsaved browser memory.
+
+## Exact final recovery and network gates
+
+PASS requires PITR active through the pre-cutover instant OR a separately approved
+equivalent recoverable post-freeze snapshot and explicit near-zero-loss RPO. An old
+backup or a proposed purchase is insufficient. Verify Owner MFA, restore permissions,
+operator recovery access and a stable Supabase/provider window with fresh evidence.
+No PITR purchase, setting or restore is authorized by this preparation.
+
+Known-good prior network path: T-Mobile iPhone hotspot. Normal Ethernet/Wi-Fi lacked
+a direct IPv6 route. Final production preflight must freshly verify the direct
+endpoint db.bsndfhbemstyrrglajat.supabase.co:5432: IPv6 route, trusted-CA TLS
+sslmode=verify-full, authentication, read-only connection, lock_timeout=5s and
+statement_timeout=30s. Use hidden input for credentials. Do not use Session Pooler.
+No current production connection success is claimed from disposable/local TLS tests.
+
+## Copy-and-paste separate Auth assignment
+
+RECOMMENDED THINKING LEVEL: MEDIUM
+CODEX TASK NEEDED
+Project Lockliel, production Supabase bsndfhbemstyrrglajat. Authorize enabling ONLY
+leaked-password protection after recording the current setting and Security Advisor
+warning. Confirm exact project before saving; verify enabled state and rerun Security
+Advisor. Preserve SMTP, confirmation, redirect URLs, password length/character rules,
+sessions, MFA configuration and all staff/payment/content settings. Do not create or
+modify real member accounts, test real leaked passwords, migrate or deploy. Return
+before/after evidence, Advisor outcome and explicit no-other-change confirmation.
+If plan eligibility or an unexpected setting blocks the change, stop and report.

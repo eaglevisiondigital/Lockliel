@@ -1,0 +1,39 @@
+{
+  "ref": "jxtgtfffdiwzxocxoqxk",
+  "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+  "origin": "https://acceptance--lockliel-course-acceptance-jxtgtfff.netlify.app",
+  "source": "d604a973cea0f524d5565caeec1db139b8c8c5df",
+  "workingDiffSha256": null,
+  "handlers": [
+    "signup",
+    "login",
+    "logout",
+    "session",
+    "mfa",
+    "journey",
+    "lesson-resource",
+    "next-step",
+    "dashboard-attention",
+    "profile",
+    "admin-content",
+    "admin-person",
+    "admin",
+    "notifications"
+  ],
+  "functionHashes": {
+    "signup": "ce19fd35e08d0f23d37f08488ef485d6283dd6d8143590b05db39a1a041c347d",
+    "login": "f770e8fe79bfce49444ddc97a768b55857b902a3bac82c66ef4c839a5bc73012",
+    "logout": "11ccc0125e912b9aca4d1dfacf0ddca35215c39c07f67325b4072839376439f0",
+    "session": "f67e45bd4c8fcce5d8141fbf9eeed654d324cdba48655189fca9c6d30b8ead0f",
+    "mfa": "a71b9e8285818402dcf2157df43459a7a259fcd393656cb93229821dc60ea44a",
+    "journey": "b331a52eaa8fcaeb624b33ea1abe441bf891a4728e593028874dc220111920a5",
+    "lesson-resource": "647404c28bdc4d9d74ad34440d0a16d9f93ae355039b7f679bd57029bf08bcca",
+    "next-step": "d636e4a47a5ad1303d378cf0750507bfbd3d63081475295bcb5728d222c156ba",
+    "dashboard-attention": "8bbfa5107cf12d329e6c1a96f6ad929d9b63fecb9bbec2f0b989da9d828622ce",
+    "profile": "a3dc0c8bf86d9807cf35c29610bf69e46596bf187337eba00bfb878183abc97e",
+    "admin-content": "5c31f89a30321be2b02db8082797ccd1393ff5472ede6d931469e8adf9bef905",
+    "admin-person": "d3ad56ee049702ba367d64d1868400a100b0cc808863f4ecee1ba75003ae548d",
+    "admin": "c6f70b021e58deecc31ceec985bd086eff3e5746ff4cfd515d84c08af55175de",
+    "notifications": "c6dfc474cbefd6ddae6501ca0505da0f7d4d9e724980d06aee172bd457ff8aa6"
+  }
+}

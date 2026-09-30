@@ -1,5 +1,29 @@
 # Lockliel decisions and open questions
 
+## Final hosted maintenance rehearsal, full hosted transition still blocked (2026-09-30)
+
+Read `docs/course-cutover-final-rehearsal-2026-09-30.md` and the updated release
+runbook. The manual copy-and-close policy is APPROVED: Dave copies unsaved answers
+and notes, confirms ALL old course tabs closed before maintenance, and uses a fresh
+post-release tab. No recovery of old memory-only drafts is promised.
+
+Actual private PostgREST maintenance hook is installed ONLY in isolated project
+jxtgtfffdiwzxocxoqxk, still278. Hosted synthetic stale writes, direct RPC denials,
+new-client maintenance UX, and fresh saves after reopening pass. Implementation
+3cf0fd9 and d604a97 stop media retries and preserve read-only course checks.
+The complete HOSTED old1599ab2/schema274 to new-app/schema278 sequence is NOT proven:
+a second disposable branch is needed; organization/cost confirmation is pending.
+Never downgrade or replay migrations in the retained acceptance branch.
+
+Full local validation passes556JS /278 replay /15SQL, including the rerun staged
+CLI rehearsal. All historical277 migration bytes unchanged. This assignment permits
+development push/CI only; keep PR4 draft and main1599ab2/production274 untouched.
+Production trusted durations, Auth, near-zero-loss recovery, operator capability,
+fresh direct IPv6 and stable release window remain unsatisfied gates. Retain both
+acceptance resources. Earlier pending-manual-policy/disposable-only-hook statements
+below are historical and superseded by this entry.
+
+
 ## Authorized278 and pending cutover decision (2026-09-30)
 
 Approved by the latest assignment: exactly one minimal migration278, preserve all
