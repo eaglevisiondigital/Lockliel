@@ -1,4 +1,30 @@
 -- Local release candidate only. Preserve all historical migration bytes.
+-- Updated while unapplied: trusted duration provenance, never browser duration.
+alter table public.lesson_assets add column duration_verification_source text
+ check(duration_verification_source is null or char_length(duration_verification_source) between 10 and 500);
+-- Match existing column-scoped media editing privileges; staff/MFA RLS still applies.
+grant insert (duration_verification_source), update (duration_verification_source) on public.lesson_assets to authenticated;
+update public.lesson_assets set duration_verification_source='existing_verified_configuration' where duration_seconds is not null;
+create or replace function app_private.normalize_lesson_asset_duration_verification()
+returns trigger language plpgsql set search_path='' as $$
+begin
+ if tg_op='UPDATE' and (old.provider is distinct from new.provider or old.provider_ref is distinct from new.provider_ref or old.external_url is distinct from new.external_url or old.storage_path is distinct from new.storage_path) then
+  new.duration_seconds:=null; new.duration_verified_at:=null; new.duration_verification_source:=null;
+ elsif new.duration_seconds is null then
+  new.duration_verified_at:=null; new.duration_verification_source:=null;
+ else
+  if new.duration_seconds<=0 or new.duration_seconds>86400 or new.duration_seconds::text in ('NaN','Infinity','-Infinity') then raise exception 'Invalid trusted duration.' using errcode='22023'; end if;
+  new.duration_verification_source:=coalesce(nullif(btrim(new.duration_verification_source),''),'trusted_database_configuration');
+  if tg_op='INSERT' or old.duration_seconds is distinct from new.duration_seconds or old.duration_verification_source is distinct from new.duration_verification_source then new.duration_verified_at:=clock_timestamp();
+  else new.duration_verified_at:=old.duration_verified_at; end if;
+ end if;
+ return new;
+end; $$;
+drop trigger normalize_lesson_asset_duration_verification_trigger on public.lesson_assets;
+create trigger normalize_lesson_asset_duration_verification_trigger before insert or update of duration_seconds,duration_verification_source,provider,provider_ref,external_url,storage_path on public.lesson_assets
+ for each row execute function app_private.normalize_lesson_asset_duration_verification();
+alter table public.lesson_assets add constraint lesson_asset_duration_source_consistency check(
+ (duration_seconds is null and duration_verification_source is null) or (duration_seconds is not null and duration_verification_source is not null));
 alter table public.courses add column learning_rules jsonb not null default '{}';
 alter table public.lessons add column configuration_version integer not null default 1 check(configuration_version>0);
 alter table public.lesson_progress add column revision bigint not null default 0;
@@ -22,6 +48,9 @@ alter table public.courses add constraint course_learning_rules_shape check(
  and (learning_rules->>'minimum_score')::numeric between 0 and 100)));
 update public.courses set learning_rules='{"model":"watch_answer","sequential":true,"watch_threshold":95,"minimum_score":0}'
 where translation_key='getting-a-grip-on-the-basics';
+alter table public.courses add constraint getting_a_grip_permanent_rule check(
+ translation_key is distinct from 'getting-a-grip-on-the-basics' or
+ coalesce((learning_rules->>'model'='watch_answer' and (learning_rules->>'watch_threshold')::numeric=95 and (learning_rules->>'minimum_score')::numeric=0 and (learning_rules->>'sequential')::boolean and coalesce((learning_rules->>'worksheet_required')::boolean,true)),false));
 
 -- Independent learner-only notes. Existing staff progress SELECT policies cannot expose them.
 create table public.lesson_private_notes (
@@ -59,7 +88,7 @@ begin
  return exists(select 1 from public.lesson_assets where lesson_id=content_id and asset_type='video' and status='active')
  and not exists(select 1 from public.lesson_assets a left join public.media_progress p on p.asset_id=a.id and p.profile_id=learner
  where a.lesson_id=content_id and a.asset_type='video' and a.status='active'
- and (a.duration_seconds is null or 100*app_private.media_covered_seconds(coalesce(p.covered_intervals,'[]'))/a.duration_seconds<threshold));
+ and (a.provider is distinct from 'youtube' or nullif(btrim(a.provider_ref),'') is null or a.duration_seconds is null or a.duration_verified_at is null or a.duration_verification_source is null or 100*app_private.media_covered_seconds(coalesce(p.covered_intervals,'[]'))/a.duration_seconds<threshold));
 end; $$;
 revoke all on function app_private.course_watch_met(uuid,uuid) from public,anon,authenticated;
 
@@ -96,8 +125,8 @@ grant execute on function public.lockliel_course_gates() to authenticated;
 -- Keep legacy writes for unconfigured courses. Configured courses use the atomic RPC.
 create policy engine_lesson_insert on public.lesson_progress as restrictive for insert to authenticated with check(exists(select 1 from public.lessons l join public.courses c on c.id=l.course_id where l.id=lesson_id and c.learning_rules='{}'::jsonb));
 create policy engine_lesson_update on public.lesson_progress as restrictive for update to authenticated using(exists(select 1 from public.lessons l join public.courses c on c.id=l.course_id where l.id=lesson_id and c.learning_rules='{}'::jsonb));
-create policy engine_media_insert on public.media_progress as restrictive for insert to authenticated with check(exists(select 1 from public.lesson_assets a join public.lessons l on l.id=a.lesson_id join public.courses c on c.id=l.course_id where a.id=asset_id and c.learning_rules='{}'::jsonb));
-create policy engine_media_update on public.media_progress as restrictive for update to authenticated using(exists(select 1 from public.lesson_assets a join public.lessons l on l.id=a.lesson_id join public.courses c on c.id=l.course_id where a.id=asset_id and c.learning_rules='{}'::jsonb));
+create policy engine_media_insert on public.media_progress as restrictive for insert to authenticated with check(exists(select 1 from public.lesson_assets a join public.lessons l on l.id=a.lesson_id join public.courses c on c.id=l.course_id where a.id=asset_id and c.learning_rules='{}'::jsonb and not exists(select 1 from public.courses family where family.translation_key=c.translation_key and family.learning_rules<>'{}'::jsonb)));
+create policy engine_media_update on public.media_progress as restrictive for update to authenticated using(exists(select 1 from public.lesson_assets a join public.lessons l on l.id=a.lesson_id join public.courses c on c.id=l.course_id where a.id=asset_id and c.learning_rules='{}'::jsonb and not exists(select 1 from public.courses family where family.translation_key=c.translation_key and family.learning_rules<>'{}'::jsonb)));
 
 create function public.lockliel_save_lesson(expected_user uuid,target_lesson uuid,expected_revision bigint,answers jsonb,notes text,complete boolean default false)
 returns jsonb language plpgsql security definer set search_path='' as $$
@@ -138,6 +167,7 @@ begin
  end if;
  watch_done:=app_private.course_watch_met(uid,target_lesson);
  if complete and progress.status is distinct from 'completed' then
+  if rules->>'model' in ('watch_answer','watch_score','review') and coalesce((rules->>'worksheet_required')::boolean,true) and jsonb_array_length(questions)=0 then raise exception 'Worksheet configuration is pending.' using errcode='22023'; end if;
   if not watch_done or not worksheet_done then raise exception 'Watch and worksheet requirements are not met.' using errcode='22023'; end if;
   if rules->>'model'='review' and progress.review_approved_at is null then raise exception 'Course manager review is required.' using errcode='22023'; end if;
   if rules->>'model'='watch_score' then
@@ -342,3 +372,7 @@ create trigger audit_learning_lesson after update of worksheet_schema,configurat
  for each row execute function app_private.audit_learning_configuration('worksheet_schema','configuration_version','position');
 create trigger audit_learning_media after update of provider,provider_ref,external_url,storage_path,status on public.lesson_assets
  for each row execute function app_private.audit_learning_configuration('provider','provider_ref','external_url','storage_path','status');
+
+create trigger audit_learning_duration_source after update of duration_verification_source on public.lesson_assets
+ for each row execute function app_private.audit_learning_configuration('duration_verification_source');
+alter table app_private.course_answer_keys enable row level security;

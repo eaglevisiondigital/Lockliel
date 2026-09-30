@@ -110,12 +110,13 @@ export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,sum
 
  if(contentLessonIds.length){
    const ar=await fetch(
-     SUPABASE_URL+"/rest/v1/lesson_assets?lesson_id="+encodeURIComponent(inFilter(contentLessonIds))+"&status=eq.active&select=id,lesson_id,asset_type,title,provider,provider_ref,duration_seconds,sort_order"+"&order=sort_order.asc",
+     SUPABASE_URL+"/rest/v1/lesson_assets?lesson_id="+encodeURIComponent(inFilter(contentLessonIds))+"&status=eq.active&select=id,lesson_id,asset_type,title,provider,provider_ref,duration_seconds,duration_verified_at,duration_verification_source,storage_path,sort_order"+"&order=sort_order.asc",
      {headers:h}
    );
    const rawAssets=ar.ok?await ar.json():[];
    assets=rawAssets.map(asset=>({
-     ...asset,
+     ...Object.fromEntries(Object.entries(asset).filter(([key])=>key!=="storage_path")),
+     resource_mapped:Boolean(asset.storage_path),
      content_lesson_id:asset.lesson_id,
      lesson_id:contentToCanonical.get(asset.lesson_id)||asset.lesson_id
    }));

@@ -1,5 +1,28 @@
 # Course engine reconciliation (development candidate, 2026-09-29)
 
+## Completion assignment superseding the initial gaps (2026-09-30)
+
+The explicit follow-up resolves the policy questions below: keep lessons 11–13
+media-required with Media Coming Soon, and require trusted duration for watch gates.
+Do not wait for external content to finish the architecture. One shared readiness
+projection now reports media, duration, worksheet and resource readiness; managers
+see precise gaps while members see plain pending states. Manual duration verification
+has source/timestamp, identity-change invalidation and persisted-result confirmation.
+The same unapplied migration 275 adds these narrow protections plus the immutable
+Grip rule, missing-required-worksheet denial and private grading RLS. No new migration
+file or broad grants. All original 274 hashes remain unchanged.
+
+Autosave requires a valid next revision before displaying Saved. Existing retry/CAS,
+account invalidation, private notes and owner exports remain. PDF import is disabled.
+Production inventory was rechecked read-only: 13 lessons with protected resource
+mappings, 13 video assets across 1–10, zero durations, no videos in 11–13. Worksheets
+remain 20 prompts in 1–4 and one reflection in 5–13. No production content was edited.
+The exact hosted acceptance prerequisites and matrix are in
+`course-engine-hosted-acceptance.md`. The plan explicitly records the absent isolated
+runtime binding; ordinary previews stay blocked and cannot validate live persistence.
+Historical sections below describe the initial implementation and prior open decisions.
+
+
 Assignment baseline: local d915ae1, production main 1599ab2, 274 migrations.
 This map is recorded before implementation. Production inspection is read-only.
 

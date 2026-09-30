@@ -1,5 +1,16 @@
 # Lockliel engineering instructions
 
+## Course engine completion follow-up (2026-09-30)
+
+The explicit follow-up approves media-pending lessons 11–13 without waiting or a
+Model C exception, and makes trusted duration required for watch progression.
+Manual manager verification with provenance/server timestamp is implemented in
+unapplied migration 275. Read `docs/course-engine-hosted-acceptance.md` for exact
+isolated environment requirements. The new policy supersedes earlier optional-duration
+and unresolved-video statements for the engine. This package permits development
+push/draft PR4 preview only, no production migration/release or guard bypass.
+
+
 ## Current course-engine assignment (2026-09-29)
 
 Read `docs/course-engine-reconciliation.md`. The latest assignment authorizes the

@@ -16,8 +16,8 @@ begin
  assert (select linked_profile_id=member_id from public.reach_contacts where id=contact_id),'Personal link did not connect recipient';
  assert not exists(select 1 from public.staff_roles where profile_id=member_id),'Invitation granted staff access';
  -- Use a synthetic locale to isolate this fixture from historical seeded courses.
- insert into public.courses(id,slug,title,status,translation_key,language_code)
- values(fixture_course,'fixture-'||fixture_course,'Synthetic foundational course','draft','getting-a-grip-on-the-basics','zz');
+ insert into public.courses(id,slug,title,status,translation_key,language_code,learning_rules)
+ values(fixture_course,'fixture-'||fixture_course,'Synthetic foundational course','draft','getting-a-grip-on-the-basics','zz','{"model":"watch_answer","sequential":true,"watch_threshold":95,"minimum_score":0}');
  update public.profiles set locale='zz' where id=member_id;
  insert into public.faith_profiles(profile_id,growth_interests) values(member_id,array['biblical-foundations']);
  assert not exists(select 1 from public.course_enrollments where profile_id=member_id and course_enrollments.course_id=fixture_course),'Draft course enrolled';

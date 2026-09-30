@@ -1,5 +1,28 @@
 # Lockliel decisions and open questions
 
+## Approved course completion decisions (2026-09-30)
+
+Source: Dave's attached course-engine completion assignment. Proceed without waiting
+for videos 11–13, preserve their records/resources/worksheets/order and permanent watch
+requirement, and display Media Coming Soon. No no-video exception was approved.
+Getting a Grip remains Watch to Advance / Answer to Complete, 95%, no score, optional
+notes. Trusted video duration is explicitly required for watch-based progression and
+completion. Manual authoritative verification with provenance/timestamp is approved;
+provider metadata integration is optional and not implemented in this package.
+
+The historical content publication inventory threshold (13 lessons/structured worksheets,
+at least 10 distinct lessons with playable video, 13 protected PDFs) is not evidence
+that all watch-based lessons can advance. Duration is now a separate mandatory engine
+readiness requirement. Current inventory remains 10 lessons/13 video assets without
+durations; 11–13 await approved videos. Existing questions are preserved: 20 each in
+1–4 and one reflection each in 5–13, not an invented expanded worksheet specification.
+
+An isolated hosted acceptance plan is authorized; provisioning paid infrastructure,
+production release, migration 275 application, content activation and production guard
+bypass are not. See `docs/course-engine-hosted-acceptance.md`. Earlier entries describing
+unresolved duration/content decisions are historical and superseded by this decision.
+
+
 ## Approved cross-platform course standard (2026-09-29)
 
 APPROVED: The Champion Life Getting a Grip UX and finished course-engine behavior

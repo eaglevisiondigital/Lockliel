@@ -1,5 +1,26 @@
 # Lockliel security model
 
+## Course readiness hardening (2026-09-30)
+
+Trusted duration requires stored seconds, server verification timestamp and provenance.
+Course members cannot alter it. Existing active-session/MFA/role RLS protects managers;
+the API requires a descriptive source and verifies the returned persisted result.
+Changing provider/media identity invalidates the timing configuration. Previously earned
+watch/completion remains durable; replacement media requiring new credit must use a new
+asset identity and a separately reviewed material-version policy, never erase progress
+silently. The telemetry boundary rejects browser percent/ranges, direct seek credit,
+missing duration and absent required media. Private grading keys now explicitly enable
+RLS in addition to revoked privileges. Grip rules cannot be weakened by empty/nullable
+configuration. Notes remain owner-only, excluded from all admin projections, and are
+included only in explicit owner lesson exports (and existing owner privacy export).
+
+No preview guard bypass or new live transport is introduced. PDF import is explicitly
+disabled in the existing admin API and its activation control removed. Malformed save
+acknowledgements retain unsynced drafts instead of reporting Saved. Hosted Auth/RPC/RLS
+and actual device behavior still need the isolated acceptance matrix; local mocks are
+not production or hosted acceptance evidence.
+
+
 ## Course engine candidate boundaries (2026-09-29)
 
 New save RPCs bind expected identity to auth.uid(), active session, published enrolled

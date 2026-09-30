@@ -1,5 +1,23 @@
 # Lockliel verified continuity baseline
 
+## Course engine completion package (2026-09-30)
+
+The new assignment explicitly keeps lessons 11–13 media-required and pending approved
+videos; no Model C exception. Trusted duration is now required for watch-based
+advancement/completion, with manual manager provenance and server timestamp. This
+supersedes the unresolved policy decisions in the historical 2026-09-29 entries.
+Readiness separates media, timing, worksheets and private resources. Member copy uses
+Media Coming Soon / Lesson Being Prepared; managers see precise missing configuration.
+The shared save controller rejects malformed acknowledgements. Notes remain owner-only.
+Migration 275 was refined in place while unapplied; all 274 historical hashes remain
+unchanged. No production migration or app release. Hosted authenticated acceptance is
+still required; see `docs/course-engine-hosted-acceptance.md` for exact prerequisites
+and test matrix. Local validation passes: 547 JavaScript tests, 275 migration replay, 13 SQL/RLS files,
+build/static export, TypeScript, Netlify validation, configured/targeted lint and zero
+production dependency vulnerabilities. See `docs/course-engine-completion-2026-09-30.md`
+for the development checkpoint and hosted-acceptance limits.
+
+
 ## Course engine remote checkpoint verified (2026-09-29)
 
 Development commit `ca5f09b85fee2689329b716b95d07e199746a6a2` is pushed. Draft PR #4

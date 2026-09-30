@@ -37,7 +37,7 @@ export default function LessonPlayerClient(){
  if(error)return <section className="ml-card"><h1>Lesson Unavailable</h1><p role="alert">{error}</p><Link href="/my-lockliel/journey">Course Overview</Link></section>;
  if(!data||!save)return <p className="ml-loading">Opening your lesson…</p>;
  if(save.state==='Account Changed')return <section className="ml-card"><h1>Account Changed</h1><p>Your private draft remains isolated to its account. Reload to continue.</p><button onClick={()=>location.reload()}>Reload Course</button></section>;
- const lesson=data.lesson,completed=lesson.state==='completed';
+ const lesson=data.lesson,readiness=lesson.readiness,completed=lesson.state==='completed';
  const questions=lesson.progress?.content_snapshot?.questions||lesson.worksheet_schema?.questions||[];
  const worksheet=worksheetState(questions,save.value.answers);
  const videos=assets.filter((a:any)=>a.asset_type==='video'&&a.provider==='youtube');
@@ -48,18 +48,19 @@ export default function LessonPlayerClient(){
  async function refreshMedia(){const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(!r.ok)return;const d=await r.json();if(d.learnerId!==data.learnerId){saver.current.invalidate();return;}const state=learningState(d);setData({...d,lesson:state.lessons.find((l:any)=>l.id===lesson.id),courseState:state});}
  return <section className="course-experience">
   <button className="course-back" onClick={()=>navigate('/my-lockliel/journey')}>← Course Overview</button>
-  <header className="course-heading"><p className="ml-kicker">{data.course.title} · Lesson {lesson.position} of {data.lessons.length}</p><h1>{lesson.title}</h1><p>Watch while you work. Your teaching and worksheet stay together.</p></header>
+  <header className="course-heading"><p className="ml-kicker">{data.course.title} · Lesson {lesson.position} of {data.lessons.length}</p><h1>{lesson.title}</h1><p>{readiness.mediaReady?"Watch while you work. Your teaching and worksheet stay together.":"Your worksheet, notes and lesson resources stay together."}</p></header>
+  {!readiness.ready&&<section className="course-readiness" role="status"><h2>{readiness.label}</h2><p>{readiness.message}</p></section>}
   <div className="course-workspace">
    <aside className={'course-media '+(sticky?'is-sticky ':'')+(minimized?'is-minimized':'')} aria-label="Lesson Media">
     <div ref={mediaPanel} className="course-media-screen">{videos.map((asset:any)=><YouTubeProgressPlayer key={asset.id} asset={{...asset,watch_threshold:data.course.learning_rules?.watch_threshold||95}} saved={data.mediaProgress?.find((p:any)=>p.asset_id===asset.id)} learnerId={data.learnerId} onProgress={()=>void refreshMedia()}/>)}
-     {!videos.length&&<p>{['simple','review'].includes(data.course.learning_rules?.model)?'This lesson does not require a video.':'Teaching video has not been supplied for this lesson. The watch requirement has not been waived.'}</p>}
+     {!videos.length&&<p>{['simple','review'].includes(data.course.learning_rules?.model)?'This lesson does not require a video.':'Media Coming Soon. Your lesson resources and worksheet remain here while the teaching video is prepared.'}</p>}
     </div>
     <div className="course-media-content"><h2>Lesson {lesson.position}</h2><p>{lesson.title}</p>
      <p role="status">{lesson.watchMet?'Watch Requirement Met':'Watch Requirement Pending'}</p>
-     {videos.some((a:any)=>!a.duration_seconds)&&<p>Watch verification is awaiting the configured video duration. Your playback position can still be saved.</p>}
-     <div className="course-tools"><button onClick={()=>setSticky(!sticky)}>{sticky?'Video Stays Visible':'Keep Video Visible'}</button><button onClick={()=>setMinimized(!minimized)}>{minimized?'Expand Video':'Minimize Video'}</button><button onClick={()=>void mediaPanel.current?.requestFullscreen?.().catch(()=>setMessage('Use the video player’s full screen control on this device.'))}>Full Screen</button></div>
+     {videos.some((a:any)=>!a.duration_seconds)&&<p>We are preparing watch progress for this lesson. Your answers and notes can still be saved.</p>}
+     {videos.length>0&&<div className="course-tools"><button onClick={()=>setSticky(!sticky)}>{sticky?'Video Stays Visible':'Keep Video Visible'}</button><button onClick={()=>setMinimized(!minimized)}>{minimized?'Expand Video':'Minimize Video'}</button><button onClick={()=>void mediaPanel.current?.requestFullscreen?.().catch(()=>setMessage('Use the video player’s full screen control on this device.'))}>Full Screen</button></div>}
      {videos.map((a:any)=><a key={a.id} href={'https://www.youtube.com/watch?v='+encodeURIComponent(a.provider_ref)} target="_blank" rel="noreferrer">Watch / Cast on TV</a>)}
-     <p className="course-helper">Use your device or provider casting controls. Playback outside this page may not report watch progress.</p>
+     {videos.length>0&&<p className="course-helper">Use your device or provider casting controls. Playback outside this page may not report watch progress.</p>}
      <h3>Lesson Resources</h3><div className="course-resources">{resources.map((a:any)=><a key={a.id} href={'/api/lockliel/lesson-resource?assetId='+encodeURIComponent(a.id)} target="_blank" rel="noreferrer">{a.title||'Open Resource'}</a>)}{!resources.length&&<p>No additional resources are configured.</p>}</div>
     </div>
    </aside>
@@ -75,10 +76,10 @@ export default function LessonPlayerClient(){
      <label className="course-notes"><h3>Personal Notes</h3><p>Optional and private to you. Course managers cannot read these notes.</p><textarea rows={6} maxLength={12000} value={save.value.notes} onChange={e=>saver.current.update({...save.value,notes:e.target.value})} placeholder="Type anything you want to remember from this lesson…"/></label>
     </fieldset>
     <footer className="course-completion"><h3>{completed?'✓ Lesson Complete':data.course.learning_rules?.model==='watch_answer'?'Watch to Advance. Answer to Complete.':'Lesson Completion'}</h3>{completed&&lesson.progress?.completed_at&&<p>Completed {new Date(lesson.progress.completed_at).toLocaleDateString()}</p>}
-     {!completed&&<button disabled={!lesson.watchMet||!worksheet.complete||save.blocked||save.state==='Saving…'} onClick={()=>void complete()}>Complete Lesson</button>}
+     {!completed&&<button disabled={!readiness.ready||!lesson.watchMet||!worksheet.complete||save.blocked||save.state==='Saving…'} onClick={()=>void complete()}>Complete Lesson</button>}
      <button onClick={()=>navigate('/my-lockliel/journey')}>Course Overview</button>{next&&<button onClick={()=>navigate('/my-lockliel/journey/lesson?lesson='+encodeURIComponent(next.slug))}>Next Lesson</button>}
      <a href={'/api/lockliel/journey?export='+encodeURIComponent(lesson.id)}>Download My Answers</a><button onClick={()=>window.print()}>Print / Save as PDF</button>
-     <p>Downloads contain your last cloud-saved answers. Notes are excluded from the download by default.</p>
+     <a href={'/api/lockliel/journey?export='+encodeURIComponent(lesson.id)+'&notes=1'}>Download Answers With Notes</a><p>Downloads contain your last cloud-saved work. Include notes only when you want them in your personal copy.</p>
      {message&&<p role="alert">{message}</p>}
     </footer>
    </section>

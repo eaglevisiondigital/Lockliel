@@ -65,6 +65,7 @@ export default function JourneyClient(){
         const assets=assetMap[lesson.id]||[];
         const questions=lesson.worksheet_schema?.questions||[];
         const ready=lesson.unlocked&&(assets.length>0||questions.length>0);
+        const readiness=lesson.readiness;
 
         return <article className={"ml-lesson-row "+status} key={lesson.id}>
           <div className="ml-lesson-number">
@@ -82,17 +83,19 @@ export default function JourneyClient(){
             <small>
               {status==="completed"
                 ? "Completed"
-                : status==="in_progress"
+                : !readiness.ready
+                  ? readiness.label
+                  : status==="in_progress"
                   ? "In Progress"
                   : ready
                     ? "Available"
                     : lesson.unlocked?"Content Being Prepared":"Locked"}
-            </small>
-            <p>{assets.some((a:any)=>a.asset_type==='video')?'Video Available':'Video Not Configured'} · {questions.length} Worksheet Questions · {assets.filter((a:any)=>a.asset_type!=='video').length} Resources</p>
+            </small>{!lesson.unlocked&&!readiness.ready&&<small>Locked</small>}{!readiness.ready&&<p>{readiness.message}</p>}
+            <p>{readiness.requiredMedia?(readiness.mediaReady?'Teaching Video':'Media Coming Soon'):'No Video Required'} · {questions.length} Worksheet Questions · {assets.filter((a:any)=>a.asset_type!=='video').length} Resources</p>
           </div>
           {ready
             ? <Link className="ml-lesson-open" href={"/my-lockliel/journey/lesson?lesson="+encodeURIComponent(lesson.slug)}>
-                {status==="completed"?"Review":status==="in_progress"?"Continue":"Start"}
+                {status==="completed"?"Review":!readiness.ready?"View Lesson":status==="in_progress"?"Continue":"Start"}
               </Link>
             : <span className="ml-lesson-coming">Locked</span>}
         </article>;

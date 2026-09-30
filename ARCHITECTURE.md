@@ -1,5 +1,26 @@
 # Lockliel architecture
 
+## Course configuration readiness (2026-09-30)
+
+`lessonReadiness` / `courseReadiness` in the existing pure engine distinguish active
+supported media, trusted duration, required worksheet and protected resource mapping.
+Readiness never grants enrollment or progression. The member overview/player retain
+server gates and show pending content without technical jargon. The same projection
+feeds MFA/role-restricted admin content tools; no learner notes enter this projection.
+Manual duration verification requires seconds plus a descriptive authoritative source;
+the database stamps verification and clears timing on video identity changes. No
+provider API credential or metadata fetch was introduced. Private storage paths are
+replaced by a boolean mapping indicator in the member journey DTO.
+
+Getting a Grip remains Model A/95/no-score/sequential with required worksheets. Its
+permanent database constraint rejects clearing rules or switching to Model C. Existing
+274 migration files are immutable; only unapplied candidate 275 changes. Its private
+grading table has RLS and no public/authenticated grants. Existing legacy direct media
+writes cannot bypass configured rules through an unconfigured translation in the same
+course family. The hosted isolation plan is `docs/course-engine-hosted-acceptance.md`;
+ordinary previews still deny every production-backed handler.
+
+
 ## Reusable course engine candidate (2026-09-29)
 
 The approved Champion Life finished course standard is implemented through the
