@@ -1,5 +1,16 @@
 # Lockliel verified continuity baseline
 
+## Production course release reviewed, not ready (2026-09-30)
+
+Read `docs/course-engine-production-release-review-2026-09-30.md`. Reviewed candidate
+`a58626b` (implementation `91611ad`), review parent `766f0f4`. Production remains274,
+main 1599ab2, prior Netlify deploy and Sites 25. Exact275–277 mapping/hashes, read-only
+catalog/content snapshots, offline checks and staged release/recovery plan are recorded.
+Zero incompatible rows/collisions;1 member / 1 enrollment / 0 progress; no trusted durations.
+Mixed app/schema versions are incompatible for writes. Readiness remains blocked on
+coordinated maintenance, exact staged rehearsal, direct IPv6, recovery/RPO and fresh
+preflight. No migrations or application files changed; no remote push.
+
 
 ## Hosted acceptance remote checkpoint verified (2026-09-30)
 

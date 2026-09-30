@@ -1,5 +1,15 @@
 # Lockliel security model
 
+## Production course release review limits (2026-09-30)
+
+Read `docs/course-engine-production-release-review-2026-09-30.md`. Fresh production 274
+catalog/data checks pass, and isolated 277 notes/key/RPC ACL checks pass. Existing
+Security Advisor warns leaked-password protection disabled; no Auth changes were made.
+A draft/archive transition edge case in the media sampler needs disposable verification.
+Preserve existing production ACLs rather than copying isolated historical grants.
+Direct IPv6 safeguards and coordinated pause/recovery must be freshly proven before
+release. Missing trusted duration safely blocks initial progression; no content waiver.
+
 ## Isolated acceptance boundary verified (2026-09-30)
 
 Dedicated artifact site/project pins, production-context denial and outbound allowlist

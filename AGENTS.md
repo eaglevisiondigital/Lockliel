@@ -1,5 +1,15 @@
 # Lockliel engineering instructions
 
+## Course engine production release review (2026-09-30)
+
+Read `docs/course-engine-production-release-review-2026-09-30.md` before any course
+release. Review is NOT READY for production authorization. Production 274 is compatible
+with candidate 275–277, but old-app/new-schema progress writes fail and new-app/schema 274
+is incompatible. A tested course-write pause/stale-client transition and new staged
+runner rehearsal are required. Direct IPv6 currently has no route; backup/RPO/operator
+recovery, provider incident and existing Auth warning remain gates. Only local review
+files were added; no production action, push, merge or cleanup is authorized.
+
 
 ## Hosted acceptance remote checkpoint verified (2026-09-30)
 

@@ -1,5 +1,16 @@
 # Lockliel decisions and open questions
 
+## Proposed course release sequence, not authorization (2026-09-30)
+
+Read `docs/course-engine-production-release-review-2026-09-30.md`. Recommend a tested
+write-pause/stale-client mechanism, exact staged 275–277 migration checks, then exact
+application release before reopening. Neither mixed version state supports safe saving.
+Application rollback alone is insufficient after 275. Backup/RPO and operator recovery
+must be accepted for the current real-member state, not inherited from the old release.
+PITR is currently off; a fresh physical backup exists but near-zero-loss recovery is
+unproven. Product acceptance of temporarily blocked timing/media remains a separate
+release decision. This review authorizes no production execution or remote push.
+
 ## Isolated hosted acceptance completed authorization (2026-09-30)
 
 Dave's follow-up explicitly approved isolated SMTP/confirmation changes, synthetic

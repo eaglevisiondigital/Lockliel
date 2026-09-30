@@ -1,5 +1,13 @@
 # Lockliel architecture
 
+## Course release transition constraint (2026-09-30)
+
+The production 1599ab2 handler uses direct progress writes blocked by candidate 275's
+restrictive policies. Candidate 91611ad needs columns/RPCs absent from schema 274.
+Neither ordinary rolling order is compatible. Review proposes a controlled course
+maintenance transition, staged 275→276→277 then application, plus stale-client handling.
+That mechanism is not yet implemented/rehearsed. See the production release review.
+
 ## Dedicated acceptance artifact and hosted repairs (2026-09-30)
 
 The separate artifact pins site `60579b8e-d0ca-4ac1-abe5-7128f4243e8b` and isolated
