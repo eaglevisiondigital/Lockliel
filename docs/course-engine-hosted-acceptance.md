@@ -1,11 +1,10 @@
 # Course engine isolated hosted acceptance
 
-Status as of 2026-09-30: isolated branch migration and dedicated runtime prepared;
-authenticated acceptance blocked on branch-only email-isolation confirmation. Read
-`course-engine-isolated-acceptance-2026-09-30.md`. The requirements below remain the
-acceptance matrix, not evidence that those tests ran. This is the exact next package after
-local validation and the development checkpoint. No paid infrastructure, real
-accounts, production credentials/data, settings change or release is authorized here.
+Status as of 2026-09-30: authenticated isolated acceptance completed after fixes.
+Read `course-engine-isolated-acceptance-2026-09-30.md` for actual evidence, 277-entry
+isolated ledger mappings, production preservation and device-only limits. The original
+requirements below are historical planning context; the explicit follow-up authorized
+the isolated Auth changes and development checkpoint, never a production release.
 
 ## Environment requirements and entry criteria
 

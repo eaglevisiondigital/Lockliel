@@ -1,16 +1,16 @@
 # Lockliel engineering instructions
 
-## Isolated acceptance in progress (2026-09-30)
+## Isolated hosted acceptance follow-up (2026-09-30)
 
-Latest assignment authorizes isolated project `jxtgtfffdiwzxocxoqxk` and dedicated
-Netlify site `60579b8e-d0ca-4ac1-abe5-7128f4243e8b`, synthetic hosted acceptance only.
-Candidate 275 is already applied there under MCP ledger version `20260930083553`;
-production remains 274. Do not rerun candidate SQL. Read
-`docs/course-engine-isolated-acceptance-2026-09-30.md`. Signup is currently absent
-from the acceptance artifact because inherited custom SMTP/email confirmation needs
-branch-only isolation. Confirmation is pending; no synthetic users exist. Preserve
-branch for follow-up. No production change, Git push or merge is authorized implicitly.
-
+Read `docs/course-engine-isolated-acceptance-2026-09-30.md`. Explicit follow-up
+approved branch-only SMTP OFF / confirmation OFF, three synthetic users, real MFA,
+hosted acceptance and narrow fixes/development push. Implementation `91611ad` fixes
+hosted conflicts, release trigger, manager response and totals. Isolated project
+`jxtgtfffdiwzxocxoqxk` has 277 migrations; production stays 274. Never rerun the three
+isolated migrations under their different repository versions; use the report mapping.
+Original 274 files and candidate 275 are unchanged. Retain branch/site for review.
+No production release, migration, main merge, content activation or cleanup follows
+implicitly. Check the report for the consumed development checkpoint and CI evidence.
 
 ## Course completion checkpoint consumed (2026-09-30)
 

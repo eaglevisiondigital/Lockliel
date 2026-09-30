@@ -1,14 +1,18 @@
 # Lockliel architecture
 
-## Dedicated acceptance artifact (2026-09-30)
+## Dedicated acceptance artifact and hosted repairs (2026-09-30)
 
-`scripts/acceptance/prepare-runtime.mjs` builds a separate temporary artifact from
-existing handlers, with exact site `60579b8e-d0ca-4ac1-abe5-7128f4243e8b` and backend
-`jxtgtfffdiwzxocxoqxk` compiled into its binding. Original production core/guards are
-unchanged. Only allowlisted member/course handlers ship; all outbound fetches except
-that isolated origin fail closed and redirects are rejected. Signup is omitted while
-email-isolation approval is pending. Read the isolated acceptance report before reuse.
+The separate artifact pins site `60579b8e-d0ca-4ac1-abe5-7128f4243e8b` and isolated
+backend `jxtgtfffdiwzxocxoqxk`, 14 handlers including authorized signup, HTTPS Secure
+cookies and a commit/function-hash identity manifest. Original production bindings and
+preview guards stay unchanged. Branch SMTP is off and confirmation is not required.
 
+New migrations 276/277 follow immutable 275: private release-trigger execution retains
+readiness/RLS; business CAS conflicts use PT409 instead of retryable 40001. The save
+controller explicitly archives a conflicting local draft before adopting cloud state.
+Manager projection parses each response once and counts all course lessons rather
+than only started records. It never queries private learner notes. See the isolated
+acceptance report for hosted evidence and exact isolated ledger mapping.
 
 ## Course configuration readiness (2026-09-30)
 

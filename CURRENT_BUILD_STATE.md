@@ -1,16 +1,17 @@
 # Lockliel verified continuity baseline
 
-## Isolated hosted acceptance blocked on email isolation (2026-09-30)
+## Isolated hosted acceptance completed with fixes (2026-09-30)
 
-Isolated branch `course-engine-acceptance` / `jxtgtfffdiwzxocxoqxk` is healthy,
-with_data=false, initially zero Auth users and matching 274-entry history. Candidate
-275 applied only there, recorded by MCP as `20260930083553` (repository candidate
-`20260929215159`). Do not rerun it. Dedicated acceptance site is deployed with signup
-unavailable. The branch inherited enabled Resend SMTP; branch-only SMTP/confirmation
-isolation approval is pending. No synthetic accounts or authenticated acceptance yet.
-Local validation passes 547 JS / 275 replay / 13 SQL files. Production remains 274.
-See `docs/course-engine-isolated-acceptance-2026-09-30.md`. No release approval.
-
+Implementation `91611ad89933333891bdf2bb3791314fdd03012e` resolves hosted conflict
+retries/recovery, private release-trigger execution, manager response consumption and
+progress totals. Isolated Auth is now SMTP off / auto-confirm on, with three synthetic
+users and real manager MFA. Hosted save/retry/conflict, A/B, notes, timed 94/95,
+progression, pending media, manager/RLS and responsive checks pass. Isolated ledger is
+277; production remains 274. All original 274 hashes and candidate 275 are unchanged.
+Local validation: 550 JS, 277 replay, 14 SQL files and all configured checks pass.
+See `docs/course-engine-isolated-acceptance-2026-09-30.md` for exact deployments,
+ledger mappings, production evidence, device-only limits and remote checkpoint status.
+No production migration, merge, release or Share Library activation is authorized.
 
 ## Course engine completion checkpoint verified (2026-09-30)
 
