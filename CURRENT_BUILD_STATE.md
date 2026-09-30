@@ -1,5 +1,15 @@
 # Lockliel verified continuity baseline
 
+## Course transition preparation blocked by confirmed RPC defect (2026-09-30)
+
+Read `docs/course-release-transition-preparation-2026-09-30.md`. From parent c6b7be4,
+Part A reproduced new watch credit/durable advancement after draft/archive transitions
+under real authenticated PostgreSQL execution. 14 existing SQL files plus a diagnostic
+passed after 277-file disposable replay; diagnostic pass means vulnerability reproduced,
+not security passed. All 277 hashes unchanged. No application or migration correction,
+new staged runner, full transition or new full-app validation occurred. Explicit STOP
+requires separate migration 278 review. No production/acceptance mutation or push.
+
 ## Production course release reviewed, not ready (2026-09-30)
 
 Read `docs/course-engine-production-release-review-2026-09-30.md`. Reviewed candidate

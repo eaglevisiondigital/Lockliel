@@ -1,5 +1,18 @@
 # Lockliel decisions and open questions
 
+## Approved transition prerequisites and explicit stop (2026-09-30)
+
+The latest assignment approves a short coordinated course maintenance window rather
+than a large compatibility bridge. Near-zero-loss recovery is mandatory, preferably
+PITR at pre-cutover; no PITR purchase/enablement now. Reopening requires trusted durations
+for every required active video in 1–10; 11–13 stay media-required/pending. Leaked-password
+protection must be resolved under a separate Auth authorization before production.
+
+Part A explicitly orders STOP if a schema change is required. Disposable tests now
+confirm that condition: media RPC publication eligibility needs a new migration 278.
+The proposal is recorded, not approved or implemented. Remaining transition work is
+stopped until the release set is explicitly revised. See the transition preparation report.
+
 ## Proposed course release sequence, not authorization (2026-09-30)
 
 Read `docs/course-engine-production-release-review-2026-09-30.md`. Recommend a tested

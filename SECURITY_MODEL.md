@@ -1,5 +1,15 @@
 # Lockliel security model
 
+## Confirmed publication-state authorization defect (2026-09-30)
+
+The previously unverified media-sampling edge case is confirmed in a disposable 277
+cluster: after canonical draft/archive transitions, authenticated samples can add new
+watch credit and a durable achievement timestamp. Public course gates and lesson-save
+publication checks still deny the unpublished course, but do not prevent that media
+write. Translation/canonical fallback is included in reproduction. No cross-account
+exposure is claimed. Stop before cutover; separate migration 278 review is required.
+See `docs/course-release-transition-preparation-2026-09-30.md`. No hosted probe or fix.
+
 ## Production course release review limits (2026-09-30)
 
 Read `docs/course-engine-production-release-review-2026-09-30.md`. Fresh production 274

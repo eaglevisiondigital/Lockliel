@@ -1,5 +1,13 @@
 # Lockliel architecture
 
+## Media publication boundary requires a database correction (2026-09-30)
+
+Disposable 277 tests prove `lockliel_sample_media` remains writable for enrolled draft/
+archived canonical courses, including a published translation. The definer RPC's own
+eligibility resolution must enforce published canonical/content courses; an application
+handler cannot close direct authenticated RPC access. See the transition preparation
+report for the minimal278 proposal. No function or migration has been changed.
+
 ## Course release transition constraint (2026-09-30)
 
 The production 1599ab2 handler uses direct progress writes blocked by candidate 275's

@@ -1,5 +1,16 @@
 # Course engine production release review, 2026-09-30
 
+## Follow-up supersedes publication-edge uncertainty (2026-09-30)
+
+See `course-release-transition-preparation-2026-09-30.md`. Disposable tests confirmed
+new watch credit after canonical draft/archive transitions, including published
+translation resolution. The prior schema/data compatibility finding remains factual,
+but full migration/security readiness now FAILS. A new database function correction
+requires separate migration 278 authorization under Part A's explicit STOP instruction.
+No 278 file or new release runner has been created. Near-zero-loss recovery, durations
+for all required videos 1–10 before reopening, and separate Auth warning remediation
+are now mandatory Primary Chat decisions. No production changes occurred.
+
 **COURSE ENGINE PRODUCTION RELEASE PACKAGE NOT READY**
 
 Review/preparation only. No production migration, merge, deployment, configuration,

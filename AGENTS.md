@@ -1,5 +1,17 @@
 # Lockliel engineering instructions
 
+## Transition preparation stopped at migration boundary (2026-09-30)
+
+Read `docs/course-release-transition-preparation-2026-09-30.md`. Disposable tests
+confirmed direct media RPC writes/credit after draft/archive transitions, including
+published translations. Part A explicitly requires STOP and a separate 278 proposal.
+No 278 file or fix is authorized yet; all 277 migration bytes remain intact. Do not
+resume the 275–277 runner as though the edge case passed. Separate authorization must
+cover the fix and an explicit 275–278 release-set revision before remaining preparation.
+Production and hosted acceptance were not changed. Latest decisions require a narrow
+maintenance window, near-zero-loss recovery, trusted durations before reopening 1–10,
+and separate leaked-password-protection remediation. No production release follows.
+
 ## Course engine production release review (2026-09-30)
 
 Read `docs/course-engine-production-release-review-2026-09-30.md` before any course
