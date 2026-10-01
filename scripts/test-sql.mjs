@@ -155,6 +155,19 @@ try {
     ${readinessChecks}
     rollback;`);
   console.log('PASS isolated279 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
+  const safeReads=unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-reads.sql'),'utf8'));
+  const pausedChecks=readFileSync(join(repo,'tests/fixtures/course-paused-reads/checks.sql'),'utf8');
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-install.sql'),'utf8'))}
+    ${safeReads}
+    ${pausedChecks}
+    rollback;`);
+  console.log('PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).');
+
 
   }
 } finally { cleanup(); }

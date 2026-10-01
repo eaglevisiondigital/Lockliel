@@ -19,7 +19,7 @@ function chooseTranslation(rows,locale,sourceId){
 
 // Shared canonical/translated course projection used by the player and dashboard.
 // A failed upstream read is never evidence that a member has no progress.
-export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,summary=false}={}) {
+export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,summary=false,paused=false}={}) {
  const h=dbHeaders(access);
  const fetch=async(url,options)=>{
    const response=await fetcher(url,options);
@@ -40,7 +40,7 @@ export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,sum
  }
 
  const sourceCourseRes=await fetch(
-   SUPABASE_URL+"/rest/v1/courses?id=eq."+encodeURIComponent(enrollment.course_id)+"&select=id,slug,title,description,status,language_code,translation_key,learning_rules&limit=1",
+   SUPABASE_URL+"/rest/v1/courses?id=eq."+encodeURIComponent(enrollment.course_id)+"&status=eq.published&select=id,slug,title,description,status,language_code,translation_key,learning_rules&limit=1",
    {headers:h}
  );
  const sourceCourse=(sourceCourseRes.ok?await sourceCourseRes.json():[])?.[0]||null;
@@ -99,7 +99,7 @@ export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,sum
  let progress=[];
  if(sourceLessonIds.length){
    const pr=await fetch(
-     SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+encodeURIComponent(uid)+"&lesson_id="+encodeURIComponent(inFilter(sourceLessonIds))+"&select=lesson_id,status,last_position_seconds,watched_seconds,worksheet_status,started_at,last_activity_at,completed_at,revision,watch_requirement_met_at"+(summary?"":",worksheet_answers,content_snapshot"),
+     SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+encodeURIComponent(uid)+"&lesson_id="+encodeURIComponent(inFilter(sourceLessonIds))+"&select=lesson_id,status,last_position_seconds,watched_seconds,worksheet_status,started_at,last_activity_at,completed_at,revision,watch_requirement_met_at"+(summary||paused?"":",worksheet_answers,content_snapshot"),
      {headers:h}
    );
    progress=pr.ok?await pr.json():[];
@@ -135,7 +135,7 @@ export async function loadCourseJourney(access,uid,{fetcher=globalThis.fetch,sum
  if(sourceCourse.learning_rules?.model){
   const gr=await fetch(SUPABASE_URL+"/rest/v1/rpc/lockliel_course_gates",{method:"POST",headers:h,body:"{}"});
   gates=await gr.json();
-  if(!summary){const nr=await fetch(SUPABASE_URL+"/rest/v1/lesson_private_notes?profile_id=eq."+encodeURIComponent(uid)+"&select=lesson_id,body,updated_at",{headers:h});notes=await nr.json();}
+  if(!summary&&!paused){const nr=await fetch(SUPABASE_URL+"/rest/v1/lesson_private_notes?profile_id=eq."+encodeURIComponent(uid)+"&select=lesson_id,body,updated_at",{headers:h});notes=await nr.json();}
  }
 
  return {

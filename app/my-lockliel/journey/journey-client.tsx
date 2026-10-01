@@ -44,6 +44,7 @@ export default function JourneyClient(){
   const percent=total?Math.round(completed/total*100):0;
 
   return <>
+    {data.maintenance?.paused&&<section className="course-readiness" role="status"><h2>Course maintenance</h2><p>You can read your lessons and view saved progress. Answers, Personal Notes, video progress and completion are paused.</p></section>}
     <section className="ml-course-overview">
       <div>
         <div className="ml-kicker">Foundational discipleship</div>
@@ -58,7 +59,7 @@ export default function JourneyClient(){
 
     <div className="ml-course-progress"><span style={{width:percent+"%"}}/></div>
 
-    <div className="course-overview-actions">{learning.current&&<Link href={learning.href}>Continue Course →</Link>}{learning.complete&&<div><h2>Course Completed</h2><p>You have completed all {total} lessons. Your answers remain available for review.</p></div>}</div>
+    <div className="course-overview-actions">{learning.current&&<Link href={learning.href}>{data.maintenance?.paused?'View Course':'Continue Course'} →</Link>}{learning.complete&&<div><h2>Course Completed</h2><p>You have completed all {total} lessons. Your answers remain available for review.</p></div>}</div>
     <section className="ml-lesson-list">
       {learning.lessons.map((lesson:any)=>{
         const status=lesson.state;
@@ -95,7 +96,7 @@ export default function JourneyClient(){
           </div>
           {ready
             ? <Link className="ml-lesson-open" href={"/my-lockliel/journey/lesson?lesson="+encodeURIComponent(lesson.slug)}>
-                {status==="completed"?"Review":!readiness.ready?"View Lesson":status==="in_progress"?"Continue":"Start"}
+                {data.maintenance?.paused?"View Lesson":status==="completed"?"Review":!readiness.ready?"View Lesson":status==="in_progress"?"Continue":"Start"}
               </Link>
             : <span className="ml-lesson-coming">Locked</span>}
         </article>;

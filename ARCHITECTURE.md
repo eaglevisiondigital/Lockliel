@@ -1,5 +1,13 @@
 # Lockliel architecture
 
+## Isolated paused-read correction in validation (2026-10-01)
+
+Read `docs/course-paused-read-only-2026-10-01.md`. The latest assignment approves safe
+paused course reads only on qjksggxorghaxvpyslip/site70b03a42, retaining all write
+blocks. Local application correction and narrow temporary maintenance routing SQL
+are prepared; no migration or broad RLS replacement. Hosted outcome remains pending
+until the report is updated. Do not reopen maintenance, push, merge or touch production.
+
 ## Exact4204249 isolated deployment complete; paused acceptance fails reads (2026-10-01)
 
 Read `docs/course-paused-acceptance-4204249-2026-10-01.md`. Explicit source approval

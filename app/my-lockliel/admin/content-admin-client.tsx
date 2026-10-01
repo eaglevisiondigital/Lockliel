@@ -10,6 +10,7 @@ export default function ContentAdminClient(){
  async function setStatus(courseId:string,status:string){setWorking(true);const r=await fetch("/api/lockliel/admin/content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"setCourseStatus",courseId,status})});setWorking(false);if(r.ok)await load();}
  const lessonMap=useMemo(()=>Object.fromEntries((data?.lessons||[]).map((l:any)=>[l.id,l])),[data]);
  if(hidden)return null;if(!data)return <div className="ml-loading">{message||"Loading content tools…"}{message&&<button onClick={load}>Retry</button>}</div>;
+ if(data.maintenance?.paused)return <section className="ml-content-admin"><div className="ml-panel"><h2>Course maintenance</h2><p>Published course configuration is read-only. Content changes and learner records are unavailable.</p></div>{data.courses.map((course:any)=><article className="ml-panel" key={course.id}><h3>{course.title}</h3>{data.readiness.find((r:any)=>r.course_id===course.id)?.lessons.map((lesson:any)=><p key={lesson.lesson_id}>Lesson {lesson.position}: {lesson.title} · {lesson.label}</p>)}</article>)}</section>;
  return <section className="ml-content-admin">
   {message&&<p className="ml-share-message">{message}</p>}
   <p>Workbook import remains disabled. Existing private resources are preserved.</p>

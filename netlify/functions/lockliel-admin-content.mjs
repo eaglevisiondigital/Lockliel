@@ -1,4 +1,5 @@
-import {courseHeaders} from '../lib/course-cutover.mjs';
+import {backendConfig} from '../lib/backend-config.mjs';
+import {courseReadState,courseMaintenanceMessage,courseHeaders} from '../lib/course-cutover.mjs';
 import {courseReadiness} from "../lib/course-engine.mjs";
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
@@ -18,7 +19,7 @@ function safeHttpsUrl(value){
   }
 }
 
-export function createContentHandler({sessionFor=requireSession,fetcher=(...args)=>globalThis.fetch(...args)}={}) {
+export function createContentHandler({sessionFor=requireSession,fetcher=(...args)=>globalThis.fetch(...args),binding=backendConfig,readStateFor=courseReadState}={}) {
  const fetch=fetcher;
  return async(request)=>{
   const s=await sessionFor(request);
@@ -35,6 +36,10 @@ export function createContentHandler({sessionFor=requireSession,fetcher=(...args
   if(!roles.some(r=>["super_admin","admin","discipleship_admin","content_admin"].includes(r))){
     return json({error:"Content administration access required"},403);
   }
+
+  const maintenance=binding.mode==='isolated-course-rehearsal'?await readStateFor(s.access,{fetcher,binding}):null;
+  if(maintenance?.response)return maintenance.response;
+  if(maintenance?.paused&&request.method!=='GET')return json({error:courseMaintenanceMessage,code:'course_maintenance'},503);
 
   if(request.method==="POST"){
     const origin=request.headers.get('origin');
@@ -156,8 +161,9 @@ export function createContentHandler({sessionFor=requireSession,fetcher=(...args
   ]);
 
   if(!cr.ok||!lr.ok||!ar.ok)return json({error:"Course configuration is temporarily unavailable."},503);
-  const courses=await cr.json(),lessons=await lr.json(),assets=await ar.json();
-  return json({roles,courses,lessons,assets,readiness:courses.map(course=>({course_id:course.id,...courseReadiness(course,lessons.filter(l=>l.course_id===course.id),assets)}))},200,s.refreshed?sessionCookies(s.refreshed):[]);
+  const courses=await cr.json(),lessons=await lr.json();
+  const assets=(await ar.json()).map(asset=>maintenance?.paused?{...Object.fromEntries(Object.entries(asset).filter(([key])=>!['storage_path','external_url'].includes(key))),resource_mapped:Boolean(asset.storage_path)}:asset);
+  return json({roles,courses,lessons,assets,maintenance,readiness:courses.map(course=>({course_id:course.id,...courseReadiness(course,lessons.filter(l=>l.course_id===course.id),assets)}))},200,s.refreshed?sessionCookies(s.refreshed):[]);
  };
 }
 export default withProductionBackend(createContentHandler());

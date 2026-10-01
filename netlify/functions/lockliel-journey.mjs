@@ -1,24 +1,26 @@
-import {courseCutover,staleCourseClient,courseHeaders} from '../lib/course-cutover.mjs';
+import {courseCutover,courseReadState,staleCourseClient,courseHeaders} from '../lib/course-cutover.mjs';
 import {withProductionBackend} from '../lib/deployment-safety.mjs';
 import {loadCourseJourney} from '../lib/course-journey.mjs';
 import {lessonExport} from '../lib/course-engine.mjs';
 import {SUPABASE_URL,json,requireSession,sessionCookies} from '../lib/lockliel-core.mjs';
 
-export function createJourneyHandler({sessionFor=requireSession,fetcher=globalThis.fetch,loader=loadCourseJourney,cutoverFor=courseCutover}={}) {
+export function createJourneyHandler({sessionFor=requireSession,fetcher=globalThis.fetch,loader=loadCourseJourney,cutoverFor=courseCutover,readStateFor=courseReadState}={}) {
  return async request=>{
   if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
   const s=await sessionFor(request);
   if(!s.user||!s.access)return json({error:'Unauthorized'},401);
   const cookies=s.refreshed?sessionCookies(s.refreshed):[];
-  const gate=await cutoverFor(s.access,{fetcher});if(gate)return gate;
+  const state=request.method==='GET'?await readStateFor(s.access,{fetcher}):null;
+  const gate=state?.response||(request.method==='POST'?await cutoverFor(s.access,{fetcher}):null);if(gate)return gate;
   const stale=staleCourseClient(request);if(stale)return stale;
   if(request.method==='GET'){
    try {
-    const data=await loader(s.access,s.user.id,{fetcher});
+    const data=await loader(s.access,s.user.id,{fetcher,paused:state.paused});
     const url=new URL(request.url);
+    if(state.paused&&url.searchParams.has('export'))return json({error:'Downloads are unavailable during maintenance.',code:'course_maintenance'},503);
     if(url.searchParams.has('export'))return new Response(lessonExport(data,url.searchParams.get('export'),{includeNotes:url.searchParams.get('notes')==='1'}),{
      headers:{'Content-Type':'text/plain; charset=utf-8','Content-Disposition':'attachment; filename="my-lesson-answers.txt"','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
-    return json({...data,learnerId:s.user.id},200,cookies);
+    return json({...data,maintenance:state,learnerId:s.user.id},200,cookies);
    }catch{return json({error:'We could not load your course. Please try again.'},503);}
   }
   const origin=request.headers.get('origin');

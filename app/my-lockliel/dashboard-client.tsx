@@ -88,6 +88,12 @@ const baseCards=[
   }
 ];
 
+function PausedCourseCard(){
+ const [course,setCourse]=useState<any>(null);
+ useEffect(()=>{let active=true;void fetch('/api/lockliel/journey',{cache:'no-store'}).then(async r=>{if(!r.ok)return;const d=await r.json();if(active&&d.maintenance?.paused&&d.course)setCourse(d);}).catch(()=>{});return()=>{active=false;};},[]);
+ if(!course)return null;
+ return <section className="ml-card"><div className="ml-kicker">Continue growing</div><h2>{course.course.title}</h2><p>{course.lessons.length} lessons. Course maintenance is on. You can read lessons and view saved progress; saving is paused.</p><Link href="/my-lockliel/journey">View Course →</Link></section>;
+}
 export default function MyLocklielDashboard(){
   const [data,setData]=useState<SessionData|null>(null);
   const [journey,setJourney]=useState<MemberJourney|null>(null);
@@ -218,7 +224,7 @@ export default function MyLocklielDashboard(){
       {journey?<NextStepCard step={journey.nextStep}/>:<section className="ml-panel"><h1>What should I do next?</h1><p>Your personal guidance is unavailable right now. You can still explore your member tools below.</p></section>}
       <aside className="ml-panel ml-member-mission"><div className="ml-kicker">Reach. Teach. Train. Disciple.</div><h2>Grow. Reach one.<br/>Help them grow.</h2><p>Grow in Jesus, live from who God says you are, and help somebody else take their next step.</p><Link href="/my-lockliel/faith-profile">My growth preferences →</Link></aside>
     </section>
-    {journey&&<MemberJourneyPanels data={journey}/>}
+    {journey?<MemberJourneyPanels data={journey}/>:<PausedCourseCard/>}
 
     {Boolean(data.founderStatus||data.groupMemberships?.length)&&<section className="ml-member-context">
       {data.founderStatus&&<span>Founders 50: {data.founderStatus.replaceAll("_"," ")}</span>}
