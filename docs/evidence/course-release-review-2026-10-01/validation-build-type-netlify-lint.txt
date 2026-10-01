@@ -15,9 +15,9 @@
   Finished TypeScript in 2.5s ...
   Collecting page data using 9 workers ...
   Generating static pages using 9 workers (0/37) ...
-  Generating static pages using 9 workers (9/37) 
-  Generating static pages using 9 workers (18/37) 
-  Generating static pages using 9 workers (27/37) 
+  Generating static pages using 9 workers (9/37)
+  Generating static pages using 9 workers (18/37)
+  Generating static pages using 9 workers (27/37)
 ✓ Generating static pages using 9 workers (37/37) in 383ms
   Finalizing page optimization ...
   Collecting build traces ...
@@ -664,4 +664,3 @@ Validated 75 Netlify modules; imported 62 handlers.
 
 > lockliel-vision@0.1.0 lint:tooling
 > eslint scripts/test-sql.mjs scripts/validate-netlify.mjs tests/*.test.mjs tests/support/*.mjs netlify/functions/book-release.mjs netlify/functions/faith-boost-signup.mjs scripts/isolate-preview-forms.mjs netlify/lib/deployment-safety.mjs netlify/edge-functions/*.js
-
