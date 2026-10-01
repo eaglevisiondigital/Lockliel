@@ -1,5 +1,20 @@
 # Lockliel engineering instructions
 
+## Seven-day PITR approved, enablement blocked by compute prerequisite (2026-10-01)
+
+Read `docs/production-pitr-review-2026-10-01.md`. Approved policy is 7-day PITR,
+RPO <= 2 minutes and planned course maintenance <= 30 minutes, not a restore-time guarantee.
+Production bsndfhbemstyrrglajat is Pro/Micro, healthy and 274; PITR remains OFF.
+Supabase requires at least Small. The assignment prohibited compute changes, so no
+add-on confirmation or resize occurred. Seven-day quote $100/month before tax;
+Small $0.0206/hour, PITR $0.137/hour outside Spend Cap. A new compute/billing/window
+decision is required. No change to data, Auth/SMTP, permissions, sites or maintenance.
+Counts match before/after. Owner/MFA/restore capability and usable pre-cutover point
+remain unverified; Eastern US incident remains open. PITR replaces separate daily
+backups; independent archival and Storage-byte protection remain future requirements.
+No migration, push, merge, deployment, restore or real-member test follows. Earlier
+missing numeric recovery-policy statements are superseded only as approved targets.
+
 ## Legacy gate accepted by manual policy; final production review NOT READY (2026-10-01)
 
 Primary Chat accepts the legacy-client gate as CONTROLLED BY MANUAL CUTOVER POLICY.

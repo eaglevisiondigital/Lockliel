@@ -1,5 +1,20 @@
 # Five-stage course release package
 
+## Recovery policy update, 2026-10-01
+
+See `production-pitr-review-2026-10-01.md`. Primary Chat approved 7-day PITR,
+RPO <= 2 minutes and planned course maintenance <= 30 minutes. These are targets, not
+verified restore duration or proof of a usable recovery point. Actual PITR remains
+OFF: current Micro requires a separately authorized Small compute change plus billing
+approval; the scoped enablement task explicitly forbade compute changes. No settings
+were saved. Supabase PITR replaces separate Daily Backups; independent archival and
+Storage-object protection are still future work. Before migration release verify a
+usable pre-cutover point and an authorized Owner/operator with MFA/restore capability.
+No down migration is assumed; recovery after a commit may require coordinated full
+DB and application restoration. Provider incident and other release gates remain.
+Earlier missing numeric-policy or no-PITR-authorization statements below are historical;
+they do not override this approved target or authorize the required compute upgrade.
+
 ## Current production-readiness decision (2026-10-01)
 
 Read `course-final-production-readiness-2026-10-01.md`. Review is NOT READY for
