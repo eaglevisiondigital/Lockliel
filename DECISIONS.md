@@ -1,5 +1,21 @@
 # Lockliel decisions and open questions
 
+## Isolated 276–279 execution verified; maintenance remains ON (2026-10-01)
+
+Dave explicitly approved only276–279 on qjksggxorghaxvpyslip. Each committed once
+in order and passed exact catalog, ledger and independent security verification.
+Do not replay275 or any of these applied migrations. Final ledger279, paused=true,
+schemaReady=false, protocol278-v1. Service_role has zero effective notes table or
+column privileges; authenticated retains owner/session-scoped SELECT. Historical
+1–278 migration bytes and the approved279 file remain unchanged.
+
+Read `docs/course-hosted-279-execution-2026-10-01.md`. This approval is consumed.
+The existing readiness function still targets278 and needs a separately reviewed
+isolated update before candidate acceptance. No candidate deploy, reopen, push,
+production action or other isolated-environment change occurred. Full hosted app
+transition remains unverified. Preserve both isolated branches/sites. Earlier
+275/approval-blocked entries below are historical and superseded for this branch.
+
 ## Migration279 correction locally ready; hosted execution approval blocked (2026-10-01)
 
 Read `docs/course-migration-279-correction-2026-10-01.md` and the new

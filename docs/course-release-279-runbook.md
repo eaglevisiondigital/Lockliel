@@ -6,10 +6,11 @@ Source commit: a2254aaa3890e2aff7c51b9c84c45021a7b7ba20. Original274 manifest an
 each275–279 hash are pinned. Pinned CLI2.118.0 SHA256 remains
 8bcf9b109b24094feaf89e35c2d10d01d3dde50cc2a960116bd151537c2908c4.
 
-No production execution is authorized. Hosted rehearsal is currently blocked by
-automatic approval review of the first proposed276 command. Nothing ran. Retained
-qjksggxorghaxvpyslip is275/maintenance ON. See the correction report and request
-explicit confirmation before advancing that retained branch. Do not replay275.
+No production execution is authorized. Dave subsequently explicitly approved the
+isolated276–279 sequence; all four stages committed and verified once on
+qjksggxorghaxvpyslip. It is now279/maintenance ON. That authorization is consumed.
+Read `course-hosted-279-execution-2026-10-01.md`. Do not replay275–279 there.
+The ordering below remains the release procedure, not permission to rerun it.
 
 ## Exact staged order and safeguards
 

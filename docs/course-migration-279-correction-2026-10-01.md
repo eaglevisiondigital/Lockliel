@@ -1,5 +1,10 @@
 # Migration 275 security correction result
 
+> Subsequent execution: Dave explicitly approved isolated276–279. All four now
+> committed and verified on qjksggxorghaxvpyslip, maintenance ON. Read
+> `course-hosted-279-execution-2026-10-01.md`. The approval block and275 status
+> below are preserved historical preparation evidence, not the current state.
+
 **MIGRATION 279 SECURITY CORRECTION READY FOR HOSTED REHEARSAL**
 
 Local correction, full validation and disposable five-stage rehearsal are complete.
