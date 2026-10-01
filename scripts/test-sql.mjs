@@ -139,5 +139,22 @@ try {
     console.log(`PASS ${file} (rolled back)`);
   }
   console.log(`Passed ${tests.length} SQL test files.`);
+  // Temporary readiness is operational SQL, intentionally outside migration history.
+  // Exercise its exact old-to-new update in this same disposable cluster only.
+  const unwrap = source => source.replace(/^begin;$/m, '').replace(/commit;\s*$/, '');
+  const ledger = migrations.map(file => `('${file.slice(0,14)}')`).join(',');
+  const oldInstall = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-278/maintenance-install.sql'), 'utf8'));
+  const readinessUpdate = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-279/maintenance-readiness-update.sql'), 'utf8'));
+  const readinessChecks = readFileSync(join(repo, 'tests/fixtures/course-279-readiness/checks.sql'), 'utf8').replace('-- APPLY_READINESS_UPDATE', () => readinessUpdate);
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${oldInstall}
+    ${readinessChecks}
+    rollback;`);
+  console.log('PASS isolated279 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
+
   }
 } finally { cleanup(); }

@@ -28,3 +28,9 @@ for(const code of ['course_maintenance','course_reload_required'])test(code+' re
 test('maintenance with unavailable local storage tells learner to copy draft',async()=>{
  const saver=createLessonSaver({user:'a',lesson:'one',cloud:{},delay:100000,storage:{getItem:()=>null,setItem:()=>{throw Error();}},send:async()=>{throw Object.assign(Error(),{code:'course_maintenance'});}});saver.update({answers:{1:'Keep me'},notes:''});await saver.flush();assert.match(saver.snapshot().state,/Copy Your Draft/);assert.equal(saver.snapshot().value.answers[1],'Keep me');saver.close();
 });
+test('ready279 schema never overrides closed maintenance or changes client protocol',async()=>{
+ let calls=0;
+ const response=await courseCutover('synthetic',{fetcher:async()=>{calls++;return Response.json({paused:true,protocol:'278-v1',schemaReady:true});}});
+ assert.equal(response.status,503);assert.equal(calls,1);
+ assert.equal((await response.json()).code,'course_maintenance');
+});

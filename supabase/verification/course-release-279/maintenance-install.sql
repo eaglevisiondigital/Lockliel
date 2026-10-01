@@ -10,7 +10,8 @@ alter table lockliel_cutover.control enable row level security;
 revoke all on lockliel_cutover.control from public,anon,authenticated;
 create function public.lockliel_course_cutover_status() returns jsonb language sql stable security definer set search_path='' as $$
  with ready as (select
- (select count(*)=279 from supabase_migrations.schema_migrations)
+ (select count(*)=279 from supabase_migrations.schema_migrations) and (select count(*)=5 from supabase_migrations.schema_migrations where version in
+ ('20260929215159','20260930092000','20260930092500','20260930145334','20261001133500'))
  and (select count(*)=9 and bool_and(md5(pg_get_functiondef(p.oid))=expected.value and pg_get_userbyid(p.proowner)='postgres')
  from jsonb_each_text('{"app_private.audit_learning_configuration":"abacb6205c5aa998ff5e566108a494e4","app_private.course_lesson_unlocked":"4ee41fbb39e108322c0ae7fd9b7104bc","app_private.course_watch_met":"e27d583485b82a70712915f4d1a93d2a","app_private.normalize_lesson_asset_duration_verification":"ffcb56a46a947385dd3c515ca6916fa5","app_private.validate_course_release":"a9c38e606b5510100854ed9b5da72550","app_private.validate_lesson_completion":"445dc44467c92cf1fac7d3bca2e00a00","public.lockliel_course_gates":"f9220d0f0d325909c82b56c49b4c43b1","public.lockliel_sample_media":"9a5509a2b798cb45dc83e8cec67d5b1c","public.lockliel_save_lesson":"670f673fcfd9aa78f75164a18a321050"}'::jsonb) expected
  join pg_namespace n on n.nspname=split_part(expected.key,'.',1)

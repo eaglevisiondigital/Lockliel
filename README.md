@@ -33,7 +33,10 @@ transactions, demonstrates inherited service-role TRUNCATE, then applies the exa
 file and requires denial and working learner/RPC access. Both default-ACL profiles
 are covered. The full `npm run test:sql` now replays279 and includes the post279
 private-notes privilege test. See `docs/course-release-279-runbook.md` for the pinned
-five-stage package and remaining hosted approval boundary.
+five-stage package and hosted execution records. The full SQL command also exercises
+the exact temporary279 readiness update in a rolled-back disposable transaction,
+including wrong/missing schema, catalog/privilege drift, caller denials and preserved
+maintenance. This operational fixture creates no hosted migration or deployment.
 
 `npm test` builds with Webpack, then runs every Node test with network protection.
 `npm run test:unit` reuses an existing `out/` build. `npm run validate` combines

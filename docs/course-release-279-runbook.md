@@ -65,11 +65,11 @@ fingerprints and absence of service-role note privileges before schemaReady can
 be true. The client compatibility protocol remains278-v1 because279 changes ACLs,
 not request semantics. Count278 can no longer reopen this revised gate.
 
-The retained branch's existing operational status function still targets278.
-Do not reinstall the full maintenance script over an existing hook/schema. A
-separately reviewed isolated operational update of that function will be needed
-before candidate acceptance/reopening at279. Preserve the existing hook binding,
-ACLs and paused flag. That update was not executed in this package.
+The retained branch's status function was separately updated and verified at279
+on2026-10-01, with paused=true and protocol278-v1 unchanged. Read
+`course-isolated-279-readiness-2026-10-01.md`. The guarded operational update is
+consumed; do not rerun it or reinstall the full maintenance script. Candidate
+deployment/acceptance and any eventual reopening remain separately authorized.
 
 `maintenance-reopen.sql` remains a non-executable operator template. A successful
 schema correction is not permission to deploy a candidate or reopen. Full fresh-

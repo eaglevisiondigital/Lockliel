@@ -1,5 +1,22 @@
 # Lockliel verified continuity baseline
 
+## Isolated279 readiness verified; still closed (2026-10-01)
+
+Read `docs/course-isolated-279-readiness-2026-10-01.md`. The separately authorized
+operational update changed only public.lockliel_course_cutover_status() on
+qjksggxorghaxvpyslip. It now requires279, canonical275–279 versions, the same nine
+function fingerprints/owners and zero service notes privileges. Actual status:
+paused=true, protocol278-v1, schemaReady=true. Client protocol remains compatible;
+279 is a permission correction, not a new client wire contract. No migration280.
+
+Owner/empty search_path/EXECUTE, maintenance hook/control, course catalog and all279
+migration bytes are unchanged. Local279 replay/16SQL plus operational readiness
+failure/role tests,9 focused JS and targeted lint pass. No application deploy,
+reopen, push, production action or cleanup occurred. This approval is consumed.
+Next: separately authorize the exact isolated candidate deployment and fresh-client
+acceptance with maintenance ON. Full app cutover remains unverified. Earlier
+schemaReady=false/update-pending statements below are historical.
+
 ## Isolated 276–279 execution verified; maintenance remains ON (2026-10-01)
 
 Dave explicitly approved only276–279 on qjksggxorghaxvpyslip. Each committed once
