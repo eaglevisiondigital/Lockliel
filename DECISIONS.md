@@ -1,5 +1,27 @@
 # Lockliel decisions and open questions
 
+## Isolated corrective acceptance: old-client gate still fails (2026-10-01)
+
+Read `docs/course-post-reopen-corrective-acceptance-2026-10-01.md`. Only isolated
+qjksggxorghaxvpyslip/site70b03a42 changed. Synthetic manager now has the existing
+discipleship_admin role plus content_admin; MFA and owner-only notes remain enforced.
+Synthetic YouTube100s fixtures now correctly use1344s with provenance. Real playback
+94.30% stayed locked and95.41% unlocked without completing the worksheet; seek-to-end
+only credited2.11%. Footer contrast is13.21:1 at1440/768/390. Actual browser offline
+recovery and real hosted lost-ack idempotent retry pass. Application21ac4a5 is deployed
+only as6abe8f4f75e5a756b7d0cd9a, branch-deploy. Maintenance remains OFF/ready279.
+
+Original1599ab2 isolated JavaScript was reproduced:426 prevents stale writes, but
+old autosave hides errors and periodic media writes continue without a failure cap.
+Do not mark this old-client UX passed. Keep copy/save-and-close ALL old tabs policy;
+Chat must resolve the remaining acceptance gate before production readiness review.
+573JS/build/type/Netlify/configured lint and focused hosted SQL/RLS pass; all279 hashes
+and the security catalog are unchanged. No new migration, full replay, production
+action, push, merge or cleanup. Both isolated environments are retained. Production
+274/main1599ab2/Netlify production/Sites25 are carried-forward baselines, not a fresh
+production audit. Earlier manager/duration/contrast/network gaps below are historical;
+the original-client failure remains current. See the report for exact test limits.
+
 ## Isolated maintenance exited; post-reopen acceptance incomplete (2026-10-01)
 
 Read `docs/course-post-reopen-acceptance-2026-10-01.md`. Dave explicitly corrected the

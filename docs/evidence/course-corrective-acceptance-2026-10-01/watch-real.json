@@ -1,0 +1,224 @@
+[
+  {
+    "at": "2026-10-01T17:03:43.278Z",
+    "duration": 1344,
+    "percent": 71.6,
+    "played": 962.3416972746581,
+    "position": 989.6052820534057,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        989.6052820534057
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": false
+    },
+    "next": {
+      "unlocked": false,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  },
+  {
+    "at": "2026-10-01T17:08:37.107Z",
+    "duration": 1344,
+    "percent": 93.55,
+    "played": 1257.3429872155305,
+    "position": 1284.606571994278,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        1284.606571994278
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": false
+    },
+    "next": {
+      "unlocked": false,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  },
+  {
+    "at": "2026-10-01T17:08:43.179Z",
+    "duration": 1344,
+    "percent": 93.92,
+    "played": 1262.3440202841948,
+    "position": 1289.6076050629424,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        1289.6076050629424
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": false
+    },
+    "next": {
+      "unlocked": false,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  },
+  {
+    "at": "2026-10-01T17:08:49.148Z",
+    "duration": 1344,
+    "percent": 94.3,
+    "played": 1267.3436103738402,
+    "position": 1294.6071951525878,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        1294.6071951525878
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": false
+    },
+    "next": {
+      "unlocked": false,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  },
+  {
+    "at": "2026-10-01T17:08:55.150Z",
+    "duration": 1344,
+    "percent": 94.67,
+    "played": 1272.3440564425048,
+    "position": 1299.6076412212524,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        1299.6076412212524
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": false
+    },
+    "next": {
+      "unlocked": false,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  },
+  {
+    "at": "2026-10-01T17:09:01.112Z",
+    "duration": 1344,
+    "percent": 95.41,
+    "played": 1282.3432862803802,
+    "position": 1309.6068710591278,
+    "intervals": [
+      [
+        0,
+        193.37435602288818
+      ],
+      [
+        198.37492901907348,
+        203.37476308773805
+      ],
+      [
+        214.6303890305176,
+        373.62214619073484
+      ],
+      [
+        384.62953203051757,
+        1309.6068710591278
+      ]
+    ],
+    "gate": {
+      "unlocked": true,
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "watch_met": true
+    },
+    "next": {
+      "unlocked": true,
+      "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+      "watch_met": false
+    },
+    "progressStatus": "in_progress",
+    "worksheetStatus": "completed"
+  }
+]

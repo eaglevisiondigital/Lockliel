@@ -1,0 +1,142 @@
+{
+  "status": 200,
+  "roles": [
+    "content_admin",
+    "discipleship_admin"
+  ],
+  "privacy": "ministry_limited",
+  "privateContactHidden": true,
+  "courses": [
+    {
+      "id": "81de3b22-dc70-45db-9560-edc6068c1a9a",
+      "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+      "status": "active",
+      "enrolled_at": "2026-09-30T20:58:03.721174+00:00",
+      "completed_at": null,
+      "course": {
+        "id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+        "slug": "getting-a-grip-on-the-basics",
+        "title": "Synthetic Getting a Grip Rehearsal",
+        "status": "published"
+      },
+      "totalLessons": 13,
+      "currentLesson": {
+        "id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+        "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+        "position": 2,
+        "slug": "how-to-be-sure-you-are-a-christian",
+        "title": "Synthetic rehearsal lesson 2"
+      },
+      "lessons": [
+        {
+          "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+          "status": "in_progress",
+          "worksheet_status": "completed",
+          "last_position_seconds": 0,
+          "watched_seconds": 0,
+          "started_at": "2026-10-01T16:47:11.344887+00:00",
+          "last_activity_at": "2026-10-01T16:53:48.444352+00:00",
+          "completed_at": null,
+          "lesson": {
+            "id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+            "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+            "position": 2,
+            "slug": "how-to-be-sure-you-are-a-christian",
+            "title": "Synthetic rehearsal lesson 2"
+          }
+        },
+        {
+          "lesson_id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+          "status": "completed",
+          "worksheet_status": "completed",
+          "last_position_seconds": 0,
+          "watched_seconds": 0,
+          "started_at": "2026-09-30T21:03:44.598712+00:00",
+          "last_activity_at": "2026-10-01T16:46:52.493515+00:00",
+          "completed_at": "2026-10-01T16:08:57.15134+00:00",
+          "worksheet_answers": {
+            "1": "SYNTHETIC A final answer after cloud conflict recovery."
+          },
+          "content_snapshot": {
+            "media": [
+              {
+                "asset": "84913874-5754-4825-903c-ef4fc08b9f7d",
+                "provider_ref": "M7lc1UVf-VE",
+                "duration_seconds": 100
+              }
+            ],
+            "rules": {
+              "model": "watch_answer",
+              "sequential": true,
+              "minimum_score": 0,
+              "watch_threshold": 95
+            },
+            "questions": [
+              {
+                "text": "Enter a synthetic rehearsal answer.",
+                "number": 1
+              }
+            ],
+            "configuration_version": 1
+          },
+          "lesson": {
+            "id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+            "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+            "position": 1,
+            "slug": "how-to-become-a-christian",
+            "title": "Synthetic rehearsal lesson 1"
+          }
+        }
+      ],
+      "media": [
+        {
+          "asset_id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+          "last_position_seconds": 449.6269598893738,
+          "played_seconds": 422.36337511062624,
+          "percent_watched": 31.43,
+          "last_activity_at": "2026-10-01T16:54:41.133199+00:00",
+          "completed_at": null,
+          "asset": {
+            "id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+            "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+            "asset_type": "video",
+            "title": "Synthetic rehearsal resource",
+            "provider": "youtube",
+            "status": "active"
+          },
+          "lesson": {
+            "id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+            "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+            "position": 2,
+            "slug": "how-to-be-sure-you-are-a-christian",
+            "title": "Synthetic rehearsal lesson 2"
+          }
+        },
+        {
+          "asset_id": "84913874-5754-4825-903c-ef4fc08b9f7d",
+          "last_position_seconds": 0,
+          "played_seconds": 95,
+          "percent_watched": 7.07,
+          "last_activity_at": "2026-10-01T16:46:52.493515+00:00",
+          "completed_at": null,
+          "asset": {
+            "id": "84913874-5754-4825-903c-ef4fc08b9f7d",
+            "lesson_id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+            "asset_type": "video",
+            "title": "Synthetic rehearsal resource",
+            "provider": "youtube",
+            "status": "active"
+          },
+          "lesson": {
+            "id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+            "course_id": "6565d157-6e5b-4ee9-a6e4-14fa6d77f394",
+            "position": 1,
+            "slug": "how-to-become-a-christian",
+            "title": "Synthetic rehearsal lesson 1"
+          }
+        }
+      ]
+    }
+  ],
+  "notesPrivate": true
+}
