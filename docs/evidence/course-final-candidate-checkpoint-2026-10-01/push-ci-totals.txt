@@ -1,0 +1,12 @@
+sql	Run npm run test:sql	2026-10-01T20:03:09.5726660Z Replayed 279 authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).
+sql	Run npm run test:sql	2026-10-01T20:03:12.6625724Z Passed 16 SQL test files.
+sql	Run npm run test:sql	2026-10-01T20:03:12.6894597Z PASS isolated279 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).
+sql	Run npm run test:sql	2026-10-01T20:03:13.2962115Z PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).
+build	Run npm run validate:netlify	2026-10-01T20:03:19.5681793Z # tests 0
+build	Run npm run validate:netlify	2026-10-01T20:03:19.5685027Z # pass 0
+build	Run npm run validate:netlify	2026-10-01T20:03:19.5685816Z # fail 0
+build	Production dependency audit	2026-10-01T20:03:23.4825706Z found 0 vulnerabilities
+build	Build	2026-10-01T20:03:52.9048871Z ✓ Generating static pages using 3 workers (37/37) in 1121ms
+build	Run npm run test:unit	2026-10-01T20:04:11.2314764Z # tests 573
+build	Run npm run test:unit	2026-10-01T20:04:11.2314938Z # pass 573
+build	Run npm run test:unit	2026-10-01T20:04:11.2315022Z # fail 0

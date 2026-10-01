@@ -1,5 +1,15 @@
 # Lockliel security model
 
+## Candidate checkpoint security evidence (2026-10-01)
+
+Exact PR4 preview at eaff3fe passes36 production-backend denials and16 static checks.
+All279 migration hashes are unchanged; full disposable279 replay/16SQL and staged
+CLI rehearsal passed with production egress blocked. Production read-only checks
+retain274 ledger entries and matching aggregate counts. No production mutation,
+Auth/SMTP/permission change or real-data test occurred. Aggregate parity is not a
+full data/settings audit. Read `docs/course-final-candidate-checkpoint-2026-10-01.md`.
+Remaining release/recovery/legacy-client gates remain in force.
+
 ## Small compute and seven-day PITR enabled (2026-10-01)
 
 Dave explicitly approved Small compute and seven-day PITR after the quoted costs.

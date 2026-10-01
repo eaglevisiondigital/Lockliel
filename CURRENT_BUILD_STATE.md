@@ -1,5 +1,19 @@
 # Lockliel verified continuity baseline
 
+## Validated candidate checkpoint consumed (2026-10-01)
+
+Read `docs/course-final-candidate-checkpoint-2026-10-01.md`. The authorized single
+normal development push is complete through eaff3fea36d4ce489009ebf2070071311619f9c2
+(application source21ac4a5). PR4 is draft/open/unmerged with auto-merge disabled.
+Both remote CI runs pass573JS/279 replay/16SQL plus configured validation. Exact
+preview6abebc5dc0b59000076c25a5 passes36 guard denials and16 static checks. Full local
+validation and five-stage CLI rehearsal passed; all279 migration hashes are unchanged.
+Production remains main1599ab2/database274/Netlify6abbb27a1cdd6d00081b0e8e/Sites25.
+No production writes, migrations, settings or content changes occurred in this task.
+Post-checkpoint evidence stays local; no second push is authorized. The stale-PR
+blocker below is superseded, but remaining final production readiness gates still
+require review. No merge, production release or activation follows implicitly.
+
 ## Final readiness stopped because PR4 is stale (2026-10-01)
 
 Read `docs/final-readiness-candidate-stop-2026-10-01.md`. Fresh GitHub: remote/PR4

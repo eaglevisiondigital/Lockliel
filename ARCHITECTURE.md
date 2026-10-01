@@ -1,5 +1,14 @@
 # Lockliel architecture
 
+## Final candidate now available on PR4 (2026-10-01)
+
+Development remote/PR4 now points to eaff3fe, containing application21ac4a5 and the
+279 release package. Exact deploy-preview6abebc5dc0b59000076c25a5 passes static and
+backend isolation checks; production remains main1599ab2/database274. Tracked
+hosting/dependency/workflow manifests were unchanged by this push. Read
+`docs/course-final-candidate-checkpoint-2026-10-01.md`; preview is not production
+release authorization. Evidence documentation stays local.
+
 ## Small compute and seven-day PITR enabled (2026-10-01)
 
 Dave explicitly approved Small compute and seven-day PITR after the quoted costs.

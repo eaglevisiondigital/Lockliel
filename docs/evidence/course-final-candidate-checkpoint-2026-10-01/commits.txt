@@ -1,0 +1,23 @@
+e71fbeda62909a68460a0db484153fa66ac3a686 Record cutover checkpoint CI and preview evidence with remaining hosted baseline blocker
+b93c6a2db662963bcaa3439662e407ee8d1a4054 Record clean hosted 274 baseline and direct connectivity prerequisites
+0cfcf405be16f43fa1ac7fbe0ee0ad2c3b764158 Bind exact course application to pinned isolated cutover infrastructure
+fbcb2b587da85a182224576d772f5dc1647c1610 Record hosted migration 275 verifier stop and preserve closed maintenance state
+5df0ffde24b67e6bad7dc5c61266c947a85af4e6 Review migration 275 notes privileges and fail closed on excess service access
+a2254aaa3890e2aff7c51b9c84c45021a7b7ba20 Revoke unused service-role privileges on private lesson notes
+63159f3139fd01bda157deafac02b5fe141a2162 Validate five-stage course correction and record hosted execution approval block
+0f73571ad552a226f00592ac99d4a663d3e82f46 Normalize captured validation log formatting
+90d8eddfd5919a9595fed0060475d292d3eb529c Record verified isolated 276-279 execution with maintenance closed
+4204249345513d9f871f3abeffb706a3bde3caaa Verify isolated schema279 readiness while maintenance stays closed
+8cf5f5ab3e7fe6eb25a9a82043158aa82f9002cd Record paused deployment source mismatch and verified baseline
+0c237d113a9295ac9985a4824455e0d19598c960 Record exact isolated candidate paused acceptance findings
+232fa6f35e43b415d4f8adacb6fc757d91f748b1 Allow scoped isolated course reads while maintenance blocks writes
+406c1691aee11311783ef83a7e970c6a4d5acd13 Verify paused protected downloads and clarify worksheet read-only state
+ef4ca45ae4136ba40b81aba30a4bd62b6332fd31 Record verified isolated paused read-only course acceptance
+17d7f922246aa8195349f7e15a8fe5b16dd9f1b9 Record isolated maintenance exit and post-reopen acceptance gaps
+21ac4a5172a7dd7082b659d65533385e231892ef Fix course worksheet completion footer contrast
+1165b3b4c235e1840014ada3e9467f3a930be53e Record isolated corrective acceptance and original client retry failure
+3efe9f10cebddea557f4c81a55ad884912f4283d Retain sanitized corrective validation logs
+332f03097cbaffbbf27f1797eb78a79f540ee93b Accept manual legacy cutover policy and record final production readiness gates
+d8375608ff47d8cbb15bc0ad47618c2e6d733648 Record PITR policy and blocked compute prerequisite
+92f24fb6156ff07d3341cc34d58fab0d6b5b1b37 Record verified production Small compute and seven-day PITR
+eaff3fea36d4ce489009ebf2070071311619f9c2 Record final readiness stop for stale PR4 candidate

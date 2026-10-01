@@ -1,5 +1,10 @@
 # Final readiness package stopped at candidate gate, 2026-10-01
 
+Subsequent update: the separately authorized checkpoint through eaff3fe cleared the
+stale-PR blocker. See `course-final-candidate-checkpoint-2026-10-01.md`. This report
+retains the earlier stop evidence; remaining readiness gates were not resumed by
+the checkpoint.
+
 **FINAL PRODUCTION READINESS PACKAGE NOT READY**
 
 ## Mandatory stop

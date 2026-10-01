@@ -1,5 +1,14 @@
 # Lockliel decisions and open questions
 
+## Controlled candidate checkpoint completed (2026-10-01)
+
+Dave authorized one normal development push of the already-validated candidate.
+That authorization is consumed through eaff3fe; PR4 now contains application21ac4a5,
+275–279 and the security/read-only/footer corrections. Both CI runs and exact preview
+pass. Read `docs/course-final-candidate-checkpoint-2026-10-01.md`. This supersedes only
+the stale-PR readiness blocker. Production release review, merge, migrations and
+activation are not authorized; post-checkpoint documentation stays local.
+
 ## Small compute and seven-day PITR enabled (2026-10-01)
 
 Dave explicitly approved Small compute and seven-day PITR after the quoted costs.
