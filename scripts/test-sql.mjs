@@ -6,8 +6,9 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 
-const review275 = process.argv.length === 3 && process.argv[2] === '--review-275';
-if (process.argv.length !== 2 && !review275) throw new Error('SQL tests accept only the fixed --review-275 profile, never connection arguments.');
+const review275 = process.argv.length === 3 && ['--review-275','--review-279'].includes(process.argv[2]);
+const review279 = review275 && process.argv[2] === '--review-279';
+if (process.argv.length !== 2 && !review275) throw new Error('SQL tests accept only fixed --review-275/--review-279 profiles, never connection arguments.');
 const repo = fileURLToPath(new URL('../', import.meta.url));
 // Do not inherit PGHOST, PGSERVICE, PGOPTIONS, DATABASE_URL, secrets or shell startup files.
 const env = { PATH: process.env.PATH, LANG: 'C', LC_ALL: 'C' };
@@ -123,10 +124,12 @@ try {
       // Never changes a real branch or the authoritative migration bytes.
       const defaults = profile === 'hosted' ? `alter default privileges for role postgres in schema public revoke all on tables from service_role;
         alter default privileges for role postgres in schema public grant truncate,references,trigger,maintain on tables to service_role;` : '';
-      sql('begin;\n' + defaults + '\n' + readFileSync(join(repo, 'supabase/migrations', migration), 'utf8') + '\n' + readFileSync(join(reviewDir, 'notes.sql'), 'utf8') + '\nrollback;');
-      console.log(`PASS exact275 ${profile} defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (test-only revocation).`);
+      const fixture = review279 ? readFileSync(join(repo,'tests/fixtures/course-279-security/notes.sql'),'utf8').replaceAll('-- APPLY_279_HERE',readFileSync(join(repo,'supabase/migrations/20261001133500_lockliel_private_notes_service_privileges.sql'),'utf8')) : readFileSync(join(reviewDir,'notes.sql'),'utf8');
+      const schema = (review279 ? migrations.slice(274,278) : [migration]).map(file=>readFileSync(join(repo,'supabase/migrations',file),'utf8')).join('\n');
+      sql('begin;\n' + defaults + '\n' + schema + '\n' + fixture + '\nrollback;');
+      console.log(`PASS exact${review279 ? '278 then279' : '275'} ${profile} defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (${review279 ? 'actual279, absent-grant replay safe' : 'test-only revocation'}).`);
     }
-    console.log('Passed focused 274/275 review; no CLI release rehearsal or later migrations.');
+    console.log(review279 ? 'Passed disposable before/after exact279 regression under both defaults.' : 'Passed focused 274/275 review; no CLI release rehearsal or later migrations.');
   } else {
   console.log(`Replayed ${migrations.length} authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).`);
   const tests = readdirSync(join(repo, 'supabase/tests')).filter(f => f.endsWith('.sql')).sort();

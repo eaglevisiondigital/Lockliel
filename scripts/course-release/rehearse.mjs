@@ -7,7 +7,7 @@ import {spawnSync,spawn} from 'node:child_process';
 import {randomBytes} from 'node:crypto';
 import {createConnection,createServer} from 'node:net';
 import {repo,manifest,prepare,verifyBinary,verifyPrepared} from './prepare.mjs';
-import {catalogSQL,connectionURL,inspect,invokeCLI,discovery,classify,normalize,expectedTransition,executeStage} from './runner.mjs';
+import {catalogSQL,connectionURL,inspect,invokeCLI,discovery,classify,normalize,expectedTransition,executeStage,assertLedger,verifyPostconditions} from './runner.mjs';
 assert.equal(process.argv.length,2,'No connection arguments allowed');
 const binary=process.env.LOCKLIEL_SUPABASE_BIN;verifyBinary(binary);
 await new Promise((ok,fail)=>{const s=createConnection({host:'192.0.2.1',port:443});s.setTimeout(1000,()=>{s.destroy();fail(Error('OS outbound denial required'));});s.on('connect',()=>{s.destroy();fail(Error('External network available'));});s.on('error',e=>['EPERM','EACCES'].includes(e.code)?ok():fail(e));});
@@ -52,7 +52,7 @@ try{
  draining.stdin.end("begin;update public.courses set title='In-flight write committed' where slug='cutover-synthetic';select 'LOCKED';select pg_sleep(2);commit;");
  while(!drainReady){await new Promise(r=>setTimeout(r,20));if(draining.exitCode!==null)throw Error('Drain holder failed');}
  const drainStart=Date.now();
- sql("set lock_timeout='5s';set statement_timeout='30s';"+readFileSync(join(repo,'supabase/verification/course-release-278/maintenance-install.sql'),'utf8'),'baseline');
+ sql("set lock_timeout='5s';set statement_timeout='30s';"+readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-install.sql'),'utf8'),'baseline');
  assert(Date.now()-drainStart>1200,'Pause did not drain in-flight write');assert.equal(sql("select title from public.courses where slug='cutover-synthetic'",'baseline'),'In-flight write committed');
  assert.throws(()=>sql("begin;select set_config('request.jwt.claims','{\"role\":\"authenticated\"}',true);update public.courses set title='Must not save' where slug='cutover-synthetic';commit;",'baseline'),/being updated/);
  sql("update lockliel_cutover.control set paused=false",'baseline');assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",'baseline'),'true','Schema274 must stay closed even if operator opens the flag');sql("update lockliel_cutover.control set paused=true",'baseline');
@@ -72,10 +72,21 @@ try{
  if m='disconnect' then perform pg_terminate_backend(pg_backend_pid());end if;
  return new;end$$;
  create trigger release_probe before insert on supabase_migrations.schema_migrations for each row execute function rehearsal.ledger_probe();`,'baseline');
- const priorReferences=JSON.parse(readFileSync(join(repo,'supabase/verification/course-release-278/stage-reference.json')));
+ const priorReferences=JSON.parse(readFileSync(join(repo,'supabase/verification/course-release-279/stage-reference.json')));
  const references={274:catalog('baseline')};const happy=clone('happy');
- for(const stage of [275,276,277,278]){
+ for(const stage of [275,276,277,278,279]){
  const c=connection(happy);const before=catalog(happy);discovery(invokeCLI({binary,root:release,stage,connection:c,env}),stage);verifyPrepared(release);
+ if(stage===279){
+  // Bootstrap only the new canonical reference in a disposable clone using the
+  // pinned CLI. Assert every non-ledger byte differs solely by service ACL removal.
+  const db=clone('reference279',happy);
+  const applied=invokeCLI({binary,root:release,stage,connection:connection(db),env,dryRun:false});assert.equal(applied.status,0);
+  const actual=catalog(db);assertLedger(actual,279);verifyPostconditions(connection(db),env,279);
+  const intended=structuredClone(before);
+  intended.tables.find(t=>t.schema==='public'&&t.name==='lesson_private_notes').acl=intended.tables.find(t=>t.schema==='public'&&t.name==='lesson_private_notes').acl.filter(a=>!a.startsWith('service_role='));
+  intended.ledger=actual.ledger;assert.deepEqual(normalize(actual),normalize(intended),'279 caused unrelated catalog drift');
+  priorReferences[279]=actual;
+ }
  const expected=expectedTransition(before,priorReferences[stage-1],priorReferences[stage]);
  const r=executeStage({binary,root:release,stage,connection:c,env,authorized:true,expected});assert.equal(r.state,'COMMITTED');assert.equal(r.clientSucceeded,true);
  const after=inspect(c,env).catalog;assert.equal(after.ledger.length,stage);references[stage]=after;assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",happy),'true');
@@ -83,15 +94,15 @@ try{
  assert.equal(classify(before,after,after),'COMMITTED');clone('stage_'+stage,happy);
  }
  // Each migration stage failure independently leaves hosted-equivalent maintenance closed.
- for(const stage of [275,276,277,278]){
+ for(const stage of [275,276,277,278,279]){
   const db=clone('closed_failure_'+stage,stage===275?'baseline':'stage_'+(stage-1));sql("update rehearsal.control set mode='permission'",db);
   const before=catalog(db),expected=expectedTransition(before,references[stage-1],references[stage]);
   const r=executeStage({binary,root:release,stage,connection:connection(db),env,authorized:true,expected});assert.equal(r.state,'ROLLED_BACK');assert.equal(r.clientSucceeded,false);assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",db),'true');
   evidence.failures.push({mode:'stage_'+stage+'_failure',state:r.state,maintenance:'ON',operator:'STOP / INVESTIGATE'});
  }
  // Verify reference deltas preserve pre-existing production-only grants rather than replacing the catalog wholesale.
- for(const stage of [275,276,277,278])assert.deepEqual(expectedTransition(references[stage-1],references[stage-1],references[stage]),normalize(references[stage]));
- writeFileSync(join(repo,'supabase/verification/course-release-278/stage-reference.json'),JSON.stringify(references,null,2)+'\n');
+ for(const stage of [275,276,277,278,279])assert.deepEqual(expectedTransition(references[stage-1],references[stage-1],references[stage]),normalize(references[stage]));
+ writeFileSync(join(repo,'supabase/verification/course-release-279/stage-reference.json'),JSON.stringify(references,null,2)+'\n');
  for(const mode of ['sql_error','permission','statement_timeout','disconnect']){
  const db=clone('failure_'+mode);sql('update rehearsal.control set mode='+quote(mode),db);const before=catalog(db);
  const r=invokeCLI({binary,root:release,stage:275,connection:connection(db),env,dryRun:false});assert.notEqual(r.status,0,'Failure injection did not fail');const observed=catalog(db);assert.equal(classify(before,references[275],observed),'ROLLED_BACK');
@@ -104,10 +115,10 @@ try{
  const missing=clone('ledger_only');sql("alter table supabase_migrations.schema_migrations disable trigger release_probe;insert into supabase_migrations.schema_migrations values('20260929215159','synthetic',array['synthetic']);",missing);
  assert.equal(classify(references[274],references[275],catalog(missing)),'UNKNOWN_STOP');
  const objects=clone('objects_only','happy');sql("delete from supabase_migrations.schema_migrations where version>='20260929215159'",objects);
- assert.equal(classify(references[274],references[278],catalog(objects)),'UNKNOWN_STOP');
+ assert.equal(classify(references[274],references[279],catalog(objects)),'UNKNOWN_STOP');
  evidence.failures.push({mode:'ledger_only',state:'UNKNOWN_STOP'},{mode:'objects_only',state:'UNKNOWN_STOP'});
  // A failed client report is never used as proof of rollback.
- assert.equal(classify(references[277],references[278],catalog(happy)),'COMMITTED');
+ assert.equal(classify(references[278],references[279],catalog(happy)),'COMMITTED');
  evidence.failures.push({mode:'client_failure_after_commit',state:'COMMITTED'});
  // Real TCP loss after the server committed but before its result reaches the client.
  const network=clone('network_after_commit'),networkBefore=catalog(network),sockets=new Set(),timers=new Set();let cut=false;
@@ -131,13 +142,13 @@ try{
  assert.equal(classify(networkBefore,references[275],catalog(network)),'COMMITTED');evidence.failures.push({mode:'tcp_loss_after_commit',state:'COMMITTED',clientStatus:networkStatus});console.log('PASS actual TCP loss after commit: read-only verifier recognizes committed state');
  // Hook tests exercise the actual SQL guard without requiring a PostgREST binary.
  const guard=(db,path,method='POST',protocol='')=>sql(`begin;select set_config('request.path',${quote(path)},true),set_config('request.method',${quote(method)},true),set_config('request.headers',${quote(JSON.stringify({'x-lockliel-course-protocol':protocol}))},true);select lockliel_cutover.request();rollback;`,db);
- for(const stage of [274,278]){
+ for(const stage of [274,279]){
  const db=stage===274?'baseline':'happy';assert.throws(()=>guard(db,'/rpc/lockliel_sample_media'),/being updated/);assert.throws(()=>guard(db,'/lesson_progress'),/being updated/);guard(db,'/profiles');guard(db,'/rpc/lockliel_course_cutover_status');
  assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",db),'true');
  }
  sql("update lockliel_cutover.control set paused=false",happy);
  assert.throws(()=>guard(happy,'/rpc/lockliel_sample_media'),/Reload/);guard(happy,'/rpc/lockliel_sample_media','POST','278-v1');guard(happy,'/courses','GET');guard(happy,'/rpc/lockliel_course_gates');guard(happy,'/rpc/lockliel_grip_readiness');guard(happy,'/profiles');
- evidence.maintenance={inflightDrained:true,laterDirectWriteRejected:true,schema274Paused:true,schema278Paused:true,oldProtocolRejectedAfterReopen:true,newProtocolAcceptedAfterReopen:true,unrelatedProfilesRouteAllowed:true,scope:'Disposable PostgreSQL only; hosted evidence is reported separately'};
+ evidence.maintenance={inflightDrained:true,laterDirectWriteRejected:true,schema274Paused:true,schema279Paused:true,oldProtocolRejectedAfterReopen:true,newProtocolAcceptedAfterReopen:true,unrelatedProfilesRouteAllowed:true,scope:'Disposable PostgreSQL only; hosted evidence is reported separately'};
  // Two-session publication race: sampling holds publication locks until commit;
  // an unpublication that wins the lock first must cause the waiting sampler to deny.
  const fixture=JSON.parse(sql(`do $$declare u uuid:=gen_random_uuid();sid uuid:=gen_random_uuid();c uuid;l uuid;a uuid;begin
@@ -154,7 +165,7 @@ try{
  const unpublisher=await hold("update public.courses set status='draft' where id='"+fixture.course+"';");
  assert.throws(()=>sql('begin;'+sampleSQL+'commit;',happy),/not available|eligible|unavailable/i);assert.equal(await unpublisher.done,0);
  evidence.publicationConcurrency={samplingLocksPublication:true,unpublishFirstRejectsWaitingSampler:true};console.log('PASS publication concurrency in both lock orders');
- evidence.pending='Full hosted old-app/schema274 to new-app/schema278 transition requires a second disposable hosted branch; manual copy-and-close policy is approved';
- writeFileSync(join(repo,'docs/evidence/course-release-review-2026-09-30/rehearsal-278.json'),JSON.stringify(evidence,null,2)+'\n');
+ evidence.pending='Hosted schema execution and full old-app/new-app acceptance are reported separately; this proves only disposable five-stage behavior';
+ writeFileSync(join(repo,'docs/evidence/course-release-review-2026-10-01/rehearsal-279.json'),JSON.stringify(evidence,null,2)+'\n');
  console.log('Staged runner and failure rehearsal evidence saved; remaining maintenance cases explicitly pending');
 }finally{cleanup();}

@@ -1,0 +1,10 @@
+
+> lockliel-vision@0.1.0 test:sql
+> node scripts/test-sql.mjs --review-279
+
+PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.
+PASS incompatible legacy email abort and transactional constraint recovery.
+PASS original schema-274 upsert ACL defect reproduced; plain INSERT succeeds.
+PASS exact278 then279 disposable defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (actual279, absent-grant replay safe).
+PASS exact278 then279 hosted defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (actual279, absent-grant replay safe).
+Passed disposable before/after exact279 regression under both defaults.

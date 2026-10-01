@@ -4,7 +4,7 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {manifest,hashes,repo,verifyPrepared,verifyBinary} from './prepare.mjs';
 import {assertPrivateNotesPrivileges} from './private-notes-review.mjs';
-export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-278/catalog.sql'),'utf8');
+export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-279/catalog.sql'),'utf8');
 export function connectionURL({host,port=5432,database='postgres',user='postgres',ca},readonly){
  assert(['db.bsndfhbemstyrrglajat.supabase.co','db.qjksggxorghaxvpyslip.supabase.co','localhost'].includes(host),'Direct endpoint only');
  assert(ca&&ca.startsWith('/'),'Trusted CA path required');
@@ -33,11 +33,26 @@ export function verifyPostconditions(connection,env,stage){
  assert.equal(p.save_conflict_pt409,stage>=277);assert.equal(p.save_conflict_40001,stage<277);assert.equal(p.release_trigger_definer,stage>=276);if(stage>=276)assert.equal(p.release_trigger_authenticated,false);
  // Exact catalog agreement is not evidence that inherited grants are intended.
  // Fail closed even when a disposable reference shares the same excessive grants.
- assertPrivateNotesPrivileges(JSON.parse(psql(connection,readFileSync(join(repo,'supabase/verification/course-release-278/private-notes-privileges.sql'),'utf8'),{env})));
+ const gate=JSON.parse(psql(connection,'select public.lockliel_course_cutover_status();',{env}));
+ assert.equal(gate.paused,true,'Verification requires closed maintenance');
+ assertPrivateNotesPrivileges(JSON.parse(psql(connection,readFileSync(join(repo,'supabase/verification/course-release-279/private-notes-privileges.sql'),'utf8'),{env})),{stage,maintenancePaused:gate.paused});
  return p;
 }
 export function assertLedger(catalog,stage){assert.deepEqual(catalog.ledger.map(x=>x.version),Object.keys(hashes).sort().slice(0,stage).map(f=>f.slice(0,14)),'Wrong repository ledger prefix');}
 const itemKey=(k,x)=>k==='functions'?x.schema+'.'+x.name+'('+x.args+')':k==='columns'?x.table+'.'+x.column:k==='policies'?x.schemaname+'.'+x.tablename+'.'+x.policyname:k==='column_grants'?[x.table_schema,x.table_name,x.column_name,x.grantee,x.privilege_type,x.grantor].join('.'):(x.schema||'')+'.'+x.table+'.'+x.name;
+export function notesCreationACL(before){
+ assert.deepEqual(before.global_table_defaults,[],'Global table defaults require separate review');
+ assert.equal(before.table_defaults?.length,1,'Captured postgres public defaults required');
+ const d=before.table_defaults[0];assert.equal(d.schema,'public');assert.equal(d.owner,'postgres');
+ const acl=[...(d.acl||[])].sort();
+ const owner='postgres=arwdDxtm/postgres';
+ // Per-schema default ACLs are additive to built-in owner privileges and may
+ // omit the owner entry. Nonstandard global defaults were rejected above.
+ assert(!acl.some(x=>x.startsWith('postgres=')&&x!==owner),'Unexpected creator privileges');
+ const inherited=acl.filter(x=>x!==owner);
+ assert(inherited.length===0||(inherited.length===1&&['service_role=Dxtm/postgres','service_role=arwdDxt/postgres'].includes(inherited[0])),'Unreviewed default privileges');
+ return [owner,...inherited,'authenticated=r/postgres'].sort();
+}
 export function expectedTransition(before,referenceBefore,referenceAfter){
  const result=structuredClone(before);
  for(const k of Object.keys(referenceAfter)){
@@ -46,7 +61,7 @@ export function expectedTransition(before,referenceBefore,referenceAfter){
   let rows=[...(before[k]||[])];
   for(const [key,was] of old){if(!next.has(key))rows=rows.filter(x=>itemKey(k,x)!==key);else{const after=next.get(key);if(JSON.stringify(was)!==JSON.stringify(after)){
    const i=rows.findIndex(x=>itemKey(k,x)===key);assert(i>=0,'Expected prior object missing: '+key);const changed={...rows[i]};for(const field of Object.keys(after))if(JSON.stringify(was[field])!==JSON.stringify(after[field]))changed[field]=after[field];rows[i]=changed;}}}
-  for(const [key,item] of next)if(!old.has(key)){assert(!rows.some(x=>itemKey(k,x)===key),'Object collision: '+key);rows.push(item);}
+  for(const [key,item] of next)if(!old.has(key)){assert(!rows.some(x=>itemKey(k,x)===key),'Object collision: '+key);rows.push(k==='tables'&&item.schema==='public'&&item.name==='lesson_private_notes'?{...item,acl:notesCreationACL(before)}:item);}
   result[k]=rows;
  }
  return normalize(result);
@@ -58,7 +73,7 @@ export function classify(before,expected,observed){
  return 'UNKNOWN_STOP';
 }
 export function invokeCLI({binary,root,stage,connection,env,dryRun=true}){
- verifyBinary(binary);verifyPrepared(root);assert([275,276,277,278].includes(stage));
+ verifyBinary(binary);verifyPrepared(root);assert([275,276,277,278,279].includes(stage));
  return spawnSync(binary,['db','push','--workdir',join(root,String(stage)),'--db-url',connectionURL(connection,dryRun),'--skip-vault','--yes','--output-format','json',...(dryRun?['--dry-run']:[])],{env,encoding:'utf8',timeout:60000});
 }
 export function discovery(result,stage){assert(!result.error&&result.status===0,'CLI dry-run failed');const raw=JSON.parse(result.stdout.trim()),d=raw.data||raw;

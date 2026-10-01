@@ -1,5 +1,9 @@
 # Four-stage course release package
 
+> Superseded local correction: see `course-migration-279-correction-2026-10-01.md`
+> and `course-release-279-runbook.md`. Hosted branch remains275/maintenance ON
+> because automatic approval review rejected the first advance command.
+
 > STOP (2026-10-01): private-notes privilege review requires correction.
 > The new semantic verifier rejects inherited service grants in both hosted and
 > disposable275. Read `course-migration-275-security-review-2026-10-01.md`.

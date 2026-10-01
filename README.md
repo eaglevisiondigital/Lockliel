@@ -27,6 +27,14 @@ transactions. The fixture demonstrates excessive inherited service privileges an
 proves the learner RPC works after a **test-only** revocation. It is not an applied
 fix, does not advance any hosted branch, and accepts no connection parameters.
 
+The corrective regression profile is `npm run test:sql -- --review-279`. It preserves
+the old274 upsert reproduction, applies275–278 in order inside disposable
+transactions, demonstrates inherited service-role TRUNCATE, then applies the exact279
+file and requires denial and working learner/RPC access. Both default-ACL profiles
+are covered. The full `npm run test:sql` now replays279 and includes the post279
+private-notes privilege test. See `docs/course-release-279-runbook.md` for the pinned
+five-stage package and remaining hosted approval boundary.
+
 `npm test` builds with Webpack, then runs every Node test with network protection.
 `npm run test:unit` reuses an existing `out/` build. `npm run validate` combines
 these supported checks except repository-wide lint, whose existing debt remains

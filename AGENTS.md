@@ -1,5 +1,28 @@
 # Lockliel engineering instructions
 
+## Migration279 correction locally ready; hosted execution approval blocked (2026-10-01)
+
+Read `docs/course-migration-279-correction-2026-10-01.md` and the new
+`docs/course-release-279-runbook.md`. Approved279 is
+20261001133500_lockliel_private_notes_service_privileges.sql, source a2254aaa,
+SHA256 5fbcf6d942583ea2e79cb2ae356f6ee712314fe749fb97130e9a21e962c10f71.
+It revokes all eight unnecessary service_role table privileges on notes only.
+Historical1–278 bytes remain intact. The active release manifest/package is279.
+
+Local564JS,279 replay,16SQL, build/type/Netlify/lint/audit and disposable pinned
+five-stage/failure/TLS rehearsal pass. Exact default-ACL derivation replaces the
+incorrect universal service grant assumption. Known intermediate grants may remain
+only in closed275–278 stages; final279 requires zero service table/column privileges.
+Read-only independent275 classification passed with correction still pending.
+
+Automatic approval review rejected the first hosted276 command as ambiguous
+advance authorization. It did not execute. qjksggxorghaxvpyslip remains275,
+maintenance ON; request explicit276→277→278→279 isolated execution confirmation.
+Do not replay275 or bypass the rejection. The existing hosted readiness function
+still targets278; a reviewed update is needed before later candidate/reopen work.
+No hosted correction, push, merge, deployment, production action or cleanup occurred.
+Both isolated environments remain retained; production274/main1599ab2/sites preserved.
+
 ## Migration275 security review requires correction (2026-10-01)
 
 Read `docs/course-migration-275-security-review-2026-10-01.md`. Direct isolated

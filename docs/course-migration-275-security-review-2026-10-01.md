@@ -1,5 +1,9 @@
 # Migration 275 stop review
 
+> Superseded local correction: see `course-migration-279-correction-2026-10-01.md`
+> and `course-release-279-runbook.md`. Hosted branch remains275/maintenance ON
+> because automatic approval review rejected the first advance command.
+
 **MIGRATION 275 REVIEW REQUIRES CORRECTION**
 
 The missing service_role SELECT/INSERT/UPDATE/DELETE grants are not an application
