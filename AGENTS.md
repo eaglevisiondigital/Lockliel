@@ -1,5 +1,17 @@
 # Lockliel engineering instructions
 
+## Paused candidate deployment held for exact-source correction (2026-10-01)
+
+Read `docs/course-paused-candidate-source-review-2026-10-01.md`. The new assignment
+names exact3a7b7b9, which hardcodes production and lacks the isolated binding added
+in0cfcf405. Do not silently substitute current reviewed4204249. Source confirmation
+is pending; no deployment or browser acceptance occurred. PR4 remains draft/open
+at3a7b7b9 and both CI runs pass. All279 current hashes match. Fresh isolated checks
+confirm279, paused=true, protocol278-v1, schemaReady=true. Existing isolated deploy
+6abd778184898338b60d32b2 is retained. No production action, push, migration or reopen.
+A future exact-source authorization supersedes this hold; it does not authorize
+weakening maintenance to display unavailable live course state.
+
 ## Isolated279 readiness verified; still closed (2026-10-01)
 
 Read `docs/course-isolated-279-readiness-2026-10-01.md`. The separately authorized
