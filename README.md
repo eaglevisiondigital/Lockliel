@@ -7,8 +7,10 @@ PostgreSQL17 cluster, then runs17 SQL/RLS files, all8 duration cases, strict not
 privileges and operational280 readiness tests. Historical279 bytes are unchanged.
 The earlier proposal overlay is no longer executed by the full suite. Production-like
 and restricted default-ACL profiles still reject excessive actual notes privileges.
-The six-stage CLI rehearsal covers275–280. Local checks pass; hosted280 remains
-unapplied because the direct IPv6 path is unavailable. See
+The six-stage CLI rehearsal covers275–280. Local checks pass. Hosted280 is now applied only on the isolated project, with
+maintenance ON and readiness280/protocol278-v1 verified. Full positive hosted regression
+remains incomplete because maintenance blocks sampling and saves. See
+`docs/hosted-duration-280-2026-10-01.md`,
 `docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.
 
 The supported application is Next.js static export (`out/`) with Netlify functions

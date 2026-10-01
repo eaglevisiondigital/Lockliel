@@ -1,5 +1,23 @@
 # Lockliel engineering instructions
 
+## Isolated280 applied, maintenance ON, full regression incomplete (2026-10-01)
+
+Read `docs/hosted-duration-280-2026-10-01.md`. Exact280 from bd6534a committed once on
+qjksggxorghaxvpyslip after direct IPv6/TLS verify-full/authentication and279 preflight.
+Actual initial maintenance was OFF, despite the handoff; it was closed before migration.
+Final280 catalog/ledger/security and temporary readiness pass: paused=true,
+schemaReady=true, protocol278-v1. DO NOT replay275–280. Service notes privileges remain0.
+
+The resume instruction prohibits ALL maintenance disabling, superseding the earlier
+transaction-local test-opening proposal. Maintenance stayed ON even inside fixtures.
+Synthetic rolled-back predicates, stale-credit completion RPC rejection, preserved
+completion, seeded94/95 and A/B checks pass. Positive note edits/sampling returnPT503;
+real playback, seek-specific behavior and complete8-case hosted acceptance remain
+INCOMPLETE. Do not call this a full hosted regression pass. No application change,
+push, deployment, production access/change or settings/Auth/SMTP/PITR/compute action.
+Next needs a separately authorized isolated positive acceptance window. Keep maintenance
+ON and both environments retained. Earlier unapplied280/network-blocked status is history.
+
 ## Authoritative trusted-duration280, hosted regression network-blocked (2026-10-01)
 
 Read `docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.

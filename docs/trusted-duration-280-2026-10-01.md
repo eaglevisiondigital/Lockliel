@@ -1,5 +1,10 @@
 # Trusted-duration correction, 2026-10-01
 
+**Superseding hosted result:** the authorized resume applied280 once on the isolated
+project and verified readiness280/protocol278-v1 with maintenance ON. Full positive
+regression is still incomplete. Read [hosted result](hosted-duration-280-2026-10-01.md).
+The network-blocked/unapplied state below is retained historical evidence.
+
 **Local authoritative package PASS. Hosted regression BLOCKED by the Mac's direct IPv6 path.**
 
 ## Completed and decision

@@ -1,5 +1,17 @@
 # Lockliel decisions and open questions
 
+## Hosted280 execution boundary (2026-10-01)
+
+Exact280 is now applied only on qjksggxorghaxvpyslip; final ledger/catalog/private-note
+security and temporary readiness pass, with paused=true/schemaReady=true/protocol278-v1.
+Maintenance was initially OFF and was closed before migration; it was never reopened.
+No application/protocol change. The new explicit prohibition on disabling maintenance
+also excludes the prior transaction-local opening proposal. Positive authenticated
+note saves and media samples correctly receivePT503, so full hosted acceptance remains
+incomplete despite passing paused predicates/security checks. Do not replay280 or call
+real94/95 playback passed. Read `docs/hosted-duration-280-2026-10-01.md`. Production was
+not accessed or changed. A new scoped isolated positive-acceptance authorization is needed.
+
 ## Approved trusted-duration promotion and local implementation (2026-10-01)
 
 The explicit assignment approves authoritative migration280 and release-set275–280,

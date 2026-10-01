@@ -1,5 +1,12 @@
 # Six-stage course release package280
 
+**HOSTED UPDATE:** exact280 is already committed on qjksggxorghaxvpyslip. Final
+readiness280/protocol278-v1 is verified, maintenance ON. Do not replay280. The latest
+resume prohibits disabling maintenance even inside a rollback-only test transaction,
+superseding step6 below. Full positive hosted acceptance is still incomplete; read
+[hosted result](hosted-duration-280-2026-10-01.md). The preparation sequence below is
+historical, not authorization to repeat completed steps or open maintenance.
+
 Status: local replay and staged CLI PASS; hosted280 NOT executed. This runbook is
 preparation, not production authorization. Supersedes the historical279 release package.
 Read [current evidence](trusted-duration-280-2026-10-01.md) first.
