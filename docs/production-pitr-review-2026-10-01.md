@@ -1,5 +1,16 @@
 # Production PITR configuration review, 2026-10-01
 
+## Recovery configuration completed, 2026-10-01
+
+The later explicit Small-compute/PITR approval was executed and verified. See
+`production-pitr-enabled-2026-10-01.md`: production now uses Small with seven-day PITR,
+ACTIVE_HEALTHY, unchanged version/region and 274 migrations. Dashboard UTC window
+was 2026-09-24 21:06:12 through 2026-10-01 19:11:17. This supersedes the OFF/Micro
+blocker below, not the separate release gates. No restore, migration or deploy occurred.
+RPO <= 2 minutes and planned course maintenance <= 30 minutes are targets. Before
+cutover recheck the usable pre-cutover point, Owner/MFA/restore rights, independent
+Storage protection, provider stability and the remaining application/security gates.
+
 **LOCKLIEL PITR NOT ENABLED / REQUIRES ACTION**
 
 ## Scope and result

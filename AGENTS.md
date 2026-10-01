@@ -1,5 +1,20 @@
 # Lockliel engineering instructions
 
+## Small compute and seven-day PITR enabled (2026-10-01)
+
+Dave explicitly approved Small compute and seven-day PITR after the quoted costs.
+Production bsndfhbemstyrrglajat was resized Micro to Small and then PITR was enabled.
+Dashboard readback: seven-day retention, UTC recovery availability from
+2026-09-24 21:06:12 to 2026-10-01 19:11:17. Project remains ACTIVE_HEALTHY,
+PostgreSQL 17.6.1.166/us-east-1, 274 migrations; before/after aggregate counts match.
+Read `docs/production-pitr-enabled-2026-10-01.md`. Only the approved compute/backup
+settings changed. No restore, migration, content/member write, Auth/SMTP/RLS change,
+maintenance toggle, push, merge or deployment occurred. This supersedes the earlier
+Micro/PITR-OFF blocker. RPO <= 2 minutes and planned maintenance <= 30 minutes remain
+targets, not verified recovery guarantees. Require a fresh pre-cutover recovery point,
+Owner/MFA/restore capability, Storage protection and all other release gates. Eastern
+US provider incident remains open; no migration or application release follows.
+
 ## Seven-day PITR approved, enablement blocked by compute prerequisite (2026-10-01)
 
 Read `docs/production-pitr-review-2026-10-01.md`. Approved policy is 7-day PITR,
