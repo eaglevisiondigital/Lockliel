@@ -6,7 +6,8 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 
-if (process.argv.length !== 2) throw new Error('SQL tests accept no connection arguments.');
+const review275 = process.argv.length === 3 && process.argv[2] === '--review-275';
+if (process.argv.length !== 2 && !review275) throw new Error('SQL tests accept only the fixed --review-275 profile, never connection arguments.');
 const repo = fileURLToPath(new URL('../', import.meta.url));
 // Do not inherit PGHOST, PGSERVICE, PGOPTIONS, DATABASE_URL, secrets or shell startup files.
 const env = { PATH: process.env.PATH, LANG: 'C', LC_ALL: 'C' };
@@ -102,7 +103,7 @@ try {
     console.log('PASS incompatible legacy email abort and transactional constraint recovery.');
   }
   const migrations = readdirSync(join(repo, 'supabase/migrations')).filter(f => f.endsWith('.sql')).sort();
-  for (const file of migrations) {
+  for (const file of review275 ? migrations.slice(0, 274) : migrations) {
     if (file === '20260926212002_lockliel_correct_profile_email_pattern.sql') {
       verifyReconciliation();
       verifyEmailRecovery(readFileSync(join(repo, 'supabase/migrations', file), 'utf8'));
@@ -111,6 +112,22 @@ try {
     catch (error) { throw new Error(`Migration replay failed at ${file}: ${error.message}`); }
 
   }
+  if (review275) {
+    const reviewDir = join(repo, 'tests/fixtures/course-275-review');
+    sql('begin;\n' + readFileSync(join(reviewDir, 'old-upsert.sql'), 'utf8') + '\nrollback;');
+    console.log('PASS original schema-274 upsert ACL defect reproduced; plain INSERT succeeds.');
+    const migration = migrations[274];
+    assert.equal(migration, '20260929215159_lockliel_course_engine_standard.sql');
+    for (const profile of ['disposable', 'hosted']) {
+      // Test-only default ACL simulation, rolled back with the migration and fixtures.
+      // Never changes a real branch or the authoritative migration bytes.
+      const defaults = profile === 'hosted' ? `alter default privileges for role postgres in schema public revoke all on tables from service_role;
+        alter default privileges for role postgres in schema public grant truncate,references,trigger,maintain on tables to service_role;` : '';
+      sql('begin;\n' + defaults + '\n' + readFileSync(join(repo, 'supabase/migrations', migration), 'utf8') + '\n' + readFileSync(join(reviewDir, 'notes.sql'), 'utf8') + '\nrollback;');
+      console.log(`PASS exact275 ${profile} defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (test-only revocation).`);
+    }
+    console.log('Passed focused 274/275 review; no CLI release rehearsal or later migrations.');
+  } else {
   console.log(`Replayed ${migrations.length} authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).`);
   const tests = readdirSync(join(repo, 'supabase/tests')).filter(f => f.endsWith('.sql')).sort();
   for (const file of tests) {
@@ -119,4 +136,5 @@ try {
     console.log(`PASS ${file} (rolled back)`);
   }
   console.log(`Passed ${tests.length} SQL test files.`);
+  }
 } finally { cleanup(); }

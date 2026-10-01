@@ -1,5 +1,9 @@
 # Full hosted cutover rehearsal: stopped after 275
 
+> Follow-up: `course-migration-275-security-review-2026-10-01.md` found unused
+> inherited service-role privileges and requires a separately approved correction.
+> The earlier semantic checks omitted these privileges. Maintenance remains ON.
+
 Assessment: **FULL HOSTED COURSE CUTOVER REHEARSAL FAILED**.
 
 This report supersedes the network/auth blocker in

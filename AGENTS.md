@@ -1,5 +1,27 @@
 # Lockliel engineering instructions
 
+## Migration275 security review requires correction (2026-10-01)
+
+Read `docs/course-migration-275-security-review-2026-10-01.md`. Direct isolated
+IPv6/verify-full read-only inspection reconfirmed275 and maintenance ON. Missing
+service_role CRUD grants are not required by the learner-token/postgres-owned RPC.
+However, hosted notes inherit unused Dxtm grants; exact275 disposable tests proved
+service_role TRUNCATE bypasses row policies. No hosted grants were changed.
+
+The semantic verifier now rejects excessive service/PUBLIC/column privileges,
+including both hosted Dxtm and disposable broad defaults. Catalog mismatch remains
+UNKNOWN_STOP; do not normalize it away. A new narrow corrective migration removing
+unused notes service grants is PROPOSED, not created/approved/applied. Historical278
+migration hashes are unchanged. Focused JS/SQL tests prove the intended RPC works
+with zero service table grants after test-only revocation. Read-only final catalog
+matches the start. Old schema274 autosave403 is independently reproduced as an
+identity-column UPDATE ACL conflict, not a275 regression. Old retry UX still fails.
+
+Keep qjksggxorghaxvpyslip at275/maintenance ON. No replay275,276–278, deploy/reopen,
+push, production change or cleanup. Preserve both isolated environments. Before
+continuing, Primary Chat must approve correction scope and revised release ordering/
+maintenance readiness. Earlier semantic-pass statements are superseded by this gate.
+
 ## Hosted cutover stopped at applied 275 (2026-09-30)
 
 Read `docs/course-hosted-275-stop-2026-09-30.md`. Hotspot direct IPv6/TLS verify-full

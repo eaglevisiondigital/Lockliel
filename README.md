@@ -19,6 +19,14 @@ npm run test:sql
 npm run lint
 ```
 
+For the fixed migration-275 security investigation only, run
+`npm run test:sql -- --review-275`. It creates the same socket-only disposable
+PostgreSQL 17 cluster, replays 274, reproduces the original upsert failure, then
+tests exact 275 under disposable and hosted default grants in rolled-back
+transactions. The fixture demonstrates excessive inherited service privileges and
+proves the learner RPC works after a **test-only** revocation. It is not an applied
+fix, does not advance any hosted branch, and accepts no connection parameters.
+
 `npm test` builds with Webpack, then runs every Node test with network protection.
 `npm run test:unit` reuses an existing `out/` build. `npm run validate` combines
 these supported checks except repository-wide lint, whose existing debt remains

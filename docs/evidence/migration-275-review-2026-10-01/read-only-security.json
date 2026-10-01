@@ -1,0 +1,1793 @@
+{
+  "connection": {
+    "ssl": true,
+    "tls": "TLSv1.3",
+    "lock": "5s",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "server": "17.11",
+    "database": "postgres",
+    "readonly": "on",
+    "statement": "30s"
+  },
+  "ledgerCount": 275,
+  "migration275": {
+    "name": "lockliel_course_engine_standard",
+    "version": "20260929215159",
+    "statements_md5": "d56b3807477b2b284c0e36b2d80e7548"
+  },
+  "migration275Sha256": "2e03aa8a8346f46e09e701fbb96c29ac8cb11404100fe51c1cdedebdc6ab35f1",
+  "security": {
+    "roles": [
+      {
+        "name": "authenticated",
+        "bypassrls": false,
+        "superuser": false
+      },
+      {
+        "name": "anon",
+        "bypassrls": false,
+        "superuser": false
+      },
+      {
+        "name": "service_role",
+        "bypassrls": true,
+        "superuser": false
+      },
+      {
+        "name": "postgres",
+        "bypassrls": true,
+        "superuser": false
+      }
+    ],
+    "tables": [
+      {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=Dxtm/postgres",
+          "authenticated=r/postgres"
+        ],
+        "rls": true,
+        "name": "lesson_private_notes",
+        "force": false,
+        "owner": "postgres"
+      },
+      {
+        "acl": [
+          "postgres=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "app_private.course_answer_keys",
+        "force": false,
+        "owner": "postgres"
+      }
+    ],
+    "columns": [
+      {
+        "acl": null,
+        "table": "lesson_private_notes",
+        "column": "profile_id"
+      },
+      {
+        "acl": null,
+        "table": "lesson_private_notes",
+        "column": "lesson_id"
+      },
+      {
+        "acl": null,
+        "table": "lesson_private_notes",
+        "column": "body"
+      },
+      {
+        "acl": null,
+        "table": "lesson_private_notes",
+        "column": "updated_at"
+      },
+      {
+        "acl": null,
+        "table": "app_private.course_answer_keys",
+        "column": "lesson_id"
+      },
+      {
+        "acl": null,
+        "table": "app_private.course_answer_keys",
+        "column": "configuration_version"
+      },
+      {
+        "acl": null,
+        "table": "app_private.course_answer_keys",
+        "column": "answers"
+      }
+    ],
+    "defaults": [
+      {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "anon=arwdDxtm/postgres",
+          "authenticated=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "type": "r",
+        "owner": "postgres",
+        "schema": "storage"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "type": "f",
+        "owner": "postgres",
+        "schema": "storage"
+      },
+      {
+        "acl": [
+          "postgres=rwU/postgres",
+          "anon=rwU/postgres",
+          "authenticated=rwU/postgres",
+          "service_role=rwU/postgres"
+        ],
+        "type": "S",
+        "owner": "postgres",
+        "schema": "storage"
+      },
+      {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=Dxtm/postgres"
+        ],
+        "type": "r",
+        "owner": "postgres",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "postgres=rwU/postgres"
+        ],
+        "type": "S",
+        "owner": "postgres",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres"
+        ],
+        "type": "f",
+        "owner": "postgres",
+        "schema": "public"
+      }
+    ],
+    "functions": [
+      {
+        "acl": [
+          "postgres=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "app_private.course_lesson_unlocked(uuid,uuid)",
+        "anon_execute": false,
+        "definition_md5": "4ee41fbb39e108322c0ae7fd9b7104bc",
+        "service_execute": false,
+        "authenticated_execute": false
+      },
+      {
+        "acl": [
+          "postgres=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "app_private.course_watch_met(uuid,uuid)",
+        "anon_execute": false,
+        "definition_md5": "e27d583485b82a70712915f4d1a93d2a",
+        "service_execute": false,
+        "authenticated_execute": false
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "app_private.current_session_is_active()",
+        "anon_execute": false,
+        "definition_md5": "3637d79b4a93e044b8bd7f3c3e1d454b",
+        "service_execute": true,
+        "authenticated_execute": true
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "lockliel_course_gates()",
+        "anon_execute": false,
+        "definition_md5": "f9220d0f0d325909c82b56c49b4c43b1",
+        "service_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "lockliel_sample_media(uuid,uuid,numeric,boolean)",
+        "anon_execute": false,
+        "definition_md5": "5eb8b534b815fa0cb44c3468e697ead4",
+        "service_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "lockliel_save_lesson(uuid,uuid,bigint,jsonb,text,boolean)",
+        "anon_execute": false,
+        "definition_md5": "c33b189dadc52ef557aa514bce37c354",
+        "service_execute": false,
+        "authenticated_execute": true
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "signature": "lockliel_cutover.request()",
+        "anon_execute": true,
+        "definition_md5": "5384e542a86090bc95f6090b06218086",
+        "service_execute": true,
+        "authenticated_execute": true
+      }
+    ],
+    "maintenance": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": false
+    },
+    "public_grants": [],
+    "identity_update": {
+      "lesson_update": false,
+      "answers_update": true,
+      "profile_update": false
+    },
+    "effective_table_privileges": [
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "trigger": false,
+        "maintain": false,
+        "truncate": false,
+        "references": false
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "trigger": false,
+        "maintain": false,
+        "truncate": false,
+        "references": false
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "trigger": true,
+        "maintain": true,
+        "truncate": true,
+        "references": true
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "trigger": false,
+        "maintain": false,
+        "truncate": false,
+        "references": false
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "trigger": false,
+        "maintain": false,
+        "truncate": false,
+        "references": false
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "trigger": false,
+        "maintain": false,
+        "truncate": false,
+        "references": false
+      }
+    ]
+  },
+  "policies": [
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "course_enrollments",
+      "permissive": "PERMISSIVE",
+      "policyname": "enrollments_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'published'::text) AND app_private.can_read_course(id, translation_key)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "courses",
+      "permissive": "PERMISSIVE",
+      "policyname": "courses_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "courses",
+      "permissive": "PERMISSIVE",
+      "policyname": "courses_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "courses",
+      "permissive": "RESTRICTIVE",
+      "policyname": "cutover_read_guard",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "RESTRICTIVE",
+      "policyname": "cutover_read_guard",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'active'::text) AND (EXISTS ( SELECT 1\n   FROM (((lessons content_lesson\n     JOIN courses content_course ON ((content_course.id = content_lesson.course_id)))\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_lesson.id = lesson_assets.lesson_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key))))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_staff_insert",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) AND app_private.current_session_is_active())",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_private_notes",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_private_notes_owner",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "cutover_read_guard",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_lesson_insert",
+      "schemaname": "public",
+      "with_check": "(EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (c.learning_rules = '{}'::jsonb))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (c.learning_rules = '{}'::jsonb))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_lesson_update",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_self_insert",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_self_update",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "RESTRICTIVE",
+      "policyname": "cutover_read_guard",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR (EXISTS ( SELECT 1\n   FROM ((courses content_course\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_course.id = lessons.course_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_staff_insert",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "cutover_read_guard",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_media_insert",
+      "schemaname": "public",
+      "with_check": "(EXISTS ( SELECT 1\n   FROM ((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (c.learning_rules = '{}'::jsonb) AND (NOT (EXISTS ( SELECT 1\n           FROM courses family\n          WHERE ((family.translation_key = c.translation_key) AND (family.learning_rules <> '{}'::jsonb))))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM ((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (c.learning_rules = '{}'::jsonb) AND (NOT (EXISTS ( SELECT 1\n           FROM courses family\n          WHERE ((family.translation_key = c.translation_key) AND (family.learning_rules <> '{}'::jsonb))))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_media_update",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_self_insert",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_self_update",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+    }
+  ],
+  "columns": [
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "description",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "description",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "language_code",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "language_code",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "learning_rules",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verified_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "updated_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "body",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "updated_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "completed_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "content_snapshot",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_activity_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "review_approved_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "revision",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "started_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watch_requirement_met_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "configuration_version",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "course_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "course_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "asset_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "asset_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "completed_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "first_started_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_activity_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_sample_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_sample_position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "sample_session",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "finalSecurityResult": "Private notes least-privilege mismatch: public.lesson_private_notes:service_role:TRUNCATE, public.lesson_private_notes:service_role:REFERENCES, public.lesson_private_notes:service_role:TRIGGER, public.lesson_private_notes:service_role:MAINTAIN",
+  "catalogUnchanged": true
+}

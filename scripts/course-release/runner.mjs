@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {manifest,hashes,repo,verifyPrepared,verifyBinary} from './prepare.mjs';
+import {assertPrivateNotesPrivileges} from './private-notes-review.mjs';
 export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-278/catalog.sql'),'utf8');
 export function connectionURL({host,port=5432,database='postgres',user='postgres',ca},readonly){
  assert(['db.bsndfhbemstyrrglajat.supabase.co','db.qjksggxorghaxvpyslip.supabase.co','localhost'].includes(host),'Direct endpoint only');
@@ -30,6 +31,9 @@ export function verifyPostconditions(connection,env,stage){
  for(const k of ['notes_rls','keys_rls','notes_authenticated_select','save_authenticated'])assert.equal(p[k],true,k);
  for(const k of ['notes_authenticated_write','notes_anon_any','keys_authenticated_any','keys_anon_any','save_anon'])assert.equal(p[k],false,k);
  assert.equal(p.save_conflict_pt409,stage>=277);assert.equal(p.save_conflict_40001,stage<277);assert.equal(p.release_trigger_definer,stage>=276);if(stage>=276)assert.equal(p.release_trigger_authenticated,false);
+ // Exact catalog agreement is not evidence that inherited grants are intended.
+ // Fail closed even when a disposable reference shares the same excessive grants.
+ assertPrivateNotesPrivileges(JSON.parse(psql(connection,readFileSync(join(repo,'supabase/verification/course-release-278/private-notes-privileges.sql'),'utf8'),{env})));
  return p;
 }
 export function assertLedger(catalog,stage){assert.deepEqual(catalog.ledger.map(x=>x.version),Object.keys(hashes).sort().slice(0,stage).map(f=>f.slice(0,14)),'Wrong repository ledger prefix');}

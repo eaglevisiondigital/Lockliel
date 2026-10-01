@@ -1,0 +1,44 @@
+✔ cutover gate fails closed on missing state, network error and protocol mismatch (4.066791ms)
+✔ stale clients get explicit reload response; protocol is compatibility, not authentication (1.008208ms)
+✔ maintenance and old client deny before lesson loader or write transport (0.594ms)
+✔ course_maintenance retains private draft, blocks retry and restores it on reload (0.634166ms)
+✔ course_reload_required retains private draft, blocks retry and restores it on reload (0.169292ms)
+✔ maintenance with unavailable local storage tells learner to copy draft (0.230125ms)
+✔ worksheet required and optional questions remain separate (1.854ms)
+✔ 95% trusted gate unlocks next lesson independently of worksheet (0.366792ms)
+✔ configured course without server gates fails closed (0.081834ms)
+✔ continue chooses first incomplete unlocked lesson (0.07825ms)
+✔ cloud success is required for Saved and local draft is immediate (0.561292ms)
+✔ failed cloud save retains draft and retries without false success (0.244791ms)
+✔ reload restores only same account and same cloud revision draft (0.154083ms)
+✔ new cloud revision wins over stale local draft (0.115792ms)
+✔ revision conflicts block retry and preserve edits (0.152458ms)
+✔ delayed A response cannot restore state after account invalidation (0.211667ms)
+✔ inflight save does not discard a later edit (0.249166ms)
+✔ storage failure is visible and cloud saving still works (0.202042ms)
+✔ export excludes identifiers and notes unless explicitly requested (0.220042ms)
+✔ save handler derives RPC identity and never uses forbidden REST conflict update (2.938167ms)
+✔ save handler refuses another expected identity before transport (0.317375ms)
+✔ save handler maps CAS conflict without leaking database diagnostics (0.449083ms)
+✔ save handler rejects script objects, oversized notes and malformed revisions (0.747625ms)
+✔ conflict draft survives closing and reopening without overwriting cloud (0.107166ms)
+✔ completed lessons restore unsynced notes without changing completed answers (0.0715ms)
+✔ offline state says draft saved without claiming a cloud save (0.056791ms)
+✔ unauthenticated handlers deny reads and exports before loading data (0.136208ms)
+✔ media handler forwards position samples only, ignores forged percentage and intervals (1.229542ms)
+✔ save handler reports non-retryable hosted CAS conflict honestly (0.506667ms)
+✔ explicit conflict recovery preserves draft while restoring editable cloud work (0.316792ms)
+✔ private notes require owner-scoped SELECT only; controlled RPC needs no service table privilege (1.061666ms)
+✔ hosted Dxtm and disposable broad service defaults are rejected, not accepted as intended access (1.1565ms)
+✔ anonymous, member writes, grading-key service grants, PUBLIC and missing evidence fail closed (4.026292ms)
+✔ captured hosted275 mismatch remains UNKNOWN_STOP; reference defaults do not authorize broader grants (33.635833ms)
+✔ isolated binding requires exact trusted site, context and backend without weakening ordinary previews (3.142417ms)
+✔ staged rehearsal accepts only its exact direct branch endpoint with verify-full safeguards (0.931833ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.237542

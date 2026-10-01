@@ -1,5 +1,10 @@
 # Four-stage course release package
 
+> STOP (2026-10-01): private-notes privilege review requires correction.
+> The new semantic verifier rejects inherited service grants in both hosted and
+> disposable275. Read `course-migration-275-security-review-2026-10-01.md`.
+> Keep isolated275/maintenance ON; do not execute this release runbook.
+
 LOCAL/DISPOSABLE preparation. This document is not production execution permission.
 Production is 274. Read the current transition report and all FAIL/UNKNOWN gates
 before any future execution. Do not use the historical 274-release runner.
