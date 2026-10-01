@@ -1,5 +1,23 @@
 # Lockliel engineering instructions
 
+## Final readiness resumed: production ACL verifier stop (2026-10-01)
+
+Read `docs/final-production-readiness-resumed-2026-10-01.md` and the companion
+operator sequence and duration inventory. PR4/eaff3fe and exact CI remain verified.
+All13 YouTube publisher durations are now collected; production values remain NULL.
+Production274 uses service_role=arwdDxtm defaults, which BOTH current expectation and
+intermediate semantic verifiers reject. Do not apply275 or normalize away MAINTAIN.
+Separate local verifier review/rehearsal is needed; all279 migration bytes stay intact.
+No code fix,production SQL/settings change,push,merge,deploy or activation occurred.
+Owner/MFA,two factors,Small and7-day PITR are visible. Latest recovery bound19:15:17UTC;
+no future cutover point or direct authenticated session is verified. Direct IPv6/TLS
+passes but libpq lacked a supplied password. Provider incident remains identified/
+unresolved after20:23UTC mitigation update. Production remains274/main1599ab2,
+Netlify6abbb27a1cdd6d00081b0e8e and Sites25. The strict missing-duration rule has an
+already-earned watch-credit exception; do not claim universal blocking. Step8 complete
+provenance needs an approved ordering adjustment because275 adds its field. Maintenance
+and rollback plans are not executed PASS results. Read-only evidence stays local.
+
 ## Validated candidate checkpoint consumed (2026-10-01)
 
 Read `docs/course-final-candidate-checkpoint-2026-10-01.md`. The authorized single

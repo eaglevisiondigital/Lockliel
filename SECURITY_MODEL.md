@@ -1,5 +1,17 @@
 # Lockliel security model
 
+## Production default ACL mismatch found before release (2026-10-01)
+
+Fresh read-only production catalog has postgres/public service_role=arwdDxtm defaults.
+Both notesCreationACL and intermediate notes semantic verification reject this profile.
+Keep that stop; require separate exact-profile local review/rehearsal, not production
+permission changes or ignored MAINTAIN. Final279 must still remove all service-role
+notes access. Current production274 has neither new notes nor grading-key tables.
+Public RLS and targeted function owners/ACLs/search_path match the inspected baseline.
+Owner MFA is enabled; leaked-password protection is still OFF. Direct TLS works but
+authentication/startup safeguards are unverified. Read
+`docs/final-production-readiness-resumed-2026-10-01.md`; no release is authorized.
+
 ## Candidate checkpoint security evidence (2026-10-01)
 
 Exact PR4 preview at eaff3fe passes36 production-backend denials and16 static checks.

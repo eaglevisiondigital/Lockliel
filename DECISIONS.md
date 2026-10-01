@@ -1,5 +1,15 @@
 # Lockliel decisions and open questions
 
+## Resumed review: decisions and implementation gaps remain (2026-10-01)
+
+Read `docs/final-production-readiness-resumed-2026-10-01.md`. The review collected all13
+provider-published durations without writes and verified Owner/MFA/Small/PITR. It did
+not approve production duration population,Auth remediation or release. A local verifier
+package must account for captured arwdDxtm defaults while preserving fail-closed checks.
+Chat must resolve the step8 provenance ordering and the blanket missing-duration rule
+versus already-earned watch history. Existing manual close-all-old-tabs policy remains.
+Provider incident is still unresolved. No production migration/merge/deploy follows.
+
 ## Controlled candidate checkpoint completed (2026-10-01)
 
 Dave authorized one normal development push of the already-validated candidate.

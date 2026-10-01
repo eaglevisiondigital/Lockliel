@@ -1,5 +1,15 @@
 # Lockliel architecture
 
+## Final release sequencing remains blocked (2026-10-01)
+
+PR4/eaff3fe now contains the validated21ac4a5 application, but production remains274.
+Fresh review found unsupported production arwdDxtm defaults in the stage verifier.
+Complete trusted-duration provenance requires the new275 field; the proposed ordering
+is approve inventory before cutover, populate after verified279 while paused, subject
+to explicit approval. Existing earned-watch history also limits unconditional missing-
+duration blocking. No application or migration changed. Read
+`docs/final-production-readiness-resumed-2026-10-01.md`.
+
 ## Final candidate now available on PR4 (2026-10-01)
 
 Development remote/PR4 now points to eaff3fe, containing application21ac4a5 and the

@@ -1,0 +1,68 @@
+{
+  "reviewed_remote": "eaff3fea36d4ce489009ebf2070071311619f9c2",
+  "application_source": "21ac4a5172a7dd7082b659d65533385e231892ef",
+  "local_start": "ce21644cccd1776667503b24a5c9edc6a7aa992f",
+  "pr": {
+    "number": 4,
+    "draft": true,
+    "state": "open",
+    "merged": false,
+    "auto_merge": null
+  },
+  "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+  "ci": {
+    "push": 36918693383,
+    "pull_request": 36918700481,
+    "conclusion": "success",
+    "head": "eaff3fea36d4ce489009ebf2070071311619f9c2"
+  },
+  "dashboard": {
+    "compute": "Small",
+    "instance": "t3a.small",
+    "region": "us-east-1",
+    "pitr_enabled": true,
+    "retention_days": 7,
+    "earliest_utc": "2026-09-24T21:06:12Z",
+    "latest_utc": "2026-10-01T19:15:17Z",
+    "account_role": "Owner",
+    "account_mfa": "Enabled",
+    "enrolled_factors": 2,
+    "restore_operator_designation": "awaiting user confirmation",
+    "restore_access": "Owner role and visible enabled PITR control; no restore attempt",
+    "email_enabled": true,
+    "signup_enabled": true,
+    "confirm_email": true,
+    "anonymous_sign_in": false,
+    "manual_linking": false,
+    "prevent_leaked_passwords": false,
+    "custom_smtp": true,
+    "smtp_host": "smtp.resend.com",
+    "smtp_port": 465,
+    "smtp_min_interval_seconds": 60
+  },
+  "netlify_production": {
+    "deploy": "6abbb27a1cdd6d00081b0e8e",
+    "commit": "1599ab271e0120a5cdc4e38e225ba749dd214721"
+  },
+  "sites": {
+    "version": 25,
+    "status": "active",
+    "updated_at": "2026-08-27T22:28:57.301945+00:00"
+  },
+  "direct_auth": {
+    "result": "NOT VERIFIED",
+    "libpq_mode": "verify-full",
+    "error": "fe_sendauth: no password supplied",
+    "password_requested": false,
+    "password_exposed": false,
+    "startup_options_requested": [
+      "default_transaction_read_only=on",
+      "lock_timeout=5s",
+      "statement_timeout=30s"
+    ],
+    "startup_options_observed": false,
+    "pg_stat_ssl_observed": false,
+    "hotspot_identity": "awaiting user confirmation; IPv6 route en0, macOS SSID unavailable"
+  },
+  "preservation_limit": "Read-only catalog, counts, selected visible settings and deployment identity verified. No full row/Storage byte or whole settings checksum."
+}

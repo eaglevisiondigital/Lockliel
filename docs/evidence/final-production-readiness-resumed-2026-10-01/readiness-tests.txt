@@ -1,0 +1,31 @@
+✔ trusted video and worksheet/resource mapping are all independently ready (0.79775ms)
+✔ missing duration_seconds blocks readiness without member technical jargon (0.898541ms)
+✔ missing duration_verified_at blocks readiness without member technical jargon (0.108208ms)
+✔ missing duration_verification_source blocks readiness without member technical jargon (0.073292ms)
+✔ lesson 11 stays media-required without fake Model C completion (0.08375ms)
+✔ lesson 12 stays media-required without fake Model C completion (0.063666ms)
+✔ lesson 13 stays media-required without fake Model C completion (0.052667ms)
+✔ readiness does not grant unlock to a locked media-pending lesson (0.197208ms)
+✔ missing worksheet and protected resource remain independently visible to managers (0.093208ms)
+✔ unsupported/draft media never establishes readiness (0.170375ms)
+✔ 13 lesson readiness reports ten unverified and three media pending (0.227916ms)
+✔ explicit optional worksheet and simple model do not invent requirements (0.075542ms)
+✔ duration edit needs signed-in MFA content staff (4.407959ms)
+✔ manual duration verification persists provenance and requires database acknowledgement (1.487792ms)
+✔ duration input rejects missing source, invalid range and cross-origin writes (2.552333ms)
+✔ missing verification acknowledgement is never reported as success (0.297875ms)
+✔ PDF importer stays disabled before any asset/storage request (0.196458ms)
+✔ failed configuration read cannot become a false empty readiness success (0.251125ms)
+✔ autosave rejects malformed acknowledgement revision undefined (1.182916ms)
+✔ autosave rejects malformed acknowledgement revision 0 (0.081041ms)
+✔ autosave rejects malformed acknowledgement revision 1 (0.072416ms)
+✔ autosave rejects malformed acknowledgement revision 3 (0.061958ms)
+✔ autosave rejects malformed acknowledgement revision 2 (0.091167ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.180167

@@ -1,5 +1,15 @@
 # Five-stage course release package
 
+## Superseding resumed review, 2026-10-01
+
+See `final-production-readiness-resumed-2026-10-01.md` and
+`final-production-operator-sequence-2026-10-01.md`. PR4 is now current, all13 provider
+durations are collected, and Owner/MFA/Small/PITR are verified. Production release
+remains blocked by unsupported arwdDxtm defaults in the verifier, unresolved provider
+incident, incomplete direct authentication/recovery/Storage gates and the documented
+duration ordering/history-policy limits. No production action is authorized. Earlier
+stale-PR and no-authoritative-duration statements below are historical.
+
 ## Recovery configuration completed, 2026-10-01
 
 The later explicit Small-compute/PITR approval was executed and verified. See
