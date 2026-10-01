@@ -1,5 +1,17 @@
 # Lockliel engineering instructions
 
+## Final readiness stopped because PR4 is stale (2026-10-01)
+
+Read `docs/final-readiness-candidate-stop-2026-10-01.md`. Fresh GitHub: remote/PR4
+remain3a7b7b9, draft/open/unmerged, with passing CI for that old head. Validated local
+application is21ac4a5; starting local evidence HEAD92f24fb was22 commits ahead.
+Main remains1599ab2; merge-base9a4129a. No dependency/hosting/workflow file changes
+were found in that range; important279/private-note, paused-read and footer changes
+are absent from PR4. The assignment explicitly required STOP on this mismatch.
+Parts2–13 were not freshly executed. No production or remote mutation occurred.
+Next requires a separately authorized controlled development checkpoint with complete
+validation and exact-head CI/preview before resuming readiness. No push is implied.
+
 ## Small compute and seven-day PITR enabled (2026-10-01)
 
 Dave explicitly approved Small compute and seven-day PITR after the quoted costs.
