@@ -1,0 +1,241 @@
+{
+  "at": "2026-10-01T14:50:11.229Z",
+  "origin": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "backend": "https://qjksggxorghaxvpyslip.supabase.co",
+  "checks": [
+    {
+      "name": "a login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "a readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "b login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "b readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "manager login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "manager readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "manager AAL1 denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "existing manager MFA verification",
+      "pass": true,
+      "status": 200,
+      "aal": "aal2"
+    },
+    {
+      "name": "manager content readable while paused",
+      "pass": false,
+      "status": 503,
+      "error": "Course configuration is temporarily unavailable."
+    },
+    {
+      "name": "a journey maintenance",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "a cannot read other profile",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "a admin denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "b journey maintenance",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "b cannot read other profile",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "b admin denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "worksheet application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "notes application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "media application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "progression application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "completion application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "advancement application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "legacy worksheet direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "legacy notes direct path blocked",
+      "pass": false,
+      "status": 400,
+      "code": "PGRST204",
+      "classification": "INVALID_PROBE: nonexistent old notes column,400 PGRST204; excluded from maintenance pass/fail"
+    },
+    {
+      "name": "legacy media direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "legacy completion direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "media RPC direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "a notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "b notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "manager notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "anonymous application denied",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "anonymous readiness denied",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "static /my-lockliel",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/journey",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/journey/lesson?lesson=how-to-become-a-christian",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/admin/content",
+      "pass": false,
+      "status": 404,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false,
+      "classification": "INVALID_ROUTE_PROBE: content is embedded in /my-lockliel/admin; actual admin HTML verified separately"
+    }
+  ]
+}

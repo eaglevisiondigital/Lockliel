@@ -1,5 +1,26 @@
 # Lockliel decisions and open questions
 
+## Exact4204249 isolated deployment complete; paused acceptance fails reads (2026-10-01)
+
+Read `docs/course-paused-acceptance-4204249-2026-10-01.md`. Explicit source approval
+superseded the previous mismatch hold. Exact4204249 was packaged/deployed only to
+site70b03a42, deploy6abe71ba8466df3ae65d138a, branch-deploy/rehearsal, bound only to
+qjksggxorghaxvpyslip. Netlify manual commit_ref is null; source/handler hashes and
+four served HTML byte matches establish the recorded artifact identity.
+
+Actual279 readiness remains paused=true, protocol278-v1, schemaReady=true. A/B
+browser login and manager MFA/AAL2 pass. New/legacy write routes are blocked and
+seven course/config/progress/notes/enrollment digests are unchanged. However, the
+maintenance gate prevents requested course/lesson/resource reads and manager course
+configuration. Member guidance/admin sections also lack handlers in the narrow
+acceptance artifact. Do not call this a paused-acceptance pass or reopen.
+
+No retained old browser tab existed; direct legacy denials are not old retry-UX
+proof. No production action, push, migration, settings change or cleanup occurred.
+Keep both isolated environments/sites and old deploy. Next: a separately approved
+narrow paused-read/acceptance-route correction, retaining all write denials. This
+exact deployment approval is consumed; no further deploy or maintenance exit implied.
+
 ## Isolated279 readiness verified; still closed (2026-10-01)
 
 Read `docs/course-isolated-279-readiness-2026-10-01.md`. The separately authorized

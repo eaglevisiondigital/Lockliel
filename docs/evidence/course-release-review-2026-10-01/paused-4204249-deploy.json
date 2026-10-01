@@ -1,0 +1,11 @@
+{
+  "id": "6abe71ba8466df3ae65d138a",
+  "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "context": "branch-deploy",
+  "state": "ready",
+  "branch": "rehearsal",
+  "commit_ref": null,
+  "title": "Isolated paused acceptance source 4204249345513d9f871f3abeffb706a3bde3caaa only; schema279 maintenance ON",
+  "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "created_at": "2026-10-01T14:44:10.760Z"
+}
