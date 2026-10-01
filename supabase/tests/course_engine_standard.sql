@@ -72,11 +72,13 @@ begin
 
  -- Durable achievement survives provider replacement without erasing prior completion.
  update public.lesson_assets set status='draft' where id=asset;
- assert app_private.course_watch_met(a,l1),'Achieved watch threshold was relocked';
+ assert not app_private.course_watch_met(a,l1),'Unavailable media authorized new progression';
+ assert (select status='completed' and watch_requirement_met_at is not null from public.lesson_progress where profile_id=a and lesson_id=l1),'Historical completion erased';
  update public.lesson_assets set status='active' where id=asset;
  -- Required answers are independent of watch achievement.
  perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated','aal','aal1','session_id',sb)::text,true);
  update public.lesson_progress set watch_requirement_met_at=clock_timestamp() where profile_id=b and lesson_id=l1;
+ insert into public.media_progress(profile_id,asset_id,covered_intervals) values(b,asset,'[[0,95]]');
  perform pg_sleep(0.31);
  execute 'set local role authenticated';
  denied:=false;begin perform public.lockliel_save_lesson(b,l1,1,'{}','Notes B',true);exception when invalid_parameter_value then denied:=true;end;

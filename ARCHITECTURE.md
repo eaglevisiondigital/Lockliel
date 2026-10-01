@@ -1,5 +1,19 @@
 # Lockliel architecture
 
+## Authoritative current-trust progression280 (2026-10-01)
+
+Migration280 recomputes coverage against every current active trusted media asset;
+historical watch timestamps no longer authorize new progression. Both watch-based
+sequential models require this check. A private trigger prevents reassignment of
+watched asset identities; managers use existing createAsset for replacements.
+Completed target lessons retain access. The completed-save path updates existing
+progress, preserving immutable answers/history and owner-only editable notes.
+No application/RPC shape change is required: candidate21ac4a5 and protocol278-v1 remain.
+The release package now has six immutable stages275–280 and readiness requires280 via
+temporary operational SQL, never a permanent environment-specific migration.
+All local checks pass; isolated hosted280 remains network-blocked and unapplied.
+Read `docs/trusted-duration-280-2026-10-01.md`. Earlier279 proposal statements are history.
+
 ## Current trust versus durable course history (2026-10-01)
 
 The approved policy now separates current eligibility from durable telemetry and

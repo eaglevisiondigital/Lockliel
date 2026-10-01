@@ -1,0 +1,18 @@
+PASS direct TLS verify-full, actual read-only/timeouts and wrong-host/CA denials
+PASS in-flight write drained before pause committed; later course writes rejected
+PASS exact pinned CLI stage 275, catalog/ledger captured, maintenance stays closed
+PASS exact pinned CLI stage 276, catalog/ledger captured, maintenance stays closed
+PASS exact pinned CLI stage 277, catalog/ledger captured, maintenance stays closed
+PASS exact pinned CLI stage 278, catalog/ledger captured, maintenance stays closed
+PASS exact pinned CLI stage 279, catalog/ledger captured, maintenance stays closed
+PASS exact pinned CLI stage 280, catalog/ledger captured, maintenance stays closed
+PASS exact six-stage CLI production_full8: defaults preserved, final notes zero service privileges
+PASS exact six-stage CLI restricted_zero: defaults preserved, final notes zero service privileges
+PASS sql_error: SQL and ledger rolled back; no retry
+PASS permission: SQL and ledger rolled back; no retry
+PASS statement_timeout: SQL and ledger rolled back; no retry
+PASS disconnect: SQL and ledger rolled back; no retry
+PASS real lock timeout
+PASS actual TCP loss after commit: read-only verifier recognizes committed state
+PASS publication concurrency in both lock orders
+Staged runner and failure rehearsal evidence saved; remaining maintenance cases explicitly pending

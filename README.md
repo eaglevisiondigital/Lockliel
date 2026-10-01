@@ -1,14 +1,15 @@
 # Lockliel
 
-## Local verifier and duration-policy review
+## Authoritative trusted-duration release280
 
-`npm run test:sql` still replays exactly279 authoritative migrations in a fresh
-socket-only PostgreSQL17 cluster. It now also checks production-like/restricted ACL
-profiles and rejects actual excess grants. The duration fixture explicitly reproduces
-known policy failures3/8 on279, then checks a candidate overlay outside the migration
-chain. A passing test command means the defect was reproduced and proposal tested;
-it does **not** mean authoritative279 meets the new policy. The final release remains
-blocked. See `docs/verifier-duration-policy-2026-10-01.md`.
+`npm run test:sql` replays280 authoritative migrations in a fresh socket-only
+PostgreSQL17 cluster, then runs17 SQL/RLS files, all8 duration cases, strict notes
+privileges and operational280 readiness tests. Historical279 bytes are unchanged.
+The earlier proposal overlay is no longer executed by the full suite. Production-like
+and restricted default-ACL profiles still reject excessive actual notes privileges.
+The six-stage CLI rehearsal covers275–280. Local checks pass; hosted280 remains
+unapplied because the direct IPv6 path is unavailable. See
+`docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.
 
 The supported application is Next.js static export (`out/`) with Netlify functions
 and Supabase. Read AGENTS.md and the four continuity documents before changes.
@@ -41,10 +42,10 @@ The corrective regression profile is `npm run test:sql -- --review-279`. It pres
 the old274 upsert reproduction, applies275–278 in order inside disposable
 transactions, demonstrates inherited service-role TRUNCATE, then applies the exact279
 file and requires denial and working learner/RPC access. Both default-ACL profiles
-are covered. The full `npm run test:sql` now replays279 and includes the post279
-private-notes privilege test. See `docs/course-release-279-runbook.md` for the pinned
-five-stage package and hosted execution records. The full SQL command also exercises
-the exact temporary279 readiness update in a rolled-back disposable transaction,
+are covered. The full `npm run test:sql` now replays280 and includes the post279
+private-notes privilege test. See `docs/course-release-280-runbook.md` for the pinned
+six-stage package. Historical279 execution records remain in its older runbook. The full SQL command also exercises
+the exact temporary280 readiness update in a rolled-back disposable transaction,
 including wrong/missing schema, catalog/privilege drift, caller denials and preserved
 maintenance. This operational fixture creates no hosted migration or deployment.
 

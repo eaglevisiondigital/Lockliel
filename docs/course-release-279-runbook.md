@@ -1,5 +1,9 @@
 # Five-stage course release package
 
+**SUPERSEDED for future release preparation:** the authoritative local set is now
+275–280. Read [280 runbook](course-release-280-runbook.md). This file retains historical
+279 execution evidence; do not run its release sequence as the final candidate.
+
 **Local follow-up, 2026-10-01:** See [verifier/duration report](verifier-duration-policy-2026-10-01.md).
 The default-ACL verifier mismatch is corrected and rehearsed locally. The approved
 strict duration policy fails on authoritative279. Its additive correction is only a

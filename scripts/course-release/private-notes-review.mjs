@@ -9,7 +9,7 @@ export function assertPrivateNotesPrivileges(report,{stage=279,maintenancePaused
  assert(Array.isArray(report?.effective),'Private notes privilege evidence missing');
  assert.equal(report.effective.length,tables.length*roles.length*privileges.length,'Incomplete privilege evidence');
  assert.equal(report.public_grants,0,'PUBLIC private-data grant');
- assert([275,276,277,278,279].includes(stage),'Unknown security stage');
+ assert([275,276,277,278,279,280].includes(stage),'Unknown security stage');
  let pending=[];
  if(stage<279){
   assert.equal(maintenancePaused,true,'Pending279 requires closed maintenance');

@@ -4,7 +4,7 @@ import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {manifest,hashes,repo,verifyPrepared,verifyBinary} from './prepare.mjs';
 import {assertPrivateNotesPrivileges} from './private-notes-review.mjs';
-export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-279/catalog.sql'),'utf8');
+export const catalogSQL=readFileSync(join(repo,'supabase/verification/course-release-280/catalog.sql'),'utf8');
 export function connectionURL({host,port=5432,database='postgres',user='postgres',ca},readonly){
  assert(['db.bsndfhbemstyrrglajat.supabase.co','db.qjksggxorghaxvpyslip.supabase.co','localhost'].includes(host),'Direct endpoint only');
  assert(ca&&ca.startsWith('/'),'Trusted CA path required');
@@ -35,7 +35,7 @@ export function verifyPostconditions(connection,env,stage){
  // Fail closed even when a disposable reference shares the same excessive grants.
  const gate=JSON.parse(psql(connection,'select public.lockliel_course_cutover_status();',{env}));
  assert.equal(gate.paused,true,'Verification requires closed maintenance');
- assertPrivateNotesPrivileges(JSON.parse(psql(connection,readFileSync(join(repo,'supabase/verification/course-release-279/private-notes-privileges.sql'),'utf8'),{env})),{stage,maintenancePaused:gate.paused});
+ assertPrivateNotesPrivileges(JSON.parse(psql(connection,readFileSync(join(repo,'supabase/verification/course-release-280/private-notes-privileges.sql'),'utf8'),{env})),{stage,maintenancePaused:gate.paused});
  return p;
 }
 export function assertLedger(catalog,stage){assert.deepEqual(catalog.ledger.map(x=>x.version),Object.keys(hashes).sort().slice(0,stage).map(f=>f.slice(0,14)),'Wrong repository ledger prefix');}
@@ -75,7 +75,7 @@ export function classify(before,expected,observed){
  return 'UNKNOWN_STOP';
 }
 export function invokeCLI({binary,root,stage,connection,env,dryRun=true}){
- verifyBinary(binary);verifyPrepared(root);assert([275,276,277,278,279].includes(stage));
+ verifyBinary(binary);verifyPrepared(root);assert([275,276,277,278,279,280].includes(stage));
  return spawnSync(binary,['db','push','--workdir',join(root,String(stage)),'--db-url',connectionURL(connection,dryRun),'--skip-vault','--yes','--output-format','json',...(dryRun?['--dry-run']:[])],{env,encoding:'utf8',timeout:60000});
 }
 export function discovery(result,stage){assert(!result.error&&result.status===0,'CLI dry-run failed');const raw=JSON.parse(result.stdout.trim()),d=raw.data||raw;

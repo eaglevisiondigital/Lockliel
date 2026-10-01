@@ -1,5 +1,23 @@
 # Lockliel decisions and open questions
 
+## Approved trusted-duration promotion and local implementation (2026-10-01)
+
+The explicit assignment approves authoritative migration280 and release-set275–280,
+local validation and subsequent isolated hosted regression. Approval does not extend
+to production writes, duration population, release, settings or content activation.
+Preserve historical valid telemetry/completion, but require CURRENT trusted identity,
+duration/provenance and actual coverage for NEW watch progression. Restored same-media
+trust may reuse legitimate coverage; replacement media must have a new asset identity.
+The existing manager createAsset path supports this without an application change.
+
+Implementation decision: migration280 replaces watch authorization, sequential gates
+and the narrow completed-save path, and prevents watched-asset identity reassignment.
+Protocol stays278-v1; temporary readiness expects280. No historical279 bytes changed.
+Local578JS/280 replay/17SQL and six-stage CLI pass. Hosted acceptance remains unverified
+because direct IPv6 is unavailable. No application change was necessary, so no conditional
+push occurred. Existing isolated279 remains open and unchanged. See
+`docs/trusted-duration-280-2026-10-01.md`. Prior proposal-only statements are historical.
+
 ## Approved duration policy and local verifier correction (2026-10-01)
 
 Authority: Dave's attachment f938eeae-117c-4bac-9756-446b581003ee. Local/disposable

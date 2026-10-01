@@ -27,7 +27,10 @@ begin
  assert found,'MFA content administrator could not verify duration';
  execute 'reset role';
  assert (select duration_verified_at is not null and duration_verification_source='Manual approved provider verification' from public.lesson_assets where id=a),'Missing provenance or timestamp';
- update public.lesson_assets set provider_ref='replacement' where id=a;
+ denied:=false;begin update public.lesson_assets set provider_ref='replacement' where id=a;
+  exception when check_violation then denied:=true;end;
+ assert denied,'Watched asset identity changed';
+ update public.lesson_assets set duration_seconds=null where id=a;
  assert (select duration_seconds is null and duration_verified_at is null and duration_verification_source is null from public.lesson_assets where id=a),'Changed video reused trusted duration';
  update public.lesson_assets set duration_seconds=100,duration_verification_source='Replacement provider verified' where id=a;
  update public.media_progress set covered_intervals='[[0,94]]' where profile_id=u and asset_id=a;

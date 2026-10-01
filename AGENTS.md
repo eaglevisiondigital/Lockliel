@@ -1,5 +1,29 @@
 # Lockliel engineering instructions
 
+## Authoritative trusted-duration280, hosted regression network-blocked (2026-10-01)
+
+Read `docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.
+The explicit follow-up promoted and strengthened the proposal as migration280, sealed
+at a09280e. All279 prior bytes remain unchanged. Current trusted media and actual
+coverage gate NEW watch progression; cached timestamps never suffice. Watched media
+identities cannot change in place; use a new asset. Historical completion/telemetry and
+owner-only completed-lesson notes remain intact. Private-note service privileges stay0.
+
+Full local578JS/280 replay/17SQL, build/type/Netlify/lint/audit and exact six-stage CLI
+275–280 pass. Readiness expects280 with unchanged protocol278-v1 through the temporary
+operational mechanism only. No application changes; candidate21ac4a5 remains compatible.
+No push is authorized by the untriggered application-change condition.
+
+Hosted280 is NOT applied/tested: direct IPv6 has no route. Read-only connector confirms
+qjksggxorghaxvpyslip still279, maintenance OPEN, schemaReady=true. No hosted mutation
+occurred. Restore the existing network path, recheck fresh state, then complete the
+already-authorized isolated280-only stage and synthetic regressions. Do not replay275–279.
+Production freshly remains274 with all13 video durations NULL; main1599ab2 and draft/open/
+unmerged PR4/eaff3fe are unchanged. Other production settings/sites are untouched with
+prior observations explicitly distinguished from fresh audit. No production action,
+new infrastructure, deletion, merge, deployment, duration population or activation.
+Earlier proposal-only279 statements below are historical and superseded for local code.
+
 ## Local verifier correction and duration-policy regression (2026-10-01)
 
 The local default-ACL correction accepts captured service_role=arwdDxtm creation

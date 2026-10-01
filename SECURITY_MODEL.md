@@ -1,5 +1,22 @@
 # Lockliel security model
 
+## Current trusted media required for new progression (2026-10-01)
+
+Authoritative280 removes cached threshold authorization and checks current identity,
+trusted finite duration, verification timestamp/provenance and actual coverage before
+new watch progression/completion. Replacement media cannot inherit an old asset's
+telemetry; watched identity mutation is rejected by a postgres-only private trigger.
+Existing session/ownership/enrollment/publication, CAS, idempotency, answer immutability
+and notes isolation remain. Completed history is preserved; narrow notes updates do not
+re-run INSERT completion authorization. No new public grants or client authority.
+
+Effective service_role notes table/additive-column privileges remain ZERO after279/280,
+regardless of creation defaults. Both default profiles and injected excessive grants
+are covered; readiness remains fail-closed at280/protocol278-v1. All8 duration cases and
+17 SQL/RLS files pass locally. Hosted280 was not attempted because direct IPv6 has no
+route; read-only hosted state is279/open. Production remains274 and was not mutated.
+Read `docs/trusted-duration-280-2026-10-01.md` for evidence and remaining hosted gate.
+
 ## Default ACL verification and duration review (2026-10-01)
 
 Captured postgres/public service_role=arwdDxtm defaults are an accepted creation

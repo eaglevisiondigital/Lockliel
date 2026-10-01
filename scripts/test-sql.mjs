@@ -6,7 +6,6 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import {verifyCourseACLMatrix} from '../tests/support/course-acl-matrix.mjs';
-import {verifyDurationPolicy} from '../tests/support/course-duration-policy.mjs';
 
 const review275 = process.argv.length === 3 && ['--review-275','--review-279'].includes(process.argv[2]);
 const review279 = review275 && process.argv[2] === '--review-279';
@@ -142,14 +141,13 @@ try {
     console.log(`PASS ${file} (rolled back)`);
   }
   console.log(`Passed ${tests.length} SQL test files.`);
-  verifyDurationPolicy(sql,repo);
   // Temporary readiness is operational SQL, intentionally outside migration history.
   // Exercise its exact old-to-new update in this same disposable cluster only.
   const unwrap = source => source.replace(/^begin;$/m, '').replace(/commit;\s*$/, '');
   const ledger = migrations.map(file => `('${file.slice(0,14)}')`).join(',');
-  const oldInstall = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-278/maintenance-install.sql'), 'utf8'));
-  const readinessUpdate = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-279/maintenance-readiness-update.sql'), 'utf8'));
-  const readinessChecks = readFileSync(join(repo, 'tests/fixtures/course-279-readiness/checks.sql'), 'utf8').replace('-- APPLY_READINESS_UPDATE', () => readinessUpdate);
+  const oldInstall = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-279/maintenance-install.sql'), 'utf8'));
+  const readinessUpdate = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-280/maintenance-readiness-update.sql'), 'utf8'));
+  const readinessChecks = readFileSync(join(repo, 'tests/fixtures/course-280-readiness/checks.sql'), 'utf8').replace('-- APPLY_READINESS_UPDATE', () => readinessUpdate);
   sql(`begin;
     create role authenticator nologin;
     create schema supabase_migrations;
@@ -158,22 +156,22 @@ try {
     ${oldInstall}
     ${readinessChecks}
     rollback;`);
-  console.log('PASS isolated279 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
-  const safeReads=unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-reads.sql'),'utf8'));
+  console.log('PASS isolated280 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
+  const safeReads=unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-reads.sql'),'utf8'));
   const pausedChecks=readFileSync(join(repo,'tests/fixtures/course-paused-reads/checks.sql'),'utf8');
   sql(`begin;
     create role authenticator nologin;
     create schema supabase_migrations;
     create table supabase_migrations.schema_migrations(version text primary key);
     insert into supabase_migrations.schema_migrations values ${ledger};
-    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-install.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-install.sql'),'utf8'))}
     ${safeReads}
     -- Exact hosted operation helper reproduced only in this disposable compatibility schema.
     create function storage.allow_only_operation(expected_operation text) returns boolean language sql stable as $op$
       select coalesce(regexp_replace(current_setting('storage.operation',true),'^storage[.]','')=regexp_replace(expected_operation,'^storage[.]','') and expected_operation<>'',false);
     $op$;
-    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-resource-read.sql'),'utf8'))}
-    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-resource-info.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-read.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-info.sql'),'utf8'))}
     ${pausedChecks}
     rollback;`);
   console.log('PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).');

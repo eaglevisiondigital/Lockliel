@@ -71,7 +71,8 @@ begin
    select to_jsonb(p) into before_media from public.media_progress p where profile_id=learner and asset_id=media;
    select to_jsonb(p) into before_lesson from public.lesson_progress p where profile_id=learner and lesson_id=first_lesson;
    update public.courses set status='draft' where id=course_id;
-   assert app_private.course_watch_met(learner,first_lesson),'Unpublication destroyed earned history';
+   assert not app_private.course_watch_met(learner,first_lesson),'Unpublished media authorized new progression';
+   assert (select to_jsonb(p)=before_lesson from public.lesson_progress p where profile_id=learner and lesson_id=first_lesson),'Unpublication erased history';
    -- Staff membership is not a bypass of the learner RPC publication rule.
    insert into public.staff_roles(profile_id,role) values(learner,'admin');
    execute 'set local role authenticated';

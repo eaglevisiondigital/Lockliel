@@ -1,5 +1,13 @@
 # Trusted-duration correction: local proposal only
 
+**Historical proposal, superseded on2026-10-01.** The reviewed correction was
+strengthened and promoted as authoritative migration
+`20261001211009_lockliel_current_trusted_duration_progression.sql`. The full SQL suite
+now tests280 directly and does not execute this overlay. Its two-function form is
+insufficient for replacement-media re-verification. Retained below is the original
+review context, not current execution guidance. See
+[the280 report](../../../docs/trusted-duration-280-2026-10-01.md).
+
 The approved policy cannot be enforced by the unchanged275–279 functions. The
 timestamped SQL was created with the pinned CLI's `migration new` command, then
 kept here outside `supabase/migrations` to preserve the specified279 release set.
