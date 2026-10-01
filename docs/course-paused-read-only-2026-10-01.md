@@ -56,3 +56,30 @@ files or repository-wide lint are clean. No unrelated lint cleanup was performed
 
 Hosted application/resource/browser acceptance is pending at this implementation
 checkpoint. Do not infer completion from local tests. Maintenance must remain ON.
+
+## Protected resource correction
+
+Hosted inspection found that Storage1.77.5 performs object.get_authenticated_info
+before storage.object.get_authenticated. The narrow helper now admits exactly these
+two read operations under the same active session/readiness requirements. It does
+not admit listing, signing, upload, update, delete or public reads. Permanent Storage
+policies and grants are untouched. This follows the documented operation helpers:
+https://supabase.com/docs/guides/storage/schema/helper-functions
+
+The two hash-guarded operational follow-ups are maintenance-safe-resource-read.sql
+and maintenance-safe-resource-info.sql. Both are separately validated in the same
+disposable fixture. The initial HTTP502 was a closed Storage metadata preflight,
+not a missing resource:13 mappings/objects and an isolated privileged HEAD proved
+existence; subsequent learner GETs return200/application/pdf. The HEAD used only the
+existing isolated server credential in a local diagnostic; no service credential is
+in the application artifact or notes access path. No fixture/file was uploaded.
+
+Fresh A/B resource reads, embedded-note denial and direct save503 passed. A's API
+session was explicitly refreshed after browser sign-out invalidated the prior one;
+an intermediate401 was not mistaken for a resource regression. An initial invalid
+profiles-to-notes embedded relation returned400; the actual progress-to-notes relation
+was then checked and returned no notes for either learner. These intermediate probes
+are excluded from acceptance pass counts.
+
+The final UI labels the worksheet as structure only, with saved answers hidden,
+rather than displaying a misleading zero-answer count during maintenance.

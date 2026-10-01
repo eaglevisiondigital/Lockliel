@@ -46,6 +46,19 @@ begin
  perform pg_temp.hook('/profiles','GET');
  assert not exists(select 1 from public.lessons where id=l),'Unrelated embedded path exposed lessons';
  assert not exists(select 1 from public.lesson_private_notes),'Embedded private notes exposed';
+ perform set_config('request.path','',true);perform set_config('request.method','',true);
+ foreach path in array array['object.list','object.upload','object.delete','object.update','object.sign','object.get',''] loop
+  perform set_config('storage.operation',path,true);assert not lockliel_cutover.safe_read(),'Unexpected Storage operation admitted';
+ end loop;
+ perform set_config('storage.operation','object.get_authenticated_info',true);
+ assert lockliel_cutover.safe_read(),'Authenticated download metadata blocked';
+ perform set_config('storage.operation','storage.object.get_authenticated',true);
+ assert lockliel_cutover.safe_read(),'Authenticated download context blocked';
+ assert exists(select 1 from public.lessons where id=l),'Enrolled download metadata blocked';
+ assert not exists(select 1 from public.lessons where id=draft_l),'Storage exception exposed draft';
+ assert not exists(select 1 from public.lesson_private_notes),'Storage exception exposed notes';
+ perform set_config('storage.operation','',true);
+
  begin perform 1 from app_private.course_answer_keys;raise exception 'Grading keys exposed';exception when insufficient_privilege then null;end;
  -- The existing normalization trigger stamps now(); age this local fixture past its rate window.
  perform pg_sleep(0.35);

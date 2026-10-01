@@ -164,6 +164,12 @@ try {
     insert into supabase_migrations.schema_migrations values ${ledger};
     ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-install.sql'),'utf8'))}
     ${safeReads}
+    -- Exact hosted operation helper reproduced only in this disposable compatibility schema.
+    create function storage.allow_only_operation(expected_operation text) returns boolean language sql stable as $op$
+      select coalesce(regexp_replace(current_setting('storage.operation',true),'^storage[.]','')=regexp_replace(expected_operation,'^storage[.]','') and expected_operation<>'',false);
+    $op$;
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-resource-read.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-279/maintenance-safe-resource-info.sql'),'utf8'))}
     ${pausedChecks}
     rollback;`);
   console.log('PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).');
