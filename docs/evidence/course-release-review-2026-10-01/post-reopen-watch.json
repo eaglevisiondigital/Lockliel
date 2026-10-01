@@ -1,0 +1,57 @@
+{
+  "method": "Authenticated synthetic media samples with real elapsed timing, no clock changes or direct data seeding. Separate from User B real YouTube playback.",
+  "evidence": [
+    {
+      "name": "seek-to-end and supplied percent do not earn watch credit",
+      "pass": true,
+      "status": 200,
+      "percent": 0
+    },
+    {
+      "name": "elapsed synthetic media boundary 90",
+      "pass": true,
+      "position": 90,
+      "percent": 90,
+      "nextUnlocked": false,
+      "currentStatus": "in_progress",
+      "worksheetStatus": "in_progress",
+      "watchMet": false
+    },
+    {
+      "name": "elapsed synthetic media boundary 94",
+      "pass": true,
+      "position": 94,
+      "percent": 94,
+      "nextUnlocked": false,
+      "currentStatus": "in_progress",
+      "worksheetStatus": "in_progress",
+      "watchMet": false
+    },
+    {
+      "name": "elapsed synthetic media boundary 95",
+      "pass": true,
+      "position": 95,
+      "percent": 95,
+      "nextUnlocked": true,
+      "currentStatus": "in_progress",
+      "worksheetStatus": "in_progress",
+      "watchMet": true
+    },
+    {
+      "name": "incomplete worksheet cannot complete",
+      "pass": true,
+      "status": 400,
+      "code": "save_failed"
+    },
+    {
+      "name": "shorter replay preserves threshold and advancement",
+      "pass": true,
+      "percent": 95
+    },
+    {
+      "name": "restore synthetic worksheet after incomplete test",
+      "pass": true,
+      "status": 200
+    }
+  ]
+}

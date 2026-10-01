@@ -1,5 +1,26 @@
 # Lockliel architecture
 
+## Isolated maintenance exited; post-reopen acceptance incomplete (2026-10-01)
+
+Read `docs/course-post-reopen-acceptance-2026-10-01.md`. Dave explicitly corrected the
+candidate to406c169 and authorized exit on qjksggxorghaxvpyslip only. Direct IPv6,
+TLS verify-full/read-only timeouts,279 ledger/hashes/security and exact site binding
+passed. Only the maintenance paused flag was changed; final state is paused=false,
+schemaReady=true, protocol278-v1. Site70b03a42 remains deploy6abe7a6b1490c08d003640dd.
+No new application deployment, migration, RLS/staff/config change, push or merge.
+
+Synthetic hosted autosave, A/B isolation, refresh/login/cross-context restoration,
+revision-conflict draft retention/recovery,94/95 server boundary, browser playback,
+completion and idempotency pass.71 focused local tests pass. Final catalog, course
+configuration and Storage hashes unchanged; only authorized synthetic progress/notes/
+media and Auth sessions changed. Full acceptance FAILS remaining coverage: synthetic
+manager has only content_admin and cannot inspect learners; hosted network outage/
+recovery remains untested; fixture100s differs from YouTube22:24 and produces bounded
+media errors; worksheet footer contrast needs correction. Actual1599ab2 old-tab retry
+behavior remains unproven. Keep copy-and-close policy. Leave isolated maintenance OPEN
+for scoped follow-up, retain both environments, and do not infer production release.
+Production274/main1599ab2/Sites25 are prior verified baselines, not a fresh audit.
+
 ## Isolated paused course reads verified; maintenance stays ON (2026-10-01)
 
 Read `docs/course-paused-read-only-2026-10-01.md`. Exact application406c169 deployed

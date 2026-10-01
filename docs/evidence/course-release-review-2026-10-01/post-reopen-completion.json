@@ -1,0 +1,39 @@
+[
+  {
+    "name": "B actual browser completion durable",
+    "pass": true,
+    "status": "completed",
+    "completedAt": "2026-10-01T16:00:11.753237+00:00",
+    "percent": 99.72
+  },
+  {
+    "name": "idempotent completion 1",
+    "pass": true,
+    "status": 200,
+    "completedAt": "2026-10-01T16:00:11.753237+00:00"
+  },
+  {
+    "name": "idempotent completion 2",
+    "pass": true,
+    "status": 200,
+    "completedAt": "2026-10-01T16:00:11.753237+00:00"
+  },
+  {
+    "name": "pending lesson 11 cannot forge completion",
+    "pass": true,
+    "status": 403,
+    "code": "save_failed"
+  },
+  {
+    "name": "pending lesson 12 cannot forge completion",
+    "pass": true,
+    "status": 403,
+    "code": "save_failed"
+  },
+  {
+    "name": "pending lesson 13 cannot forge completion",
+    "pass": true,
+    "status": 403,
+    "code": "save_failed"
+  }
+]

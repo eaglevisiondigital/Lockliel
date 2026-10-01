@@ -1,0 +1,118 @@
+{
+  "notes": "Exact whitespace and visible-text draft probes are locator observations only; explicit status, textarea and expanded draft reads provide persistence evidence.",
+  "observations": [
+    {
+      "view": "lesson1",
+      "frames": 1,
+      "inputs": 2,
+      "maintenance": false,
+      "scroll": 1440,
+      "width": 1440,
+      "exactWhitespaceSavedMatch": false
+    },
+    {
+      "view": "lesson1",
+      "frames": 1,
+      "inputs": 2,
+      "maintenance": false,
+      "scroll": 768,
+      "width": 768,
+      "exactWhitespaceSavedMatch": false
+    },
+    {
+      "view": "lesson1",
+      "frames": 1,
+      "inputs": 2,
+      "maintenance": false,
+      "scroll": 390,
+      "width": 390,
+      "exactWhitespaceSavedMatch": false
+    },
+    {
+      "view": "A return navigation",
+      "answers": [
+        "SYNTHETIC A post-reopen answer first revision.",
+        "SYNTHETIC A private note post-reopen."
+      ],
+      "saved": true
+    },
+    {
+      "view": "A refresh",
+      "saved": true,
+      "values": [
+        "SYNTHETIC A post-reopen answer first revision.",
+        "SYNTHETIC A private note post-reopen."
+      ]
+    },
+    {
+      "view": "B in former A browser",
+      "complete": true,
+      "saved": true,
+      "values": [
+        "SYNTHETIC B post-reopen independent answer 2026-10-01.",
+        "SYNTHETIC B private note remains editable after completion."
+      ]
+    },
+    {
+      "view": "A independent context",
+      "saved": true,
+      "values": [
+        "SYNTHETIC A post-reopen answer first revision.",
+        "SYNTHETIC A private note post-reopen."
+      ],
+      "watchMet": true
+    },
+    {
+      "view": "A restored after B same device",
+      "saved": true,
+      "values": [
+        "SYNTHETIC A post-reopen answer first revision.",
+        "SYNTHETIC A private note post-reopen."
+      ],
+      "watchMet": true
+    },
+    {
+      "view": "controlled stale revision rejection",
+      "cloudSaved": "Watch Requirement Met",
+      "conflict": true,
+      "disabled": 2,
+      "visibleTextDraftMatch": false
+    },
+    {
+      "view": "conflict reload retains draft",
+      "cloudValues": [
+        "SYNTHETIC A post-reopen answer first revision.",
+        "SYNTHETIC A cloud note from independent second context."
+      ],
+      "draft": "{\n  \"answers\": {\n    \"1\": \"SYNTHETIC A post-reopen answer first revision.\"\n  },\n  \"notes\": \"SYNTHETIC A stale local draft retained during conflict.\"\n}",
+      "status": "Watch Requirement Met"
+    },
+    {
+      "view": "conflict recovered and saved",
+      "retainedDraft": "{\n  \"answers\": {\n    \"1\": \"SYNTHETIC A post-reopen answer first revision.\"\n  },\n  \"notes\": \"SYNTHETIC A stale local draft retained during conflict.\"\n}",
+      "status": "Watch Requirement Met",
+      "values": [
+        "SYNTHETIC A final answer after cloud conflict recovery.",
+        "SYNTHETIC A saved private note after conflict recovery."
+      ]
+    },
+    {
+      "view": "A completed",
+      "complete": true,
+      "status": "Watch Requirement Met",
+      "values": [
+        "SYNTHETIC A final answer after cloud conflict recovery.",
+        "SYNTHETIC A saved private note after conflict recovery."
+      ]
+    },
+    {
+      "view": "A completed cross-context refresh",
+      "complete": true,
+      "status": "Watch Requirement Met",
+      "values": [
+        "SYNTHETIC A final answer after cloud conflict recovery.",
+        "SYNTHETIC A saved private note after conflict recovery."
+      ]
+    }
+  ]
+}
