@@ -1,5 +1,115 @@
 # Five-stage course release package
 
+## Current production-readiness decision (2026-10-01)
+
+Read `course-final-production-readiness-2026-10-01.md`. Review is NOT READY for
+production authorization. Primary Chat accepts the original-client acceptance gate
+by the existing manual policy: **CONTROLLED BY MANUAL CUTOVER POLICY**. The old
+client is not passed, fixed or compatible. No bridge is authorized. The historical
+isolated execution/paused state below is superseded: qjks is279/maintenance OFF after
+verified post-reopen acceptance. Current application21ac4a5/isolated deploy
+6abe8f4f75e5a756b7d0cd9a; remote PR4 still3a7b7b9. No production execution follows.
+
+### Why the manual gate remains mandatory
+
+Old1599ab2 uses the schema274 upsert and lacks the new revision/private-note RPC
+contract and278-v1 protocol. Schema275+ does not support that old write contract.
+The operational PostgREST hook separately enforces426 on stale writes. Isolated
+old writes were denied without persistence, but the old UI hides autosave errors
+and continues media requests. A new deployment cannot patch memory-only old tabs.
+Never weaken426/maintenance/RLS or claim recovery of memory-only drafts left there.
+
+### Exact future cutover order, requiring a new execution assignment
+
+Prerequisites before scheduling: final candidate checkpoint and exact-head CI;
+trusted timings1–10 and approved provenance; Auth warning remediation; a concrete
+near-zero-loss recovery method/RPO/RTO; Owner MFA/restore operator; Storage recovery;
+fresh direct verify-full authentication/timeouts; stable provider window; and a
+sealed production-specific maintenance/operator package with exact reviewed hashes.
+Current production has no maintenance installation. Installation and read-routing
+follow-ups are operational DDL/grant/PostgREST changes requiring explicit scope.
+The existing isolated-only follow-ups must not be silently run against production.
+
+1. Notify affected Getting a Grip learners using the separately authorized channel.
+2. Allow active learners time to save/copy unsaved answers and Personal Notes.
+   Explain that unsaved memory-only drafts left in old tabs cannot be guaranteed.
+3. Require every existing Lockliel course/lesson tab closed, across browsers/devices.
+4. Record the operator's explicit ALL-old-course-tabs-closed confirmation. Stop
+   before maintenance if this confirmation is absent. Notification alone is not proof.
+5. **MAINTENANCE ON:** perform only the separately approved, production-bound
+   installation/control transaction. Require correct project, paused=true, current
+   schema274, exact hook/guards and initial fail-closed readiness. No unrelated settings.
+6. Verify course writes denied at app, PostgREST/RPC and guarded-table boundaries
+   using approved denial probes, never real learner mutations. Preserve operator safety.
+7. Drain affected work. Observe fresh transaction/lock/waiter and course write-counter
+   snapshots in independent sessions; require stable counters and no in-flight writes.
+   Investigate unexpected activity; do not auto-kill sessions or assume a fixed sleep.
+8. Capture and verify the approved recoverable point after drain. Record UTC point,
+   acceptable whole-database loss, object-copy correspondence, operator and abort time.
+9. Execute **275**, once, pinned CLI, exactly one pending file; fresh read-only verify.
+10. Execute **276**, once; fresh exact ledger/catalog/security verify.
+11. Execute **277**, once; fresh exact ledger/catalog/security verify.
+12. Execute **278**, once; fresh exact ledger/catalog/publication security verify.
+13. Execute **279**, once; fresh exact ledger/catalog and zero effective service_role
+    notes privileges verify. Never reopen intermediate275–278. UNKNOWN_STOP stops.
+14. Apply only the separately reviewed production operational read-routing chain,
+    where required for paused acceptance. Verify exact final279 readiness, protocol278-v1,
+    paused=true and preserved permanent RLS/resource privileges. No ad hoc gate bypass.
+15. Deploy the exact approved normal application source. Since main auto-publishes,
+    any authorized merge belongs HERE, after verified279, never ahead of migrations.
+    Do not publish the isolated artifact. Record immutable deploy ID and source SHA.
+16. Verify production site/backend identity, build context, route/handler/source
+    provenance and unchanged published design. Confirm fresh tabs run the new app.
+17. With maintenance ON, verify fresh-client login/MFA, approved reads, private-resource
+    handling and honest maintenance UX. Writes must still be denied; a save PASS cannot
+    be claimed while paused. Check stale writes remain denied through approved probes.
+18. Only if all gates and explicit exit approval hold, **MAINTENANCE OFF** using the
+    reviewed transaction; verify paused=false, schemaReady=true, protocol278-v1.
+19. Run separately approved controlled fresh-client post-release autosave/notes/course
+    verification with no real member data. Check cloud acknowledgment/restoration,
+    identity isolation, denied stale writes and protected settings/resources. If any
+    safety gate fails, use the approved re-pause stop procedure and investigate.
+20. Reopen learner access with fresh-tab instructions, after successful smoke checks.
+    Retain426 protection, recovery evidence and both isolated environments. No automatic
+    cleanup, content activation, staff bootstrap, payment/Auth/SMTP changes or new work.
+
+No course schema migration may execute before MAINTENANCE ON, write denial, drain,
+and recovery point. Required core sequence:
+MAINTENANCE ON → drain → recovery point →275→verify→276→verify→277→verify→278→verify
+→279→verify→deploy→identity/backend→fresh read-only acceptance→stale protection
+→MAINTENANCE OFF→controlled fresh write verification→reopen access.
+
+### Rollback, abort and ambiguous-state handling
+
+- **Before first migration:** abort without applying275. Keep the old application and
+  historical274 data. If maintenance was installed, restore/reopen only using a reviewed
+  operational reversal that preserves the captured pre-install hook/RLS/grants/settings.
+  The279 readiness gate cannot simply be toggled open on274. No automatic teardown.
+- **After a committed migration:** keep maintenance closed; capture exact ledger/catalog
+  and security state read-only. Do not rerun committed versions. A reviewed forward
+  repair/resume or coordinated recovery requires separate authority. There is no down
+  migration. All275–278 intermediate notes ACL profiles are permitted only while closed.
+- **After application deployment:** preserve immutable old and new deploys. Failure
+  means stay/re-enter maintenance under approved stop scope and inspect. Rolling only
+  the app back to1599ab2 while leaving schema275+ is incompatible and not a repair.
+- **Ambiguous commit/client disconnect:** stop, reconnect read-only, independently
+  compare before/expected/observed ledger and catalog. Classify COMMITTED, ROLLED_BACK
+  or UNKNOWN_STOP using the reviewed classifier. Never infer state from CLI exit alone,
+  edit a ledger to force parity, retry automatically or reopen with UNKNOWN_STOP.
+- **Database recovery:** execute only an explicitly approved physical/PITR restore to
+  the verified pre-cutover point with a qualified operator. Full recovery affects Auth,
+  member, payment, audit and other platform state, not just course tables. It can erase
+  legitimate writes after that point, including new private notes/progress. Preserve
+  evidence securely, assess actual RPO and reconcile authorized external side effects.
+- **Application recovery:** coordinate database274 recovery with immutable1599ab2 and
+  its original configuration. Verify ledger/catalog/RLS, settings, content, member
+  counts and recovery consistency before reopening. A newer matching forward repair
+  requires its own reviewed deployment and acceptance.
+- **Storage:** database restore rewinds metadata only, not object bytes. Verify the
+  independently retained protected PDFs/object versions and reconcile missing/newer
+  objects against the chosen DB point. Never make the bucket public or delete objects
+  to hide mismatch. No restore drill or recoverability PASS is implied by this plan.
+
 The active package is `supabase/verification/course-release-279/manifest.json`.
 It supersedes the 278 package without modifying its historical migration files.
 Source commit: a2254aaa3890e2aff7c51b9c84c45021a7b7ba20. Original274 manifest and

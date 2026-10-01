@@ -1,5 +1,29 @@
 # Lockliel decisions and open questions
 
+## Legacy gate accepted by manual policy; final production review NOT READY (2026-10-01)
+
+Primary Chat accepts the legacy-client gate as CONTROLLED BY MANUAL CUTOVER POLICY.
+Do not call old1599ab2 passed, fixed or compatible; hidden autosave errors and ongoing
+rejected media requests remain documented. No compatibility bridge is authorized.
+Require learner notice, save/copy opportunity and operator confirmation that ALL old
+course tabs are closed BEFORE maintenance. Reopen with fresh tabs; no promise to
+recover memory-only old drafts. Keep426, maintenance, RLS and migration bytes intact.
+
+Read `docs/course-final-production-readiness-2026-10-01.md` and the updated279 runbook.
+Final candidate21ac4a5 is isolated-validated, but PR4 remains draft3a7b7b9 with older
+passing CI. Fresh production:274 exact ledger versions,1member/1enrollment,0progress,
+all public RLS enabled,13 protected PDFs,13 active videos1–10 with no trusted durations.
+Leaked-password protection remains disabled. Backup2026-10-01 07:30:56UTC is listed,
+PITR OFF; near-zero-loss RPO/RTO, Owner MFA/restore capability and Storage recovery are
+unverified. Direct IPv6/verified TLS handshake pass; authenticated direct safeguards
+remain unverified. Eastern US API incident persists. Production maintenance is not
+installed. No production writes/settings/deploys, migrations, push, merge or cleanup.
+Main1599ab2, Netlify production6abbb27a1cdd6d00081b0e8e and Sites25 remain current.
+Both isolated environments retained; qjks279 maintenance remains OFF. Only review
+and continuity files changed. No engineering, legacy bridge or production release
+is authorized by this decision. Earlier unresolved legacy-decision statements are
+superseded; original failed UX observations remain historical evidence.
+
 ## Isolated corrective acceptance: old-client gate still fails (2026-10-01)
 
 Read `docs/course-post-reopen-corrective-acceptance-2026-10-01.md`. Only isolated

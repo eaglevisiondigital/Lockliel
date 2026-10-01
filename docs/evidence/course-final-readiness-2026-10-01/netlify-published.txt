@@ -1,0 +1,259 @@
+
+  - heading "Deploys for lockliel" [level=1]
+  - paragraph:
+    - link "lockliel.com":
+      - /url: https://lockliel.com
+  - paragraph:
+    - text: Deploys from
+    - link "github.com/eaglevisiondigital/Lockliel":
+      - /url: https://github.com/eaglevisiondigital/Lockliel
+    - text: with
+    - text: Next.js
+    - text: .
+  - paragraph:
+    - text: Published
+    - generic "main"
+    - text: "@"
+    - link "1599ab2":
+      - /url: https://github.com/eaglevisiondigital/Lockliel/commit/1599ab271e0120a5cdc4e38e225ba749dd214721
+  - paragraph:
+    - generic: Auto publishing is on. Deploys from main are published automatically
+    - text: .
+  - link "Deploy settings":
+    - /url: /projects/lockliel/configuration/developer-settings
+    - text: Deploy settings
+  - link "Notifications":
+    - /url: /projects/lockliel/configuration/notifications
+    - text: Notifications
+  - button "Lock to stop auto publishing"
+  - heading "Test your project’s Lighthouse performance" [level=2]
+  - paragraph:
+    - text: Want to see how your project will perform before you deploy? Install the Lighthouse plugin for build-time Lighthouse scores and reports.
+    - link "Learn more →":
+      - /url: https://www.netlify.com/integrations/lighthouse/
+  - link "Install Lighthouse plugin":
+    - /url: /teams/dfowler4232/plugins/@netlify/plugin-lighthouse/install
+  - heading "Deploys" [level=2]
+  - generic: Search by branch name or deploy ID
+  - log
+  - generic: Search by branch name or deploy ID
+  - combobox "Search by branch name or deploy ID Search by branch name or deploy ID"
+  - button "Search":
+    - img "Search"
+  - generic: "Filter:"
+  - button "Any status. Open menu":
+    - text: Any status
+  - generic: Time period
+  - button "Any time frame. Open menu":
+    - text: Any time frame
+  - button "Trigger deploy. Open menu":
+    - text: Trigger deploy
+  - list:
+    - paragraph:
+      - 'link "Deploy Preview #4: lockliel-backend-v1 @3a7b7b9"':
+        - /url: /projects/lockliel/deploys/6abd366442bf580008d496b6
+        - text: "Deploy Preview #4"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@3a7b7b9"
+      - generic: completed
+      - button "More information":
+      - generic: Complete reusable course engine with private saves and media readiness
+      - link "Yesterday at 11:18 AM":
+        - /url: https://6abd366442bf580008d496b6--lockliel.netlify.app
+        - time: Yesterday at 11:18 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abd366442bf580008d496b6
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #4: lockliel-backend-v1 @a58626b"':
+        - /url: /projects/lockliel/deploys/6abcdbeb2e554100082d3a1f
+        - text: "Deploy Preview #4"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@a58626b"
+      - generic: completed
+      - button "More information":
+      - generic: Complete reusable course engine with private saves and media readiness
+      - link "Yesterday at 4:52 AM":
+        - /url: https://6abcdbeb2e554100082d3a1f--lockliel.netlify.app
+        - time: Yesterday at 4:52 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abcdbeb2e554100082d3a1f
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #4: lockliel-backend-v1 @f11a97a"':
+        - /url: /projects/lockliel/deploys/6abcc54b2ec109000875c2b6
+        - text: "Deploy Preview #4"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@f11a97a"
+      - generic: completed
+      - button "More information":
+      - generic: Build reusable course workspace and repair member persistence
+      - link "Yesterday at 3:16 AM":
+        - /url: https://6abcc54b2ec109000875c2b6--lockliel.netlify.app
+        - time: Yesterday at 3:16 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abcc54b2ec109000875c2b6
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #4: lockliel-backend-v1 @ca5f09b"':
+        - /url: /projects/lockliel/deploys/6abc3af1948f010008be427f
+        - text: "Deploy Preview #4"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@ca5f09b"
+      - generic: completed
+      - button "More information":
+      - generic: Build reusable course workspace and repair member persistence
+      - link "Sep 29 at 5:25 PM":
+        - /url: https://6abc3af1948f010008be427f--lockliel.netlify.app
+        - time: Sep 29 at 5:25 PM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abc3af1948f010008be427f
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Production: main @1599ab2"':
+        - /url: /projects/lockliel/deploys/6abbb27a1cdd6d00081b0e8e
+        - text: Production
+        - text: ":"
+        - generic "main"
+        - text: "@1599ab2"
+      - generic: published
+      - button "More information":
+      - generic: "Merge pull request #3 from eaglevisiondigital/lockliel-backend-v1"
+      - link "Sep 29 at 7:43 AM":
+        - /url: https://6abbb27a1cdd6d00081b0e8e--lockliel.netlify.app
+        - time: Sep 29 at 7:43 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abbb27a1cdd6d00081b0e8e
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @9a4129a"':
+        - /url: /projects/lockliel/deploys/6abbabb1f3101300082e9778
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@9a4129a"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 29 at 7:14 AM":
+        - /url: https://6abbabb1f3101300082e9778--lockliel.netlify.app
+        - time: Sep 29 at 7:14 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6abbabb1f3101300082e9778
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @48a9e10"':
+        - /url: /projects/lockliel/deploys/6ab928cc144ffe0008903f15
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@48a9e10"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 27 at 9:31 AM":
+        - /url: https://6ab928cc144ffe0008903f15--lockliel.netlify.app
+        - time: Sep 27 at 9:31 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab928cc144ffe0008903f15
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @9eee9ee"':
+        - /url: /projects/lockliel/deploys/6ab908caa929c30008a61d79
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@9eee9ee"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 27 at 7:15 AM":
+        - /url: https://6ab908caa929c30008a61d79--lockliel.netlify.app
+        - time: Sep 27 at 7:15 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab908caa929c30008a61d79
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @cc6f430"':
+        - /url: /projects/lockliel/deploys/6ab8fab5b738c40008b06835
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@cc6f430"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 27 at 6:15 AM":
+        - /url: https://6ab8fab5b738c40008b06835--lockliel.netlify.app
+        - time: Sep 27 at 6:15 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab8fab5b738c40008b06835
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @b2adf96"':
+        - /url: /projects/lockliel/deploys/6ab8807f33f3d00009cbf189
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@b2adf96"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 26 at 9:33 PM":
+        - /url: https://6ab8807f33f3d00009cbf189--lockliel.netlify.app
+        - time: Sep 26 at 9:33 PM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab8807f33f3d00009cbf189
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @47409a2"':
+        - /url: /projects/lockliel/deploys/6ab7b2413a4116000897639d
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@47409a2"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 26 at 6:53 AM":
+        - /url: https://6ab7b2413a4116000897639d--lockliel.netlify.app
+        - time: Sep 26 at 6:53 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab7b2413a4116000897639d
+      - img "Go to deploy details"
+    - paragraph:
+      - 'link "Deploy Preview #3: lockliel-backend-v1 @5488cba"':
+        - /url: /projects/lockliel/deploys/6ab7af6398c1960008f0ad71
+        - text: "Deploy Preview #3"
+        - text: ":"
+        - generic "lockliel-backend-v1"
+        - text: "@5488cba"
+      - generic: completed
+      - button "More information":
+      - generic: Build My Lockliel 1.0 platform foundation
+      - link "Sep 26 at 6:41 AM":
+        - /url: https://6ab7af6398c1960008f0ad71--lockliel.netlify.app
+        - time: Sep 26 at 6:41 AM
+    - link "Go to deploy details":
+      - /url: /projects/lockliel/deploys/6ab7af6398c1960008f0ad71
+      - img "Go to deploy details"
+  - navigation "Pagination":
+    - list:
+      - button "Previous page" [disabled]:
+        - text: Prev
+      - generic: Page 1
+      - link "Next page":
+        - /url: /projects/lockliel/deploys?page=2
+        - text: Next
+    - button "Show 12 per page. Open menu":
+      - text: Show 12 per page
+  - complementary:
+    - heading "High-Performance Edge" [level=2]
+    - paragraph: The premium network for production, high-performance applications. Experience 30-50% faster response time and more global POPs, backed by a 99.99% uptime SLA. Includes DDoS mitigation and six times the bandwidth as our standard network.
+    - paragraph:
+      - link "Upgrade to Enterprise →":
+        - /url: /teams/dfowler4232/settings?request_hp_edge=true
