@@ -1,0 +1,50 @@
+[
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 390,
+    "width": 390
+  }
+]

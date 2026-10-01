@@ -1,0 +1,71 @@
+[
+  {
+    "view": "dashboard",
+    "courseCard": true,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "dashboard",
+    "courseCard": true,
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "view": "dashboard",
+    "courseCard": true,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 1440,
+    "width": 1440
+  },
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 768,
+    "width": 768
+  },
+  {
+    "view": "overview",
+    "lessons": 13,
+    "maintenance": true,
+    "scroll": 390,
+    "width": 390
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 1440,
+    "width": 1440,
+    "worksheetStructure": true
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 768,
+    "width": 768,
+    "worksheetStructure": true
+  },
+  {
+    "view": "lesson1",
+    "editable": 0,
+    "maintenance": true,
+    "notesUnavailable": true,
+    "players": 0,
+    "scroll": 390,
+    "width": 390,
+    "worksheetStructure": true
+  }
+]

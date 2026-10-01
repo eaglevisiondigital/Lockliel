@@ -1,0 +1,11 @@
+{
+  "source": "406c1691aee11311783ef83a7e970c6a4d5acd13",
+  "journey": 200,
+  "pdf": 200,
+  "archivedResource": 404,
+  "readiness": {
+    "paused": true,
+    "schemaReady": true,
+    "protocol": "278-v1"
+  }
+}

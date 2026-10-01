@@ -1,0 +1,283 @@
+{
+  "at": "2026-10-01T15:08:40.166Z",
+  "origin": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "backend": "https://qjksggxorghaxvpyslip.supabase.co",
+  "checks": [
+    {
+      "name": "a login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "a readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "b login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "b readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "manager login/session",
+      "pass": true,
+      "login": 200,
+      "session": 200,
+      "secureCookies": true
+    },
+    {
+      "name": "manager readiness",
+      "pass": true,
+      "status": 200,
+      "state": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      }
+    },
+    {
+      "name": "manager AAL1 denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "existing manager MFA verification",
+      "pass": true,
+      "status": 200,
+      "aal": "aal2"
+    },
+    {
+      "name": "manager content readable while paused",
+      "pass": true,
+      "status": 200
+    },
+    {
+      "name": "a journey readable paused",
+      "pass": true,
+      "status": 200,
+      "lessons": 13,
+      "progress": 1,
+      "notes": 0
+    },
+    {
+      "name": "a cannot read other profile",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "a admin denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "b journey readable paused",
+      "pass": true,
+      "status": 200,
+      "lessons": 13,
+      "progress": 0,
+      "notes": 0
+    },
+    {
+      "name": "b cannot read other profile",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "b admin denied",
+      "pass": true,
+      "status": 403
+    },
+    {
+      "name": "a cross lesson_progress",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "a cross media_progress",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "a cross course_enrollments",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "b cross lesson_progress",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "b cross media_progress",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "b cross course_enrollments",
+      "pass": true,
+      "status": 200,
+      "rows": 0
+    },
+    {
+      "name": "manager mutation blocked",
+      "pass": true,
+      "status": 503
+    },
+    {
+      "name": "worksheet application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "notes application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "media application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "progression application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "completion application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "advancement application write blocked",
+      "pass": true,
+      "status": 503,
+      "code": "course_maintenance"
+    },
+    {
+      "name": "legacy worksheet direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "legacy notes direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "legacy media direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "legacy completion direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "media RPC direct path blocked",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "a notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "b notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "manager notes not exposed while paused",
+      "pass": true,
+      "status": 503,
+      "code": "PT503"
+    },
+    {
+      "name": "anonymous application denied",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "anonymous readiness denied",
+      "pass": true,
+      "status": 401
+    },
+    {
+      "name": "static /my-lockliel",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/journey",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/journey/lesson?lesson=how-to-become-a-christian",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    },
+    {
+      "name": "static /my-lockliel/admin",
+      "pass": true,
+      "status": 200,
+      "noindex": true,
+      "csp": "connect-src 'self' https://qjksggxorghaxvpyslip.supabase.co; form-action 'self'; frame-ancestors 'none'",
+      "productionReference": false,
+      "protectedStorage": false
+    }
+  ]
+}

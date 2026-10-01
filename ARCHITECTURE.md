@@ -1,12 +1,22 @@
 # Lockliel architecture
 
-## Isolated paused-read correction in validation (2026-10-01)
+## Isolated paused course reads verified; maintenance stays ON (2026-10-01)
 
-Read `docs/course-paused-read-only-2026-10-01.md`. The latest assignment approves safe
-paused course reads only on qjksggxorghaxvpyslip/site70b03a42, retaining all write
-blocks. Local application correction and narrow temporary maintenance routing SQL
-are prepared; no migration or broad RLS replacement. Hosted outcome remains pending
-until the report is updated. Do not reopen maintenance, push, merge or touch production.
+Read `docs/course-paused-read-only-2026-10-01.md`. Exact application406c169 deployed
+only to site70b03a42, deploy6abe7a6b1490c08d003640dd, bound to qjksggxorghaxvpyslip.
+Safe learner/course/resource reads and manager MFA read-only configuration pass;
+all course mutation paths remain blocked. Narrow temporary maintenance read routing
+was applied, not a migration or permanent RLS replacement. Private notes stay closed.
+Final279 state is paused=true, schemaReady=true, protocol278-v1. Seven course-table
+and Storage digests are unchanged; all279 migration bytes are unchanged.
+
+Validation:573 JS,17 focused,279 disposable replay/16 SQL plus operational fixtures,
+build/type/Netlify/configured and targeted lint; responsive1440/768/390 pass. Original
+1599ab2 browser retry behavior and post-reopen progression remain unverified. Preserve
+manual copy-and-close policy. No push, merge, production action or cleanup occurred.
+Production274/main1599ab2/Sites25 remain the prior verified baseline, not a fresh live
+audit. Next requires separate authorization for isolated maintenance exit and fresh
+post-reopen acceptance. Do not reopen, push or release implicitly.
 
 ## Exact4204249 isolated deployment complete; paused acceptance fails reads (2026-10-01)
 
