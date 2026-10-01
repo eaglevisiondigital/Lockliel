@@ -1,5 +1,15 @@
 # Lockliel
 
+## Local verifier and duration-policy review
+
+`npm run test:sql` still replays exactly279 authoritative migrations in a fresh
+socket-only PostgreSQL17 cluster. It now also checks production-like/restricted ACL
+profiles and rejects actual excess grants. The duration fixture explicitly reproduces
+known policy failures3/8 on279, then checks a candidate overlay outside the migration
+chain. A passing test command means the defect was reproduced and proposal tested;
+it does **not** mean authoritative279 meets the new policy. The final release remains
+blocked. See `docs/verifier-duration-policy-2026-10-01.md`.
+
 The supported application is Next.js static export (`out/`) with Netlify functions
 and Supabase. Read AGENTS.md and the four continuity documents before changes.
 `README-V63.md`, Sites/Vinext helpers, D1 examples and `db:generate` are legacy

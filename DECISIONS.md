@@ -1,5 +1,26 @@
 # Lockliel decisions and open questions
 
+## Approved duration policy and local verifier correction (2026-10-01)
+
+Authority: Dave's attachment f938eeae-117c-4bac-9756-446b581003ee. Local/disposable
+scope only. Production-like defaults may remain unchanged; final notes service_role
+table/column privileges must be zero. All279 historical migration bytes stay intact.
+
+Missing trusted duration forbids new watch achievement, new advancement and new
+completion. Preserve telemetry and valid historical lesson completion. Preserving
+history does not authorize fresh progress while current trust is unavailable.
+Restored authoritative configuration allows normal progression again. This supersedes
+the previous unresolved historical-watch-credit policy question, not the need to
+implement and release a server correction. The279 baseline currently fails two
+focused cases. A two-function local SQL proposal passes all8 cases but needs a revised
+release package; no existing migration was edited or new migration added to the chain.
+
+TRUSTED DURATION INVENTORY: PASS (13 previously verified provider values).
+TRUSTED DURATION PRODUCTION POPULATION: REQUIRES SEPARATE AUTHORIZATION.
+The schema-compatible population order remains a separate release decision. This
+assignment changes no production content, Auth/SMTP, compute, PITR, permissions or
+hosting, and authorizes no push/merge/deployment. See the dated verifier/duration report.
+
 ## Resumed review: decisions and implementation gaps remain (2026-10-01)
 
 Read `docs/final-production-readiness-resumed-2026-10-01.md`. The review collected all13

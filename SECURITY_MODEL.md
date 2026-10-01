@@ -1,5 +1,23 @@
 # Lockliel security model
 
+## Default ACL verification and duration review (2026-10-01)
+
+Captured postgres/public service_role=arwdDxtm defaults are an accepted creation
+profile, separately preserved in catalog evidence. Only closed-maintenance stages
+275–278 can temporarily match this inherited access. Final279 requires zero effective
+service_role privileges on notes, including additive column access; grading keys
+remain inaccessible. PUBLIC grants, anonymous access and member writes still fail.
+The security SQL already combines has_table_privilege and has_any_column_privilege;
+this correction does not replace either with default-ACL inspection. Disposable
+full8/restricted replays, missing279 and13 actual grant defects per profile are tested.
+
+New watch/advancement/completion must require evaluable current trusted duration;
+stored timestamps are not a bypass when trust is missing. Existing279 fails this
+new policy; the local additive proposal passes the focused regression, preserves
+owner-only notes and valid completed history, and grants no new privileges. It is
+not deployed or in the authoritative migration set. Final release remains blocked
+pending integration and review. See `docs/verifier-duration-policy-2026-10-01.md`.
+
 ## Production default ACL mismatch found before release (2026-10-01)
 
 Fresh read-only production catalog has postgres/public service_role=arwdDxtm defaults.

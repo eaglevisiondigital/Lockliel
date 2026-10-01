@@ -50,7 +50,9 @@ export function notesCreationACL(before){
  // omit the owner entry. Nonstandard global defaults were rejected above.
  assert(!acl.some(x=>x.startsWith('postgres=')&&x!==owner),'Unexpected creator privileges');
  const inherited=acl.filter(x=>x!==owner);
- assert(inherited.length===0||(inherited.length===1&&['service_role=Dxtm/postgres','service_role=arwdDxt/postgres'].includes(inherited[0])),'Unreviewed default privileges');
+ // Production PostgreSQL17 includes MAINTAIN. This is creation-time evidence,
+ // not permission to retain any service grant after the exact279 revocation.
+ assert(inherited.length===0||(inherited.length===1&&['service_role=Dxtm/postgres','service_role=arwdDxt/postgres','service_role=arwdDxtm/postgres'].includes(inherited[0])),'Unreviewed default privileges');
  return [owner,...inherited,'authenticated=r/postgres'].sort();
 }
 export function expectedTransition(before,referenceBefore,referenceAfter){

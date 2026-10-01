@@ -11,6 +11,21 @@ test('trusted video and worksheet/resource mapping are all independently ready',
 for(const key of ['duration_seconds','duration_verified_at','duration_verification_source'])test('missing '+key+' blocks readiness without member technical jargon',()=>{const r=lessonReadiness(course,lesson,[{...video,[key]:null},resource]);assert.equal(r.state,'duration_pending');assert.equal(r.publishedBlocked,true);assert.doesNotMatch(r.label+' '+r.message,/duration|configuration|schema/i);});
 for(const position of [11,12,13])test('lesson '+position+' stays media-required without fake Model C completion',()=>{const r=lessonReadiness(course,{...lesson,position},[resource]);assert.equal(r.label,'Media Coming Soon');assert.equal(r.requiredMedia,true);assert.equal(r.ready,false);assert.equal(course.learning_rules.model,'watch_answer');});
 test('readiness does not grant unlock to a locked media-pending lesson',()=>{const r=learningState({course,lessons:[lesson],assets:[resource],gates:[{lesson_id:lesson.id,unlocked:false}]});assert.equal(r.lessons[0].unlocked,false);assert.equal(r.lessons[0].readiness.state,'media_pending');});
+test('duration pending retains historical completion without inventing fresh server watch permission',()=>{
+ const progress={lesson_id:lesson.id,status:'completed',completed_at:'2026-09-30T00:00:00Z',watch_requirement_met_at:'2026-09-29T00:00:00Z'};
+ const r=learningState({course,lessons:[lesson],assets:[{...video,duration_seconds:null,duration_verified_at:null,duration_verification_source:null},resource],progress:[progress],gates:[{lesson_id:lesson.id,unlocked:true,watch_met:false}]});
+ assert.equal(r.lessons[0].state,'completed');assert.equal(r.lessons[0].watchMet,false);
+ assert.equal(r.lessons[0].readiness.label,'Lesson Being Prepared');assert.equal(r.lessons[0].readiness.ready,false);
+ assert.deepEqual(r.lessons[0].progress,progress);
+});
+test('historical timestamps do not override denied server progression in the presentation model',()=>{
+ const next={...lesson,id:'next',position:2};
+ const r=learningState({course,lessons:[{...lesson,position:1},next],assets:[{...video,duration_seconds:null},resource],
+  progress:[{lesson_id:lesson.id,status:'in_progress',watch_requirement_met_at:'2026-09-29T00:00:00Z'}],
+  gates:[{lesson_id:lesson.id,unlocked:true,watch_met:false},{lesson_id:'next',unlocked:false,watch_met:false}]});
+ assert.equal(r.lessons[0].state,'in_progress');assert.equal(r.lessons[0].readiness.label,'Lesson Being Prepared');
+ assert.equal(r.lessons[1].unlocked,false);assert.equal(r.lessons[1].state,'locked');
+});
 test('missing worksheet and protected resource remain independently visible to managers',()=>{const r=lessonReadiness(course,{...lesson,worksheet_schema:{}},[video]);assert.equal(r.state,'content_pending');assert.equal(r.worksheetReady,false);assert.equal(r.resourceReady,false);});
 test('unsupported/draft media never establishes readiness',()=>{for(const replacement of [{provider:'vimeo'},{status:'draft'},{provider_ref:''}])assert.equal(lessonReadiness(course,lesson,[{...video,...replacement},resource]).mediaReady,false);});
 test('13 lesson readiness reports ten unverified and three media pending',()=>{const lessons=Array.from({length:13},(_,i)=>({...lesson,id:String(i),position:i+1}));const assets=lessons.flatMap((l,i)=>[{...resource,lesson_id:l.id},...(i<10?[{...video,lesson_id:l.id,duration_seconds:null}]:[])]);const r=courseReadiness(course,lessons,assets);assert.equal(r.ready,false);assert.equal(r.lessons.filter(x=>x.state==='duration_pending').length,10);assert.equal(r.lessons.filter(x=>x.state==='media_pending').length,3);});

@@ -14,7 +14,7 @@ export function assertPrivateNotesPrivileges(report,{stage=279,maintenancePaused
  if(stage<279){
   assert.equal(maintenancePaused,true,'Pending279 requires closed maintenance');
   pending=report.effective.filter(row=>row.table==='public.lesson_private_notes'&&row.role==='service_role'&&row.allowed).map(row=>row.privilege).sort();
-  const known=[[],['TRUNCATE','REFERENCES','TRIGGER','MAINTAIN'],['SELECT','INSERT','UPDATE','DELETE','TRUNCATE','REFERENCES','TRIGGER']];
+  const known=[[],['TRUNCATE','REFERENCES','TRIGGER','MAINTAIN'],['SELECT','INSERT','UPDATE','DELETE','TRUNCATE','REFERENCES','TRIGGER'],privileges];
   assert(known.some(profile=>JSON.stringify([...profile].sort())===JSON.stringify(pending)),'Unknown intermediate service grants');
  }
  const unexpected=[];

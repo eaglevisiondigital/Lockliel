@@ -37,6 +37,34 @@ test('new notes ACL derives from captured creator defaults and rejects unreviewe
  }
  assert.throws(()=>notesCreationACL({...base,global_table_defaults:[['=r/postgres']]}),/Global/);
 });
+test('captured production defaults survive every transition; actual279 notes grants are zero',()=>{
+ const reference=JSON.parse(readFileSync(new URL('../supabase/verification/course-release-279/stage-reference.json',import.meta.url)));
+ let current=JSON.parse(readFileSync(new URL('../docs/evidence/final-production-readiness-resumed-2026-10-01/catalog.json',import.meta.url)));
+ const defaults=structuredClone(current.table_defaults);
+ assert.deepEqual(notesCreationACL(current),['authenticated=r/postgres','postgres=arwdDxtm/postgres','service_role=arwdDxtm/postgres']);
+ for(const stage of [275,276,277,278,279]){
+  current=expectedTransition(current,reference[stage-1],reference[stage]);
+  assert.deepEqual(current.table_defaults,defaults);
+  const notes=current.tables.find(row=>row.name==='lesson_private_notes');
+  assert.equal(notes.acl.includes('service_role=arwdDxtm/postgres'),stage<279);
+ }
+ assert.deepEqual(current.tables.find(row=>row.name==='lesson_private_notes').acl,['authenticated=r/postgres','postgres=arwdDxtm/postgres']);
+});
+test('all eight inherited service privileges require closed maintenance before279 and fail at279',()=>{
+ const report=intended();
+ for(const row of report.effective)if(row.table==='public.lesson_private_notes'&&row.role==='service_role')row.allowed=true;
+ for(const stage of [275,276,277,278]){
+  assert.equal(assertPrivateNotesPrivileges(report,{stage,maintenancePaused:true}),true);
+  assert.throws(()=>assertPrivateNotesPrivileges(report,{stage}),/closed maintenance/);
+ }
+ assert.throws(()=>assertPrivateNotesPrivileges(report),/least-privilege/);
+});
+test('each effective service privilege individually fails final279, including additive column access',()=>{
+ for(const row of intended().effective.filter(row=>row.role==='service_role')){
+  const report=intended();report.effective.find(x=>x.table===row.table&&x.role===row.role&&x.privilege===row.privilege).allowed=true;
+  assert.throws(()=>assertPrivateNotesPrivileges(report),/least-privilege/);
+ }
+});
 test('anonymous, member writes, grading-key service grants, PUBLIC and missing evidence fail closed',()=>{
  for(const [table,role,privilege] of [['public.lesson_private_notes','anon','SELECT'],['public.lesson_private_notes','authenticated','UPDATE'],['app_private.course_answer_keys','service_role','SELECT']]){
   const report=intended();report.effective.find(row=>row.table===table&&row.role===role&&row.privilege===privilege).allowed=true;

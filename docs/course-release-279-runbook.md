@@ -1,5 +1,12 @@
 # Five-stage course release package
 
+**Local follow-up, 2026-10-01:** See [verifier/duration report](verifier-duration-policy-2026-10-01.md).
+The default-ACL verifier mismatch is corrected and rehearsed locally. The approved
+strict duration policy fails on authoritative279. Its additive correction is only a
+local disposable-tested proposal, so this five-stage release sequence remains BLOCKED.
+Inventory PASS is separate from production population, which requires authorization.
+Do not execute this historical279 plan as though the duration correction is included.
+
 ## Superseding resumed review, 2026-10-01
 
 See `final-production-readiness-resumed-2026-10-01.md` and

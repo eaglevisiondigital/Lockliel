@@ -1,5 +1,18 @@
 # Lockliel architecture
 
+## Current trust versus durable course history (2026-10-01)
+
+The approved policy now separates current eligibility from durable telemetry and
+completion. Authoritative279 still uses an early cached watch timestamp. The local
+proposal in `supabase/proposals/trusted-duration-policy` first evaluates all current
+active-video duration/provenance, then consults valid historical watch credit. It
+changes no table or data. Completed-lesson notes saves use UPDATE after the existing
+identity/session/enrollment/revision/immutable-answer checks, avoiding an INSERT
+completion trigger recheck during upsert. Completed status, time and evidence remain
+intact. This is disposable-tested proposal behavior, not deployed implementation.
+Do not treat the279 release runner/maintenance fingerprint as covering the proposal.
+See `docs/verifier-duration-policy-2026-10-01.md` for the required release-set revision.
+
 ## Final release sequencing remains blocked (2026-10-01)
 
 PR4/eaff3fe now contains the validated21ac4a5 application, but production remains274.

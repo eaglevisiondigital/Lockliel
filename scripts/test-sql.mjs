@@ -5,6 +5,8 @@ import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
+import {verifyCourseACLMatrix} from '../tests/support/course-acl-matrix.mjs';
+import {verifyDurationPolicy} from '../tests/support/course-duration-policy.mjs';
 
 const review275 = process.argv.length === 3 && ['--review-275','--review-279'].includes(process.argv[2]);
 const review279 = review275 && process.argv[2] === '--review-279';
@@ -105,6 +107,7 @@ try {
   }
   const migrations = readdirSync(join(repo, 'supabase/migrations')).filter(f => f.endsWith('.sql')).sort();
   for (const file of review275 ? migrations.slice(0, 274) : migrations) {
+    if (file === '20260929215159_lockliel_course_engine_standard.sql') verifyCourseACLMatrix(sql,repo,migrations);
     if (file === '20260926212002_lockliel_correct_profile_email_pattern.sql') {
       verifyReconciliation();
       verifyEmailRecovery(readFileSync(join(repo, 'supabase/migrations', file), 'utf8'));
@@ -139,6 +142,7 @@ try {
     console.log(`PASS ${file} (rolled back)`);
   }
   console.log(`Passed ${tests.length} SQL test files.`);
+  verifyDurationPolicy(sql,repo);
   // Temporary readiness is operational SQL, intentionally outside migration history.
   // Exercise its exact old-to-new update in this same disposable cluster only.
   const unwrap = source => source.replace(/^begin;$/m, '').replace(/commit;\s*$/, '');

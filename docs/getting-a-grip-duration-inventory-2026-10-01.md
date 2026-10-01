@@ -1,5 +1,12 @@
 # Getting a Grip provider duration inventory, 2026-10-01
 
+**TRUSTED DURATION INVENTORY: PASS.**
+**TRUSTED DURATION PRODUCTION POPULATION: REQUIRES SEPARATE AUTHORIZATION.**
+
+Local follow-up reused the existing verified inventory. No video was fetched again
+and no production value was written. NULL is the last read-only observation in the
+prior October 1 review, not a new production query in this local-only assignment.
+
 READ-ONLY REVIEW. Proposed production values only; nothing has been populated.
 
 All13 active assets across Lessons1–10 are individually listed below. Production
@@ -15,21 +22,21 @@ source/provenance column not yet present at274. Readiness=METADATA VERIFIED / PR
 REQUIRES ACTION. Full timestamp/method/extracted metadata evidence is retained in
 `evidence/final-production-readiness-resumed-2026-10-01/provider-durations.json`.
 
-| Lesson | Lesson title | Asset UUID | Provider/reference and authority | Published actual | Proposed seconds | Stored | Readiness |
-|---|---|---|---|---|---:|---|---|
-| 1 | How to Become a Christian | `42b28ff3-03fa-45b9-93e7-4a258b5bd768` | [YouTube SJ5Ee7OXkkM](https://www.youtube.com/watch?v=SJ5Ee7OXkkM) | PT24M40S (24:40) | 1480 | NULL | Metadata verified;not populated |
-| 2 | How to Be Sure You Are a Christian | `0772dfe1-2e03-430f-bdc6-f691e2de7fcb` | [YouTube AEfPf609RgU](https://www.youtube.com/watch?v=AEfPf609RgU) | PT23M57S (23:57) | 1437 | NULL | Metadata verified;not populated |
-| 3 | How to Develop Your Relationship with God | `c8b4ea07-47be-43cd-b07c-35e80cbba6cd` | [YouTube 3CSBKubDefw](https://www.youtube.com/watch?v=3CSBKubDefw) | PT24M18S (24:18) | 1458 | NULL | Metadata verified;not populated |
-| 4 | How to Talk to God | `495191a6-42c1-4c65-9aef-66de0f98583a` | [YouTube _NSjbNFcqQA](https://www.youtube.com/watch?v=_NSjbNFcqQA) | PT22M30S (22:30) | 1350 | NULL | Metadata verified;not populated |
-| 5 | How to Hear from God | `9f91268c-923f-46af-a9aa-e75ddf68b889` | [YouTube nWS8Km2kfKg](https://www.youtube.com/watch?v=nWS8Km2kfKg) | PT21M42S (21:42) | 1302 | NULL | Metadata verified;not populated |
-| 6 | How to Obey God | `6ab8a12a-f13c-48dc-8048-afe5fb26359f` | [YouTube enGySOvV4jg](https://www.youtube.com/watch?v=enGySOvV4jg) | PT24M16S (24:16) | 1456 | NULL | Metadata verified;not populated |
-| 6 | How to Obey God | `754a7b50-3f7b-455e-a147-18bf6ff3cd18` | [YouTube TjuLVCy4gnQ](https://www.youtube.com/watch?v=TjuLVCy4gnQ) | PT24M17S (24:17) | 1457 | NULL | Metadata verified;not populated |
-| 7 | How to Experience God's Love and Forgiveness | `2cacacc1-b174-4d0a-b17b-6db3a56936ed` | [YouTube q_vUBJ8EgaU](https://www.youtube.com/watch?v=q_vUBJ8EgaU) | PT25M1S (25:01) | 1501 | NULL | Metadata verified;not populated |
-| 8 | How to Be Filled with the Holy Spirit | `41595092-d6b9-4ee0-aa61-5b6bf3917ec1` | [YouTube 2VDVveA4RUQ](https://www.youtube.com/watch?v=2VDVveA4RUQ) | PT21M57S (21:57) | 1317 | NULL | Metadata verified;not populated |
-| 8 | How to Be Filled with the Holy Spirit | `8697594b-35e7-42ac-be40-520546fc2181` | [YouTube g8b964SWekE](https://www.youtube.com/watch?v=g8b964SWekE) | PT23M28S (23:28) | 1408 | NULL | Metadata verified;not populated |
-| 9 | How to Be Sure You Are Filled with the Spirit | `793e65ec-6eff-4a86-b650-6d9cb2dcff29` | [YouTube HY1OyDdODL8](https://www.youtube.com/watch?v=HY1OyDdODL8) | PT22M18S (22:18) | 1338 | NULL | Metadata verified;not populated |
-| 9 | How to Be Sure You Are Filled with the Spirit | `dadd7b47-5288-43d2-bd9b-f66d31f3ffd0` | [YouTube vjY2BTUzxGU](https://www.youtube.com/watch?v=vjY2BTUzxGU) | PT24M32S (24:32) | 1472 | NULL | Metadata verified;not populated |
-| 10 | How to Grow and Develop Your Faith | `3b9819c7-b197-4e2e-af13-06ee5836b6ed` | [YouTube 5-1B6IouUNk](https://www.youtube.com/watch?v=5-1B6IouUNk) | PT24M1S (24:01) | 1441 | NULL | Metadata verified;not populated |
+| Lesson | Asset UUID | Video reference | Seconds | Source | Verified at (UTC) | Last observed production value |
+|---|---|---|---:|---|---|---|
+| 1 | `42b28ff3-03fa-45b9-93e7-4a258b5bd768` | `SJ5Ee7OXkkM` | 1480 | [YouTube metadata](https://www.youtube.com/watch?v=SJ5Ee7OXkkM) | 2026-10-01T20:32:37.186832+00:00 | NULL |
+| 2 | `0772dfe1-2e03-430f-bdc6-f691e2de7fcb` | `AEfPf609RgU` | 1437 | [YouTube metadata](https://www.youtube.com/watch?v=AEfPf609RgU) | 2026-10-01T20:32:37.187764+00:00 | NULL |
+| 3 | `c8b4ea07-47be-43cd-b07c-35e80cbba6cd` | `3CSBKubDefw` | 1458 | [YouTube metadata](https://www.youtube.com/watch?v=3CSBKubDefw) | 2026-10-01T20:32:37.188346+00:00 | NULL |
+| 4 | `495191a6-42c1-4c65-9aef-66de0f98583a` | `_NSjbNFcqQA` | 1350 | [YouTube metadata](https://www.youtube.com/watch?v=_NSjbNFcqQA) | 2026-10-01T20:32:37.188565+00:00 | NULL |
+| 5 | `9f91268c-923f-46af-a9aa-e75ddf68b889` | `nWS8Km2kfKg` | 1302 | [YouTube metadata](https://www.youtube.com/watch?v=nWS8Km2kfKg) | 2026-10-01T20:32:49.388570+00:00 | NULL |
+| 6 | `6ab8a12a-f13c-48dc-8048-afe5fb26359f` | `enGySOvV4jg` | 1456 | [YouTube metadata](https://www.youtube.com/watch?v=enGySOvV4jg) | 2026-10-01T20:32:49.423773+00:00 | NULL |
+| 6 | `754a7b50-3f7b-455e-a147-18bf6ff3cd18` | `TjuLVCy4gnQ` | 1457 | [YouTube metadata](https://www.youtube.com/watch?v=TjuLVCy4gnQ) | 2026-10-01T20:32:50.674149+00:00 | NULL |
+| 7 | `2cacacc1-b174-4d0a-b17b-6db3a56936ed` | `q_vUBJ8EgaU` | 1501 | [YouTube metadata](https://www.youtube.com/watch?v=q_vUBJ8EgaU) | 2026-10-01T20:32:57.974716+00:00 | NULL |
+| 8 | `41595092-d6b9-4ee0-aa61-5b6bf3917ec1` | `2VDVveA4RUQ` | 1317 | [YouTube metadata](https://www.youtube.com/watch?v=2VDVveA4RUQ) | 2026-10-01T20:33:02.066825+00:00 | NULL |
+| 8 | `8697594b-35e7-42ac-be40-520546fc2181` | `g8b964SWekE` | 1408 | [YouTube metadata](https://www.youtube.com/watch?v=g8b964SWekE) | 2026-10-01T20:33:04.960158+00:00 | NULL |
+| 9 | `793e65ec-6eff-4a86-b650-6d9cb2dcff29` | `HY1OyDdODL8` | 1338 | [YouTube metadata](https://www.youtube.com/watch?v=HY1OyDdODL8) | 2026-10-01T20:33:07.300480+00:00 | NULL |
+| 9 | `dadd7b47-5288-43d2-bd9b-f66d31f3ffd0` | `vjY2BTUzxGU` | 1472 | [YouTube metadata](https://www.youtube.com/watch?v=vjY2BTUzxGU) | 2026-10-01T20:33:13.498086+00:00 | NULL |
+| 10 | `3b9819c7-b197-4e2e-af13-06ee5836b6ed` | `5-1B6IouUNk` | 1441 | [YouTube metadata](https://www.youtube.com/watch?v=5-1B6IouUNk) | 2026-10-01T20:33:13.517476+00:00 | NULL |
 
 Lessons6,8,9 each contain two separate assets. No combined timing was assigned.
 

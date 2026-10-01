@@ -93,6 +93,24 @@ try{
  evidence.stages.push({stage,only:files[stage-1],ledger:stage,tlsAndTimeoutsAssertedOnWriter:true});console.log('PASS exact pinned CLI stage '+stage+', catalog/ledger captured, maintenance stays closed');
  assert.equal(classify(before,after,after),'COMMITTED');clone('stage_'+stage,happy);
  }
+ // Exact CLI rehearsal with captured production full8 and already-restricted
+ // creation defaults. Neither profile authorizes service access after279.
+ evidence.defaultACLProfiles=[];
+ for(const profile of ['production_full8','restricted_zero']){
+  const db=clone('acl_'+profile);
+  sql('alter default privileges for role postgres in schema public revoke all on tables from service_role;'+
+   (profile==='production_full8'?'alter default privileges for role postgres in schema public grant all on tables to service_role;':''),db);
+  const defaults=catalog(db).table_defaults;
+  for(const stage of [275,276,277,278,279]){
+   const before=catalog(db),expected=expectedTransition(before,references[stage-1],references[stage]);
+   const result=executeStage({binary,root:release,stage,connection:connection(db),env,authorized:true,expected});
+   assert.equal(result.state,'COMMITTED');assert.equal(result.clientSucceeded,true);
+   assert.deepEqual(catalog(db).table_defaults,defaults);
+   assert.equal(sql("select public.lockliel_course_cutover_status()->>'paused'",db),'true');
+  }
+  evidence.defaultACLProfiles.push({profile,stages:[275,276,277,278,279],finalServicePrivileges:0,defaultsUnchanged:true,maintenance:'ON'});
+  console.log('PASS exact five-stage CLI '+profile+': defaults preserved, final notes zero service privileges');
+ }
  // Each migration stage failure independently leaves hosted-equivalent maintenance closed.
  for(const stage of [275,276,277,278,279]){
   const db=clone('closed_failure_'+stage,stage===275?'baseline':'stage_'+(stage-1));sql("update rehearsal.control set mode='permission'",db);
@@ -166,6 +184,6 @@ try{
  assert.throws(()=>sql('begin;'+sampleSQL+'commit;',happy),/not available|eligible|unavailable/i);assert.equal(await unpublisher.done,0);
  evidence.publicationConcurrency={samplingLocksPublication:true,unpublishFirstRejectsWaitingSampler:true};console.log('PASS publication concurrency in both lock orders');
  evidence.pending='Hosted schema execution and full old-app/new-app acceptance are reported separately; this proves only disposable five-stage behavior';
- writeFileSync(join(repo,'docs/evidence/course-release-review-2026-10-01/rehearsal-279.json'),JSON.stringify(evidence,null,2)+'\n');
+ writeFileSync(join(repo,'docs/evidence/verifier-duration-policy-2026-10-01/rehearsal-279.json'),JSON.stringify(evidence,null,2)+'\n');
  console.log('Staged runner and failure rehearsal evidence saved; remaining maintenance cases explicitly pending');
 }finally{cleanup();}

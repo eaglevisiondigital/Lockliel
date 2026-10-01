@@ -1,5 +1,26 @@
 # Lockliel verified continuity baseline
 
+## Local verifier correction and duration-policy regression (2026-10-01)
+
+The local default-ACL correction accepts captured service_role=arwdDxtm creation
+privileges without permitting final notes access. Disposable exact275–279 replay
+and the pinned five-stage CLI pass with full8 and restricted defaults; actual
+service table/column grants still fail final verification. All279 hashes unchanged.
+Read `docs/verifier-duration-policy-2026-10-01.md`.
+
+Authoritative279 FAILS the newly approved duration policy in cases3 and8: stale
+watch timestamps permit new advancement/completion after current trust is removed.
+A two-function additive SQL proposal outside `supabase/migrations` passes all8
+focused cases locally. It is NOT an applied migration, not part of PR4, and not a
+release-ready sixth stage. Do not promote it implicitly or patch historical275.
+The existing279 maintenance fingerprint must remain strict. A revised release set,
+expected catalogs/readiness, regression expectations and hosted acceptance are needed.
+Inventory of13 trusted durations is PASS; production population requires separate
+authorization. Preserve historical evidence and completed lessons, but missing current
+trust must block NEW progress. Production and hosted environments were not accessed
+or changed in this assignment;274/main1599ab2/PR4draft/eaff3fe/Netlify/Sites25/PITR7/
+Small/Auth/SMTP are prior observations, not a fresh live audit. No push or release.
+
 ## Final readiness resumed: production ACL verifier stop (2026-10-01)
 
 Read `docs/final-production-readiness-resumed-2026-10-01.md` and the companion
