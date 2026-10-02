@@ -1,5 +1,17 @@
 # Lockliel verified continuity baseline
 
+## Positive280 acceptance authorized, stopped before exit (2026-10-01)
+
+Read `docs/hosted-positive-280-preexit-stop-2026-10-01.md`. The new explicit assignment
+permits temporary maintenance OFF only on qjksggxorghaxvpyslip for positive synthetic
+acceptance, then requires maintenance ON. It supersedes the previous no-exit restriction
+for this bounded test only. However, fresh direct preflight failed: Mac has no IPv6 route.
+Per the explicit STOP rule, no exit/testing/mutation occurred. Read-only connector confirms
+280/paused=true/schemaReady=true/protocol278-v1 and zero service notes privileges.
+Restore the existing hotspot path, recheck all prerequisites and resume this authorized
+scope. No new approval needed. Do not replay280 or repeat local preparation. Production,
+roles/settings, app/site, remote branches and both isolated environments remain untouched.
+
 ## Isolated280 applied, maintenance ON, full regression incomplete (2026-10-01)
 
 Read `docs/hosted-duration-280-2026-10-01.md`. Exact280 from bd6534a committed once on
