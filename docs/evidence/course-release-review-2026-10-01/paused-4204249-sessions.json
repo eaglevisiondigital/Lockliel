@@ -1,0 +1,20 @@
+[
+  {
+    "identity": "a",
+    "issuer": "https://qjksggxorghaxvpyslip.supabase.co/auth/v1",
+    "subjectMatchesSynthetic": true,
+    "aal": "aal1"
+  },
+  {
+    "identity": "b",
+    "issuer": "https://qjksggxorghaxvpyslip.supabase.co/auth/v1",
+    "subjectMatchesSynthetic": true,
+    "aal": "aal1"
+  },
+  {
+    "identity": "manager",
+    "issuer": "https://qjksggxorghaxvpyslip.supabase.co/auth/v1",
+    "subjectMatchesSynthetic": true,
+    "aal": "aal2"
+  }
+]

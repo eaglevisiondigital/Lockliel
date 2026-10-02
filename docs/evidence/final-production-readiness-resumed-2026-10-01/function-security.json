@@ -1,0 +1,35 @@
+[
+  {
+    "nspname": "app_private",
+    "proname": "normalize_lesson_asset_duration_verification",
+    "args": "",
+    "owner": "postgres",
+    "security_definer": false,
+    "settings": [
+      "search_path=\"\""
+    ],
+    "acl": "{postgres=X/postgres}"
+  },
+  {
+    "nspname": "app_private",
+    "proname": "validate_course_release",
+    "args": "",
+    "owner": "postgres",
+    "security_definer": false,
+    "settings": [
+      "search_path=\"\""
+    ],
+    "acl": "{postgres=X/postgres}"
+  },
+  {
+    "nspname": "app_private",
+    "proname": "validate_lesson_completion",
+    "args": "",
+    "owner": "postgres",
+    "security_definer": true,
+    "settings": [
+      "search_path=\"\""
+    ],
+    "acl": "{postgres=X/postgres}"
+  }
+]

@@ -161,10 +161,10 @@ test('shared course reader preserves canonical IDs and translated media progress
     if(table==='courses')return Response.json(uri.searchParams.has('id')?[{id:'en',translation_key:'getting-a-grip-on-the-basics',language_code:'en',status:'published'}]:[{id:'es',translation_key:'getting-a-grip-on-the-basics',language_code:'es',status:'published'}]);
     if(table==='lessons'){const translated=uri.searchParams.get('course_id')==='eq.es';return Response.json([{id:translated?'es-lesson':'en-lesson',slug:translated?'leccion':'lesson',translation_key:'one',position:1,worksheet_schema:{questions:[{number:1}]}}]);}
     if(table==='lesson_progress')return Response.json([{lesson_id:'en-lesson',status:'in_progress',worksheet_status:'in_progress'}]);
-    if(table==='lesson_assets')return Response.json([{id:'es-video',lesson_id:'es-lesson',asset_type:'video',provider:'youtube'}]);
+    if(table==='lesson_assets')return Response.json([{id:'es-video',lesson_id:'es-lesson',asset_type:'video',provider:'youtube',storage_path:'private/never-return.pdf'}]);
     if(table==='media_progress')return Response.json([{asset_id:'es-video',percent_watched:95}]);
     throw Error('Unexpected '+table);
   };
-  const data=await loadCourseJourney(session.access,uid,{fetcher,summary:true});assert.equal(data.lessons[0].id,'en-lesson');assert.equal(data.lessons[0].content_lesson_id,'es-lesson');assert.equal(data.assets[0].lesson_id,'en-lesson');assert.equal(data.course.id,'en');assert.equal(courseState(data).worksheetIncomplete,true);assert.equal(courseState(data).videoIncomplete,false);
+  const data=await loadCourseJourney(session.access,uid,{fetcher,summary:true});assert.equal(data.lessons[0].id,'en-lesson');assert.equal(data.lessons[0].content_lesson_id,'es-lesson');assert.equal(data.assets[0].lesson_id,'en-lesson');assert.equal(data.course.id,'en');assert.equal(data.assets[0].storage_path,undefined);assert.equal(data.assets[0].resource_mapped,true);assert.equal(courseState(data).worksheetIncomplete,true);assert.equal(courseState(data).videoIncomplete,false);
   const mediaRead=calls.find(uri=>uri.pathname.endsWith('media_progress'));assert.equal(mediaRead.searchParams.get('profile_id'),'eq.'+uid);assert.equal(mediaRead.searchParams.get('asset_id'),'in.(es-video)');
 });

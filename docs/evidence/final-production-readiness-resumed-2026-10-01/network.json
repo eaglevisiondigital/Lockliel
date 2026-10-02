@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-01T20:31:42.310582+00:00",
+  "endpoint": "db.bsndfhbemstyrrglajat.supabase.co:5432",
+  "ipv6": [
+    "2600:1f18:38df:9500::eef4"
+  ],
+  "tcp": "PASS",
+  "verified_hostname": true,
+  "certificate_validation": true,
+  "tls": "TLSv1.2",
+  "cipher": "ECDHE-RSA-AES256-GCM-SHA384"
+}

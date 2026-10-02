@@ -1,0 +1,11 @@
+{
+  "roles": [
+    {
+      "role": "content_admin"
+    }
+  ],
+  "personStatus": 403,
+  "error": {
+    "error": "Person record access required"
+  }
+}

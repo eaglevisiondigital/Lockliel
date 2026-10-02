@@ -1,0 +1,29 @@
+[
+  {
+    "background": "rgb(237, 244, 252)",
+    "color": "rgb(23, 41, 67)",
+    "columns": "489.594px 662.406px",
+    "heading": "rgb(23, 41, 67)",
+    "helper": "rgb(23, 41, 67)",
+    "scrollWidth": 1440,
+    "width": 1440
+  },
+  {
+    "background": "rgb(237, 244, 252)",
+    "color": "rgb(23, 41, 67)",
+    "columns": "724px",
+    "heading": "rgb(23, 41, 67)",
+    "helper": "rgb(23, 41, 67)",
+    "scrollWidth": 768,
+    "width": 768
+  },
+  {
+    "background": "rgb(237, 244, 252)",
+    "color": "rgb(23, 41, 67)",
+    "columns": "346px",
+    "heading": "rgb(23, 41, 67)",
+    "helper": "rgb(23, 41, 67)",
+    "scrollWidth": 390,
+    "width": 390
+  }
+]

@@ -1,0 +1,133 @@
+{
+  "source": "a2254aaa3890e2aff7c51b9c84c45021a7b7ba20",
+  "stages": [
+    {
+      "stage": 275,
+      "only": "20260929215159_lockliel_course_engine_standard.sql",
+      "ledger": 275,
+      "tlsAndTimeoutsAssertedOnWriter": true
+    },
+    {
+      "stage": 276,
+      "only": "20260930092000_lockliel_course_release_trigger_execution.sql",
+      "ledger": 276,
+      "tlsAndTimeoutsAssertedOnWriter": true
+    },
+    {
+      "stage": 277,
+      "only": "20260930092500_lockliel_course_conflict_http_status.sql",
+      "ledger": 277,
+      "tlsAndTimeoutsAssertedOnWriter": true
+    },
+    {
+      "stage": 278,
+      "only": "20260930145334_lockliel_media_publication_authorization.sql",
+      "ledger": 278,
+      "tlsAndTimeoutsAssertedOnWriter": true
+    },
+    {
+      "stage": 279,
+      "only": "20261001133500_lockliel_private_notes_service_privileges.sql",
+      "ledger": 279,
+      "tlsAndTimeoutsAssertedOnWriter": true
+    }
+  ],
+  "failures": [
+    {
+      "mode": "stage_275_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_276_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_277_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_278_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "stage_279_failure",
+      "state": "ROLLED_BACK",
+      "maintenance": "ON",
+      "operator": "STOP / INVESTIGATE"
+    },
+    {
+      "mode": "sql_error",
+      "state": "ROLLED_BACK"
+    },
+    {
+      "mode": "permission",
+      "state": "ROLLED_BACK"
+    },
+    {
+      "mode": "statement_timeout",
+      "state": "ROLLED_BACK"
+    },
+    {
+      "mode": "disconnect",
+      "state": "ROLLED_BACK"
+    },
+    {
+      "mode": "lock_timeout",
+      "state": "ROLLED_BACK"
+    },
+    {
+      "mode": "ledger_only",
+      "state": "UNKNOWN_STOP"
+    },
+    {
+      "mode": "objects_only",
+      "state": "UNKNOWN_STOP"
+    },
+    {
+      "mode": "client_failure_after_commit",
+      "state": "COMMITTED"
+    },
+    {
+      "mode": "tcp_loss_after_commit",
+      "state": "COMMITTED",
+      "clientStatus": 1
+    }
+  ],
+  "tls": {
+    "positive": {
+      "ssl": true,
+      "tls": "TLSv1.3",
+      "lock": "5s",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "server": "17.11 (Homebrew)",
+      "database": "baseline",
+      "readonly": "on",
+      "statement": "30s"
+    },
+    "wrongHost": "rejected",
+    "wrongCA": "rejected"
+  },
+  "maintenance": {
+    "inflightDrained": true,
+    "laterDirectWriteRejected": true,
+    "schema274Paused": true,
+    "schema279Paused": true,
+    "oldProtocolRejectedAfterReopen": true,
+    "newProtocolAcceptedAfterReopen": true,
+    "unrelatedProfilesRouteAllowed": true,
+    "scope": "Disposable PostgreSQL only; hosted evidence is reported separately"
+  },
+  "publicationConcurrency": {
+    "samplingLocksPublication": true,
+    "unpublishFirstRejectsWaitingSampler": true
+  },
+  "pending": "Hosted schema execution and full old-app/new-app acceptance are reported separately; this proves only disposable five-stage behavior"
+}

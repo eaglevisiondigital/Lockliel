@@ -1,0 +1,10 @@
+{
+  "upToDate": false,
+  "dryRun": true,
+  "migrations": [
+    "20260929215159_lockliel_course_engine_standard.sql"
+  ],
+  "seeds": [],
+  "roles": [],
+  "message": "Finished supabase db push."
+}

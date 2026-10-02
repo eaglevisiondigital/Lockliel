@@ -1,0 +1,31 @@
+{
+  "source": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+  "packagerSource": "b93c6a2db662963bcaa3439662e407ee8d1a4054",
+  "workingDiffSha256": "6f61f74da2c18d24a75f9b1f1a4607f40d7e13ccb9543175f06f8c665fb315e3",
+  "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "ref": "qjksggxorghaxvpyslip",
+  "origin": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "handlers": [
+    "login",
+    "logout",
+    "session",
+    "mfa",
+    "journey",
+    "lesson-resource",
+    "profile",
+    "admin-content",
+    "admin-person"
+  ],
+  "hashes": {
+    "login": "d006d3f293d85283561debb697f99382611c4e6c8bbee378c5edc6fb51c09728",
+    "logout": "a31310ca1ed9b49deaaf3d7b623778e54741af0f5eccf8f6f9d29fa6f332793a",
+    "session": "cf86d3551e1b20706f1dae6d734397fdd58c733e9d9c987bdb5dd2b5b2e63153",
+    "mfa": "444d3effe96285cf97bb3d231955dfd6fc3951c1f9ad6fdfd205eaebae2152e7",
+    "journey": "d0981bcb6184c8589a4fda2c19274711972915a3d2d736f469ef0ce571086d7c",
+    "lesson-resource": "5c9eccb9bf36d427201d34715075a446aab1cad915e11d1a923700942edb989d",
+    "profile": "9c4219e1c6cf3fdca000b476b885e08ac050ca5f62354670bcc1fac95f6b7cc5",
+    "admin-content": "aadd62f7d3d6c13fc737e6f7046a89edb255726ad0c72bca748af74b62b13113",
+    "admin-person": "e538c8274e2e29baed208c9c2ac15db397ec9557d945486a065fb1e37be2a004"
+  },
+  "adaptation": "Backend configuration, trusted site guard, HTTPS cookie only; original course logic unchanged"
+}

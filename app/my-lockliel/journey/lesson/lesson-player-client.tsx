@@ -1,161 +1,102 @@
 "use client";
-import {useEffect,useMemo,useRef,useState} from "react";
-import Link from "next/link";
-import {ArrowLeft,CheckCircle2,FileText,LockKeyhole} from "lucide-react";
-import YouTubeProgressPlayer from "./youtube-progress-player";
+import {useEffect,useMemo,useRef,useState} from 'react';
+import Link from 'next/link';
+import YouTubeProgressPlayer from './youtube-progress-player';
+import {createLessonSaver} from '../../../../lib/course/autosave.mjs';
+import {learningState,questionKey,worksheetState} from '../../../../netlify/lib/course-engine.mjs';
+import './workspace.css';
 
 export default function LessonPlayerClient(){
-  const [data,setData]=useState<any>(null);
-  const [slug,setSlug]=useState("");
-  const [error,setError]=useState("");
-  const [message,setMessage]=useState("");
-  const [answers,setAnswers]=useState<Record<string,string>>({});
-  const [localMedia,setLocalMedia]=useState<Record<string,number>>({});
-  const [saving,setSaving]=useState(false);
-  const hydrated=useRef(false);
-
-  async function load(){
-    const params=new URLSearchParams(window.location.search);
-    const lessonSlug=params.get("lesson")||"";
-    setSlug(lessonSlug);
-    if(!lessonSlug){setError("Choose a lesson from My Journey.");return;}
-
-    const r=await fetch("/api/lockliel/journey",{cache:"no-store"});
-    if(r.status===401){location.assign("/my-lockliel/sign-in");return;}
-    const d=await r.json();
-    if(!r.ok){setError(d.error||"Unable to load lesson.");return;}
-
-    const lesson=d.lessons.find((l:any)=>l.slug===lessonSlug);
-    if(!lesson){setError("This lesson is not available in your journey.");return;}
-
-    const progress=d.progress.find((p:any)=>p.lesson_id===lesson.id);
-    setAnswers(progress?.worksheet_answers||{});
-    const media:Record<string,number>={};
-    for(const p of d.mediaProgress||[])media[p.asset_id]=Number(p.percent_watched)||0;
-    setLocalMedia(media);
-    setData({...d,lesson,lessonProgress:progress});
-    hydrated.current=true;
-
-    if(!progress||progress.status==="not_started"){
-      await fetch("/api/lockliel/journey",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({lessonId:lesson.id,status:"in_progress",worksheetStatus:"not_started",worksheetAnswers:{}})
-      }).catch(()=>{});
-    }
-  }
-
-  useEffect(()=>{load();},[]);
-
-  const assets=useMemo(()=>data?.assets.filter((a:any)=>a.lesson_id===data.lesson.id)||[],[data]);
-  const videos=useMemo(()=>assets.filter((a:any)=>a.asset_type==="video"&&a.provider==="youtube"),[assets]);
-  const documents=useMemo(()=>assets.filter((a:any)=>["pdf","worksheet","external_link"].includes(a.asset_type)),[assets]);
-  const questions=useMemo(()=>data?.lesson?.worksheet_schema?.questions||[],[data]);
-  const mediaSaved=useMemo(()=>Object.fromEntries((data?.mediaProgress||[]).map((p:any)=>[p.asset_id,p])),[data]);
-  const notesMode=questions.length===1&&String(questions[0]?.text||"").startsWith("After working through this lesson");
-
-  useEffect(()=>{
-    if(!hydrated.current||!data?.lesson||!questions.length)return;
-    const timer=window.setTimeout(()=>{
-      const complete=questions.every((q:any)=>String(answers[String(q.number)]||"").trim().length>0);
-      fetch("/api/lockliel/journey",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({
-          lessonId:data.lesson.id,
-          status:"in_progress",
-          worksheetStatus:complete?"completed":"in_progress",
-          worksheetAnswers:answers
-        })
-      }).catch(()=>{});
-    },800);
-    return ()=>window.clearTimeout(timer);
-  },[answers,data?.lesson?.id,questions.length]);
-
-  function onMediaProgress(assetId:string,percent:number){
-    setLocalMedia(v=>({...v,[assetId]:Math.max(v[assetId]||0,percent)}));
-  }
-
-  async function completeLesson(){
-    if(!data?.lesson)return;
-    setSaving(true);
-    setMessage("");
-    const r=await fetch("/api/lockliel/journey",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        lessonId:data.lesson.id,
-        status:"completed",
-        worksheetStatus:questions.length?"completed":"not_required",
-        worksheetAnswers:answers
-      })
-    });
-    const d=await r.json().catch(()=>({}));
-    setSaving(false);
-    if(!r.ok){setMessage(d.error||"Unable to complete lesson.");return;}
-    setMessage("Lesson completed. Your progress has been saved.");
-    await load();
-  }
-
-  if(error)return <section className="ml-card"><LockKeyhole size={21}/><h2>Lesson unavailable</h2><p>{error}</p><Link href="/my-lockliel/journey">Return to My Journey →</Link></section>;
-  if(!data)return <div className="ml-loading">Opening your lesson…</div>;
-
-  const worksheetDone=!questions.length||questions.every((q:any)=>String(answers[String(q.number)]||"").trim().length>0);
-  const videoDone=videos.length>0&&videos.every((a:any)=>(localMedia[a.id]||0)>=95);
-  const hasReadyContent=videos.length>0||questions.length>0;
-  const canComplete=hasReadyContent&&worksheetDone&&(videos.length===0||videoDone);
-  const completed=data.lessonProgress?.status==="completed";
-
-  return <section className="ml-lesson-experience">
-    <Link href="/my-lockliel/journey" className="ml-auth-home"><ArrowLeft size={16}/> My Journey</Link>
-
-    <section className="ml-panel ml-lesson-hero">
-      <div className="ml-kicker">Lesson {data.lesson.position}</div>
-      <h1>{data.lesson.title}</h1>
-      <p>Watch. Learn. Work through the lesson. Your progress saves to My Lockliel.</p>
-      {completed&&<div className="ml-completed-pill"><CheckCircle2 size={16}/> Completed</div>}
-    </section>
-
-    {videos.length>0&&<section className="ml-lesson-block">
-      <div className="ml-kicker">Watch</div>
-      <h2>{videos.length>1?"Lesson videos":"Lesson video"}</h2>
-      <div className="ml-lesson-videos">
-        {videos.map((asset:any)=><YouTubeProgressPlayer key={asset.id} asset={asset} saved={mediaSaved[asset.id]} onProgress={onMediaProgress}/>)}
-      </div>
-      <p className="ml-privacy-note">Playback completion is based on the portions actually watched. Skipping directly to the end does not count as watching the full lesson.</p>
-    </section>}
-
-    {questions.length>0&&<section className="ml-panel ml-worksheet">
-      <div className="ml-kicker">{notesMode?"Reflect":"Work it out"}</div>
-      <h2>{notesMode?"Lesson notes":"Lesson worksheet"}</h2>
-      <p>{notesMode?"Capture what stood out, what you learned, and what you want to put into practice. Your notes save automatically.":"Answer each question as you work through the teaching. Your answers save automatically."}</p>
-      <div className="ml-worksheet-list">
-        {questions.map((q:any)=><label key={q.number}>
-          <span>{notesMode?q.text:q.number+". "+q.text}</span>
-          {notesMode
-            ? <textarea rows={6} value={answers[String(q.number)]||""} onChange={e=>setAnswers(v=>({...v,[String(q.number)]:e.target.value}))} placeholder="Write your notes and key takeaways…"/>
-            : <input value={answers[String(q.number)]||""} onChange={e=>setAnswers(v=>({...v,[String(q.number)]:e.target.value}))} placeholder="Your answer"/>}
-        </label>)}
-      </div>
-      <div className="ml-worksheet-status">{notesMode?(worksheetDone?"Notes saved":"Add your notes to complete this lesson"):questions.filter((q:any)=>String(answers[String(q.number)]||"").trim()).length+" of "+questions.length+" answered"}</div>
-    </section>}
-
-    {documents.length>0&&<section className="ml-panel ml-lesson-resources">
-      <div className="ml-kicker">Lesson resources</div>
-      <h2>Downloads & resources</h2>
-      {documents.map((asset:any)=><a key={asset.id} href={asset.asset_type==="external_link"?asset.external_url:"/api/lockliel/lesson-resource?assetId="+asset.id} target="_blank" rel="noreferrer"><FileText size={17}/>{asset.title||"Open resource"}</a>)}
-    </section>}
-
-    {!hasReadyContent&&<section className="ml-card"><h2>This lesson is being prepared.</h2><p>The course framework is ready, but the teaching media and worksheet for this lesson have not been released inside Lockliel yet.</p></section>}
-
-    <section className="ml-complete-lesson">
-      <div>
-        <b>{completed?"Lesson complete":canComplete?"You’re ready to complete this lesson.":"Finish the lesson to continue."}</b>
-        <span>{videos.length&&!videoDone?"Watch each video to at least 95%. ":""}{questions.length&&!worksheetDone?(notesMode?"Add your lesson notes.":"Complete all worksheet questions."):""}</span>
-      </div>
-      {!completed&&<button className="ml-action" disabled={!canComplete||saving} onClick={completeLesson}>{saving?"Saving…":"Complete lesson"}</button>}
-    </section>
-
-    {message&&<p className="ml-share-message">{message}</p>}
-  </section>;
+ const [data,setData]=useState<any>(null),[error,setError]=useState(''),[save,setSave]=useState<any>(null);
+ const [minimized,setMinimized]=useState(false),[sticky,setSticky]=useState(true),[message,setMessage]=useState('');
+ const saver=useRef<any>(null),mediaPanel=useRef<HTMLDivElement>(null);
+ useEffect(()=>{
+  let cancelled=false;const slug=new URLSearchParams(location.search).get('lesson');
+  async function load(){try{
+   const r=await fetch('/api/lockliel/journey',{cache:'no-store'});
+   if(r.status===401){location.assign('/my-lockliel/sign-in?next='+encodeURIComponent(location.pathname+location.search));return;}
+   const d=await r.json();if(!r.ok)throw Error(d.error||'Course unavailable.');
+   const state=learningState(d),lesson=state.lessons.find((l:any)=>l.slug===slug);
+   if(!lesson||!lesson.unlocked)throw Error('This lesson is locked or unavailable. Return to the course overview.');
+   if(cancelled)return;
+   if(d.maintenance?.paused){setSave({state:'Read-only during maintenance',blocked:true,value:{answers:{},notes:''}});setData({...d,lesson,courseState:state});return;}
+   const cloud={...lesson.progress,notes:d.notes?.find((n:any)=>n.lesson_id===lesson.id)?.body||''};
+   const instance=createLessonSaver({isOnline:()=>navigator.onLine,user:d.learnerId,lesson:lesson.id,cloud,storage:{getItem:(key:string)=>window.localStorage.getItem(key),setItem:(key:string,value:string)=>window.localStorage.setItem(key,value)},onChange:setSave,
+    send:async(payload:any)=>{const response=await fetch('/api/lockliel/journey',{method:'POST',headers:{'Content-Type':'application/json','x-lockliel-course-protocol':'278-v1'},body:JSON.stringify(payload)});const body=await response.json();if(!response.ok)throw Object.assign(Error(body.error),{code:body.code});return body.progress;}});
+   saver.current=Object.assign(instance,{identity:d.learnerId});setSave(instance.snapshot());setData({...d,lesson,courseState:state});
+  }catch(e){if(!cancelled)setError(e instanceof Error?e.message:'Course unavailable.');}}
+  void load();
+  const before=(e:BeforeUnloadEvent)=>{if(saver.current?.snapshot().dirty){void saver.current.flush();e.preventDefault();e.returnValue='';}};
+  const storage=(e:StorageEvent)=>{if(e.key==='lockliel:auth-change')saver.current?.invalidate();};
+  const online=()=>void saver.current?.retry();
+  const identity=async()=>{try{const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(r.status===401){saver.current?.invalidate();return;}if(r.ok){const d=await r.json();const key=saver.current?.identity;if(key&&d.learnerId!==key)saver.current.invalidate();}}catch{/* Offline focus cannot establish a new identity. Saves still verify expected user. */}};
+  const offline=()=>saver.current?.offline();
+  window.addEventListener('beforeunload',before);window.addEventListener('storage',storage);window.addEventListener('online',online);window.addEventListener('focus',identity);window.addEventListener('offline',offline);
+  return()=>{cancelled=true;saver.current?.close();window.removeEventListener('beforeunload',before);window.removeEventListener('storage',storage);window.removeEventListener('online',online);window.removeEventListener('focus',identity);window.removeEventListener('offline',offline);};
+ },[]);
+ const assets=useMemo(()=>data?.assets.filter((a:any)=>a.lesson_id===data.lesson.id)||[],[data]);
+ if(error)return <section className="ml-card"><h1>Lesson Unavailable</h1><p role="alert">{error}</p><Link href="/my-lockliel/journey">Course Overview</Link></section>;
+ if(!data||!save)return <p className="ml-loading">Opening your lesson…</p>;
+ if(save.state==='Account Changed')return <section className="ml-card"><h1>Account Changed</h1><p>Your private draft remains isolated to its account. Reload to continue.</p><button onClick={()=>location.reload()}>Reload Course</button></section>;
+ const paused=data.maintenance?.paused===true;
+ const lesson=data.lesson,readiness=lesson.readiness,completed=lesson.state==='completed';
+ const questions=lesson.progress?.content_snapshot?.questions||lesson.worksheet_schema?.questions||[];
+ const worksheet=worksheetState(questions,save.value.answers);
+ const videos=assets.filter((a:any)=>a.asset_type==='video'&&a.provider==='youtube');
+ const resources=assets.filter((a:any)=>a.asset_type!=='video');
+ const next=data.courseState.lessons.find((l:any)=>l.position>lesson.position&&l.unlocked);
+ async function navigate(href:string){if(paused){location.assign(href);return;}const ok=await saver.current.flush();if(ok||window.confirm('Cloud sync is pending. Keep your local draft and leave this lesson?'))location.assign(href);}
+ async function useCloudWork(){
+  try{
+   const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(!r.ok)throw Error();
+   const d=await r.json();if(d.learnerId!==data.learnerId){saver.current.invalidate();return;}
+   const p=d.progress.find((row:any)=>row.lesson_id===lesson.id);if(!p)throw Error();
+   const notes=d.notes.find((row:any)=>row.lesson_id===lesson.id)?.body||'';
+   if(saver.current.useCloud({...p,notes}))location.reload();
+  }catch{setMessage('Cloud work could not be loaded. Your draft remains on this device.');}
+ }
+ async function complete(){setMessage('');if(await saver.current.flush(true))location.reload();else setMessage('Completion was not saved. Your answers are retained. Resolve the save status and try again.');}
+ async function refreshMedia(){const r=await fetch('/api/lockliel/journey',{cache:'no-store'});if(!r.ok)return;const d=await r.json();if(d.learnerId!==data.learnerId){saver.current.invalidate();return;}const state=learningState(d);setData({...d,lesson:state.lessons.find((l:any)=>l.id===lesson.id),courseState:state});}
+ return <section className="course-experience">
+  <button className="course-back" onClick={()=>navigate('/my-lockliel/journey')}>← Course Overview</button>
+  <header className="course-heading"><p className="ml-kicker">{data.course.title} · Lesson {lesson.position} of {data.lessons.length}</p><h1>{lesson.title}</h1><p>{paused?"Read your lesson while course updates are in progress.":readiness.mediaReady?"Watch while you work. Your teaching and worksheet stay together.":"Your worksheet, notes and lesson resources stay together."}</p></header>
+  {!readiness.ready&&<section className="course-readiness" role="status"><h2>{readiness.label}</h2><p>{readiness.message}</p></section>}
+  {paused&&<section className="course-readiness" role="status"><h2>Course maintenance</h2><p>You can read your lessons and view saved progress. Answers, Personal Notes, video progress and completion are paused.</p></section>}
+  <div className="course-workspace">
+   <aside className={'course-media '+(sticky?'is-sticky ':'')+(minimized?'is-minimized':'')} aria-label="Lesson Media">
+    <div ref={mediaPanel} className="course-media-screen">{!paused&&videos.map((asset:any)=><YouTubeProgressPlayer key={asset.id} asset={{...asset,watch_threshold:data.course.learning_rules?.watch_threshold||95}} saved={data.mediaProgress?.find((p:any)=>p.asset_id===asset.id)} learnerId={data.learnerId} onProgress={()=>void refreshMedia()}/>)}
+     {paused&&videos.length>0&&<p>Teaching video playback is paused during maintenance. No watch progress is recorded.</p>}
+     {!videos.length&&<p>{['simple','review'].includes(data.course.learning_rules?.model)?'This lesson does not require a video.':'Media Coming Soon. Your lesson resources and worksheet remain here while the teaching video is prepared.'}</p>}
+    </div>
+    <div className="course-media-content"><h2>Lesson {lesson.position}</h2><p>{lesson.title}</p>
+     <p role="status">{lesson.watchMet?'Watch Requirement Met':'Watch Requirement Pending'}</p>
+     {!paused&&videos.some((a:any)=>!a.duration_seconds)&&<p>We are preparing watch progress for this lesson. Your answers and notes can still be saved.</p>}
+     {!paused&&videos.length>0&&<div className="course-tools"><button onClick={()=>setSticky(!sticky)}>{sticky?'Video Stays Visible':'Keep Video Visible'}</button><button onClick={()=>setMinimized(!minimized)}>{minimized?'Expand Video':'Minimize Video'}</button><button onClick={()=>void mediaPanel.current?.requestFullscreen?.().catch(()=>setMessage('Use the video player’s full screen control on this device.'))}>Full Screen</button></div>}
+     {!paused&&videos.map((a:any)=><a key={a.id} href={'https://www.youtube.com/watch?v='+encodeURIComponent(a.provider_ref)} target="_blank" rel="noreferrer">Watch / Cast on TV</a>)}
+     {!paused&&videos.length>0&&<p className="course-helper">Use your device or provider casting controls. Playback outside this page may not report watch progress.</p>}
+     <h3>Lesson Resources</h3><div className="course-resources">{resources.map((a:any)=><a key={a.id} href={'/api/lockliel/lesson-resource?assetId='+encodeURIComponent(a.id)} target="_blank" rel="noreferrer">{a.title||'Open Resource'}</a>)}{!resources.length&&<p>No additional resources are configured.</p>}</div>
+    </div>
+   </aside>
+   <section className="course-worksheet" aria-label="Digital Lesson Worksheet">
+    <header><p className="course-eyebrow">Digital Lesson Worksheet</p><h2>{lesson.title}</h2><p role="status" aria-live="polite" className="course-save">{save.state}{save.state==='Saved'&&save.lastSaved?' · Last Saved '+new Date(save.lastSaved).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}):''}</p>
+     {(save.state.includes('Failed')||save.state==='Cloud Sync Needed')&&<button disabled={save.blocked} onClick={()=>void saver.current.retry()}>Retry Cloud Save</button>}
+     {!paused&&save.blocked&&!save.conflictDraft&&save.state!=='Account Changed'&&<div role="alert"><p>Getting a Grip is being updated. Keep a copy of your unsaved answers and notes before reloading. Your last saved cloud progress is safe.</p><details><summary>View My Unsaved Draft</summary><pre>{JSON.stringify(save.value,null,2)}</pre></details><button onClick={()=>location.reload()}>Reload Course</button></div>}
+     {save.conflictDraft&&<div role="alert"><p>{save.blocked?'Newer cloud work exists. Keep your local draft and continue with the latest cloud work.':'Your earlier local draft is retained below for reference. Cloud saving is available.'}</p><details><summary>View Unsynced Draft</summary><pre>{JSON.stringify(save.conflictDraft,null,2)}</pre></details><button disabled={!save.blocked} onClick={()=>void useCloudWork()}>Keep Draft and Use Cloud Work</button></div>}
+     {paused?<p>Worksheet structure: {questions.length} questions. Your saved answers are hidden during maintenance.</p>:<><p>Worksheet: {worksheet.answered} of {worksheet.total} Answered</p><progress value={worksheet.answered} max={Math.max(1,worksheet.total)} aria-label="Worksheet Progress"/></>}
+     <p>Video: {lesson.watchMet?'Watch Requirement Met':'Watch Requirement Pending'}</p>
+    </header>
+    <fieldset disabled={save.blocked}><legend className="sr-only">Lesson Questions</legend>
+     {questions.map((q:any,i:number)=><label className="course-question" key={questionKey(q)}><span className="course-number">{String(i+1).padStart(2,'0')}</span><span className="course-question-body"><span>{q.text||q.prompt}</span>{q.scripture_reference&&<small>{q.scripture_reference}</small>}{q.scripture_text&&<blockquote>{q.scripture_text}</blockquote>}<textarea rows={q.type==='long_text'?5:2} maxLength={4000} readOnly={completed} value={save.value.answers[questionKey(q)]||''} onChange={e=>saver.current.update({...save.value,answers:{...save.value.answers,[questionKey(q)]:e.target.value}})} aria-label={'Question '+(i+1)} required={q.required!==false}/></span></label>)}
+     {paused?<section className="course-notes"><h3>Personal Notes</h3><p>Your private notes are unavailable during maintenance.</p></section>:<label className="course-notes"><h3>Personal Notes</h3><p>Optional and private to you. Course managers cannot read these notes.</p><textarea rows={6} maxLength={12000} value={save.value.notes} onChange={e=>saver.current.update({...save.value,notes:e.target.value})} placeholder="Type anything you want to remember from this lesson…"/></label>}
+    </fieldset>
+    <footer className="course-completion"><h3>{completed?'✓ Lesson Complete':data.course.learning_rules?.model==='watch_answer'?'Watch to Advance. Answer to Complete.':'Lesson Completion'}</h3>{completed&&lesson.progress?.completed_at&&<p>Completed {new Date(lesson.progress.completed_at).toLocaleDateString()}</p>}
+     {!completed&&<button disabled={!readiness.ready||!lesson.watchMet||!worksheet.complete||save.blocked||save.state==='Saving…'} onClick={()=>void complete()}>Complete Lesson</button>}
+     <button onClick={()=>navigate('/my-lockliel/journey')}>Course Overview</button>{!paused&&next&&<button onClick={()=>navigate('/my-lockliel/journey/lesson?lesson='+encodeURIComponent(next.slug))}>Next Lesson</button>}
+     {!paused&&<><a href={'/api/lockliel/journey?export='+encodeURIComponent(lesson.id)}>Download My Answers</a><button onClick={()=>window.print()}>Print / Save as PDF</button>
+     <a href={'/api/lockliel/journey?export='+encodeURIComponent(lesson.id)+'&notes=1'}>Download Answers With Notes</a><p>Downloads contain your last cloud-saved work. Include notes only when you want them in your personal copy.</p></>}
+     {message&&<p role="alert">{message}</p>}
+    </footer>
+   </section>
+  </div>
+ </section>;
 }

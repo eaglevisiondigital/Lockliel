@@ -1,0 +1,84 @@
+{
+  "results": [
+    {
+      "name": "A_B_ownership",
+      "scope": "authenticated safe own read exists; B cannot read A progress or save as A; notes closed",
+      "result": "PASS"
+    },
+    {
+      "name": "case1_missing_no_history",
+      "scope": "operator predicate, not authenticated write acceptance",
+      "result": "PASS"
+    },
+    {
+      "name": "case2_missing_partial_history",
+      "scope": "operator predicate",
+      "result": "PASS"
+    },
+    {
+      "name": "case3_missing_stale_threshold",
+      "scope": "predicate blocks advancement; real authenticated completion RPC rejects current missing trust before write with22023",
+      "result": "PASS"
+    },
+    {
+      "name": "case4_completed_history",
+      "scope": "synthetic completion earned from valid seeded coverage before trust removal; note RPC cannot succeed while paused",
+      "result": "PASS"
+    },
+    {
+      "name": "case5_restored_trust_and_94_95",
+      "scope": "seeded interval boundary only; not real playback/sampling",
+      "result": "PASS"
+    },
+    {
+      "name": "case6_forged_percentage",
+      "scope": "PT503 denies forged write before RLS/percentage logic; not independent unpaused proof",
+      "result": "BLOCKED_BY_MAINTENANCE"
+    },
+    {
+      "name": "case7_seek_sample",
+      "scope": "PT503 proves pause, not seek-specific runtime acceptance",
+      "result": "BLOCKED_BY_MAINTENANCE"
+    },
+    {
+      "name": "case8_identity_provenance",
+      "scope": "watched identity replacement rejected; new asset has no borrowed credit; stored NULL/blank provenance injection not attempted; existing normalizer supplies trusted_database_configuration",
+      "result": "PARTIAL"
+    },
+    {
+      "name": "completed_note_save",
+      "scope": "positive note persistence cannot be demonstrated with maintenance ON",
+      "result": "BLOCKED_BY_MAINTENANCE"
+    }
+  ],
+  "rollback": true,
+  "countsUnchanged": true,
+  "catalogUnchanged": true,
+  "maintenance": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "security": {
+    "keys_rls": true,
+    "notes_rls": true,
+    "save_anon": false,
+    "ledger_count": 280,
+    "keys_anon_any": false,
+    "notes_orphans": 0,
+    "notes_anon_any": false,
+    "duration_invalid": 0,
+    "invalid_snapshots": 0,
+    "grip_rules_invalid": 0,
+    "negative_revisions": 0,
+    "save_authenticated": true,
+    "save_conflict_40001": false,
+    "save_conflict_pt409": true,
+    "keys_authenticated_any": false,
+    "progress_totals_invalid": 0,
+    "release_trigger_definer": true,
+    "notes_authenticated_write": false,
+    "notes_authenticated_select": true,
+    "release_trigger_authenticated": false
+  }
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "name": "a cloud answer and notes",
+    "pass": true,
+    "status": 200,
+    "progress": 2,
+    "notes": 1
+  },
+  {
+    "name": "a cross-user lesson_progress",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "a cross-user lesson_private_notes",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "a cross-user media_progress",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "a cross-user course_enrollments",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "a manager denied",
+    "pass": true,
+    "status": 403
+  },
+  {
+    "name": "a old protocol rejected",
+    "pass": true,
+    "status": 426
+  },
+  {
+    "name": "a wrong owner rejected",
+    "pass": true,
+    "status": 409
+  },
+  {
+    "name": "a resource",
+    "pass": true,
+    "status": 200
+  },
+  {
+    "name": "b cloud answer and notes",
+    "pass": true,
+    "status": 200,
+    "progress": 1,
+    "notes": 1
+  },
+  {
+    "name": "b cross-user lesson_progress",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "b cross-user lesson_private_notes",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "b cross-user media_progress",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "b cross-user course_enrollments",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  },
+  {
+    "name": "b manager denied",
+    "pass": true,
+    "status": 403
+  },
+  {
+    "name": "b old protocol rejected",
+    "pass": true,
+    "status": 426
+  },
+  {
+    "name": "b wrong owner rejected",
+    "pass": true,
+    "status": 409
+  },
+  {
+    "name": "b resource",
+    "pass": true,
+    "status": 200
+  },
+  {
+    "name": "anonymous course denied",
+    "pass": true
+  },
+  {
+    "name": "manager before MFA denied",
+    "pass": true
+  },
+  {
+    "name": "manager MFA",
+    "pass": true
+  },
+  {
+    "name": "manager content read",
+    "pass": true,
+    "status": 200
+  },
+  {
+    "name": "manager learner read",
+    "pass": true,
+    "status": 200,
+    "keys": [
+      "roles",
+      "privacyMode",
+      "profile",
+      "inviter",
+      "tags",
+      "faith",
+      "leaderAssignments",
+      "groups",
+      "founders",
+      "tasks",
+      "notes",
+      "gifts",
+      "entitlements",
+      "courses"
+    ]
+  },
+  {
+    "name": "manager no private note marker",
+    "pass": true
+  },
+  {
+    "name": "manager private notes denied",
+    "pass": true,
+    "status": 200,
+    "rows": 0
+  }
+]

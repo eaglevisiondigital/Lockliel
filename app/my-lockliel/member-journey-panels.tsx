@@ -22,7 +22,9 @@ export default function MemberJourneyPanels({data}:{data:MemberJourney}) {
     <section className="ml-journey-grid" aria-label="Your member journey">
       <article className="ml-card"><BookOpen aria-hidden="true"/><div className="ml-kicker">Continue growing</div><h2>{data.continueGrowing.title}</h2>
         <p>{data.continueGrowing.complete?'You completed this course. Revisit a lesson or help someone else begin.':data.continueGrowing.available?`${data.continueGrowing.progress.completed} of ${data.continueGrowing.progress.total} lessons complete. Your progress is saved.`:'Your course will appear when your enrollment and released content are available. You can explore Faith Boost now.'}</p>
-        <Link href={data.continueGrowing.available?data.continueGrowing.href:'/#faith-boost'}>{data.continueGrowing.available?'Open my journey':'Explore Faith Boost'} →</Link>
+        <progress aria-label="Course Progress" max={Math.max(1,data.continueGrowing.progress.total)} value={data.continueGrowing.progress.completed}/>
+        {data.continueGrowing.currentLesson&&<p>Current Lesson: {data.continueGrowing.currentLesson}</p>}{data.continueGrowing.latestActivity&&<p>Latest Activity: {new Date(data.continueGrowing.latestActivity).toLocaleDateString()}</p>}
+        <Link href={data.continueGrowing.available?data.continueGrowing.href:'/#faith-boost'}>{data.continueGrowing.available?'Continue Course':'Explore Faith Boost'} →</Link>
       </article>
       <article className="ml-card"><Users aria-hidden="true"/><div className="ml-kicker">My Five</div><h2>{data.myFive.activeCount?`${data.myFive.activeCount} of ${data.myFive.maximum} people`:'Start with one person'}</h2>
         <p>{data.myFive.activeCount?`${data.myFive.dueCount} planned follow-ups are ready. Your names, notes and next actions stay private.`:'Who could you pray for and encourage? Add one person now and build your list at your own pace.'}</p>

@@ -1,0 +1,10 @@
+{
+  "attempted": "isolated migration276 via pinned staged runner",
+  "executed": false,
+  "reason": "Automatic approval review interpreted authorization to advance the retained hosted branch as ambiguous; costly to reverse. Explicit confirmation requested.",
+  "workaroundAttempted": false,
+  "isolatedLedger": 275,
+  "maintenance": "ON",
+  "productionLedger": 274,
+  "push": false
+}

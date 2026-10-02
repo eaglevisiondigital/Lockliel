@@ -1,0 +1,60 @@
+ AGENTS.md                                          |  60 ++++
+ ARCHITECTURE.md                                    |  52 +++
+ CURRENT_BUILD_STATE.md                             |  74 ++++
+ DECISIONS.md                                       |  66 ++++
+ SECURITY_MODEL.md                                  |  56 +++
+ app/my-lockliel/admin/content-admin-client.tsx     |  20 +-
+ .../admin/person/person-record-client.tsx          |   6 +-
+ app/my-lockliel/auth-form.tsx                      |   7 +-
+ app/my-lockliel/dashboard-client.tsx               |   1 +
+ app/my-lockliel/journey/journey-client.tsx         |  35 +-
+ .../journey/lesson/lesson-player-client.tsx        | 250 +++++---------
+ app/my-lockliel/journey/lesson/workspace.css       |   6 +
+ .../journey/lesson/youtube-progress-player.tsx     | 147 ++------
+ app/my-lockliel/member-journey-panels.tsx          |   4 +-
+ docs/course-engine-completion-2026-09-30.md        | 161 +++++++++
+ docs/course-engine-hosted-acceptance.md            |  81 +++++
+ ...course-engine-isolated-acceptance-2026-09-30.md | 179 ++++++++++
+ docs/course-engine-reconciliation.md               | 171 ++++++++++
+ docs/course-engine-standard-result-2026-09-29.md   | 179 ++++++++++
+ docs/development-branch-sync-2026-09-29.md         | 111 ++++++
+ docs/production-application-release-2026-09-29.md  | 112 ++++++
+ lib/course/autosave.mjs                            |  65 ++++
+ lib/member-journey-types.ts                        |   2 +-
+ netlify/functions/lockliel-admin-content.mjs       | 112 ++----
+ netlify/functions/lockliel-admin-person.mjs        |  23 +-
+ netlify/functions/lockliel-admin-readiness.mjs     |   2 +-
+ netlify/functions/lockliel-journey.mjs             | 100 +++---
+ netlify/functions/lockliel-privacy-export.mjs      |   3 +
+ netlify/lib/course-engine.mjs                      |  58 ++++
+ netlify/lib/course-journey.mjs                     |  25 +-
+ netlify/lib/lockliel-export-pages.mjs              |   2 +-
+ netlify/lib/member-journey.mjs                     |  13 +-
+ scripts/acceptance/prepare-runtime.mjs             |  51 +++
+ scripts/acceptance/verify-artifact.mjs             |  22 ++
+ ...60929215159_lockliel_course_engine_standard.sql | 378 +++++++++++++++++++++
+ ...0_lockliel_course_release_trigger_execution.sql |   6 +
+ ...092500_lockliel_course_conflict_http_status.sql |  65 ++++
+ supabase/tests/course_engine_standard.sql          | 122 +++++++
+ supabase/tests/course_persistence_regression.sql   |  42 +++
+ supabase/tests/course_readiness_duration.sql       |  50 +++
+ supabase/tests/course_release_authorization.sql    |  32 ++
+ supabase/tests/getting_a_grip_invitation.sql       |   4 +-
+ tests/course-engine.test.mjs                       |  45 +++
+ tests/course-manager-hosted.test.mjs               |  21 ++
+ tests/course-readiness.test.mjs                    |  28 ++
+ tests/member-journey.test.mjs                      |   4 +-
+ tests/member-privacy.test.mjs                      |   5 +-
+ tests/migration-release-preflight.test.mjs         |  17 +-
+ tests/my-lockliel-platform.test.mjs                |  14 +-
+ 49 files changed, 2605 insertions(+), 484 deletions(-)
+
+c2ad20aa5477f12556f3dc1b0d892a165769115d docs: verify development branch sync and isolated preview
+d915ae1baac955e0255c47657813bfc767c995ee docs: record verified production application release
+ca5f09b85fee2689329b716b95d07e199746a6a2 Build reusable course workspace with private atomic progress saves
+0e8944651d218ed80c006e213b84d9e5e4e0b797 docs: record course engine checkpoint and release blockers
+f11a97afb051f9c90b15faca95265698363cfaf1 Complete course readiness and trusted duration verification
+57358b5d13bb6b2ba19cd2a5258bea5eb0ebd940 docs: record verified course completion checkpoint
+02062da4c95b9d43d9c96a5cb7cdd17ba84aa55d Prepare isolated course acceptance runtime and record email isolation blocker
+91611ad89933333891bdf2bb3791314fdd03012e Fix hosted course save conflicts, release validation and manager progress
+a58626b2f0a46b2fad84e1f79e88dbfb13c81a22 Record isolated hosted course acceptance and repair migration evidence

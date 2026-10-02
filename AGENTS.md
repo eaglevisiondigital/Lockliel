@@ -1,5 +1,521 @@
 # Lockliel engineering instructions
 
+## Positive280 acceptance authorized, stopped before exit (2026-10-01)
+
+Read `docs/hosted-positive-280-preexit-stop-2026-10-01.md`. The new explicit assignment
+permits temporary maintenance OFF only on qjksggxorghaxvpyslip for positive synthetic
+acceptance, then requires maintenance ON. It supersedes the previous no-exit restriction
+for this bounded test only. However, fresh direct preflight failed: Mac has no IPv6 route.
+Per the explicit STOP rule, no exit/testing/mutation occurred. Read-only connector confirms
+280/paused=true/schemaReady=true/protocol278-v1 and zero service notes privileges.
+Restore the existing hotspot path, recheck all prerequisites and resume this authorized
+scope. No new approval needed. Do not replay280 or repeat local preparation. Production,
+roles/settings, app/site, remote branches and both isolated environments remain untouched.
+
+## Isolated280 applied, maintenance ON, full regression incomplete (2026-10-01)
+
+Read `docs/hosted-duration-280-2026-10-01.md`. Exact280 from bd6534a committed once on
+qjksggxorghaxvpyslip after direct IPv6/TLS verify-full/authentication and279 preflight.
+Actual initial maintenance was OFF, despite the handoff; it was closed before migration.
+Final280 catalog/ledger/security and temporary readiness pass: paused=true,
+schemaReady=true, protocol278-v1. DO NOT replay275–280. Service notes privileges remain0.
+
+The resume instruction prohibits ALL maintenance disabling, superseding the earlier
+transaction-local test-opening proposal. Maintenance stayed ON even inside fixtures.
+Synthetic rolled-back predicates, stale-credit completion RPC rejection, preserved
+completion, seeded94/95 and A/B checks pass. Positive note edits/sampling returnPT503;
+real playback, seek-specific behavior and complete8-case hosted acceptance remain
+INCOMPLETE. Do not call this a full hosted regression pass. No application change,
+push, deployment, production access/change or settings/Auth/SMTP/PITR/compute action.
+Next needs a separately authorized isolated positive acceptance window. Keep maintenance
+ON and both environments retained. Earlier unapplied280/network-blocked status is history.
+
+## Authoritative trusted-duration280, hosted regression network-blocked (2026-10-01)
+
+Read `docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.
+The explicit follow-up promoted and strengthened the proposal as migration280, sealed
+at a09280e. All279 prior bytes remain unchanged. Current trusted media and actual
+coverage gate NEW watch progression; cached timestamps never suffice. Watched media
+identities cannot change in place; use a new asset. Historical completion/telemetry and
+owner-only completed-lesson notes remain intact. Private-note service privileges stay0.
+
+Full local578JS/280 replay/17SQL, build/type/Netlify/lint/audit and exact six-stage CLI
+275–280 pass. Readiness expects280 with unchanged protocol278-v1 through the temporary
+operational mechanism only. No application changes; candidate21ac4a5 remains compatible.
+No push is authorized by the untriggered application-change condition.
+
+Hosted280 is NOT applied/tested: direct IPv6 has no route. Read-only connector confirms
+qjksggxorghaxvpyslip still279, maintenance OPEN, schemaReady=true. No hosted mutation
+occurred. Restore the existing network path, recheck fresh state, then complete the
+already-authorized isolated280-only stage and synthetic regressions. Do not replay275–279.
+Production freshly remains274 with all13 video durations NULL; main1599ab2 and draft/open/
+unmerged PR4/eaff3fe are unchanged. Other production settings/sites are untouched with
+prior observations explicitly distinguished from fresh audit. No production action,
+new infrastructure, deletion, merge, deployment, duration population or activation.
+Earlier proposal-only279 statements below are historical and superseded for local code.
+
+## Local verifier correction and duration-policy regression (2026-10-01)
+
+The local default-ACL correction accepts captured service_role=arwdDxtm creation
+privileges without permitting final notes access. Disposable exact275–279 replay
+and the pinned five-stage CLI pass with full8 and restricted defaults; actual
+service table/column grants still fail final verification. All279 hashes unchanged.
+Read `docs/verifier-duration-policy-2026-10-01.md`.
+
+Authoritative279 FAILS the newly approved duration policy in cases3 and8: stale
+watch timestamps permit new advancement/completion after current trust is removed.
+A two-function additive SQL proposal outside `supabase/migrations` passes all8
+focused cases locally. It is NOT an applied migration, not part of PR4, and not a
+release-ready sixth stage. Do not promote it implicitly or patch historical275.
+The existing279 maintenance fingerprint must remain strict. A revised release set,
+expected catalogs/readiness, regression expectations and hosted acceptance are needed.
+Inventory of13 trusted durations is PASS; production population requires separate
+authorization. Preserve historical evidence and completed lessons, but missing current
+trust must block NEW progress. Production and hosted environments were not accessed
+or changed in this assignment;274/main1599ab2/PR4draft/eaff3fe/Netlify/Sites25/PITR7/
+Small/Auth/SMTP are prior observations, not a fresh live audit. No push or release.
+
+## Final readiness resumed: production ACL verifier stop (2026-10-01)
+
+Read `docs/final-production-readiness-resumed-2026-10-01.md` and the companion
+operator sequence and duration inventory. PR4/eaff3fe and exact CI remain verified.
+All13 YouTube publisher durations are now collected; production values remain NULL.
+Production274 uses service_role=arwdDxtm defaults, which BOTH current expectation and
+intermediate semantic verifiers reject. Do not apply275 or normalize away MAINTAIN.
+Separate local verifier review/rehearsal is needed; all279 migration bytes stay intact.
+No code fix,production SQL/settings change,push,merge,deploy or activation occurred.
+Owner/MFA,two factors,Small and7-day PITR are visible. Latest recovery bound19:15:17UTC;
+no future cutover point or direct authenticated session is verified. Direct IPv6/TLS
+passes but libpq lacked a supplied password. Provider incident remains identified/
+unresolved after20:23UTC mitigation update. Production remains274/main1599ab2,
+Netlify6abbb27a1cdd6d00081b0e8e and Sites25. The strict missing-duration rule has an
+already-earned watch-credit exception; do not claim universal blocking. Step8 complete
+provenance needs an approved ordering adjustment because275 adds its field. Maintenance
+and rollback plans are not executed PASS results. Read-only evidence stays local.
+
+## Validated candidate checkpoint consumed (2026-10-01)
+
+Read `docs/course-final-candidate-checkpoint-2026-10-01.md`. The authorized single
+normal development push is complete through eaff3fea36d4ce489009ebf2070071311619f9c2
+(application source21ac4a5). PR4 is draft/open/unmerged with auto-merge disabled.
+Both remote CI runs pass573JS/279 replay/16SQL plus configured validation. Exact
+preview6abebc5dc0b59000076c25a5 passes36 guard denials and16 static checks. Full local
+validation and five-stage CLI rehearsal passed; all279 migration hashes are unchanged.
+Production remains main1599ab2/database274/Netlify6abbb27a1cdd6d00081b0e8e/Sites25.
+No production writes, migrations, settings or content changes occurred in this task.
+Post-checkpoint evidence stays local; no second push is authorized. The stale-PR
+blocker below is superseded, but remaining final production readiness gates still
+require review. No merge, production release or activation follows implicitly.
+
+## Final readiness stopped because PR4 is stale (2026-10-01)
+
+Read `docs/final-readiness-candidate-stop-2026-10-01.md`. Fresh GitHub: remote/PR4
+remain3a7b7b9, draft/open/unmerged, with passing CI for that old head. Validated local
+application is21ac4a5; starting local evidence HEAD92f24fb was22 commits ahead.
+Main remains1599ab2; merge-base9a4129a. No dependency/hosting/workflow file changes
+were found in that range; important279/private-note, paused-read and footer changes
+are absent from PR4. The assignment explicitly required STOP on this mismatch.
+Parts2–13 were not freshly executed. No production or remote mutation occurred.
+Next requires a separately authorized controlled development checkpoint with complete
+validation and exact-head CI/preview before resuming readiness. No push is implied.
+
+## Small compute and seven-day PITR enabled (2026-10-01)
+
+Dave explicitly approved Small compute and seven-day PITR after the quoted costs.
+Production bsndfhbemstyrrglajat was resized Micro to Small and then PITR was enabled.
+Dashboard readback: seven-day retention, UTC recovery availability from
+2026-09-24 21:06:12 to 2026-10-01 19:11:17. Project remains ACTIVE_HEALTHY,
+PostgreSQL 17.6.1.166/us-east-1, 274 migrations; before/after aggregate counts match.
+Read `docs/production-pitr-enabled-2026-10-01.md`. Only the approved compute/backup
+settings changed. No restore, migration, content/member write, Auth/SMTP/RLS change,
+maintenance toggle, push, merge or deployment occurred. This supersedes the earlier
+Micro/PITR-OFF blocker. RPO <= 2 minutes and planned maintenance <= 30 minutes remain
+targets, not verified recovery guarantees. Require a fresh pre-cutover recovery point,
+Owner/MFA/restore capability, Storage protection and all other release gates. Eastern
+US provider incident remains open; no migration or application release follows.
+
+## Seven-day PITR approved, enablement blocked by compute prerequisite (2026-10-01)
+
+Read `docs/production-pitr-review-2026-10-01.md`. Approved policy is 7-day PITR,
+RPO <= 2 minutes and planned course maintenance <= 30 minutes, not a restore-time guarantee.
+Production bsndfhbemstyrrglajat is Pro/Micro, healthy and 274; PITR remains OFF.
+Supabase requires at least Small. The assignment prohibited compute changes, so no
+add-on confirmation or resize occurred. Seven-day quote $100/month before tax;
+Small $0.0206/hour, PITR $0.137/hour outside Spend Cap. A new compute/billing/window
+decision is required. No change to data, Auth/SMTP, permissions, sites or maintenance.
+Counts match before/after. Owner/MFA/restore capability and usable pre-cutover point
+remain unverified; Eastern US incident remains open. PITR replaces separate daily
+backups; independent archival and Storage-byte protection remain future requirements.
+No migration, push, merge, deployment, restore or real-member test follows. Earlier
+missing numeric recovery-policy statements are superseded only as approved targets.
+
+## Legacy gate accepted by manual policy; final production review NOT READY (2026-10-01)
+
+Primary Chat accepts the legacy-client gate as CONTROLLED BY MANUAL CUTOVER POLICY.
+Do not call old1599ab2 passed, fixed or compatible; hidden autosave errors and ongoing
+rejected media requests remain documented. No compatibility bridge is authorized.
+Require learner notice, save/copy opportunity and operator confirmation that ALL old
+course tabs are closed BEFORE maintenance. Reopen with fresh tabs; no promise to
+recover memory-only old drafts. Keep426, maintenance, RLS and migration bytes intact.
+
+Read `docs/course-final-production-readiness-2026-10-01.md` and the updated279 runbook.
+Final candidate21ac4a5 is isolated-validated, but PR4 remains draft3a7b7b9 with older
+passing CI. Fresh production:274 exact ledger versions,1member/1enrollment,0progress,
+all public RLS enabled,13 protected PDFs,13 active videos1–10 with no trusted durations.
+Leaked-password protection remains disabled. Backup2026-10-01 07:30:56UTC is listed,
+PITR OFF; near-zero-loss RPO/RTO, Owner MFA/restore capability and Storage recovery are
+unverified. Direct IPv6/verified TLS handshake pass; authenticated direct safeguards
+remain unverified. Eastern US API incident persists. Production maintenance is not
+installed. No production writes/settings/deploys, migrations, push, merge or cleanup.
+Main1599ab2, Netlify production6abbb27a1cdd6d00081b0e8e and Sites25 remain current.
+Both isolated environments retained; qjks279 maintenance remains OFF. Only review
+and continuity files changed. No engineering, legacy bridge or production release
+is authorized by this decision. Earlier unresolved legacy-decision statements are
+superseded; original failed UX observations remain historical evidence.
+
+## Isolated corrective acceptance: old-client gate still fails (2026-10-01)
+
+Read `docs/course-post-reopen-corrective-acceptance-2026-10-01.md`. Only isolated
+qjksggxorghaxvpyslip/site70b03a42 changed. Synthetic manager now has the existing
+discipleship_admin role plus content_admin; MFA and owner-only notes remain enforced.
+Synthetic YouTube100s fixtures now correctly use1344s with provenance. Real playback
+94.30% stayed locked and95.41% unlocked without completing the worksheet; seek-to-end
+only credited2.11%. Footer contrast is13.21:1 at1440/768/390. Actual browser offline
+recovery and real hosted lost-ack idempotent retry pass. Application21ac4a5 is deployed
+only as6abe8f4f75e5a756b7d0cd9a, branch-deploy. Maintenance remains OFF/ready279.
+
+Original1599ab2 isolated JavaScript was reproduced:426 prevents stale writes, but
+old autosave hides errors and periodic media writes continue without a failure cap.
+Do not mark this old-client UX passed. Keep copy/save-and-close ALL old tabs policy;
+Chat must resolve the remaining acceptance gate before production readiness review.
+573JS/build/type/Netlify/configured lint and focused hosted SQL/RLS pass; all279 hashes
+and the security catalog are unchanged. No new migration, full replay, production
+action, push, merge or cleanup. Both isolated environments are retained. Production
+274/main1599ab2/Netlify production/Sites25 are carried-forward baselines, not a fresh
+production audit. Earlier manager/duration/contrast/network gaps below are historical;
+the original-client failure remains current. See the report for exact test limits.
+
+## Isolated maintenance exited; post-reopen acceptance incomplete (2026-10-01)
+
+Read `docs/course-post-reopen-acceptance-2026-10-01.md`. Dave explicitly corrected the
+candidate to406c169 and authorized exit on qjksggxorghaxvpyslip only. Direct IPv6,
+TLS verify-full/read-only timeouts,279 ledger/hashes/security and exact site binding
+passed. Only the maintenance paused flag was changed; final state is paused=false,
+schemaReady=true, protocol278-v1. Site70b03a42 remains deploy6abe7a6b1490c08d003640dd.
+No new application deployment, migration, RLS/staff/config change, push or merge.
+
+Synthetic hosted autosave, A/B isolation, refresh/login/cross-context restoration,
+revision-conflict draft retention/recovery,94/95 server boundary, browser playback,
+completion and idempotency pass.71 focused local tests pass. Final catalog, course
+configuration and Storage hashes unchanged; only authorized synthetic progress/notes/
+media and Auth sessions changed. Full acceptance FAILS remaining coverage: synthetic
+manager has only content_admin and cannot inspect learners; hosted network outage/
+recovery remains untested; fixture100s differs from YouTube22:24 and produces bounded
+media errors; worksheet footer contrast needs correction. Actual1599ab2 old-tab retry
+behavior remains unproven. Keep copy-and-close policy. Leave isolated maintenance OPEN
+for scoped follow-up, retain both environments, and do not infer production release.
+Production274/main1599ab2/Sites25 are prior verified baselines, not a fresh audit.
+
+## Isolated paused course reads verified; maintenance stays ON (2026-10-01)
+
+Read `docs/course-paused-read-only-2026-10-01.md`. Exact application406c169 deployed
+only to site70b03a42, deploy6abe7a6b1490c08d003640dd, bound to qjksggxorghaxvpyslip.
+Safe learner/course/resource reads and manager MFA read-only configuration pass;
+all course mutation paths remain blocked. Narrow temporary maintenance read routing
+was applied, not a migration or permanent RLS replacement. Private notes stay closed.
+Final279 state is paused=true, schemaReady=true, protocol278-v1. Seven course-table
+and Storage digests are unchanged; all279 migration bytes are unchanged.
+
+Validation:573 JS,17 focused,279 disposable replay/16 SQL plus operational fixtures,
+build/type/Netlify/configured and targeted lint; responsive1440/768/390 pass. Original
+1599ab2 browser retry behavior and post-reopen progression remain unverified. Preserve
+manual copy-and-close policy. No push, merge, production action or cleanup occurred.
+Production274/main1599ab2/Sites25 remain the prior verified baseline, not a fresh live
+audit. Next requires separate authorization for isolated maintenance exit and fresh
+post-reopen acceptance. Do not reopen, push or release implicitly.
+
+## Exact4204249 isolated deployment complete; paused acceptance fails reads (2026-10-01)
+
+Read `docs/course-paused-acceptance-4204249-2026-10-01.md`. Explicit source approval
+superseded the previous mismatch hold. Exact4204249 was packaged/deployed only to
+site70b03a42, deploy6abe71ba8466df3ae65d138a, branch-deploy/rehearsal, bound only to
+qjksggxorghaxvpyslip. Netlify manual commit_ref is null; source/handler hashes and
+four served HTML byte matches establish the recorded artifact identity.
+
+Actual279 readiness remains paused=true, protocol278-v1, schemaReady=true. A/B
+browser login and manager MFA/AAL2 pass. New/legacy write routes are blocked and
+seven course/config/progress/notes/enrollment digests are unchanged. However, the
+maintenance gate prevents requested course/lesson/resource reads and manager course
+configuration. Member guidance/admin sections also lack handlers in the narrow
+acceptance artifact. Do not call this a paused-acceptance pass or reopen.
+
+No retained old browser tab existed; direct legacy denials are not old retry-UX
+proof. No production action, push, migration, settings change or cleanup occurred.
+Keep both isolated environments/sites and old deploy. Next: a separately approved
+narrow paused-read/acceptance-route correction, retaining all write denials. This
+exact deployment approval is consumed; no further deploy or maintenance exit implied.
+
+## Paused candidate deployment held for exact-source correction (2026-10-01)
+
+Read `docs/course-paused-candidate-source-review-2026-10-01.md`. The new assignment
+names exact3a7b7b9, which hardcodes production and lacks the isolated binding added
+in0cfcf405. Do not silently substitute current reviewed4204249. Source confirmation
+is pending; no deployment or browser acceptance occurred. PR4 remains draft/open
+at3a7b7b9 and both CI runs pass. All279 current hashes match. Fresh isolated checks
+confirm279, paused=true, protocol278-v1, schemaReady=true. Existing isolated deploy
+6abd778184898338b60d32b2 is retained. No production action, push, migration or reopen.
+A future exact-source authorization supersedes this hold; it does not authorize
+weakening maintenance to display unavailable live course state.
+
+## Isolated279 readiness verified; still closed (2026-10-01)
+
+Read `docs/course-isolated-279-readiness-2026-10-01.md`. The separately authorized
+operational update changed only public.lockliel_course_cutover_status() on
+qjksggxorghaxvpyslip. It now requires279, canonical275–279 versions, the same nine
+function fingerprints/owners and zero service notes privileges. Actual status:
+paused=true, protocol278-v1, schemaReady=true. Client protocol remains compatible;
+279 is a permission correction, not a new client wire contract. No migration280.
+
+Owner/empty search_path/EXECUTE, maintenance hook/control, course catalog and all279
+migration bytes are unchanged. Local279 replay/16SQL plus operational readiness
+failure/role tests,9 focused JS and targeted lint pass. No application deploy,
+reopen, push, production action or cleanup occurred. This approval is consumed.
+Next: separately authorize the exact isolated candidate deployment and fresh-client
+acceptance with maintenance ON. Full app cutover remains unverified. Earlier
+schemaReady=false/update-pending statements below are historical.
+
+## Isolated 276–279 execution verified; maintenance remains ON (2026-10-01)
+
+Dave explicitly approved only276–279 on qjksggxorghaxvpyslip. Each committed once
+in order and passed exact catalog, ledger and independent security verification.
+Do not replay275 or any of these applied migrations. Final ledger279, paused=true,
+schemaReady=false, protocol278-v1. Service_role has zero effective notes table or
+column privileges; authenticated retains owner/session-scoped SELECT. Historical
+1–278 migration bytes and the approved279 file remain unchanged.
+
+Read `docs/course-hosted-279-execution-2026-10-01.md`. This approval is consumed.
+The existing readiness function still targets278 and needs a separately reviewed
+isolated update before candidate acceptance. No candidate deploy, reopen, push,
+production action or other isolated-environment change occurred. Full hosted app
+transition remains unverified. Preserve both isolated branches/sites. Earlier
+275/approval-blocked entries below are historical and superseded for this branch.
+
+## Migration279 correction locally ready; hosted execution approval blocked (2026-10-01)
+
+Read `docs/course-migration-279-correction-2026-10-01.md` and the new
+`docs/course-release-279-runbook.md`. Approved279 is
+20261001133500_lockliel_private_notes_service_privileges.sql, source a2254aaa,
+SHA256 5fbcf6d942583ea2e79cb2ae356f6ee712314fe749fb97130e9a21e962c10f71.
+It revokes all eight unnecessary service_role table privileges on notes only.
+Historical1–278 bytes remain intact. The active release manifest/package is279.
+
+Local564JS,279 replay,16SQL, build/type/Netlify/lint/audit and disposable pinned
+five-stage/failure/TLS rehearsal pass. Exact default-ACL derivation replaces the
+incorrect universal service grant assumption. Known intermediate grants may remain
+only in closed275–278 stages; final279 requires zero service table/column privileges.
+Read-only independent275 classification passed with correction still pending.
+
+Automatic approval review rejected the first hosted276 command as ambiguous
+advance authorization. It did not execute. qjksggxorghaxvpyslip remains275,
+maintenance ON; request explicit276→277→278→279 isolated execution confirmation.
+Do not replay275 or bypass the rejection. The existing hosted readiness function
+still targets278; a reviewed update is needed before later candidate/reopen work.
+No hosted correction, push, merge, deployment, production action or cleanup occurred.
+Both isolated environments remain retained; production274/main1599ab2/sites preserved.
+
+## Migration275 security review requires correction (2026-10-01)
+
+Read `docs/course-migration-275-security-review-2026-10-01.md`. Direct isolated
+IPv6/verify-full read-only inspection reconfirmed275 and maintenance ON. Missing
+service_role CRUD grants are not required by the learner-token/postgres-owned RPC.
+However, hosted notes inherit unused Dxtm grants; exact275 disposable tests proved
+service_role TRUNCATE bypasses row policies. No hosted grants were changed.
+
+The semantic verifier now rejects excessive service/PUBLIC/column privileges,
+including both hosted Dxtm and disposable broad defaults. Catalog mismatch remains
+UNKNOWN_STOP; do not normalize it away. A new narrow corrective migration removing
+unused notes service grants is PROPOSED, not created/approved/applied. Historical278
+migration hashes are unchanged. Focused JS/SQL tests prove the intended RPC works
+with zero service table grants after test-only revocation. Read-only final catalog
+matches the start. Old schema274 autosave403 is independently reproduced as an
+identity-column UPDATE ACL conflict, not a275 regression. Old retry UX still fails.
+
+Keep qjksggxorghaxvpyslip at275/maintenance ON. No replay275,276–278, deploy/reopen,
+push, production change or cleanup. Preserve both isolated environments. Before
+continuing, Primary Chat must approve correction scope and revised release ordering/
+maintenance readiness. Earlier semantic-pass statements are superseded by this gate.
+
+## Hosted cutover stopped at applied 275 (2026-09-30)
+
+Read `docs/course-hosted-275-stop-2026-09-30.md`. Hotspot direct IPv6/TLS verify-full
+and CLI authentication now work. New isolated qjksggxorghaxvpyslip started274,
+received synthetic fixtures and maintenance, then exact CLI migration275 committed.
+Catalog verification returned UNKNOWN_STOP: new lesson_private_notes inherits hosted
+service_role Dxtm instead of disposable arwdDxt. All other catalog rows and separate
+semantic checks match, but exact verification is NOT passed. Maintenance remains ON,
+schemaReady=false. Do not replay275, apply276–278, deploy candidate or reopen.
+
+Original1599ab2 app reads/login/MFA worked in dedicated isolated site70b03a42;
+autosave403 exposed an existing identity-column upsert grant conflict. Original
+media scripts continued requests while paused; no course write succeeded. Do not
+mark old retry UX or full transition passed. Candidate0cfcf405 has exact isolated
+configuration binding and is prepared only. Full local558JS/278replay/15SQL,
+build/type/Netlify/lint/audit pass; all278 hashes unchanged. No push this task.
+Production remains274/main1599ab2 and both published sites unchanged. Preserve both
+isolated branches/sites. Next: default-ACL-aware expected catalog review and read-only
+classification of already-applied275, with separate authorization before resuming.
+Earlier clean274/network-blocked statements below are historical.
+
+## New clean274 hosted rehearsal branch verified, network/auth blocked (2026-09-30)
+
+Read `docs/course-hosted-274-rehearsal-2026-09-30.md`. New explicitly authorized
+branch course-cutover-rehearsal-274, project qjksggxorghaxvpyslip, is healthy and
+exactly274 with repository ledger parity and zero members/progress. Earlier missing-
+branch/cost questions are superseded. Current direct IPv6 TCP returns No route to
+host and pinned Supabase CLI is not signed in. User hotspot/login action is pending.
+No hosted mutations, accounts, migrations, deploys or pushes occurred in this
+assignment. Full local556JS/278replay/15SQL and configured validation passed again.
+Sealed stage workdirs exist at /private/tmp/lockliel-hosted274-stages. Reconfirm274
+before resuming. Preserve existing acceptance jxtgtfffdiwzxocxoqxk and production.
+
+
+## Final cutover development checkpoint consumed (2026-09-30)
+
+Authorized development push completed through3a7b7b9. Both remote CI runs pass556JS,
+278 replay,15SQL and configured checks. PR4 remains draft/open/unmerged; preview
+6abd366442bf580008d496b6 passes36 guard denials/16static checks. Dedicated acceptance
+candidate d604a97 deploy6abd3507530787bcad461764 is ready, isolated278 maintenance
+currently OPEN after verified synthetic checks. Production remains main1599ab2,
+database274 and both published sites unchanged. Final evidence stays local.
+Read `docs/course-cutover-final-rehearsal-2026-09-30.md`. Full hosted274→278 remains
+unverified: a new disposable branch requires user organization/cost confirmation.
+Do not reset retained acceptance, repeat migrations, push again, merge, release,
+change production or delete acceptance infrastructure implicitly.
+
+
+## Final hosted maintenance rehearsal, full hosted transition still blocked (2026-09-30)
+
+Read `docs/course-cutover-final-rehearsal-2026-09-30.md` and the updated release
+runbook. The manual copy-and-close policy is APPROVED: Dave copies unsaved answers
+and notes, confirms ALL old course tabs closed before maintenance, and uses a fresh
+post-release tab. No recovery of old memory-only drafts is promised.
+
+Actual private PostgREST maintenance hook is installed ONLY in isolated project
+jxtgtfffdiwzxocxoqxk, still278. Hosted synthetic stale writes, direct RPC denials,
+new-client maintenance UX, and fresh saves after reopening pass. Implementation
+3cf0fd9 and d604a97 stop media retries and preserve read-only course checks.
+The complete HOSTED old1599ab2/schema274 to new-app/schema278 sequence is NOT proven:
+a second disposable branch is needed; organization/cost confirmation is pending.
+Never downgrade or replay migrations in the retained acceptance branch.
+
+Full local validation passes556JS /278 replay /15SQL, including the rerun staged
+CLI rehearsal. All historical277 migration bytes unchanged. This assignment permits
+development push/CI only; keep PR4 draft and main1599ab2/production274 untouched.
+Production trusted durations, Auth, near-zero-loss recovery, operator capability,
+fresh direct IPv6 and stable release window remain unsatisfied gates. Retain both
+acceptance resources. Earlier pending-manual-policy/disposable-only-hook statements
+below are historical and superseded by this entry.
+
+
+## Migration278 correction and transition preparation (2026-09-30)
+
+Read `docs/course-release-278-transition-2026-09-30.md` and
+`docs/course-release-278-runbook.md`. The latest assignment supersedes the earlier
+278 STOP proposal. Minimal278 is committed as678f9a9; historical277 hashes unchanged.
+Isolated project jxtgtfffdiwzxocxoqxk has278 under MCP alias20260930145615. Never rerun
+that migration there. Production remains274; main1599ab2 and both sites unchanged.
+Local validation:556JS,278replay,15SQL plus four-stage pinned-CLI failure/TLS/drain/
+publication concurrency rehearsal. Temporary maintenance operational SQL and client
+changes are local only; no hosted hook or new maintenance artifact was deployed.
+Preparation is INCOMPLETE: full hosted mixed-app acceptance and Dave's explicit
+old-tab copy-and-close decision remain pending. Do not describe new-client draft
+persistence as protecting already-open1599ab2 tabs. Production gate installation
+changes schema/permissions/PostgREST settings and needs separate authorization.
+No push, production release, Auth/PITR/content/staff change or cleanup follows.
+
+## Transition preparation stopped at migration boundary (2026-09-30)
+
+Read `docs/course-release-transition-preparation-2026-09-30.md`. Disposable tests
+confirmed direct media RPC writes/credit after draft/archive transitions, including
+published translations. Part A explicitly requires STOP and a separate 278 proposal.
+No 278 file or fix is authorized yet; all 277 migration bytes remain intact. Do not
+resume the 275–277 runner as though the edge case passed. Separate authorization must
+cover the fix and an explicit 275–278 release-set revision before remaining preparation.
+Production and hosted acceptance were not changed. Latest decisions require a narrow
+maintenance window, near-zero-loss recovery, trusted durations before reopening 1–10,
+and separate leaked-password-protection remediation. No production release follows.
+
+## Course engine production release review (2026-09-30)
+
+Read `docs/course-engine-production-release-review-2026-09-30.md` before any course
+release. Review is NOT READY for production authorization. Production 274 is compatible
+with candidate 275–277, but old-app/new-schema progress writes fail and new-app/schema 274
+is incompatible. A tested course-write pause/stale-client transition and new staged
+runner rehearsal are required. Direct IPv6 currently has no route; backup/RPO/operator
+recovery, provider incident and existing Auth warning remain gates. Only local review
+files were added; no production action, push, merge or cleanup is authorized.
+
+
+## Hosted acceptance remote checkpoint verified (2026-09-30)
+
+The authorized development push is consumed through `a58626b`. Implementation is
+`91611ad`; both remote CI runs pass 550 JS / 277 replay / 14 SQL plus configured checks.
+Draft PR4 stays unmerged, ordinary preview `6abcdbeb2e554100082d3a1f` passes 36 denial
+and 16 static checks. Dedicated acceptance deploy `6abcdb0c84404e24a9880ac6` passes
+hosted acceptance. Production remains main `1599ab2`, database 274 and prior Netlify
+production/Sites25. See the isolated acceptance report. New evidence stays local;
+no further push, production release/migration/content activation or cleanup is implicit.
+
+## Isolated hosted acceptance follow-up (2026-09-30)
+
+Read `docs/course-engine-isolated-acceptance-2026-09-30.md`. Explicit follow-up
+approved branch-only SMTP OFF / confirmation OFF, three synthetic users, real MFA,
+hosted acceptance and narrow fixes/development push. Implementation `91611ad` fixes
+hosted conflicts, release trigger, manager response and totals. Isolated project
+`jxtgtfffdiwzxocxoqxk` has 277 migrations; production stays 274. Never rerun the three
+isolated migrations under their different repository versions; use the report mapping.
+Original 274 files and candidate 275 are unchanged. Retain branch/site for review.
+No production release, migration, main merge, content activation or cleanup follows
+implicitly. Check the report for the consumed development checkpoint and CI evidence.
+
+## Course completion checkpoint consumed (2026-09-30)
+
+The authorized development push is complete through `f11a97a`. Draft PR4, exact
+preview `6abcc54b2ec109000875c2b6` and both CI runs pass (547 JS, 275 replay, 13 SQL).
+Production remains main `1599ab2`, database 274, migration275 unapplied. Read
+`docs/course-engine-completion-2026-09-30.md`. Evidence documentation stays local.
+Next assignment must authorize isolated infrastructure/binding and hosted acceptance.
+No further push, production release, migration or content activation follows implicitly.
+
+
+## Course engine completion follow-up (2026-09-30)
+
+The explicit follow-up approves media-pending lessons 11–13 without waiting or a
+Model C exception, and makes trusted duration required for watch progression.
+Manual manager verification with provenance/server timestamp is implemented in
+unapplied migration 275. Read `docs/course-engine-hosted-acceptance.md` for exact
+isolated environment requirements. The new policy supersedes earlier optional-duration
+and unresolved-video statements for the engine. This package permits development
+push/draft PR4 preview only, no production migration/release or guard bypass.
+
+
+## Current course-engine assignment (2026-09-29)
+
+Read `docs/course-engine-reconciliation.md`. The latest assignment authorizes the
+reusable engine, local migration 275, isolated validation and development push/PR
+preview only. Main is production `1599ab2`; PR #3 is already merged. Earlier open-PR
+and two-pending-migration statements below are historical. Production has 274 applied;
+this course migration is not applied. Keep all 274 original hashes intact. Never use
+the old 274-release runner for this new migration. Model A is Watch to Advance,
+Answer to Complete at 95%, with no score. Notes stay owner-only and absent from admin
+views. Do not bypass preview production-backend guards to run acceptance tests.
+Release needs duration/content decisions and a genuinely isolated backend. No main
+merge, production deploy, production data/settings changes or content activation.
+
+## Production application release completed (2026-09-29)
+
+The separately authorized PR #3 production release is complete: normal merge `1599ab271e0120a5cdc4e38e225ba749dd214721`, Netlify deploy `6abbb27a1cdd6d00081b0e8e`, database 274 with zero pending. Read `docs/production-application-release-2026-09-29.md`. Earlier prohibitions/outcomes below are historical; this authorization is consumed. Local documentation remains unpushed. Require a separate assignment for controlled real signup/Resend testing, first super-admin setup, further release or Getting a Grip Share Library activation. Do not rerun either already applied migration.
+
 ## Read first
 
 Read `CURRENT_BUILD_STATE.md`, `ARCHITECTURE.md`, `SECURITY_MODEL.md`, and
@@ -18,6 +534,16 @@ project and does not establish Lockliel architecture or business approval.
   baseline are historical. Never rerun these applied migrations. New production
   writes require a new assignment; this completed release authorizes no app
   deployment, account/signup test, content activation or documentation push.
+
+## Completed development sync (2026-09-29)
+
+- The subsequent assignment authorized one normal development push through
+  `9a4129aeaafeaf43e15fc6df9f8d262b8a63ec3f`. It is complete. Both remote CI
+  runs and exact preview checks passed; production remains at 274 and both
+  published websites/main are preserved. Read
+  `docs/development-branch-sync-2026-09-29.md`. New evidence documentation stays
+  local. No second push, main merge, production deployment, account testing or
+  content activation is authorized by this completed checkpoint.
 
 ## Ownership and scope
 

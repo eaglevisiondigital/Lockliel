@@ -1,0 +1,17 @@
+✔ cutover gate fails closed on missing state, network error and protocol mismatch (5.216667ms)
+✔ stale clients get explicit reload response; protocol is compatibility, not authentication (1.698166ms)
+✔ maintenance and old client deny before lesson loader or write transport (0.587708ms)
+✔ course_maintenance retains private draft, blocks retry and restores it on reload (0.5895ms)
+✔ course_reload_required retains private draft, blocks retry and restores it on reload (0.1485ms)
+✔ maintenance with unavailable local storage tells learner to copy draft (0.18ms)
+✔ ready279 schema never overrides closed maintenance or changes client protocol (0.250917ms)
+✔ isolated binding requires exact trusted site, context and backend without weakening ordinary previews (3.191041ms)
+✔ staged rehearsal accepts only its exact direct branch endpoint with verify-full safeguards (1.80375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.247667

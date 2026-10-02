@@ -1,0 +1,3 @@
+
+> lockliel-vision@0.1.0 lint:tooling
+> eslint scripts/test-sql.mjs scripts/validate-netlify.mjs tests/*.test.mjs tests/support/*.mjs netlify/functions/book-release.mjs netlify/functions/faith-boost-signup.mjs scripts/isolate-preview-forms.mjs netlify/lib/deployment-safety.mjs netlify/edge-functions/*.js

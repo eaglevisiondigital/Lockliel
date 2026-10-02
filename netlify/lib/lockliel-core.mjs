@@ -1,6 +1,7 @@
-export const SUPABASE_URL="https://bsndfhbemstyrrglajat.supabase.co";
-export const SUPABASE_KEY="sb_publishable_NSyTQx-izQeHisrQm7G4FA_ROG7N_u8";
-export const LOCKLIEL_APP_ORIGIN="https://lockliel.com";
+import {backendConfig} from './backend-config.mjs';
+export const SUPABASE_URL=backendConfig.url;
+export const SUPABASE_KEY=backendConfig.key;
+export const LOCKLIEL_APP_ORIGIN=backendConfig.origin;
 export const ACCESS_COOKIE="lockliel_access",REFRESH_COOKIE="lockliel_refresh";
 
 export function json(data,status=200,cookies=[]){
@@ -21,7 +22,7 @@ export function parseCookies(request){
 }
 export function cookie(name,value,maxAge){
  const context=process.env.CONTEXT||"";
- const secure=process.env.NODE_ENV==="production"||["production","deploy-preview","branch-deploy"].includes(context);
+ const secure=backendConfig.mode==='isolated-course-rehearsal'||process.env.NODE_ENV==="production"||["production","deploy-preview","branch-deploy"].includes(context);
  return `${name}=${encodeURIComponent(value)}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure?"; Secure":""}`;
 }
 export function clearCookie(name){return cookie(name,"",0);}

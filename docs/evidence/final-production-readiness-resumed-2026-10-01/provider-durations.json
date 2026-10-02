@@ -1,0 +1,371 @@
+[
+  {
+    "position": 1,
+    "title": "How to Become a Christian",
+    "asset_id": "42b28ff3-03fa-45b9-93e7-4a258b5bd768",
+    "provider": "youtube",
+    "provider_ref": "SJ5Ee7OXkkM",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=SJ5Ee7OXkkM",
+    "verified_at": "2026-10-01T20:32:37.186832+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=SJ5Ee7OXkkM"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "BECOMING A CHRISTIAN - Getting A Grip On The Basics Series - Lesson 1"
+    ],
+    "provider_duration_iso": "PT24M40S",
+    "actual_duration_seconds": 1480,
+    "proposed_trusted_duration": 1480,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1480"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 2,
+    "title": "How to Be Sure You Are a Christian",
+    "asset_id": "0772dfe1-2e03-430f-bdc6-f691e2de7fcb",
+    "provider": "youtube",
+    "provider_ref": "AEfPf609RgU",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=AEfPf609RgU",
+    "verified_at": "2026-10-01T20:32:37.187764+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=AEfPf609RgU"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS PT2"
+    ],
+    "provider_duration_iso": "PT23M57S",
+    "actual_duration_seconds": 1437,
+    "proposed_trusted_duration": 1437,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1437"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 3,
+    "title": "How to Develop Your Relationship with God",
+    "asset_id": "c8b4ea07-47be-43cd-b07c-35e80cbba6cd",
+    "provider": "youtube",
+    "provider_ref": "3CSBKubDefw",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=3CSBKubDefw",
+    "verified_at": "2026-10-01T20:32:37.188346+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=3CSBKubDefw"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 3"
+    ],
+    "provider_duration_iso": "PT24M18S",
+    "actual_duration_seconds": 1458,
+    "proposed_trusted_duration": 1458,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1457",
+      "1458"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 4,
+    "title": "How to Talk to God",
+    "asset_id": "495191a6-42c1-4c65-9aef-66de0f98583a",
+    "provider": "youtube",
+    "provider_ref": "_NSjbNFcqQA",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=_NSjbNFcqQA",
+    "verified_at": "2026-10-01T20:32:37.188565+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=_NSjbNFcqQA"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 4"
+    ],
+    "provider_duration_iso": "PT22M30S",
+    "actual_duration_seconds": 1350,
+    "proposed_trusted_duration": 1350,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1349",
+      "1350"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 5,
+    "title": "How to Hear from God",
+    "asset_id": "9f91268c-923f-46af-a9aa-e75ddf68b889",
+    "provider": "youtube",
+    "provider_ref": "nWS8Km2kfKg",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=nWS8Km2kfKg",
+    "verified_at": "2026-10-01T20:32:49.388570+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=nWS8Km2kfKg"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 5"
+    ],
+    "provider_duration_iso": "PT21M42S",
+    "actual_duration_seconds": 1302,
+    "proposed_trusted_duration": 1302,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1301",
+      "1302"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 6,
+    "title": "How to Obey God",
+    "asset_id": "6ab8a12a-f13c-48dc-8048-afe5fb26359f",
+    "provider": "youtube",
+    "provider_ref": "enGySOvV4jg",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=enGySOvV4jg",
+    "verified_at": "2026-10-01T20:32:49.423773+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=enGySOvV4jg"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 6"
+    ],
+    "provider_duration_iso": "PT24M16S",
+    "actual_duration_seconds": 1456,
+    "proposed_trusted_duration": 1456,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1456"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 6,
+    "title": "How to Obey God",
+    "asset_id": "754a7b50-3f7b-455e-a147-18bf6ff3cd18",
+    "provider": "youtube",
+    "provider_ref": "TjuLVCy4gnQ",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=TjuLVCy4gnQ",
+    "verified_at": "2026-10-01T20:32:50.674149+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=TjuLVCy4gnQ"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 7 (Lesson 6 PT1)"
+    ],
+    "provider_duration_iso": "PT24M17S",
+    "actual_duration_seconds": 1457,
+    "proposed_trusted_duration": 1457,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1457"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 7,
+    "title": "How to Experience God's Love and Forgiveness",
+    "asset_id": "2cacacc1-b174-4d0a-b17b-6db3a56936ed",
+    "provider": "youtube",
+    "provider_ref": "q_vUBJ8EgaU",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=q_vUBJ8EgaU",
+    "verified_at": "2026-10-01T20:32:57.974716+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=q_vUBJ8EgaU"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - WEEK 8 (Lesson 7 PT1)"
+    ],
+    "provider_duration_iso": "PT25M1S",
+    "actual_duration_seconds": 1501,
+    "proposed_trusted_duration": 1501,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1501"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 8,
+    "title": "How to Be Filled with the Holy Spirit",
+    "asset_id": "41595092-d6b9-4ee0-aa61-5b6bf3917ec1",
+    "provider": "youtube",
+    "provider_ref": "2VDVveA4RUQ",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=2VDVveA4RUQ",
+    "verified_at": "2026-10-01T20:33:02.066825+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=2VDVveA4RUQ"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - Chapter 8 | Lesson 1: How to Be Filled with the Spirit - Part 1"
+    ],
+    "provider_duration_iso": "PT21M57S",
+    "actual_duration_seconds": 1317,
+    "proposed_trusted_duration": 1317,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1317"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 8,
+    "title": "How to Be Filled with the Holy Spirit",
+    "asset_id": "8697594b-35e7-42ac-be40-520546fc2181",
+    "provider": "youtube",
+    "provider_ref": "g8b964SWekE",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=g8b964SWekE",
+    "verified_at": "2026-10-01T20:33:04.960158+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=g8b964SWekE"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - Chapter 8 | Lesson 1: How to Be Filled with the Spirit - Part 2"
+    ],
+    "provider_duration_iso": "PT23M28S",
+    "actual_duration_seconds": 1408,
+    "proposed_trusted_duration": 1408,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1408"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 9,
+    "title": "How to Be Sure You Are Filled with the Spirit",
+    "asset_id": "793e65ec-6eff-4a86-b650-6d9cb2dcff29",
+    "provider": "youtube",
+    "provider_ref": "HY1OyDdODL8",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=HY1OyDdODL8",
+    "verified_at": "2026-10-01T20:33:07.300480+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=HY1OyDdODL8"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - Chapter 9 | Ln 1: How to Be Sure You are Filled w/ the Spirit - Pt 1"
+    ],
+    "provider_duration_iso": "PT22M18S",
+    "actual_duration_seconds": 1338,
+    "proposed_trusted_duration": 1338,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1337",
+      "1338"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 9,
+    "title": "How to Be Sure You Are Filled with the Spirit",
+    "asset_id": "dadd7b47-5288-43d2-bd9b-f66d31f3ffd0",
+    "provider": "youtube",
+    "provider_ref": "vjY2BTUzxGU",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=vjY2BTUzxGU",
+    "verified_at": "2026-10-01T20:33:13.498086+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=vjY2BTUzxGU"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "GETTING A GRIP ON THE BASICS - Chapter 9 | Ln 1: How to Be Sure You are Filled w/ the Spirit - Pt 2"
+    ],
+    "provider_duration_iso": "PT24M32S",
+    "actual_duration_seconds": 1472,
+    "proposed_trusted_duration": 1472,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1472"
+    ],
+    "metadata_verified": true
+  },
+  {
+    "position": 10,
+    "title": "How to Grow and Develop Your Faith",
+    "asset_id": "3b9819c7-b197-4e2e-af13-06ee5836b6ed",
+    "provider": "youtube",
+    "provider_ref": "5-1B6IouUNk",
+    "duration_seconds": null,
+    "duration_verified_at": null,
+    "duration_source": null,
+    "protected_pdf_count": 1,
+    "source_url": "https://www.youtube.com/watch?v=5-1B6IouUNk",
+    "verified_at": "2026-10-01T20:33:13.517476+00:00",
+    "canonical": [
+      "https://www.youtube.com/watch?v=5-1B6IouUNk"
+    ],
+    "metadata_video_ids": [],
+    "provider_title": [
+      "Chapter 10 | Lesson 1: How to Grow and Develop Your Faith"
+    ],
+    "provider_duration_iso": "PT24M1S",
+    "actual_duration_seconds": 1441,
+    "proposed_trusted_duration": 1441,
+    "method": "YouTube HTTPS watch-page publisher structured meta itemprop=duration; canonical/videoId identity check; player length corroboration only",
+    "player_length_corroboration": [
+      "1440",
+      "1441"
+    ],
+    "metadata_verified": true
+  }
+]

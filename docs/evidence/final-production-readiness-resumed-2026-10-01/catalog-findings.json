@@ -1,0 +1,36 @@
+{
+  "production_default_acl": [
+    {
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "owner": "postgres",
+      "schema": "public"
+    }
+  ],
+  "global_table_defaults": [],
+  "runner_failure": "Unreviewed default privileges",
+  "semantic_verifier_hypothetical_failure": "Unknown intermediate service grants",
+  "matched_exact_reference_sections": [
+    "columns",
+    "functions",
+    "constraints",
+    "column_grants",
+    "global_table_defaults"
+  ],
+  "explained_policy_trigger_difference": "Only five cutover_read_guard policies and five cutover_write_guard triggers from unapplied operational maintenance installation",
+  "table_acl_difference": "Six existing tables grant service_role arwdDxtm vs disposable arwdDxt",
+  "historical_hashes_verified": 274,
+  "all_hashes_verified": 279,
+  "production_ledger_parity": 274,
+  "pending": [
+    "20260929215159_lockliel_course_engine_standard.sql",
+    "20260930092000_lockliel_course_release_trigger_execution.sql",
+    "20260930092500_lockliel_course_conflict_http_status.sql",
+    "20260930145334_lockliel_media_publication_authorization.sql",
+    "20261001133500_lockliel_private_notes_service_privileges.sql"
+  ],
+  "production_execution": false,
+  "required_action": "Separate local verifier/semantic intermediate-ACL review and exact rehearsal for captured arwdDxtm defaults. Do not loosen production privileges or normalize away m. Stage279 must still prove zero service_role privileges."
+}

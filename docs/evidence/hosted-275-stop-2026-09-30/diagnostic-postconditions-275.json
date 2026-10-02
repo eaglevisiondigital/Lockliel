@@ -1,0 +1,22 @@
+{
+  "keys_rls": true,
+  "notes_rls": true,
+  "save_anon": false,
+  "ledger_count": 275,
+  "keys_anon_any": false,
+  "notes_orphans": 0,
+  "notes_anon_any": false,
+  "duration_invalid": 0,
+  "invalid_snapshots": 0,
+  "grip_rules_invalid": 0,
+  "negative_revisions": 0,
+  "save_authenticated": true,
+  "save_conflict_40001": true,
+  "save_conflict_pt409": false,
+  "keys_authenticated_any": false,
+  "progress_totals_invalid": 0,
+  "release_trigger_definer": false,
+  "notes_authenticated_write": false,
+  "notes_authenticated_select": true,
+  "release_trigger_authenticated": false
+}

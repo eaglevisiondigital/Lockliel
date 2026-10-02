@@ -1,0 +1,33 @@
+{
+  "observed_date": "2026-09-30",
+  "project": "bsndfhbemstyrrglajat",
+  "backup": {
+    "timestamp": "2026-09-30T07:30:55Z",
+    "type": "physical",
+    "restore_control_available": true,
+    "restore_exercised": false,
+    "pitr_enabled": false,
+    "operator_mfa_recovery_reverified": false
+  },
+  "direct_endpoint": {
+    "host": "db.bsndfhbemstyrrglajat.supabase.co",
+    "port": 5432,
+    "ipv6": "2600:1f18:38df:9500::eef4",
+    "tcp": "No route to host",
+    "tls_and_auth": "not tested"
+  },
+  "sites": {
+    "id": "appgprj_6a904a70bcb48191b19a10b74adcf5d0",
+    "status": "active",
+    "version": 25,
+    "updated_at": "2026-08-27T22:28:57.301945+00:00"
+  },
+  "security_advisor": "WARN: leaked password protection disabled",
+  "provider_incident": {
+    "id": "w91bvbjhqf0f",
+    "name": "Intermittent latency in Eastern US",
+    "status": "identified",
+    "resolved": false
+  },
+  "actions": "Read-only service inspection only"
+}

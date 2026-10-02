@@ -1,0 +1,23 @@
+{
+  "observed_at": "2026-10-01T18:45:00Z",
+  "backup_at": "2026-10-01T07:30:56Z",
+  "backup_type": "PHYSICAL",
+  "restore_control_present": true,
+  "restore_attempted": false,
+  "pitr_enabled": false,
+  "smtp": {
+    "enabled": true,
+    "host": "smtp.resend.com",
+    "port": 465,
+    "minimum_interval_seconds": 60
+  },
+  "auth": {
+    "email_enabled": true,
+    "signup_enabled": true,
+    "confirm_email": true,
+    "anonymous_signin": false,
+    "manual_linking": false
+  },
+  "operator_mfa_and_restore_capability": "not verified",
+  "no_settings_changed": true
+}

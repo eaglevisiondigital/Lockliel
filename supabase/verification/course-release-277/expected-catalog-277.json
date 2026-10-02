@@ -1,0 +1,592 @@
+{
+  "columns": [
+    {
+      "type": "uuid",
+      "table": "course_answer_keys",
+      "column": "lesson_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "integer",
+      "table": "course_answer_keys",
+      "column": "configuration_version",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "jsonb",
+      "table": "course_answer_keys",
+      "column": "answers",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "jsonb",
+      "table": "courses",
+      "column": "learning_rules",
+      "default": "'{}'::jsonb",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "duration_verification_source",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_private_notes",
+      "column": "profile_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_private_notes",
+      "column": "lesson_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_private_notes",
+      "column": "body",
+      "default": "''::text",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_private_notes",
+      "column": "updated_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "bigint",
+      "table": "lesson_progress",
+      "column": "revision",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "jsonb",
+      "table": "lesson_progress",
+      "column": "content_snapshot",
+      "default": "'{}'::jsonb",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_progress",
+      "column": "watch_requirement_met_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_progress",
+      "column": "review_approved_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "integer",
+      "table": "lessons",
+      "column": "configuration_version",
+      "default": "1",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "media_progress",
+      "column": "last_sample_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "numeric",
+      "table": "media_progress",
+      "column": "last_sample_position",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "uuid",
+      "table": "media_progress",
+      "column": "sample_session",
+      "default": null,
+      "notnull": false
+    }
+  ],
+  "constraints": [
+    {
+      "name": "course_answer_keys_answers_check",
+      "table": "course_answer_keys",
+      "validated": true,
+      "definition": "CHECK ((jsonb_typeof(answers) = 'object'::text))"
+    },
+    {
+      "name": "course_answer_keys_lesson_id_fkey",
+      "table": "course_answer_keys",
+      "validated": true,
+      "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "course_answer_keys_pkey",
+      "table": "course_answer_keys",
+      "validated": true,
+      "definition": "PRIMARY KEY (lesson_id, configuration_version)"
+    },
+    {
+      "name": "course_learning_rules_shape",
+      "table": "courses",
+      "validated": true,
+      "definition": "CHECK (((jsonb_typeof(learning_rules) = 'object'::text) AND ((learning_rules = '{}'::jsonb) OR ((learning_rules ?& ARRAY['model'::text, 'sequential'::text, 'watch_threshold'::text, 'minimum_score'::text]) AND ((learning_rules ->> 'model'::text) = ANY (ARRAY['watch_answer'::text, 'watch_score'::text, 'simple'::text, 'review'::text])) AND ((learning_rules ->> 'model'::text) IS NOT NULL) AND (jsonb_typeof((learning_rules -> 'sequential'::text)) = 'boolean'::text) AND (jsonb_typeof((learning_rules -> 'watch_threshold'::text)) = 'number'::text) AND (jsonb_typeof((learning_rules -> 'minimum_score'::text)) = 'number'::text) AND ((((learning_rules ->> 'watch_threshold'::text))::numeric >= (1)::numeric) AND (((learning_rules ->> 'watch_threshold'::text))::numeric <= (100)::numeric)) AND ((((learning_rules ->> 'minimum_score'::text))::numeric >= (0)::numeric) AND (((learning_rules ->> 'minimum_score'::text))::numeric <= (100)::numeric))))))"
+    },
+    {
+      "name": "getting_a_grip_permanent_rule",
+      "table": "courses",
+      "validated": true,
+      "definition": "CHECK (((translation_key IS DISTINCT FROM 'getting-a-grip-on-the-basics'::text) OR COALESCE((((learning_rules ->> 'model'::text) = 'watch_answer'::text) AND (((learning_rules ->> 'watch_threshold'::text))::numeric = (95)::numeric) AND (((learning_rules ->> 'minimum_score'::text))::numeric = (0)::numeric) AND ((learning_rules ->> 'sequential'::text))::boolean AND COALESCE(((learning_rules ->> 'worksheet_required'::text))::boolean, true)), false)))"
+    },
+    {
+      "name": "lesson_asset_duration_source_consistency",
+      "table": "lesson_assets",
+      "validated": true,
+      "definition": "CHECK ((((duration_seconds IS NULL) AND (duration_verification_source IS NULL)) OR ((duration_seconds IS NOT NULL) AND (duration_verification_source IS NOT NULL))))"
+    },
+    {
+      "name": "lesson_assets_duration_verification_source_check",
+      "table": "lesson_assets",
+      "validated": true,
+      "definition": "CHECK (((duration_verification_source IS NULL) OR ((char_length(duration_verification_source) >= 10) AND (char_length(duration_verification_source) <= 500))))"
+    },
+    {
+      "name": "lesson_private_notes_body_check",
+      "table": "lesson_private_notes",
+      "validated": true,
+      "definition": "CHECK ((char_length(body) <= 12000))"
+    },
+    {
+      "name": "lesson_private_notes_pkey",
+      "table": "lesson_private_notes",
+      "validated": true,
+      "definition": "PRIMARY KEY (profile_id, lesson_id)"
+    },
+    {
+      "name": "lesson_private_notes_profile_id_lesson_id_fkey",
+      "table": "lesson_private_notes",
+      "validated": true,
+      "definition": "FOREIGN KEY (profile_id, lesson_id) REFERENCES lesson_progress(profile_id, lesson_id) ON DELETE CASCADE"
+    },
+    {
+      "name": "lessons_configuration_version_check",
+      "table": "lessons",
+      "validated": true,
+      "definition": "CHECK ((configuration_version > 0))"
+    }
+  ],
+  "policies": [
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) AND app_private.current_session_is_active())",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_private_notes",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_private_notes_owner",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_lesson_insert",
+      "schemaname": "public",
+      "with_check": "(EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (c.learning_rules = '{}'::jsonb))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (c.learning_rules = '{}'::jsonb))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_lesson_update",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_media_insert",
+      "schemaname": "public",
+      "with_check": "(EXISTS ( SELECT 1\n   FROM ((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (c.learning_rules = '{}'::jsonb) AND (NOT (EXISTS ( SELECT 1\n           FROM courses family\n          WHERE ((family.translation_key = c.translation_key) AND (family.learning_rules <> '{}'::jsonb))))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(EXISTS ( SELECT 1\n   FROM ((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses c ON ((c.id = l.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (c.learning_rules = '{}'::jsonb) AND (NOT (EXISTS ( SELECT 1\n           FROM courses family\n          WHERE ((family.translation_key = c.translation_key) AND (family.learning_rules <> '{}'::jsonb))))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "RESTRICTIVE",
+      "policyname": "engine_media_update",
+      "schemaname": "public",
+      "with_check": null
+    }
+  ],
+  "triggers": [
+    {
+      "name": "audit_learning_course",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_learning_course AFTER UPDATE OF learning_rules ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('learning_rules')"
+    },
+    {
+      "name": "audit_learning_duration_source",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_learning_duration_source AFTER UPDATE OF duration_verification_source ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('duration_verification_source')"
+    },
+    {
+      "name": "audit_learning_media",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_learning_media AFTER UPDATE OF provider, provider_ref, external_url, storage_path, status ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('provider', 'provider_ref', 'external_url', 'storage_path', 'status')"
+    },
+    {
+      "name": "normalize_lesson_asset_duration_verification_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_lesson_asset_duration_verification_trigger BEFORE INSERT OR UPDATE OF duration_seconds, duration_verification_source, provider, provider_ref, external_url, storage_path ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset_duration_verification()"
+    },
+    {
+      "name": "audit_learning_lesson",
+      "table": "lessons",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_learning_lesson AFTER UPDATE OF worksheet_schema, configuration_version, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('worksheet_schema', 'configuration_version', 'position')"
+    }
+  ],
+  "grants": [
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT",
+      "with_hierarchy": "YES"
+    }
+  ],
+  "column_grants": [
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "learning_rules",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verification_source",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "body",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_private_notes",
+      "column_name": "updated_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "content_snapshot",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "review_approved_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "revision",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watch_requirement_met_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "configuration_version",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_sample_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_sample_position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "sample_session",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "table_catalog": "postgres",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "functions": [
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "audit_learning_configuration",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": true,
+      "returns": "trigger",
+      "body_md5": "abacb6205c5aa998ff5e566108a494e4",
+      "arguments": ""
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "course_lesson_unlocked",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": true,
+      "returns": "boolean",
+      "body_md5": "4ee41fbb39e108322c0ae7fd9b7104bc",
+      "arguments": "learner uuid, target_lesson uuid"
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "course_watch_met",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": true,
+      "returns": "boolean",
+      "body_md5": "e27d583485b82a70712915f4d1a93d2a",
+      "arguments": "learner uuid, target_lesson uuid"
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "normalize_lesson_asset_duration_verification",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": false,
+      "returns": "trigger",
+      "body_md5": "ffcb56a46a947385dd3c515ca6916fa5",
+      "arguments": ""
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "validate_course_release",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": true,
+      "returns": "trigger",
+      "body_md5": "a9c38e606b5510100854ed9b5da72550",
+      "arguments": ""
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "name": "validate_lesson_completion",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "app_private",
+      "definer": true,
+      "returns": "trigger",
+      "body_md5": "445dc44467c92cf1fac7d3bca2e00a00",
+      "arguments": ""
+    },
+    {
+      "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+      "name": "lockliel_course_gates",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "public",
+      "definer": true,
+      "returns": "jsonb",
+      "body_md5": "f9220d0f0d325909c82b56c49b4c43b1",
+      "arguments": ""
+    },
+    {
+      "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+      "name": "lockliel_sample_media",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "public",
+      "definer": true,
+      "returns": "jsonb",
+      "body_md5": "5eb8b534b815fa0cb44c3468e697ead4",
+      "arguments": "expected_user uuid, target_asset uuid, position_seconds numeric, playing boolean"
+    },
+    {
+      "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+      "name": "lockliel_save_lesson",
+      "owner": "postgres",
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "public",
+      "definer": true,
+      "returns": "jsonb",
+      "body_md5": "670f673fcfd9aa78f75164a18a321050",
+      "arguments": "expected_user uuid, target_lesson uuid, expected_revision bigint, answers jsonb, notes text, complete boolean"
+    }
+  ],
+  "tables": [
+    {
+      "schema": "app_private",
+      "name": "course_answer_keys",
+      "rls": true,
+      "force_rls": false
+    },
+    {
+      "schema": "public",
+      "name": "lesson_private_notes",
+      "rls": true,
+      "force_rls": false
+    }
+  ]
+}

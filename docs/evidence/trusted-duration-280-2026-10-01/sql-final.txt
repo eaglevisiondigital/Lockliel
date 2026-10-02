@@ -1,0 +1,26 @@
+PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.
+PASS incompatible legacy email abort and transactional constraint recovery.
+PASS ACL production_full8: exact275–279 catalog, unchanged defaults, final zero service table/column privileges; 13 actual grant defects rejected.
+PASS ACL restricted_zero: exact275–279 catalog, unchanged defaults, final zero service table/column privileges; 13 actual grant defects rejected.
+PASS ACL cases A/B/C/D: production full8, restricted defaults, excessive actual grants, missing/incomplete279 fail closed.
+Replayed 280 authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).
+PASS account_deletion_execution.sql (rolled back)
+PASS account_deletion_readiness.sql (rolled back)
+PASS authorization_boundaries.sql (rolled back)
+PASS course_duration_policy.sql (rolled back)
+PASS course_engine_standard.sql (rolled back)
+PASS course_persistence_regression.sql (rolled back)
+PASS course_private_notes_privileges.sql (rolled back)
+PASS course_publication_authorization.sql (rolled back)
+PASS course_readiness_duration.sql (rolled back)
+PASS course_release_authorization.sql (rolled back)
+PASS deletion_preflight_access.sql (rolled back)
+PASS email_constraint_compatibility.sql (rolled back)
+PASS getting_a_grip_invitation.sql (rolled back)
+PASS integrity_staff_execution.sql (rolled back)
+PASS member_journey_core.sql (rolled back)
+PASS my_five_guided_follow_up.sql (rolled back)
+PASS reconciled_review_share.sql (rolled back)
+Passed 17 SQL test files.
+PASS isolated280 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).
+PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).

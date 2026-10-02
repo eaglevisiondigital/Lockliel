@@ -1,0 +1,21 @@
+{
+  "status": {
+    "indicator": "minor",
+    "description": "Partially Degraded Service"
+  },
+  "incidents": [
+    {
+      "id": "w91bvbjhqf0f",
+      "name": "Intermittent latency in Eastern US",
+      "status": "identified",
+      "updated_at": "2026-09-30T21:26:46.634Z",
+      "shortlink": "https://stspg.io/gxmmvm5s9rh0"
+    }
+  ],
+  "components": [
+    {
+      "name": "API Gateway",
+      "status": "degraded_performance"
+    }
+  ]
+}

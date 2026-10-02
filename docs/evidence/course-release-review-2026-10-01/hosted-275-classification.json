@@ -1,0 +1,64 @@
+{
+  "identity": {
+    "ssl": true,
+    "tls": "TLSv1.3",
+    "lock": "5s",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "server": "17.11",
+    "database": "postgres",
+    "readonly": "on",
+    "statement": "30s"
+  },
+  "state": "INTERMEDIATE_VERIFIED_CLOSED_PENDING279",
+  "defaultEvidence": "Unchanged since retained review;275 does not alter defaults",
+  "ledgerCount": 275,
+  "lastMigration": {
+    "name": "lockliel_course_engine_standard",
+    "version": "20260929215159",
+    "statements_md5": "d56b3807477b2b284c0e36b2d80e7548"
+  },
+  "notes": {
+    "acl": [
+      "authenticated=r/postgres",
+      "postgres=arwdDxtm/postgres",
+      "service_role=Dxtm/postgres"
+    ],
+    "rls": true,
+    "name": "lesson_private_notes",
+    "schema": "public"
+  },
+  "tableDefaults": [
+    {
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "service_role=Dxtm/postgres"
+      ],
+      "owner": "postgres",
+      "schema": "public"
+    }
+  ],
+  "postconditions": {
+    "keys_rls": true,
+    "notes_rls": true,
+    "save_anon": false,
+    "ledger_count": 275,
+    "keys_anon_any": false,
+    "notes_orphans": 0,
+    "notes_anon_any": false,
+    "duration_invalid": 0,
+    "invalid_snapshots": 0,
+    "grip_rules_invalid": 0,
+    "negative_revisions": 0,
+    "save_authenticated": true,
+    "save_conflict_40001": true,
+    "save_conflict_pt409": false,
+    "keys_authenticated_any": false,
+    "progress_totals_invalid": 0,
+    "release_trigger_definer": false,
+    "notes_authenticated_write": false,
+    "notes_authenticated_select": true,
+    "release_trigger_authenticated": false
+  },
+  "maintenance": "ON",
+  "execution": "276 command rejected before execution;276\u2013279 not applied"
+}

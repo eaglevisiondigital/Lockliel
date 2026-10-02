@@ -52,7 +52,7 @@ test('export requires matching completed approval before reading datasets',async
   }
 });
 test('export rejects failed, malformed, disconnected or truncated datasets',async()=>{
-  for(const options of [{sourceFailure:'gifts'},{malformed:'faith_profiles'},{disconnect:'orders'},{truncated:'notifications'},{missingRange:true}]){
+  for(const options of [{sourceFailure:'gifts'},{sourceFailure:'lesson_private_notes'},{malformed:'faith_profiles'},{disconnect:'orders'},{truncated:'notifications'},{missingRange:true}]){
     const r=await run({export:true,...options});assert.equal(r.status,503);
     assert.equal(r.headers.get('content-disposition'),null);
     assert.equal(r.body.code,'export_incomplete');
@@ -65,6 +65,9 @@ test('verified export uses caller credentials and exact counts on every source',
   assert.match(r.headers.get('cache-control'),/no-store/);
   const sources=r.calls.filter(c=>c.url.pathname.includes('/rest/')&&!c.url.pathname.includes('/rpc/')&&!(c.url.pathname.endsWith('/privacy_requests')&&c.url.searchParams.has('id')));
   assert.ok(sources.length>20);
+  const notes=sources.find(c=>c.url.pathname.endsWith('/lesson_private_notes'));
+  assert.equal(notes.url.searchParams.get('profile_id'),'eq.'+member);
+  assert.deepEqual(r.body.discipleship.lesson_private_notes,[]);
   for(const c of sources){assert.equal(c.init.headers.Prefer,'count=exact');assert.match(c.init.headers.Authorization,/Bearer test\./);}
 });
 test('member history failure never becomes an empty queue',async()=>{

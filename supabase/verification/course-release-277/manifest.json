@@ -1,0 +1,25 @@
+{
+  "source_commit": "a58626b2f0a46b2fad84e1f79e88dbfb13c81a22",
+  "historical_manifest": "supabase/verification/release-migrations.json",
+  "historical_count": 274,
+  "migrations": [
+    {
+      "ordinal": 275,
+      "filename": "20260929215159_lockliel_course_engine_standard.sql",
+      "sha256": "2e03aa8a8346f46e09e701fbb96c29ac8cb11404100fe51c1cdedebdc6ab35f1",
+      "isolated_version": "20260930083553"
+    },
+    {
+      "ordinal": 276,
+      "filename": "20260930092000_lockliel_course_release_trigger_execution.sql",
+      "sha256": "83c7ea72d55b518c0ecb3704bc052bbc8be535c9b6b5461a6bf2224f2044b8ed",
+      "isolated_version": "20260930091336"
+    },
+    {
+      "ordinal": 277,
+      "filename": "20260930092500_lockliel_course_conflict_http_status.sql",
+      "sha256": "42ca6baea8c16e599f04f5aa52823362b862761943e9e37e4e7ba19c986bcaf0",
+      "isolated_version": "20260930092041"
+    }
+  ]
+}

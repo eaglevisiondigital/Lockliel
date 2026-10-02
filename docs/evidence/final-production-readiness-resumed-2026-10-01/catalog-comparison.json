@@ -1,0 +1,899 @@
+{
+  "tables": {
+    "actual": [
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "course_enrollments",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "courses",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "lesson_assets",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "lesson_progress",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "lessons",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "name": "media_progress",
+        "schema": "public"
+      }
+    ],
+    "reference": [
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "course_enrollments",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "courses",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "lesson_assets",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "lesson_progress",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "lessons",
+        "schema": "public"
+      },
+      {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxt/postgres"
+        ],
+        "rls": true,
+        "name": "media_progress",
+        "schema": "public"
+      }
+    ]
+  },
+  "policies": {
+    "actual": [
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_staff_insert",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_self_insert",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_staff_insert",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_self_insert",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "course_enrollments",
+        "permissive": "PERMISSIVE",
+        "policyname": "enrollments_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'active'::text) AND (EXISTS ( SELECT 1\n   FROM (((lessons content_lesson\n     JOIN courses content_course ON ((content_course.id = content_lesson.course_id)))\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_lesson.id = lesson_assets.lesson_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key))))))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'published'::text) AND app_private.can_read_course(id, translation_key)))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR (EXISTS ( SELECT 1\n   FROM ((courses content_course\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_course.id = lessons.course_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_self_update",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_self_update",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      }
+    ],
+    "reference": [
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_staff_insert",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_self_insert",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_staff_insert",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_self_insert",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "course_enrollments",
+        "permissive": "PERMISSIVE",
+        "policyname": "enrollments_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_combined_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'active'::text) AND (EXISTS ( SELECT 1\n   FROM (((lessons content_lesson\n     JOIN courses content_course ON ((content_course.id = content_lesson.course_id)))\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_lesson.id = lesson_assets.lesson_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key))))))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'published'::text) AND app_private.can_read_course(id, translation_key)))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR (EXISTS ( SELECT 1\n   FROM ((courses content_course\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_course.id = lessons.course_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_member_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "RESTRICTIVE",
+        "policyname": "cutover_read_guard",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "RESTRICTIVE",
+        "policyname": "cutover_read_guard",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "RESTRICTIVE",
+        "policyname": "cutover_read_guard",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "RESTRICTIVE",
+        "policyname": "cutover_read_guard",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(NOT COALESCE(((lockliel_course_cutover_status() ->> 'paused'::text))::boolean, true))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "RESTRICTIVE",
+        "policyname": "cutover_read_guard",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_self_update",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "media_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "media_progress_self_update",
+        "schemaname": "public",
+        "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_assets",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_assets_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_staff_update",
+        "schemaname": "public",
+        "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+      }
+    ]
+  },
+  "triggers": {
+    "actual": [
+      {
+        "name": "audit_course_status_change_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER audit_course_status_change_trigger AFTER UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_course_status_change()"
+      },
+      {
+        "name": "audit_lesson_asset_duration_verification_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER audit_lesson_asset_duration_verification_trigger AFTER INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_lesson_asset_duration_verification()"
+      },
+      {
+        "name": "default_course_translation_key_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER default_course_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+      },
+      {
+        "name": "default_lesson_translation_key_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER default_lesson_translation_key_trigger BEFORE INSERT OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+      },
+      {
+        "name": "normalize_course_enrollment_lifecycle_trigger",
+        "table": "course_enrollments",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_course_enrollment_lifecycle_trigger BEFORE INSERT OR UPDATE ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_course_enrollment_lifecycle()"
+      },
+      {
+        "name": "normalize_lesson_asset_duration_verification_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_asset_duration_verification_trigger BEFORE INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset_duration_verification()"
+      },
+      {
+        "name": "normalize_lesson_asset_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_asset_trigger BEFORE INSERT OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset()"
+      },
+      {
+        "name": "normalize_lesson_progress_state_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_progress_state_trigger BEFORE INSERT OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_progress_state()"
+      },
+      {
+        "name": "normalize_media_progress_state_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_media_progress_state_trigger BEFORE INSERT OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_media_progress_state()"
+      },
+      {
+        "name": "notify_course_enrollment_trigger",
+        "table": "course_enrollments",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER notify_course_enrollment_trigger AFTER INSERT ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.notify_course_enrollment()"
+      },
+      {
+        "name": "on_lesson_progress_referral_tracking",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER on_lesson_progress_referral_tracking AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.track_referred_discipleship_progress()"
+      },
+      {
+        "name": "preserve_media_start_time_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER preserve_media_start_time_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.preserve_media_start_time()"
+      },
+      {
+        "name": "protect_course_identity_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_course_identity_trigger BEFORE UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.protect_course_identity()"
+      },
+      {
+        "name": "protect_lesson_identity_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_lesson_identity_trigger BEFORE UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.protect_lesson_identity()"
+      },
+      {
+        "name": "protect_lesson_progress_identity_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_lesson_progress_identity_trigger BEFORE UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+      },
+      {
+        "name": "protect_media_progress_identity_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_media_progress_identity_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+      },
+      {
+        "name": "recheck_grip_course_after_lesson_change_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER recheck_grip_course_after_lesson_change_trigger AFTER INSERT OR DELETE OR UPDATE OF course_id, \"position\", worksheet_schema, title ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_after_lesson_change()"
+      },
+      {
+        "name": "recheck_grip_course_release_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER recheck_grip_course_release_trigger AFTER INSERT OR DELETE OR UPDATE OF status, storage_path, asset_type ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_release()"
+      },
+      {
+        "name": "rederive_media_progress_after_duration_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER rederive_media_progress_after_duration_trigger AFTER UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW WHEN ((new.duration_seconds IS NOT NULL)) EXECUTE FUNCTION app_private.rederive_media_progress_after_duration()"
+      },
+      {
+        "name": "sync_journey_from_lesson_progress_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER sync_journey_from_lesson_progress_trigger AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.sync_journey_from_lesson_progress()"
+      },
+      {
+        "name": "validate_course_publish_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_course_publish_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_publish()"
+      },
+      {
+        "name": "validate_course_release_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_course_release_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_release()"
+      },
+      {
+        "name": "validate_lesson_completion_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_lesson_completion_trigger BEFORE INSERT OR UPDATE OF status, worksheet_status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_completion()"
+      },
+      {
+        "name": "validate_lesson_translation_family_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_lesson_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, course_id, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_translation_family()"
+      }
+    ],
+    "reference": [
+      {
+        "name": "audit_course_status_change_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER audit_course_status_change_trigger AFTER UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_course_status_change()"
+      },
+      {
+        "name": "audit_lesson_asset_duration_verification_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER audit_lesson_asset_duration_verification_trigger AFTER INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_lesson_asset_duration_verification()"
+      },
+      {
+        "name": "cutover_write_guard",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+      },
+      {
+        "name": "cutover_write_guard",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+      },
+      {
+        "name": "cutover_write_guard",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+      },
+      {
+        "name": "cutover_write_guard",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+      },
+      {
+        "name": "cutover_write_guard",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+      },
+      {
+        "name": "default_course_translation_key_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER default_course_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+      },
+      {
+        "name": "default_lesson_translation_key_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER default_lesson_translation_key_trigger BEFORE INSERT OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+      },
+      {
+        "name": "normalize_course_enrollment_lifecycle_trigger",
+        "table": "course_enrollments",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_course_enrollment_lifecycle_trigger BEFORE INSERT OR UPDATE ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_course_enrollment_lifecycle()"
+      },
+      {
+        "name": "normalize_lesson_asset_duration_verification_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_asset_duration_verification_trigger BEFORE INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset_duration_verification()"
+      },
+      {
+        "name": "normalize_lesson_asset_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_asset_trigger BEFORE INSERT OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset()"
+      },
+      {
+        "name": "normalize_lesson_progress_state_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_lesson_progress_state_trigger BEFORE INSERT OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_progress_state()"
+      },
+      {
+        "name": "normalize_media_progress_state_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER normalize_media_progress_state_trigger BEFORE INSERT OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_media_progress_state()"
+      },
+      {
+        "name": "notify_course_enrollment_trigger",
+        "table": "course_enrollments",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER notify_course_enrollment_trigger AFTER INSERT ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.notify_course_enrollment()"
+      },
+      {
+        "name": "on_lesson_progress_referral_tracking",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER on_lesson_progress_referral_tracking AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.track_referred_discipleship_progress()"
+      },
+      {
+        "name": "preserve_media_start_time_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER preserve_media_start_time_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.preserve_media_start_time()"
+      },
+      {
+        "name": "protect_course_identity_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_course_identity_trigger BEFORE UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.protect_course_identity()"
+      },
+      {
+        "name": "protect_lesson_identity_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_lesson_identity_trigger BEFORE UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.protect_lesson_identity()"
+      },
+      {
+        "name": "protect_lesson_progress_identity_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_lesson_progress_identity_trigger BEFORE UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+      },
+      {
+        "name": "protect_media_progress_identity_trigger",
+        "table": "media_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER protect_media_progress_identity_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+      },
+      {
+        "name": "recheck_grip_course_after_lesson_change_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER recheck_grip_course_after_lesson_change_trigger AFTER INSERT OR DELETE OR UPDATE OF course_id, \"position\", worksheet_schema, title ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_after_lesson_change()"
+      },
+      {
+        "name": "recheck_grip_course_release_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER recheck_grip_course_release_trigger AFTER INSERT OR DELETE OR UPDATE OF status, storage_path, asset_type ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_release()"
+      },
+      {
+        "name": "rederive_media_progress_after_duration_trigger",
+        "table": "lesson_assets",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER rederive_media_progress_after_duration_trigger AFTER UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW WHEN ((new.duration_seconds IS NOT NULL)) EXECUTE FUNCTION app_private.rederive_media_progress_after_duration()"
+      },
+      {
+        "name": "sync_journey_from_lesson_progress_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER sync_journey_from_lesson_progress_trigger AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.sync_journey_from_lesson_progress()"
+      },
+      {
+        "name": "validate_course_publish_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_course_publish_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_publish()"
+      },
+      {
+        "name": "validate_course_release_trigger",
+        "table": "courses",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_course_release_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_release()"
+      },
+      {
+        "name": "validate_lesson_completion_trigger",
+        "table": "lesson_progress",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_lesson_completion_trigger BEFORE INSERT OR UPDATE OF status, worksheet_status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_completion()"
+      },
+      {
+        "name": "validate_lesson_translation_family_trigger",
+        "table": "lessons",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER validate_lesson_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, course_id, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_translation_family()"
+      }
+    ]
+  },
+  "table_defaults": {
+    "actual": [
+      {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "owner": "postgres",
+        "schema": "public"
+      }
+    ],
+    "reference": [
+      {
+        "acl": [
+          "service_role=arwdDxt/postgres"
+        ],
+        "owner": "postgres",
+        "schema": "public"
+      }
+    ]
+  }
+}
