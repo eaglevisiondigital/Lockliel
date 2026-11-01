@@ -1,0 +1,12 @@
+[
+  {
+    "file": "AGENTS.md",
+    "prior_tail_sha256": "42eb8717e31610363ad12afc1e397f47120fc399c824e5ecc5a950f76a5e7f5b",
+    "prior_tail_preserved": true
+  },
+  {
+    "file": "CURRENT_BUILD_STATE.md",
+    "prior_tail_sha256": "26bbd49d1e54b22108f5641a809e82976088c7ec7860fc3b23249903a43bae6d",
+    "prior_tail_preserved": true
+  }
+]

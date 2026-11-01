@@ -1,0 +1,105 @@
+{
+  "observed_on": "2026-11-01",
+  "branch": "codex/lane2-course-readiness",
+  "starting_head": "6e19e240e6d7fa00514399636f879de4992a290a",
+  "application_source": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "metadata": [
+    {
+      "source": "site-scoped historical deployment",
+      "id": "6abfd81ccee16b59b75711a0",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "state": "ready",
+      "context": "branch-deploy",
+      "branch": "rehearsal",
+      "commit_ref": null,
+      "published_at": null,
+      "created_at": "2026-10-02T16:13:16.879Z",
+      "comparable_function_digests_exposed": false
+    },
+    {
+      "source": "isolated site",
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "comparable_function_digests_exposed": false
+    }
+  ],
+  "capability_inventory": [
+    {
+      "name": "mcp__codex_apps__netlify_netlify_deploy_get_deploy",
+      "operation_scope": "get-deploy/get-deploy-for-site only"
+    },
+    {
+      "name": "mcp__codex_apps__netlify_netlify_deploy_get_deploy_for_site",
+      "operation_scope": "get-deploy/get-deploy-for-site only"
+    },
+    {
+      "name": "mcp__codex_apps__netlify_netlify_project_get_project",
+      "operation_scope": "get-project/get-projects/get-forms-for-project only"
+    },
+    {
+      "name": "mcp__netlify__netlify_deploy_services_reader",
+      "operation_scope": "get-deploy/get-deploy-for-site only"
+    },
+    {
+      "name": "mcp__netlify__netlify_project_services_reader",
+      "operation_scope": "get-project/get-projects/get-forms-for-project only"
+    }
+  ],
+  "provider_ui": {
+    "url": "https://app.netlify.com/projects/jade-unicorn-642f40/functions",
+    "initial_iab_surface": "unavailable; no tab created",
+    "chrome_result": "page remained blank after accessibility and screenshot inspection",
+    "captured_error_count": 2,
+    "error_contents_not_recorded": true,
+    "login_or_credentials_attempted": false,
+    "settings_or_source_viewed": false,
+    "agent_created_tab_closed": true
+  },
+  "documented_surfaces": [
+    {
+      "operation": "listSiteDeploys",
+      "method": "GET",
+      "path": "/sites/{site_id}/deploys",
+      "branch_filter_supported": true,
+      "callable_via_current_connector": false
+    },
+    {
+      "operation": "searchSiteFunctions",
+      "method": "GET",
+      "path": "/sites/{site_id}/functions",
+      "callable_via_current_connector": false,
+      "digests_guaranteed_by_public_schema": false
+    },
+    {
+      "operation": "listSiteFiles",
+      "method": "GET",
+      "path": "/sites/{site_id}/files",
+      "callable_via_current_connector": false,
+      "limit": "Published/current site files are not a branch-specific function attestation"
+    },
+    {
+      "operation": "getSiteDeploy",
+      "method": "GET",
+      "path": "/sites/{site_id}/deploys/{deploy_id}",
+      "callable_via_current_connector": true,
+      "limit": "Supplied historical deployment identity, not active rehearsal alias mapping or complete deployed function manifest"
+    }
+  ],
+  "official_sources": [
+    "https://open-api.netlify.com/",
+    "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api/",
+    "https://docs.netlify.com/build/functions/overview/"
+  ],
+  "result": "BLOCKED: trusted current branch-alias to immutable-deploy attestation unavailable; complete current backend binding not verified",
+  "preservation": {
+    "prior_wave_files_edited": false,
+    "sql_or_static_checks_repeated": false,
+    "credentials_keys_env_values_retrieved": false,
+    "auth_sessions_created": false,
+    "maintenance_migrations_settings_changed": false,
+    "function_bundles_downloaded": false,
+    "production_actions": false,
+    "push_merge_deploy": false
+  }
+}

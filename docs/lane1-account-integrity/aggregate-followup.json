@@ -1,0 +1,17 @@
+{
+  "profiles": 181,
+  "read_only": "on",
+  "auth_users": 181,
+  "migrations": 274,
+  "staff_roles": 0,
+  "lock_timeout": "5s",
+  "media_progress": 0,
+  "lesson_progress": 0,
+  "statement_timeout": "30s",
+  "newest_creation_utc": "2026-10-22",
+  "cohort_with_enrollment": 0,
+  "recoveries_within_minute": 172,
+  "cohort_created_since_oct7": 180,
+  "paired_profile_within_5_seconds": 181,
+  "duplicate_normalized_email_groups": 0
+}

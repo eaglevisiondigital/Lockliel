@@ -1,5 +1,10 @@
 # Lockliel decisions and open questions
 
+## Wave 3 local integration checkpoint (2026-11-01)
+
+Dave's Wave 3 direction authorizes logical local preservation commits and a separate synthetic integration candidate, with no remote release or production change. Four lane snapshots are preserved, and reusable W3/W4 workspaces are integrated under coordinator ownership. No Bible provider, default or rights decision; photo/private-data lifecycle; crisis automation; financial/legal/book/shipping decision; or sensitive permission is inferred. Automatic approval review treats next-four-lane source work as preparation only. L5/L6 documentation and prepared L7/L8 assignments are held for explicit source-implementation approval. The full report and all twelve registers are current in `docs/coordination`.
+
+
 ## Hosted280 execution boundary (2026-10-01)
 
 Exact280 is now applied only on qjksggxorghaxvpyslip; final ledger/catalog/private-note

@@ -1,0 +1,46 @@
+{
+  "phase": "bounded next phase",
+  "authority": "direct user approval in this chat, November 1, 2026",
+  "workstreams": [
+    {
+      "package": "W1",
+      "label": "Security and Account Integrity",
+      "branch": "codex/lane1-account-integrity",
+      "base": "d71d079126f48e49f8d3df591373c0381b9f91e1",
+      "owner": "/root coordinator",
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane1-account-integrity/Lockliel",
+      "allowed_writes": "docs/lane1-account-integrity/**; read-only Auth/source/evidence review. No app/config mutation.",
+      "status": "completed locally; uncommitted; no push"
+    },
+    {
+      "package": "W2",
+      "label": "Course release readiness",
+      "branch": "codex/lane2-course-readiness",
+      "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "owner": "/root/course_release_review",
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane2-course-readiness/Lockliel",
+      "allowed_writes": "docs/lane2-course-readiness/**; read-only isolated source/binding and local verifier checks. No maintenance exit or hosted writes.",
+      "status": "completed locally; uncommitted; no push"
+    },
+    {
+      "package": "W3",
+      "label": "Member Experience and Design",
+      "branch": "codex/lane3-member-design",
+      "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "owner": "/root/feature_inventory",
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane3-member-design/Lockliel",
+      "allowed_writes": "components/member-experience-preview/**; docs/lane3-member-design/**; tests/member-experience-preview.test.mjs if meaningful. Isolated prototype, no shared CSS/token/nav/Auth edits.",
+      "status": "completed locally; uncommitted; no push"
+    },
+    {
+      "package": "W4",
+      "label": "Bible and Faith Journey",
+      "branch": "codex/lane4-faith-contracts",
+      "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "owner": "/root/faith_design_plan",
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane4-faith-contracts/Lockliel",
+      "allowed_writes": "lib/faith-journey/**; tests/faith-journey-contracts.test.mjs; docs/lane4-faith-contracts/**. Licensing analysis/service and private domain contracts only, no persistence/schema/UI drawer activation.",
+      "status": "completed locally; uncommitted; no push"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "file": "AGENTS.md",
+    "prior_tail_preserved": true,
+    "prior_tail_sha256": "255fac77e0e132b0406588767ae295d8f2affd8e5dfb3492950f0ad926f0e3ad"
+  },
+  {
+    "file": "CURRENT_BUILD_STATE.md",
+    "prior_tail_preserved": true,
+    "prior_tail_sha256": "0b50f71e6763ea944ad9569ef0cca162079520cde3e04d94733f392820c88a5f"
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "prior_tail_preserved": true,
+    "prior_tail_sha256": "008b7a17c1fd2305cd7086abddd9f79f81790fcfbcd733cc8cac46b300077ab4"
+  },
+  {
+    "file": "SECURITY_MODEL.md",
+    "prior_tail_preserved": true,
+    "prior_tail_sha256": "063950128d9925f118fe228f753ef3f236e46abbcfec5aab979f1def3aa7046f"
+  },
+  {
+    "file": "DECISIONS.md",
+    "prior_tail_preserved": true,
+    "prior_tail_sha256": "cc0cf3fc7e94b13c9b0b36b72388b169973caa47025fad73a54f69be5a3fa6cc"
+  }
+]

@@ -1,0 +1,61 @@
+# Production release gate register
+
+## Wave 3 current result, November 1
+
+Production remains NOT READY and unauthorized. Local integration success closes no production/course/Auth/recovery gate. Fresh W1 read-only ledger274; Wave2 isolated280/paused=true/schemaReady=true/278-v1 remains last database observation, unchanged by this wave. W2 cannot establish current rehearsal alias→immutable6abfd81c from supported readers/UI/installedCLI; gate remainsBLOCKED. Preserve historicalOct3course/manager evidence separately from incomplete d71realCAPTCHA. Account disposition, Storage byte recovery/custodian, final accepted-writePITR/operator/window, duration/notice/old-client and execution gates remain. Current DataAPI grant/RPC/REST exposure review still required. No schema replay,maintenance/authsettings,production action,push,merge or deploy.
+
+## Historical snapshots below
+
+
+## Wave 2 current result, November 1
+
+Production release remains NOT READY and unauthorized. Fresh remote main1599ab2/devPR4fa294f7, Netlify6abbb27a, Sitesactive/latest25 and production274 identities match preserved baseline. Isolated280/readiness/notes RLS/zero service_role table+column grants now independently pass; maintenance remains ON.4static matches/CSP/two401 denials narrow but do not close R07 runtime backend binding. R08 disposition and R09 real CAPTCHA remain open. Refresh actual DataAPI table/column/default/RPC exposure and authenticated REST after the officialOct30change; no grant/setting/migration workaround authorized. Storage-byte recovery/operator/final-write/durations/notice/execution gates remain. No production or isolated writes/settings/Auth/session/maintenance change.
+
+## Earlier wave record retained
+
+## November 1 next-phase result
+
+**Production release remains NOT READY and unauthorized.** Local parallel development does not lift a security, recovery or course gate. Production remains at the same observed 274 migration baseline; no writes, settings changes, account actions, migration, merge or deployment were performed.
+
+R07 is narrowed: W2 freshly verified four credential-free isolated frontend routes against exact historical fa294f7 artifact hashes. The ready branch-deploy has a null commit_ref; backend function artifact/current qjks binding and outbound guards are not freshly certified. A later isolated SQL tool error is not proof of drift or deletion. Keep paused=true/schemaReady=true/protocol=278-v1 at the last successful read. No maintenance exit or positive test was attempted.
+
+R08 member origin and R09 real Auth challenge acceptance remain blocked. Storage-byte recovery, final-write PITR/operator coverage, duration source/authorization, legacy client/notice and separate production execution gates remain open. Historical course/MFA passes are preserved, not repeated or confused with the Auth-only d71d079 candidate. W3/W4 are unintegrated prototypes/contracts and have no production release acceptance.
+
+## Initialization snapshot retained for history
+
+**No production execution authorization.** Production remains at schema 274 on main `1599ab2`, and both
+published sites remain preserved. A passing readiness observation is not permission to
+migrate, merge, deploy, populate durations, activate content or change Auth.
+
+| Gate | Current status/date | Exact requirement before relevant release |
+|---|---|---|
+| R01 Source/main/PR identity | PASS November 1: main `1599ab2`, development/PR #4 `fa294f7`; draft, open, unmerged, `auto_merge=null` | Refresh exact refs at release. Choose an Auth 274 or course 280 packet; a combined release is not implied. |
+| R02 Production hosting/Sites preservation | PASS for identity, November 1: Netlify `6abbb27a` on main; Site active at version 25 | Preserve originals, source, assets and recovery before visible changes. No redesign or overwrite. |
+| R03 Production ledger/RLS/health | PASS within narrow November 1 scope: 274 migrations, RLS 56/56, healthy, Advisor `[]` | Fresh canonical ledger/catalog, required ACL and security preflight at the actual window; no unexpected drift. |
+| R04 Direct IPv6/TLS/authentication safeguards | Prior PASS October 19; not rerun November 1 | Official CA, `verify-full`, hostname verification, direct endpoint and authenticated session with actual read-only ON, 5s lock timeout and 30s statement timeout. Use protected input if needed; no pooler substitution. |
+| R05 Migration bytes | PASS November 1: all 280 sealed hashes match | Revalidate exact candidate, CLI, manifest and source; independently check each stage. Sequence 275→276→277→278→279→280 only in a separately approved production window. |
+| R06 Course CI/positive acceptance | Prior PASS for exact `fa294f7`: October 2 CI and October 3 hosted acceptance | Preserve historical results. Do not repeat completed manager/course tests by default; retest bounded gaps only with authorization. |
+| R07 Current isolated application binding | UNVERIFIED November 1 | Isolated SQL confirms 280/paused ON; management API responses are inconsistent. Historical ready deploy `6abfd81c` does not freshly certify the current alias or artifact. Verify binding/source before credentials or testing. |
+| R08 Member origin/disposition | BLOCKED November 1 | Purpose and authorization of the 181 Auth users/181 profiles remain unresolved. Obtain owner disposition/containment direction; do not infer permission for destructive account actions. |
+| R09 Real Auth CAPTCHA compatibility | BLOCKED October 19; not rerun November 1 | Valid proof, signup, confirmation, recovery, session, manager and external Sites compatibility; reviewed activation/rollback. No dummy-key substitution. |
+| R10 Trusted production durations | PENDING; authoritative asset inventory exists | Explicit approval for duration provenance/population after 275, while closed. Verify video identity, source, timestamp and current trust at 280. No production duration writes now. |
+| R11 Lessons 11–13 | APPROVED PENDING STATE; media absent | Preserve the approved Media Coming Soon behavior and honest gates through any separately authorized cutover. No fabricated video, fake completion or threshold bypass; assigning new media requires its own approval. |
+| R12 Independent Storage bytes | BLOCKED in prior October 19 review | Named custodian and authorized private export/hash/retrieval check for 13 PDFs. PITR metadata is not an object backup; synthetic fixtures are not copies. |
+| R13 PITR current state | PASS within narrow November 1 scope: enabled, seven days, current window visible | Establish coverage of the final accepted write after drain. The observed window end is not a future cutover point. Never start a restore as a verification probe. |
+| R14 Compute/operator/factor/window | Small verified October 19; availability OPEN | Refresh compute/readiness as needed. Dave confirms named restore-operator availability and usable factor for the actual window. No reset, upgrade or purchase. |
+| R15 Legacy-client notice/drain | OPEN | Authorized notice, time to save/copy drafts and private notes, confirmation old tabs are closed, then closed-maintenance/drain/active-operation checks. |
+| R16 Provider health | Overall summary read November 1: operational; page updated October 21 | Fresh stability evidence at the release window. The historical Eastern US incident is not assumed to remain open. |
+| R17 Rollback/order | Plan prepared, not executed | Read exact runbook/operator sequence. Abort before 275 if gates fail. After an uncertain commit, remain closed and reconcile; no blind retry, old 274 application on 280 or assumed down migration. |
+| R18 Application release/Auth/content | NOT AUTHORIZED | Separate owner/Main Chat authorization names exact source, migrations/settings, destination, window, rollback, executor and reopening criteria. |
+| R19 New faith/commerce features | NOT IMPLEMENTED or blocked by policy decisions | Licensing, privacy, crisis, payment, legal, gift and shipping gates as relevant; independent of the Auth-only packet. |
+
+Source reports: ../course-release-280-runbook.md, ../final-production-280-operator-sequence-2026-10-04.md,
+../final-post-incident-preflight-2026-10-19.md, ../production-readiness-gap-review-2026-10-19.md,
+../positive-280-authorized-2026-10-03.md and the fresh baseline at
+`evidence/2026-11-01/baseline.json`. Plans and provider-advertised recovery controls
+are not an executed restore/recovery rehearsal. Do not replay a completed migration,
+exit isolated maintenance using a consumed approval or merge automatically.
+
+An independent Auth 274 packet can be prepared without a course 280 merge, but relevant
+account, real-proof, compatibility, settings and source gates still apply. The coordinator cannot
+waive a policy/license/privacy gate because another lane's code is complete.

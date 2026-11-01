@@ -1,5 +1,10 @@
 # Lockliel security model
 
+## Wave 3 local integration checkpoint (2026-11-01)
+
+Wave 3 synthetic composition has no live credentials, member PII, Auth, network, storage, uploads or sharing. Types do not establish RLS or permissions. Private forms mount only for invented review identities; reset/A/B boundaries clear memory. No public card or private-value intent is exposed. Validation used a Node outbound-network guard and a loopback static sandbox/CSP; no complete browser network trace is claimed. W1 read-only cohort/log aggregates do not attribute actors or prove abuse. The real-CAPTCHA procedure is not permission to reopen Auth or change configuration. Current immutable course alias binding remains blocked. All production, release, privacy, licensing and crisis gates remain in force.
+
+
 ## Hosted280 execution boundary (2026-10-01)
 
 Exact280 is now applied only on qjksggxorghaxvpyslip; final ledger/catalog/private-note

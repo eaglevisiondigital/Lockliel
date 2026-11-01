@@ -1,0 +1,12 @@
+{
+  "AGENTS.md": {
+    "before_sha256": "c7f80df9b00c1af318fc654d823460bf1eb045843fd3ead193196a94b220481a",
+    "after_sha256": "3106d8c533cc3483725e412f37d41844b9c802c18aaf7f13b08afef51c8b345d",
+    "original_tail_preserved": true
+  },
+  "CURRENT_BUILD_STATE.md": {
+    "before_sha256": "f98c309c9f05f187f028ac4c066730ed0d67e737e319253c81569b9963038918",
+    "after_sha256": "040be8a52791b18627f4da46c86cc9e529f6bfc213af5d14b0d9cd2b3a8ea26a",
+    "original_tail_preserved": true
+  }
+}

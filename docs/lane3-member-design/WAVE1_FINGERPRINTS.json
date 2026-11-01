@@ -1,0 +1,16 @@
+{
+  "recorded_on": "2026-11-01",
+  "purpose": "Preserve Wave 1 source/evidence fingerprints before the authorized Wave 2 refinements; not a new test run or production observation.",
+  "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "files": {
+    "components/member-experience-preview/member-components.tsx": "551b6d43ed0e87a8093040537fd71c0504d0c0282604b60024f0d6f66478c851",
+    "components/member-experience-preview/member-experience-preview.module.css": "d98b0122eebf59acf19aaa44a10149c5b1738ec0b5a4b75b866a09470be1850f",
+    "components/member-experience-preview/member-experience-preview.tsx": "733fd638be3fa2ea72239c56166a865420c39c3878ab693ca8127d84a2510650",
+    "components/member-experience-preview/preview-model.ts": "cc2e5012cbb25b66caa2e358e40d28cb2a13110b0245049727e0aa35f95e4f01",
+    "components/member-experience-preview/synthetic-fixtures.ts": "2cc36aab10e8f2a50097b22f362ddcfcbf2d5debcd0b954d695a6e5ef2b797c8",
+    "tests/member-experience-preview.test.mjs": "1f25d1958aad610ed35393312fb40691ce4b6bc0e4438b021d55f456a22c25e1",
+    "docs/lane3-member-design/ACCEPTANCE.md": "5aee11578e856570b881201ec0711c2ca553a2ffaa37f394234c6787833e4a1a",
+    "docs/lane3-member-design/PRIVACY_AND_INTEGRATION.md": "c90f963f158dc9e54681af2ee16ef3a4de4263145a1c9f38c50ab92f77837832",
+    "docs/lane3-member-design/README.md": "a55408413c5054e0adb148521381934c911ff6b3dd6e113b0ea1155d846f7c92"
+  }
+}

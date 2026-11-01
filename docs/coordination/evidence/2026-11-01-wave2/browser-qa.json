@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-01",
+  "observations": "Coordinator-operated browser review of final actual React bundles, synthetic data only",
+  "member": {
+    "widths": [
+      320,
+      390,
+      768,
+      1365
+    ],
+    "no_horizontal_overflow": true,
+    "checks": [
+      "each aria-describedby ID resolves",
+      "photo removal/change resets visibility private",
+      "non-owner photo absence/private/unavailable does not disclose reason",
+      "public projection denied",
+      "refresh private defaults",
+      "no file input",
+      "skip Enter focuses MAIN",
+      "loading busy section and live status",
+      "resources only127.0.0.1:4318; no returned warnings/errors"
+    ],
+    "screenshot": "member-desktop.jpg",
+    "screenshot_limit": "Attempted mobile capture was from an inactive tab with desktop dimensions and discarded. Actual four-width DOM checks were taken while member tab active."
+  },
+  "faith": {
+    "widths": [
+      320,
+      390,
+      768,
+      1365
+    ],
+    "no_horizontal_overflow": true,
+    "checks": [
+      "explicit exact select labels after correction",
+      "modal title focus, reverse/forward wrap, Escape return",
+      "no edition unavailable",
+      "synthetic A/B distinct placeholders",
+      "unavailable edition/unknown provider no fallback",
+      "anchor with empty reflection retains edition A while preference changes B",
+      "HTML-looking prayer remains literal text,0 b elements",
+      "prayer add/archive/remove",
+      "growth to linked action plan focuses title",
+      "self-reported plan check",
+      "unknown context denies controls and clears private entries/unsent input",
+      "reset clears unsent input and edition; refresh defaults",
+      "resources only127.0.0.1:4319; no returned warnings/errors"
+    ],
+    "screenshots": [
+      "faith-drawer-desktop.jpg",
+      "faith-drawer-mobile.jpg",
+      "faith-overview.jpg"
+    ]
+  },
+  "not_verified": [
+    "full screen-reader acceptance",
+    "actual200% browser zoom",
+    "runtime reduced-motion preference",
+    "complete rendered contrast audit",
+    "exhaustive network capture"
+  ],
+  "production_or_credentials_used_in_prototypes": false
+}

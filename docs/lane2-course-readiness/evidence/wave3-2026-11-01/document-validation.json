@@ -1,0 +1,11 @@
+{
+  "prior_wave_records_unchanged": 10,
+  "tracked_changes_before_commit": [],
+  "json_parsing": "PASS",
+  "markdown_links": "PASS",
+  "secret_pattern_scan": "PASS",
+  "em_dash_check": "PASS",
+  "formal_application_tests_run": 0,
+  "sql_or_http_application_checks_repeated": false,
+  "active_commit_hooks": []
+}

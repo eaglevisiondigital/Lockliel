@@ -1,0 +1,19 @@
+{
+  "wave1_records_unchanged": [
+    "ISOLATED_ACCEPTANCE_MATRIX.md",
+    "READINESS_RECONCILIATION.md",
+    "RELEASE_ORDER_RECOVERY_DURATION.md",
+    "evidence/2026-11-01/document-validation.json",
+    "evidence/2026-11-01/read-only-certification.json",
+    "evidence/2026-11-01/source-report-fingerprints.json"
+  ],
+  "json_valid": true,
+  "links_valid": true,
+  "secret_pattern_matches": 0,
+  "em_dashes": 0,
+  "tracked_diff_files": [],
+  "unit_tests_rerun": false,
+  "full_suite_rerun": false,
+  "migration_replay": false,
+  "initial_doc_link_validation": "Failed because the new checksum target had not yet been created; corrected creation order and reran"
+}

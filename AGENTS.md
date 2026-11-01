@@ -1,5 +1,10 @@
 # Lockliel engineering instructions
 
+## Wave 3 local integration checkpoint (2026-11-01)
+
+Read `docs/coordination/WAVE3_COORDINATOR_RESULT.md`. Four Wave 1/2 lane preservation commits and four independent Wave 3 commits exist. Source integration commit `649a3f5`, on `codex/wave3-member-integration`, assembles exact `e3a3dd0`/`f4c2a9f` snapshots. Validation passed: 714 unit tests, 134 focused tests, TypeScript, builds, lint, Netlify validation and scoped browser checks of the actual Next route. No real Auth/API, storage, upload, sharing, Bible or crisis adapter is present. Actual 200% zoom, OS reduced motion, full screen-reader acceptance and exhaustive rendered contrast remain open. All 280 migration file bytes and existing public/Auth/hosting source are preserved. W1 produced bounded read-only evidence and a real-CAPTCHA procedure only. W2's current alias binding remains BLOCKED. L5/L6 documentation is committed; source implementation is held by automatic approval review. L7/L8 are prepared only. No production changes, push, merge, deployment, migration or maintenance change occurred. Root course branch `fa294f7` and its existing dirty work remain preserved. The later documentation checkpoint belongs to the integration branch only.
+
+
 ## Positive280 acceptance authorized, stopped before exit (2026-10-01)
 
 Read `docs/hosted-positive-280-preexit-stop-2026-10-01.md`. The new explicit assignment

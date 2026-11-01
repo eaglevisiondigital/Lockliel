@@ -1,0 +1,33 @@
+{
+  "focusedCombined": {
+    "passed": 134,
+    "failed": 0
+  },
+  "fullUnit": {
+    "passed": 714,
+    "failed": 0,
+    "skipped": 0
+  },
+  "independentIntegrationReview": {
+    "passed": 13,
+    "findingsRemaining": 0,
+    "initialHarnessIssue": "Module CSS SSR loader corrected and independently retested"
+  },
+  "typecheck": "pass",
+  "configuredLint": "pass",
+  "targetedLint": "pass zero warnings",
+  "netlify": {
+    "modules": 75,
+    "handlers": 62,
+    "result": "pass"
+  },
+  "webpackStaticBuildDefaultOff": "pass",
+  "defaultOffArtifact": "404 content, no review shell",
+  "webpackStaticBuildSyntheticLocal": "pass",
+  "networkGuard": "All Node validations preloaded outbound network guard; credential environment variables removed",
+  "SQLReplay": "not rerun; no migration change or need for database in synthetic integration",
+  "accessibility": "Scoped browser pass; actual zoom/OS reduced motion/full screen reader/exhaustive rendered contrast open",
+  "initialFullSuiteAttempt": "Missing generated out directory; rerun after successful build passed714",
+  "remoteCI": "not triggered; no push",
+  "productionChanges": "none"
+}

@@ -1,0 +1,208 @@
+{
+  "observed_on": "2026-11-01",
+  "authority": "Direct Wave2 bounded read-only investigation and prior aggregate SQL approval",
+  "account_patterns": {
+    "totals": {
+      "users": 181,
+      "confirmed": 28,
+      "oct7_22_cohort": 180,
+      "recorded_signin": 28,
+      "recovery_present": 177,
+      "created_after_oct22": 0,
+      "latest_recovery_within_minute": 172
+    },
+    "profiles": 181,
+    "migrations": 274,
+    "safeguards": {
+      "read_only": "on",
+      "lock_timeout": "5s",
+      "statement_timeout": "30s"
+    },
+    "daily_patterns": [
+      {
+        "created": 21,
+        "day_utc": "2026-10-07",
+        "confirmed": 2,
+        "recorded_signin": 2,
+        "latest_recovery_within_minute": 19
+      },
+      {
+        "created": 19,
+        "day_utc": "2026-10-08",
+        "confirmed": 5,
+        "recorded_signin": 5,
+        "latest_recovery_within_minute": 19
+      },
+      {
+        "created": 18,
+        "day_utc": "2026-10-09",
+        "confirmed": 5,
+        "recorded_signin": 5,
+        "latest_recovery_within_minute": 17
+      },
+      {
+        "created": 7,
+        "day_utc": "2026-10-10",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 5
+      },
+      {
+        "created": 7,
+        "day_utc": "2026-10-11",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 7
+      },
+      {
+        "created": 13,
+        "day_utc": "2026-10-12",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 11
+      },
+      {
+        "created": 11,
+        "day_utc": "2026-10-13",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 10
+      },
+      {
+        "created": 3,
+        "day_utc": "2026-10-14",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 3
+      },
+      {
+        "created": 10,
+        "day_utc": "2026-10-15",
+        "confirmed": 1,
+        "recorded_signin": 1,
+        "latest_recovery_within_minute": 10
+      },
+      {
+        "created": 12,
+        "day_utc": "2026-10-16",
+        "confirmed": 2,
+        "recorded_signin": 2,
+        "latest_recovery_within_minute": 12
+      },
+      {
+        "created": 6,
+        "day_utc": "2026-10-17",
+        "confirmed": 2,
+        "recorded_signin": 2,
+        "latest_recovery_within_minute": 6
+      },
+      {
+        "created": 6,
+        "day_utc": "2026-10-18",
+        "confirmed": 0,
+        "recorded_signin": 0,
+        "latest_recovery_within_minute": 6
+      },
+      {
+        "created": 14,
+        "day_utc": "2026-10-19",
+        "confirmed": 2,
+        "recorded_signin": 2,
+        "latest_recovery_within_minute": 14
+      },
+      {
+        "created": 13,
+        "day_utc": "2026-10-20",
+        "confirmed": 3,
+        "recorded_signin": 3,
+        "latest_recovery_within_minute": 13
+      },
+      {
+        "created": 14,
+        "day_utc": "2026-10-21",
+        "confirmed": 4,
+        "recorded_signin": 4,
+        "latest_recovery_within_minute": 14
+      },
+      {
+        "created": 6,
+        "day_utc": "2026-10-22",
+        "confirmed": 1,
+        "recorded_signin": 1,
+        "latest_recovery_within_minute": 6
+      }
+    ],
+    "database_audit_rows": 0
+  },
+  "logs": {
+    "window_start": "2026-10-21T00:00:00Z",
+    "window_end": "2026-10-22T00:00:00Z",
+    "source_counts": {
+      "auth_logs": 115,
+      "auth_audit_logs": 41
+    },
+    "route_status_buckets": [
+      {
+        "records": 8,
+        "route_bucket": "other-or-missing",
+        "status_code": ""
+      },
+      {
+        "records": 18,
+        "route_bucket": "other-or-missing",
+        "status_code": "200"
+      },
+      {
+        "records": 14,
+        "route_bucket": "recover",
+        "status_code": "200"
+      },
+      {
+        "records": 1,
+        "route_bucket": "recover",
+        "status_code": "504"
+      },
+      {
+        "records": 14,
+        "route_bucket": "signup",
+        "status_code": "200"
+      },
+      {
+        "records": 4,
+        "route_bucket": "token",
+        "status_code": "200"
+      },
+      {
+        "records": 40,
+        "route_bucket": "token",
+        "status_code": "400"
+      },
+      {
+        "records": 6,
+        "route_bucket": "verify",
+        "status_code": ""
+      },
+      {
+        "records": 10,
+        "route_bucket": "verify",
+        "status_code": "303"
+      }
+    ],
+    "coverage": "one bounded historical day; no user/event join; not complete cohort attribution"
+  },
+  "ui": {
+    "project": "bsndfhbemstyrrglajat",
+    "captcha_enabled": false,
+    "leaked_password_protection": true,
+    "signup_signin_per_ip_per_5min": 30,
+    "token_refresh_per_ip_per_5min": 150,
+    "token_verifications_per_ip_per_5min": 30,
+    "minimum_user_email_interval_seconds": 60,
+    "ip_forwarding_enabled": false,
+    "email_send_rate": "redacted by UI, not extracted",
+    "save_buttons": "disabled; no settings touched"
+  },
+  "new_sessions": false,
+  "credentials_requested": false,
+  "production_writes": false
+}

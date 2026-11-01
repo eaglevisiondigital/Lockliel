@@ -1,0 +1,212 @@
+[
+  {
+    "path": "docs/lane1-account-integrity/REAL_CAPTCHA_ACCEPTANCE_PROCEDURE.md",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "b2b7c033f0857b68168aac8129c074402068c35c1d2adfccfb7650781a715517"
+  },
+  {
+    "path": "docs/lane1-account-integrity/WAVE2_RESULT.md",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "7c4697490b57a7af159abc49520d3437b94df11a2a9cefad14c8a9de90941c87"
+  },
+  {
+    "path": "docs/lane1-account-integrity/WAVE3_RESULT.md",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "b36415f10f1e24718c01e49fc10fa906daaa45a52d07a5e400f7f484be34da18"
+  },
+  {
+    "path": "docs/lane1-account-integrity/aggregate-followup.json",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "47fc0ec8f8958951669fb5a88bb15e40a732368e7164e5580c1095c42a78bb05"
+  },
+  {
+    "path": "docs/lane1-account-integrity/phase2-result.md",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "1b08a299e9faf015d96c7edf68ac352569c7f99429f02e10aaeb3922885aa4cc"
+  },
+  {
+    "path": "docs/lane1-account-integrity/wave3-readonly-evidence.json",
+    "sourceCommit": "755b9859023dbb17995ade499eab53ecf9088686",
+    "sha256": "1af7cece86e7f34d7f221503b2b5a18a4aa52a91d4840de673e1715881868dd0"
+  },
+  {
+    "path": "docs/lane2-course-readiness/ISOLATED_ACCEPTANCE_MATRIX.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "1d268d4e2fda28c89b2ce0eaf8651e886ba9d19c0dfaee0d7f50d55a00a3e352"
+  },
+  {
+    "path": "docs/lane2-course-readiness/READINESS_RECONCILIATION.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "f714e14a59f3a9e724596fbf9ced22b44afd8d862d6895781940d096d351e331"
+  },
+  {
+    "path": "docs/lane2-course-readiness/RELEASE_ORDER_RECOVERY_DURATION.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "df7a3b724fad4116e57f19034e5446215d492cc0088aa1fedef5b4172dc91519"
+  },
+  {
+    "path": "docs/lane2-course-readiness/SHA256SUMS",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "5c149f38669558a7dd6c1cbe8a902a815741f162c5b7144a354f74ad63ef78ef"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE2_ACCEPTANCE_DELTA.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "af8a774b156d606871ce7dbd9c17004bc4cf0c31efcaf09fbae5bc6e60e43424"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE2_RESULT.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "fdcdb261a5432eaa5f0446b7be7a9457c9aaab1cd28968f788c43058ae6d5708"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE3_ATTESTATION_REQUEST.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "a254d7bc6d3b6a4ebf15f67f15173b3fb52af4794b0e9ceaf3145c5d99961562"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE3_RESULT.md",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "a3123018cf6ab9c0029294508e8923d023fc5220797397d2d2b361e9765b189c"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/2026-11-01/document-validation.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "d7baeebafff0b9070ce7e7b88b85cd12f811bbace945e72ee6f89687501530b9"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/2026-11-01/read-only-certification.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "4ebd123729bd847469a075d1834316c922adc849820c3fdc8e92347dea591b1b"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/2026-11-01/source-report-fingerprints.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "e0c00117841bf026fc09d190452f2315a234909e8f0be5e0f83590217d4d8760"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/SHA256SUMS",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "05afe137d4c005e0352f8a00a9aeaedaaf73c1c864022808a1d2becd82facf4a"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/document-validation.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "259dbdbda108391a5f1304a5e296e8fef3b2cfdc73b89ebfd96a004092f8087d"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/verification.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "a0a9edc7875b318590d991db5e6e8ffcf3d5df0faecfc15bcb11bdc5f85508bd"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave3-2026-11-01/SHA256SUMS",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "9745c5aba5799f728a1c57f148adfffa58d7424114e94d2a2ead04c8b211e47a"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave3-2026-11-01/access-review.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "b51d5aed2f22f24b99ad8b1a7c4acbbedc87e29c1b489f6c76823fef97be8b6f"
+  },
+  {
+    "path": "docs/lane2-course-readiness/evidence/wave3-2026-11-01/document-validation.json",
+    "sourceCommit": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "sha256": "3fa7f8d480115980c6784d0e174ba1ba699a7bb091bef6479da02d3076cda3ea"
+  },
+  {
+    "path": "docs/lane3-member-design/ACCEPTANCE.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "5aee11578e856570b881201ec0711c2ca553a2ffaa37f394234c6787833e4a1a"
+  },
+  {
+    "path": "docs/lane3-member-design/MEMBER_WORKSPACE_API.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "145a11db9eea1ac171e8f42132729520751259601fe6385c0ec756d41d6d8eb0"
+  },
+  {
+    "path": "docs/lane3-member-design/PRIVACY_AND_INTEGRATION.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "c90f963f158dc9e54681af2ee16ef3a4de4263145a1c9f38c50ab92f77837832"
+  },
+  {
+    "path": "docs/lane3-member-design/README.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "a55408413c5054e0adb148521381934c911ff6b3dd6e113b0ea1155d846f7c92"
+  },
+  {
+    "path": "docs/lane3-member-design/WAVE1_FINGERPRINTS.json",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "07153fb5856364ce6f65c115249beada435d767f769dd408df0b488185c660da"
+  },
+  {
+    "path": "docs/lane3-member-design/WAVE2_CONTRAST_REVIEW.json",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "b02801e899606abdfad697cc71d1e6f5da7a8f40a477530e734513c254debe7b"
+  },
+  {
+    "path": "docs/lane3-member-design/WAVE2_RESULT.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "4d99d9a14750455a54c230c03088b6103d358307ead861288131eff86075cdc3"
+  },
+  {
+    "path": "docs/lane3-member-design/WAVE3_A11Y_HARNESS.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "854cab195cf2da4045af22c8a59ecf3781bd811f34c3318152ebd1e4c80b8063"
+  },
+  {
+    "path": "docs/lane3-member-design/WAVE3_RESULT.md",
+    "sourceCommit": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "sha256": "026d781ce618995ec25ae4310fda92494058b01ce914883c5d7945f754bed941"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/CRISIS_SUPPORT_INTERACTION_REQUIREMENTS.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "8f04598a4d8ddfa552a1be168b3c1301fa71bf50d3e46f8bde336d093c176600"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/README.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "8b004021389e8ac0600e6c1f8ccdc30a9ffb4a6d9e05d3ce23058f256791aa06"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/WAVE2_RESULT.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "aae0bde99b0af314b0566bdef633aac719ddec3347a6c3d292b10f04885fdb83"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/WAVE3_RESULT.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "51c2c0cd2ab3712a1e06c7597dc5d72cb438f0cbdb0cf24e08bdb8ffa46eaa10"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/private-domain-architecture.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "8f8574994c24bd1682f69a8a0fac1afc2c14c6d9520fce36c45d527d3ea61c71"
+  },
+  {
+    "path": "docs/lane4-faith-contracts/provider-licensing.md",
+    "sourceCommit": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "sha256": "340028c4238a5f104caf9c268fbeb6de9c0f2256dc59375f9bc697deb02ad632"
+  },
+  {
+    "path": "docs/lane5-connections/IMPLEMENTATION_READY_PLAN.md",
+    "sourceCommit": "077e4d7877ea19b7e9bb22be0094f03cf44edd6d",
+    "sha256": "258fda5bf17e2ddac83c1b1a674af4ec36acbbeccf5e13fbe5c779dfe5852e6b"
+  },
+  {
+    "path": "docs/lane5-connections/PROPOSED_ACCEPTANCE_MATRIX.md",
+    "sourceCommit": "077e4d7877ea19b7e9bb22be0094f03cf44edd6d",
+    "sha256": "96a219d1a982ac991fd40661621ac6b346e41fd9b852aa64f41a8db8ab3d6f66"
+  },
+  {
+    "path": "docs/lane6-content/ACCEPTANCE_MATRIX.md",
+    "sourceCommit": "4868c7a9f18c91f0ae48aeef9f036fd099de3650",
+    "sha256": "c9b8fde72c6b4a0fd8710677f2db2156309e2b12bb256d1d11f4add6e6ec8654"
+  },
+  {
+    "path": "docs/lane6-content/IMPLEMENTATION_READY_PLAN.md",
+    "sourceCommit": "4868c7a9f18c91f0ae48aeef9f036fd099de3650",
+    "sha256": "65386e1386939b502a176144d808720fc8e8283f24cc58693e410fdf5cd31e68"
+  }
+]

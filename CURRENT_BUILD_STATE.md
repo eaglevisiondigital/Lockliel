@@ -1,5 +1,10 @@
 # Lockliel verified continuity baseline
 
+## Wave 3 local integration checkpoint (2026-11-01)
+
+Source integration commit `649a3f5` is a local synthetic review candidate at `/my-lockliel/review`. Its build flag defaults OFF; known hosted contexts deny enablement. It imports W3 `e3a3dd0` and W4 `f4c2a9f`, with one host and explicit synthetic identity, private-state reset, edition and navigation contracts. Validation passed: 714 full unit tests, 134 focused tests, TypeScript, two static builds, lint, Netlify validation and scoped browser checks. Accessibility and live backend dependencies remain open. Independent lane branches are committed and clean; root course branch `fa294f7` is unchanged and its prior dirty history is preserved. See the full Wave 3 coordinator report. Production remains at migration 274 with no changes. Isolated migration 280 and maintenance ON were last verified in Wave 2; no write or retest occurred. No push, merge or deployment occurred.
+
+
 ## Positive280 acceptance authorized, stopped before exit (2026-10-01)
 
 Read `docs/hosted-positive-280-preexit-stop-2026-10-01.md`. The new explicit assignment

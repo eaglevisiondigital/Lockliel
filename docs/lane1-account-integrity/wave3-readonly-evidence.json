@@ -1,0 +1,36 @@
+{
+  "observed_on": "2026-11-01",
+  "production_project": "bsndfhbemstyrrglajat",
+  "migrations": 274,
+  "safeguards": {
+    "read_only": "on",
+    "lock_timeout": "5s",
+    "statement_timeout": "30s"
+  },
+  "cohort_oct7_22": {
+    "total": 180,
+    "confirmed": 27,
+    "unconfirmed": 153,
+    "recorded_last_signin": 27,
+    "confirmation_under_minute": 26,
+    "confirmation_1_to_60min": 1,
+    "confirmation_after_hour": 0,
+    "latest_recovery_before_confirmation": 19
+  },
+  "log_window": [
+    "2026-10-07T00:00:00Z",
+    "2026-10-08T00:00:00Z"
+  ],
+  "auth_log_records": 126,
+  "signup_200": 21,
+  "recover_200": 21,
+  "token_200": 2,
+  "token_400": 62,
+  "verify_303": 4,
+  "verify_without_status": 2,
+  "other_200": 10,
+  "other_without_status": 4,
+  "event_join": false,
+  "owner_known_run": "none known",
+  "new_credentials_sessions_or_writes": false
+}

@@ -1,0 +1,113 @@
+{
+  "recorded_on": "2026-11-01",
+  "source": "components/member-experience-preview/member-experience-preview.module.css",
+  "sha256": "0f69ae6e6d0561aaece9f2eb1d93acc51c275cfc5c2e43f7ef33975b186b9761",
+  "method": "sRGB relative luminance; threshold comparison uses unrounded values. Existing rgba(21,35,60,.94) panel color uses its declared RGB endpoint, not a rendered-pixel sample. Banner uses a brighter channel bound for 18% rgba(77,120,255,.18) over #14243f.",
+  "scope_limit": "Thirteen selected declared-color/bound calculations; not a complete computed-style, gradient, image, every-state, operating-system or assistive-technology contrast audit.",
+  "pairs": [
+    {
+      "context": "main text",
+      "foreground": "#f7f9ff",
+      "background_or_bound": "#07101f",
+      "ratio": 18.087266021691576,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "prototype notice",
+      "foreground": "#bdc8da",
+      "background_or_bound": "#101e35",
+      "ratio": 9.877989939249517,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "panel secondary text",
+      "foreground": "#aebbd0",
+      "background_or_bound": "#15233c",
+      "ratio": 8.088443418128328,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "panel eyebrow",
+      "foreground": "#a9c1ff",
+      "background_or_bound": "#15233c",
+      "ratio": 8.79145542240726,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "native control text",
+      "foreground": "#eef3ff",
+      "background_or_bound": "#091426",
+      "ratio": 16.5835147624403,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "primary button",
+      "foreground": "#0b2d68",
+      "background_or_bound": "#fff",
+      "ratio": 13.211875013133694,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "photo initials",
+      "foreground": "#c8d9ff",
+      "background_or_bound": "#1a2e50",
+      "ratio": 9.561083832446178,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "unshared placeholder",
+      "foreground": "#aebbd0",
+      "background_or_bound": "#142137",
+      "ratio": 8.306378149000858,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "signup status glyph",
+      "foreground": "#c8f2dc",
+      "background_or_bound": "#183a2e",
+      "ratio": 10.21090894556008,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "native control boundary",
+      "foreground": "#657b9d",
+      "background_or_bound": "#091426",
+      "ratio": 4.27615525919549,
+      "threshold": 3,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "focus outline",
+      "foreground": "#b8ceff",
+      "background_or_bound": "#15233c",
+      "ratio": 9.951491385728916,
+      "threshold": 3,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "banner helper against conservative gradient bound",
+      "foreground": "#bdc8da",
+      "background_or_bound": "#1f3462",
+      "ratio": 7.206904631551355,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    },
+    {
+      "context": "banner text against conservative gradient bound",
+      "foreground": "#f7f9ff",
+      "background_or_bound": "#1f3462",
+      "ratio": 11.559161403122523,
+      "threshold": 4.5,
+      "passes_numeric_pair": true
+    }
+  ]
+}

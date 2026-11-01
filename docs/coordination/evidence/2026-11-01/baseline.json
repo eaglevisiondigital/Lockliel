@@ -1,0 +1,352 @@
+{
+  "observed_on": "2026-11-01",
+  "inspection_window_utc": "2026-11-01T13:10Z through approximately 13:50Z",
+  "authority": {
+    "assignment": "14fc03d9-f122-495f-b970-231b0e772b82/Pasted text.txt",
+    "production_sql_initially_rejected": true,
+    "initial_query_executed": false,
+    "owner_direct_read_only_authorization_received": true,
+    "no_workaround": true
+  },
+  "git": {
+    "repository": "eaglevisiondigital/Lockliel",
+    "branch": "lockliel-backend-v1",
+    "local_head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+    "pr4": {
+      "number": 4,
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "base": "main",
+      "base_sha": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+      "head": "lockliel-backend-v1",
+      "head_sha": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "auto_merge": null
+    },
+    "root_preexisting_dirty": true,
+    "auth_local_ref": "d71d079126f48e49f8d3df591373c0381b9f91e1",
+    "auth_temporary_worktree_missing": true,
+    "auth_git_objects_present": true,
+    "shell_ls_remote_dns_failed": true,
+    "remote_refs_verified_via_github_connector": true,
+    "origin": "https://github.com/eaglevisiondigital/Lockliel.git"
+  },
+  "production": [
+    {
+      "aggregate_result": {
+        "database": "postgres",
+        "profiles": 181,
+        "confirmed": 28,
+        "read_only": "on",
+        "auth_users": 181,
+        "migrations": 274,
+        "public_rls": 56,
+        "enrollments": 1,
+        "staff_roles": 0,
+        "lock_timeout": "5s",
+        "public_tables": 56,
+        "media_progress": 0,
+        "daily_creations": [
+          {
+            "day": "2026-09-29",
+            "count": 1
+          },
+          {
+            "day": "2026-10-07",
+            "count": 21
+          },
+          {
+            "day": "2026-10-08",
+            "count": 19
+          },
+          {
+            "day": "2026-10-09",
+            "count": 18
+          },
+          {
+            "day": "2026-10-10",
+            "count": 7
+          },
+          {
+            "day": "2026-10-11",
+            "count": 7
+          },
+          {
+            "day": "2026-10-12",
+            "count": 13
+          },
+          {
+            "day": "2026-10-13",
+            "count": 11
+          },
+          {
+            "day": "2026-10-14",
+            "count": 3
+          },
+          {
+            "day": "2026-10-15",
+            "count": 10
+          },
+          {
+            "day": "2026-10-16",
+            "count": 12
+          },
+          {
+            "day": "2026-10-17",
+            "count": 6
+          },
+          {
+            "day": "2026-10-18",
+            "count": 6
+          },
+          {
+            "day": "2026-10-19",
+            "count": 14
+          },
+          {
+            "day": "2026-10-20",
+            "count": 13
+          },
+          {
+            "day": "2026-10-21",
+            "count": 14
+          },
+          {
+            "day": "2026-10-22",
+            "count": 6
+          }
+        ],
+        "lesson_progress": 0,
+        "recorded_signin": 28,
+        "statement_timeout": "30s",
+        "recovery_timestamp": 177,
+        "assigned_leader_set": 0,
+        "created_since_oct19": 47,
+        "original_inviter_set": 0,
+        "private_notes_exists": false,
+        "profiles_without_auth": 0,
+        "users_without_profile": 0,
+        "recovery_within_minute": 172,
+        "source_marker_my_lockliel": 181,
+        "recovery_before_confirmation": 19,
+        "other_or_absent_source_marker": 0
+      }
+    }
+  ],
+  "production_project": {
+    "id": "bsndfhbemstyrrglajat",
+    "ref": "bsndfhbemstyrrglajat",
+    "organization_id": "exvcwjbzbhckgtowsdiw",
+    "organization_slug": "exvcwjbzbhckgtowsdiw",
+    "name": "Lockliel Platform",
+    "region": "us-east-1",
+    "status": "ACTIVE_HEALTHY",
+    "database": {
+      "host": "db.bsndfhbemstyrrglajat.supabase.co",
+      "version": "17.6.1.166",
+      "postgres_engine": "17",
+      "release_channel": "ga"
+    },
+    "created_at": "2026-09-24T21:03:27.845227Z"
+  },
+  "advisor": {
+    "result": {
+      "lints": []
+    }
+  },
+  "isolated": [
+    {
+      "isolated_state": {
+        "readiness": {
+          "paused": true,
+          "protocol": "278-v1",
+          "schemaReady": true
+        },
+        "migrations": 280,
+        "service_note_table_grants": 0,
+        "service_note_column_grants": 0
+      }
+    }
+  ],
+  "isolated_api_limitation": {
+    "get_project": "Project not found",
+    "list_projects": "not returned",
+    "parent_branch_listing": "qjks present, course-cutover-rehearsal-274, ACTIVE_HEALTHY",
+    "sql": "succeeds;280/pausedON/schemaReady/278-v1; availability not treated as deletion"
+  },
+  "production_deploy": {
+    "id": "6abbb27a1cdd6d00081b0e8e",
+    "site_id": "3096b319-3068-45ab-9837-ba0cce59d50f",
+    "state": "ready",
+    "context": "production",
+    "branch": "main",
+    "commit_ref": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+    "published_at": "2026-09-29T12:44:51.484Z",
+    "created_at": "2026-09-29T12:43:38.712Z",
+    "deploy_ssl_url": "https://main--lockliel.netlify.app",
+    "ssl_url": "https://lockliel.com",
+    "functions": []
+  },
+  "historical_isolated_deploy": {
+    "id": "6abfd81ccee16b59b75711a0",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "state": "ready",
+    "context": "branch-deploy",
+    "branch": "rehearsal",
+    "commit_ref": null,
+    "created_at": "2026-10-02T16:13:16.879Z",
+    "published_at": null
+  },
+  "sites": {
+    "id": "appgprj_6a904a70bcb48191b19a10b74adcf5d0",
+    "status": "active",
+    "latest_version_number": 25,
+    "current_live_url": "https://lockliel-vision.dfowler4200.chatgpt.site"
+  },
+  "ci": {
+    "total_count": 2,
+    "runs": [
+      {
+        "id": 37031925904,
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+        "path": ".github/workflows/lockliel-preview-check.yml",
+        "run_started_at": "2026-10-02T16:08:51Z",
+        "html_url": "https://github.com/eaglevisiondigital/Lockliel/actions/runs/37031925904"
+      },
+      {
+        "id": 37031917928,
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "head_sha": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+        "path": ".github/workflows/lockliel-preview-check.yml",
+        "run_started_at": "2026-10-02T16:08:47Z",
+        "html_url": "https://github.com/eaglevisiondigital/Lockliel/actions/runs/37031917928"
+      }
+    ]
+  },
+  "auth_ui": {
+    "project": "bsndfhbemstyrrglajat",
+    "signup": true,
+    "confirmation": true,
+    "anonymous_signin": false,
+    "manual_linking": false,
+    "leaked_password_protection": true,
+    "captcha": false,
+    "secure_email_change": true,
+    "secure_password_change": false,
+    "require_current_password_on_change": false,
+    "signups_signins_per_ip": 30,
+    "signups_signins_window_minutes": 5,
+    "min_email_interval_seconds": 60,
+    "ip_address_forwarding": false,
+    "settings_changed": false,
+    "smtp_not_reinspected": true
+  },
+  "pitr_ui": {
+    "enabled": true,
+    "retention_days": 7,
+    "display_timezone": "(UTC-06:00) Central Time (US & Canada)",
+    "display_from": "25 Oct 2026, 08:25:43",
+    "display_through": "01 Nov 2026, 07:25:43",
+    "restore_started": false,
+    "compute": "Small is prior verified Oct19; not freshly verified"
+  },
+  "recent_netlify": {
+    "window_utc": [
+      "2026-10-31T13:28:11Z",
+      "2026-11-01T13:28:11Z"
+    ],
+    "signup": {
+      "data": [
+        {
+          "type": "status_codes_response",
+          "attributes": {
+            "items": []
+          }
+        }
+      ],
+      "meta": {
+        "responses": [
+          {
+            "from": 1793453291000,
+            "to": 1793539691000,
+            "type": "counts"
+          }
+        ]
+      }
+    },
+    "recover": {
+      "data": [
+        {
+          "type": "status_codes_response",
+          "attributes": {
+            "items": []
+          }
+        }
+      ],
+      "meta": {
+        "responses": [
+          {
+            "from": 1793453291000,
+            "to": 1793539691000,
+            "type": "counts"
+          }
+        ]
+      }
+    },
+    "coverage_limit": "Empty exact-route POST aggregates in this bounded window do not identify earlier accounts or prove abuse stopped"
+  },
+  "provider_logs": {
+    "sources": [
+      {
+        "source": "pgbouncer_logs",
+        "events": 72
+      },
+      {
+        "source": "postgres_logs",
+        "events": 13
+      }
+    ],
+    "auth_edge_logs_available": false,
+    "scope": "default retained last24h source inventory only; no log contents retrieved"
+  },
+  "provider_status": {
+    "summary": "All Systems Operational",
+    "page_updated_at": "2026-10-21T04:21:41Z",
+    "url": "https://status.supabase.com/api/v2/summary.json",
+    "limit": "Reported overall state; not an independent current Eastern US stability probe"
+  },
+  "preservation": {
+    "production_writes": false,
+    "auth_mutations": false,
+    "accounts_changed": false,
+    "maintenance_changes": false,
+    "migrations_applied": false,
+    "deployments": false,
+    "pushes": false,
+    "merges": false,
+    "new_feature_implementation": false,
+    "other_repositories_modified": false
+  },
+  "delegation": {
+    "native_available": true,
+    "tasks_completed": [
+      "feature_inventory",
+      "course_release_review",
+      "faith_design_plan"
+    ],
+    "max_concurrent_agents_including_coordinator": 4,
+    "implementation_agents_started": 0,
+    "documentation_polish_completed": true
+  },
+  "isolated_effective_notes_privileges": {
+    "service_role_effective_table_privileges": 0,
+    "service_role_effective_column_privileges": 0,
+    "method": "has_table_privilege and has_column_privilege across all table/column privilege kinds; no note rows read"
+  }
+}
