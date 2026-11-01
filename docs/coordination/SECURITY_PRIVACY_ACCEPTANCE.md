@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 8 current result, November 1
+
+Local provider-user/activeRPC-before+after/caller-RLS ownerfilter/minimalDTO tests pass; strictnonce/binding/generation/cache/expiry/privateexclusion tested through actual factory-adapter composition. Independent P2 actualstorageauth-change invalidation fixed/rechecked. Export always503, no service key/refresh/SetCookie/write/defaultfetch. Real hosted RPCGET/ACL/keyprovenance/Auth/session not verified; samewindowexternalcookiechange withoutnotification boundedbynewread/60sexpiry. No privateFaith/contactnotes/financial/entitlement/resourcepaths inDTO.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Opaque per-adapter session authority rejects forged/cross-adapter/old/expired capabilities; TTL automatically clears snapshots and stale timers cannot clear a newer owner. A/B/generation/abort fences clear private drafts before reads. Allowlisted DTOs omit raw PII/notes/roles/entitlements/locators, staff/unknown permissions deny, consent remains unknown despite follow-up flag. Catalog paths restricted. Reviewer found and fixed nullperson/malformedprogress ambiguity; no remaining bounded defect. Offline tests do not certify RLS/MFA/real CAPTCHA.

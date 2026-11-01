@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 8 current result, November 1
+
+PRODUCTION NOT READY. Fresh isolated280/pausedON/readiness278-v1/RLS57/57/notes0/0 do not certify current applicationbinding or synthetic Auth. No production query/action inWave8;274/Small/PITR7/leakedON/priorhosting retainedhistorical. Account disposition, realCAPTCHA, DataAPI/RPC/callersecurity, coursebinding/ack/duration,13PDFrecovery/custodian, operator/MFA/finalPITR/window and execution authority remain independent. No gate closed bymocktests or localcode.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Production release remains NOT READY and unauthorized. No project/API/SQL/Auth/account/settings/maintenance operation occurred. Production274/isolated280-pausedON and PR4/main/sites are retained observations, not refreshed. Alias/function binding, real CAPTCHA/account disposition, current DataAPI/table/column/RPC exposure, Storage bytes/operator/final-writePITR/durations/notice/content and execution gates remain open. Old resolved incident is not relabeled current.

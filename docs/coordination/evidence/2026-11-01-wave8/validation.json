@@ -1,0 +1,124 @@
+{
+  "source": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "server": "cc1df77380dd26b2f6655f38ade6e6da72c64d0b",
+  "plan": "72f30ae38b7e9fa1c3738641415937a2eb5c717e",
+  "unique_javascript": {
+    "tests": 1438,
+    "pass": 1438,
+    "fail": 0,
+    "skip": 0
+  },
+  "focused_subset": {
+    "server": 85,
+    "client_ui": 63,
+    "cross_lane": 14,
+    "total": 162,
+    "overlaps_full_suite": true
+  },
+  "checks": [
+    {
+      "check": "build",
+      "mode": "server",
+      "result": "PASS",
+      "log_sha256": "f24490981123c3ebb9df7c77180f34f14ce6d6a90c9bda78cdecdbc427e21af3",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "build",
+      "mode": "offline",
+      "result": "PASS",
+      "log_sha256": "4e30656bae4ff95e6a75b4f1c25770e2c05af1cbd2286147e50ccb223b497146",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "build",
+      "mode": "legacy",
+      "result": "PASS",
+      "log_sha256": "13d3c31b1171525a6adc372a35c97795a61f455c170ef7eb75a46ca76ead2b56",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "build",
+      "mode": "off",
+      "result": "PASS",
+      "log_sha256": "dffe5b52ce865a0a9538ab98a85ca621c2cb0a48ce996c1f554c7f96cd098c50",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "unit",
+      "mode": "off",
+      "result": "PASS",
+      "log_sha256": "34005d391c181fec3554809fc0f726f2ef52e31d44ee59bbb421aa475c8e21ff",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "type",
+      "mode": "off",
+      "result": "PASS",
+      "log_sha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "type",
+      "mode": "server",
+      "result": "PASS",
+      "log_sha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "lint",
+      "mode": "server",
+      "result": "PASS",
+      "log_sha256": "909785ed3c66d1f1eb407642d54f12f62cdd7cabbc51b9e8e87e397f5c1afd5f",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "targeted",
+      "mode": "server",
+      "result": "PASS",
+      "log_sha256": "b6bcf01f8341dcbc880d81fa17f1f38535aa7283fd6d747d00c0be300b808de6",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "netlify",
+      "mode": "server",
+      "result": "PASS",
+      "log_sha256": "1bbea404d4ba6ddffb3cbe43939cc1cb8ff4ce39461345383bde5fd6cf548754",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    },
+    {
+      "check": "sql",
+      "mode": "off",
+      "result": "PASS",
+      "log_sha256": "3cfd53213203047e13e92982d919932c012ad1dcf146771a6bd70a719444bcd1",
+      "network": "existing Node deny-all guard; scrubbed provider env"
+    }
+  ],
+  "netlify": {
+    "modules": 79,
+    "handlers": 63
+  },
+  "sql": {
+    "engine": "disposable local PostgreSQL 17, private Unix socket, TCP disabled",
+    "migration_replay": 280,
+    "sql_rls_files": 17,
+    "additional_catalog_acl_readiness_fixtures": "PASS, rolled back",
+    "owned_cluster_retired": true
+  },
+  "lint": {
+    "configured_tooling": "PASS",
+    "member_client_targeted": "PASS zero warnings",
+    "four_server_files_targeted": "PASS zero warnings"
+  },
+  "build_modes": [
+    "default OFF",
+    "original synthetic legacy",
+    "Wave7 offline",
+    "Wave8 server read missing binding"
+  ],
+  "final_export": "default OFF; review HTML is a noindex not-found placeholder without member content",
+  "hosted_mutations": 0,
+  "production_queries": 0,
+  "auth_session_tests": 0,
+  "remote_ci": "not run, no push"
+}

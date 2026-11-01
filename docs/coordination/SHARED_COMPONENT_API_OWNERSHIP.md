@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 8 current result, November 1
+
+Server lease: four new netlify member-read files and tests/docs. Client lease: lib/member-server-read, new shell, existing host/route/policy only, tests/docs. Coordinator reviewed two old guard-enumerator tests and owns crosslane tests/registers. Existing shared Auth/core/config/navigation/tokens/dependencies/schema immutable. Independent reviewer report-only; no competing source changes. Wire version lockliel-member-server-read-v1, strict exact DTO; no caller owner authority.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Actual /root/wave7_read_contracts owns lib/member-read-model/** plus three tests/docs; /root/wave7_member_ui owns member-review host/route/gate, optional member/Faith/Share/privacy paths and UItests; /root owns cross-lane test/fullvalidation/browser/packet. /root/wave7_backend_security_plan owns independent planning docs and read-only final source review. Shared edits serialized by frozen source handoff; no Auth/Netlify handler/schema/global-token/dependency changes.

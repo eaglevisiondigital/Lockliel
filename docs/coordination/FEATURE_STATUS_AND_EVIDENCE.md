@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 8 current result, November 1
+
+Verified local sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c, servercc1df77380dd26b2f6655f38ade6e6da72c64d0b, plan72f30ae38b7e9fa1c3738641415937a2eb5c717e; evidence/2026-11-01-wave8. Full1438 includes162focused, not additional. Fresh isolated280/pausedON/RLS57/57/notes0/0 are metadata evidence only; current Netlify source/function/backend and synthetic Auth acceptance unverified. Production observations are carried, not refreshed. No feature status promotion.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Source 653b6466b4ab923f9915affb57081e4108fbe343 passes1275full tests including109new (67models/controller/guard,28UI,14cross-lane). Independent109rerun overlaps. Three static exposure modes, TypeScript, lint and Netlify75/62 pass. Four sections at four widths, account switching/reset/refresh/denials, keyboard/focus and preserved Scripture dialog/share workflow reviewed. All280migrations/757protected files unchanged; no live/SQL/remoteCI proof.

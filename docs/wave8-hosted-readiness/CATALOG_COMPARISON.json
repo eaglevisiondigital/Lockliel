@@ -1,0 +1,36 @@
+{
+  "ledger_versions_exact_repository_prefix": true,
+  "count": 280,
+  "stored_280_md5_matches_reference": true,
+  "migration_280_source_sha256": "bb8af646303725c9c29ddc7119c5d8aefe2bf0afb91c206ffa8baa1a08e1b1c3",
+  "functions": [
+    {
+      "name": "course_watch_met",
+      "reference_found": true,
+      "definition_match": true
+    },
+    {
+      "name": "preserve_watched_media_identity",
+      "reference_found": true,
+      "definition_match": true
+    },
+    {
+      "name": "lockliel_sample_media",
+      "reference_found": true,
+      "definition_match": true
+    },
+    {
+      "name": "lockliel_save_lesson",
+      "reference_found": true,
+      "definition_match": true
+    }
+  ],
+  "cutover_status": "temporary operational function checked for metadata/readiness, not sealed migration function comparison",
+  "all_280_stored_statement_md5_match_disposable_reference": false,
+  "disposable_reference_stored_md5_mismatch_count": 274,
+  "stored_md5_match_disposable_reference_275_to_280": true,
+  "all_280_stored_statement_md5_match_prior_isolated_catalog": true,
+  "prior_isolated_catalog_path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/evidence/positive-280-authorized-2026-10-03/catalog.json",
+  "prior_isolated_catalog_sha256": "9acb24d9097b8502565c9e38fa3939f007999c6fa2063e12038f5dc78c265e5a",
+  "comparison_limit": "First274stored serialization differs from disposable reference. All280stored MD5match prior actual isolated catalog; no claim every replay statement serialization identical."
+}

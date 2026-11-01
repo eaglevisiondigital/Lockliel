@@ -1,5 +1,11 @@
 # Lockliel decisions and open questions
 
+<!-- wave8:begin -->
+## Wave 8 local server read integration (2026-11-01)
+
+Direct Wave8 authorizes local code/disposable tests/read-only isolated evidence, not hostedmutation/deployment/Auth lifecycle. Chosen smallest existing-schema identity/profile/fivecommunicationpreferences slice; course/private saved domains unavailable rather than invented. Reuse shared parsing and actualsession services without invoking refresh. Defaultclosedexport/local-onlyclient preserve approval boundary; exact-hosted activation requires newreviewedcomposition/source, trustedbinding and separate synthetic lifecycleapproval. No product/payment/book/legal/content/privacy policy presumed approved; no newlyLivefeature.
+<!-- wave8:end -->
+
 ## Wave 7 offline authenticated read integration (2026-11-01)
 
 Dave authorized and completed Wave7offline read contracts/mocks/existingmember integration/local commits, not connected runtime or production. Exactsource653b6466b4ab923f9915affb57081e4108fbe343 and independentplan7788e44775aaadf66933cbc56adec88cf3d2f429 are readyfor separatelyauthorizedisolatedintegrationreview only. No newLive or migration/schema allocation. NextrecommendedWave8localserverprojectionandtrustedbindingevidence fromthatbase is NOT STARTED. Actualhosted/source/target/sessionauthority, accountdisposition/realproof/privatepersistence/rights/Storage/lifecycle/cost andproduction gates remain decisions. See WAVE7_OWNER_DECISION_AND_WAVE8.md for exactcopyassignment.

@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 8 current result, November 1
+
+Direct Wave8 authorizes local implementation/disposable fixtures and isolated read-only verification only. No hosted Auth lifecycle/write/composition/deployment authority. Minimal existing-schema read slice selected; unsupported course/private domains unavailable, unknown share consent blocks, no silent fixturefallback. Snapshot assurance never grants leadership/staff/contact authority. Preserve earlier approval rejection/history, published branding/sites and independent account/CAPTCHA/release gates.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Dave directly authorizes Wave7 offline owner read contracts, replaceable mocks, existing-member integration, source-backed hosted planning and bounded security/course continuation with local commits. This supersedes Wave6 preparation-only for that exact offline package. It does not authorize connected Auth, deployment, persistence, migration, sharing/upload/delivery, accounts/settings, push/merge or production. No current mock session is a live identity.

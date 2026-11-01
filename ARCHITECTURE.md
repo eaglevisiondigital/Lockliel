@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave8:begin -->
+## Wave 8 local server read integration (2026-11-01)
+
+Wave8 adds minimal read-only serverfactory at fixed isolated Supabase origin, existing provider user+stableactiveRPC before/after, callerbearer ownprofiles/fivepreferences. Shared core/config immutable; requireSession refresh notcalled. Exported handleralways503; separate local-only UI adapter fixedsameoriginGET, strictresponsebinding/nonce/generation/60sexpiry and actualcross-tab invalidation. Existing design/shell reused; no alternateAuth framework, privateFaith/course schema or live transport. Unsupported domains unavailable; future hosted composition/bundle attestation separately reviewed.
+<!-- wave8:end -->
+
 ## Wave 7 offline authenticated read integration (2026-11-01)
 
 Wave7 adds lib/member-read-model/contracts/offline-adapter/controller/validation and an optional independently local-gated existingmember read mode. Server request-session seam is separate from synthetic actor fixtures; no competing Auth, network or persistent adapter. Existing API envelopes project minimal profile/preferences/course/MyFive/catalog values; error/null ambiguity remains unavailable. WeakMap authority, clock expiry/cancellation/generation fences and strict getter-safe presentation guards protect offline contracts. Proposed private Faith/photo/banner/Anchor types have no ready runtime data. Future connected BFF firstslice reuses existing session/profile/preferences with separate exacttarget/source/handler/syntheticAuth approval.

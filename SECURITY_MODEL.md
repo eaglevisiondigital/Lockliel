@@ -1,5 +1,11 @@
 # Lockliel security model
 
+<!-- wave8:begin -->
+## Wave 8 local server read integration (2026-11-01)
+
+Wave8 scopedsource review passes afterP2cross-tab invalidation correction. Authority is providerverifiedcaller+activeRPC+callerRLS/ownerfilter; JWTdecode/clientDTO/binding equality alone is not authority or artifactproof. MinimalDTO excludes contacts/roles/private notes/prayers/financial/entitlement/storage details. Everydefault functioncontext/method denies503, no refresh/cookie/service key/write; no-store private/CDN. Actual hostedfunction/config/Auth/RPC/grants/callerRLS remain acceptancegates. Samewindow unnotified externalcookie changes boundedbynewread/60sexpiry. No productionquery/action or synthetic Authsession thiswave.
+<!-- wave8:end -->
+
 ## Wave 7 offline authenticated read integration (2026-11-01)
 
 Wave7 per-adapter opaque fixture sessions, epoch/expiry and before/afterawait checks deny forged/foreign/expired authority. Controller naturally clears snapshots and fences stale timers/responses; browser A/B/reset/refresh/denials clear drafts. Staff/unknown permissions deny, raw PII/roles/notes/locators omitted, public destinations allowlisted, consent unknown blocksreadsharing. Independent109focused within1275full pass; mocks are not liveAuth/MFA/RLS/CAPTCHA. Unsupported private domains remain unavailable. No production/isolated credentials/project/network/settings/account action; actual zoom/spokenreader/current-sourceOSreduce activation unverified.

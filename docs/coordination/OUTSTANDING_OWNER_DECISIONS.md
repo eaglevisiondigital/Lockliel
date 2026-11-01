@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 8 current result, November 1
+
+Next decision is supported binding attestation/safe reuse then exact reviewed hosted composition, synthetic A/B Auth lifecycle/window/cleanup scope and cost/target if reuse fails. Do not request credentials before concrete acceptanceauthority. Currentcode is closed, so newactivation sourcecheckpoint required. Retain none-known campaign response, unknownaccountorigin/disposition, realCAPTCHA/browser, content/Scripturerights/private lifecycle and merchant/legal decisions. No production authorization inferred.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Wave7offline scope is complete, no repeat permission needed. Next approve/amend exact Wave7source653b6466b4ab923f9915affb57081e4108fbe343 and proposed Wave8scope. Before any hosted action decide safe qjks/site reuse, current binding evidence, source/handler/context/route list and protected synthetic Auth window/cleanup. Persistence/schema/private retention/export/delete/minors, photoStorage/cost/visibility, Bible rights/default, recipient consent, account reviewer/disposition and production release remain separate decisions. See WAVE7_OWNER_DECISION_AND_WAVE8.md.

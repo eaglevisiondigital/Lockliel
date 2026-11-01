@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 8 current result, November 1
+
+Wave8sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c is LOCAL ONLY, closed/defaultOFF; no PR or push. Exact-source supplement and immutable hosted proposal prepared; activation requires reviewed newcomposition/build/runtime scope and separate owner approval. PR4/coursebranchfa294f7 and localorigin-main1599ab2 untouched; no fresh remote status claim. Do not merge membercandidate into main/course or activate existing course deployment implicitly.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Wave7 local offline integration 653b6466b4ab923f9915affb57081e4108fbe343 is ready for a separately scoped isolated integration decision. It is not hosted acceptance. NextP1firstsession/profile/preferencesreadslice needs local server projection work, safe target reuse, current immutable alias/function binding and explicit isolated deployment/synthetic-session authority. No new PR or remote CI, no change to separate course PR4 draft/unmerged baseline.

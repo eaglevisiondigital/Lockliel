@@ -1,0 +1,13 @@
+{
+  "source": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "byte_domain": "SHA256(sorted compact JSON file-to-SHA256 map + LF), source closure only, NOT deployed bundle",
+  "closure_sha256": "1d75c318b514a4ec6d7f6fb47d9b1e3538b4f099ff20ce63691fc250b376c107",
+  "files": {
+    "netlify/functions/lockliel-member-read.mjs": "d2bce11076ae9ad82f03f91f4d76a8d1329df57f2484812580c69637d05be929",
+    "netlify/lib/backend-config.mjs": "84716b879d51b25b01be6e8cc3906bcd16e45b3cc5c9802808534af4859bb263",
+    "netlify/lib/lockliel-core.mjs": "cfa3123a3caafe2676ae14c0105f7357a090d7a4ef55deff8de791735d1ac146",
+    "netlify/lib/member-read-binding.mjs": "88ad503e9a987c5a8307c61d96d1559b3bd277b25224ce6e8f520bee61192a08",
+    "netlify/lib/member-read-projection.mjs": "96b2a1908245d30df38219d930e111a72aae17c5ebfb346c7e2addbf85af112a",
+    "netlify/lib/member-read-server.mjs": "553aa0a6927b27ac35a54e95f0eb65f157d95d67eef44d7b2bd9c538bca0d5f7"
+  }
+}

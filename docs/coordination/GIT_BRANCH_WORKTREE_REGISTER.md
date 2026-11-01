@@ -1,5 +1,11 @@
 # Git branch and worktree register
 
+## Wave 8 current result, November 1
+
+codex/wave8-server-read at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave8-server-read/Lockliel: base1a1443667d544b9e0161be284e254af74a6faaa2, servercc1df77380dd26b2f6655f38ade6e6da72c64d0b, combinedvalidatede83f0886ed7761d8a47738b9085ed8fab9610b8c; doc-only child follows. codex/wave8-hosted-readiness at existing /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-backend-plan/Lockliel: 72f30ae38b7e9fa1c3738641415937a2eb5c717e, oldWave6/7refs retained. All17originalrefs aside from intended newWave8branch advance unchanged; rootfa294f7/dirtywork untouched. No push/merge/tag/rewrite/prune/delete.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 New codex/wave7-read-integration at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave7-read-integration/Lockliel: basecb46875, readmodel8c56de6f2897f66d89f517b7501695b731f01ea0, combinedsource653b6466b4ab923f9915affb57081e4108fbe343, documentation-only child follows. New codex/wave7-backend-readiness at existing dedicated planning worktree: 7788e44775aaadf66933cbc56adec88cf3d2f429 basedond16dd5c; old Wave6 planning ref preserved. All original branches/commits and rootdirtywork preserved. No prune/delete/rewrite/push/merge.

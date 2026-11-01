@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 8 current result, November 1
+
+Existing member shell/moduleCSS/PreviewPanel reused; no token/global/public design changes. Same route, independent server mode with honest unavailable/missing/error states; no synthetic label on future server values. Four widths/keyboard/status semantics pass. Actual200%zoom/spokenreader/current-sourceOSreduce activation remain unverified, prior Wave6motion evidence historical. Unsupported controls disabled rather than implied live.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Existing navy/blue/cream/Arial shell and reusable member/Faith/Share/privacy workspaces retained. Independent OFF offline-read exposure adds read-only presentation paths, unavailable states and scoped retry-button styling, no public/global redesign. Four sections/four widths reflow, keyboard/reset/retry/cancel/dialog focus reviewed. Current OS query is false; inherited reduce CSS and prior Wave6 exercise remain distinct from current-source OS activation, actual200%zoom and spoken-reader acceptance.

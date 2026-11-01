@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 8 current result, November 1
+
+Actually completed: /root/wave8_server_resume, /root/wave8_client_resume and /root/wave8_binding_resume; coordinator integration/validation. Earlier interrupted Wave8 dispatches left no source implementation and are not counted as completed. Binding agent also independently reviewed frozen code; oneP2storage notification defect corrected/rechecked. Other L1/L2/L5–L8 work continued as bounded source/evidence reconciliation, not eight newlyrunning agents. No next hosted task dispatched.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Three actual native agents: wave7_read_contracts, wave7_member_ui, wave7_backend_security_plan. Last agent completed planning then separately dispatched independent read-only source review. Root coordinated/tested/integrated. Peak root+3. L1/L2 advanced retained evidence/acceptance and attestation procedures without repeating unavailable provider reads or claiming new live results; no other lane falsely marked newly dispatched.

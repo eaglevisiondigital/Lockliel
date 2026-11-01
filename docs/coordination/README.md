@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave8: [WAVE8_COORDINATOR_RESULT.md](WAVE8_COORDINATOR_RESULT.md), [paste handoff](WAVE8_PRIMARY_CHAT_HANDOFF.md), [exact hosted gate](WAVE8_EXACT_CANDIDATE_AND_HOSTED_GATE.md). Local sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c passes1438tests/fullchecks; currentbinding and realAuthacceptance BLOCKED, no releaseauthority. All12registers/37features reconciled.
+
 Current Wave7: [WAVE7_COORDINATOR_RESULT.md](WAVE7_COORDINATOR_RESULT.md) and [WAVE7_PRIMARY_CHAT_HANDOFF.md](WAVE7_PRIMARY_CHAT_HANDOFF.md). Exact local offline source 653b6466b4ab923f9915affb57081e4108fbe343; all12registers/37features current. Ready for a separately authorized isolated integration decision, not a connected or production release.
 
 Current: WAVE6_COORDINATOR_RESULT.md and WAVE6_PRIMARY_CHAT_HANDOFF.md. Exact local synthetic source1311882; all twelve registers/37features updated. Backend plan is not connected execution authority.

@@ -1,0 +1,27 @@
+{
+  "source": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "files": {
+    "app/my-lockliel/review/page.tsx": "4b76455a315ea30efa8088eb2d1450b76049eb72cad155eb6581d963abe07263",
+    "components/member-review/member-review-shell.tsx": "39d06088d5843d3ed25dc1dc8a771eee663fdeac119bec01c0396386a6b5f076",
+    "components/member-review/server-member-read-shell.tsx": "fd7bbde3940cebf405fa36554288350d1d1a60ee023e4bbc5a341f6f834f474f",
+    "docs/member-server-client/README.md": "0a065cf3062e33e27a1cfc2b3c54e5701ba1f42f65a4a11c625a06f340abfc71",
+    "docs/member-server-read/README.md": "21f89b198fe9f88085449fbe881036d509a4770edfca284bc94beacb66705456",
+    "docs/member-server-read/SOURCE_AND_VALIDATION.json": "b49841217226d0da51e05a95c8d522113c337d2a8edc1e56f00cdadd14a345ba",
+    "lib/member-review/review-policy.ts": "ccac28bf377198a71dfe7867c03c716150e70b09d92288ba4893ba3240bb3886",
+    "lib/member-server-read/adapter.ts": "70bca2661513f5ea3dbadad98907a75a48b7b67b3ccd618015d8af0b6d1a0a77",
+    "lib/member-server-read/contracts.ts": "de0d4a7c1ae19ef3af5093086fbc4a7557bf796e65493f83e58cce805ccb8d0e",
+    "lib/member-server-read/controller.ts": "8ec4c922a36c95678cacbb0a537cba8e56bde165df41e23c8edcd60003d22631",
+    "lib/member-server-read/session-events.ts": "4b0b8d05cc7e55ae3cab613e7d21a75dfd2f2a435bcfd3ef63eecfdf38ef3993",
+    "lib/member-server-read/validation.ts": "a82fcbd3399228de56cc3333bde145753550c2049b259cb995d1877db9e0a1cd",
+    "netlify/functions/lockliel-member-read.mjs": "d2bce11076ae9ad82f03f91f4d76a8d1329df57f2484812580c69637d05be929",
+    "netlify/lib/member-read-binding.mjs": "88ad503e9a987c5a8307c61d96d1559b3bd277b25224ce6e8f520bee61192a08",
+    "netlify/lib/member-read-projection.mjs": "96b2a1908245d30df38219d930e111a72aae17c5ebfb346c7e2addbf85af112a",
+    "netlify/lib/member-read-server.mjs": "553aa0a6927b27ac35a54e95f0eb65f157d95d67eef44d7b2bd9c538bca0d5f7",
+    "tests/member-read-server.test.mjs": "eb0eae3d9b4e06b98784bd8dbaabaebc6c8fe918cd7ffea82a86cfe2bac4ef4a",
+    "tests/member-server-client.test.mjs": "283eeb21b9ccc5670dab0d1c47f5a6cc979a30f9dfef73309a9556d0ba56eba3",
+    "tests/my-lockliel-platform.test.mjs": "9a0a0e5b67120d5e1ad1e88fb2481ecdc580db996cf4c1322da062a03e262905",
+    "tests/preview-isolation.test.mjs": "2db8428f899edb0fb3f1310b4b0df8903b79d276f623696c307f788f88ae998d",
+    "tests/wave8-member-ui.test.mjs": "c39579471834e520ce574cc8120a676afac636bc4f64220bded0dcbc9ada85d0",
+    "tests/wave8-server-client.test.mjs": "3431df9317bc354a652f59213c340eb569b2afc2507baa0e09e7ac4ae102a1d4"
+  }
+}

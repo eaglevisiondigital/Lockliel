@@ -1,5 +1,11 @@
 # Lockliel verified continuity baseline
 
+<!-- wave8:begin -->
+## Wave 8 local server read integration (2026-11-01)
+
+Wave8localserver/client integration complete at e83f0886ed7761d8a47738b9085ed8fab9610b8c on codex/wave8-server-read, with plan72f30ae38b7e9fa1c3738641415937a2eb5c717e. 1438JS, types, fourbuilds, scoped/configuredlint, Netlify79modules/63handlers, local280replay/17SQLfiles pass. All280sourcehashes unchanged. Runtime binding/Auth/session exposure gate remains BLOCKED despite fresh isolatedclosed280catalog. Default functionclosed503, UIdefaultOFF/no fallback. Report assessment WAVE 8 INCOMPLETE means hosted readiness incomplete, not failed localtests. Production/carried274/sitev25 not reaudited or changed; no remote action.
+<!-- wave8:end -->
+
 ## Wave 7 offline authenticated read integration (2026-11-01)
 
 Wave7application653b6466b4ab923f9915affb57081e4108fbe343 integrates67model/controller/guard +28UI +14crosslane newtests into full1275pass. Ordinarytypes, offlineON/legacyON/allOFFbuilds, lint andNetlify75/62pass;280migration/757protected hashes preserved. Finaloutartifact allOFF404/noindex. Existingmember/Faith/Share/privacy components consume safe read DTOs with unknown/unavailable/denial/error/stale states; no real session/storage/sharing. Independentplan7788e4 and18file review current. Production274/isolated280pausedON are historical, nofreshquery.

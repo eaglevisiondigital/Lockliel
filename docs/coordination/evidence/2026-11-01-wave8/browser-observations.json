@@ -1,0 +1,48 @@
+{
+  "mode": "actual Next static export, server-read gate ON with missing trusted binding",
+  "widths": [
+    {
+      "bindingMissing": true,
+      "heading": "Your space. With clear boundaries.",
+      "loadDisabled": true,
+      "scroll": 320,
+      "width": 320
+    },
+    {
+      "bindingMissing": true,
+      "heading": "Your space. With clear boundaries.",
+      "loadDisabled": true,
+      "scroll": 390,
+      "width": 390
+    },
+    {
+      "bindingMissing": true,
+      "heading": "Your space. With clear boundaries.",
+      "loadDisabled": true,
+      "scroll": 768,
+      "width": 768
+    },
+    {
+      "bindingMissing": true,
+      "heading": "Your space. With clear boundaries.",
+      "loadDisabled": true,
+      "scroll": 1365,
+      "width": 1365
+    }
+  ],
+  "keyboard": {
+    "skipFocus": "member-review-main",
+    "clearFocus": "h1"
+  },
+  "limits": [
+    "No connected/synthetic Auth session",
+    "No ready connected browser state",
+    "Actual browser zoom, current-source OS reduced-motion activation and spoken screen reader not verified"
+  ],
+  "outbound": "Local server CSP connect-src none; form-action none; frame-src none",
+  "finalDefaultOff": {
+    "body": "404\nThis page could not be found.",
+    "hasLoadButton": false,
+    "noindex": "noindex, nofollow"
+  }
+}

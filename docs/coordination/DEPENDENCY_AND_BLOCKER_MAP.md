@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 8 current result, November 1
+
+Local server/client wire compatibility and cross-tab invalidation passed. Remaining edges: supported current site/alias/source/function/config attestation; safe course coexistence; nonsecret Auth callback/transport boundary; correct active-session RPC exposure/effective grants/caller RLS; private synthetic lifecycle authority. Photo/banner/Bible/privateFaith/MyFive/catalog persistence and consent remain out of slice. Accountorigin/CAPTCHA/Storageoperator/duration/production execution gates unchanged.
+
+See WAVE8_COORDINATOR_RESULT.md and the exact candidate/hosted gate supplement. Earlier dated snapshots below remain historical.
+
 ## Wave 7 current result, November 1
 
 Read port uses actual BFF envelopes and a separate future server request-session seam; no competing authentication system. Opaque fixture authority, expiry, per-generation clearing and strict projections are implemented offline. Existing raw session/preferences ambiguity and course summary routing require narrow reviewed extensions. Saved photo/banner/Bible/private Faith and scoped share-consent contracts remain dependencies; target alias/function binding, real proof/account/recovery gates stay open.
