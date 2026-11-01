@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {build} from 'esbuild';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const bundled=await build({entryPoints:[root+'lib/synthetic-contracts/context.ts'],bundle:true,write:false,platform:'node',format:'esm',logLevel:'silent'});
+const s=await import('data:text/javascript;base64,'+Buffer.from(bundled.outputFiles[0].text).toString('base64'));
+const context=()=>({schemaVersion:s.SYNTHETIC_SCHEMA,mode:'synthetic',organizationId:s.LOCKLIEL_ORG,actorId:'synthetic-a',aal:1,sessionActive:true,grants:['privacy:request']});
+test('shared vocabulary accepts only explicit bounded synthetic context',()=>{assert.equal(s.isSyntheticContext(context()),true);assert.equal(s.isSyntheticContext({...context(),aal:2}),true);});
+for(const [name,patch]of Object.entries({mode:{mode:'live'},schema:{schemaVersion:'v2'},org:{organizationId:'synthetic-sowgo'},actor:{actorId:'real-id'},inactive:{sessionActive:false},aal:{aal:3},duplicateGrant:{grants:['privacy:request','privacy:request']},unknownRole:{role:'admin'},metadata:{user_metadata:{role:'admin'}},secret:{access_token:'not accepted'}}))test('rejects synthetic context '+name,()=>assert.equal(s.isSyntheticContext({...context(),...patch}),false));
+test('organization input must match exactly; no shared merchant or identity assumption',()=>{const c={...context(),organizationId:'synthetic-sowgo'};assert.equal(s.isSyntheticContext(c),false);assert.equal(s.isSyntheticContext(c,'synthetic-sowgo'),true);assert.equal(s.isSyntheticContext(c,'synthetic-champion-life'),false);});
+test('AAL and grants are separate from owner identity',()=>{assert.equal(s.isSyntheticOwner(context(),'synthetic-a'),true);assert.equal(s.isSyntheticOwner(context(),'synthetic-b'),false);assert.equal(s.hasSyntheticGrant(context(),'privacy:request'),true);assert.equal(s.hasSyntheticGrant(context(),'privacy:request',s.LOCKLIEL_ORG,2),false);assert.equal(s.hasSyntheticGrant({...context(),aal:2},'ops:member-review'),false);});
+test('malformed and prototype records do not enter shared context',()=>{for(const c of [null,[],new Date(),Object.create({role:'admin'}),{...context(),grants:[{}]}])assert.equal(s.isSyntheticContext(c),false);});
+test('revision and identifiers reject unsafe coercion, whitespace and real-looking paths',()=>{for(const x of [NaN,Infinity,-1,1.2,'1'])assert.equal(s.isRevision(x),false);for(const x of ['id','synthetic-a/path',' synthetic-a','synthetic-','synthetic-'+ 'a'.repeat(100),null])assert.equal(s.isSyntheticId(x),false);assert.equal(s.isRevision(Number.MAX_SAFE_INTEGER),true);});
+test('plain bounded labels never permit HTML or control fields',()=>{for(const x of ['', '  ','<img>','A\nB',{},'a'.repeat(241)])assert.equal(s.isPlainText(x),false);assert.equal(s.isPlainText('Synthetic title'),true);});
+test('side-effect descriptor is frozen and all capabilities are false',()=>{assert.equal(Object.isFrozen(s.NO_EFFECTS),true);assert.ok(Object.values(s.NO_EFFECTS).every(x=>x===false));assert.throws(()=>{s.NO_EFFECTS.pay=true;},TypeError);});
