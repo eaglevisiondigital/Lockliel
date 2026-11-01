@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 9 current result, November 1
+
+Release remains NOT READY. Fresh production Git/hosting metadata preserved; production DB274/Auth/Small/PITR7 are not reaudited. Isolated metadata does not certify current bound runtime or real proof. Account origin/CAPTCHA, course binding/ack/durations, private PDF recovery/custodian/operator/final-writePITR/window and separate production authority remain open. No production SQL or change, no hosted write, migration, maintenance toggle, merge/deploy.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 PRODUCTION NOT READY. Fresh isolated280/pausedON/readiness278-v1/RLS57/57/notes0/0 do not certify current applicationbinding or synthetic Auth. No production query/action inWave8;274/Small/PITR7/leakedON/priorhosting retainedhistorical. Account disposition, realCAPTCHA, DataAPI/RPC/callersecurity, coursebinding/ack/duration,13PDFrecovery/custodian, operator/MFA/finalPITR/window and execution authority remain independent. No gate closed bymocktests or localcode.

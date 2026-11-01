@@ -1,0 +1,45 @@
+{
+  "observed_date": "2026-11-01",
+  "repository": "eaglevisiondigital/Lockliel",
+  "branches": [
+    {
+      "name": "feat/faith-boost-resource-20260913",
+      "sha": "a6facdc53c8046a07db7b7ec60f69e31ba533c71",
+      "protected": false
+    },
+    {
+      "name": "feat/heart-for-lost-20260923",
+      "sha": "e31be2846578d97eaf32b8a9f49a99303116e5b5",
+      "protected": false
+    },
+    {
+      "name": "lockliel-backend-v1",
+      "sha": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "protected": false
+    },
+    {
+      "name": "main",
+      "sha": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+      "protected": false
+    }
+  ],
+  "pr4": {
+    "number": 4,
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "auto_merge": null,
+    "head": {
+      "ref": "lockliel-backend-v1",
+      "sha": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098"
+    },
+    "base": {
+      "ref": "main",
+      "sha": "1599ab271e0120a5cdc4e38e225ba749dd214721"
+    },
+    "url": "https://github.com/eaglevisiondigital/Lockliel/pull/4"
+  },
+  "wave8_application": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "wave8_docs": "a41f4e628e773dce56b040674676d570b9afc358",
+  "distinction": "Wave8 is local-only; remote development fa294f7 and main1599ab2 remain separate. No fetch/push/merge or remote update."
+}

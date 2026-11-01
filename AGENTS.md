@@ -1,5 +1,11 @@
 # Lockliel engineering instructions
 
+<!-- wave9:begin -->
+## Wave 9 trusted binding review (2026-11-01)
+
+Read docs/coordination/WAVE9_TRUSTED_BINDING_REVIEW.md, WAVE9_LOCAL_COMPOSITION_PROPOSAL.md and gated hosted assignment before continuing. Wave9 is docs/read-only only; new branch codex/wave9-binding-review reuses priorWave8worktree froma41f4e628e773dce56b040674676d570b9afc358. Applicatione83f0886ed7761d8a47738b9085ed8fab9610b8c unchanged, closed503/local-only. Fresh162focused mocktests pass; full1438/fourbuilds/280replay/17SQL remain prior exact-source evidence. CurrentGit devfa294f7/main1599ab2, PR4draft/open/unmerged/automergeOFF; productionhosting6abbb27 retained. Freshisolated280/pausedON/schemaReady/278-v1/RLS57/57/notes0/0, correctstableactiveRPC and11column grants pass; A/B/manager provenance/profiles/roles0/0/2 andsessions0. TwoNetlifysites70b03a42(rehearsal) vs60579b8e(olderacceptance) distinct; oldSupabasejxt branch absent, lookuppermissiondenied, deletionunknown. Currentalias/source/function/config/backend unverified; historicalproviderhashdomain notcompiledMJS domain. Hostedactivationneeds approvednewcomposition/edge-routing/origin/deploypin strategy thenseparate exactdeploy/Authauthority. All12registers/37statusescurrent, none newlyLive. No application/test/config/schema edit, hostedwrite/Authsession, productionSQL/change, migration, maintenance, push/merge/deploy, accounts/roles/messages/payments/content/purchases or resourcecleanup. Preserve oldsource/branches/rootdirtywork.
+<!-- wave9:end -->
+
 <!-- wave8:begin -->
 ## Wave 8 local server read integration (2026-11-01)
 

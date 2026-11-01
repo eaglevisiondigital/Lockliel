@@ -1,0 +1,477 @@
+{
+  "observed_at_utc": "2026-11-01T23:10:51Z",
+  "scope": "Read-only provider metadata and one dashboard UI attempt. No environment values, keys, user data or hosted Auth/API requests.",
+  "calls": [
+    {
+      "operation": "get_projects",
+      "filter": "lockliel",
+      "result": [
+        {
+          "id": "3096b319-3068-45ab-9837-ba0cce59d50f",
+          "plan": "nf_team_pro",
+          "claimed": true,
+          "name": "lockliel",
+          "_enrichedFields": {
+            "teamId": "6a674f7a0e2cdcc2b838db89",
+            "netlifyUrlForProject": "https://app.netlify.com/projects/lockliel",
+            "projectAccessControls": {
+              "requiresPassword": false,
+              "whichProjectsRequirePassword": null,
+              "requiresSSOTeamLogin": false,
+              "whichProjectsRequireSSOTeamLogin": null
+            },
+            "urls": {
+              "primarySiteUrl": "https://lockliel.com",
+              "branchVersionOfSite": "http://main--lockliel.netlify.app"
+            },
+            "currentDeploy": {
+              "state": "current",
+              "currentDeploy": {
+                "id": "6abbb27a1cdd6d00081b0e8e",
+                "state": "ready"
+              }
+            },
+            "extraFeatures": {
+              "forms": "enabled"
+            }
+          }
+        },
+        {
+          "id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+          "plan": "nf_team_pro",
+          "claimed": true,
+          "name": "lockliel-course-acceptance-jxtgtfff",
+          "_enrichedFields": {
+            "teamId": "6a674f7a0e2cdcc2b838db89",
+            "netlifyUrlForProject": "https://app.netlify.com/projects/lockliel-course-acceptance-jxtgtfff",
+            "projectAccessControls": {
+              "requiresPassword": false,
+              "whichProjectsRequirePassword": null,
+              "requiresSSOTeamLogin": false,
+              "whichProjectsRequireSSOTeamLogin": null
+            },
+            "urls": {
+              "primarySiteUrl": "http://lockliel-course-acceptance-jxtgtfff.netlify.app",
+              "branchVersionOfSite": "http://6ae7c66d96f185ffb5a01630--lockliel-course-acceptance-jxtgtfff.netlify.app"
+            },
+            "currentDeploy": {
+              "state": "current",
+              "currentDeploy": {}
+            },
+            "extraFeatures": {
+              "forms": "not enabled"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "operation": "get_project",
+      "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "result": [
+        {
+          "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+          "plan": "nf_team_pro",
+          "claimed": true,
+          "name": "jade-unicorn-642f40",
+          "_enrichedFields": {
+            "teamId": "6a674f7a0e2cdcc2b838db89",
+            "netlifyUrlForProject": "https://app.netlify.com/projects/jade-unicorn-642f40",
+            "projectAccessControls": {
+              "requiresPassword": false,
+              "whichProjectsRequirePassword": null,
+              "requiresSSOTeamLogin": false,
+              "whichProjectsRequireSSOTeamLogin": null
+            },
+            "urls": {
+              "primarySiteUrl": "http://jade-unicorn-642f40.netlify.app",
+              "branchVersionOfSite": "http://6ae7c66e46ddd6b434234e1b--jade-unicorn-642f40.netlify.app"
+            },
+            "currentDeploy": {
+              "state": "current",
+              "currentDeploy": {}
+            },
+            "extraFeatures": {
+              "forms": "not enabled"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "operation": "get_project",
+      "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "result": [
+        {
+          "id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+          "plan": "nf_team_pro",
+          "claimed": true,
+          "name": "lockliel-course-acceptance-jxtgtfff",
+          "_enrichedFields": {
+            "teamId": "6a674f7a0e2cdcc2b838db89",
+            "netlifyUrlForProject": "https://app.netlify.com/projects/lockliel-course-acceptance-jxtgtfff",
+            "projectAccessControls": {
+              "requiresPassword": false,
+              "whichProjectsRequirePassword": null,
+              "requiresSSOTeamLogin": false,
+              "whichProjectsRequireSSOTeamLogin": null
+            },
+            "urls": {
+              "primarySiteUrl": "http://lockliel-course-acceptance-jxtgtfff.netlify.app",
+              "branchVersionOfSite": "http://6ae7c677656025c949f6bd57--lockliel-course-acceptance-jxtgtfff.netlify.app"
+            },
+            "currentDeploy": {
+              "state": "current",
+              "currentDeploy": {}
+            },
+            "extraFeatures": {
+              "forms": "not enabled"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "operation": "get_deploy",
+      "deploy": "6ae7c66e46ddd6b434234e1b",
+      "result": "Failed to fetch API: 404"
+    },
+    {
+      "operation": "get_deploy_for_site",
+      "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "deploy": "6ae7c66d96f185ffb5a01630",
+      "result": "Failed to fetch API: 404"
+    },
+    {
+      "operation": "mcp__netlify deploy_services_reader get-deploy",
+      "deploy": "6abfd81ccee16b59b75711a0",
+      "result": {
+        "id": "6abfd81ccee16b59b75711a0",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "name": "jade-unicorn-642f40",
+        "branch": "rehearsal",
+        "context": "branch-deploy",
+        "commit_ref": null,
+        "title": "Isolated Auth hydration fix fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098; maintenance ON",
+        "created_at": "2026-10-02T16:13:16.879Z",
+        "updated_at": "2026-10-02T16:13:28.104Z",
+        "published_at": null,
+        "deploy_source": "cli",
+        "has_source_zip": false,
+        "links": {
+          "permalink": "https://6abfd81ccee16b59b75711a0--jade-unicorn-642f40.netlify.app",
+          "alias": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+          "branch": null
+        },
+        "available_functions": [
+          {
+            "name": "lockliel-admin-content",
+            "digest": "565ecd11ac874b1ff5ea0ae2bb2439b3d34ca3614f9239f1de435fe4207dfd01",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 354753,
+            "routes": [
+              "/api/lockliel/admin/content"
+            ]
+          },
+          {
+            "name": "lockliel-admin-person",
+            "digest": "c73e33d402a78d3a9423fe6cf97a68b6b4c8b57685375638418eaab0ce6f8a35",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 354031,
+            "routes": [
+              "/api/lockliel/admin/person"
+            ]
+          },
+          {
+            "name": "lockliel-journey",
+            "digest": "0689a1c3858185f1c940a261febeafe1d8119e1e31a43994ae548fc71945e60c",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 355306,
+            "routes": [
+              "/api/lockliel/journey"
+            ]
+          },
+          {
+            "name": "lockliel-lesson-resource",
+            "digest": "1bda05f8019ea2971dbaa342d02da881df22a5cffb42050f9fa680cf4e794768",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 351232,
+            "routes": [
+              "/api/lockliel/lesson-resource"
+            ]
+          },
+          {
+            "name": "lockliel-login",
+            "digest": "f9422b7626d71384590e3a6674c99323025fc78f4ba4de75ac0653f5a948f4b7",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350750,
+            "routes": [
+              "/api/lockliel-auth/login"
+            ]
+          },
+          {
+            "name": "lockliel-logout",
+            "digest": "92f029fde878379e435561ac37d04741580f356de42d650ddf09ab9612b29129",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350267,
+            "routes": [
+              "/api/lockliel-auth/logout"
+            ]
+          },
+          {
+            "name": "lockliel-mfa",
+            "digest": "5225d9a347ff2169dfbe92369fd5d4c4e7c0cef6ca1d9c2fbd4061dc773c51ec",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 352833,
+            "routes": [
+              "/api/lockliel-auth/mfa"
+            ]
+          },
+          {
+            "name": "lockliel-profile",
+            "digest": "0fa86cd640051179eba023957359a3fee7c247e5dba8bfb4019b6d982e0498fb",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 351294,
+            "routes": [
+              "/api/lockliel/profile"
+            ]
+          },
+          {
+            "name": "lockliel-session",
+            "digest": "49775a1118cf1535b3c69faf726969bbc0e2ea3b3db032b8ab8058e314a4aef8",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 351790,
+            "routes": [
+              "/api/lockliel-auth/session"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_deploy_for_site",
+      "site": "3096b319-3068-45ab-9837-ba0cce59d50f",
+      "deploy": "6abbb27a1cdd6d00081b0e8e",
+      "result": {
+        "id": "6abbb27a1cdd6d00081b0e8e",
+        "site_id": "3096b319-3068-45ab-9837-ba0cce59d50f",
+        "state": "ready",
+        "name": "lockliel",
+        "branch": "main",
+        "context": "production",
+        "commit_ref": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+        "title": "Merge pull request #3 from eaglevisiondigital/lockliel-backend-v1\n\nBuild My Lockliel 1.0 platform foundation",
+        "created_at": "2026-09-29T12:43:38.712Z",
+        "updated_at": "2026-10-26T20:22:16.130Z",
+        "published_at": "2026-09-29T12:44:51.484Z",
+        "deploy_source": "api",
+        "has_source_zip": true,
+        "links": {
+          "permalink": "https://6abbb27a1cdd6d00081b0e8e--lockliel.netlify.app",
+          "alias": "https://lockliel.com",
+          "branch": null
+        },
+        "function_count": 61
+      }
+    },
+    {
+      "operation": "get_deploy_for_site",
+      "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "deploy": "6abcdb0c84404e24a9880ac6",
+      "result": {
+        "id": "6abcdb0c84404e24a9880ac6",
+        "site_id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+        "state": "ready",
+        "name": "lockliel-course-acceptance-jxtgtfff",
+        "branch": "acceptance",
+        "context": "branch-deploy",
+        "commit_ref": null,
+        "title": "Verified course acceptance implementation 91611ad",
+        "created_at": "2026-09-30T09:49:00.750Z",
+        "updated_at": "2026-09-30T09:49:17.921Z",
+        "published_at": null,
+        "deploy_source": "cli",
+        "has_source_zip": false,
+        "links": {
+          "permalink": "https://6abcdb0c84404e24a9880ac6--lockliel-course-acceptance-jxtgtfff.netlify.app",
+          "alias": "https://acceptance--lockliel-course-acceptance-jxtgtfff.netlify.app",
+          "branch": null
+        },
+        "available_functions": [
+          {
+            "name": "lockliel-admin-content",
+            "digest": "527caf828e1d5bf64bf0f4ff6ffa6a4407d4e83bd0a2372a82425cfb46f3a82c",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 353801,
+            "routes": [
+              "/api/lockliel/admin/content"
+            ]
+          },
+          {
+            "name": "lockliel-admin-person",
+            "digest": "db51e392d8fc3d267ec1bc7270cdc92adfbb59e8145beca5f224dd35f8cd8b0d",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 353658,
+            "routes": [
+              "/api/lockliel/admin/person"
+            ]
+          },
+          {
+            "name": "lockliel-admin",
+            "digest": "cd1251b4cfcef55c7f9e437f3f511a0658f8d0fd5590bd4f4b6fae1409a5257b",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 352068,
+            "routes": [
+              "/api/lockliel/admin/summary"
+            ]
+          },
+          {
+            "name": "lockliel-dashboard-attention",
+            "digest": "43e29e34aa8427557ce542b8245aeb22bb26a79f0b2f0337545da24ae1753650",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 351618,
+            "routes": [
+              "/api/lockliel/dashboard-attention"
+            ]
+          },
+          {
+            "name": "lockliel-journey",
+            "digest": "5ab7a3d9db78e55f5462b7f5cfbcf049c4692d26c36e4695eda728fc9de534e9",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 354135,
+            "routes": [
+              "/api/lockliel/journey"
+            ]
+          },
+          {
+            "name": "lockliel-lesson-resource",
+            "digest": "2aec4eb38f0ee47927fb62129061d9b0cb17a063151e91fcbf7abfd87846d540",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350896,
+            "routes": [
+              "/api/lockliel/lesson-resource"
+            ]
+          },
+          {
+            "name": "lockliel-login",
+            "digest": "328904026cd1805775f675576b9ff1ea6a8c8235b191a9549f7df7f11efd3b24",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350374,
+            "routes": [
+              "/api/lockliel-auth/login"
+            ]
+          },
+          {
+            "name": "lockliel-logout",
+            "digest": "a1bb07b4dc55ec9fd8bd531fa7e1d6fc0e5128a3d7d7f3d47715e89db1e88c78",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 349887,
+            "routes": [
+              "/api/lockliel-auth/logout"
+            ]
+          },
+          {
+            "name": "lockliel-mfa",
+            "digest": "94c5f016ff6df6c52b91ca24a0755b9325417e0908be9a8baea36bd995c84362",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 352459,
+            "routes": [
+              "/api/lockliel-auth/mfa"
+            ]
+          },
+          {
+            "name": "lockliel-next-step",
+            "digest": "93cea10e9d6af570c854305b4e401093e42bb36b802351c0aab510a3f5d14de2",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 359535,
+            "routes": [
+              "/api/lockliel/next-step"
+            ]
+          },
+          {
+            "name": "lockliel-notifications",
+            "digest": "313d7fc8a2e5ff168af7061cd60f48879871ac9bb03c6acbd518e917b0aa8f1b",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350825,
+            "routes": [
+              "/api/lockliel/notifications"
+            ]
+          },
+          {
+            "name": "lockliel-profile",
+            "digest": "0d131eea5f1e2955884d60bb95db515f65ae2288507417f1f8bfc1fe69fb28f2",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350904,
+            "routes": [
+              "/api/lockliel/profile"
+            ]
+          },
+          {
+            "name": "lockliel-session",
+            "digest": "8466016b7d08950109ef3b77172dae455202f5513ffbcb9607131181b2037814",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 351408,
+            "routes": [
+              "/api/lockliel-auth/session"
+            ]
+          },
+          {
+            "name": "lockliel-signup",
+            "digest": "ec8dbf987fe179f5bbc83f0f56b574a9281e195dff567e76269dc10f505d8fa0",
+            "runtime": "nodejs24.x",
+            "region": "us-east-2",
+            "size": 350522,
+            "routes": [
+              "/api/lockliel-auth/signup"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "operation": "CUA Chrome dashboard navigation",
+      "url": "https://app.netlify.com/projects/jade-unicorn-642f40/overview",
+      "result": "Agent tab opened. AX contained only WebArea; DOM empty, screenshot blank and bounded error log empty. No visible deploy/settings/alias proof. Tab closed."
+    }
+  ],
+  "no_change": {
+    "deploy": false,
+    "settings": false,
+    "auth_session": false,
+    "api_invocation": false,
+    "env_value_retrieval": false,
+    "credentials_requested": false,
+    "production_query": false
+  },
+  "limits": [
+    "get_project enrichments return empty deploy detail and changing branch-version URL IDs; IDs are recorded observations, not evidence that a new deploy occurred.",
+    "Successful historical deploy metadata is not a fresh current-alias resolution.",
+    "commit_ref is null on both historical isolated CLI deploys; titles are operator descriptions, not independent source attestation.",
+    "Provider d digest byte domain is not established as identical to the retained compiled .mjs source hashes.",
+    "No current runtime backend or outbound transport configuration was exposed.",
+    "The older Netlify site remains listed; this does not establish that its historical Supabase branch remains available."
+  ]
+}

@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 9 current result, November 1
+
+All application/Auth/guard/route/package/schema files read-only this wave. Netlify reviewer owns hosted-binding docs, compatibility reviewer owns compatibility doc, parallel worker owns six-priority docs; coordinator owns Git/Supabase/evidence/registers. Future shared Auth/edge/package changes require explicit coordinated lease; no global guard relaxation, duplicate Auth or synthetic-grant casting.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Server lease: four new netlify member-read files and tests/docs. Client lease: lib/member-server-read, new shell, existing host/route/policy only, tests/docs. Coordinator reviewed two old guard-enumerator tests and owns crosslane tests/registers. Existing shared Auth/core/config/navigation/tokens/dependencies/schema immutable. Independent reviewer report-only; no competing source changes. Wire version lockliel-member-server-read-v1, strict exact DTO; no caller owner authority.

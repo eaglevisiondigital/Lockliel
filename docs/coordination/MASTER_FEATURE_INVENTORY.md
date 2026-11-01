@@ -1,5 +1,11 @@
 # Master feature inventory
 
+## Wave 9 current result, November 1
+
+All37 feature IDs and status classes retained; none newly Live. Wave9 adds read-only evidence and proposals, not application code. Correct isolated RPC catalog and eleven member-column grants are now verified, while current runtime/source/backend, actual caller acceptance and connected feature status remain gated. Fresh162focused tests pass; prior1438full results remain historical exact-source evidence.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 All37IDs/statuses retained, none newlyLive. Local sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c adds minimal owner server/client read composition under closed/defaultOFF gates, not hosted Auth or persistence. Full1438tests/fourbuilds/type/lint/Netlify and local280/17SQL pass. Binding/Auth/RPC acceptance remains blocked; unsupported private domains remain unavailable.

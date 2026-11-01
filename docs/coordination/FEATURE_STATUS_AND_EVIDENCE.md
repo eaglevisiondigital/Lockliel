@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 9 current result, November 1
+
+Read WAVE9_TRUSTED_BINDING_REVIEW.md. Fresh Git remote/main/PR4 and production hosting metadata match prior heads. Isolated280/readiness/RLS/notes/RPC/eleven-column ACL/synthetic fixture metadata verified read-only; no real Auth or caller/RPCGET. Historical artifact metadata, current binding, source SHA and provider digest domains are separated. No source change or status promotion.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Verified local sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c, servercc1df77380dd26b2f6655f38ade6e6da72c64d0b, plan72f30ae38b7e9fa1c3738641415937a2eb5c717e; evidence/2026-11-01-wave8. Full1438 includes162focused, not additional. Fresh isolated280/pausedON/RLS57/57/notes0/0 are metadata evidence only; current Netlify source/function/backend and synthetic Auth acceptance unverified. Production observations are carried, not refreshed. No feature status promotion.

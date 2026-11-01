@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 9 current result, November 1
+
+No design/component/token source changed. Fresh162focused tests include existing server-view semantics; prior four-width browser/keyboard evidence remains historical. Positive authenticated UI, actual200%zoom/spoken reader/current-source OS reduced motion remain unverified. Six-priority preparation preserves visual identity, private controls and explicit unavailable states.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Existing member shell/moduleCSS/PreviewPanel reused; no token/global/public design changes. Same route, independent server mode with honest unavailable/missing/error states; no synthetic label on future server values. Four widths/keyboard/status semantics pass. Actual200%zoom/spokenreader/current-sourceOSreduce activation remain unverified, prior Wave6motion evidence historical. Unsupported controls disabled rather than implied live.

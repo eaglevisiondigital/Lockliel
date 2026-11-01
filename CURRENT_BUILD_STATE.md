@@ -1,5 +1,11 @@
 # Lockliel verified continuity baseline
 
+<!-- wave9:begin -->
+## Wave 9 trusted binding review (2026-11-01)
+
+Wave9 read-only review and docs complete; assessment WAVE9 BINDING REVIEW INCOMPLETE. Wave8applicatione83f0886ed7761d8a47738b9085ed8fab9610b8c remains exact and closed. Fresh162focused pass; prior1438full/type/fourbuild/lint/Netlify/280replay/17SQL evidence reused, not rerun. IsolatedsessionRPC/grants/fixtures now verified metadata; current runtime/backend/Authbinding and required activation/routing/pin lifecycle remain open. Local-only composition and conditional hosted assignments prepared; no execution or production action.
+<!-- wave9:end -->
+
 <!-- wave8:begin -->
 ## Wave 8 local server read integration (2026-11-01)
 

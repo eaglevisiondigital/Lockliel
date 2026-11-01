@@ -1,0 +1,164 @@
+{
+  "byte_domains": {
+    "retained": "SHA256 of generated functions/lockliel-NAME.mjs bytes, recorded before Netlify upload. prepare-runtime.mjs lines48-50 explicitly hashes file bytes.",
+    "provider": "available_functions[].d returned by Netlify deploy metadata. Algorithm/byte serialization domain not established by the connected reader. It must not be equated with the retained compiled .mjs SHA256.",
+    "source": "Git source commit and source-closure manifests are separate domains from both compiled handlers and uploaded archives."
+  },
+  "sets": [
+    {
+      "source": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "deploy": "6abfd81ccee16b59b75711a0",
+      "retained_manifest": "docs/evidence/auth-manager-checkpoint-2026-10-02/isolated-artifact-identity.json",
+      "functions": [
+        {
+          "name": "lockliel-admin-content",
+          "retained_compiled_mjs_sha256": "4948a4a47fab3998526526d6a0a0e65082c1a8824b35cfd45313cbc508f5ffea",
+          "provider_d": "565ecd11ac874b1ff5ea0ae2bb2439b3d34ca3614f9239f1de435fe4207dfd01",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-admin-person",
+          "retained_compiled_mjs_sha256": "af5df7337967a4fb07143b6033b7ef4a0364e461d638f5a022b97f916d8b0d84",
+          "provider_d": "c73e33d402a78d3a9423fe6cf97a68b6b4c8b57685375638418eaab0ce6f8a35",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-journey",
+          "retained_compiled_mjs_sha256": "668cf7e8bd27bad9bcc72081e0d2ded22f99a44e9776e82bd8174c17baf7c932",
+          "provider_d": "0689a1c3858185f1c940a261febeafe1d8119e1e31a43994ae548fc71945e60c",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-lesson-resource",
+          "retained_compiled_mjs_sha256": "185d40b290cf35587001fd305e990f645354d3497ce584cf007b9aaada656494",
+          "provider_d": "1bda05f8019ea2971dbaa342d02da881df22a5cffb42050f9fa680cf4e794768",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-login",
+          "retained_compiled_mjs_sha256": "96424b68bc943ba46dde69d9dae2f6d81672e221447ea7d052446fc5121a1be8",
+          "provider_d": "f9422b7626d71384590e3a6674c99323025fc78f4ba4de75ac0653f5a948f4b7",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-logout",
+          "retained_compiled_mjs_sha256": "a8609f384bd3b1b389588916c2e58143c98ef9018b6173b46653517652da8c38",
+          "provider_d": "92f029fde878379e435561ac37d04741580f356de42d650ddf09ab9612b29129",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-mfa",
+          "retained_compiled_mjs_sha256": "f96743f453dc505f2a5ba52c077fcdbf6540cfc31cd12ab7536feefa8168909c",
+          "provider_d": "5225d9a347ff2169dfbe92369fd5d4c4e7c0cef6ca1d9c2fbd4061dc773c51ec",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-profile",
+          "retained_compiled_mjs_sha256": "f05e41c7394db2530f10785543bd4420470f20258369c753f38da635fdc1dea6",
+          "provider_d": "0fa86cd640051179eba023957359a3fee7c247e5dba8bfb4019b6d982e0498fb",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-session",
+          "retained_compiled_mjs_sha256": "5cf8f846f2b7da01a51c5f1fbbc415ba77bd6718cbd8c40a8da16c9f3c04e816",
+          "provider_d": "49775a1118cf1535b3c69faf726969bbc0e2ea3b3db032b8ab8058e314a4aef8",
+          "strings_equal": false
+        }
+      ]
+    },
+    {
+      "source": "91611ad89933333891bdf2bb3791314fdd03012e",
+      "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "deploy": "6abcdb0c84404e24a9880ac6",
+      "retained_manifest": "docs/evidence/course-hosted-acceptance-2026-09-30/artifact-identity.json",
+      "functions": [
+        {
+          "name": "lockliel-admin-content",
+          "retained_compiled_mjs_sha256": "e57d227d1582349c935532a08e681a838bf539dc02f361be9b0e70436cb91579",
+          "provider_d": "527caf828e1d5bf64bf0f4ff6ffa6a4407d4e83bd0a2372a82425cfb46f3a82c",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-admin-person",
+          "retained_compiled_mjs_sha256": "d3ad56ee049702ba367d64d1868400a100b0cc808863f4ecee1ba75003ae548d",
+          "provider_d": "db51e392d8fc3d267ec1bc7270cdc92adfbb59e8145beca5f224dd35f8cd8b0d",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-admin",
+          "retained_compiled_mjs_sha256": "c6f70b021e58deecc31ceec985bd086eff3e5746ff4cfd515d84c08af55175de",
+          "provider_d": "cd1251b4cfcef55c7f9e437f3f511a0658f8d0fd5590bd4f4b6fae1409a5257b",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-dashboard-attention",
+          "retained_compiled_mjs_sha256": "8bbfa5107cf12d329e6c1a96f6ad929d9b63fecb9bbec2f0b989da9d828622ce",
+          "provider_d": "43e29e34aa8427557ce542b8245aeb22bb26a79f0b2f0337545da24ae1753650",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-journey",
+          "retained_compiled_mjs_sha256": "d27058a0d5f9dd8dc808660cce4ae0222d2b97569225bb108f05b86f230f66fb",
+          "provider_d": "5ab7a3d9db78e55f5462b7f5cfbcf049c4692d26c36e4695eda728fc9de534e9",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-lesson-resource",
+          "retained_compiled_mjs_sha256": "647404c28bdc4d9d74ad34440d0a16d9f93ae355039b7f679bd57029bf08bcca",
+          "provider_d": "2aec4eb38f0ee47927fb62129061d9b0cb17a063151e91fcbf7abfd87846d540",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-login",
+          "retained_compiled_mjs_sha256": "f770e8fe79bfce49444ddc97a768b55857b902a3bac82c66ef4c839a5bc73012",
+          "provider_d": "328904026cd1805775f675576b9ff1ea6a8c8235b191a9549f7df7f11efd3b24",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-logout",
+          "retained_compiled_mjs_sha256": "11ccc0125e912b9aca4d1dfacf0ddca35215c39c07f67325b4072839376439f0",
+          "provider_d": "a1bb07b4dc55ec9fd8bd531fa7e1d6fc0e5128a3d7d7f3d47715e89db1e88c78",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-mfa",
+          "retained_compiled_mjs_sha256": "a71b9e8285818402dcf2157df43459a7a259fcd393656cb93229821dc60ea44a",
+          "provider_d": "94c5f016ff6df6c52b91ca24a0755b9325417e0908be9a8baea36bd995c84362",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-next-step",
+          "retained_compiled_mjs_sha256": "d636e4a47a5ad1303d378cf0750507bfbd3d63081475295bcb5728d222c156ba",
+          "provider_d": "93cea10e9d6af570c854305b4e401093e42bb36b802351c0aab510a3f5d14de2",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-notifications",
+          "retained_compiled_mjs_sha256": "c6dfc474cbefd6ddae6501ca0505da0f7d4d9e724980d06aee172bd457ff8aa6",
+          "provider_d": "313d7fc8a2e5ff168af7061cd60f48879871ac9bb03c6acbd518e917b0aa8f1b",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-profile",
+          "retained_compiled_mjs_sha256": "a3dc0c8bf86d9807cf35c29610bf69e46596bf187337eba00bfb878183abc97e",
+          "provider_d": "0d131eea5f1e2955884d60bb95db515f65ae2288507417f1f8bfc1fe69fb28f2",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-session",
+          "retained_compiled_mjs_sha256": "f67e45bd4c8fcce5d8141fbf9eeed654d324cdba48655189fca9c6d30b8ead0f",
+          "provider_d": "8466016b7d08950109ef3b77172dae455202f5513ffbcb9607131181b2037814",
+          "strings_equal": false
+        },
+        {
+          "name": "lockliel-signup",
+          "retained_compiled_mjs_sha256": "ce19fd35e08d0f23d37f08488ef485d6283dd6d8143590b05db39a1a041c347d",
+          "provider_d": "ec8dbf987fe179f5bbc83f0f56b574a9281e195dff567e76269dc10f505d8fa0",
+          "strings_equal": false
+        }
+      ]
+    }
+  ],
+  "result": "All 9 rehearsal and 14 older acceptance digest strings differ. This does not establish artifact drift: byte domains are not bridged. It also does not establish source equivalence. No archives or runtime environment values were obtained."
+}

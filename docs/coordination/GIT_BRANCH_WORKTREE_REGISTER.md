@@ -1,5 +1,11 @@
 # Git branch and worktree register
 
+## Wave 9 current result, November 1
+
+Reused /Users/davesmacbookpro/.codex/worktrees/lockliel-wave8-server-read/Lockliel on NEW codex/wave9-binding-review, basea41f4e628e773dce56b040674676d570b9afc358; documentation-only checkpoint follows. codex/wave8-server-read staysa41f4e6, planning72f30ae retained. All21 prior refs/rootdirtywork preserved; rootfa294f7 and actual GitHub devfa294f7/main1599ab2 match. PR4draft/open/unmerged/auto-mergeOFF. No push/merge/prune/worktree cleanup.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 codex/wave8-server-read at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave8-server-read/Lockliel: base1a1443667d544b9e0161be284e254af74a6faaa2, servercc1df77380dd26b2f6655f38ade6e6da72c64d0b, combinedvalidatede83f0886ed7761d8a47738b9085ed8fab9610b8c; doc-only child follows. codex/wave8-hosted-readiness at existing /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-backend-plan/Lockliel: 72f30ae38b7e9fa1c3738641415937a2eb5c717e, oldWave6/7refs retained. All17originalrefs aside from intended newWave8branch advance unchanged; rootfa294f7/dirtywork untouched. No push/merge/tag/rewrite/prune/delete.

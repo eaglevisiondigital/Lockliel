@@ -1,5 +1,11 @@
 # Lockliel decisions and open questions
 
+<!-- wave9:begin -->
+## Wave 9 trusted binding review (2026-11-01)
+
+Wave9 grants read-only infra/localvalidation/docs, not new activation source, hosted users/sessions/deployments or purchases. Preserve two distinct Netlify environments and missing/inaccessible old branch status without cleanup. Prefer coexistence proof over creating a database without need. Proposed next local composition and later exact target/source/artifact/Auth lifecycle approvals are distinct. Published MicrobranchUSD0.01344/h reference is not an organization/team quote or budget authorization. No newlyLive status or product/financial/privacy decision.
+<!-- wave9:end -->
+
 <!-- wave8:begin -->
 ## Wave 8 local server read integration (2026-11-01)
 

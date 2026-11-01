@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 9 current result, November 1
+
+Wave9 authorizes read-only infrastructure, local validation and documentation only. Hosted Auth/deployment, new source activation, schema, accounts, settings, purchases and resource cleanup are not authorized. Existing default-closed code remains intact. Local composition and gated acceptance assignments are proposals requiring separate approvals; no publishing/payment/book/legal/leadership/privacy decision is inferred.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Direct Wave8 authorizes local implementation/disposable fixtures and isolated read-only verification only. No hosted Auth lifecycle/write/composition/deployment authority. Minimal existing-schema read slice selected; unsupported course/private domains unavailable, unknown share consent blocks, no silent fixturefallback. Snapshot assurance never grants leadership/staff/contact authority. Preserve earlier approval rejection/history, published branding/sites and independent account/CAPTCHA/release gates.

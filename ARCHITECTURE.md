@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave9:begin -->
+## Wave 9 trusted binding review (2026-11-01)
+
+Wave9 source-only review adds no code. Existing preview edge rejects every connected nonproduction path; historical nine-handler packager lacks member-read and emits API404. Hosted exposure, factory composition and exact route/guard/build/deploy pin lifecycle need a separately approved package. Isolated Auth guard config pins rehearsal alias; changing it to immutable origin fails guard, but minimal login itself has no Origin comparison, so do not invent an Origin failure. Same-host cookies and all included redirect semantics need review. Current source/deploy/backend proof remains missing.
+<!-- wave9:end -->
+
 <!-- wave8:begin -->
 ## Wave 8 local server read integration (2026-11-01)
 

@@ -1,5 +1,11 @@
 # Lockliel security model
 
+<!-- wave9:begin -->
+## Wave 9 trusted binding review (2026-11-01)
+
+Wave9 fresh isolated metadata confirms actual session RPC STABLE/invoker/empty search_path and private helper STABLE/definer; anon denied, eleven own-profile/preference columns readable by authenticated. Actual RLS caller/HTTP GET/Auth runtime proof is still separate. RLS57/57, notes service grants0/0 and exact280 preserved with actual on/5s/30s. Synthetic fixture matching returns booleans/counts only, no credential/session/PII fields. Oldbranch lookuppermissiondenied is not deletion evidence or permission to bypass/recreate. No production SQL/Auth/config/session changes.
+<!-- wave9:end -->
+
 <!-- wave8:begin -->
 ## Wave 8 local server read integration (2026-11-01)
 

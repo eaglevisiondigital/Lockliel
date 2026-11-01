@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 9 current result, November 1
+
+No source/PR/push this wave. Wave8referencee83f0886ed7761d8a47738b9085ed8fab9610b8c is closed/local-only. Queue: supported current binding packet, local composition/routing/pin-lifecycle approval, new validated source/artifact review, then separate deployment/Auth lifecycle/read acceptance authority. PR4/course/main unchanged; do not fold member work into course release or relabel an old deploy.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Wave8sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c is LOCAL ONLY, closed/defaultOFF; no PR or push. Exact-source supplement and immutable hosted proposal prepared; activation requires reviewed newcomposition/build/runtime scope and separate owner approval. PR4/coursebranchfa294f7 and localorigin-main1599ab2 untouched; no fresh remote status claim. Do not merge membercandidate into main/course or activate existing course deployment implicitly.

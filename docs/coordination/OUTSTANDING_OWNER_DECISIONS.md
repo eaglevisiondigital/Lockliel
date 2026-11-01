@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 9 current result, November 1
+
+Owner/provider must supply exact current isolated alias/source/function/config/backend attestation and explain old branch absence/access if needed. Next approve a concrete local-only composition/routing/pin-lifecycle package, not blind sign-in. Later exact source/deploy/coexistence/Auth lifecycle and cost/window approvals remain separate. Conditional published pricing is not organization-specific quote; team/org selection/budget required before provisioning. Retain account/privacy/rights/merchant decisions.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Next decision is supported binding attestation/safe reuse then exact reviewed hosted composition, synthetic A/B Auth lifecycle/window/cleanup scope and cost/target if reuse fails. Do not request credentials before concrete acceptanceauthority. Currentcode is closed, so newactivation sourcecheckpoint required. Retain none-known campaign response, unknownaccountorigin/disposition, realCAPTCHA/browser, content/Scripturerights/private lifecycle and merchant/legal decisions. No production authorization inferred.

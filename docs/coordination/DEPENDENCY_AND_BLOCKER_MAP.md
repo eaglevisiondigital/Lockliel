@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 9 current result, November 1
+
+Closed metadata gaps: correct isolated active-session RPC owner/STABLE/invoker/search_path/ACL; authenticated read grants on eleven selected columns; existing synthetic A/B provenance. Open: current alias→deploy→artifact→backend/config attestation, safe course coexistence, Auth/key/no-message boundaries, actual callerGET/RLS, new hosted composition/routing and trusted deploy-ID pin lifecycle. Older branch absent/lookup denied is not deletion proof.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Local server/client wire compatibility and cross-tab invalidation passed. Remaining edges: supported current site/alias/source/function/config attestation; safe course coexistence; nonsecret Auth callback/transport boundary; correct active-session RPC exposure/effective grants/caller RLS; private synthetic lifecycle authority. Photo/banner/Bible/privateFaith/MyFive/catalog persistence and consent remain out of slice. Accountorigin/CAPTCHA/Storageoperator/duration/production execution gates unchanged.

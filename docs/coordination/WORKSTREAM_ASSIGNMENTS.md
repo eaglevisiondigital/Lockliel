@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 9 current result, November 1
+
+Actually completed /root/wave9_hosted_binding, /root/wave9_compatibility and /root/wave9_parallel_readiness; root coordinates. One parallel-preparation worker reviewed six priorities, not six additional agents. Prepared member/Bible/MyFive/content/commerce/admin assignments are not dispatched implementations. No hosted acceptance or local activation source task was started.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Actually completed: /root/wave8_server_resume, /root/wave8_client_resume and /root/wave8_binding_resume; coordinator integration/validation. Earlier interrupted Wave8 dispatches left no source implementation and are not counted as completed. Binding agent also independently reviewed frozen code; oneP2storage notification defect corrected/rechecked. Other L1/L2/L5–L8 work continued as bounded source/evidence reconciliation, not eight newlyrunning agents. No next hosted task dispatched.

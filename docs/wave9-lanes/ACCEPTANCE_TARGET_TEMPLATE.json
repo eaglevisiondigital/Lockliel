@@ -1,0 +1,33 @@
+{
+  "state": "NOT_AUTHORIZED",
+  "reference_application": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "reference_docs": "a41f4e628e773dce56b040674676d570b9afc358",
+  "active_application_commit": null,
+  "source_tree_sha256": null,
+  "package_archive_sha256": null,
+  "provider_digest_byte_domain": null,
+  "netlify_site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "netlify_deploy": null,
+  "netlify_context": "branch-deploy",
+  "immutable_https_origin": null,
+  "supabase_project": "qjksggxorghaxvpyslip",
+  "supabase_branch": "course-cutover-rehearsal-274",
+  "schema_ledger": 280,
+  "paused": true,
+  "schemaReady": true,
+  "protocol": "278-v1",
+  "current_alias_function_backend_attestation": null,
+  "safe_course_coexistence_attestation": null,
+  "auth_config_and_key_provenance_attestation": null,
+  "approved_window": null,
+  "approved_budget": null,
+  "approved_synthetic_labels": [
+    "A",
+    "B"
+  ],
+  "approved_auth_lifecycle": null,
+  "approved_cleanup": null,
+  "member_writes": false,
+  "credentials_or_tokens": "MUST NEVER BE STORED IN THIS DOCUMENT",
+  "approval": "UNASSIGNED; do not treat a proposed template as authorization"
+}

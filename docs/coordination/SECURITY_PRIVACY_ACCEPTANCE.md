@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 9 current result, November 1
+
+Fresh scoped read-only on/5s/30s confirms exact280, RLS57/57, service notes table+column0/0, stable invoker public session wrapper and stable definer private helper, anon denial and required column grants. Existing A/B/manager match, profiles/roles/session counts only; no PII/credentials. Effective ACL/default ACL distinction retained. Actual RPCGET/caller RLS/Auth/key/config/runtime no-production transport still gated. No sessions/tests/accounts changed.
+
+Details and evidence: WAVE9_TRUSTED_BINDING_REVIEW.md. Older snapshots below are historical.
+
 ## Wave 8 current result, November 1
 
 Local provider-user/activeRPC-before+after/caller-RLS ownerfilter/minimalDTO tests pass; strictnonce/binding/generation/cache/expiry/privateexclusion tested through actual factory-adapter composition. Independent P2 actualstorageauth-change invalidation fixed/rechecked. Export always503, no service key/refresh/SetCookie/write/defaultfetch. Real hosted RPCGET/ACL/keyprovenance/Auth/session not verified; samewindowexternalcookiechange withoutnotification boundedbynewread/60sexpiry. No privateFaith/contactnotes/financial/entitlement/resourcepaths inDTO.
