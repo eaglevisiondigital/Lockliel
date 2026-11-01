@@ -4,7 +4,7 @@ import { createRequire } from 'node:module';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
-import { localMemberReviewEnabled, initialReviewState, reduceReviewState, reviewIdentity } from '../lib/member-review/review-policy.ts';
+import { localMemberReviewEnabled, localShareReviewEnabled, initialReviewState, reduceReviewState, reviewIdentity } from '../lib/member-review/review-policy.ts';
 const require=createRequire(import.meta.url), root=fileURLToPath(new URL('../',import.meta.url));
 const React=require('react'), {renderToStaticMarkup}=require('react-dom/server');
 const {build}=require('esbuild');
@@ -12,7 +12,7 @@ const result=await build({entryPoints:[resolve(root,'components/member-review/me
 const bundledModule={exports:{}};
 new Function('require','module','exports',result.outputFiles[0].text)(require,bundledModule,bundledModule.exports);
 const Shell=bundledModule.exports.default;
-function render(state){return renderToStaticMarkup(React.createElement(Shell,{initialState:state}));}
+function render(state,enabled=false){return renderToStaticMarkup(React.createElement(Shell,{initialState:state,shareReviewEnabled:enabled}));}
 const member=()=>reduceReviewState(initialReviewState(),{type:'actor',value:'member-a'});
 test('review route is off by default and accepts only explicit local mode',()=>{assert.equal(localMemberReviewEnabled({}),false);assert.equal(localMemberReviewEnabled({flag:'true'}),false);assert.equal(localMemberReviewEnabled({flag:'synthetic-local'}),true);assert.equal(localMemberReviewEnabled({flag:'synthetic-local',context:'dev'}),true);});
 test('hosted and production contexts cannot enable the local review route',()=>{for(const context of ['production','deploy-preview','branch-deploy','unknown'])assert.equal(localMemberReviewEnabled({flag:'synthetic-local',context}),false);assert.equal(localMemberReviewEnabled({flag:'synthetic-local',netlify:'true'}),false);});
@@ -27,3 +27,12 @@ test('actual unknown render omits member/private forms and disables navigation',
 test('B render uses B display fixture without A display residue',()=>{const html=render(reduceReviewState(initialReviewState(),{type:'actor',value:'member-b'}));assert.ok(html.includes('Riley Example'));assert.ok(!html.includes('Jordan Example'));});
 test('actual composition shares edition through an explicit controlled contract',()=>{const html=render(reduceReviewState(member(),{type:'edition',value:'fixture-alternative'}));assert.match(html,/<option[^>]*value="fixture-alternative"[^>]*selected=""|<option[^>]*selected=""[^>]*value="fixture-alternative"/);});
 test('candidate source has no live transport, storage, token or role adapter',()=>{for(const name of ['components/member-review/member-review-shell.tsx','lib/member-review/review-policy.ts']){const source=readFileSync(resolve(root,name),'utf8');assert.doesNotMatch(source,/fetch\s*\(|XMLHttpRequest|WebSocket|localStorage|sessionStorage|document\.cookie|sendBeacon|SUPABASE_KEY|access_token/);assert.doesNotMatch(source,/dangerouslySetInnerHTML/);}});
+
+test('Share Review requires independent explicit flag and local member gate',()=>{
+  for(const input of [{},{flag:'synthetic-local'},{memberFlag:'synthetic-local'},{flag:'true',memberFlag:'synthetic-local'},{flag:'synthetic-local',memberFlag:'synthetic-local',context:'production'},{flag:'synthetic-local',memberFlag:'synthetic-local',netlify:'true'}])assert.equal(localShareReviewEnabled(input),false);
+  assert.equal(localShareReviewEnabled({flag:'synthetic-local',memberFlag:'synthetic-local'}),true);
+});
+test('Share Review is absent by default even with forged view state',()=>{const html=render({...member(),view:'share'});assert.ok(!html.includes('>Share Review</button>'));assert.ok(!html.includes('integrated-share'));assert.ok(html.includes('Jordan Example'));});
+test('unknown context never mounts share recipient or draft controls when enabled',()=>{const html=render(initialReviewState(),true);assert.match(html,/disabled=""[^>]*>Share Review/);assert.ok(!html.includes('integrated-share'));});
+test('enabled share is composed within one private member shell with unique IDs',()=>{const html=render({...member(),view:'share'},true);assert.ok(html.includes('>Share Review</button>'));assert.ok(html.includes('integrated-share'));for(const tag of ['header','main','nav','h1'])assert.equal((html.match(new RegExp('<'+tag+'(?:\\s|>)','g'))||[]).length,1,tag);const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);});
+test('switching actor while sharing clears view and changes private boundary',()=>{const a={...member(),view:'share'},b=reduceReviewState(a,{type:'actor',value:'member-b'});assert.equal(b.view,'dashboard');assert.notDeepEqual(reviewIdentity(a),reviewIdentity(b));});
