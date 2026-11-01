@@ -1,0 +1,20 @@
+{
+  "gate": "newofflinegateOFF,originalmember/share/privacyON",
+  "actualNextRoute": true,
+  "memberBannerPhoto": "originalcontrolsrendered,privatebydefault",
+  "scriptureDialog": {
+    "open": true,
+    "named": true,
+    "initialTitleFocus": true,
+    "backwardTrap": "Close reference",
+    "forwardTrap": "Close Scripture reference",
+    "escapeReturn": "Read John 3:1-3"
+  },
+  "privatePrayer": "invented entry rendered, absent in Share, cleared after A to B",
+  "share": "explicit checkbox then local Nothing was sent, no effect",
+  "privacy": "originalliveUnknownpanelretained",
+  "browserHarnessIncident": "Next build replaced out directory; existing Python server cwd removed causing ERR_CONNECTION_RESET; server restarted with same sandbox, successful reread; not application defect",
+  "inputTimeout": "one mouse command timed out; fresh state inspected before keyboard navigation",
+  "selectorMismatch": "one case-sensitive radio name miss corrected from observedDOM",
+  "accessibility": "keyboard/dialog scoped pass, full spoken reader and actual zoom unverified"
+}

@@ -1,5 +1,10 @@
 # Lockliel security model
 
+## Wave 7 offline authenticated read integration (2026-11-01)
+
+Wave7 per-adapter opaque fixture sessions, epoch/expiry and before/afterawait checks deny forged/foreign/expired authority. Controller naturally clears snapshots and fences stale timers/responses; browser A/B/reset/refresh/denials clear drafts. Staff/unknown permissions deny, raw PII/roles/notes/locators omitted, public destinations allowlisted, consent unknown blocksreadsharing. Independent109focused within1275full pass; mocks are not liveAuth/MFA/RLS/CAPTCHA. Unsupported private domains remain unavailable. No production/isolated credentials/project/network/settings/account action; actual zoom/spokenreader/current-sourceOSreduce activation unverified.
+
+
 ## Wave 6 privacy and authenticated integration planning (2026-11-01)
 
 Wave6 synthetic owner privacy requires exact known A/B fixture context, member-read grant, immutable owner/revision and bounded what-if fields. Private notes/prayers/growth/Anchors/contact/finance data never enter the panel. All live states remain Unknown and all effects false; descriptor/getter cases are fixture hardening only. Independent70focused tests and full1166pass; browser isolation/reset checks pass. Future authenticated plan requires trusted current session/active-session and minimal DTOs, no synthetic grant reuse, strict CSRF/versioning, effective table/column/RPC access and private Storage/lifecycle acceptance. Real CAPTCHA/account-origin/course binding/recovery gates remain unresolved. No live security/Auth/settings/account/permission or database change; temporary local macOS Reduce Motion restored.

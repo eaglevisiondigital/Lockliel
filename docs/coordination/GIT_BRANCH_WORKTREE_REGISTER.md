@@ -1,5 +1,11 @@
 # Git branch and worktree register
 
+## Wave 7 current result, November 1
+
+New codex/wave7-read-integration at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave7-read-integration/Lockliel: basecb46875, readmodel8c56de6f2897f66d89f517b7501695b731f01ea0, combinedsource653b6466b4ab923f9915affb57081e4108fbe343, documentation-only child follows. New codex/wave7-backend-readiness at existing dedicated planning worktree: 7788e44775aaadf66933cbc56adec88cf3d2f429 basedond16dd5c; old Wave6 planning ref preserved. All original branches/commits and rootdirtywork preserved. No prune/delete/rewrite/push/merge.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 New codex/wave6-privacy-integration at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-privacy-integration/Lockliel starts from24a6159, panel fa24c3464ea85338cda8ae7128007a3eb91eefbb then validated combined13118829b485893a1ae169db0a098c79ad99a169; documentation-only child follows. New codex/wave6-backend-plan at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-backend-plan/Lockliel is clean d16dd5c922d68b79c2e223ec04bab95c67a6c5f7. Existing lane1/lane2 append doc-only233f13e and3b9b610. Original Wave5branch24a6159/sourceaf99a52, Wave3/Wave4 and all other lane branches preserved; rootdevfa294f7 and localorigin-main1599ab2 unchanged. No prune/deletion/rewrite/push/merge.

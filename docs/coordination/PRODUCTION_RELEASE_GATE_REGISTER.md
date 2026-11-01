@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 7 current result, November 1
+
+Production release remains NOT READY and unauthorized. No project/API/SQL/Auth/account/settings/maintenance operation occurred. Production274/isolated280-pausedON and PR4/main/sites are retained observations, not refreshed. Alias/function binding, real CAPTCHA/account disposition, current DataAPI/table/column/RPC exposure, Storage bytes/operator/final-writePITR/durations/notice/content and execution gates remain open. Old resolved incident is not relabeled current.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Production release remains NOT READY and unauthorized. Wave6 makes no production/isolated connection, migration, deployment, Auth/SMTP/CAPTCHA/account/settings/maintenance change. Course alias/function binding remains BLOCKED; reader capabilities unchanged, no redundant request. Historical course/MFA/duration PASS stays distinct from failed real proof. Current DataAPI table/column/RPC exposure, Storage-byte recovery, operator/final-write PITR, duration provenance/content/notice and explicit execution gates remain open. Production274/isolated280-pausedON are carried-forward observations only. Temporary local OS Reduce Motion was restored and affects no release gate.

@@ -1,0 +1,29 @@
+{
+  "fullJavaScript": 1275,
+  "pass": 1275,
+  "fail": 0,
+  "skip": 0,
+  "newFocused": 109,
+  "breakdown": {
+    "adapter": 45,
+    "controller": 10,
+    "presentationGuard": 12,
+    "ui": 28,
+    "crossLane": 14
+  },
+  "independent109OverlapsFull": true,
+  "typecheck": true,
+  "configuredLint": true,
+  "targetedLintZeroWarnings": true,
+  "netlifyModules": 75,
+  "netlifyHandlers": 62,
+  "offlineOnBuild": true,
+  "legacySyntheticBuild": true,
+  "allFlagsOffBuild": true,
+  "migrationHashesUnchanged": 280,
+  "protectedFileHashesUnchanged": 757,
+  "nodeOutboundGuard": true,
+  "credentialEnvironmentScrubbed": true,
+  "sqlReplay": false,
+  "remoteCI": false
+}

@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 7 current result, November 1
+
+Wave7 local offline integration 653b6466b4ab923f9915affb57081e4108fbe343 is ready for a separately scoped isolated integration decision. It is not hosted acceptance. NextP1firstsession/profile/preferencesreadslice needs local server projection work, safe target reuse, current immutable alias/function binding and explicit isolated deployment/synthetic-session authority. No new PR or remote CI, no change to separate course PR4 draft/unmerged baseline.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Wave6 synthetic privacy source13118829b485893a1ae169db0a098c79ad99a169 is ready for authenticated-integration design review only. Separate backend plan d16dd5c is not a deployment or approval. Recommended Wave7P0: offline discriminated authenticated read-model interfaces, allowlisted fixture adapters and mocked BFF tests, default-OFF. First connected P1 is later isolated profile/session/preferences GET-only data acceptance with separate target/source/binding/deployment/synthetic-session approval. No new PR/CI/push/merge/deploy; PR4 draft/unmerged baseline preserved.

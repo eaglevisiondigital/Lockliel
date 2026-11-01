@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 7 current result, November 1
+
+Opaque per-adapter session authority rejects forged/cross-adapter/old/expired capabilities; TTL automatically clears snapshots and stale timers cannot clear a newer owner. A/B/generation/abort fences clear private drafts before reads. Allowlisted DTOs omit raw PII/notes/roles/entitlements/locators, staff/unknown permissions deny, consent remains unknown despite follow-up flag. Catalog paths restricted. Reviewer found and fixed nullperson/malformedprogress ambiguity; no remaining bounded defect. Offline tests do not certify RLS/MFA/real CAPTCHA.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Eight owner-only privacy areas use fixed metadata, exact known A/B fixture ownership, member-read grant, immutable ownership/revision checks and allfalse effects. Every live status remains Unknown. Local choices do not alter other modules, consent, audiences, channels or roles. Private prayer/growth/Anchor/contact/finance bodies never enter panel DTO. Descriptor/getter/enum/private-field hardening and independent70tests pass within full1166. Browser confirms private-prayer exclusion and A/B/reset/refresh clearing. No live Auth/RLS/privacy certification. Existing real CAPTCHA and account-origin gates remain unresolved.

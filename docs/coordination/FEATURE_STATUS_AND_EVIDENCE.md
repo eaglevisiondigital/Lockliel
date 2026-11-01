@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 7 current result, November 1
+
+Source 653b6466b4ab923f9915affb57081e4108fbe343 passes1275full tests including109new (67models/controller/guard,28UI,14cross-lane). Independent109rerun overlaps. Three static exposure modes, TypeScript, lint and Netlify75/62 pass. Four sections at four widths, account switching/reset/refresh/denials, keyboard/focus and preserved Scripture dialog/share workflow reviewed. All280migrations/757protected files unchanged; no live/SQL/remoteCI proof.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Wave6 exact source13118829b485893a1ae169db0a098c79ad99a169 adds the owner-only synthetic privacy panel and host integration. 1,166 full tests include70new focused model/workspace/host cases. Builds with flags OFF and locally ON, types, lint and Netlify pass. Four views reflow at320/390/768/1365 with no duplicate IDs/overflow. Actual macOS Reduce Motion was exercised and restored; actual200%zoom/full spoken screen reader remain unverified. Backend plan is source-backed, not connected implementation. No feature newly Live.

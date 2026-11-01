@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 7 current result, November 1
+
+Wave7offline scope is complete, no repeat permission needed. Next approve/amend exact Wave7source653b6466b4ab923f9915affb57081e4108fbe343 and proposed Wave8scope. Before any hosted action decide safe qjks/site reuse, current binding evidence, source/handler/context/route list and protected synthetic Auth window/cleanup. Persistence/schema/private retention/export/delete/minors, photoStorage/cost/visibility, Bible rights/default, recipient consent, account reviewer/disposition and production release remain separate decisions. See WAVE7_OWNER_DECISION_AND_WAVE8.md.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Immediate next choice: review exact Wave6source1311882 and plan d16dd5c; approve/amend the proposed Wave7P0 offline read-model scope if desired. No new permission is requested for completed Wave6 work. Connected target reuse, trusted alias/function attestation, isolated deployment/session acceptance, account-disposition policy/reviewer, real CAPTCHA/browser/client acceptance, private-domain schema/retention/export/deletion/minors, Bible rights/default, Storage/photo moderation/visibility/cost and operational production gates remain separate decisions. Owner none-known campaign answer remains settled, not asked again.

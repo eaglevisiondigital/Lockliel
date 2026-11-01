@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 7 current result, November 1
+
+Actual /root/wave7_read_contracts owns lib/member-read-model/** plus three tests/docs; /root/wave7_member_ui owns member-review host/route/gate, optional member/Faith/Share/privacy paths and UItests; /root owns cross-lane test/fullvalidation/browser/packet. /root/wave7_backend_security_plan owns independent planning docs and read-only final source review. Shared edits serialized by frozen source handoff; no Auth/Netlify handler/schema/global-token/dependency changes.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Root owns member-review host/policy/route, tests/wave6-owner-privacy-integration.test.mjs and coordinator packet. /root/connections_wave3 owns components/owner-privacy-preview/**, lib/owner-privacy-preview/**, tests/owner-privacy-preview*.test.mjs and docs/owner-privacy-preview/**. /root/backend_plan_wave6 owns docs/authenticated-integration-plan/** on separate documentation branch. /root/security_course_wave6 owns only named Wave6 lane1/lane2 review docs. /root/integration_review owns only WAVE6_PRIVACY_SOURCE_REVIEW.md. No competing Auth/schema/global token/navigation/dependency edits; all existing contracts remain unchanged.

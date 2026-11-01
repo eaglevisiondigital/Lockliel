@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 7 current result, November 1
+
+Three actual native agents: wave7_read_contracts, wave7_member_ui, wave7_backend_security_plan. Last agent completed planning then separately dispatched independent read-only source review. Root coordinated/tested/integrated. Peak root+3. L1/L2 advanced retained evidence/acceptance and attestation procedures without repeating unavailable provider reads or claiming new live results; no other lane falsely marked newly dispatched.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Actual native assignments completed: /root/connections_wave3 privacy implementation; /root/backend_plan_wave6 C/E backend strategy; /root/security_course_wave6 separate bounded L1 and L2 reviews; /root/integration_review independent privacy source audit. Root implements host/gates and performs full validation, visual/keyboard/responsive/OS-motion review, source preservation and coordination. Maximum root plus three children. Eight-lane domain ownership remains intact; L5/L6/L7 contract work was reviewed/reused, not falsely dispatched as new implementation.

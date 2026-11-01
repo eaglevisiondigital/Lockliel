@@ -1,5 +1,10 @@
 # Lockliel architecture
 
+## Wave 7 offline authenticated read integration (2026-11-01)
+
+Wave7 adds lib/member-read-model/contracts/offline-adapter/controller/validation and an optional independently local-gated existingmember read mode. Server request-session seam is separate from synthetic actor fixtures; no competing Auth, network or persistent adapter. Existing API envelopes project minimal profile/preferences/course/MyFive/catalog values; error/null ambiguity remains unavailable. WeakMap authority, clock expiry/cancellation/generation fences and strict getter-safe presentation guards protect offline contracts. Proposed private Faith/photo/banner/Anchor types have no ready runtime data. Future connected BFF firstslice reuses existing session/profile/preferences with separate exacttarget/source/handler/syntheticAuth approval.
+
+
 ## Wave 6 privacy and authenticated integration planning (2026-11-01)
 
 Wave6 adds components/owner-privacy-preview/** and lib/owner-privacy-preview/model.ts within the existing local member-review host. Its context-bound allowlisted model has no real settings/persistence/Auth/API adapter. Independent local privacy/member/share gates remain exposure only. Authenticated-development plan d16dd5c preserves Netlify BFF/HTTP-only cookies/validated session/active-session RPC and reuses existing profile/preferences/MyFive/privacy lifecycle services through future typed projections. It specifies separate authenticated identities, account-switch generation fencing, CAS/conflicts, RLS/ACL, protected Storage and export/deletion. Existing share-link POST and unlinked follow-up permissions cannot supply preview-only consent. Private Faith/photo/banner/Anchor persistence is separately proposed schema, not implemented or migrated.

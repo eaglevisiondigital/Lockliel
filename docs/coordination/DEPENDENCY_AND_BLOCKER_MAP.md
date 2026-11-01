@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 7 current result, November 1
+
+Read port uses actual BFF envelopes and a separate future server request-session seam; no competing authentication system. Opaque fixture authority, expiry, per-generation clearing and strict projections are implemented offline. Existing raw session/preferences ambiguity and course summary routing require narrow reviewed extensions. Saved photo/banner/Bible/private Faith and scoped share-consent contracts remain dependencies; target alias/function binding, real proof/account/recovery gates stay open.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Keep existing Netlify BFF, HTTP-only cookie/session validation and active-session RPC. Profiles/preferences/faith-profile, My Five timestamp CAS, privacy requests/export/deletion and protected resources are reusable after endpoint-level review. Raw session/person DTOs expose fields the member/share projections must omit. Existing share-link POST writes links/events; unlinked follow-up permission is not accepted scoped share consent. Course packager has nine handlers and is not a unified backend. New private Faith/photo/banner/Anchor persistence needs separate schema review; no SQL authored. Binding/real proof/account/recovery gates remain open.

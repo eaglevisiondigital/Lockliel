@@ -1,5 +1,10 @@
 # Lockliel decisions and open questions
 
+## Wave 7 offline authenticated read integration (2026-11-01)
+
+Dave authorized and completed Wave7offline read contracts/mocks/existingmember integration/local commits, not connected runtime or production. Exactsource653b6466b4ab923f9915affb57081e4108fbe343 and independentplan7788e44775aaadf66933cbc56adec88cf3d2f429 are readyfor separatelyauthorizedisolatedintegrationreview only. No newLive or migration/schema allocation. NextrecommendedWave8localserverprojectionandtrustedbindingevidence fromthatbase is NOT STARTED. Actualhosted/source/target/sessionauthority, accountdisposition/realproof/privatepersistence/rights/Storage/lifecycle/cost andproduction gates remain decisions. See WAVE7_OWNER_DECISION_AND_WAVE8.md for exactcopyassignment.
+
+
 ## Wave 6 privacy and authenticated integration planning (2026-11-01)
 
 Wave6 authority covered synthetic owner privacy UI, actual visual/accessibility review, backend/integration planning and bounded security/course continuation with local commits. That scope is complete at13118829b485893a1ae169db0a098c79ad99a169; plan d16dd5c is an immutable source-backed proposal, not connected approval. No new Live status, real persistence/sharing/upload/migration/deployment or production authorization. Existing isolated qjks/site reuse is proposed subject to trusted binding and preservation decision; no purchase. Account disposition policy/reviewer, real proof/client acceptance, private schema/retention/export/delete/minors, Bible rights/default, photo visibility/Storage/cost and production operational gates remain owner decisions. Next proposed Wave7P0 is offline authenticated read-model contracts/adapters/tests only, not begun.

@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 7 current result, November 1
+
+Existing navy/blue/cream/Arial shell and reusable member/Faith/Share/privacy workspaces retained. Independent OFF offline-read exposure adds read-only presentation paths, unavailable states and scoped retry-button styling, no public/global redesign. Four sections/four widths reflow, keyboard/reset/retry/cancel/dialog focus reviewed. Current OS query is false; inherited reduce CSS and prior Wave6 exercise remain distinct from current-source OS activation, actual200%zoom and spoken-reader acceptance.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Wave6 privacy panel uses the preserved navy/blue/cream/Arial visual system, scoped styles and existing host landmarks. Approved public pages and previous member/Faith/Share components are unchanged. Four-section mobile navigation reflows without a new visual language. Native radio/select/keyboard, named drawer/focus/status and privacy states were reviewed. Real OS Reduce Motion media-query change and restoration pass for exercised views; no global-motion configuration is retained. Actual200%zoom and spoken screen reader remain open because reliable isolated native controls/audio verification were unavailable.

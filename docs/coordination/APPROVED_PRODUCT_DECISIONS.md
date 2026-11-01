@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 7 current result, November 1
+
+Dave directly authorizes Wave7 offline owner read contracts, replaceable mocks, existing-member integration, source-backed hosted planning and bounded security/course continuation with local commits. This supersedes Wave6 preparation-only for that exact offline package. It does not authorize connected Auth, deployment, persistence, migration, sharing/upload/delivery, accounts/settings, push/merge or production. No current mock session is a live identity.
+
+## Historical snapshots below
+
 ## Wave 6 current result, November 1
 
 Wave6 authorizes only isolated synthetic privacy UI, review of actual member experience, confirmed-defect corrections if needed, authenticated backend planning and bounded security/course review, with logical local commits. New authenticated runtime, migrations, persistence, uploads, shares, messages, account actions and production/hosting changes are not approved. Local what-if choices do not update live settings or grant consent. Temporary macOS Reduce Motion testing was restored; no production/isolated setting changed.

@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave7: [WAVE7_COORDINATOR_RESULT.md](WAVE7_COORDINATOR_RESULT.md) and [WAVE7_PRIMARY_CHAT_HANDOFF.md](WAVE7_PRIMARY_CHAT_HANDOFF.md). Exact local offline source 653b6466b4ab923f9915affb57081e4108fbe343; all12registers/37features current. Ready for a separately authorized isolated integration decision, not a connected or production release.
+
 Current: WAVE6_COORDINATOR_RESULT.md and WAVE6_PRIMARY_CHAT_HANDOFF.md. Exact local synthetic source1311882; all twelve registers/37features updated. Backend plan is not connected execution authority.
 
 Current: WAVE5_COORDINATOR_RESULT.md and WAVE5_PRIMARY_CHAT_HANDOFF.md. All twelve registers and37features updated. Local synthetic default-OFF integration only, no production release authority.
