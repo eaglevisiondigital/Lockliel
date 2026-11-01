@@ -83,10 +83,10 @@ b899ddcbaac85292ce9a05cf1969d2118d6f1122a9b456dae072f1da5723f246  evidence/2026-
 8669295ccf79f1650ece20370d72f41865aa94f181342594e6d52f1c42af7ee1  evidence/2026-11-01-wave4/source-and-validation.json
 90a0c406ec29859e3483e0a852004a4eb28f42f8727d1b9d4536e3f29feecabc  evidence/2026-11-01-wave4/wave3-accessibility-review.jpg
 2c6eb35d3dd9b0d9ab3e2bc97f40ff1659949e91be5bb0bf7bc39cceaabebdb5  evidence/2026-11-01-wave4/wave3-accessibility-review.json
-299c115b4a81ebb0a1dae56f66ec827677e0081f491011201fb2a1c9b3a1b916  evidence/2026-11-01-wave5/README.md
+4cdc0ea08e5fd1e8ad79ab0b89237955fd16e3ea5e18c8ccce9a1163123a0e01  evidence/2026-11-01-wave5/README.md
 3cf4b3947ec76c01974fa24cc4ee3df0ddc2b7d0aab9e85eddd1878f9dd91170  evidence/2026-11-01-wave5/browser-acceptance.json
-b19c1e7775ae0554562459f9e662787231ab259bc64d032e894ff103f6015737  evidence/2026-11-01-wave5/build-off.log
-116efd47e896594bef2dcd2841c97bbfea224fe7a6594d34876cd0480425f766  evidence/2026-11-01-wave5/build-on.log
+a78b847d00154f016d97963e28c750ee5b3c2eccaeb4b830f1d7e24634728e9d  evidence/2026-11-01-wave5/build-off.log
+2d56de313a4cfe6e1dfc96a94c90b2efa64c6db7086bcea9ba13c2bb29e45074  evidence/2026-11-01-wave5/build-on.log
 c93e439caf29048c397cc275a2278d3615c7823bbd248df63e604c41a2d6d3ac  evidence/2026-11-01-wave5/default-off-artifact.json
 8024db3f2a30e77ccbb141baebe117dd304d5867db11cd5afccefdc1891007c1  evidence/2026-11-01-wave5/document-provenance.json
 e38e41f989d56c58a37b2f48f04b5928cb24d2d972a5ec690ee3a82252d596ec  evidence/2026-11-01-wave5/feature-status-counts.json
