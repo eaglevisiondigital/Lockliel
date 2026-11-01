@@ -1,0 +1,212 @@
+{
+  "scope": "Local source evidence only. No connected Auth/API/SQL or production observation.",
+  "baseCommit": "cb4687518fec894fb0cce06117d103e51bfd1662",
+  "source": [
+    {
+      "path": "netlify/lib/lockliel-core.mjs",
+      "sha256": "cfa3123a3caafe2676ae14c0105f7357a090d7a4ef55deff8de791735d1ac146",
+      "anchors": [
+        {
+          "text": "export async function requireSession",
+          "lines": [
+            62
+          ]
+        },
+        {
+          "text": "export async function activeSession",
+          "lines": [
+            51
+          ]
+        },
+        {
+          "text": "export async function authUser",
+          "lines": [
+            31
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-session.mjs",
+      "sha256": "a6970d133f7d26fea737f3dfec456af9cfaa1b62563551896dc561e4062e7266",
+      "anchors": [
+        {
+          "text": "authenticated:true",
+          "lines": [
+            73
+          ]
+        },
+        {
+          "text": "profile:profiles[0]||null",
+          "lines": [
+            75
+          ]
+        },
+        {
+          "text": "export const config",
+          "lines": [
+            86
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-preferences.mjs",
+      "sha256": "791707bb306cf9ef808e1282780e513fdf623dc20fcc12f785c379ff397eaef4",
+      "anchors": [
+        {
+          "text": "return json({preferences:rows?.[0]||null}",
+          "lines": [
+            17
+          ]
+        },
+        {
+          "text": "export const config",
+          "lines": [
+            49
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-journey.mjs",
+      "sha256": "21b489e0fca46a1933dcfcdbdcd5a1f60594d3f72d84ba4fdee78f6e56a60a34",
+      "anchors": [
+        {
+          "text": "maintenance:state,learnerId:s.user.id",
+          "lines": [
+            23
+          ]
+        },
+        {
+          "text": "export const config",
+          "lines": [
+            53
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/lib/course-journey.mjs",
+      "sha256": "fd3f800bddad1b25a1aa2f6f0506ac95c17fd45a18329561628b87d133620f7f",
+      "anchors": [
+        {
+          "text": "course_enrollments?profile_id",
+          "lines": [
+            30
+          ]
+        },
+        {
+          "text": "lesson_progress?profile_id",
+          "lines": [
+            102
+          ]
+        },
+        {
+          "text": "return {",
+          "lines": [
+            39,
+            49,
+            88,
+            141
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-my-five.mjs",
+      "sha256": "dc0c369059bb9816b1c133bfb926259a7c8d62cfd6e96364c3da8d5761f9474e",
+      "anchors": [
+        {
+          "text": "if(!person)return json",
+          "lines": [
+            21
+          ]
+        },
+        {
+          "text": "if(request.method==='GET')return json",
+          "lines": [
+            23
+          ]
+        },
+        {
+          "text": "export const config",
+          "lines": [
+            37
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/lib/my-five-data.mjs",
+      "sha256": "a2ec1ed6c21060fa7d9bdbfc21a1e89f804c5dee4c333f6d1137bc39d526368c",
+      "anchors": [
+        {
+          "text": "if(!person.linked_profile_id)return true",
+          "lines": [
+            5
+          ]
+        },
+        {
+          "text": "return {id:person.id,name:person.display_name",
+          "lines": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-share-library.mjs",
+      "sha256": "2a95b6266b2de617f454c7fd18a232ff44699b0a3ad2c4fd683a6611504ce1dc",
+      "anchors": [
+        {
+          "text": "preferredLanguage:preferred",
+          "lines": [
+            57
+          ]
+        },
+        {
+          "text": "assets:selected.map(guidedAsset)",
+          "lines": [
+            59
+          ]
+        },
+        {
+          "text": "export const config",
+          "lines": [
+            63
+          ]
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-share-link.mjs",
+      "sha256": "9f1ab627a14c4bece13d49f05bd4a390f505f59999ed0181fd2feff1f01d97a2",
+      "anchors": [
+        {
+          "text": "share_initiated",
+          "lines": [
+            108
+          ]
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "focusedTests": 67,
+    "adapter": 45,
+    "controller": 10,
+    "presentationGuard": 12,
+    "strictTypeScript": "passed",
+    "scopedLint": "passed, zero warnings",
+    "networkGuard": "preloaded; no outbound calls",
+    "fullSuiteAndBrowser": "Coordinator responsibility"
+  },
+  "limits": [
+    "Offline fixture authentication is not live login.",
+    "Fixed aggregate revision is fixture-only; no connected CAS token is invented.",
+    "Private proposed-domain runtime unavailable.",
+    "Current My Five owner proof remains caller-bound server/BFF trust condition.",
+    "Real CAPTCHA, hosted binding, effective live RLS/ACL and sessions not verified."
+  ]
+}
