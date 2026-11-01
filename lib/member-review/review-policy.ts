@@ -35,3 +35,8 @@ export function localPrivacyReviewEnabled(input:Readonly<{flag?:string;memberFla
 export function localMemberReadReviewEnabled(input:Readonly<{flag?:string;memberFlag?:string;context?:string;netlify?:string}>):boolean {
   return input.flag==='offline-local' && localMemberReviewEnabled({flag:input.memberFlag,context:input.context,netlify:input.netlify});
 }
+
+/** Independently default-OFF local server-read exposure. Never enables hosted Auth. */
+export function localMemberServerReadReviewEnabled(input:Readonly<{flag?:string;memberFlag?:string;context?:string;netlify?:string}>):boolean {
+ return input.flag==='local-server' && localMemberReviewEnabled({flag:input.memberFlag,context:input.context,netlify:input.netlify});
+}

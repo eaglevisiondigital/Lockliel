@@ -11,10 +11,12 @@ import { LOCKLIEL_ORG, SYNTHETIC_SCHEMA } from '../../lib/synthetic-contracts/co
 import type { SyntheticContext } from '../../lib/synthetic-contracts/context';
 import { OfflineMemberReadShell } from './offline-member-read-shell';
 import styles from './member-review.module.css';
+import {ServerMemberReadShell} from './server-member-read-shell';
+import type {IsolatedReadBinding} from '../../lib/member-server-read/contracts';
 
 /** Synthetic host only. No account/session request, persistence or protected information. */
-export default function MemberReviewShell(props:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean;offlineReadEnabled?:boolean}>){
-  return props.offlineReadEnabled ? <OfflineMemberReadShell shareReviewEnabled={props.shareReviewEnabled} privacyReviewEnabled={props.privacyReviewEnabled}/> : <SyntheticMemberReviewShell {...props}/>;
+export default function MemberReviewShell(props:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean;offlineReadEnabled?:boolean;serverReadEnabled?:boolean;serverReadBinding?:IsolatedReadBinding|null}>){
+  return props.serverReadEnabled ? <ServerMemberReadShell binding={props.serverReadBinding||null}/> : props.offlineReadEnabled ? <OfflineMemberReadShell shareReviewEnabled={props.shareReviewEnabled} privacyReviewEnabled={props.privacyReviewEnabled}/> : <SyntheticMemberReviewShell {...props}/>;
 }
 function SyntheticMemberReviewShell({initialState=initialReviewState(),shareReviewEnabled=false,privacyReviewEnabled=false}:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean}>){
   const [state,dispatch]=useReducer(reduceReviewState,initialState);
