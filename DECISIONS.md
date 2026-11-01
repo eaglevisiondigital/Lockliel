@@ -1,5 +1,10 @@
 # Lockliel decisions and open questions
 
+## Wave 4 synthetic contract checkpoint (2026-11-01)
+
+Dave directly approved Wave 4 L5–L8 synthetic source, contracts and tests, narrowly resolving the earlier preparation-only implementation hold. Separate local lane, shared, combined and documentation checkpoints are authorized, with no push, merge, deployment or live activation. The original member/Faith candidate and course PR #4 remain unchanged. No sharing of merchant accounts among Lockliel, Champion Life and SowGo is inferred. Global Propel Text-to-Give remains unavailable future vocabulary. Provider, legal, receipts, currency, books, shipping, private lifecycle, rights, crisis, operations and complete accessibility decisions remain open. The next mock UI integration package is a recommendation; it was not executed here.
+
+
 ## Wave 3 local integration checkpoint (2026-11-01)
 
 Dave's Wave 3 direction authorizes logical local preservation commits and a separate synthetic integration candidate, with no remote release or production change. Four lane snapshots are preserved, and reusable W3/W4 workspaces are integrated under coordinator ownership. No Bible provider, default or rights decision; photo/private-data lifecycle; crisis automation; financial/legal/book/shipping decision; or sensitive permission is inferred. Automatic approval review treats next-four-lane source work as preparation only. L5/L6 documentation and prepared L7/L8 assignments are held for explicit source-implementation approval. The full report and all twelve registers are current in `docs/coordination`.

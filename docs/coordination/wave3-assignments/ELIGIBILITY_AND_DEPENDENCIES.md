@@ -1,5 +1,7 @@
 # Wave 3 next-four-lane readiness
 
+Wave4 supersedes preparation-only scope for completed synthetic contracts/tests only. Earlier rejection remains historical. Consult current Wave4 authority/result and exact ownership before any next step; no live service, UI activation or production action follows.
+
 Current scope: implementation-ready preparation only. Automatic approval review rejected the first L5 source write before it ran, interpreting Phase5 as preparation-only. No retry or alternate source-writing route was used. L6 confirmed no source/test writes. Explicit Primary Chat approval is required for the proposed implementation slices below.
 
 | Lane | Actual preparation owner/state | Concrete next slice | Independent dependencies |

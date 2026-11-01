@@ -1,5 +1,10 @@
 # Lockliel architecture
 
+## Wave 4 synthetic contract checkpoint (2026-11-01)
+
+Wave 4 adds coordinator-owned `lib/synthetic-contracts/context.ts` and independent pure L5 connections, L6 content-readiness, L7 commerce and L8 privacy-ops review modules. One synthetic organization/actor/session/AAL/grant vocabulary is mirrored exactly; it is not real authentication. L6 owns catalog projection; L5 owns relationship, consent and sharing semantics. L7 product/merchant/settlement contracts and L8 purpose-scoped operations remain distinct. Time normalization and grant mappings require explicit future adapters. Combined tests exercise actual producer/consumer exports. No handler, API, navigation, schema, global design or live-data integration was added. See `docs/wave4/CONTRACT_COMPATIBILITY.md` on the separate review branch.
+
+
 ## Wave 3 local integration checkpoint (2026-11-01)
 
 Wave 3 adds the coordinator-owned synthetic host `app/my-lockliel/review`, `components/member-review` and `lib/member-review` on a separate integration branch. Exact committed member/Faith workspaces compose under one shell. The host owns identity/reset epochs, edition preference and local navigation. Components expose allowlisted display DTOs and metadata intents, with no transport or session adapter. Unknown context omits private modules; actor/reset changes remount them; navigation retains visit state. The default-OFF build gate controls exposure, not authentication. Existing navigation, global tokens, Auth/API, schema and hosting remain unchanged. See `docs/member-review/INTEGRATION_CONTRACT.md` in the integration worktree.

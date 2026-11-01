@@ -1,5 +1,10 @@
 # Lockliel verified continuity baseline
 
+## Wave 4 synthetic contract checkpoint (2026-11-01)
+
+Wave 4 combined synthetic contract source `f43cc3a`, on `codex/wave4-contract-review`, extends preserved Wave 3 checkpoint `9e89fec` without changing its member/Faith source `649a3f5`. Four independent L5–L8 branches are committed and clean; exact heads, files and tests are in the current coordination registers. The 1,006 full unit tests include 292 new/shared focused tests. Ordinary TypeScript, static build, lint and Netlify validation passed. No UI, live adapter or production activation was added. Course binding, real-proof acceptance, recovery and owner decisions remain open. Actual zoom, spoken screen-reader and reduced-motion branch acceptance is incomplete. Production migration 274 and isolated migration 280 with maintenance ON are carried-forward observations, not fresh SQL results from this wave. No live changes or remote publication occurred.
+
+
 ## Wave 3 local integration checkpoint (2026-11-01)
 
 Source integration commit `649a3f5` is a local synthetic review candidate at `/my-lockliel/review`. Its build flag defaults OFF; known hosted contexts deny enablement. It imports W3 `e3a3dd0` and W4 `f4c2a9f`, with one host and explicit synthetic identity, private-state reset, edition and navigation contracts. Validation passed: 714 full unit tests, 134 focused tests, TypeScript, two static builds, lint, Netlify validation and scoped browser checks. Accessibility and live backend dependencies remain open. Independent lane branches are committed and clean; root course branch `fa294f7` is unchanged and its prior dirty history is preserved. See the full Wave 3 coordinator report. Production remains at migration 274 with no changes. Isolated migration 280 and maintenance ON were last verified in Wave 2; no write or retest occurred. No push, merge or deployment occurred.

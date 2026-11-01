@@ -1,5 +1,7 @@
 # Prepared Wave 3 assignment: L8 Administration, Privacy and Operations
 
+Wave4 supersedes preparation-only scope for completed synthetic contracts/tests only. Earlier rejection remains historical. Consult current Wave4 authority/result and exact ownership before any next step; no live service, UI activation or production action follows.
+
 Current Wave3 override: preparation-only. See README.md and ELIGIBILITY_AND_DEPENDENCIES.md for actual agents/worktrees/commits and automatic scope-review hold. No source implementation was authorized by this prepared document.
 
 

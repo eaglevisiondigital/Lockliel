@@ -1,5 +1,7 @@
 # Next four lane preparation, Wave 3 result
 
+Wave4 current override: Dave explicitly approved the synthetic contracts/tests. Those four lanes are now implemented and validated on independent branches. The preparation-only paragraphs below are historical; see WAVE4_COORDINATOR_RESULT.md, WAVE4_AUTHORIZATION.md and current registers. No UI/live activation or remote release is approved.
+
 These packages remain preparation-only after automatic approval review held L5 source implementation. L5/L6 agents actually completed documentation in independent clean local commits; no contract source/tests/UI were implemented. L7 unused detached worktree is retained without an agent; L8 not created. The older assignment dispatch sections below are historical proposals, superseded by this index and ELIGIBILITY_AND_DEPENDENCIES.md.
 
 | Lane | Actual result | Safe next assignment requiring source authority |

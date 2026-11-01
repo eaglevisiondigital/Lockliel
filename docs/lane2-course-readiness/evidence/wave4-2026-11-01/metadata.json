@@ -1,0 +1,21 @@
+{
+  "observed_at_utc": "2026-11-01 16:26:59 UTC",
+  "wave": "4",
+  "starting_head": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+  "branch": "codex/lane2-course-readiness",
+  "application_candidate": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "metadata": {
+    "operation": "get-project",
+    "requested_site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "metadata_read_count": 1,
+    "result": "site identity returned",
+    "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "published_deploy_object_exposed": false,
+    "trusted_rehearsal_alias_mapping_exposed": false,
+    "comparable_function_manifest_exposed": false
+  },
+  "gate": "BLOCKED",
+  "limit": "One supported site metadata read does not attest rehearsal alias to immutable deploy or complete current backend function/binding provenance",
+  "no_additional_runtime_checks": true
+}

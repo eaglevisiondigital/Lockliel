@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 4 current result, November 1
+
+Dave directly authorized L5–L8 synthetic contracts and tests in Wave4, superseding only the earlier preparation-only restriction. No UI/live adapter, production action, Auth/CAPTCHA change, migration, payment, content activation, message, staff grant, purchase, push, merge or deployment follows. The historical rejection is retained. A new L5 agent staging rejection for coordinator-owned files was honored; the agent committed only its owned paths and the coordinator separately preserved its identical shared files through ordinary approval. No bypass or unresolved confirmation remains for completed local work.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Dave authorizes local preservation commits and a separate synthetic integrated My Lockliel review candidate. No merge/push/deploy/migration or production changes. Integration flag defaultsOFF; no live Auth/API/private storage, real upload/sharing, licensed provider or crisis automation. W3/W4 committed snapshots are explicitly imported by coordinator; existing public/global/Auth/course/hosting source stays byte-identical. Automatic review held L5–L8 source implementation as preparation-only; L5/L6 committed docs, L7/L8 prepared, no application implementation. WAVE3_AUTHORIZATION.md records scope and hold.

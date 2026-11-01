@@ -1,5 +1,22 @@
 # Git branch and worktree register
 
+## Wave 4 current ownership, November 1
+
+Wave3 branch codex/wave3-member-integration remains9e89fec1e33427b4d6fe8eace2a236406d19a320, preserving source649a3f5. New managed review worktree /Users/davesmacbookpro/.codex/worktrees/lockliel-wave4-contract-review/Lockliel is on codex/wave4-contract-review, combined sourcef43cc3ac24beee3050a3382d82ee696a2523cfef. A documentation-only packet checkpoint follows source validation; read that branch HEAD for the packet commit. No merge/cherry-pick or push.
+
+| Lane / actual owner | Branch | Exact HEAD | Worktree | Status |
+|---|---|---|---|---|
+| L5 / /root/connections_wave3 | codex/lane5-consent-followup | c933578e104c5b131d6866fc0669b7ca6f6c5af1 | /Users/davesmacbookpro/.codex/worktrees/lockliel-lane5-consent-followup/Lockliel | clean |
+| L6 / /root/content_wave3 | codex/lane6-content-readiness | 72e4c530ccca0bb892e4794a11de0266e839f576 | /Users/davesmacbookpro/.codex/worktrees/lockliel-lane6-content-readiness/Lockliel | clean |
+| L7 / /root/commerce_wave4 | codex/lane7-commerce-contracts | fcfd0f5ec077397a4dc40db5033ac6f1405cd809 | /Users/davesmacbookpro/.codex/worktrees/lockliel-lane7-commerce-contracts/Lockliel | clean |
+| L8 / /root coordinator | codex/lane8-privacy-ops | 1c908a53065cf8b28d19d70a325948c41ca0febc | /Users/davesmacbookpro/.codex/worktrees/lockliel-lane8-privacy-ops/Lockliel | clean |
+
+L5 implementation/fixes10e0838→6710d57→c933578; shared dependency1798953 is preserved in between. L6 implementation40cad402 followed by coordinator dependency72e4c530. L7 initial9cc72c4, TypeScript compatibility7815ebd, coordinator dependencyfcfd0f5. L8 coordinator dependencyd49e945 precedes implementation1c908a5. All commits remain, none amended.
+
+Bounded review heads: security3141ae054fc9989798fd40cf43a235a7c286ccf4 in existing lane1-account-integrity; course40991b7782afbd616bba3e6305f7842f4c426f9a in existing lane2-course-readiness. Their worktrees are clean. W3e3a3dd0/W4f4c2a9f unchanged/clean. Root developmentfa294f7 and its prior dirty work remain preserved; origin/main1599ab2 remains unchanged locally. No historical worktree was pruned/deleted. L7 previously unused detached worktree is now a named authorized lane; L8/review worktrees were newly created. Temporary dependency links/browser tab/server were retired. Full exact chains/files: evidence/2026-11-01-wave4/lane-checkpoints.json.
+
+## Historical snapshots below
+
 ## Wave 3 current ownership, November 1
 
 Phase1 preservation commits: W1 38a1c097, W2 6e19e240, W3 365b3076, W4 dd743799. Subsequent independent Wave3 heads below. Exact parents/file ownership and clean statuses are in evidence/2026-11-01-wave3/lane-commits.json.

@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 4 current result, November 1
+
+Coordinator exclusively owns lib/synthetic-contracts/**, tests/synthetic-context.test.mjs, tests/wave4-contract-compatibility.test.mjs, docs/wave4/** and the separate review branch. L5 owns lib/connections-preview/** and its focused test/docs; L6 owns lib/content-readiness-preview/**; L7 owns lib/commerce-preview/**; L8 coordinator owns lib/privacy-ops-preview/** with its test/docs. No existing Auth, handler, navigation, token, schema, hosting, dependency or other repository files changed. Exact source snapshots were imported for compatibility without branch merges. Shared context commit494db59 and source hash f2735b6... are identical in all lanes; agent ownership rejection and normal coordinator checkpoint are recorded.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Coordinator owns only new app/my-lockliel/review/**, components/member-review/**, lib/member-review/**, tests/member-review-integration.test.mjs and integration docs. Exact W3e3a3dd0 components/member-experience-preview/** plus test and W4f4c2a9f components/faith-journey-preview/**,lib/faith-journey/** plus tests imported without edits. No competing existing Auth/nav/tokens/API/migration/package/config changes. MemberWorkspace receives allowlisted display model/identity/resetKey and emits metadata only; FaithWorkspace gets same identity boundary, controlled edition, resetKey and intent callback. No backend/session adapter. W1/W2 docs only; L5/L6 docs only; L7/L8 no implementation lease.

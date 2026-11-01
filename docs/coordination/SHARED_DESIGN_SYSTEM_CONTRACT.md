@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 4 current result, November 1
+
+No Wave4 UI, navigation, visual token or public website change. Preserved Wave3 source649a3f5 remains exact on its original branch. Bounded keyboard review reconfirms skip focus and named native dialog/title, Tab containment, Escape return and polite status semantics. Current visible Faith view has no active animation, transition or smooth scrolling; OS reduced-motion preference was false, so the reduce branch was source-reviewed but not activated. One review-tab zoom shortcut produced no measurable change; actual200%zoom remains unverified. Full spoken screen-reader and exhaustive rendered contrast remain open. Future panels must reuse existing reviewed member components and scoped tokens.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Integrated synthetic review retains navy/blue/cream and Arial-compatible existing identity in scoped CSS; public website/assets/global tokens unchanged. One coordinator-owned shell/main/nav surrounds reusable W3/W4 regions, stable scoped IDs and host reset keys.320/390/768/1365 both sections reflow; labels, skip focus, drawer focus/Tab/Escape and private statuses pass. Actual200%zoom/OSreducedmotion/fullscreenreader/exhaustive rendered contrast remain open. Visual owner approval and recoverable Site25 reference remain live-redesign gates; local integration is not a public redesign approval.

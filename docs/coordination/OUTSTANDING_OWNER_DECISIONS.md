@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 4 current result, November 1
+
+The local L5–L8 synthetic implementation scope is now approved and completed; no repeat permission is needed for those contracts/tests or their logical local checkpoints. Live adapters remain separate. Owner decisions still include account disposition and exact Auth acceptance/browser compatibility, intended visual reference and full accessibility, Bible provider/rights/default/locales, private data/photo lifecycle/minors/crisis review, Storage custodian/retrieval, operator/final-writePITR/durations/cutover, independent merchant/provider/legal/receipt/currency/refund/book/shipping and future Global Propel ownership. No actual merchant or cross-project account relationship is inferred. No credentials requested.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 O01 remains noneknown; O02 account disposition/containment remains open. O04 visual reference and actual zoom/screenreader review remain; local combined candidate now exists but no public redesign. O06 Bible provider/version/rights/default/canon/locales, O07 private photo/prayer/growth retention/delete/export/revocation/minors, O08 qualified crisis review remain unresolved. O09–O11 Storage/operator/final-writePITR/duration/cutover gates remain. Current isolated alias provenance requires provider-supported trusted evidence. L5–L8 synthetic contracts/tests need explicit source-implementation approval following the automatic scope-review hold; prepared plans do not request financial/admin activation. Gateway/legal/books/complimentary/shipping still unknown.
@@ -42,7 +48,7 @@ where it does not depend on an answer; do not ask for credentials in this regist
 | O13 | Approve final books, complimentary offer, threshold, currency, eligibility, shipping, cost and returns. | Main Chat/content/finance owner | Draft readiness only; no offer is assumed. |
 | O14 | Approve the payment gateway, account owner, purposes, legal/tax classification, receipts, destinations, webhook and currencies. | Dave/finance/legal owner | Provider-neutral planning only; no payment activation. |
 | O15 | Review separate provider maintenance and HTTP client compatibility work, if applicable. | Dave/security owner | Official 17.11 security upgrade and earliest November 10 cipher notice reviewed; no infrastructure change approved. |
-| O16 | Approve one scoped local documentation checkpoint or remote publication, if desired. | Dave/coordinator | All registers remain local; preexisting dirty evidence is not blanket-committed or pushed. |
+| O16 | RESOLVED for logical local implementation/documentation checkpoints under Wave3/Wave4. Remote publication remains unauthorized. | Dave/coordinator | Exact scoped local commits exist; original dirty history is preserved without blanket staging. No push/merge/deploy. |
 
 No sensitive input is requested. Turnstile keys, passwords, MFA secrets and tokens
 must use a separately approved protected mechanism only if a later acceptance

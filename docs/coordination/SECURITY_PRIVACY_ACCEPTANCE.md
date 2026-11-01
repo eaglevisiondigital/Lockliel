@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 4 current result, November 1
+
+Independent review reproduced an L5 enum-coercion/private-object echo and a missing member:read check relative to L6. Strict enum checks,20regressions and5permission cases fixed them in separate commits; independent probes and composed tests pass. No further actionable issue was established in the reviewed synthetic scope. L8 requires explicit AAL2/purpose/subject/revision/expiry/revocation scope, separates owner request/reviewer/operator and excludes private bodies from admin/audit projections. L7 has independent organization merchants, bounded fixture currency, authorization/idempotency/refund/entitlement boundaries. All effects remain false; no fixture proves real auth/RLS/merchant authority. Security review reran22mock tests, retained account-origin uncertainty and strengthened the unexecuted real-proof procedure. No fresh production account queries or Auth window.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 W1 fresh read-only migration274 actualon/5s/30s;180Oct7–22 cohort27confirmed/153unconfirmed/27recordedsignin,26under1minute/1within60minutes,19latestrecoverybeforeconfirmation. These cohort metrics differ intentionally from total28confirmed Wave2; no account decline inferred. IndependentOct7 boundedAuthlogs126 include21signup200/21recover200; not identity attribution/delivery proof. Owner noneknown; origin/abuse/compromise remain unestablished. No account/Auth/CAPTCHA/session changes. Integrated unknown context omits private modules;A/B/reset clear memory, navigation preservesvisit, public cards deny, photo removal resetsprivate, intent metadataonly. No backend privacy/RLS grant from types, no real content/identity. Node egress guard, loopback sandbox and page CSP used; complete browser network trace unavailable, not claimed.

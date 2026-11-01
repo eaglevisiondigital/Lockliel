@@ -1,0 +1,32 @@
+{
+  "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "focusedTests": {
+    "passed": 41,
+    "failed": 0,
+    "networkGuard": true
+  },
+  "strictScopedTypeScript": "passed",
+  "lint": {
+    "status": "passed",
+    "warnings": 0
+  },
+  "neutralEsmBundle": {
+    "status": "passed",
+    "bytes": 14801,
+    "output": "memory-only"
+  },
+  "migrationFiles": 280,
+  "migrationBytesChanged": 0,
+  "sourceHashes": {
+    "lib/commerce-preview/index.ts": "dfd66a6954df3a95b528b0027e0f3dd96ac3410861d6b4bb47733a1cb5b4d7dd",
+    "lib/synthetic-contracts/context.ts": "f2735b6aad2f2e287a7e9635f4c22265c6d91502dc76e2da4a50bb61de58a30e",
+    "tests/commerce-preview.test.mjs": "91b4f2637ac36605e3c70f29c93fc0182a5e863521a4ff18f1f545ccdce4a478",
+    "docs/wave4/AUTHORIZATION_AND_CONTRACT.md": "85d97b4121530269f543940f79af4a35b402750f19e81a2612861cf23f826d8e"
+  },
+  "ui": false,
+  "productionAccess": false,
+  "operationalEffects": false,
+  "validationParent": "9cc72c4c78ae96b271367df03d982c336bb9a248",
+  "typeScriptCompatibility": "ordinary bundler resolution; no allowImportingTsExtensions; shared configuration unchanged",
+  "testLoader": "in-memory neutral esbuild ESM bundle under network guard"
+}

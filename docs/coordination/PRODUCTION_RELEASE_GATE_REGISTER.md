@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 4 current result, November 1
+
+Production release remains NOT READY and unauthorized. Local contract tests close no operational gate. One fresh isolated Netlify metadata read confirmed site ID/name but exposed no trusted current rehearsal-alias→immutable-deploy/function evidence; course binding remains BLOCKED. No SQL/migration/manager/course acceptance replay or maintenance change occurred. Real-CAPTCHA remains unverified; account-origin disposition, Storage recovery, operator/final-writePITR, duration/notice/legacy-client and explicit execution gates remain. Production274 and isolated280/pausedON are prior database observations, not fresh Wave4 database reads. No Auth/settings/permissions, production, content/payment activation, push, merge or deploy.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Production remains NOT READY and unauthorized. Local integration success closes no production/course/Auth/recovery gate. Fresh W1 read-only ledger274; Wave2 isolated280/paused=true/schemaReady=true/278-v1 remains last database observation, unchanged by this wave. W2 cannot establish current rehearsal alias→immutable6abfd81c from supported readers/UI/installedCLI; gate remainsBLOCKED. Preserve historicalOct3course/manager evidence separately from incomplete d71realCAPTCHA. Account disposition, Storage byte recovery/custodian, final accepted-writePITR/operator/window, duration/notice/old-client and execution gates remain. Current DataAPI grant/RPC/REST exposure review still required. No schema replay,maintenance/authsettings,production action,push,merge or deploy.
@@ -35,7 +41,7 @@ migrate, merge, deploy, populate durations, activate content or change Auth.
 | R04 Direct IPv6/TLS/authentication safeguards | Prior PASS October 19; not rerun November 1 | Official CA, `verify-full`, hostname verification, direct endpoint and authenticated session with actual read-only ON, 5s lock timeout and 30s statement timeout. Use protected input if needed; no pooler substitution. |
 | R05 Migration bytes | PASS November 1: all 280 sealed hashes match | Revalidate exact candidate, CLI, manifest and source; independently check each stage. Sequence 275→276→277→278→279→280 only in a separately approved production window. |
 | R06 Course CI/positive acceptance | Prior PASS for exact `fa294f7`: October 2 CI and October 3 hosted acceptance | Preserve historical results. Do not repeat completed manager/course tests by default; retest bounded gaps only with authorization. |
-| R07 Current isolated application binding | UNVERIFIED November 1 | Isolated SQL confirms 280/paused ON; management API responses are inconsistent. Historical ready deploy `6abfd81c` does not freshly certify the current alias or artifact. Verify binding/source before credentials or testing. |
+| R07 Current isolated application binding | BLOCKED after Wave4 metadata review | Isolated SQL confirms 280/paused ON; management API responses are inconsistent. Historical ready deploy `6abfd81c` does not freshly certify the current alias or artifact. Verify binding/source before credentials or testing. |
 | R08 Member origin/disposition | BLOCKED November 1 | Purpose and authorization of the 181 Auth users/181 profiles remain unresolved. Obtain owner disposition/containment direction; do not infer permission for destructive account actions. |
 | R09 Real Auth CAPTCHA compatibility | BLOCKED October 19; not rerun November 1 | Valid proof, signup, confirmation, recovery, session, manager and external Sites compatibility; reviewed activation/rollback. No dummy-key substitution. |
 | R10 Trusted production durations | PENDING; authoritative asset inventory exists | Explicit approval for duration provenance/population after 275, while closed. Verify video identity, source, timestamp and current trust at 280. No production duration writes now. |
@@ -47,7 +53,7 @@ migrate, merge, deploy, populate durations, activate content or change Auth.
 | R16 Provider health | Overall summary read November 1: operational; page updated October 21 | Fresh stability evidence at the release window. The historical Eastern US incident is not assumed to remain open. |
 | R17 Rollback/order | Plan prepared, not executed | Read exact runbook/operator sequence. Abort before 275 if gates fail. After an uncertain commit, remain closed and reconcile; no blind retry, old 274 application on 280 or assumed down migration. |
 | R18 Application release/Auth/content | NOT AUTHORIZED | Separate owner/Main Chat authorization names exact source, migrations/settings, destination, window, rollback, executor and reopening criteria. |
-| R19 New faith/commerce features | NOT IMPLEMENTED or blocked by policy decisions | Licensing, privacy, crisis, payment, legal, gift and shipping gates as relevant; independent of the Auth-only packet. |
+| R19 New faith/commerce features | SYNTHETIC CONTRACTS VERIFIED; LIVE BLOCKED | Licensing, privacy, crisis, payment, legal, gift and shipping gates as relevant; independent of the Auth-only packet. |
 
 Source reports: ../course-release-280-runbook.md, ../final-production-280-operator-sequence-2026-10-04.md,
 ../final-post-incident-preflight-2026-10-19.md, ../production-readiness-gap-review-2026-10-19.md,

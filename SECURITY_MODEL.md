@@ -1,5 +1,10 @@
 # Lockliel security model
 
+## Wave 4 synthetic contract checkpoint (2026-11-01)
+
+Wave 4 proposals preserve explicit organization, owner, consent, revision and current-grant boundaries, with all effects false. L5 enum-object/private-field echo and the member-read mismatch were corrected and regression-tested. L6 entitlements, applications, mailbox verification and resource identity; L7 independent merchants and financial states; and L8 AAL2, purpose, reviewer/operator, privacy and audit boundaries remain distinct. Pure fixtures do not prove server authorization, RLS or a payment. Network guards and credential scrubbing protected local validation. No new production query, Auth window, key input, configuration or permission change occurred. Real-CAPTCHA, course-binding and recovery gates remain blocked. The earlier scope rejection and subsequent ownership-related staging rejection remain documented; neither was bypassed.
+
+
 ## Wave 3 local integration checkpoint (2026-11-01)
 
 Wave 3 synthetic composition has no live credentials, member PII, Auth, network, storage, uploads or sharing. Types do not establish RLS or permissions. Private forms mount only for invented review identities; reset/A/B boundaries clear memory. No public card or private-value intent is exposed. Validation used a Node outbound-network guard and a loopback static sandbox/CSP; no complete browser network trace is claimed. W1 read-only cohort/log aggregates do not attribute actors or prove abuse. The real-CAPTCHA procedure is not permission to reopen Auth or change configuration. Current immutable course alias binding remains blocked. All production, release, privacy, licensing and crisis gates remain in force.

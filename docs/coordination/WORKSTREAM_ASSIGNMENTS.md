@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 4 current result, November 1
+
+Actually dispatched/resumed native agents: /root/connections_wave3 (L5), /root/content_wave3 (L6), /root/commerce_wave4 (L7), /root/course_release_review (bounded course review), /root/security_wave4 (bounded security review), /root/integration_review (read-only cross-lane audit). Root coordinator implemented L8 and shared/compatibility work, updated registers and performed bounded accessibility review. Peak concurrency stayed coordinator plus three children; no agent still working is claimed. Exact branches, worktrees, commit chains, files and test totals are in evidence/2026-11-01-wave4/lane-checkpoints.json. Existing W3/W4 lane branches were preserved, not reused.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Actual W1/root, W2/course_release_review, W3/feature_inventory and W4/faith_design_plan completed and committed locally. Integration/root assembled and tested exact source649a3f5; integration_review independently passed13cases/read-only privacy review, no remaining actionable finding in synthetic scope. L5/connections_wave3 and L6/content_wave3 actually dispatched but narrowed to documentation-only after automatic review; docs committed. L7 unused detached worktree exists with no agent/write; L8 no worktree/agent. No agent currently working is claimed. Full paths/commits/files: evidence/2026-11-01-wave3/lane-commits.json.

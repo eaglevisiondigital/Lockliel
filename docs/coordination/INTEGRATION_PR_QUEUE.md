@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 4 current result, November 1
+
+Combined synthetic contract source f43cc3a is on codex/wave4-contract-review, based on preserved Wave3 checkpoint9e89fec. Canonical shared context/test commit494db59 precedes it. All imported source/test bytes match clean lane commits. Full local validation passes; no remote CI/PR or workflow was triggered or changed. Original codex/wave3-member-integration remains9e89fec with source649a3f5 intact. No new UI integration or live adapter is claimed. Next smallest package: mock-only L6 catalog-to-L5 share-review adapter/panel under a default-OFF flag, explicit clock/context/revision/consent boundaries and existing member design components, followed by separate L8 privacy/L7 unavailable-readiness projections.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Local candidate649a3f5 on codex/wave3-member-integration, basefa294f7, actual combined Next validation passed714unit/134focused/type/build/lint/Netlify and scoped browser checks. No PR/push/CI created. CoursePR4/main remain preserved at last remote observation. Candidate is synthetic reviewable, not live integration or release-ready; zoom/OSmotion/screenreader/rights/privacy/identity/provider dependencies remain. All lane preservation/Wave3 commits independent. Remote workflow integration-target coverage remains unverified because no push/workflow change authorized. Next: owner visual/private-lifecycle review and narrow mocked adapter contract package, not live activation.

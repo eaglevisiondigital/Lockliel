@@ -1,0 +1,20 @@
+{
+  "tests": 50,
+  "failed": 0,
+  "skipped": 0,
+  "typecheck": "strict scoped, ordinary bundler module resolution",
+  "lint": "pass zero warnings",
+  "bundleBytes": 12595,
+  "bundleInputs": [
+    "lib/synthetic-contracts/context.ts",
+    "lib/privacy-ops-preview/index.ts"
+  ],
+  "externalImports": 0,
+  "productionNetwork": "blocked by existing network guard",
+  "migrationCount": 280,
+  "migrationBytesChanged": 0,
+  "effects": "all false",
+  "fullBuild": "coordinator combined check pending",
+  "browser": "not applicable pure contracts",
+  "independentReview": "no remaining actionable L8 finding in synthetic scope"
+}

@@ -1,3 +1,5 @@
+> Wave 4 supersession, November 1, 2026: explicit new authorization now permits the narrow pure synthetic contract/test implementation documented in WAVE4_RESULT.md. The earlier preparation-only hold and automatic rejection history below remain historical. The fixed coordinator catalog DTO supersedes the earlier proposed shape. Future matrix cases below are not collectively claimed as passed; see executed coverage and remaining limits in WAVE4_RESULT.md.
+
 # L6 future acceptance matrix
 
 November 1, 2026. PREPARED, NOT EXECUTED. All cases below remain unverified for a future L6 implementation. No new code/tests are supplied by this packet.

@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 4 current result, November 1
+
+L5–L8 pure synthetic contracts are implemented and committed independently. Exact combined review source f43cc3a passes 292 new/shared focused tests and 1,006 full unit tests, ordinary TypeScript, Next static build, configured/targeted lint and Netlify validation. Eighteen actual cross-lane tests exercise real L6 DTO output in L5, grants/revocation, stale confirmation, organization and finance/admin/privacy separation. Independent review found and verified two L5 fixes. Source facts, proposals and live acceptance remain separate. See WAVE4_COORDINATOR_RESULT.md and evidence/2026-11-01-wave4. No feature is newly Live.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 Exact source integration649a3f5, imported W3e3a3dd0/W4f4c2a9f.134 guarded combined focused tests and full714unit tests pass; TypeScript, configured/targeted lint, Netlify75modules62handlers, both OFF/ON static builds pass. Actual Next browser checks cover eight section/width combinations, identity clearing, private state/navigation, drawer keyboard and no-fallback. Actual200%zoom/OSmotion/fullscreenreader/exhaustive rendered contrast remain open. W1/W2 remain evidence/procedure only. See WAVE3_COORDINATOR_RESULT.md and evidence/2026-11-01-wave3. No feature newly Live.

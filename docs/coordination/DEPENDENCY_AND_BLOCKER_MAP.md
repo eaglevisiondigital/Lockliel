@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 4 current result, November 1
+
+One coordinator-owned synthetic context is mirrored identically across four independent lanes. L6 owns canonical catalog projection; L5 consumes metadata plus independent owner/consent/share checks. Member visibility requires member:read separately from connections:share; entitled sharing remains held. L6 ISO clocks and L5/L8 epoch-millisecond fixture clocks require explicit normalization in future adapters. L6 catalog is not an L7 price/shipping/merchant/entitlement contract; L7 finance grants do not become L8 administrative authority. Real Auth/session, server permission, retention/minors, private storage/RLS, rights, merchant/legal and execution decisions remain live dependencies. Course binding and real-CAPTCHA gates remain blocked.
+
+## Historical snapshots below
+
 ## Wave 3 current result, November 1
 
 W3/W4 now assemble on separate integration branch without schema/live identity/provider/storage. Host owns synthetic identity, reset epoch, visit edition, local nav and feature gate; component DTOs/intents are explicit. No shared-file collision. Real Auth/session/AAL, server DTO/RLS/privacy lifecycle, photo storage, Bible rights/provider and qualified crisis review remain dependencies for live integration. Course binding remains blocked at trusted current-alias-to-immutable-deploy evidence; fresh archive hashes only if provenance requires them. L5/L6 catalog DTO proposals require one coordinator-reviewed version before consumer integration. L5–L8 source implementation remains held after automatic review.
