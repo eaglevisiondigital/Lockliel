@@ -1,0 +1,76 @@
+{
+  "base": "24a6159efb2daba4e8dddf2c075694ac599d9a83",
+  "owner": "/root/connections_wave3",
+  "ownedFiles": [
+    {
+      "path": "components/owner-privacy-preview/owner-privacy-workspace.tsx",
+      "sha256": "a4437d7cab1c7dc11b1153665baa2156e2e64337237e5317278644eeba1b809d"
+    },
+    {
+      "path": "components/owner-privacy-preview/owner-privacy.module.css",
+      "sha256": "a2f6bad75b344bb9f3dd95916a202476b3b930f619ced97b15688e7ece45b0b7"
+    },
+    {
+      "path": "lib/owner-privacy-preview/model.ts",
+      "sha256": "bbd83f94ad32d508c91280854958ec4599250e3373b98fcb52ace1b4088a41a0"
+    },
+    {
+      "path": "tests/owner-privacy-preview-model.test.mjs",
+      "sha256": "4432b57798d58d10251a14d7b50d25b4e1aa2f8afa5e65989af363f0386baf07"
+    },
+    {
+      "path": "tests/owner-privacy-preview-workspace.test.mjs",
+      "sha256": "365b86cd2afb0755e2fafd52ed973bd47e98ed3a3f1c598ab2b80e364fae5d7e"
+    }
+  ],
+  "protectedSources": [
+    {
+      "path": "components/member-experience-preview/preview-model.ts",
+      "sha256": "c199e96b41da809971b243ff6549824a55aeee9d3c6e97a30dbde3815a1f9149",
+      "baseBytesUnchanged": true
+    },
+    {
+      "path": "lib/synthetic-contracts/context.ts",
+      "sha256": "f2735b6aad2f2e287a7e9635f4c22265c6d91502dc76e2da4a50bb61de58a30e",
+      "baseBytesUnchanged": true
+    },
+    {
+      "path": "lib/privacy-ops-preview/index.ts",
+      "sha256": "c7cff72699961aebdbe6f5b6ad50c96ee80133c554891589f5b488c8388bf560",
+      "baseBytesUnchanged": true
+    }
+  ],
+  "tests": {
+    "model": 48,
+    "actualComponentSSRAndSource": 14,
+    "total": 62,
+    "networkGuard": true
+  },
+  "strictScopedTypeScript": "passed",
+  "targetedLint": "passed-zero-warnings",
+  "pureModelBrowserBundle": {
+    "bytes": 9163,
+    "inputs": 3,
+    "externalImports": 0,
+    "write": false
+  },
+  "uiBrowserBundle": {
+    "jsBytes": 22906,
+    "cssBytes": 8978,
+    "inputs": 5,
+    "write": false
+  },
+  "liveStatus": "unknown-always",
+  "effects": {
+    "save": false,
+    "send": false,
+    "schedule": false,
+    "grant": false,
+    "publish": false,
+    "pay": false,
+    "execute": false
+  },
+  "agentBrowserAcceptance": "not performed; coordinator owns actual browser and whole-app validation",
+  "dependencyLink": "coordinator-owned; retained for combined validation",
+  "productionActions": false
+}
