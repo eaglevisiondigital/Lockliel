@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 5 current result, November 1
+
+Share Review uses scoped navy/blue/cream styling, existing member-shell landmarks and synthetic identity/reset boundaries. No shared global tokens, public site or previous member/Faith component files changed. Resource visual placeholders contain no remote requests or protected assets. Browser/keyboard/responsive evidence and explicit unverified full zoom/reduced-motion/spoken-reader limits are in the Wave5 report. A new visual language or public redesign is not authorized.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 No Wave4 UI, navigation, visual token or public website change. Preserved Wave3 source649a3f5 remains exact on its original branch. Bounded keyboard review reconfirms skip focus and named native dialog/title, Tab containment, Escape return and polite status semantics. Current visible Faith view has no active animation, transition or smooth scrolling; OS reduced-motion preference was false, so the reduce branch was source-reviewed but not activated. One review-tab zoom shortcut produced no measurable change; actual200%zoom remains unverified. Full spoken screen-reader and exhaustive rendered contrast remain open. Future panels must reuse existing reviewed member components and scoped tokens.

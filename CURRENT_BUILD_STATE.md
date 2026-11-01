@@ -1,5 +1,10 @@
 # Lockliel verified continuity baseline
 
+## Wave 5 synthetic member integration (2026-11-01)
+
+Wave 5 combines the actual L6 catalog and L5 My Five sharing contracts in a reusable Share Review UI, exact validated source af99a5211e9af55645fb0817d7976d3e0b1b6893. Owned module checkpoint 3a2af04cc4aba55c2e0b44e38166dea41431ebc7 precedes the coordinator host checkpoint. Dedicated integration worktree/branch is separate from course development and all preserved lane branches. The result is synthetic, memory-only and default-OFF; explicit confirmation sends nothing and records no share event. 1,096 full tests, build/type/lint/Netlify and bounded keyboard/four-width browser checks pass. All 280 migration hashes remain unchanged. No live integration or release gate is closed. See the Wave5 packet for exact source, reviewers and accessibility limits.
+
+
 ## Wave 4 synthetic contract checkpoint (2026-11-01)
 
 Wave 4 combined synthetic contract source `f43cc3a`, on `codex/wave4-contract-review`, extends preserved Wave 3 checkpoint `9e89fec` without changing its member/Faith source `649a3f5`. Four independent L5–L8 branches are committed and clean; exact heads, files and tests are in the current coordination registers. The 1,006 full unit tests include 292 new/shared focused tests. Ordinary TypeScript, static build, lint and Netlify validation passed. No UI, live adapter or production activation was added. Course binding, real-proof acceptance, recovery and owner decisions remain open. Actual zoom, spoken screen-reader and reduced-motion branch acceptance is incomplete. Production migration 274 and isolated migration 280 with maintenance ON are carried-forward observations, not fresh SQL results from this wave. No live changes or remote publication occurred.

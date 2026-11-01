@@ -1,5 +1,10 @@
 # Lockliel decisions and open questions
 
+## Wave 5 synthetic member integration (2026-11-01)
+
+Dave directly authorized Wave 5 isolated default-OFF L6/L5 Share Review integration, bounded independent reviews and logical local commits only. That scope is complete at af99a5211e9af55645fb0817d7976d3e0b1b6893. Original Wave3 source649a3f5, Wave4 combinedf43cc3a/documentation46d003 and coursePR4 remain preserved. A local preview confirmation is not consent acquisition, message delivery, a completed-share event, resource entitlement, staff authority or financial consent. No new Live status, rights/merchant/legal/private lifecycle decision or production release authorization exists. The proposed next owner-only synthetic privacy-status panel is not begun; live identity/consent/delivery and all operational gates remain separate.
+
+
 ## Wave 4 synthetic contract checkpoint (2026-11-01)
 
 Dave directly approved Wave 4 L5–L8 synthetic source, contracts and tests, narrowly resolving the earlier preparation-only implementation hold. Separate local lane, shared, combined and documentation checkpoints are authorized, with no push, merge, deployment or live activation. The original member/Faith candidate and course PR #4 remain unchanged. No sharing of merchant accounts among Lockliel, Champion Life and SowGo is inferred. Global Propel Text-to-Give remains unavailable future vocabulary. Provider, legal, receipts, currency, books, shipping, private lifecycle, rights, crisis, operations and complete accessibility decisions remain open. The next mock UI integration package is a recommendation; it was not executed here.

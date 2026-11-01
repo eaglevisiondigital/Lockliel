@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 5 current result, November 1
+
+Production remains NOT READY and unauthorized. Wave5 synthetic UI/testing closes no release gate. One supported L2 isolated Netlify metadata read confirmed site identity only, not current alias/function provenance; exact binding remains BLOCKED. Real CAPTCHA, account disposition, Storage recovery/custodian, current exposure/security, operator/final-write PITR, durations/content/notice and explicit release authority remain open. Production274/isolated280-pausedON are retained observations, not fresh SQL. No production or isolated database/settings/maintenance operation occurred.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Production release remains NOT READY and unauthorized. Local contract tests close no operational gate. One fresh isolated Netlify metadata read confirmed site ID/name but exposed no trusted current rehearsal-alias→immutable-deploy/function evidence; course binding remains BLOCKED. No SQL/migration/manager/course acceptance replay or maintenance change occurred. Real-CAPTCHA remains unverified; account-origin disposition, Storage recovery, operator/final-writePITR, duration/notice/legacy-client and explicit execution gates remain. Production274 and isolated280/pausedON are prior database observations, not fresh Wave4 database reads. No Auth/settings/permissions, production, content/payment activation, push, merge or deploy.

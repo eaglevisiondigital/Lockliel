@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 5 current result, November 1
+
+Wave5 synthetic Share Review sourceaf99a5211e9af55645fb0817d7976d3e0b1b6893 is ready only for local development review. Default-OFF local-member and independent share gates reject hosted contexts. Actual composed tests/browser are required and recorded, not inferred from pure contract tests. No PR created/updated, remote CI, push, merge or deploy. Course PR4 remains separate. Next smallest safe package is broader adversarial/review fixture coverage or another isolated member preview using the same contracts; live identity/consent/delivery adapters need separate scope and review.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Combined synthetic contract source f43cc3a is on codex/wave4-contract-review, based on preserved Wave3 checkpoint9e89fec. Canonical shared context/test commit494db59 precedes it. All imported source/test bytes match clean lane commits. Full local validation passes; no remote CI/PR or workflow was triggered or changed. Original codex/wave3-member-integration remains9e89fec with source649a3f5 intact. No new UI integration or live adapter is claimed. Next smallest package: mock-only L6 catalog-to-L5 share-review adapter/panel under a default-OFF flag, explicit clock/context/revision/consent boundaries and existing member design components, followed by separate L8 privacy/L7 unavailable-readiness projections.

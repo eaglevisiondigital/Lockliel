@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 5 current result, November 1
+
+Share preview is an allowlisted presentation of synthetic resource/recipient/channel/message, not arbitrary relationship/profile data. Private notes, prayers, growth, hidden profile, restricted locators and internal entitlement state do not pass into preview. Current independent L6/L5 checks run again at final confirmation; consent/grant/revision/organization mismatches deny. No real delivery, completed-share event, storage or production APIs exist. Context/reset clears private drafts. All effects remain false. L1 review retains unknown account origin and real-proof failure; no live investigation or Auth change this wave.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Independent review reproduced an L5 enum-coercion/private-object echo and a missing member:read check relative to L6. Strict enum checks,20regressions and5permission cases fixed them in separate commits; independent probes and composed tests pass. No further actionable issue was established in the reviewed synthetic scope. L8 requires explicit AAL2/purpose/subject/revision/expiry/revocation scope, separates owner request/reviewer/operator and excludes private bodies from admin/audit projections. L7 has independent organization merchants, bounded fixture currency, authorization/idempotency/refund/entitlement boundaries. All effects remain false; no fixture proves real auth/RLS/merchant authority. Security review reran22mock tests, retained account-origin uncertainty and strengthened the unexecuted real-proof procedure. No fresh production account queries or Auth window.

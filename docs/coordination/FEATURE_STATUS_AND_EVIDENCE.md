@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 5 current result, November 1
+
+Wave5 integrates actual L6 catalog projection/readiness and L5 relationship/consent/share preparation in the existing synthetic member shell. Exact source af99a5211e9af55645fb0817d7976d3e0b1b6893. 1096 full guarded JavaScript tests pass, plus ordinary TypeScript, static build, configured/targeted lint and Netlify. This is a local preview result only, no delivered share/event/persistence. See WAVE5_COORDINATOR_RESULT.md for browser evidence and accessibility limits. No feature newly Live.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 L5–L8 pure synthetic contracts are implemented and committed independently. Exact combined review source f43cc3a passes 292 new/shared focused tests and 1,006 full unit tests, ordinary TypeScript, Next static build, configured/targeted lint and Netlify validation. Eighteen actual cross-lane tests exercise real L6 DTO output in L5, grants/revocation, stale confirmation, organization and finance/admin/privacy separation. Independent review found and verified two L5 fixes. Source facts, proposals and live acceptance remain separate. See WAVE4_COORDINATOR_RESULT.md and evidence/2026-11-01-wave4. No feature is newly Live.

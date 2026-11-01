@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 5 current result, November 1
+
+Wave5 direct authorization permits this narrowly scoped default-OFF synthetic Share Review UI and logical local checkpoints on its dedicated branch. L6 resources, L5 owner relationships, current grants/consent/revisions and explicit confirmation remain independent. Selection does not create consent and confirmation is not delivery. No live services, migrations, production/configuration/Auth changes, push/merge/deploy or financial/content activation is authorized. Historical approval-control records are retained.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Dave directly authorized L5–L8 synthetic contracts and tests in Wave4, superseding only the earlier preparation-only restriction. No UI/live adapter, production action, Auth/CAPTCHA change, migration, payment, content activation, message, staff grant, purchase, push, merge or deployment follows. The historical rejection is retained. A new L5 agent staging rejection for coordinator-owned files was honored; the agent committed only its owned paths and the coordinator separately preserved its identical shared files through ordinary approval. No bypass or unresolved confirmation remains for completed local work.

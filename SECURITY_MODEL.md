@@ -1,5 +1,10 @@
 # Lockliel security model
 
+## Wave 5 synthetic member integration (2026-11-01)
+
+Wave 5 synthetic previews enforce separate catalog eligibility, relationship ownership/read/share grants, active stage, current narrow consent and explicit confirmation. Draft and final stages deny revoked/expired/wrong-owner/scope/org consent and stale revisions. Final actual L5/L6 decisions still have every effect false. Private notes, prayer/growth/profile fields, restricted locators and finance/admin authority do not enter the preview. Optional synthetic text is bounded and component-memory-only, never audit or delivery payload. Independent source/privacy reviews and guarded tests found and verified consent/activity and rendered CSS corrections. No live session, RLS, CAPTCHA or delivery certification follows. Production/course/Auth gates remain open and no live security setting changed.
+
+
 ## Wave 4 synthetic contract checkpoint (2026-11-01)
 
 Wave 4 proposals preserve explicit organization, owner, consent, revision and current-grant boundaries, with all effects false. L5 enum-object/private-field echo and the member-read mismatch were corrected and regression-tested. L6 entitlements, applications, mailbox verification and resource identity; L7 independent merchants and financial states; and L8 AAL2, purpose, reviewer/operator, privacy and audit boundaries remain distinct. Pure fixtures do not prove server authorization, RLS or a payment. Network guards and credential scrubbing protected local validation. No new production query, Auth window, key input, configuration or permission change occurred. Real-CAPTCHA, course-binding and recovery gates remain blocked. The earlier scope rejection and subsequent ownership-related staging rejection remain documented; neither was bypassed.

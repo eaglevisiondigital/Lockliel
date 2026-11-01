@@ -1,5 +1,10 @@
 # Lockliel architecture
 
+## Wave 5 synthetic member integration (2026-11-01)
+
+Wave 5 adds lib/share-review/adapter.ts and components/share-review/**, composed within the existing member-review shell under two local-only exposure gates. L6 owns canonical catalog projection/readiness; L5 owns relationship/consent/share decisions. The adapter explicitly normalizes the same fixture clock and rechecks current context, owner, grants, consent, active stage and revisions at final confirmation. Safe resource/recipient/type/format/message DTOs never contain private domain records, contact coordinates or protected locators. Identity/reset keys clear private memory; ordinary section navigation preserves module-local drafts. No API, database schema, global token, public design, persistence, delivery or event adapter changed.
+
+
 ## Wave 4 synthetic contract checkpoint (2026-11-01)
 
 Wave 4 adds coordinator-owned `lib/synthetic-contracts/context.ts` and independent pure L5 connections, L6 content-readiness, L7 commerce and L8 privacy-ops review modules. One synthetic organization/actor/session/AAL/grant vocabulary is mirrored exactly; it is not real authentication. L6 owns catalog projection; L5 owns relationship, consent and sharing semantics. L7 product/merchant/settlement contracts and L8 purpose-scoped operations remain distinct. Time normalization and grant mappings require explicit future adapters. Combined tests exercise actual producer/consumer exports. No handler, API, navigation, schema, global design or live-data integration was added. See `docs/wave4/CONTRACT_COMPATIBILITY.md` on the separate review branch.

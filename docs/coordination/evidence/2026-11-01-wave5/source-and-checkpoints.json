@@ -1,0 +1,68 @@
+{
+  "base": "46d003673bf6ef4d877c0731ac47cf678dbed494",
+  "shareModuleCommit": "3a2af04cc4aba55c2e0b44e38166dea41431ebc7",
+  "combinedSource": "af99a5211e9af55645fb0817d7976d3e0b1b6893",
+  "branch": "codex/wave5-share-integration",
+  "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-wave5-share-integration/Lockliel",
+  "commits": [
+    "3a2af04cc4aba55c2e0b44e38166dea41431ebc7 feat: assemble local synthetic share review workspace",
+    "af99a5211e9af55645fb0817d7976d3e0b1b6893 Integrate default-OFF synthetic member Share Review"
+  ],
+  "changedFiles": [
+    "app/my-lockliel/review/page.tsx",
+    "components/member-review/member-review-shell.tsx",
+    "components/member-review/member-review.module.css",
+    "components/share-review/share-review-workspace.tsx",
+    "components/share-review/share-review.module.css",
+    "docs/share-review/README.md",
+    "docs/share-review/SOURCE_AND_VALIDATION.json",
+    "lib/member-review/review-policy.ts",
+    "lib/share-review/adapter.ts",
+    "tests/member-review-integration.test.mjs",
+    "tests/share-review-adapter.test.mjs",
+    "tests/share-review-workspace.test.mjs",
+    "tests/wave5-member-share-integration.test.mjs"
+  ],
+  "fileHashes": {
+    "app/my-lockliel/review/page.tsx": "36d4a94d4356ecec3fcb9e86002e72bbd3a054f919d695d227fb8949371be945",
+    "components/member-review/member-review-shell.tsx": "7a440702075543740727ffdf67013ea2c3ce3abda6a8c709c9d1d61018a0f0dc",
+    "components/member-review/member-review.module.css": "c62dcc592ce500ff4d61b170e6b21e13fde0ffd79d9d6d1bb505d3445577a346",
+    "components/share-review/share-review-workspace.tsx": "4640b24028b545b9db892d8780adbafc25692d61cd917df8813ff124c5836c84",
+    "components/share-review/share-review.module.css": "fd9d0a9650a5b25c5c937486b7c408f393d9ee62a6fd27226fba29f438ae260b",
+    "docs/share-review/README.md": "965f219d4cb5a81db114621facf5dc8796c2bef3cf3dddda9dac119f200c5c9c",
+    "docs/share-review/SOURCE_AND_VALIDATION.json": "ee4a99154605c6fe7a931aea1739fa2a18cc49925193aa145f41103cd46a2b96",
+    "lib/member-review/review-policy.ts": "5aefabadceecc84a47139ef7fa3a38ed489c8645efe172ffb9069f5705121363",
+    "lib/share-review/adapter.ts": "758d7d93c87c7f3576a96f1a8408ff0633351965b050272fcbdb4b8c4494c981",
+    "tests/member-review-integration.test.mjs": "1ddf67e6bacab643a1fee562c11fcfd7412af3d5e242dfa5266767250eb46e63",
+    "tests/share-review-adapter.test.mjs": "b9e95ed881699e834b863ffb970da5fa09baace73efb94532fb0a3951f085de7",
+    "tests/share-review-workspace.test.mjs": "282e5c367e02dadec49a7c6e90e8632f0cd482ae707d4f7875df84e1cc205176",
+    "tests/wave5-member-share-integration.test.mjs": "e7533f18323a700970982631ab99294ba69374eb4aff9c1ff02d3f924a17ee93"
+  },
+  "reviews": [
+    {
+      "lane": "L1",
+      "agent": "/root/security_wave4",
+      "commit": "51706bdecc84fb681802ff34920b41766923d8f4",
+      "branch": "codex/lane1-account-integrity"
+    },
+    {
+      "lane": "L2",
+      "agent": "/root/course_wave5",
+      "commit": "3d85400f0515f1b3cad918c3f3fedf283689ea97",
+      "branch": "codex/lane2-course-readiness"
+    },
+    {
+      "lane": "L3/L4",
+      "agent": "/root/member_privacy_wave5",
+      "file": "WAVE5_MEMBER_FAITH_REVIEW.md"
+    },
+    {
+      "lane": "L7/L8 and final audit",
+      "agent": "/root/integration_review",
+      "files": [
+        "WAVE5_FINANCE_ADMIN_COMPATIBILITY_REVIEW.md",
+        "WAVE5_FINAL_SOURCE_REVIEW.md"
+      ]
+    }
+  ]
+}

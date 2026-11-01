@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 5 current result, November 1
+
+Actually dispatched Wave5: /root/connections_wave3 implements Share Review; /root/security_wave4 reviews retained L1 evidence; /root/course_wave5 reviews L2 binding; /root/member_privacy_wave5 reviews L3/L4 privacy/accessibility; /root/integration_review reviews L7/L8 compatibility. Root implements host/gates and performs full validation/browser/coordinator work. Peak coordinator plus three active agents; completed review slots reused. Exact branches/worktrees/checkpoints are in the Wave5 result/evidence. No undispatched agent is claimed.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Actually dispatched/resumed native agents: /root/connections_wave3 (L5), /root/content_wave3 (L6), /root/commerce_wave4 (L7), /root/course_release_review (bounded course review), /root/security_wave4 (bounded security review), /root/integration_review (read-only cross-lane audit). Root coordinator implemented L8 and shared/compatibility work, updated registers and performed bounded accessibility review. Peak concurrency stayed coordinator plus three children; no agent still working is claimed. Exact branches, worktrees, commit chains, files and test totals are in evidence/2026-11-01-wave4/lane-checkpoints.json. Existing W3/W4 lane branches were preserved, not reused.

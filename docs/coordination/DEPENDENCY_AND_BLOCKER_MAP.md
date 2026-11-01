@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 5 current result, November 1
+
+L6 owns canonical resource DTOs and eligibility; L5 independently owns relationship, active stage, consent, owner, permissions and confirmation. A local adapter normalizes one fixture clock into ISO and epoch milliseconds and rechecks both at final confirmation. Channel is presentation only, without contact coordinates. Existing L7 merchant/product/entitlement and L8 purpose/AAL2 scopes remain separate. Real identity, consent revocation service, persistence, delivery receipts and event semantics remain future dependencies. Course exact binding, real CAPTCHA and production release gates remain open.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 One coordinator-owned synthetic context is mirrored identically across four independent lanes. L6 owns canonical catalog projection; L5 consumes metadata plus independent owner/consent/share checks. Member visibility requires member:read separately from connections:share; entitled sharing remains held. L6 ISO clocks and L5/L8 epoch-millisecond fixture clocks require explicit normalization in future adapters. L6 catalog is not an L7 price/shipping/merchant/entitlement contract; L7 finance grants do not become L8 administrative authority. Real Auth/session, server permission, retention/minors, private storage/RLS, rights, merchant/legal and execution decisions remain live dependencies. Course binding and real-CAPTCHA gates remain blocked.

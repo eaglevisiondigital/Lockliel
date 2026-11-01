@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 5 current result, November 1
+
+No additional owner permission was needed for the authorized local Wave5 synthetic integration and local commits. Live identity/server authorization/consent lifecycle/channel delivery/event semantics remain separate. Account disposition, real CAPTCHA/browser/client acceptance, course binding/recovery/operational release, licensed Scripture/private data/photo retention/minors/crisis safety, actual merchant/legal/book/shipping/content decisions remain open. No real share/payment/staff/content activation is implied.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 The local L5–L8 synthetic implementation scope is now approved and completed; no repeat permission is needed for those contracts/tests or their logical local checkpoints. Live adapters remain separate. Owner decisions still include account disposition and exact Auth acceptance/browser compatibility, intended visual reference and full accessibility, Bible provider/rights/default/locales, private data/photo lifecycle/minors/crisis review, Storage custodian/retrieval, operator/final-writePITR/durations/cutover, independent merchant/provider/legal/receipt/currency/refund/book/shipping and future Global Propel ownership. No actual merchant or cross-project account relationship is inferred. No credentials requested.

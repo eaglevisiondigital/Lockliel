@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 5 current result, November 1
+
+Root owns the dedicated codex/wave5-share-integration branch, app/my-lockliel/review/page.tsx, components/member-review/**, lib/member-review/review-policy.ts, host integration tests and coordinator docs. /root/connections_wave3 exclusively owns components/share-review/**, lib/share-review/**, tests/share-review*.test.mjs and docs/share-review/**. Old L5/L6/L7/L8/shared contracts, Auth/handlers/schema/global tokens/configuration are byte-preserved. Bounded reviewers own only named review docs. No competing source writes or branch merge.
+
+## Historical snapshots below
+
 ## Wave 4 current result, November 1
 
 Coordinator exclusively owns lib/synthetic-contracts/**, tests/synthetic-context.test.mjs, tests/wave4-contract-compatibility.test.mjs, docs/wave4/** and the separate review branch. L5 owns lib/connections-preview/** and its focused test/docs; L6 owns lib/content-readiness-preview/**; L7 owns lib/commerce-preview/**; L8 coordinator owns lib/privacy-ops-preview/** with its test/docs. No existing Auth, handler, navigation, token, schema, hosting, dependency or other repository files changed. Exact source snapshots were imported for compatibility without branch merges. Shared context commit494db59 and source hash f2735b6... are identical in all lanes; agent ownership rejection and normal coordinator checkpoint are recorded.

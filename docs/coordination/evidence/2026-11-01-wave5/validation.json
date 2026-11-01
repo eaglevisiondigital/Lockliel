@@ -1,0 +1,22 @@
+{
+  "fullTests": 1096,
+  "fail": 0,
+  "skipped": 0,
+  "shareFocused": 78,
+  "hostAndCrossLaneFocused": 25,
+  "focusedCombined": 103,
+  "l5L6ContractTests": 166,
+  "financeAdminCompatibilitySubset": 109,
+  "buildEnabled": true,
+  "buildDefaultOff": true,
+  "type": true,
+  "lint": true,
+  "netlify": {
+    "modules": 75,
+    "handlers": 62
+  },
+  "protectedFilesUnchanged": 418,
+  "migrationHashesUnchanged": 280,
+  "guarded": true,
+  "sqlReplay": false
+}
