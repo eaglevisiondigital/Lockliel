@@ -30,3 +30,8 @@ export function localShareReviewEnabled(input: Readonly<{flag?:string; memberFla
 export function localPrivacyReviewEnabled(input:Readonly<{flag?:string;memberFlag?:string;context?:string;netlify?:string}>):boolean {
   return input.flag==='synthetic-local' && localMemberReviewEnabled({flag:input.memberFlag,context:input.context,netlify:input.netlify});
 }
+
+/** Offline read-model exposure only. No connected Auth or server adapter is enabled. */
+export function localMemberReadReviewEnabled(input:Readonly<{flag?:string;memberFlag?:string;context?:string;netlify?:string}>):boolean {
+  return input.flag==='offline-local' && localMemberReviewEnabled({flag:input.memberFlag,context:input.context,netlify:input.netlify});
+}

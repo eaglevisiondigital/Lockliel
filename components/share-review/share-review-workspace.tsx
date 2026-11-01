@@ -4,6 +4,8 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { SyntheticContext } from '../../lib/synthetic-contracts/context';
 import { buildSharePreview, CHANNEL_LABELS, confirmSharePreview, createShareSnapshot, projectShareWorkspace, shareBoundary } from '../../lib/share-review/adapter';
 import type { ShareChannel, SharePreview, ShareScenario } from '../../lib/share-review/adapter';
+import { isMemberReadModel } from '../../lib/member-read-model/validation';
+import type { MemberReadModel } from '../../lib/member-read-model/contracts';
 import styles from './share-review.module.css';
 
 export type ShareReviewWorkspaceProps=Readonly<{context:SyntheticContext|null;boundaryKey:string;idPrefix?:string}>;
@@ -18,7 +20,12 @@ const SCENARIO_COPY:Readonly<Record<Exclude<ShareScenario,'ready'>,{title:string
 };
 
 /** Headless local module. The host owns its shell, navigation, feature gate and identity. */
-export function ShareReviewWorkspace({context,boundaryKey,idPrefix}:ShareReviewWorkspaceProps) {
+export function ShareReviewWorkspace(props:ShareReviewWorkspaceProps | Readonly<{readModel:MemberReadModel}>) {
+ if (!props) return <section role="status"><h2>Member view unavailable</h2><p>No private details or controls are shown.</p></section>;
+ if ('readModel' in props && !isMemberReadModel(props.readModel)) return <section role="status"><h2>Member information unavailable</h2><p>No private details or controls are shown.</p></section>;
+ return 'readModel' in props ? <ReadShareWorkspace model={props.readModel}/> : <SyntheticShareReviewWorkspace {...props}/>;
+}
+function SyntheticShareReviewWorkspace({context,boundaryKey,idPrefix}:ShareReviewWorkspaceProps) {
  const instance=useId();
  const prefix=typeof idPrefix==='string'&&/^[A-Za-z][A-Za-z0-9_-]{0,59}$/.test(idPrefix)?idPrefix:`share-${instance}`;
  const boundary=shareBoundary(context,boundaryKey);
@@ -97,4 +104,16 @@ function ShareBoundary({context,prefix}:{context:SyntheticContext;prefix:string}
 }
 function PreviewSummary({preview}:{preview:SharePreview}) {
  return <div className={styles.preview}><span className={styles.eyebrow}>YOUR LOCAL PREVIEW</span><h4>{preview.resourceLabel.replace(/^Synthetic /,'')}</h4><dl><div><dt>Type</dt><dd>{preview.resourceType}</dd></div><div><dt>For</dt><dd>{preview.recipientLabel}</dd></div><div><dt>Format</dt><dd>{preview.channelLabel}</dd></div><div><dt>Delivery</dt><dd>Not connected. Nothing will be sent.</dd></div></dl>{preview.message?<blockquote>{preview.message}</blockquote>:<p className={styles.muted}>No optional note added.</p>}<small>Invented resource and recipient. No contact address or protected content is included.</small></div>;
+}
+
+/** Existing API shapes do not establish accepted, scoped consent. Selection cannot manufacture it. */
+function ReadShareWorkspace({model}:{model:MemberReadModel}){
+ const [resource,setResource]=useState(''),[recipient,setRecipient]=useState(''),[message,setMessage]=useState(''),[notice,setNotice]=useState('');
+ const heading=useRef<HTMLHeadingElement>(null);
+ const catalog=model.catalog,relationships=model.myFive;
+ return <section className={styles.workspace} aria-labelledby="offline-share-title"><div className={styles.intro}><div><p className={styles.eyebrow}>SHARE CENTER</p><h2 id="offline-share-title">A thoughtful next step.</h2><p>Review resource and relationship projections together, without turning selection into consent.</p></div><span className={styles.pill}>Offline read contract</span></div><aside className={styles.boundary}><strong>Nothing leaves this page.</strong><p>Current resource-sharing consent is unverified. No message, link, sharing event or completed share can be created.</p></aside>
+ <div className={styles.panel}><h3 ref={heading} tabIndex={-1}>Resource and recipient review</h3><div className={styles.twoColumns}><div className={styles.field}><label htmlFor="offline-share-resource">Resource fixture</label><select id="offline-share-resource" value={resource} onChange={event=>{setResource(event.target.value);setNotice('Selection changed locally. Sharing permission remains unavailable.');}} disabled={catalog.status!=='ready'}><option value="">Choose a sample resource</option>{catalog.status==='ready'&&catalog.value.map(item=><option value={item.id} key={item.id}>{item.title}</option>)}</select>{catalog.status==='unavailable'&&<p>{catalog.message}</p>}</div><div className={styles.field}><label htmlFor="offline-share-recipient">Existing My Five relationship fixture</label><select id="offline-share-recipient" value={recipient} onChange={event=>{setRecipient(event.target.value);setNotice('A recipient choice is not permission to contact them.');}} disabled={relationships.status!=='ready'}><option value="">Choose a sample relationship</option>{relationships.status==='ready'&&relationships.value.map(person=><option value={person.id} key={person.id}>{person.label}</option>)}</select>{relationships.status==='unavailable'&&<p>{relationships.message}</p>}</div></div>
+ {catalog.status==='ready'&&resource&&catalog.value.filter(item=>item.id===resource).map(item=><div key={item.id} className={styles.preview}><h4>{item.title}</h4><p>{item.description}</p><p>Type: {item.type}. Resource sharing eligibility: Unverified.</p></div>)}
+ <div className={styles.field}><label htmlFor="offline-share-note">Optional invented draft</label><textarea id="offline-share-note" rows={3} maxLength={240} value={message} onChange={event=>setMessage(event.target.value)} aria-describedby="offline-share-help"/><small id="offline-share-help">Memory only. Do not enter real contact details, prayers or private information. Draft content is never passed to an adapter.</small></div>
+ <aside className={styles.stateNotice}><strong>Consent must be verified first.</strong><p>{model.sharing.status==='unavailable'?model.sharing.message:'Sharing permission unavailable.'}</p><p>The existing follow-up flag and communication preferences do not prove current, scoped resource-share consent.</p></aside><div className={styles.actions}><button type="button" className={styles.primary} disabled>Share preview unavailable</button><button type="button" className={styles.secondary} onClick={()=>{setResource('');setRecipient('');setMessage('');setNotice('Local choices and draft cleared. Nothing was sent.');heading.current?.focus();}}>Cancel and clear draft</button></div><p className={styles.notice} role="status" aria-live="polite">{notice}</p></div><p className={styles.footer}>No private notes, prayer or growth content, financial data, contact details, protected files or internal entitlements enter this review.</p></section>;
 }

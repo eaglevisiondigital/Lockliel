@@ -9,10 +9,14 @@ import { OwnerPrivacyWorkspace } from '../owner-privacy-preview/owner-privacy-wo
 import { ShareReviewWorkspace } from '../share-review/share-review-workspace';
 import { LOCKLIEL_ORG, SYNTHETIC_SCHEMA } from '../../lib/synthetic-contracts/context';
 import type { SyntheticContext } from '../../lib/synthetic-contracts/context';
+import { OfflineMemberReadShell } from './offline-member-read-shell';
 import styles from './member-review.module.css';
 
 /** Synthetic host only. No account/session request, persistence or protected information. */
-export default function MemberReviewShell({initialState=initialReviewState(),shareReviewEnabled=false,privacyReviewEnabled=false}:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean}>){
+export default function MemberReviewShell(props:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean;offlineReadEnabled?:boolean}>){
+  return props.offlineReadEnabled ? <OfflineMemberReadShell shareReviewEnabled={props.shareReviewEnabled} privacyReviewEnabled={props.privacyReviewEnabled}/> : <SyntheticMemberReviewShell {...props}/>;
+}
+function SyntheticMemberReviewShell({initialState=initialReviewState(),shareReviewEnabled=false,privacyReviewEnabled=false}:Readonly<{initialState?:ReviewState;shareReviewEnabled?:boolean;privacyReviewEnabled?:boolean}>){
   const [state,dispatch]=useReducer(reduceReviewState,initialState);
   const [notice,setNotice]=useState('Choose a synthetic review context. This page does not sign anyone in.');
   const identity=reviewIdentity(state);

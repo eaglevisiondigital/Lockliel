@@ -3,11 +3,18 @@ import { useEffect, useId, useRef, useState } from 'react';
 import type { SyntheticContext } from '../../lib/synthetic-contracts/context';
 import { changePrivacyIdea, createPrivacyDraft, privacyBoundary, projectOwnerPrivacy } from '../../lib/owner-privacy-preview/model';
 import type { PrivacyIdeas, PrivacyScenario } from '../../lib/owner-privacy-preview/model';
+import { isMemberReadModel } from '../../lib/member-read-model/validation';
+import type { MemberReadModel } from '../../lib/member-read-model/contracts';
 import styles from './owner-privacy.module.css';
 export type OwnerPrivacyWorkspaceProps=Readonly<{context:SyntheticContext|null;boundaryKey:string;idPrefix?:string}>;
 const scenarioCopy={loading:{title:'Privacy review is loading',body:'This is a loading sample. No account setting or privacy status has been read.'},empty:{title:'No sample areas are shown',body:'This is an empty example, not an empty account or a claim that privacy controls do not exist.'},error:{title:'Privacy review is unavailable',body:'This sample could not load. Current live settings remain unknown; unavailable does not mean public.'}} as const;
 /** Headless owner information only. The host owns identity, navigation and default-OFF exposure. */
-export function OwnerPrivacyWorkspace({context,boundaryKey,idPrefix}:OwnerPrivacyWorkspaceProps) {
+export function OwnerPrivacyWorkspace(props:OwnerPrivacyWorkspaceProps | Readonly<{readModel:MemberReadModel}>) {
+ if (!props) return <section role="status"><h2>Member view unavailable</h2><p>No private details or controls are shown.</p></section>;
+ if ('readModel' in props && !isMemberReadModel(props.readModel)) return <section role="status"><h2>Member information unavailable</h2><p>No private details or controls are shown.</p></section>;
+ return 'readModel' in props ? <PrivacyReadWorkspace model={props.readModel}/> : <SyntheticOwnerPrivacyWorkspace {...props}/>;
+}
+function SyntheticOwnerPrivacyWorkspace({context,boundaryKey,idPrefix}:OwnerPrivacyWorkspaceProps) {
  const instance=useId(),prefix=typeof idPrefix==='string'&&/^[A-Za-z][A-Za-z0-9_-]{0,59}$/.test(idPrefix)?idPrefix:`privacy-${instance}`;
  const boundary=privacyBoundary(context,boundaryKey);
  if(!boundary||!context)return <section className={styles.workspace} aria-labelledby={`${prefix}-title`}><div className={styles.panel}><h2 id={`${prefix}-title`}>Owner privacy review unavailable</h2><p>No known owner context is available. No privacy details or controls are shown.</p><p className={styles.muted}>Current live settings are unknown. No account setting was changed.</p></div></section>;
@@ -50,4 +57,12 @@ function OwnerBoundary({context,prefix}:{context:SyntheticContext;prefix:string}
   <div className={styles.actions}><button type="button" className={styles.primary} onClick={reset}>Reset local ideas</button><p>Reset clears this preview only. Refreshing or changing owner/context also clears local ideas.</p></div>
   <p className={styles.footer}>No live settings are saved. No uploads, sharing, messages, exports, deletion, account changes or operations are available here.</p>
  </section>;
+}
+
+function PrivacyReadWorkspace({model}:{model:MemberReadModel}){
+ const preferences=model.communications;
+ const labels={ministryEmail:'Ministry email',faithBoostEmail:'Faith Boost email',bookReleaseEmail:'Book release email',partnerEmail:'Partner email',smsUpdates:'SMS updates'} as const;
+ return <section className={styles.workspace} aria-labelledby="offline-privacy-title"><div className={styles.intro}><div><p className={styles.eyebrow}>YOUR PRIVACY</p><h2 id="offline-privacy-title">Your space.<br/><span>Your boundaries.</span></h2><p>Owner-scoped read projections, with the limits made clear.</p></div><span className={styles.pill}>Offline data contract</span></div>
+ <aside className={styles.liveNotice}><div><h3>Current live settings: Unknown</h3><p>{model.privacy.message}</p></div></aside><div className={styles.grid}><article className={styles.card}><h3>Communication preferences</h3>{preferences.status==='ready'?<><p>Existing API fixture, revision {preferences.revision}. These are invented sample values, not live subscriptions.</p><dl>{(Object.keys(labels) as (keyof typeof labels)[]).map(key=><div key={key}><dt>{labels[key]}</dt><dd>{preferences.value[key]?'Opted in in fixture':'Not opted in in fixture'}</dd></div>)}</dl></>:<p>{preferences.message}</p>}<p className={styles.rule}>Channel preferences are not recipient-specific resource-sharing consent. No preference changes are available here.</p></article>
+ {['Profile photo','Faith Banner','Prayer Board','Growth and action plans','Scripture Anchors','My Five','Sharing consent'].map(title=><article className={styles.card} key={title}><h3>{title}</h3><p>Current live status: Unknown</p><p className={styles.readOnly}>No saved audience or permission is inferred. Private content, contact details and internal entitlements are excluded.</p></article>)}</div><aside className={styles.boundary}><h3>A read is not a permission.</h3><p>Applications, tags, invitations, mentor/group labels and staff roles never grant access to private Faith content or create consent. Nothing is saved or sent.</p></aside></section>;
 }

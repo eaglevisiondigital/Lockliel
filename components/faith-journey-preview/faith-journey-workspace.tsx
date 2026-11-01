@@ -7,10 +7,15 @@ import { ScriptureDrawer } from './scripture-drawer';
 import { ScriptureEncouragement } from './scripture-encouragement';
 import { isFaithIdPrefix, isSyntheticOwnerView, preferredEditionIntent, selectedSyntheticEdition } from './workspace-contract';
 import type { FaithWorkspaceProps } from './workspace-contract';
+import { isMemberReadModel } from '../../lib/member-read-model/validation';
+import type { MemberReadModel } from '../../lib/member-read-model/contracts';
 import styles from './faith-journey-preview.module.css';
 
 /** Reusable synthetic module. The coordinator host owns header/main/nav, identity view and preference. */
-export function FaithJourneyWorkspace(props: FaithWorkspaceProps) {
+export function FaithJourneyWorkspace(props: FaithWorkspaceProps | Readonly<{readModel:MemberReadModel}>) {
+  if (!props) return <section role="status"><h2>Member view unavailable</h2><p>No private details or controls are shown.</p></section>;
+  if ('readModel' in props && !isMemberReadModel(props.readModel)) return <section role="status"><h2>Member information unavailable</h2><p>No private details or controls are shown.</p></section>;
+  if ('readModel' in props) return <FaithReadWorkspace model={props.readModel}/>;
   const reset = props?.resetKey ?? 0;
   const validReset = (typeof reset === 'number' && Number.isSafeInteger(reset) && reset >= 0) || (typeof reset === 'string' && /^[A-Za-z0-9_-]{1,120}$/.test(reset));
   if (!props || !isSyntheticOwnerView(props.identity) || !isFaithIdPrefix(props.idPrefix) || !validReset || typeof props.onIntent !== 'function') {
@@ -55,4 +60,10 @@ function PrayerForm({onAdd, disabled, idPrefix}: Readonly<{onAdd: (body: string)
 }
 function GrowthForm({onAdd, disabled}: Readonly<{onAdd: (title: string, reflection: string) => void; disabled: boolean}>) {
   return <form className={styles.form} onSubmit={event => {event.preventDefault(); const form = event.currentTarget, values = new FormData(form), title = String(values.get('title') || '').trim(); if (disabled || !title) return; onAdd(title, String(values.get('reflection') || '').trim()); form.reset();}}><div className={styles.twoFields}><label className={styles.field}>Synthetic growth area<input name="title" maxLength={120} required placeholder="Synthetic example: Patience in conversations"/></label><label className={styles.field}>Optional synthetic reflection<input name="reflection" maxLength={4000} placeholder="Use an invented situation only."/></label></div><button className={styles.primary} disabled={disabled}>Add synthetic growth area</button></form>;
+}
+
+/** These domains need approved persistence contracts. Unavailable is not an empty private journal. */
+function FaithReadWorkspace({model}:{model:MemberReadModel}){
+ const areas=[['Preferred Bible translation',model.scripturePreferences],['Scripture Anchors',model.anchors],['Private Prayer Board',model.prayers],["Areas I'm Growing In",model.growth],['Personal action plans',model.actionPlans]] as const;
+ return <section className={`${styles.preview} ${styles.workspace}`} aria-labelledby="offline-faith-title"><div className={styles.welcome}><div><span className={styles.eyebrow}>Your personal Faith Journey</span><h2 id="offline-faith-title">A quiet place to grow.</h2><p>These owner-private areas are represented in the read contract. Their saved content is not connected, and no empty or completed state is assumed.</p></div></div><div className={styles.grid}>{areas.map(([title,feature])=><section className={styles.panel} key={title}><div className={styles.sectionHeading}><h3>{title}</h3><span className={styles.tag}>Backend required</span></div><p>{feature.status==='unavailable'?feature.message:'Unavailable contract'}</p><p className={styles.meta}>No private entry is loaded, collected, saved or shared. A future adapter requires separate privacy and persistence approval.</p></section>)}</div><aside className={styles.boundary}><h3>Privacy is part of the design.</h3><p>A staff role never creates access to private prayers, growth entries or plans. No Scripture provider, default translation, crisis automation or private-content sharing is activated.</p></aside></section>;
 }

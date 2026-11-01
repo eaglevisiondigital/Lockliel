@@ -6,6 +6,8 @@ import { changePhotoPreview, FAITH_BANNER_OPTIONS, PRIVATE_VISIBILITY, projectMe
 import type { FaithBannerMessage, PhotoPreviewState, PreviewAudience, Visibility, VisibilityChoices } from "./preview-model";
 import { emitMemberIntent, normalizeMemberWorkspaceDisplay, readMemberReviewIdentity } from "./member-display-contract";
 import type { MemberIntentHandler, MemberIntentKind, MemberNextStepDisplay, MemberReviewIdentity, MemberWorkspaceDisplayModel } from "./member-display-contract";
+import { isMemberReadModel } from '../../lib/member-read-model/validation';
+import type { MemberReadModel } from '../../lib/member-read-model/contracts';
 import styles from "./member-experience-preview.module.css";
 
 export interface MemberExperienceWorkspaceProps {
@@ -25,7 +27,10 @@ const FALLBACKS = {
 const FIELD_LABELS: Record<keyof VisibilityChoices, string> = { photo: "Photo placeholder", location: "Location", faithBanner: "Faith Banner" };
 
 /** Headless presentation boundary: no application header/main/navigation, Auth, API or persistence. */
-export function MemberExperienceWorkspace(props: MemberExperienceWorkspaceProps) {
+export function MemberExperienceWorkspace(props: MemberExperienceWorkspaceProps | Readonly<{readModel:MemberReadModel}>) {
+  if (!props) return <section role="status"><h2>Member view unavailable</h2><p>No private details or controls are shown.</p></section>;
+  if ('readModel' in props && !isMemberReadModel(props.readModel)) return <section role="status"><h2>Member information unavailable</h2><p>No private details or controls are shown.</p></section>;
+  if ('readModel' in props) return <MemberReadWorkspace model={props.readModel}/>;
   const identity = readMemberReviewIdentity(props.identity);
   // Do not inspect a display model or create interactive descendants for unknown identity.
   if (!identity) return <PreviewPanel><h2>Member review unavailable</h2><p>Review identity is unknown. No member information or actions are available.</p></PreviewPanel>;
@@ -137,4 +142,16 @@ function MemberNextStepCard({ id, model, canAct = false, onIntent }: {
       <small className={styles.quiet}>A suggested action never grants access or marks a lesson complete.</small>
     </>}
   </PreviewPanel>;
+}
+
+/** Read-only projection. Unsupported photo/banner state is never replaced by a synthetic saved preference. */
+function MemberReadWorkspace({model}:{model:MemberReadModel}){
+ const profile=model.profile,course=model.courseProgress;
+ return <section className={styles.workspace} aria-label="Owner-scoped offline member dashboard">
+  <div className={styles.dashboardGrid}><PreviewPanel className={styles.nextStep}><span className={styles.eyebrow}>Your next step</span><h2>A little room to grow.</h2>{course.status==='ready'?<><p>{course.value.title}</p><p>{course.value.completed} of {course.value.total} lessons completed in this fixture.</p><span className={styles.smallTag}>{course.value.maintenance?'Course maintenance remains on':'Read-only progress example'}</span><p>No lesson is opened and no progress changes.</p></>:<p>{course.message}</p>}</PreviewPanel>
+  <PreviewPanel className={styles.memberSummary}><span className={styles.eyebrow}>Your member card</span>{profile.status==='ready'?<><h2>{profile.value.displayName}</h2><p>Owner-only offline profile projection.</p><span className={styles.smallTag}>{profile.value.initials}</span></>:<p>{profile.message}</p>}<p className={styles.quiet}>No email, phone, role, private notes or inviter details are passed to this card.</p></PreviewPanel></div>
+  <section className={styles.profileSection}><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Your profile, your choice</p><h2>Make a little space for you.</h2></div><span className={styles.smallTag}>Offline reads only</span></div>
+  <div className={styles.profileGrid}><PreviewPanel><h3>Profile photo</h3><p>{model.photo.status==='unavailable'?model.photo.message:'Photo metadata unavailable.'}</p><p className={styles.privacyNote}>Saved visibility: Unknown. Upload, replacement and removal are not connected.</p><button type="button" className={styles.secondary} disabled>Photo controls unavailable</button></PreviewPanel><PreviewPanel><h3>Your Faith Banner</h3><p>{model.faithBanner.status==='unavailable'?model.faithBanner.message:'Saved banner unavailable.'}</p><p className={styles.privacyNote}>No banner is inferred from an account, role or course state.</p><button type="button" className={styles.secondary} disabled>Saved banner controls unavailable</button></PreviewPanel></div></section>
+  <PreviewPanel><h2>My Five, with care</h2>{model.myFive.status==='ready'?model.myFive.value.length?<ul>{model.myFive.value.map(person=><li key={person.id}><strong>{person.label}</strong><p>Relationship: {person.status}. Sharing consent: Unknown.</p></li>)}</ul>:<p>No relationship records were returned in this fixture.</p>:<p>{model.myFive.message}</p>}<p className={styles.privacyNote}>Original inviter, campaign, mentor/group and access permissions remain separate. Private contact notes and follow-up history are excluded.</p></PreviewPanel>
+ </section>;
 }
