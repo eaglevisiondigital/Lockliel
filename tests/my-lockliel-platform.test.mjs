@@ -2008,6 +2008,14 @@ test("every Lockliel server route is authenticated unless explicitly public and 
       continue;
     }
 
+    if(name==="lockliel-member-read.mjs"){
+      // This candidate has no open implementation. Session refresh is not permitted.
+      // The network-guarded entrypoint matrix separately invokes every method/context.
+      assert.match(source,/import \{ unavailableMemberRead \} from '\.\.\/lib\/member-read-server\.mjs'/);
+      assert.match(source,/export default async function memberRead\(\) \{ return unavailableMemberRead\(\); \}/);
+      assert.doesNotMatch(source,/process\.env|fetch\(|createMemberReadHandler\(/);
+      continue;
+    }
     assert.match(source,/\brequireSession\b/,name+" must use the shared Lockliel session guard.");
   }
 });

@@ -32,7 +32,16 @@ for (const name of functions.filter(name => name.endsWith('.mjs'))) {
         const request = new Request(`https://lockliel.com/.netlify/functions/${name.slice(0, -4)}?code=abcdef`, {
           method, headers: { Origin: 'https://lockliel.com', 'X-Netlify-Context': 'production' },
         });
-        await assertBlocked(await handler(request, context));
+        const response=await handler(request, context);
+        if(name==='lockliel-member-read.mjs'){
+          assert.equal(response.status,503);
+          assert.deepEqual(await response.json(),{error:'Member read unavailable.'});
+          assert.equal(response.headers.get('cache-control'),'private, no-store');
+          assert.equal(response.headers.get('cdn-cache-control'),'no-store');
+          assert.equal(response.headers.get('netlify-cdn-cache-control'),'no-store');
+          assert.equal(response.headers.get('set-cookie'),null);
+          assert.equal(response.headers.get('location'),null);
+        }else await assertBlocked(response);
         assert.equal(request.bodyUsed, false);
       }
     }
