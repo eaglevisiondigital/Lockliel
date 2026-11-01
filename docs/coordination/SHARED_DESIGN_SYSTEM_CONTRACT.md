@@ -1,5 +1,11 @@
 # Shared design system contract, initial proposal
 
+## Wave 6 current result, November 1
+
+Wave6 privacy panel uses the preserved navy/blue/cream/Arial visual system, scoped styles and existing host landmarks. Approved public pages and previous member/Faith/Share components are unchanged. Four-section mobile navigation reflows without a new visual language. Native radio/select/keyboard, named drawer/focus/status and privacy states were reviewed. Real OS Reduce Motion media-query change and restoration pass for exercised views; no global-motion configuration is retained. Actual200%zoom and spoken screen reader remain open because reliable isolated native controls/audio verification were unavailable.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Share Review uses scoped navy/blue/cream styling, existing member-shell landmarks and synthetic identity/reset boundaries. No shared global tokens, public site or previous member/Faith component files changed. Resource visual placeholders contain no remote requests or protected assets. Browser/keyboard/responsive evidence and explicit unverified full zoom/reduced-motion/spoken-reader limits are in the Wave5 report. A new visual language or public redesign is not authorized.

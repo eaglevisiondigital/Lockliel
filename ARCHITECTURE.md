@@ -1,5 +1,10 @@
 # Lockliel architecture
 
+## Wave 6 privacy and authenticated integration planning (2026-11-01)
+
+Wave6 adds components/owner-privacy-preview/** and lib/owner-privacy-preview/model.ts within the existing local member-review host. Its context-bound allowlisted model has no real settings/persistence/Auth/API adapter. Independent local privacy/member/share gates remain exposure only. Authenticated-development plan d16dd5c preserves Netlify BFF/HTTP-only cookies/validated session/active-session RPC and reuses existing profile/preferences/MyFive/privacy lifecycle services through future typed projections. It specifies separate authenticated identities, account-switch generation fencing, CAS/conflicts, RLS/ACL, protected Storage and export/deletion. Existing share-link POST and unlinked follow-up permissions cannot supply preview-only consent. Private Faith/photo/banner/Anchor persistence is separately proposed schema, not implemented or migrated.
+
+
 ## Wave 5 synthetic member integration (2026-11-01)
 
 Wave 5 adds lib/share-review/adapter.ts and components/share-review/**, composed within the existing member-review shell under two local-only exposure gates. L6 owns canonical catalog projection/readiness; L5 owns relationship/consent/share decisions. The adapter explicitly normalizes the same fixture clock and rechecks current context, owner, grants, consent, active stage and revisions at final confirmation. Safe resource/recipient/type/format/message DTOs never contain private domain records, contact coordinates or protected locators. Identity/reset keys clear private memory; ordinary section navigation preserves module-local drafts. No API, database schema, global token, public design, persistence, delivery or event adapter changed.

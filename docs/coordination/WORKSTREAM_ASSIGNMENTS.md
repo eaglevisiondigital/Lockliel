@@ -1,5 +1,11 @@
 # Workstream assignment register
 
+## Wave 6 current result, November 1
+
+Actual native assignments completed: /root/connections_wave3 privacy implementation; /root/backend_plan_wave6 C/E backend strategy; /root/security_course_wave6 separate bounded L1 and L2 reviews; /root/integration_review independent privacy source audit. Root implements host/gates and performs full validation, visual/keyboard/responsive/OS-motion review, source preservation and coordination. Maximum root plus three children. Eight-lane domain ownership remains intact; L5/L6/L7 contract work was reviewed/reused, not falsely dispatched as new implementation.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Actually dispatched Wave5: /root/connections_wave3 implements Share Review; /root/security_wave4 reviews retained L1 evidence; /root/course_wave5 reviews L2 binding; /root/member_privacy_wave5 reviews L3/L4 privacy/accessibility; /root/integration_review reviews L7/L8 compatibility. Root implements host/gates and performs full validation/browser/coordinator work. Peak coordinator plus three active agents; completed review slots reused. Exact branches/worktrees/checkpoints are in the Wave5 result/evidence. No undispatched agent is claimed.

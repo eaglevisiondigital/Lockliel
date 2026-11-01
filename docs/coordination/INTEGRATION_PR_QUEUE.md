@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+## Wave 6 current result, November 1
+
+Wave6 synthetic privacy source13118829b485893a1ae169db0a098c79ad99a169 is ready for authenticated-integration design review only. Separate backend plan d16dd5c is not a deployment or approval. Recommended Wave7P0: offline discriminated authenticated read-model interfaces, allowlisted fixture adapters and mocked BFF tests, default-OFF. First connected P1 is later isolated profile/session/preferences GET-only data acceptance with separate target/source/binding/deployment/synthetic-session approval. No new PR/CI/push/merge/deploy; PR4 draft/unmerged baseline preserved.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Wave5 synthetic Share Review sourceaf99a5211e9af55645fb0817d7976d3e0b1b6893 is ready only for local development review. Default-OFF local-member and independent share gates reject hosted contexts. Actual composed tests/browser are required and recorded, not inferred from pure contract tests. No PR created/updated, remote CI, push, merge or deploy. Course PR4 remains separate. Next smallest safe package is broader adversarial/review fixture coverage or another isolated member preview using the same contracts; live identity/consent/delivery adapters need separate scope and review.

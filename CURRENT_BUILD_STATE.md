@@ -1,5 +1,10 @@
 # Lockliel verified continuity baseline
 
+## Wave 6 privacy and authenticated integration planning (2026-11-01)
+
+Wave6 validated application source13118829b485893a1ae169db0a098c79ad99a169 extends preserved Wave5checkpoint24a6159 on a dedicated integration branch. Owner privacy module fa24c3464ea85338cda8ae7128007a3eb91eefbb and coordinator host/gate/test checkpoint pass1,166full tests, ordinary TypeScript, flagsON/OFF static builds, lint and Netlify75/62. Eight areas remain informational with live Unknown, private sample defaults and no live effect. Browser four-view/four-width, private exclusion, A/B/reset/refresh and actual OS reduced-motion scoped checks pass; zoom/spoken reader remain limited. Independent d16dd5c backend plan is not runtime code or release authority. All280migration bytes and489protected files unchanged. Production274/isolated280-pausedON are retained observations, no new database check.
+
+
 ## Wave 5 synthetic member integration (2026-11-01)
 
 Wave 5 combines the actual L6 catalog and L5 My Five sharing contracts in a reusable Share Review UI, exact validated source af99a5211e9af55645fb0817d7976d3e0b1b6893. Owned module checkpoint 3a2af04cc4aba55c2e0b44e38166dea41431ebc7 precedes the coordinator host checkpoint. Dedicated integration worktree/branch is separate from course development and all preserved lane branches. The result is synthetic, memory-only and default-OFF; explicit confirmation sends nothing and records no share event. 1,096 full tests, build/type/lint/Netlify and bounded keyboard/four-width browser checks pass. All 280 migration hashes remain unchanged. No live integration or release gate is closed. See the Wave5 packet for exact source, reviewers and accessibility limits.

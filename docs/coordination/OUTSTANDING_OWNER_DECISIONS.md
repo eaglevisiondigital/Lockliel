@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+## Wave 6 current result, November 1
+
+Immediate next choice: review exact Wave6source1311882 and plan d16dd5c; approve/amend the proposed Wave7P0 offline read-model scope if desired. No new permission is requested for completed Wave6 work. Connected target reuse, trusted alias/function attestation, isolated deployment/session acceptance, account-disposition policy/reviewer, real CAPTCHA/browser/client acceptance, private-domain schema/retention/export/deletion/minors, Bible rights/default, Storage/photo moderation/visibility/cost and operational production gates remain separate decisions. Owner none-known campaign answer remains settled, not asked again.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 No additional owner permission was needed for the authorized local Wave5 synthetic integration and local commits. Live identity/server authorization/consent lifecycle/channel delivery/event semantics remain separate. Account disposition, real CAPTCHA/browser/client acceptance, course binding/recovery/operational release, licensed Scripture/private data/photo retention/minors/crisis safety, actual merchant/legal/book/shipping/content decisions remain open. No real share/payment/staff/content activation is implied.

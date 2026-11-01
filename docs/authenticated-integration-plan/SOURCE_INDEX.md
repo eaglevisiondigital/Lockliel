@@ -1,0 +1,46 @@
+# Verified local source index
+
+Exact file paths and one-based line anchors at baseline `24a6159efb2daba4e8dddf2c075694ac599d9a83`. Hashes and symbols are in `SOURCE_EVIDENCE.json`. These anchors describe source, not live deployment/catalog state.
+
+- `netlify/lib/lockliel-core.mjs`: line 23 (`export function cookie`), line 41 (`export async function validatedTokenPair`), line 51 (`export async function activeSession`), line 62 (`export async function requireSession`).
+- `netlify/lib/deployment-safety.mjs`: line 21 (`export function withConfiguredBackend`).
+- `netlify/lib/my-five-data.mjs`: line 4 (`export async function followupAllowed`), line 9 (`export async function ownPerson`), line 16 (`export async function personView`).
+- `netlify/functions/lockliel-session.mjs`: line 15 (`export default`), line 32 (`select=id,first_name`).
+- `netlify/functions/lockliel-profile.mjs`: line 4 (`export default`), line 40 (`const patch=`).
+- `netlify/functions/lockliel-preferences.mjs`: line 11 (`if(request.method===`), line 22 (`const payload=`).
+- `netlify/functions/lockliel-faith-profile.mjs`: line 11 (`if(request.method===`), line 59 (`const payload=`).
+- `netlify/functions/lockliel-my-five.mjs`: line 5 (`export function createMyFiveHandler`), line 24 (`body.version`), line 28 (`updated_at=eq.`).
+- `netlify/functions/lockliel-share-link.mjs`: line 7 (`export function createShareLinkHandler`), line 108 (`event_type:"share_initiated"`).
+- `netlify/functions/lockliel-share-library.mjs`: line 5 (`export default`), line 59 (`assets:selected`).
+- `netlify/functions/lockliel-privacy.mjs`: line 4 (`async function handleRequest`), line 26 (`requestType`), line 68 (`status=eq.submitted`).
+- `netlify/functions/lockliel-privacy-export.mjs`: line 32 (`const budget=`), line 72 (`lesson_private_notes`), line 174 (`export_incomplete`).
+- `netlify/functions/lockliel-admin-privacy.mjs`: line 29 (`sessionAal(s.access)`), line 104 (`process-account-deletion`).
+- `netlify/functions/lockliel-mfa.mjs`: line 31 (`export default`).
+- `netlify/functions/lockliel-resources.mjs`: line 54 (`export default`).
+- `netlify/functions/lockliel-lesson-resource.mjs`: line 14 (`export default`).
+- `netlify/functions/lockliel-login.mjs`: line 11 (`export default`).
+- `netlify/functions/lockliel-logout.mjs`: line 4 (`export default`).
+- `supabase/functions/process-account-deletion/index.ts`: line 29 (`function blockerMessage`), line 85 (`activeRes`), line 136 (`const admin=createClient`).
+- `scripts/rehearsal/prepare-runtime.mjs`: line 13 (`const handlers=`), line 25 (`const banner=`).
+- `app/my-lockliel/auth-form.tsx`: line 11 (`export default`), line 61 (`localStorage.setItem`).
+- `app/my-lockliel/dashboard-client.tsx`: line 97 (`export default`), line 106 (`/api/lockliel-auth/session`).
+- `components/member-review/member-review-shell.tsx`: line 14 (`export default`), line 10 (`SyntheticContext`).
+- `components/member-experience-preview/member-display-contract.ts`: line 5 (`export type MemberReviewIdentity`).
+- `lib/member-journey-events.mjs`: line 3 (`export `).
+- `lib/faith-journey/contracts.ts`: line 70 (`export type OwnerPrivateDraft`), line 78 (`export type ScriptureAnchor`), line 86 (`export type PrivatePrayer`), line 91 (`export type GrowthArea`), line 97 (`export type ActionPlan`).
+- `lib/share-review/adapter.ts`: line 90 (`export function buildSharePreview`), line 102 (`export function confirmSharePreview`).
+- `lib/connections-preview/index.ts`: line 79 (`export function prepareShare`).
+- `lib/content-readiness-preview/index.ts`: line 67 (`export function catalogReadiness`).
+- `supabase/migrations/20260924211046_lockliel_v1_core_foundation.sql`: line 4 (`create table public.profiles`), line 100 (`create table public.contact_permissions`), line 118 (`create policy "profile_self_read"`).
+- `supabase/migrations/20260924224953_lockliel_faith_profile_and_founders_linkage.sql`: line 2 (`create table public.faith_profiles`).
+- `supabase/migrations/20260925120317_lockliel_harden_private_faith_profile.sql`: line 1 (`revoke insert`), line 82 (`create or replace function app_private.normalize_faith_profile_update`).
+- `supabase/migrations/20260925131048_lockliel_bound_member_profile_fields.sql`: line 64 (`create or replace function app_private.normalize_member_profile_update`).
+- `supabase/migrations/20260924234437_lockliel_communication_preferences_and_consent_history.sql`: line 2 (`create table public.communication_preferences`), line 20 (`create table public.communication_preference_events`).
+- `supabase/migrations/20260924231552_lockliel_group_and_host_request_queue.sql`: line 14 (`create or replace function app_private.sync_faith_connection_requests`).
+- `supabase/migrations/20260925003134_lockliel_private_my_five_reach_contacts.sql`: line 2 (`create table public.reach_contacts`), line 20 (`create policy "reach_contacts_owner_select"`).
+- `supabase/migrations/20260925175229_lockliel_require_active_session_for_staff_access.sql`: line 2 (`create or replace function app_private.current_session_is_active`), line 26 (`create or replace function public.lockliel_current_session_active`), line 41 (`create or replace function app_private.has_staff_role`).
+- `supabase/migrations/20260925122318_lockliel_harden_private_storage_reads.sql`: line 4 (`create policy lesson_asset_storage_read`), line 38 (`create policy entitled_member_resource_read`).
+- `supabase/migrations/20260929215159_lockliel_course_engine_standard.sql`: line 56 (`create table public.lesson_private_notes`), line 131 (`create function public.lockliel_save_lesson`).
+- `supabase/migrations/20261001133500_lockliel_private_notes_service_privileges.sql`: line 4 (`revoke select`).
+- `supabase/migrations/20261001211009_lockliel_current_trusted_duration_progression.sql`: line 32 (`create or replace function public.lockliel_save_lesson`).
+- `supabase/migrations/20260926035543_lockliel_verified_deletion_execution.sql`: line 9 (`create or replace function public.lockliel_prepare_account_deletion`), line 138 (`create or replace function public.lockliel_scrub_deleted_nonfinancial_records`), line 261 (`create or replace function public.lockliel_account_deletion_state`).

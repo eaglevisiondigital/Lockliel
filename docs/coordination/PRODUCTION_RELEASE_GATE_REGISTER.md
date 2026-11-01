@@ -1,5 +1,11 @@
 # Production release gate register
 
+## Wave 6 current result, November 1
+
+Production release remains NOT READY and unauthorized. Wave6 makes no production/isolated connection, migration, deployment, Auth/SMTP/CAPTCHA/account/settings/maintenance change. Course alias/function binding remains BLOCKED; reader capabilities unchanged, no redundant request. Historical course/MFA/duration PASS stays distinct from failed real proof. Current DataAPI table/column/RPC exposure, Storage-byte recovery, operator/final-write PITR, duration provenance/content/notice and explicit execution gates remain open. Production274/isolated280-pausedON are carried-forward observations only. Temporary local OS Reduce Motion was restored and affects no release gate.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Production remains NOT READY and unauthorized. Wave5 synthetic UI/testing closes no release gate. One supported L2 isolated Netlify metadata read confirmed site identity only, not current alias/function provenance; exact binding remains BLOCKED. Real CAPTCHA, account disposition, Storage recovery/custodian, current exposure/security, operator/final-write PITR, durations/content/notice and explicit release authority remain open. Production274/isolated280-pausedON are retained observations, not fresh SQL. No production or isolated database/settings/maintenance operation occurred.

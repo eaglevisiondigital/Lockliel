@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+## Wave 6 current result, November 1
+
+Root owns member-review host/policy/route, tests/wave6-owner-privacy-integration.test.mjs and coordinator packet. /root/connections_wave3 owns components/owner-privacy-preview/**, lib/owner-privacy-preview/**, tests/owner-privacy-preview*.test.mjs and docs/owner-privacy-preview/**. /root/backend_plan_wave6 owns docs/authenticated-integration-plan/** on separate documentation branch. /root/security_course_wave6 owns only named Wave6 lane1/lane2 review docs. /root/integration_review owns only WAVE6_PRIVACY_SOURCE_REVIEW.md. No competing Auth/schema/global token/navigation/dependency edits; all existing contracts remain unchanged.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Root owns the dedicated codex/wave5-share-integration branch, app/my-lockliel/review/page.tsx, components/member-review/**, lib/member-review/review-policy.ts, host integration tests and coordinator docs. /root/connections_wave3 exclusively owns components/share-review/**, lib/share-review/**, tests/share-review*.test.mjs and docs/share-review/**. Old L5/L6/L7/L8/shared contracts, Auth/handlers/schema/global tokens/configuration are byte-preserved. Bounded reviewers own only named review docs. No competing source writes or branch merge.

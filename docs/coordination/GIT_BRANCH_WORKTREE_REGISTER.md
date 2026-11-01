@@ -1,5 +1,11 @@
 # Git branch and worktree register
 
+## Wave 6 current result, November 1
+
+New codex/wave6-privacy-integration at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-privacy-integration/Lockliel starts from24a6159, panel fa24c3464ea85338cda8ae7128007a3eb91eefbb then validated combined13118829b485893a1ae169db0a098c79ad99a169; documentation-only child follows. New codex/wave6-backend-plan at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-backend-plan/Lockliel is clean d16dd5c922d68b79c2e223ec04bab95c67a6c5f7. Existing lane1/lane2 append doc-only233f13e and3b9b610. Original Wave5branch24a6159/sourceaf99a52, Wave3/Wave4 and all other lane branches preserved; rootdevfa294f7 and localorigin-main1599ab2 unchanged. No prune/deletion/rewrite/push/merge.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Wave5 dedicated worktree /Users/davesmacbookpro/.codex/worktrees/lockliel-wave5-share-integration/Lockliel, branch codex/wave5-share-integration, base46d003673bf6ef4d877c0731ac47cf678dbed494, validated sourceaf99a5211e9af55645fb0817d7976d3e0b1b6893; documentation-only child follows. Wave3source649a3f5/branch9e89fec, Wave4sourcef43cc3a/branch46d003, L3/L4/L5/L6/L7/L8 lane heads and rootdevelopmentfa294f7/origin-main1599ab2 remain unchanged. Security review51706bdecc84fb681802ff34920b41766923d8f4 and course review3d85400f0515f1b3cad918c3f3fedf283689ea97 are independent doc-only lane commits. No worktree deleted or history rewritten. Prior root dirty work preserved.

@@ -1,0 +1,600 @@
+{
+  "date": "2026-11-01",
+  "scope": "repository-only plan; no live target inspection",
+  "branch": "codex/wave6-backend-plan",
+  "baseline": "24a6159efb2daba4e8dddf2c075694ac599d9a83",
+  "wave5_application_source": "af99a5211e9af55645fb0817d7976d3e0b1b6893",
+  "wave6_application_source": "pending coordinator exact-source checkpoint; must be pinned before connected candidate approval",
+  "source_files": [
+    {
+      "path": "netlify/lib/lockliel-core.mjs",
+      "sha256": "cfa3123a3caafe2676ae14c0105f7357a090d7a4ef55deff8de791735d1ac146",
+      "anchors": [
+        {
+          "symbol": "export function cookie",
+          "line": 23
+        },
+        {
+          "symbol": "export async function validatedTokenPair",
+          "line": 41
+        },
+        {
+          "symbol": "export async function activeSession",
+          "line": 51
+        },
+        {
+          "symbol": "export async function requireSession",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "path": "netlify/lib/deployment-safety.mjs",
+      "sha256": "300e34b95b6dca280a91fff43bd2fe6cf07b8fa32a7f92f4183d5f0bb4811df0",
+      "anchors": [
+        {
+          "symbol": "export function withConfiguredBackend",
+          "line": 21
+        }
+      ]
+    },
+    {
+      "path": "netlify/lib/my-five-data.mjs",
+      "sha256": "a2ec1ed6c21060fa7d9bdbfc21a1e89f804c5dee4c333f6d1137bc39d526368c",
+      "anchors": [
+        {
+          "symbol": "export async function followupAllowed",
+          "line": 4
+        },
+        {
+          "symbol": "export async function ownPerson",
+          "line": 9
+        },
+        {
+          "symbol": "export async function personView",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-session.mjs",
+      "sha256": "a6970d133f7d26fea737f3dfec456af9cfaa1b62563551896dc561e4062e7266",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 15
+        },
+        {
+          "symbol": "select=id,first_name",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-profile.mjs",
+      "sha256": "f5cf11ce9d6dfd488b17838d97c2a622a3f72a0cb8196ba076b8196c34db04f9",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 4
+        },
+        {
+          "symbol": "const patch=",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-preferences.mjs",
+      "sha256": "791707bb306cf9ef808e1282780e513fdf623dc20fcc12f785c379ff397eaef4",
+      "anchors": [
+        {
+          "symbol": "if(request.method===",
+          "line": 11
+        },
+        {
+          "symbol": "const payload=",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-faith-profile.mjs",
+      "sha256": "29ac25e2c086d21f2b26ca777844dbaaccba6f13ad5ac41f5031e5dfe4ec8ce1",
+      "anchors": [
+        {
+          "symbol": "if(request.method===",
+          "line": 11
+        },
+        {
+          "symbol": "const payload=",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-my-five.mjs",
+      "sha256": "dc0c369059bb9816b1c133bfb926259a7c8d62cfd6e96364c3da8d5761f9474e",
+      "anchors": [
+        {
+          "symbol": "export function createMyFiveHandler",
+          "line": 5
+        },
+        {
+          "symbol": "body.version",
+          "line": 24
+        },
+        {
+          "symbol": "updated_at=eq.",
+          "line": 28
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-share-link.mjs",
+      "sha256": "9f1ab627a14c4bece13d49f05bd4a390f505f59999ed0181fd2feff1f01d97a2",
+      "anchors": [
+        {
+          "symbol": "export function createShareLinkHandler",
+          "line": 7
+        },
+        {
+          "symbol": "event_type:\"share_initiated\"",
+          "line": 108
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-share-library.mjs",
+      "sha256": "2a95b6266b2de617f454c7fd18a232ff44699b0a3ad2c4fd683a6611504ce1dc",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 5
+        },
+        {
+          "symbol": "assets:selected",
+          "line": 59
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-privacy.mjs",
+      "sha256": "5a6ddc8dbc663f1a41f560349d3237378e1d8c8a11468f1f8b50fbfb1d5f71ac",
+      "anchors": [
+        {
+          "symbol": "async function handleRequest",
+          "line": 4
+        },
+        {
+          "symbol": "requestType",
+          "line": 26
+        },
+        {
+          "symbol": "status=eq.submitted",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-privacy-export.mjs",
+      "sha256": "1ff181a188eb8b219210950bd1827adf68123cfea622403d5133bf3b5e160a2b",
+      "anchors": [
+        {
+          "symbol": "const budget=",
+          "line": 32
+        },
+        {
+          "symbol": "lesson_private_notes",
+          "line": 72
+        },
+        {
+          "symbol": "export_incomplete",
+          "line": 174
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-admin-privacy.mjs",
+      "sha256": "734587f12ec0eddffed0e60f33a8841076e7aeae2601aaf7907b3c11eb1f3024",
+      "anchors": [
+        {
+          "symbol": "sessionAal(s.access)",
+          "line": 29
+        },
+        {
+          "symbol": "process-account-deletion",
+          "line": 104
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-mfa.mjs",
+      "sha256": "e24b89c8ffd0983933e69b80e5d4bb506ccb42d76e7a8bd8c28b5994e5122f62",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-resources.mjs",
+      "sha256": "f5683b6a6baa22b2c283f691c791a9b34ea0daaa80e3c51c276de4173a1c9549",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-lesson-resource.mjs",
+      "sha256": "32c32bd350ea4fb663cbb69039dffed64eb9cdfe9a600b12ec0315fbe1c871f8",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-login.mjs",
+      "sha256": "869f97304eb35ecf9db36e59ba7d9ca0da5b942a2b83b035d49665e024ae5009",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "path": "netlify/functions/lockliel-logout.mjs",
+      "sha256": "18fa84eef69b72e22881a94c17e5fce691e881281bddce26e1dde788e0445eb0",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "supabase/functions/process-account-deletion/index.ts",
+      "sha256": "4c10cb43127588ebaa2f0450e185f987ff9ad916e5c16f78bdd8c80a74cb42c6",
+      "anchors": [
+        {
+          "symbol": "function blockerMessage",
+          "line": 29
+        },
+        {
+          "symbol": "activeRes",
+          "line": 85
+        },
+        {
+          "symbol": "const admin=createClient",
+          "line": 136
+        }
+      ]
+    },
+    {
+      "path": "scripts/rehearsal/prepare-runtime.mjs",
+      "sha256": "7ae8e3a8229960ec3b3ab4870214d112331a01bea005c1522593a1eec5df7446",
+      "anchors": [
+        {
+          "symbol": "const handlers=",
+          "line": 13
+        },
+        {
+          "symbol": "const banner=",
+          "line": 25
+        }
+      ]
+    },
+    {
+      "path": "app/my-lockliel/auth-form.tsx",
+      "sha256": "c4ea483c206ff7d0f50c224280b9a0b35d37257a32a64cffbaf327cad54afd8e",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 11
+        },
+        {
+          "symbol": "localStorage.setItem",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "app/my-lockliel/dashboard-client.tsx",
+      "sha256": "a728338e08f2026c2aa9976cffab4263bf0305368f9a1691c6ed08d0bf857298",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 97
+        },
+        {
+          "symbol": "/api/lockliel-auth/session",
+          "line": 106
+        }
+      ]
+    },
+    {
+      "path": "components/member-review/member-review-shell.tsx",
+      "sha256": "7a440702075543740727ffdf67013ea2c3ce3abda6a8c709c9d1d61018a0f0dc",
+      "anchors": [
+        {
+          "symbol": "export default",
+          "line": 14
+        },
+        {
+          "symbol": "SyntheticContext",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "components/member-experience-preview/member-display-contract.ts",
+      "sha256": "e1dfd35ac96e4635bb3a1fbb82bf2def3d8378d80a4582ff13514f48f5bd836f",
+      "anchors": [
+        {
+          "symbol": "export type MemberReviewIdentity",
+          "line": 5
+        }
+      ]
+    },
+    {
+      "path": "lib/member-journey-events.mjs",
+      "sha256": "53bd7b015cbd2c1d64e06a6c196d249df08c5f50c99a14f8da965ac9ce04161a",
+      "anchors": [
+        {
+          "symbol": "export ",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "path": "lib/faith-journey/contracts.ts",
+      "sha256": "76ac727c94582c5313236be3f376880cf7f0a821fc7bc6858c34cbdc12bb8e30",
+      "anchors": [
+        {
+          "symbol": "export type OwnerPrivateDraft",
+          "line": 70
+        },
+        {
+          "symbol": "export type ScriptureAnchor",
+          "line": 78
+        },
+        {
+          "symbol": "export type PrivatePrayer",
+          "line": 86
+        },
+        {
+          "symbol": "export type GrowthArea",
+          "line": 91
+        },
+        {
+          "symbol": "export type ActionPlan",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "path": "lib/share-review/adapter.ts",
+      "sha256": "758d7d93c87c7f3576a96f1a8408ff0633351965b050272fcbdb4b8c4494c981",
+      "anchors": [
+        {
+          "symbol": "export function buildSharePreview",
+          "line": 90
+        },
+        {
+          "symbol": "export function confirmSharePreview",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "path": "lib/connections-preview/index.ts",
+      "sha256": "5233ab4e0154446eec8f4f10d6962fe203b23e3094135b6be78e7d57b35ef34d",
+      "anchors": [
+        {
+          "symbol": "export function prepareShare",
+          "line": 79
+        }
+      ]
+    },
+    {
+      "path": "lib/content-readiness-preview/index.ts",
+      "sha256": "7101cc86d20f3c1b6add3269f70170f8364ff7f9cc0b27a4b2174fe0f3ea766a",
+      "anchors": [
+        {
+          "symbol": "export function catalogReadiness",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260924211046_lockliel_v1_core_foundation.sql",
+      "sha256": "f2502de0c0645656b4ecde6bd536dad56304d7b8c363530543ea5413c51cb569",
+      "anchors": [
+        {
+          "symbol": "create table public.profiles",
+          "line": 4
+        },
+        {
+          "symbol": "create table public.contact_permissions",
+          "line": 100
+        },
+        {
+          "symbol": "create policy \"profile_self_read\"",
+          "line": 118
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260924224953_lockliel_faith_profile_and_founders_linkage.sql",
+      "sha256": "02351e0829f9b12401d4b3d6b1e06f82fb89a52417a8ee3462bca3ce600a3597",
+      "anchors": [
+        {
+          "symbol": "create table public.faith_profiles",
+          "line": 2
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260925120317_lockliel_harden_private_faith_profile.sql",
+      "sha256": "3aa25cf588fdeebf7a69a6fd29d7aa3a446d23afa20a87bc8e05a569d71151f1",
+      "anchors": [
+        {
+          "symbol": "revoke insert",
+          "line": 1
+        },
+        {
+          "symbol": "create or replace function app_private.normalize_faith_profile_update",
+          "line": 82
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260925131048_lockliel_bound_member_profile_fields.sql",
+      "sha256": "a47047368228ff01bfcca31dc50181d075ae220392cb69f970d3e41f9f5e981a",
+      "anchors": [
+        {
+          "symbol": "create or replace function app_private.normalize_member_profile_update",
+          "line": 64
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260924234437_lockliel_communication_preferences_and_consent_history.sql",
+      "sha256": "5e4f4a9b366b3980f5c8a5d6ed71116269ef7a57d940069e5b4f67af22ec865a",
+      "anchors": [
+        {
+          "symbol": "create table public.communication_preferences",
+          "line": 2
+        },
+        {
+          "symbol": "create table public.communication_preference_events",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260924231552_lockliel_group_and_host_request_queue.sql",
+      "sha256": "05db8ba11adf52b6bc8b5fdd9e61d7c4592adc0256860f16f851e8d7a2588f0b",
+      "anchors": [
+        {
+          "symbol": "create or replace function app_private.sync_faith_connection_requests",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260925003134_lockliel_private_my_five_reach_contacts.sql",
+      "sha256": "55585382166b9bbcd3a8602c4bc82ca79a2b696257b8b1c655c09927861169b3",
+      "anchors": [
+        {
+          "symbol": "create table public.reach_contacts",
+          "line": 2
+        },
+        {
+          "symbol": "create policy \"reach_contacts_owner_select\"",
+          "line": 20
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260925175229_lockliel_require_active_session_for_staff_access.sql",
+      "sha256": "20cdfe213e786c3f9020e52d7e0aaa2cad61960e623167fc8861645786556526",
+      "anchors": [
+        {
+          "symbol": "create or replace function app_private.current_session_is_active",
+          "line": 2
+        },
+        {
+          "symbol": "create or replace function public.lockliel_current_session_active",
+          "line": 26
+        },
+        {
+          "symbol": "create or replace function app_private.has_staff_role",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260925122318_lockliel_harden_private_storage_reads.sql",
+      "sha256": "681e66647dad58d8d3baa980bb03bda7df682c0a53c3cce8f648e3a8ea4afd3c",
+      "anchors": [
+        {
+          "symbol": "create policy lesson_asset_storage_read",
+          "line": 4
+        },
+        {
+          "symbol": "create policy entitled_member_resource_read",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260929215159_lockliel_course_engine_standard.sql",
+      "sha256": "2e03aa8a8346f46e09e701fbb96c29ac8cb11404100fe51c1cdedebdc6ab35f1",
+      "anchors": [
+        {
+          "symbol": "create table public.lesson_private_notes",
+          "line": 56
+        },
+        {
+          "symbol": "create function public.lockliel_save_lesson",
+          "line": 131
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20261001133500_lockliel_private_notes_service_privileges.sql",
+      "sha256": "5fbcf6d942583ea2e79cb2ae356f6ee712314fe749fb97130e9a21e962c10f71",
+      "anchors": [
+        {
+          "symbol": "revoke select",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20261001211009_lockliel_current_trusted_duration_progression.sql",
+      "sha256": "bb8af646303725c9c29ddc7119c5d8aefe2bf0afb91c206ffa8baa1a08e1b1c3",
+      "anchors": [
+        {
+          "symbol": "create or replace function public.lockliel_save_lesson",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "path": "supabase/migrations/20260926035543_lockliel_verified_deletion_execution.sql",
+      "sha256": "c4a31402017796728c00ec10d6477c0d50793d36549f2ad14b7115597ddf2cea",
+      "anchors": [
+        {
+          "symbol": "create or replace function public.lockliel_prepare_account_deletion",
+          "line": 9
+        },
+        {
+          "symbol": "create or replace function public.lockliel_scrub_deleted_nonfinancial_records",
+          "line": 138
+        },
+        {
+          "symbol": "create or replace function public.lockliel_account_deletion_state",
+          "line": 261
+        }
+      ]
+    }
+  ],
+  "migration_count": 280,
+  "migration_inventory_sha256": "55fe0ee91834d7cfc07df219d0fb40a8d63b8843ed5152212f5a701225b9fb04",
+  "migration_bytes_unchanged": true,
+  "no_application_source_changed": true,
+  "validation": [
+    "source symbol anchors matched",
+    "all280 migration bytes equal checkpoint",
+    "no live target access or credentials",
+    "documentation only"
+  ]
+}

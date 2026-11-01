@@ -1,5 +1,10 @@
 # Lockliel security model
 
+## Wave 6 privacy and authenticated integration planning (2026-11-01)
+
+Wave6 synthetic owner privacy requires exact known A/B fixture context, member-read grant, immutable owner/revision and bounded what-if fields. Private notes/prayers/growth/Anchors/contact/finance data never enter the panel. All live states remain Unknown and all effects false; descriptor/getter cases are fixture hardening only. Independent70focused tests and full1166pass; browser isolation/reset checks pass. Future authenticated plan requires trusted current session/active-session and minimal DTOs, no synthetic grant reuse, strict CSRF/versioning, effective table/column/RPC access and private Storage/lifecycle acceptance. Real CAPTCHA/account-origin/course binding/recovery gates remain unresolved. No live security/Auth/settings/account/permission or database change; temporary local macOS Reduce Motion restored.
+
+
 ## Wave 5 synthetic member integration (2026-11-01)
 
 Wave 5 synthetic previews enforce separate catalog eligibility, relationship ownership/read/share grants, active stage, current narrow consent and explicit confirmation. Draft and final stages deny revoked/expired/wrong-owner/scope/org consent and stale revisions. Final actual L5/L6 decisions still have every effect false. Private notes, prayer/growth/profile fields, restricted locators and finance/admin authority do not enter the preview. Optional synthetic text is bounded and component-memory-only, never audit or delivery payload. Independent source/privacy reviews and guarded tests found and verified consent/activity and rendered CSS corrections. No live session, RLS, CAPTCHA or delivery certification follows. Production/course/Auth gates remain open and no live security setting changed.

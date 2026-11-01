@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+## Wave 6 current result, November 1
+
+Wave6 authorizes only isolated synthetic privacy UI, review of actual member experience, confirmed-defect corrections if needed, authenticated backend planning and bounded security/course review, with logical local commits. New authenticated runtime, migrations, persistence, uploads, shares, messages, account actions and production/hosting changes are not approved. Local what-if choices do not update live settings or grant consent. Temporary macOS Reduce Motion testing was restored; no production/isolated setting changed.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Wave5 direct authorization permits this narrowly scoped default-OFF synthetic Share Review UI and logical local checkpoints on its dedicated branch. L6 resources, L5 owner relationships, current grants/consent/revisions and explicit confirmation remain independent. Selection does not create consent and confirmation is not delivery. No live services, migrations, production/configuration/Auth changes, push/merge/deploy or financial/content activation is authorized. Historical approval-control records are retained.

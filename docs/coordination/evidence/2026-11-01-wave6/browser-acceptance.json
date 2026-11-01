@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-01",
+  "candidate": "Wave6 frozen local source; exact Git SHA in coordinator report",
+  "syntheticOnly": true,
+  "privacyReflow": [
+    {
+      "duplicateIds": 0,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "duplicateIds": 0,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "duplicateIds": 0,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "duplicateIds": 0,
+      "scrollWidth": 1365,
+      "width": 1365
+    }
+  ],
+  "allViewsReflow": [
+    {
+      "view": "Dashboard",
+      "duplicateIds": 0,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Dashboard",
+      "duplicateIds": 0,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "view": "Dashboard",
+      "duplicateIds": 0,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "view": "Dashboard",
+      "duplicateIds": 0,
+      "scrollWidth": 1365,
+      "width": 1365
+    },
+    {
+      "view": "Faith Journey",
+      "duplicateIds": 0,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Faith Journey",
+      "duplicateIds": 0,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "view": "Faith Journey",
+      "duplicateIds": 0,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "view": "Faith Journey",
+      "duplicateIds": 0,
+      "scrollWidth": 1365,
+      "width": 1365
+    },
+    {
+      "view": "Share Review",
+      "duplicateIds": 0,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Share Review",
+      "duplicateIds": 0,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "view": "Share Review",
+      "duplicateIds": 0,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "view": "Share Review",
+      "duplicateIds": 0,
+      "scrollWidth": 1365,
+      "width": 1365
+    },
+    {
+      "view": "Privacy",
+      "duplicateIds": 0,
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Privacy",
+      "duplicateIds": 0,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "view": "Privacy",
+      "duplicateIds": 0,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "view": "Privacy",
+      "duplicateIds": 0,
+      "scrollWidth": 1365,
+      "width": 1365
+    }
+  ],
+  "checks": {
+    "unknownContextOmitsPrivateControls": true,
+    "eightAreas": true,
+    "eightLiveStatusesUnknown": true,
+    "privateDefaultPhotoBanner": true,
+    "noConsentCreated": true,
+    "noChannelConnected": true,
+    "localIdeasMemoryOnly": true,
+    "localIdeasDoNotChangeMemberControls": true,
+    "privatePrayerNotReadOrDisplayed": true,
+    "ownerSwitchClears": true,
+    "resetClears": true,
+    "refreshClears": true,
+    "resetAndRetryFocusHeading": true,
+    "loadingEmptyErrorDistinct": true,
+    "scriptureDialogTitleFocusTrapEscapeReturn": true,
+    "syntheticAnchorAndGrowthActionPlan": true,
+    "publicMemberCardDenied": true,
+    "shareConfirmationResultNothingSent": true,
+    "consoleWarningsErrors": 0
+  },
+  "osMotion": {
+    "before": "off",
+    "temporary": "on",
+    "browserMediaQueryBefore": false,
+    "browserMediaQueryDuring": true,
+    "browserMediaQueryRestored": false,
+    "after": "off",
+    "baselineDashboardAndFaithVisibleMotion": 0,
+    "newPrivacyVisibleMotion": 0,
+    "scope": "Real macOS System Settings toggle and browser observation; not an emulation. Not every interaction/animation path exercised.",
+    "settingsWindowClosed": true
+  },
+  "zoom": {
+    "actual200Percent": "NOT VERIFIED",
+    "observedDevicePixelRatio": 2,
+    "observedCssWidthBeforeAndAfter": 961,
+    "reason": "Native shortcuts produced no observed change; View zoom controls disabled and native window target later changed. Stopped without interacting with unrelated window."
+  },
+  "screenReader": {
+    "spokenAcceptance": "NOT VERIFIED",
+    "reason": "No reliable isolated native focus/spoken-audio verification surface; VoiceOver was not enabled.",
+    "accessibilityTree": "Labels, landmarks, status, dialog and focus behavior reviewed"
+  },
+  "limits": [
+    "No complete rendered-contrast audit",
+    "No complete browser request trace",
+    "CSP connect/frame/form denied and static server outbound sandboxed",
+    "Some CDP action calls timed out; fresh state was inspected before continuing, with no duplicate operation assumed"
+  ],
+  "productionCalls": false
+}

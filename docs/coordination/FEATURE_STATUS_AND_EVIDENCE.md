@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+## Wave 6 current result, November 1
+
+Wave6 exact source13118829b485893a1ae169db0a098c79ad99a169 adds the owner-only synthetic privacy panel and host integration. 1,166 full tests include70new focused model/workspace/host cases. Builds with flags OFF and locally ON, types, lint and Netlify pass. Four views reflow at320/390/768/1365 with no duplicate IDs/overflow. Actual macOS Reduce Motion was exercised and restored; actual200%zoom/full spoken screen reader remain unverified. Backend plan is source-backed, not connected implementation. No feature newly Live.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Wave5 integrates actual L6 catalog projection/readiness and L5 relationship/consent/share preparation in the existing synthetic member shell. Exact source af99a5211e9af55645fb0817d7976d3e0b1b6893. 1096 full guarded JavaScript tests pass, plus ordinary TypeScript, static build, configured/targeted lint and Netlify. This is a local preview result only, no delivered share/event/persistence. See WAVE5_COORDINATOR_RESULT.md for browser evidence and accessibility limits. No feature newly Live.

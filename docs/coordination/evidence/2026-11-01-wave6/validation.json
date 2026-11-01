@@ -1,0 +1,19 @@
+{
+  "unitTests": 1166,
+  "fail": 0,
+  "skipped": 0,
+  "newPrivacyFocused": 62,
+  "newHostIntegration": 8,
+  "independentFocused": 70,
+  "buildLocalOn": true,
+  "buildDefaultOff": true,
+  "typecheck": true,
+  "lintConfigured": true,
+  "lintTargeted": true,
+  "netlifyModules": 75,
+  "netlifyHandlers": 62,
+  "migrationHashesUnchanged": 280,
+  "protectedHashesUnchanged": 489,
+  "sqlReplayRun": false,
+  "outboundNodeGuard": true
+}

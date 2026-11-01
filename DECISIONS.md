@@ -1,5 +1,10 @@
 # Lockliel decisions and open questions
 
+## Wave 6 privacy and authenticated integration planning (2026-11-01)
+
+Wave6 authority covered synthetic owner privacy UI, actual visual/accessibility review, backend/integration planning and bounded security/course continuation with local commits. That scope is complete at13118829b485893a1ae169db0a098c79ad99a169; plan d16dd5c is an immutable source-backed proposal, not connected approval. No new Live status, real persistence/sharing/upload/migration/deployment or production authorization. Existing isolated qjks/site reuse is proposed subject to trusted binding and preservation decision; no purchase. Account disposition policy/reviewer, real proof/client acceptance, private schema/retention/export/delete/minors, Bible rights/default, photo visibility/Storage/cost and production operational gates remain owner decisions. Next proposed Wave7P0 is offline authenticated read-model contracts/adapters/tests only, not begun.
+
+
 ## Wave 5 synthetic member integration (2026-11-01)
 
 Dave directly authorized Wave 5 isolated default-OFF L6/L5 Share Review integration, bounded independent reviews and logical local commits only. That scope is complete at af99a5211e9af55645fb0817d7976d3e0b1b6893. Original Wave3 source649a3f5, Wave4 combinedf43cc3a/documentation46d003 and coursePR4 remain preserved. A local preview confirmation is not consent acquisition, message delivery, a completed-share event, resource entitlement, staff authority or financial consent. No new Live status, rights/merchant/legal/private lifecycle decision or production release authorization exists. The proposed next owner-only synthetic privacy-status panel is not begun; live identity/consent/delivery and all operational gates remain separate.

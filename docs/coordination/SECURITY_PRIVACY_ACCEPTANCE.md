@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+## Wave 6 current result, November 1
+
+Eight owner-only privacy areas use fixed metadata, exact known A/B fixture ownership, member-read grant, immutable ownership/revision checks and allfalse effects. Every live status remains Unknown. Local choices do not alter other modules, consent, audiences, channels or roles. Private prayer/growth/Anchor/contact/finance bodies never enter panel DTO. Descriptor/getter/enum/private-field hardening and independent70tests pass within full1166. Browser confirms private-prayer exclusion and A/B/reset/refresh clearing. No live Auth/RLS/privacy certification. Existing real CAPTCHA and account-origin gates remain unresolved.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 Share preview is an allowlisted presentation of synthetic resource/recipient/channel/message, not arbitrary relationship/profile data. Private notes, prayers, growth, hidden profile, restricted locators and internal entitlement state do not pass into preview. Current independent L6/L5 checks run again at final confirmation; consent/grant/revision/organization mismatches deny. No real delivery, completed-share event, storage or production APIs exist. Context/reset clears private drafts. All effects remain false. L1 review retains unknown account origin and real-proof failure; no live investigation or Auth change this wave.

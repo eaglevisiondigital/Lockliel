@@ -1,5 +1,11 @@
 # Dependency and blocker map
 
+## Wave 6 current result, November 1
+
+Keep existing Netlify BFF, HTTP-only cookie/session validation and active-session RPC. Profiles/preferences/faith-profile, My Five timestamp CAS, privacy requests/export/deletion and protected resources are reusable after endpoint-level review. Raw session/person DTOs expose fields the member/share projections must omit. Existing share-link POST writes links/events; unlinked follow-up permission is not accepted scoped share consent. Course packager has nine handlers and is not a unified backend. New private Faith/photo/banner/Anchor persistence needs separate schema review; no SQL authored. Binding/real proof/account/recovery gates remain open.
+
+## Historical snapshots below
+
 ## Wave 5 current result, November 1
 
 L6 owns canonical resource DTOs and eligibility; L5 independently owns relationship, active stage, consent, owner, permissions and confirmation. A local adapter normalizes one fixture clock into ISO and epoch milliseconds and rechecks both at final confirmation. Channel is presentation only, without contact coordinates. Existing L7 merchant/product/entitlement and L8 purpose/AAL2 scopes remain separate. Real identity, consent revocation service, persistence, delivery receipts and event semantics remain future dependencies. Course exact binding, real CAPTCHA and production release gates remain open.

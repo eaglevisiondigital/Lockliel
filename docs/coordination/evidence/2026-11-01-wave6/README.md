@@ -1,0 +1,3 @@
+# Wave 6 evidence
+
+Source/checkpoint provenance, guarded logs, default-OFF artifact and actual bounded browser/OS-motion observations. Validation logs use .txt and normalize only terminal carriage returns/trailing whitespace. Full1166 includes70new tests; independent reruns overlap. Actual zoom/spoken reader and exhaustive rendered contrast remain unverified. Real OS Reduce Motion was restored OFF. Browser screenshots contain invented review data only; no unrelated native-window content is included. Historical packet manifests refer to their original commits, not updated current registers. No production queries, credentials or member data.
