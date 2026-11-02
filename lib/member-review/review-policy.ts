@@ -40,3 +40,16 @@ export function localMemberReadReviewEnabled(input:Readonly<{flag?:string;member
 export function localMemberServerReadReviewEnabled(input:Readonly<{flag?:string;memberFlag?:string;context?:string;netlify?:string}>):boolean {
  return input.flag==='local-server' && localMemberReviewEnabled({flag:input.memberFlag,context:input.context,netlify:input.netlify});
 }
+
+/** Trusted build metadata only. Hosting exposure is never proof of a member session.
+ * Request headers, response values and browser query parameters are not inputs.
+ */
+export function hostedMemberReadReviewEnabled(input:Readonly<{
+ flag?:string;netlify?:string;context?:string;site?:string;deploy?:string;source?:string;
+ expectedDeploy?:string;expectedSource?:string;
+}>):boolean {
+ return input.flag==='isolated-read'&&input.netlify==='true'&&input.context==='deploy-preview'&&
+  input.site==='70b03a42-6329-476e-bf4b-2b1ce30e9567'&&
+  typeof input.deploy==='string'&&/^[a-f0-9]{24}$/.test(input.deploy)&&input.deploy===input.expectedDeploy&&
+  typeof input.source==='string'&&/^[a-f0-9]{40}$/.test(input.source)&&input.source===input.expectedSource;
+}
