@@ -53,7 +53,6 @@ def materialize(output):
     ex = swap(ex, 'start=time.monotonic();new_id=None;create_attempted=False;finalize_attempted=False', 'start=time.monotonic();new_id=None;create_attempted=False;finalize_attempted=False;reservation_metadata=None')
     ex = swap(ex, 'st,s=api(\'GET\',\'/sites/\'+SITE);assert st==200 and s.get(\'id\')==SITE and s.get(\'name\')==NAME and s.get(\'account_id\')==TEAM', "st,s=api('GET','/sites/'+SITE)\n if st!=200 or not site_complete(s):raise Stop('required_raw_site_metadata_not_verified')")
     ex = swap(ex, 'save();return stable,rows', 'save();return s,rows')
-    ex = swap(ex, "if d.get('published_at') is not None:raise Stop('cleanup_object_unexpectedly_published')", "if 'published_at' not in d or d['published_at'] is not None:raise Stop('cleanup_publication_metadata_not_verified')")
     ex = swap(ex, "if st!=200 or (s.get('published_deploy') or {}).get('id')==new_id or s.get('deploy_id')==new_id:raise Stop('cleanup_publication_guard_failed')", "if st!=200 or not site_publication_complete(s):raise Stop('cleanup_publication_guard_failed')")
     ex = swap(ex, "new_id=d['id'];journal['experimentalId']=new_id;journal['reservationResponse']=minimal(d);save()", "new_id=d['id'];reservation_metadata=d;journal['experimentalId']=new_id;journal['reservationResponse']=receipt(d);save()")
     for key in ['reservedProviderMetadata', 'finalizedProviderMetadata', 'cleanupIdentity']:

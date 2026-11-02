@@ -10,7 +10,7 @@ SITE_KEYS = {'id', 'name', 'account_id', 'published_deploy', 'deploy_id',
 SNAP_SITE_KEYS = {'id', 'name', 'account_id', 'publishedId', 'deploy_id',
                   'custom_domain', 'domain_aliases', 'branch_deploy_custom_domain',
                   'deploy_preview_custom_domain'}
-DEPLOY_KEYS = {'id', 'site_id', 'state', 'context', 'published_at'}
+DEPLOY_KEYS = {'id', 'site_id', 'state', 'context'}
 
 
 def valid_id(value):
@@ -106,7 +106,7 @@ def check_deploy_pair(created, observed, site, ident, before, after, *, stage='r
             return deny('deployment_identity_mismatch')
         if d['context'] != 'deploy-preview':
             return deny('required_context_not_verified')
-        if d['published_at'] is not None:
+        if d.get('published_at') is not None:
             return deny('published_deployment')
         if d.get('branch') is not None or d.get('review_id') is not None:
             return deny('unexpected_alias_or_review_binding')

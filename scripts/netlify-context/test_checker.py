@@ -32,7 +32,7 @@ class EvidenceTests(unittest.TestCase):
     with self.subTest(key=k,index=i):
      f=fixtures(None);f[i][k]=v;self.assertFalse(self.verdict(f))
  def test_missing_deploy_metadata(self):
-  for k in ['id','site_id','state','context','published_at']:
+  for k in ['id','site_id','state','context']:
    for i in (0,1):
     with self.subTest(key=k,index=i):
      f=fixtures(None);del f[i][k];self.assertFalse(self.verdict(f))
@@ -40,6 +40,9 @@ class EvidenceTests(unittest.TestCase):
   for k in fixtures()[2]:
    with self.subTest(key=k):
     f=fixtures(None);del f[2][k];self.assertFalse(self.verdict(f))
+ def test_omitted_optional_timestamp_requires_independent_site_proof(self):
+  f=fixtures(None);del f[0]['published_at'];del f[1]['published_at'];self.assertTrue(self.verdict(f))
+  del f[2]['published_deploy'];self.assertFalse(self.verdict(f))
  def test_published_timestamp(self):
   for i in (0,1):
    f=fixtures(None);f[i]['published_at']='2026-11-02T14:00:00Z';self.assertFalse(self.verdict(f))
@@ -167,6 +170,14 @@ class AdditionalPreparedFailureTests(unittest.TestCase):
     return response
   server=Omitted(None);self.run_script('preflight.py',server);self.run_script('experiment.py',server);self.run_script('verify.py',server)
   j=json.loads((self.out/'experiment.json').read_text());self.assertEqual(j['assessment'],'NETLIFY DEPLOYMENT WORKFLOW VERIFIED');self.assertEqual(j['latestProviderGate']['observedDraft'],'omitted')
+ def test_mocked_optional_timestamps_omitted_full_workflow(self):
+  class OmittedTimestamp(FakeProvider):
+   def open(self,request,**kwargs):
+    response=super().open(request,**kwargs)
+    if isinstance(response.data,dict) and response.data.get('id')==ID:response.data.pop('published_at',None)
+    return response
+  server=OmittedTimestamp(None);self.run_script('preflight.py',server);self.run_script('experiment.py',server);self.run_script('verify.py',server)
+  j=json.loads((self.out/'experiment.json').read_text());self.assertTrue(j['containmentVerified']);self.assertTrue(j['finalizationPassed'])
  def test_mocked_final_context_change_denied_and_contained(self):
   class Flip(FakeProvider):
    def open(self,request,**kwargs):
