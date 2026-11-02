@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+Current immediate gate is observed connector session defaults; guarded on/5s/30s session not established. No later deployment or Auth evidence claimed. Reverify reviewed setup before resume.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

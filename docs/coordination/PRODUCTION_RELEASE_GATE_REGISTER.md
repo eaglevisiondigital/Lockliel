@@ -1,5 +1,13 @@
 # Production release gate register
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+No production access/change. Conditional isolated authorization does not waive any production/course/security/recovery gate. Existing ledger/maintenance values remain historical after stop.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

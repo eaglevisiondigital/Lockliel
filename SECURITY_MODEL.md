@@ -1,5 +1,11 @@
 # Lockliel security model
 
+<!-- wave10i:begin -->
+## Wave 10I stopped before reservation (2026-11-02)
+
+Read docs/coordination/WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md. Owner explicitly authorized exact source327ba098/tooling51857e4/site70/qjks conditional deployment/A-B/retirement. Actual first SELECT-only isolated connector probe observed read_only=off,lock_timeout=0,statement_timeout=2min (databasepostgres/version17.11). Requiredon/5s/30s notverified; user-mandated safe stop, no further hosted call or override. No Netlify preflight/reservation/build/upload/key/Auth; no newID/session, no cleanup needed/claimed, allowanceunused. Do not mislabel connector defaults as schema/project/maintenance drift. Prior280/pausedON/readiness/protocol and production274 remain historical, not freshaudits. Application/tooling/all280migrationbytes preserved; only localdocs/evidence updated. Main/coursePR4/publicsites/rootdirtywork preserved; no production, settings, migrations, maintenance, push/merge, activation/payment/message/role/purchase. All12registers/37rows preserved, noneLive. Next reviewed read-only session setup must establish actual safeguards before resume; no duplicate deployment approval requested, no fallback/relaxation.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local deployment readiness (2026-11-02)
 

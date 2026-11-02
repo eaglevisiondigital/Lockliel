@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+No application reservation or hosted candidate created. Wave10H local security pass retained; Wave10I execution incomplete at session safeguard gate. PR4 untouched.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Shared design system contract, initial proposal
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+No application build or UI/design/token/public website change. Prior visual/accessibility acceptance limits remain.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

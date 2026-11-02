@@ -1,5 +1,13 @@
 # Feature status and evidence register
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+Fresh isolated connector defaults off/0/2min do not satisfy required on/5s/30s. First SELECT only; no inventory/backend binding/hosted validation completed.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

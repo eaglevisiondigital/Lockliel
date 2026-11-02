@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+Existing hosted-composition worktree reused froma84cbe5. Approved app327/tooling51857 exact; main/course/other branch-remotes-tags and originaldirtyroot preserved. Local docs-only checkpoint; no push/merge.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

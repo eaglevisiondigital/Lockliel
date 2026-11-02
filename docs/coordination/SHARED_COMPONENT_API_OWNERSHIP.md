@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+Coordinator only performed one isolated session-default SELECT and local integrity/docs. No source lease, agent dispatch or shared Auth/schema/navigation edit.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+Exact Wave10I conditional deployment/A-B/retirement authorization recognized. Safe stop executed; reservation allowance unused. Existing approval is not requested again.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

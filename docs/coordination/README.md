@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave10I: [actual preflight stop](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). One isolated SELECT observed off/0/2min, required session safeguards notverified. No reservation/upload/key/Auth, allowanceunused. Earlier current headings remain historical; local Wave10H tooling/security pass unchanged.
+
 Current Wave10H: [local protected deployment readiness](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future isolated assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent review](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md), [bounded parallel lanes](WAVE10H_PARALLEL_LANE_REVIEW.md). Tooling51857e4/full1836JS/280replay17SQL pass. No actual reservation/deployment/key/Auth or production operation. Earlier current headings are historical.
 
 Current Wave10G: [verified empty finalization and cleanup](WAVE10G_NETLIFY_FINALIZATION_RESULT.md), [next isolated application proposal](WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md). One empty ID6ae8a1aa48521d4528081700 finalized in deploy-preview and independently retired. App/private-key/native-function/Auth acceptance remains held; no new Live feature or application execution authority. Earlier current headings below are historical.

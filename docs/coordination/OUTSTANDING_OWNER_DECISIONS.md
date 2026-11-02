@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+No new deployment approval requested. Resolve reviewed on/5s/30s session setup before resuming unused one-reservation authority. A/B cannot supply missing manager/AAL evidence; prior scope boundary remains.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 

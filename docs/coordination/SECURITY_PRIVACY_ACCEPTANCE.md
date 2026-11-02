@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10i:begin -->
+## Wave 10I preflight stop (2026-11-02)
+
+One SELECT-only isolated metadata probe observed off/0/2min. No credentials/memberPII requested. Failed safeguard gate safely stopped without override or subsequent hosted call; no Auth/session/resource to contain.
+
+[Actual result and evidence](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). No reservation, upload, provisioning or hosted Auth; no substitute or bypass.
+<!-- wave10i:end -->
+
 <!-- wave10h:begin -->
 ## Wave 10H local operator readiness (2026-11-02)
 
