@@ -1,5 +1,11 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action. Guard source846d9f7e4b491af283ad8bdd778da0cb8e00b17d; exact authenticated failure and session-proof limits in report. Earlier current headings remain historical.
+<!-- wave10ia:end -->
+
 Current Wave10I: [actual preflight stop](WAVE10I_ISOLATED_DEPLOYMENT_RESULT.md). One isolated SELECT observed off/0/2min, required session safeguards notverified. No reservation/upload/key/Auth, allowanceunused. Earlier current headings remain historical; local Wave10H tooling/security pass unchanged.
 
 Current Wave10H: [local protected deployment readiness](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future isolated assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent review](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md), [bounded parallel lanes](WAVE10H_PARALLEL_LANE_REVIEW.md). Tooling51857e4/full1836JS/280replay17SQL pass. No actual reservation/deployment/key/Auth or production operation. Earlier current headings are historical.

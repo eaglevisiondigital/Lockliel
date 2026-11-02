@@ -1,5 +1,13 @@
 # Production release gate register
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Production release remains held. No production access/migration/deployment/maintenance change. Isolated actual safeguards and deployment/A-B/provider containment evidence not reached; prior274/280 states are historical.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

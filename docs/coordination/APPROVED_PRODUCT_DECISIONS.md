@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Owner authorized the narrow connection correction and conditional original deployment resume only after all gates pass. Authentication failure stops; no password reset, retry or substitute target is inferred.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

@@ -1,0 +1,17 @@
+{
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "originalToolingSource": "51857e44642ac79a4b1f458de786b97d98762082",
+  "baselineHead": "66b1b7159f6c5eabfdf34a37aed49d63b29ab3a1",
+  "guardSourceCommit": "846d9f7e4b491af283ad8bdd778da0cb8e00b17d",
+  "branch": "codex/wave10-hosted-composition",
+  "files": {
+    "scripts/member-hosted/database_preflight.py": "d9df69e2f1b512bb46934e743c16fd3379815b11f951f6cc867ac84e8563d853",
+    "scripts/member-hosted/database-preflight.mjs": "1032f89dac3c6cc9d2be25f23675708655783ff652cd750c5b478fb5cc34745d",
+    "tests/member_hosted_database_preflight_test.py": "f75df8333f2380edb920f1ecaac00e503ddf7a708776ae891511bf69f018658f",
+    "tests/member-hosted-database-preflight.test.mjs": "a410b19b7277f94a6bf6f0242c7d74bb69a905b644d4348fbcfd2b45cd0b14f6",
+    "docs/member-hosted-database-preflight/README.md": "7132340f595e8f61faa00d3e0ecd13ad31ef34a71271091efba7eb7a8d719017"
+  },
+  "existingUploaderSha256": "6f132ce8406a20c34eeff0c2e2eed63c913d5bd75647ac1fb9e6829ad7626d0c",
+  "existingReceiptAdapterSha256": "8844ca07f62a6da2f3e1e0226991f0b55c94d6048b7e0d481f45978adb69ef80",
+  "historicalCourseRunnerSha256": "dfb85a01fac6805228027868d06244b4643a90a0296ba6c1bfcce8f435722658"
+}

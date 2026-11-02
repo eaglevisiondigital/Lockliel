@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Actual credential rejected before SQL. No secrets in output/evidence/Git; no production access or account/settings change. Separate TLS is not authenticated safeguard proof. Full fresh RLS/private-note/function/provenance acceptance remains held.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

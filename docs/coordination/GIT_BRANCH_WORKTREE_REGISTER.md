@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Local guard source846d9f7e4b491af283ad8bdd778da0cb8e00b17d on codex/wave10-hosted-composition in existing Wave10 worktree. All other user refs and original dirty development checkout preserved. No push, merge or rewrite.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

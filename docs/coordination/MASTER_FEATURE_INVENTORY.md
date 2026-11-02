@@ -1,5 +1,13 @@
 # Master feature inventory
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+All37 feature rows/statuses unchanged; no new Live capability. The local guard passes; hosted acceptance is not verified.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

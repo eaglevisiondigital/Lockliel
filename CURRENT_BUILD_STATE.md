@@ -1,5 +1,11 @@
 # Lockliel verified continuity baseline
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Local guard/test/manual source846d9f7e4b491af283ad8bdd778da0cb8e00b17d; original app327ba098/uploader51857e4 unchanged. Full1853JS/21Python/configured+targetedlint pass. Password-free IPv6/TCP/officialCA verify-full+hostname TLS1.2 pass. One direct hidden-input credentialed attempt returned AUTHENTICATION_FAILED before SQL; actualon/5s/30s and currentbackendstate NOT VERIFIED. No retry, reservation, key, hostedAuth or deployment; allowanceunused. No cleanup needed/claimed. All280migrationbytes and37rows unchanged; originaldirtyroot/main/coursePR4/publicsites preserved. No production, settings, maintenance, migration, push/merge or activation. Read docs/coordination/WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md. WAVE 10I SAFELY BLOCKED; owner local credential verification is next, never password disclosure/reset by inference.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I stopped before reservation (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Current blocker is direct isolated PostgreSQL authentication. Actual on/5s/30s and full fresh backend/operator/provider gates remain prerequisites. Other independent lanes retain their existing approved scopes.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Coordinator owns only additive scripts/member-hosted/database-preflight.mjs, database_preflight.py, their two tests and operating notes. Historical uploader/receipts/course runner and shared Auth/runtime remain unchanged.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

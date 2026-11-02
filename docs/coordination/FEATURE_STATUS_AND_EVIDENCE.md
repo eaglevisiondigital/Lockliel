@@ -1,5 +1,13 @@
 # Feature status and evidence register
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Evidence separates1853JS/21Python mock passes and password-free TLS PASS from actual AUTHENTICATION_FAILED; no session-setting or backend-state proof.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

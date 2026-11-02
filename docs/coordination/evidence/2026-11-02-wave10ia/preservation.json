@@ -1,0 +1,17 @@
+{
+  "allOriginalTrackedFileBytesUnchangedBeforeDocumentation": true,
+  "originalTrackedCount": 1565,
+  "all280MigrationSha256Unchanged": true,
+  "migrationParityApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "migrationManifestSha256": "d74440082769f28196be8494277ea9fa2e78a6cc44a9a8f443932ee8797ffb92",
+  "originalDirtyCheckoutStatusUnchanged": true,
+  "originalDirtyCheckoutStatusSha256": "49801ebde7daa73ea266b4ca45ab1edce1756acd5c2f20cf169eb3d479d78646",
+  "allOtherUserBranchesRemotesTagsUnchanged": true,
+  "main": null,
+  "courseBranch": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "featureInventoryTableRowsSha256": "6d10dde0a60c94138f80627ab74e1e086e71fa09d8f4306bbcedadadafa56763",
+  "noFeaturePromotedToLive": true,
+  "remotePreservationBasis": "No provider mutation, production access, deployment, Git push/merge or maintenance action; not a fresh production audit",
+  "productionMigrationCountFreshlyVerified": false,
+  "isolatedLedgerReadinessFreshlyVerified": false
+}

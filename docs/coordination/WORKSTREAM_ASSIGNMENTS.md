@@ -1,5 +1,13 @@
 # Workstream assignment register
 
+<!-- wave10ia:begin -->
+## Wave 10I-A direct safeguard correction (2026-11-02)
+
+Coordinator executed this bounded local correction and one isolated credentialed attempt. No subagent dispatched or other lane newly started. Prior lane assignments remain historical, not a claim of current activity.
+
+[Wave10I-A result](WAVE10IA_SAFEGUARD_AND_RESUME_RESULT.md). Assessment: WAVE 10I SAFELY BLOCKED. No reservation/key provision/hostedAuth or production action.
+<!-- wave10ia:end -->
+
 <!-- wave10i:begin -->
 ## Wave 10I preflight stop (2026-11-02)
 

@@ -1,0 +1,14 @@
+{
+  "ok": false,
+  "errorCode": "AUTHENTICATION_FAILED",
+  "stage": "direct_connection",
+  "credentialedConnectionAttempts": 1,
+  "inspectionSqlReached": false,
+  "actualSessionSafeguardsVerified": false,
+  "deploymentReservations": 0,
+  "deploymentId": null,
+  "hostedAuthSessionsCreated": 0,
+  "noCredentialRetry": true,
+  "passwordStoredOrReported": false,
+  "nativeConnectionClosed": true
+}
