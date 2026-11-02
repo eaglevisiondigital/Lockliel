@@ -1,5 +1,11 @@
 # Feature status and evidence register
 
+<!-- wave10ic:begin -->
+## Wave 10I-C one direct diagnostic (2026-11-02)
+
+Owner ran one new protected launcher using exact source5cc6af45c9c8323b13f6d71ee0881e6b823ddfa3/helperc426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba. Result AUTHENTICATION_FAILED at native_connect/522ms, before SQL. Requested on/5s/30s and verify-full policy are not authenticated observation receipts; actual safeguards remain unverified. No retry/reset/settings change or deployment. Diagnostic allowance consumed once; deployment reservation unused. Source/all280migration bytes/37statuses/root dirty work/main/coursePR4/public sites preserved; no production access, hostedAuth, keys, maintenance, push/merge or activation. Credentials remained private. [Result and next local credential-verification step](WAVE10IC_DIRECT_DIAGNOSTIC_RESULT.md). Do not rerun the spent launcher or infer a password reset is required. Prior generic failure remains separately undiagnosed.
+<!-- wave10ic:end -->
+
 <!-- wave10ib:begin -->
 ## Wave 10I-B offline diagnostic correction (2026-11-02)
 

@@ -1,0 +1,28 @@
+{
+  "result": {
+    "ok": false,
+    "errorCode": "AUTHENTICATION_FAILED",
+    "stage": "native_connect",
+    "helperSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "nativeConnectElapsedMs": 522,
+    "required": {
+      "project": "qjksggxorghaxvpyslip",
+      "transport": "direct-ipv6",
+      "tls": "verify-full",
+      "readOnly": "on",
+      "lockTimeout": "5s",
+      "statementTimeout": "30s"
+    },
+    "safeguardsVerified": false
+  },
+  "interpretation": {
+    "requiredFieldsArePolicyNotObservedValues": true,
+    "authentication": "REJECTED; no successful session",
+    "readOnly": "NOT VERIFIED",
+    "lockTimeout": "NOT VERIFIED",
+    "statementTimeout": "NOT VERIFIED",
+    "sqlReached": false,
+    "nativeElapsedIsCombinedConnectionTimeNotTcpLatency": true,
+    "noAutomaticRetry": true
+  }
+}
