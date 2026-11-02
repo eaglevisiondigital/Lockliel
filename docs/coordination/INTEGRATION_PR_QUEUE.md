@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10f:begin -->
+## Wave10F local checker correction (2026-11-02)
+
+PR #4/course/application candidate retained. Prepared kit is not a deployment or application release. Next is owner review of one additional empty capability experiment only.
+
+[Local result](WAVE10F_LOCAL_CHECKER_RESULT.md), [final experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md). No remote execution authority.
+<!-- wave10f:end -->
+
 <!-- wave10e:begin -->
 ## Wave 10E authorized empty experiment (2026-11-02)
 

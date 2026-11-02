@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave10F: [local checker result](WAVE10F_LOCAL_CHECKER_RESULT.md), [exact future experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md).33 offline tests pass; tooling4e5b594. Final kit is prepared/default-blocked; no credential/provider access or remote authority. Older wave reports remain historical.
+
 Current Wave10E: [actual single experiment](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard and next owner review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). Reservation context=deploy-preview observed; local draft-field guard stopped before finalization; new ID independently deleted/inaccessible. Full workflow BLOCKED, one allowance consumed, no application deployment or replacement authorized.
 
 Current Wave10D: [context result](WAVE10D_NETLIFY_CONTEXT_RESULT.md), [exact next owner review](WAVE10D_CONTEXT_OWNER_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED. Public-provider review only; Phase 2 and all deployment/Auth operations remain unauthorized. Earlier checkpoints remain historical.

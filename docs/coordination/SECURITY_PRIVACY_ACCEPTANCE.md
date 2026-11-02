@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10f:begin -->
+## Wave10F local checker correction (2026-11-02)
+
+True/null/omitted draft allowed only with matching provider receipts, explicit independent publication pointers and preserved history/aliases. False/malformed/missing essential metadata deny. Cleanup/404 checks retained and mocked failure paths pass.
+
+[Local result](WAVE10F_LOCAL_CHECKER_RESULT.md), [final experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md). No remote execution authority.
+<!-- wave10f:end -->
+
 <!-- wave10e:begin -->
 ## Wave 10E authorized empty experiment (2026-11-02)
 

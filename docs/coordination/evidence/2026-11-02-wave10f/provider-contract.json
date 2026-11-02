@@ -1,0 +1,11 @@
+{
+  "apiVersion": "2.63.1",
+  "officialSource": "https://github.com/netlify/open-api/blob/e79124a60a1fb6bb4ae4c5b68fef4b11ff6fbc44/swagger.yml",
+  "schemaSha256": "3af3c5d0165ae3be63f1c11373ba5f42d0325c1064759e3cd5a3eeaacff77ad7",
+  "responseDraftRequired": false,
+  "responseDraftExplicitlyNullable": false,
+  "omittedVsNullInWave10E": "unresolved due retained dict.get projection",
+  "localPolicy": "null/omitted response draft allowed only with matching create/read receipts and independent explicit site publication and preservation proof; false/malformed denied",
+  "optionalPublishedTimestamp": "existing absent/null handling preserved; non-null denied; absence is not evidence, explicit site publication proof required",
+  "newRemoteProviderGuaranteeClaimed": false
+}

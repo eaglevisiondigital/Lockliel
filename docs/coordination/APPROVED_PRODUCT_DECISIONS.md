@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10f:begin -->
+## Wave10F local checker correction (2026-11-02)
+
+Wave10F directly authorizes LOCAL optional-field checker correction/tests/preparation only. No further reservation, credentials or provider account action. Future exact empty experiment requires new approval.
+
+[Local result](WAVE10F_LOCAL_CHECKER_RESULT.md), [final experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md). No remote execution authority.
+<!-- wave10f:end -->
+
 <!-- wave10e:begin -->
 ## Wave 10E authorized empty experiment (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10f:begin -->
+## Wave10F local checker correction (2026-11-02)
+
+Local response-draft blocker corrected under complete independent publication proof;33 offline tests pass. Real same-ID finalization remains unverified; no application deployment or hosted Auth gate cleared.
+
+[Local result](WAVE10F_LOCAL_CHECKER_RESULT.md), [final experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md). No remote execution authority.
+<!-- wave10f:end -->
+
 <!-- wave10e:begin -->
 ## Wave 10E authorized empty experiment (2026-11-02)
 

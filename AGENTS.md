@@ -1,5 +1,11 @@
 # Lockliel engineering instructions
 
+<!-- wave10f:begin -->
+## Wave10F LOCAL checker corrected/prepared (2026-11-02)
+
+Read docs/coordination/WAVE10F_LOCAL_CHECKER_RESULT.md and WAVE10F_FINAL_EXPERIMENT_PREPARATION.md. Authorized local checker correction only: optional/null draft accepted under complete independent site/publication/history proof, false/malformed deny. Existing optional publication timestamp semantics retained; absent timestamp is not proof.33 offline tests pass with real sockets blocked/fake in-memory operator; no actual credential/account access. Tooling6911446 then4e5b594; application327ba098/runtimebcaa356/all280migrations unchanged. Final kit /private/tmp/lockliel-wave10f-validated-experiment manifest44f768595051db86f63071ef1b94b704e5ace139ea67a67ee613d6dd063bb625 prepared-only; generated helpers default exit2 before credentials/network. Real same-ID finalization unverified. Fresh owner/site/billing/alias preflight, conditional empty same-ID ready, preserved aliases, exclusive one-attempt journal and independent cleanup404 remain mandatory.20 normal/40 total API calls with cleanup quota/600s normal window are future proposal bounds, not authorization/expiry. No remote reservation/deploy/Auth/Supabase/production/settings/maintenance/migration/push/merge/purchase; public docs read only.12registers/37statuses current, noneLive; no subagents. Wave10E one allowance consumed/deleted; another experiment needs new direct owner approval and normal environment review.
+<!-- wave10f:end -->
+
 <!-- wave10e:begin -->
 ## Wave 10E one authorized empty Netlify experiment (2026-11-02)
 
