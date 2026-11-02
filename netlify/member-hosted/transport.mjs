@@ -48,7 +48,7 @@ export function createHostedTransport({ pin: suppliedPin, keyReader, fetchImpl, 
       const token = incoming.get('authorization')?.replace(/^Bearer /, '');
       const claims = isolatedTokenClaims(token, now());
       const login = method === 'POST' && url.pathname === '/auth/v1/token' && url.search === '?grant_type=password';
-      const logout = method === 'POST' && url.pathname === '/auth/v1/logout' && !url.search && claims;
+      const logout = method === 'POST' && url.pathname === '/auth/v1/logout' && url.search === '?scope=local' && claims && options.body === undefined;
       const read = method === 'GET' && claims && getPathAllowed(url, claims) && options.body === undefined;
       if (!login && !logout && !read || login && incoming.has('authorization')) return denied();
       const headers = new Headers({ apikey: key, Accept: 'application/json' });
@@ -67,7 +67,15 @@ export function createHostedTransport({ pin: suppliedPin, keyReader, fetchImpl, 
       if (login) {
         const auth=isolatedTokenClaims(data?.access_token,now());
         if (!auth || !data.user || data.user.id !== auth.sub || data.user.is_anonymous === true || typeof data.refresh_token !== 'string' || data.refresh_token.length < 8 || data.refresh_token.length > 4096) return denied();
-        return Response.json({access_token:data.access_token,refresh_token:data.refresh_token,expires_in:Math.min(3600,Math.max(1,Math.floor((auth.exp*1000-now())/1000))),user:{id:auth.sub,factors:Array.isArray(data.user.factors) ? data.user.factors.filter(f=>f?.factor_type==='totp' && f.status==='verified').map(()=>({factor_type:'totp',status:'verified'})) : []}});
+        // Missing provider MFA knowledge is unavailable, never inferred to mean no factor.
+        const factors=data.user.factors;
+        if(!Array.isArray(factors)||factors.some(f=>!f||typeof f!=='object'||!['totp','phone','webauthn'].includes(f.factor_type)||!['verified','unverified'].includes(f.status))){
+          // The grant is real provider state even though acceptance is denied. Only
+          // this newly issued isolated grant is eligible for local cleanup.
+          const cleanup=await confinedFetch(ISOLATED_MEMBER_URL+'/auth/v1/logout?scope=local',{method:'POST',headers:{apikey:key,Authorization:'Bearer '+data.access_token}});
+          return Response.json({error:'Additional verification unavailable.',code:'isolated_mfa_unavailable',revocation:cleanup.ok?'verified':'unverified'},{status:503});
+        }
+        return Response.json({access_token:data.access_token,refresh_token:data.refresh_token,expires_in:Math.min(3600,Math.max(1,Math.floor((auth.exp*1000-now())/1000))),user:{id:auth.sub,factors:factors.map(f=>({factor_type:f.factor_type,status:f.status}))}});
       }
       return Response.json(data);
     } catch { return denied(); }
