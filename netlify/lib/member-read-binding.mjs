@@ -12,9 +12,9 @@ export function pinMemberBinding(expected, runtimeSource) {
   return Object.freeze({ project: expected.project, site: expected.site, deploy: expected.deploy, source: expected.source });
 }
 
-export function memberRuntimeMatches(binding, context) {
+export function memberRuntimeMatches(binding, context, runtimeContext = 'branch-deploy', runtimePublished) {
   return Boolean(binding && context?.site?.id === binding.site && context?.deploy?.id === binding.deploy &&
-    context?.deploy?.context === 'branch-deploy');
+    context?.deploy?.context === runtimeContext && (runtimePublished === undefined || context?.deploy?.published === runtimePublished));
 }
 
 /** Pin the current provider permalink separately. Site names are mutable and an old

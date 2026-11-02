@@ -37,12 +37,12 @@ async function boundedJson(response) {
  * An authorized future artifact must pin a new deploy + source, supply its publishable key
  * privately, and attest runtime context. Tests supply only synthetic tokens and mock fetch.
  */
-export function createMemberReadHandler({ enabled = false, expectedBinding, runtimeSource, expectedOrigin, publishableKey, fetchImpl, now = Date.now } = {}) {
+export function createMemberReadHandler({ enabled = false, expectedBinding, runtimeSource, expectedOrigin, publishableKey, fetchImpl, now = Date.now, runtimeContext = 'branch-deploy', runtimePublished, expectedReadiness } = {}) {
   const binding = pinMemberBinding(expectedBinding, runtimeSource);
   const origin = pinMemberOrigin(binding, expectedOrigin);
   const configured = enabled === true && binding && origin && typeof fetchImpl === 'function' && typeof now === 'function' && /^sb_publishable_[A-Za-z0-9_-]{12,200}$/.test(publishableKey || '');
   return async function memberRead(request, context) {
-    if (!configured || !memberRuntimeMatches(binding, context)) return unavailableMemberRead();
+    if (!configured || !memberRuntimeMatches(binding, context, runtimeContext, runtimePublished)) return unavailableMemberRead();
     try {
       const url = new URL(request.url);
       if (request.method !== 'GET') return reply({ error: 'Method not allowed.' }, 405);
@@ -74,6 +74,11 @@ export function createMemberReadHandler({ enabled = false, expectedBinding, runt
         if (await boundedJson(response) !== true) throw new Denied();
       };
       await checkActive();
+      if (expectedReadiness !== undefined) {
+        if (expectedReadiness?.schema !== 280 || expectedReadiness?.paused !== true || expectedReadiness?.protocol !== '278-v1') return unavailableMemberRead();
+        const readiness = await boundedJson(await get('/rest/v1/rpc/lockliel_course_cutover_status'));
+        if (readiness?.paused !== true || readiness?.schemaReady !== true || readiness?.protocol !== expectedReadiness.protocol) return unavailableMemberRead();
+      }
       const owner = encodeURIComponent(user.id);
       const safeProjection = async (path, project) => {
         try {
