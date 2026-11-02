@@ -1,0 +1,48 @@
+{
+  "startingDocumentationHead": "8d66e88582163af56eb57cc1f0edc66ad932a30f",
+  "toolingCommit": "51857e44642ac79a4b1f458de786b97d98762082",
+  "branch": "codex/wave10-hosted-composition",
+  "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-wave10-hosted-composition/Lockliel",
+  "files": {
+    "scripts/member-hosted/uploader.mjs": "6f132ce8406a20c34eeff0c2e2eed63c913d5bd75647ac1fb9e6829ad7626d0c",
+    "scripts/member-hosted/provider-receipts.mjs": "8844ca07f62a6da2f3e1e0226991f0b55c94d6048b7e0d481f45978adb69ef80",
+    "tests/member-hosted-uploader.test.mjs": "6f36daedd3ee2aa1086dff87bc56a90b68cd5661f99948520da429ec4a1f58eb",
+    "tests/member-hosted-provider-receipts.test.mjs": "c132b0eb4898f79b01ad4eedc2836327a4936e91b76201c33b43f013b7a1fbf6",
+    "tests/member-hosted-deployment-security.test.mjs": "cc741ff713c0de3fcca4fb55f83a32883daadea1b1eeff35f8a49b2fe0312424",
+    "docs/member-hosted-uploader/README.md": "6270b5ad7b6a8e1a29cc4b0083f451ddab061c723f3e27c04b1a9b853531cc33",
+    "docs/member-hosted-receipts/README.md": "fdb16b484add767642bb2c3b27b2af535ecec03c78051415f1b663bcb5e7537b"
+  },
+  "actualAgents": [
+    {
+      "name": "/root/wave10h_uploader",
+      "owned": [
+        "scripts/member-hosted/uploader.mjs",
+        "tests/member-hosted-uploader.test.mjs",
+        "docs/member-hosted-uploader/README.md"
+      ]
+    },
+    {
+      "name": "/root/wave10h_receipts",
+      "owned": [
+        "scripts/member-hosted/provider-receipts.mjs",
+        "tests/member-hosted-provider-receipts.test.mjs",
+        "docs/member-hosted-receipts/README.md"
+      ]
+    },
+    {
+      "name": "/root/wave10h_security",
+      "owned": [
+        "tests/member-hosted-deployment-security.test.mjs",
+        "docs/coordination/WAVE10H_INDEPENDENT_SECURITY_REVIEW.md",
+        "docs/coordination/WAVE10H_PARALLEL_LANE_REVIEW.md"
+      ]
+    }
+  ],
+  "sharedApplicationEdits": false,
+  "fileLeaseConflicts": false,
+  "allAgentsCompleted": true,
+  "reviewDocumentsSha256": {
+    "WAVE10H_INDEPENDENT_SECURITY_REVIEW.md": "afc99873554e4a83b4d91df518261d1d5b109a972537b7a7280ff637bab5956f",
+    "WAVE10H_PARALLEL_LANE_REVIEW.md": "2253aba3169993affe12a023b2748f53d818837f4a015152eda6dab045543537"
+  }
+}

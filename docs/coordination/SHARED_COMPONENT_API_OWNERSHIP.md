@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10h:begin -->
+## Wave 10H local operator readiness (2026-11-02)
+
+Uploader agent owns uploader/tests/manual; receipt agent owns independent receipt/tests/manual; security agent owns attacktests/reviews; coordinator owns fullchecks/commits/registers/proposal. Shared Auth/schema/navigation/design/config untouched.
+
+[Readiness result](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent security](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md). READY FOR EXACT ISOLATED APPLICATION DEPLOYMENT AUTHORIZATION; no execution authority or new Live status.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G observed empty workflow (2026-11-02)
 

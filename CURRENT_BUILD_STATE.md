@@ -1,5 +1,11 @@
 # Lockliel verified continuity baseline
 
+<!-- wave10h:begin -->
+## Wave 10H local deployment readiness (2026-11-02)
+
+Read docs/coordination/WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md and WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md. LOCAL tooling51857e44642ac79a4b1f458de786b97d98762082 adds protected uploader/opaque independent publication/artifact/config/route/retirement receipts; app327ba098 and all existing Auth/runtime/schema remain unchanged. Actual uploader/receipts/security agents completed disjoint leases; independent review passed after four reproduced findings fixed. Full1836JS/0skip/type/six supported build modes/configured+scopedlint/Netlify83modules63handlers and disposable280replay/17SQL passed. Focused147 includes27attacks;202Auth/369parallel are subsets. Final defaultOFF restored;280migration hashes and37rows unchanged. No remote resource, protected credential input/access, hosted Auth/DB, settings/maintenance, production, push/merge/deploy/migration application or activation/purchase. Production274/isolated280pausedON remain prior observations. Ready to request exact isolated execution authorization only: fresh operator/cost/backend/key provenance, actual ACK/config/route/rate/A-B/retirement remain gated. No arbitrary callback/JSON can supply provider authority; trusted operator/native/build/acceptance bindings remain explicit. Unpublished is not private, human window not autoexpiry, ambiguous ID never authorizes DELETE. All course/security/recovery/rights/accessibility/production gates intact. No newLivefeature.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G authorized empty workflow verified (2026-11-02)
 

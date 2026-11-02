@@ -1,0 +1,158 @@
+{
+  "toolingCommit": "51857e44642ac79a4b1f458de786b97d98762082",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "javascript": {
+    "passed": 1836,
+    "failed": 0,
+    "skipped": 0,
+    "networkGuard": "tests/support/network-guard.mjs",
+    "officialNativeToolchain": "ZISI16.3.0/bootstrap2.24.0; existing cache only"
+  },
+  "checks": [
+    {
+      "check": "full-unit",
+      "exitCode": 0,
+      "elapsedSeconds": 9.424,
+      "log": "/private/tmp/lockliel-wave10h-full-unit.log",
+      "rawLocalLogSha256": "d207efc69227c2f67e2c2651c9415a60b96dcf0be7c866f4b825fb216289c639"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "elapsedSeconds": 2.968,
+      "log": "/private/tmp/lockliel-wave10h-lint-configured.log",
+      "rawLocalLogSha256": "f125d0103fb5b6bfb3bb952af3c715e56f110f24ce57fc54367d9cc976306cad"
+    },
+    {
+      "check": "lint-hosted-scope",
+      "exitCode": 0,
+      "elapsedSeconds": 1.304,
+      "log": "/private/tmp/lockliel-wave10h-lint-hosted-scope.log",
+      "rawLocalLogSha256": "efc7899a40584374cc110956fd61fb604fb4b89bd7eabe82123856cf62cd6d30"
+    }
+  ],
+  "builds": [
+    {
+      "mode": "legacy",
+      "exitCode": 0,
+      "elapsedSeconds": 12.188,
+      "log": "/private/tmp/lockliel-wave10h-build-legacy.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "rawLocalLogSha256": "0f60834551b6108ba481c133282f2a9253be92c481dcfd80154e37f389ab0c78"
+    },
+    {
+      "mode": "offline",
+      "exitCode": 0,
+      "elapsedSeconds": 9.688,
+      "log": "/private/tmp/lockliel-wave10h-build-offline.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "rawLocalLogSha256": "7f5fa77b3fa0ebd4a1aec8e2d45537920e468ba8a660a264ba54e164fe798e36"
+    },
+    {
+      "mode": "server",
+      "exitCode": 0,
+      "elapsedSeconds": 9.948,
+      "log": "/private/tmp/lockliel-wave10h-build-server.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "rawLocalLogSha256": "b769e4e6b798b03bc4a5ed9ba8e3556646ba4d7c21e1edb08aaa95cdc5fe5acf"
+    },
+    {
+      "mode": "hosted-read",
+      "exitCode": 0,
+      "elapsedSeconds": 9.476,
+      "log": "/private/tmp/lockliel-wave10h-build-hosted-read.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "rawLocalLogSha256": "3537a298f04fb57cbca4e2dfdcf5f669baa9351f4546b6b7d9a6e64f9f8965aa"
+    },
+    {
+      "mode": "invalid-auth-flag-build",
+      "exitCode": 0,
+      "elapsedSeconds": 9.23,
+      "log": "/private/tmp/lockliel-wave10h-build-hosted-auth.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "note": "Validation runner initially used isolated-auth, which does not enable Auth. Not counted as positive Auth-mode evidence; corrected below.",
+      "rawLocalLogSha256": "fe3ed04542ace2b899e9573fcef2663b5658e58070304664597467445d81be00"
+    },
+    {
+      "mode": "default-off",
+      "exitCode": 0,
+      "elapsedSeconds": 10.998,
+      "log": "/private/tmp/lockliel-wave10h-build-default-off.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "rawLocalLogSha256": "91b20e74a9787193be64d0f8ffd68a729d7991284d17eda98544e34e27b7d134"
+    },
+    {
+      "check": "typescript",
+      "exitCode": 0,
+      "elapsedSeconds": 1.891,
+      "log": "/private/tmp/lockliel-wave10h-typescript.log",
+      "rawLocalLogSha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15"
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "elapsedSeconds": 5.96,
+      "log": "/private/tmp/lockliel-wave10h-netlify.log",
+      "rawLocalLogSha256": "0e6ce9f31ef8b951761e1d0814d6905a69e3a27a2c7cf96e8f5fcdf9ccd3a32d"
+    },
+    {
+      "mode": "hosted-auth-correct",
+      "exitCode": 0,
+      "elapsedSeconds": 13.22,
+      "log": "/private/tmp/lockliel-wave10h-build-hosted-auth-correct.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "positiveLocalAuthFormVerified": true,
+      "rawLocalLogSha256": "ac1cccbad0db28f1e71d7335e4a4ac5b2005b91d79260f3502f946abfa41ad45"
+    },
+    {
+      "mode": "final-default-off",
+      "exitCode": 0,
+      "elapsedSeconds": 10.333,
+      "log": "/private/tmp/lockliel-wave10h-build-final-default-off.log",
+      "fixture": true,
+      "hostedOperations": false,
+      "defaultOffVerified": true,
+      "verification": "Next exports an error shell at this path; no member/password Auth controls. Initial checker expected file absence, corrected to actual existing Next not-found contract.",
+      "rawLocalLogSha256": "3725bcd5a96d47cdcccae78e3d611fe786ed3a869197415f9a94883e13b7a692"
+    }
+  ],
+  "supportedBuildModes": [
+    "defaultOFF",
+    "legacySynthetic",
+    "offlineRead",
+    "localServerRead",
+    "pinnedHostedRead",
+    "pinnedHostedAuth"
+  ],
+  "buildHarnessCorrections": "Initial isolated-auth flag was invalid, not positive Auth evidence; corrected isolated-login build verified password form. Default-OFF exports Next error shell, not file absence; no Auth controls confirmed. No application correction required.",
+  "disposablePostgres": {
+    "check": "disposable-sql",
+    "exitCode": 0,
+    "elapsedSeconds": 11.984,
+    "log": "/private/tmp/lockliel-wave10h-sql.log",
+    "rawLocalLogSha256": "a66b8e5f2aa78ad45f94f34b65823cc45896b5277c6c171220e97bfc1bcf720f",
+    "version": 17,
+    "tcp": false,
+    "migrationsReplayed": 280,
+    "sqlFiles": 17,
+    "operationalReadinessAndPausedReadTests": "PASS",
+    "ownClusterCleaned": true
+  },
+  "lint": "Configured tooling and full hosted scope PASS; no unrelated repository-wide cleanup",
+  "independentSubsetsNotAdditive": {
+    "deploymentTests": 147,
+    "attackerTestsIncluded": 27,
+    "existingAuthRuntimeVerifier": 202,
+    "parallelContracts": 369
+  },
+  "productionOrHostedValidation": false,
+  "dependencyInstall": false,
+  "pythonWave10FRepeated": false
+}

@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10h:begin -->
+## Wave 10H local operator readiness (2026-11-02)
+
+Owner approved Wave10H local implementation/mocks/security/disposable validation only. Next exact isolated execution proposal is prepared; no new hosted or production authority.
+
+[Readiness result](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent security](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md). READY FOR EXACT ISOLATED APPLICATION DEPLOYMENT AUTHORIZATION; no execution authority or new Live status.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G observed empty workflow (2026-11-02)
 

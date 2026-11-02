@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10h:begin -->
+## Wave 10H local operator readiness (2026-11-02)
+
+Smallest next decision: exact isolated assignment covering source327/tooling51857e4/site70/qjks, protectedkey/A-B scopes, fresh preflight/budget and mandatory exact-ID retirement. No approval requested for production, settings or manager changes. The final verifier retains manager/AAL assertions; ordinary A/B scope cannot invent that evidence. Resolve its exact evidence/authorization requirement before expecting final hosted verification.
+
+[Readiness result](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent security](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md). READY FOR EXACT ISOLATED APPLICATION DEPLOYMENT AUTHORIZATION; no execution authority or new Live status.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G observed empty workflow (2026-11-02)
 

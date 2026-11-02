@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10h:begin -->
+## Wave 10H local operator readiness (2026-11-02)
+
+Existing hosted-composition branch/worktree retained. Source-only local tooling checkpoint51857e44642ac79a4b1f458de786b97d98762082 follows G8d66e885; app327ba098/course/main/otherbranch-remotes-tags/rootdirty state preserved. Local docs follow; no push.
+
+[Readiness result](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent security](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md). READY FOR EXACT ISOLATED APPLICATION DEPLOYMENT AUTHORIZATION; no execution authority or new Live status.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G observed empty workflow (2026-11-02)
 

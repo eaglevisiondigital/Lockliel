@@ -1,5 +1,13 @@
 # Workstream assignment register
 
+<!-- wave10h:begin -->
+## Wave 10H local operator readiness (2026-11-02)
+
+Three actual agents completed: wave10h_uploader, wave10h_receipts, wave10h_security. Security also completed bounded member/Faith/L5-L8/account/course review; no eight separately running agents or new implementation lanes claimed.
+
+[Readiness result](WAVE10H_PROTECTED_DEPLOYMENT_READINESS_RESULT.md), [exact future assignment](WAVE10H_EXACT_ISOLATED_DEPLOYMENT_ASSIGNMENT.md), [independent security](WAVE10H_INDEPENDENT_SECURITY_REVIEW.md). READY FOR EXACT ISOLATED APPLICATION DEPLOYMENT AUTHORIZATION; no execution authority or new Live status.
+<!-- wave10h:end -->
+
 <!-- wave10g:begin -->
 ## Wave 10G observed empty workflow (2026-11-02)
 

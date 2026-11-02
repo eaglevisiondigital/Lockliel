@@ -1,0 +1,14 @@
+✔ revocation between identity and final snapshot denies composition (0.487375ms)
+✔ partial domain failure stays unavailable, never sample preferences or whole false success (1.085667ms)
+✔ missing and foreign rows remain explicit and cannot supply another profile (1.124042ms)
+✔ upstream failure traverses real adapter without raw error or private retention (0.269042ms)
+✔ wrong expected binding rejects actual server result (0.544ms)
+✔ closed export denies every method in production, isolated, preview and unknown contexts (2.636375ms)
+ℹ tests 1836
+ℹ suites 0
+ℹ pass 1836
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9218.450167
