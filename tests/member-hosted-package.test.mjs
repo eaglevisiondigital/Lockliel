@@ -4,6 +4,7 @@ import {mkdtemp,mkdir,writeFile,readFile,readdir,rm,symlink,realpath} from 'node
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {buildMemberHostedPackage,planMemberStaticFiles,safePackagePath,memberPackageHeaders,memberPackageConfig,memberPackageRedirects} from '../scripts/member-hosted/package.mjs';
 const sourceRoot=new URL('..',import.meta.url).pathname;
 const deploy='a'.repeat(24),source='b'.repeat(40);
@@ -31,4 +32,39 @@ test('official v2 local package is read-only, closed by default and byte-manifes
  for(const [file,entry]of Object.entries(manifest.files)){const bytes=await readFile(join(outputRoot,file));assert.equal(entry.sha256,createHash('sha256').update(bytes).digest('hex'));assert.equal(entry.sha1,createHash('sha1').update(bytes).digest('hex'));assert.equal(entry.size,bytes.length);}
  const serialized=JSON.stringify(manifest);assert.ok(!serialized.includes(sourceRoot));assert.ok(!serialized.includes(process.env.LOCKLIEL_MEMBER_PACKAGE_TOOLCHAIN_ROOT));assert.ok(!serialized.includes(root));
  await assert.rejects(buildMemberHostedPackage({sourceRoot,buildRoot:root,outputRoot,pin,localFixture:true,toolchainRoot:process.env.LOCKLIEL_MEMBER_PACKAGE_TOOLCHAIN_ROOT}),/already exists/);
+}));
+
+const authForms=()=>'<section><form class="ml-auth-card" method="post" action="/api/lockliel-auth/login" autoComplete="off" aria-describedby="auth-description" aria-busy="true"><label>Email<input name="email" type="email" autoComplete="off" maxLength="254" required="" disabled=""/></label><label>Password<input name="password" type="password" autoComplete="off" maxLength="128" required="" disabled=""/></label><button type="submit" disabled="">Sign in to isolated review</button></form><form method="post" action="/api/lockliel-auth/logout" aria-busy="true"><button type="submit" disabled="">Sign out of this isolated host</button></form></section>';
+test('Auth static selection requires separately requested exact disabled POST forms',()=>fixture(async root=>{
+ await writeFile(join(root,'my-lockliel/review.html'),html(authForms()));
+ await assert.rejects(planMemberStaticFiles(root,pin));
+ const files=await planMemberStaticFiles(root,pin,{authEnabled:true});assert.ok(files.includes('my-lockliel/review.html'));
+ for(const forms of [authForms().replace('method="post"','method="get"'),authForms().replace('action="/api/lockliel-auth/login"','action="https://example.invalid/login"'),authForms().replace('name="password"','name="token"'),authForms().replace('required="" disabled=""','required=""'),authForms().replace('type="password"','type="password" value="synthetic-only"'),authForms().replace('aria-busy="true"','aria-busy="false"'),authForms()+'<input type="hidden" name="next"/>',authForms().replace('type="submit" disabled=""','type="submit" disabled="" formmethod="get"'),authForms().replace('type="password"','type="file"')]){
+  await writeFile(join(root,'my-lockliel/review.html'),html(forms));await assert.rejects(planMemberStaticFiles(root,pin,{authEnabled:true}));
+ }
+}));
+test('Auth-only static CSP permits same-host forms without relaxing v1 or external destinations',()=>{const headers=memberPackageHeaders(html(authForms()),{authEnabled:true});assert.ok(headers.includes("form-action 'self'"));for(const directive of ["connect-src 'self'","frame-src 'none'","base-uri 'none'","script-src-attr 'none'",'Referrer-Policy: no-referrer'])assert.ok(headers.includes(directive));assert.ok(memberPackageHeaders(html()).includes("form-action 'none'"));assert.throws(()=>memberPackageHeaders(html(),{authEnabled:'true'}));});
+test('Auth build refuses nonboolean or independent enabled flag mismatch before output',()=>fixture(async root=>{for(const flags of [{authEnabled:true},{enabled:true,authEnabled:'true'},{enabled:'true',authEnabled:true}])await assert.rejects(buildMemberHostedPackage({sourceRoot,buildRoot:root,outputRoot:join(root,'output'),pin,localFixture:true,...flags}),/Invalid/);}));
+test('official Auth package has exactly three native archives with independent byte verification',{skip:!process.env.LOCKLIEL_MEMBER_PACKAGE_TOOLCHAIN_ROOT?'Explicit installed official toolchain not supplied.':false},()=>fixture(async root=>{
+ const head=execFileSync('/usr/bin/git',['-C',sourceRoot,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),authPin={...pin,binding:{...pin.binding,source:head}};
+ await writeFile(join(root,'my-lockliel/review.html'),html(authForms()).replace(source,head));
+ const outputRoot=join(root,'output');
+ const {manifest}=await buildMemberHostedPackage({sourceRoot,buildRoot:root,outputRoot,pin:authPin,localFixture:true,enabled:true,authEnabled:true,toolchainRoot:process.env.LOCKLIEL_MEMBER_PACKAGE_TOOLCHAIN_ROOT});
+ assert.equal(manifest.version,'lockliel-member-auth-package-v1');assert.equal(manifest.authEnabled,true);assert.equal(manifest.enabled,true);assert.equal(manifest.releaseEligible,false);assert.equal(manifest.function,undefined);
+ assert.deepEqual(manifest.functions.map(fn=>fn.name),['lockliel-member-read','lockliel-login','lockliel-logout']);
+ assert.deepEqual(await readdir(join(outputRoot,'functions')),['lockliel-login.zip','lockliel-logout.zip','lockliel-member-read.zip']);
+ for(const [index,fn]of manifest.functions.entries()){
+  assert.equal(fn.runtimeAPIVersion,2);assert.equal(fn.bootstrapVersion,'2.24.0');
+  assert.deepEqual(JSON.parse(JSON.stringify(fn.routes)),[{pattern:['/api/lockliel/member-read','/api/lockliel-auth/login','/api/lockliel-auth/logout'][index],literal:['/api/lockliel/member-read','/api/lockliel-auth/login','/api/lockliel-auth/logout'][index],methods:[index===0?'GET':'POST']}]);
+  const code=await readFile(join(outputRoot,fn.compiled),'utf8');assert.ok(!/bsndfhbemstyrrglajat|sb_publishable_[A-Za-z0-9_-]{12,}|service_role/.test(code));
+  if(index===0)assert.ok(!/\/auth\/v1\/(?:token|logout)|\/api\/lockliel-auth\//.test(code));else{assert.ok(code.includes('authEnabled: true'));assert.ok(code.includes('rateLimit:'));}
+ }
+ const headers=await readFile(join(outputRoot,'public/_headers'),'utf8');assert.ok(headers.includes("form-action 'self'"));
+ for(const [file,entry]of Object.entries(manifest.files)){const bytes=await readFile(join(outputRoot,file));assert.equal(entry.sha256,createHash('sha256').update(bytes).digest('hex'));}
+ const {verifyLocalPackage}=await import('../scripts/member-hosted/verify.mjs');
+ const expectedManifestSha256=createHash('sha256').update(await readFile(join(outputRoot,'member-hosted-manifest.json'))).digest('hex');
+ // Fixture authority remains explicit even though the exact source identity is checked.
+ const local=await verifyLocalPackage({directory:outputRoot,expectedPin:authPin,expectedManifestSha256,allowLocalFixture:true});
+ assert.equal(local.verifiedLocal,true);assert.equal(local.fixture,true);
+ await assert.rejects(verifyLocalPackage({directory:outputRoot,expectedPin:authPin,expectedManifestSha256}),/fixture/);
 }));

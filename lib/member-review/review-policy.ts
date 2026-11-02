@@ -53,3 +53,11 @@ export function hostedMemberReadReviewEnabled(input:Readonly<{
   typeof input.deploy==='string'&&/^[a-f0-9]{24}$/.test(input.deploy)&&input.deploy===input.expectedDeploy&&
   typeof input.source==='string'&&/^[a-f0-9]{40}$/.test(input.source)&&input.source===input.expectedSource;
 }
+
+/** Auth exposure requires a separate exact opt-in and every trusted read-build pin. */
+export function hostedMemberAuthReviewEnabled(input:Readonly<{
+ authFlag?:string;flag?:string;netlify?:string;context?:string;site?:string;deploy?:string;source?:string;
+ expectedDeploy?:string;expectedSource?:string;
+}>):boolean {
+ return input.authFlag==='isolated-login'&&hostedMemberReadReviewEnabled(input);
+}

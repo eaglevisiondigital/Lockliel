@@ -59,31 +59,41 @@ export async function verifyLocalPackage({directory,expectedPin,expectedManifest
   const manifest=JSON.parse(bytes);
   requireCondition(typeof manifest.localFixture==='boolean'&&typeof manifest.source?.dirty==='boolean'&&typeof manifest.enabled==='boolean'&&typeof manifest.releaseEligible==='boolean','Invalid package authority types.');
   requireCondition(manifest.releaseEligible===(!manifest.localFixture&&manifest.enabled),'Inconsistent package authority.');
-  requireCondition(manifest.version==='lockliel-member-package-v1','Unexpected package version.');
+  const auth=manifest.version==='lockliel-member-auth-package-v1';
+  requireCondition(auth||manifest.version==='lockliel-member-package-v1','Unexpected package version.');
+  requireCondition(auth ? manifest.authEnabled===true&&manifest.enabled===true&&!Object.hasOwn(manifest,'function') : !Object.hasOwn(manifest,'authEnabled')&&!Object.hasOwn(manifest,'functions'),'Unexpected Auth package authority.');
   requireCondition(equal(manifest.pin,expectedPin),'Package binding mismatch.');
   requireCondition(allowLocalFixture===true || manifest.localFixture===false,'Local fixture cannot certify a deployment.');
   requireCondition(manifest.source?.head===expectedPin.binding.source,'Source mismatch.');
   requireCondition(manifest.localFixture===true || manifest.source?.dirty===false,'Dirty source cannot certify a deployment.');
   const files=await packageInventory(directory);
   requireCondition(equal(files,manifest.files),'Package byte inventory mismatch.');
-  const fn=manifest.function;
-  requireCondition(fn?.name==='lockliel-member-read' && fn.path==='functions/lockliel-member-read.zip' && fn.compiled==='artifacts/lockliel-member-read.mjs' && fn.runtimeAPIVersion===2,'Unexpected function inventory.');
-  requireCondition(Boolean(files[fn.path])&&Boolean(files[fn.compiled]),'Missing function bytes.');
-  if(!manifest.localFixture || manifest.toolchain){
-    const entries=inspectFunctionZip(await readFile(join(directory,fn.path)));
-    const entry=entries['___netlify-entry-point.mjs'],bootstrap=entries['___netlify-bootstrap.mjs'],meta=entries['___netlify-metadata.json'];
-    requireCondition(entry&&bootstrap&&meta,'Missing official runtime files.');
-    requireCondition(manifest.toolchain?.bootstrap==='2.24.0'&&manifest.toolchain?.zisi==='16.3.0'&&/^[a-f0-9]{64}$/.test(manifest.toolchain?.bootstrapSha256||''),'Unreviewed official toolchain.');
-    requireCondition(bootstrap.sha256===OFFICIAL_BOOTSTRAP_SHA256&&bootstrap.sha256===manifest.toolchain.bootstrapSha256,'Official bootstrap byte mismatch.');
-    const metadata=JSON.parse(meta.content.toString('utf8'));
-    requireCondition(metadata.version===1&&metadata.bootstrap_version===manifest.toolchain.bootstrap,'Bootstrap metadata mismatch.');
-    requireCondition(equal(Object.keys(entries).sort(),['___netlify-bootstrap.mjs','___netlify-entry-point.mjs','___netlify-metadata.json','lockliel-member-read.mjs'].sort()),'Unexpected runtime archive entries.');
-    requireCondition(entries['lockliel-member-read.mjs'].sha256===files[fn.compiled].sha256,'ZIP user module does not match compiled bytes.');
-    requireCondition(entry.content.toString('utf8')==="import * as bootstrap from './___netlify-bootstrap.mjs';export const handler = bootstrap.getLambdaHandler('./lockliel-member-read.mjs')",'Official entrypoint byte template mismatch.');
-    requireCondition(equal(metadata,{bootstrap_version:'2.24.0',version:1}),'Unexpected runtime metadata.');
-    requireCondition(equal(fn.routes,[{pattern:'/api/lockliel/member-read',literal:'/api/lockliel/member-read',methods:['GET']}]),'Unexpected function route metadata.');
+  const specifications=auth ? [
+    ['lockliel-member-read','/api/lockliel/member-read','GET'],
+    ['lockliel-login','/api/lockliel-auth/login','POST'],
+    ['lockliel-logout','/api/lockliel-auth/logout','POST']
+  ] : [['lockliel-member-read','/api/lockliel/member-read','GET']];
+  const functions=auth?manifest.functions:[manifest.function];
+  requireCondition(Array.isArray(functions)&&functions.length===specifications.length,'Unexpected function inventory.');
+  for(const [index,[name,route,method]] of specifications.entries()){
+    const fn=functions[index];
+    requireCondition(fn?.name===name&&fn.path===`functions/${name}.zip`&&fn.compiled===`artifacts/${name}.mjs`&&fn.runtimeAPIVersion===2,'Unexpected function inventory.');
+    requireCondition(Boolean(files[fn.path])&&Boolean(files[fn.compiled]),'Missing function bytes.');
+    if(auth||!manifest.localFixture||manifest.toolchain){
+      const entries=inspectFunctionZip(await readFile(join(directory,fn.path)));
+      const entry=entries['___netlify-entry-point.mjs'],bootstrap=entries['___netlify-bootstrap.mjs'],meta=entries['___netlify-metadata.json'];
+      requireCondition(entry&&bootstrap&&meta,'Missing official runtime files.');
+      requireCondition(manifest.toolchain?.bootstrap==='2.24.0'&&manifest.toolchain?.zisi==='16.3.0'&&/^[a-f0-9]{64}$/.test(manifest.toolchain?.bootstrapSha256||''),'Unreviewed official toolchain.');
+      requireCondition(bootstrap.sha256===OFFICIAL_BOOTSTRAP_SHA256&&bootstrap.sha256===manifest.toolchain.bootstrapSha256,'Official bootstrap byte mismatch.');
+      const metadata=JSON.parse(meta.content.toString('utf8'));
+      requireCondition(equal(Object.keys(entries).sort(),['___netlify-bootstrap.mjs','___netlify-entry-point.mjs','___netlify-metadata.json',`${name}.mjs`].sort()),'Unexpected runtime archive entries.');
+      requireCondition(entries[`${name}.mjs`].sha256===files[fn.compiled].sha256,'ZIP user module does not match compiled bytes.');
+      requireCondition(entry.content.toString('utf8')===`import * as bootstrap from './___netlify-bootstrap.mjs';export const handler = bootstrap.getLambdaHandler('./${name}.mjs')`,'Official entrypoint byte template mismatch.');
+      requireCondition(equal(metadata,{bootstrap_version:'2.24.0',version:1}),'Unexpected runtime metadata.');
+      requireCondition(equal(fn.routes,[{pattern:route,literal:route,methods:[method]}]),'Unexpected function route metadata.');
+    }
   }
-  requireCondition(Object.keys(files).filter(x=>x.startsWith('functions/')).length===1,'Unexpected exposed function.');
+  requireCondition(Object.keys(files).filter(x=>x.startsWith('functions/')).length===specifications.length,'Unexpected exposed function.');
   requireCondition(Object.keys(files).every(x=>/^(public\/|artifacts\/|functions\/|netlify\.toml$)/.test(x)),'Unexpected package surface.');
   for(const name of Object.keys(files))requireCondition(!name.split('/').includes('..')&&!name.startsWith('/')&&!name.includes('\\'),'Unsafe package path.');
   return Object.freeze({verifiedLocal:true,fixture:manifest.localFixture===true,pin:expectedPin,manifestSha256:expectedManifestSha256,manifest,files});
@@ -93,6 +103,9 @@ export async function verifyLocalPackage({directory,expectedPin,expectedManifest
  * Tests always label their receipts synthetic. No browser-provided data is authority. */
 export function verifyProviderBinding({local,provider,database,expectedDatabaseBaseline,keyProvenance,now=Date.now()}={}){
   requireCondition(local?.verifiedLocal===true && local.fixture===false && local.manifest?.releaseEligible===true && local.manifest?.enabled===true,'A release package, not a fixture, is required.');
+  const auth=local.manifest.version==='lockliel-member-auth-package-v1';
+  requireCondition(auth||local.manifest.version==='lockliel-member-package-v1','Unreviewed release package version.');
+  requireCondition(auth?local.manifest.authEnabled===true:!Object.hasOwn(local.manifest,'authEnabled'),'Wrong Auth release authority.');
   const {binding}=local.pin;
   requireCondition(provider?.source==='authenticated-scoped-provider-read' && provider.site===binding.site && provider.id===binding.deploy,'Unverified provider identity.');
   requireCondition(provider.context===local.pin.context && provider.draft===true && provider.published===false && provider.state==='ready','Wrong deployment state.');
@@ -100,10 +113,19 @@ export function verifyProviderBinding({local,provider,database,expectedDatabaseB
   requireCondition(provider.commit===null || provider.commit===binding.source,'Provider source mismatch.');
   const staticFiles=Object.fromEntries(Object.entries(local.files).filter(([n])=>n.startsWith('public/')).map(([n,v])=>['/'+n.slice(7),v.sha1]));
   requireCondition(equal(provider.files,staticFiles),'Provider static bytes unbridged.');
-  requireCondition(equal(provider.functions,{'lockliel-member-read':local.files['functions/lockliel-member-read.zip'].sha256}),'Provider ZIP bytes unbridged.');
-  requireCondition(provider.routesVerified===true && equal(provider.routes,['/api/lockliel/member-read']) && provider.directFunctionBlocked===true && provider.otherApiBlocked===true,'Routing acceptance missing.');
+  const names=auth?['lockliel-member-read','lockliel-login','lockliel-logout']:['lockliel-member-read'];
+  const routes=auth?['/api/lockliel/member-read','/api/lockliel-auth/login','/api/lockliel-auth/logout']:['/api/lockliel/member-read'];
+  requireCondition(equal(provider.functions,Object.fromEntries(names.map(name=>[name,local.files[`functions/${name}.zip`]?.sha256]))),'Provider ZIP bytes unbridged.');
+  requireCondition(provider.routesVerified===true&&equal(provider.routes,routes)&&provider.directFunctionBlocked===true&&provider.otherApiBlocked===true,'Routing acceptance missing.');
+  if(auth){
+    // These must be independently observed in the separately authorized hosted window.
+    // Local fixtures and a successful password grant cannot supply hosted authority.
+    const checks=['sameOriginPostOnly','secureHttpOnlyHostOnlyCookies','csrfDenied','redirectDenied','expiryDenied','activeSessionDenied','localLogoutVerified','crossAccountIsolation','mfaUnavailableDenied','aal1PrivilegedDenied','aal2AuthorizedOnly','defaultOffDenied','foreignProjectDenied','missingKeyDenied','noBrowserTokens','maintenancePreserved'];
+    requireCondition(provider.authAcceptance?.source==='authorized-isolated-hosted-acceptance'&&checks.every(name=>provider.authAcceptance[name]===true),'Hosted Auth acceptance missing.');
+    requireCondition(equal(provider.authAcceptance.identity,{source:binding.source,site:binding.site,deploy:binding.deploy,project:binding.project,manifestSha256:local.manifestSha256}),'Hosted Auth acceptance binding mismatch.');
+  }
   const fresh=x=>Number.isSafeInteger(x)&&x<=now&&now-x<=300000;
-  requireCondition(fresh(provider.observedAt)&&fresh(database?.observedAt),'Fresh provider/database receipts required.');
+  requireCondition(fresh(provider.observedAt)&&fresh(database?.observedAt)&&(!auth||fresh(provider.authAcceptance?.observedAt)),'Fresh provider/database receipts required.');
   requireCondition(database?.source==='authenticated-read-only-provider-inspection' && database.project===binding.project && database.ledger===280 && database.paused===true && database.schemaReady===true && database.protocol==='278-v1','Backend state mismatch.');
   requireCondition(expectedDatabaseBaseline&&/^[a-f0-9]{64}$/.test(expectedDatabaseBaseline.versionsSha256||'')&&/^[a-f0-9]{32}$/.test(expectedDatabaseBaseline.migration280StatementsArrayTextMd5||'')&&/^[a-f0-9]{64}$/.test(expectedDatabaseBaseline.migration280SourceSha256||'')&&equal(database.baseline,expectedDatabaseBaseline),'Exact migration versions/fingerprint baseline missing.');
   requireCondition(database.currentSessionCatalogVerified===true&&database.requiredColumnGrantsVerified===true&&database.callerRestVerified===true,'Required RPC/grant/caller evidence missing.');

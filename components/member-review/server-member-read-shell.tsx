@@ -7,14 +7,17 @@ import {bindServerReadInvalidation} from '../../lib/member-server-read/session-e
 import {isolatedReadBinding} from '../../lib/member-server-read/validation';
 import type {IsolatedReadBinding,ServerMemberSnapshot,ServerReadState} from '../../lib/member-server-read/contracts';
 import styles from './member-review.module.css';
+import {HostedSessionControls} from './hosted-session-controls';
 type View='dashboard'|'faith'|'share'|'privacy';
 const messages:Readonly<Record<Exclude<ServerReadState['status'],'ready'>,string>>={idle:'No private member information is loaded. Use an existing isolated session only after its target is authorized.',loading:'Loading the current isolated session. Previous private information has been cleared.',unavailable:'The isolated member read is unavailable. No sample or previous member information has been substituted.',anonymous:'No valid current session was returned. Sign-in is not performed by this review.',forbidden:'Access was denied. No private member information is displayed.',expired:'This member snapshot expired and was cleared. Load the current session again to continue.',error:'The member read could not finish. No private member information is retained.'};
 /** Real server port mode, never a mock-login selector. Missing binding performs no request. */
-export function ServerMemberReadShell({binding}:Readonly<{binding:IsolatedReadBinding|null}>){
+export function ServerMemberReadShell({binding,authControlsEnabled=false}:Readonly<{binding:IsolatedReadBinding|null;authControlsEnabled?:boolean}>){
  const [controller]=useState(()=>createServerReadController(createServerMemberAdapter(binding)));
  const state=useSyncExternalStore(controller.subscribe,controller.getSnapshot,controller.getSnapshot);
  const [view,setView]=useState<View>('dashboard'),heading=useRef<HTMLHeadingElement>(null);
  const configured=isolatedReadBinding(binding)!==null;
+ const [authBusy,setAuthBusy]=useState(false);
+ const authTransition=()=>{controller.invalidate();setView('dashboard');};
  useEffect(()=>{
   const clear=()=>{controller.invalidate();setView('dashboard');};
   const unbind=bindServerReadInvalidation(window,document,clear);
@@ -23,12 +26,13 @@ export function ServerMemberReadShell({binding}:Readonly<{binding:IsolatedReadBi
  const clear=()=>{controller.invalidate();setView('dashboard');heading.current?.focus();};
  const load=()=>{setView('dashboard');void controller.load();};
  return <div className={styles.reviewRoot}><a className={styles.skip} href="#member-review-main" onClick={()=>document.getElementById('member-review-main')?.focus()}>Skip to My Lockliel review</a>
-  <div className={styles.notice}><strong>ISOLATED SERVER READ REVIEW</strong><span>Existing session only. Read-only member projections. No saving or delivery.</span></div>
+  <div className={styles.notice}><strong>ISOLATED SERVER READ REVIEW</strong><span>{authControlsEnabled?'Separately gated same-host sign-in. Read-only member projections. No saving or delivery.':'Existing session only. Read-only member projections. No saving or delivery.'}</span></div>
   <div className={styles.shell}><header className={styles.header}><div><strong>Lockliel</strong><span>MY LOCKLIEL</span></div><button type="button" onClick={clear}>Clear member view</button></header>
    <main id="member-review-main" tabIndex={-1}><div className={styles.welcome}><p>REACH. TEACH. TRAIN. DISCIPLE. MULTIPLY.</p><h1 ref={heading} tabIndex={-1}>Your space. With clear boundaries.</h1><p>The existing member experience, with minimal owner-scoped server reads.</p></div>
-    <section className={styles.controls} aria-labelledby="server-read-title"><h2 id="server-read-title">Isolated session review</h2><p>{configured?'An exact isolated target is configured. This page does not sign in, refresh a session, change an account or infer consent.':'Trusted isolated deployment binding is missing. No request will be made. Mock data is not used as a fallback.'}</p><button type="button" disabled={!configured||state.status==='loading'} onClick={load}>{state.status==='loading'?'Loading current session':'Load current isolated session'}</button><p>Only an independently authorized synthetic isolated account may be used. Private data clears on reload, expiry, session-change notification or leaving this window.</p></section>
+    {authControlsEnabled&&configured&&<HostedSessionControls onTransition={authTransition} onBusyChange={setAuthBusy}/>}
+    <section className={styles.controls} aria-labelledby="server-read-title"><h2 id="server-read-title">Isolated session review</h2><p>{configured?(authControlsEnabled?'An exact isolated target and separate sign-in gate are configured. Loading independently verifies the current session; this page does not refresh access, change an account or infer consent.':'An exact isolated target is configured. This page does not sign in, refresh a session, change an account or infer consent.'):'Trusted isolated deployment binding is missing. No request will be made. Mock data is not used as a fallback.'}</p><button type="button" disabled={!configured||authBusy||state.status==='loading'} onClick={load}>{state.status==='loading'?'Loading current session':'Load current isolated session'}</button><p>Only an independently authorized synthetic isolated account may be used. Private data clears on reload, expiry, session-change notification or leaving this window.</p></section>
     <nav className={styles.navigation} aria-label="Integrated member review sections">{(['dashboard','faith','share','privacy'] as View[]).map(item=><button key={item} type="button" disabled={state.status!=='ready'} aria-current={view===item?'page':undefined} onClick={()=>setView(item)}>{{dashboard:'Dashboard',faith:'Faith Journey',share:'Share Review',privacy:'Privacy'}[item]}</button>)}</nav>
-    <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{state.status==='ready'?'A short-lived owner-only server projection is ready. No content was changed.':messages[state.status]}</p>
+    <p className={styles.status} role="status" aria-live="polite" aria-atomic="true">{state.status==='ready'?'A short-lived owner-only server projection is ready. No content was changed.':state.status==='anonymous'&&authControlsEnabled?'No valid current session was returned. Sign in with an authorized synthetic isolated account, then load again.':messages[state.status]}</p>
     {state.status==='ready'?<ServerMemberPanels key={`${state.data.boundary}:${state.generation}`} data={state.data} view={view}/>:<PreviewPanel aria-busy={state.status==='loading'}><h2>Private member view unavailable</h2><p>No profile, preferences, private drafts or sharing controls are displayed until a verified server response is complete.</p></PreviewPanel>}
    </main><footer className={styles.footer}>Isolated development review. No production fallback, upload, message, share event, course write or saved setting. Unknown sharing consent always blocks sharing.</footer>
   </div></div>;
