@@ -1,0 +1,48 @@
+import json,urllib.request,urllib.error,ssl,re,hashlib
+from pathlib import Path
+from datetime import datetime,timezone
+SITE='70b03a42-6329-476e-bf4b-2b1ce30e9567';TEAM='6a674f7a0e2cdcc2b838db89';USER='6a674f7a0e2cdcc2b838db86'
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+ def redirect_request(self,*args,**kwargs):return None
+opener=urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl.create_default_context()),NoRedirect())
+cfg=json.loads(Path('/Users/davesmacbookpro/Library/Preferences/netlify/config.json').read_text());assert cfg['userId']==USER
+record=cfg['users'][USER];token=record.get('auth',{}).get('token');assert isinstance(token,str) and token
+calls=[]
+def read(path):
+ assert path in ['/user','/accounts/'+TEAM,'/sites/'+SITE,'/sites/'+SITE+'/deployed-branches'] or re.fullmatch('/sites/'+SITE+r'/deploys\?per_page=100&page=\d+',path)
+ req=urllib.request.Request('https://api.netlify.com/api/v1'+path,headers={'Authorization':'Bearer '+token,'Accept':'application/json'},method='GET')
+ try:
+  with opener.open(req,timeout=25) as response:
+   data=json.load(response);calls.append({'method':'GET','path':path,'status':response.status});return data
+ except urllib.error.HTTPError as e:
+  calls.append({'method':'GET','path':path,'status':e.code});return None
+ except Exception as e:
+  calls.append({'method':'GET','path':path,'errorType':type(e).__name__});return None
+
+def url(value):
+ if not value:return None
+ from urllib.parse import urlsplit
+ u=urlsplit(value)
+ if u.scheme not in ['http','https'] or not u.hostname or not (u.hostname=='jade-unicorn-642f40.netlify.app' or u.hostname.endswith('--jade-unicorn-642f40.netlify.app')):return 'UNEXPECTED_HOST'
+ return u.scheme+'://'+u.netloc+u.path
+
+def deploy(d):
+ if not isinstance(d,dict):return None
+ return {**{k:d.get(k) for k in ['id','site_id','state','context','draft','branch','review_id','published_at','created_at']},**{k:url(d.get(k)) for k in ['deploy_ssl_url','deploy_url','ssl_url','url']}}
+u=read('/user');a=read('/accounts/'+TEAM);s=read('/sites/'+SITE);branches=read('/sites/'+SITE+'/deployed-branches')
+allrows=[];complete=False
+for page in range(1,6):
+ rows=read('/sites/'+SITE+'/deploys?per_page=100&page='+str(page))
+ if not isinstance(rows,list):break
+ allrows+=rows
+ if len(rows)<100:complete=True;break
+
+def safe_numbers(obj):
+ if isinstance(obj,dict):
+  return {k:safe_numbers(v) for k,v in obj.items() if not re.search('password|token|key|secret|email|billing_details|payment|card|name|address',k,re.I) and (isinstance(v,(dict,list,bool,int,float)) or v is None)}
+ if isinstance(obj,list):return [safe_numbers(x) for x in obj if isinstance(x,(dict,list,bool,int,float)) or x is None]
+ return obj
+out={'observedAt':datetime.now(timezone.utc).isoformat(),'calls':calls,'operator':{'storedSelectedUserMatchesExpected':cfg['userId']==USER,'authenticatedCallerMatchesExpected':bool(u and u.get('id')==USER),'teamOwnerIdMatchesCaller':bool(a and USER in a.get('owner_ids',[])),'teamRolesAllowed':a.get('roles_allowed') if a else None,'teamRole':a.get('role') if a else None},'account':{'id':a.get('id'),'slug':a.get('slug'),'type':a.get('type'),'type_name':a.get('type_name'),'type_id':a.get('type_id'),'billing_period':a.get('billing_period'),'availableFieldNames':list(a),'capabilities':safe_numbers(a.get('capabilities',{}))} if a else None,'site':{'id':s.get('id'),'name':s.get('name'),'account_id':s.get('account_id'),'account_slug':s.get('account_slug'),'state':s.get('state'),'plan':s.get('plan'),'published_deploy':deploy(s.get('published_deploy')),'ssl_url':url(s.get('ssl_url')),'url':url(s.get('url')),'custom_domain':s.get('custom_domain'),'domain_aliases':s.get('domain_aliases'),'branch_deploy_custom_domain':s.get('branch_deploy_custom_domain'),'deploy_preview_custom_domain':s.get('deploy_preview_custom_domain'),'availableNonSecretIdentityFields':[k for k in s if re.search('deploy|branch|domain|account|access|capabil|permission',k,re.I) and not re.search('token|key|secret',k,re.I)]} if s else None,'deployedBranches':[{k:x.get(k) for k in ['id','name','deploy_id','context','branch']} for x in branches] if isinstance(branches,list) else None,'branchFieldNames':sorted(set(k for x in branches for k in x)) if isinstance(branches,list) else None,'deployListComplete':complete,'deployCount':len(allrows),'deploys':[deploy(x) for x in allrows]}
+Path('/private/tmp/lockliel-wave10e-preflight.json').write_text(json.dumps(out,indent=2)+'\n')
+print(json.dumps(out,indent=2))
+token=None;cfg=None;record=None;u=None;a=None;s=None;branches=None;allrows=None

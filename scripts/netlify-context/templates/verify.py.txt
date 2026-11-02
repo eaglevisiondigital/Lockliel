@@ -1,0 +1,40 @@
+import json,urllib.request,urllib.error,ssl,hashlib
+from pathlib import Path
+from datetime import datetime,timezone
+SITE='70b03a42-6329-476e-bf4b-2b1ce30e9567';NAME='jade-unicorn-642f40';ID='6ae8942b7f6512d039ce0da6';TEAM='6a674f7a0e2cdcc2b838db89';USER='6a674f7a0e2cdcc2b838db86'
+base=json.loads(Path('/private/tmp/lockliel-wave10e-preflight.json').read_text());extra=json.loads(Path('/private/tmp/lockliel-wave10e-baseline-extra.json').read_text());journal=json.loads(Path('/private/tmp/lockliel-wave10e-experiment.json').read_text());assert journal['containmentVerified'] and journal['experimentalId']==ID
+cfg=json.loads(Path('/Users/davesmacbookpro/Library/Preferences/netlify/config.json').read_text());assert cfg['userId']==USER;token=cfg['users'][USER]['auth']['token']
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+ def redirect_request(self,*args,**kwargs):return None
+opener=urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl.create_default_context()),NoRedirect())
+calls=[]
+def get(path):
+ assert path in ['/sites/'+SITE,'/sites/'+SITE+'/deploys/'+ID,'/deploys/'+ID,'/sites/'+SITE+'/deploys?per_page=100&page=1','/accounts/'+TEAM]
+ req=urllib.request.Request('https://api.netlify.com/api/v1'+path,headers={'Authorization':'Bearer '+token,'Accept':'application/json'},method='GET')
+ try:
+  with opener.open(req,timeout=20) as response:data=json.load(response);status=response.status
+ except urllib.error.HTTPError as e:status=e.code;data=None
+ calls.append({'method':'GET','path':path,'status':status});return status,data
+s1,_=get('/sites/'+SITE+'/deploys/'+ID);s2,_=get('/deploys/'+ID);st,rows=get('/sites/'+SITE+'/deploys?per_page=100&page=1');assert st==200
+st,s=get('/sites/'+SITE);assert st==200 and s['id']==SITE and s['name']==NAME
+st,a=get('/accounts/'+TEAM);assert st==200
+old={x['id'] for x in base['deploys']};existing={x['id'] for x in rows}
+urls=['https://'+ID+'--'+NAME+'.netlify.app/','https://'+NAME+'.netlify.app/','https://rehearsal--'+NAME+'.netlify.app/','https://6abfd81ccee16b59b75711a0--'+NAME+'.netlify.app/']
+checks=[]
+for url in urls:
+ try:
+  with opener.open(urllib.request.Request(url,headers={'Accept':'text/html'},method='GET'),timeout=20) as response:status=response.status;data=response.read(100000);headers=response.headers
+ except urllib.error.HTTPError as e:status=e.code;data=e.read(100000);headers=e.headers
+ checks.append({'url':url,'status':status,'bodyLength':len(data),'sha256':hashlib.sha256(data).hexdigest(),'location':headers.get('location'),'etag':headers.get('etag')})
+baselines={x['url']:x for x in extra['publicBaselines']};matching=[]
+for x in checks:
+ if x['url'] in baselines:
+  b=baselines[x['url']];matching.append({'url':x['url'],'statusUnchanged':x['status']==b['status'],'staticResponseHashUnchanged':x['sha256']==b['sha256']})
+out={'observedAt':datetime.now(timezone.utc).isoformat(),'independentProcess':True,'calls':calls,'experimentalId':ID,'siteScopedLookup':s1,'globalLookup':s2,'existingSixIdsExact':existing==old,'deletedIdAbsent':ID not in existing,'publishedDeploymentId':(s.get('published_deploy') or {}).get('id'),'siteDeployId':s.get('deploy_id'),'domainAliases':s.get('domain_aliases'),'rehearsalAliasLatestHistoricalId':rows[0]['id'] if rows else None,'publicChecks':checks,'baselineComparisons':matching,'billingReadback':{k:a.get(k) for k in ['type_name','type_slug','plan_credits','auto_topup_enabled','usages_exceeded','configurable_limits_exceeded']},'creditsCapability':a.get('capabilities',{}).get('credits'),'noInvoiceOrExperimentAttributableChargeAvailable':True}
+assert s1==s2==404 and existing==old and ID not in existing and out['publishedDeploymentId'] is None and out['siteDeployId']=='' and checks[0]['status']==404
+out['allBaselineStatusesUnchanged']=all(x['statusUnchanged'] for x in matching)
+out['rehearsalResponsesUnchanged']=all(x['statusUnchanged'] and x['staticResponseHashUnchanged'] for x in matching if x['url']!='https://'+NAME+'.netlify.app/')
+assert out['allBaselineStatusesUnchanged'] and out['rehearsalResponsesUnchanged']
+out['containmentAndPreservationVerified']=True
+Path('/private/tmp/lockliel-wave10e-independent-verification.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+token=None;cfg=None;s=None;a=None;rows=None

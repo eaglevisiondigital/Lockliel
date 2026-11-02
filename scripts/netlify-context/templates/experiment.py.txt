@@ -1,0 +1,148 @@
+import json,urllib.request,urllib.error,ssl,re,time,sys,hashlib
+from pathlib import Path
+from datetime import datetime,timezone
+SITE='70b03a42-6329-476e-bf4b-2b1ce30e9567';NAME='jade-unicorn-642f40';TEAM='6a674f7a0e2cdcc2b838db89';USER='6a674f7a0e2cdcc2b838db86'
+JOURNAL=Path('/private/tmp/lockliel-wave10e-experiment.json')
+BASE=json.loads(Path('/private/tmp/lockliel-wave10e-preflight.json').read_text())
+OLD={x['id'] for x in BASE['deploys']}
+class Stop(Exception):pass
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+ def redirect_request(self,*args,**kwargs):return None
+
+def own_new_id(value):return isinstance(value,str) and re.fullmatch('[0-9a-f]{24}',value) is not None and value not in OLD
+
+def minimal(d):
+ if not isinstance(d,dict):return None
+ return {k:d.get(k) for k in ['id','site_id','state','context','draft','branch','review_id','published_at','created_at']}
+
+def site_state(d):
+ return {'id':d.get('id'),'name':d.get('name'),'account_id':d.get('account_id'),'publishedId':(d.get('published_deploy') or {}).get('id'),'deploy_id':d.get('deploy_id'),'custom_domain':d.get('custom_domain'),'domain_aliases':d.get('domain_aliases'),'branch_deploy_custom_domain':d.get('branch_deploy_custom_domain'),'deploy_preview_custom_domain':d.get('deploy_preview_custom_domain')}
+
+def phase3(d,site,ident):
+ return bool(isinstance(d,dict) and d.get('id')==ident and d.get('site_id')==SITE and d.get('context')=='deploy-preview' and d.get('draft') is True and d.get('published_at') is None and site.get('publishedId')!=ident and site.get('deploy_id')!=ident)
+
+def selftest():
+ assert not own_new_id(next(iter(OLD)))
+ assert not own_new_id('') and not own_new_id('another/site') and not own_new_id('a'*23)
+ candidate='f'*24;assert own_new_id(candidate)
+ good={'id':candidate,'site_id':SITE,'context':'deploy-preview','draft':True,'published_at':None}
+ assert phase3(good,{'publishedId':None,'deploy_id':''},candidate)
+ for k,v in [('site_id','other'),('id',next(iter(OLD))),('context','branch-deploy'),('context',None),('draft',None),('published_at','2026-11-02')]:
+  bad=dict(good);bad[k]=v;assert not phase3(bad,{'publishedId':None,'deploy_id':''},candidate)
+ assert not phase3(good,{'publishedId':candidate},candidate)
+ assert not phase3(good,{'deploy_id':candidate},candidate)
+ print('PASS: old-ID deletion guards, malformed IDs, cross-site/context/draft/publication gates (13 assertions). No network.')
+
+if '--self-test' in sys.argv:selftest();sys.exit(0)
+assert not JOURNAL.exists(),'Existing experiment journal prohibits automatic repeat reservation'
+assert BASE['site']['id']==SITE and BASE['site']['name']==NAME and BASE['deployListComplete']
+assert BASE['operator']['authenticatedCallerMatchesExpected'] and BASE['operator']['teamOwnerIdMatchesCaller'] and BASE['operator']['teamRole']=='Owner'
+cfg=json.loads(Path('/Users/davesmacbookpro/Library/Preferences/netlify/config.json').read_text());assert cfg['userId']==USER;token=cfg['users'][USER]['auth']['token'];assert token
+opener=urllib.request.build_opener(urllib.request.HTTPSHandler(context=ssl.create_default_context()),NoRedirect())
+start=time.monotonic();new_id=None;create_attempted=False;finalize_attempted=False
+journal={'siteId':SITE,'siteName':NAME,'startedAt':datetime.now(timezone.utc).isoformat(),'operatorRole':'Owner','requestBudget':30,'timeBudgetSeconds':600,'calls':[],'reservationAttempts':0,'finalizationAttempts':0,'experimentalId':None,'containmentVerified':False,'assessment':'NETLIFY DEPLOYMENT WORKFLOW BLOCKED'}
+def save():JOURNAL.write_text(json.dumps(journal,indent=2)+'\n')
+
+def api(method,path,body=None,cleanup=False):
+ global create_attempted,finalize_attempted
+ if len(journal['calls'])>=30 or (time.monotonic()-start>600 and not cleanup):raise Stop('request_or_time_budget_reached')
+ reads=['/sites/'+SITE,'/sites/'+SITE+'/deployed-branches','/sites/'+SITE+'/deploys?per_page=100&page=1']
+ if new_id:reads+=['/sites/'+SITE+'/deploys/'+new_id,'/deploys/'+new_id]
+ if method=='GET':assert path in reads and body is None
+ elif method=='POST' and path=='/sites/'+SITE+'/deploys':
+  assert not create_attempted and body=={'draft':True};create_attempted=True;journal['reservationAttempts']=1;save()
+ elif method=='PUT':
+  assert own_new_id(new_id) and path=='/sites/'+SITE+'/deploys/'+new_id and not finalize_attempted and body=={'draft':True,'files':{}}
+  assert journal.get('phase3Passed') is True;finalize_attempted=True;journal['finalizationAttempts']=1;save()
+ elif method=='DELETE':assert cleanup and own_new_id(new_id) and path=='/sites/'+SITE+'/deploys/'+new_id and body is None
+ elif method=='POST':assert cleanup and own_new_id(new_id) and path=='/deploys/'+new_id+'/cancel' and body is None
+ else:raise Stop('operation_not_authorized')
+ entry={'method':method,'path':path};journal['calls'].append(entry);save()
+ req=urllib.request.Request('https://api.netlify.com/api/v1'+path,data=json.dumps(body).encode() if body is not None else None,headers={'Authorization':'Bearer '+token,'Accept':'application/json','Content-Type':'application/json'},method=method)
+ try:
+  with opener.open(req,timeout=20) as resp:
+   raw=resp.read();entry['status']=resp.status
+   result=json.loads(raw) if raw else None;save();return resp.status,result
+ except urllib.error.HTTPError as e:entry['status']=e.code;save();return e.code,None
+ except Exception as e:entry['errorType']=type(e).__name__;save();raise Stop('request_failed_'+type(e).__name__)
+
+def snapshot(label):
+ st,s=api('GET','/sites/'+SITE);assert st==200 and s.get('id')==SITE and s.get('name')==NAME and s.get('account_id')==TEAM
+ st,rows=api('GET','/sites/'+SITE+'/deploys?per_page=100&page=1');assert st==200 and isinstance(rows,list) and len(rows)<100
+ st,branches=api('GET','/sites/'+SITE+'/deployed-branches');assert st==200 and branches==[]
+ existing={x['id']:minimal(x) for x in rows if x['id'] in OLD}
+ assert set(existing)==OLD
+ expected={x['id']:{k:x.get(k) for k in ['id','site_id','state','context','draft','branch','review_id','published_at','created_at']} for x in BASE['deploys']}
+ assert existing==expected,'historical deploy metadata changed'
+ stable=site_state(s)
+ assert stable['publishedId'] is None and stable['deploy_id']=='' and stable['domain_aliases']==[] and stable['custom_domain'] is None and stable['branch_deploy_custom_domain'] is None and stable['deploy_preview_custom_domain'] is None
+ journal[label]={'site':stable,'historicalDeploys':existing,'deployedBranches':[],'allDeployIds':sorted(x['id'] for x in rows)};save();return stable,rows
+
+def verify_ownership():
+ st,d=api('GET','/sites/'+SITE+'/deploys/'+new_id,cleanup=True)
+ if st!=200 or not isinstance(d,dict) or d.get('id')!=new_id or d.get('site_id')!=SITE or not own_new_id(new_id):raise Stop('cleanup_identity_not_verified')
+ if d.get('published_at') is not None:raise Stop('cleanup_object_unexpectedly_published')
+ st,s=api('GET','/sites/'+SITE,cleanup=True)
+ if st!=200 or (s.get('published_deploy') or {}).get('id')==new_id or s.get('deploy_id')==new_id:raise Stop('cleanup_publication_guard_failed')
+ journal['cleanupIdentity']=minimal(d);save();return d
+
+def cleanup():
+ d=verify_ownership()
+ if d.get('state') not in ['ready','error','rejected']:
+  st,_=api('POST','/deploys/'+new_id+'/cancel',cleanup=True);journal['cancelStatus']=st;save()
+  if st not in [200,201,204]:raise Stop('cancel_failed')
+  for attempt in range(3):
+   st,d=api('GET','/sites/'+SITE+'/deploys/'+new_id,cleanup=True)
+   if st==200 and d.get('state') in ['ready','error','rejected']:break
+   time.sleep(1)
+  else:raise Stop('cancel_not_terminal')
+ st,_=api('DELETE','/sites/'+SITE+'/deploys/'+new_id,cleanup=True);journal['deleteStatus']=st;save()
+ if st not in [200,202,204]:raise Stop('delete_failed')
+ for attempt in range(4):
+  st,d=api('GET','/sites/'+SITE+'/deploys/'+new_id,cleanup=True)
+  if st==404:break
+  time.sleep(1)
+ else:raise Stop('site_scoped_deletion_not_confirmed')
+ st,_=api('GET','/deploys/'+new_id,cleanup=True);journal['globalDeployAfterDeleteStatus']=st
+ if st!=404:raise Stop('global_deletion_not_confirmed')
+ _,rows=snapshot('afterCleanup')
+ if new_id in {x['id'] for x in rows}:raise Stop('deleted_object_still_listed')
+ url='https://'+new_id+'--'+NAME+'.netlify.app/'
+ try:
+  with opener.open(urllib.request.Request(url,method='GET'),timeout=20) as response:status=response.status;data=response.read(100000)
+ except urllib.error.HTTPError as e:status=e.code;data=e.read(100000)
+ journal['immutableAfterDelete']={'url':url,'status':status,'bodyLength':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+ if status!=404:raise Stop('immutable_url_not_confirmed_inaccessible')
+ journal['containmentVerified']=True;save()
+
+save()
+try:
+ snapshot('beforeReservation')
+ st,d=api('POST','/sites/'+SITE+'/deploys',{'draft':True})
+ journal['reservationStatus']=st;save()
+ if st not in [200,201] or not isinstance(d,dict) or not own_new_id(d.get('id')):raise Stop('reservation_failed_or_unknown_new_identity_no_retry')
+ new_id=d['id'];journal['experimentalId']=new_id;journal['reservationResponse']=minimal(d);save()
+ st,d=api('GET','/sites/'+SITE+'/deploys/'+new_id)
+ if st!=200:raise Stop('reserved_object_read_failed')
+ journal['reservedProviderMetadata']=minimal(d)
+ site,_=snapshot('afterReservation')
+ journal['phase3Passed']=phase3(d,site,new_id);save()
+ if not journal['phase3Passed']:raise Stop('required_context_or_draft_metadata_not_confirmed')
+ st,d=api('PUT','/sites/'+SITE+'/deploys/'+new_id,{'draft':True,'files':{}})
+ journal['finalizationStatus']=st
+ if st not in [200,201]:raise Stop('empty_finalization_not_supported')
+ st,d=api('GET','/sites/'+SITE+'/deploys/'+new_id)
+ journal['finalizedProviderMetadata']=minimal(d)
+ site,_=snapshot('afterFinalization')
+ journal['finalizationPassed']=st==200 and phase3(d,site,new_id);save()
+ if not journal['finalizationPassed']:raise Stop('same_id_context_or_preservation_not_confirmed')
+except Exception as e:
+ journal['stopReason']=str(e) if isinstance(e,Stop) else type(e).__name__;save()
+finally:
+ if own_new_id(new_id):
+  try:cleanup()
+  except Exception as e:journal['containmentFailure']=str(e) if isinstance(e,Stop) else type(e).__name__;save()
+ if journal.get('finalizationPassed') and journal['containmentVerified'] and not journal.get('stopReason'):journal['assessment']='NETLIFY DEPLOYMENT WORKFLOW VERIFIED'
+ journal['finishedAt']=datetime.now(timezone.utc).isoformat();journal['elapsedSeconds']=round(time.monotonic()-start,3);save()
+ token=None;cfg=None
+print(json.dumps(journal,indent=2))
