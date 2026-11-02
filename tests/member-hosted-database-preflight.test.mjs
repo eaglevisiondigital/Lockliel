@@ -32,5 +32,5 @@ test('direct Python state-machine regressions run in the authoritative JS suite'
  const script=fileURLToPath(new URL('./member_hosted_database_preflight_test.py',import.meta.url));
  const result=spawnSync(python,['-I','-B',script],{encoding:'utf8',timeout:10000,env:{PATH:'/usr/bin:/bin',LANG:'C',LC_ALL:'C'}});
  assert.equal(result.status,0,'Offline Python safeguard regressions failed.');
- assert.match(result.stderr,/Ran 21 tests/);assert.match(result.stderr,/OK/);
+ assert.match(result.stderr,/Ran 49 tests/);assert.match(result.stderr,/OK/);
 });

@@ -1,5 +1,19 @@
 # Direct isolated database safeguard gate
 
+<!-- wave10ib:begin -->
+## Wave 10I-B local diagnostic correction (November 2, 2026)
+
+The approved local correction now emits fixed categories for local/native DNS, IPv6 routing, TCP refusal/interruption, TLS verification/handshake/required-SSL failure, password-specific versus other authentication rejection, timeout, server rejection, native-handle and driver failures. Unknown, mixed, localized/unrecognized or oversized diagnostics fail closed. Phase markers describe the local operation, not proof of remote protocol completion. Failure output includes only allowlisted codes/stages, the helper source SHA256, bounded native-call elapsed milliseconds, fixed required policy and safeguardsVerified=false. Requirements are never presented as observed database values.
+
+PQerrorMessage is a pointer with a capped NUL scan before copying; at most8192 diagnostic bytes are classified privately. No raw native/exception text, connection string, credential or password-derived field is emitted. The primary native bytearray is cleared. CLI-only fd1/fd2 suppression prevents direct native notices/errors bypassing Python sanitization; explicit hidden /dev/tty input is unchanged. One JSON result is emitted after output restoration, and restoration/setup failures deny without success. Offline output tests cover direct descriptor writes and this helper's own result path, not arbitrary third-party buffered C output.
+
+All49 Python tests pass, including the preserved21 safeguards and28 diagnostic/output tests; the17 Node bridge tests remain included in the1,853-test JavaScript suite. Configured/scoped lint and full1,853 JavaScript tests pass. A separate native Codex security reviewer passes with offline limits, after reproducing and closing the native-output gap;84 additional adversarial assertions are a separate review count. No actual connection or credentials were exercised. Owned ctypes input and primary diagnostic-buffer wiping do not guarantee whole-process immutable-memory erasure.
+
+The direct qjks host/database/user, AF_INET6, verify-full CA/hostname policy, on/5s/30s startup options, fixed query inventory, same physical connection/transaction checks, rollback/no reconnect and deployment gate remain unchanged. Historical errors below retain their original meaning; the latest DIRECT_CONNECTION_FAILED cannot be retrospectively diagnosed. New classifications do not establish live connectivity or actual safeguards.
+
+No new launcher was prepared or executed, no password requested, and no original spent launcher was modified. Any future controlled check needs a freshly reviewed helper hash and private one-attempt prompt under separately bounded authority. Do not run the helper as part of this local-only assignment. Deployment remains held and its one reservation remains unused.
+<!-- wave10ib:end -->
+
 Wave 10I-A is an additive operator correction, not a new Auth system or deployment command. It uses only qjksggxorghaxvpyslip's direct IPv6 endpoint. No I/O occurs on import. The existing application 327ba098628f70aa65140862b8b14cd709bfd711 and uploader/receipt source 51857e44642ac79a4b1f458de786b97d98762082 remain unchanged.
 
 ## Why the earlier check stopped
