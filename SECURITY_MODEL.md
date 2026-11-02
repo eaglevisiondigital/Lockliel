@@ -1,5 +1,11 @@
 # Lockliel security model
 
+<!-- wave10ib:begin -->
+## Wave 10I-B offline diagnostic correction (2026-11-02)
+
+Local source 5cc6af45c9c8323b13f6d71ee0881e6b823ddfa3 adds bounded native diagnostics, fixed failure categories/local phases and CLI output containment. Full1,853JS/49Python/configured+scoped lint pass. Actual independent agent wave10ib_security passed with offline limits after native-output gap was reproduced and closed;84 additional review assertions are separate. Direct qjks/CA/TLS/on/5s/30s/query/rollback guards and all280 migration bytes preserved. No password input/access, connection, remote action, prompt/launcher, production, maintenance, reservation/deployment, push/merge or activation. One reservation unused; actual live safeguards remain unverified and deployment held. All37 feature statuses unchanged. [Result and next bounded diagnostic proposal](docs/coordination/WAVE10IB_DIAGNOSTIC_CORRECTION_RESULT.md). Earlier preparation-only statements are historical; this local correction grants no live execution authority.
+<!-- wave10ib:end -->
+
 <!-- wave10i-offline-diagnosis:begin -->
 ## Wave 10I offline error diagnosis (2026-11-02)
 
