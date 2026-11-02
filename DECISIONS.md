@@ -1,5 +1,11 @@
 # Lockliel decisions and open questions
 
+<!-- wave10ie:begin -->
+## Wave 10I-E protected recovery prerequisite stop (2026-11-02)
+
+Owner conditionally authorized protected qjks credential recovery and at mostONE direct diagnostic. Fresh exact isolated branch identity passes, but reviewed private Supabase recovery/handoff channel is not established: direct helper is hidden manual input; approved private provider transport is Netlify-only. Requirement4 STOP before retrieval. No credential read/input/reset/rotation, secret endpoint, DB connection/SQL, hostedAuth, settings/maintenance, migration, Netlify reservation/deploy, push/merge or activation. Actual live on/5s/30s unverified; old10I-C rejection is separate history. Recovery diagnostic and deployment reservation allowances unused. Next local private bridge implementation/review proposal, not executed; existing conditional owner recovery authority need not be repeated. All280 files/37statuses/main/coursePR4/root dirty work preserved. [Sanitized result and concrete mechanism gap](docs/coordination/WAVE10IE_PROTECTED_RECOVERY_RESULT.md).
+<!-- wave10ie:end -->
+
 <!-- wave10id:begin -->
 ## Wave 10I-D read-only credential recovery review (2026-11-02)
 

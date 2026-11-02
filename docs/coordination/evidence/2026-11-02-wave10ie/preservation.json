@@ -1,0 +1,21 @@
+{
+  "startingHead": "cf8e0f646e3745b54804a562050187708c2a1e29",
+  "allOriginalTrackedBytesUnchangedBeforeDocumentation": true,
+  "all280MigrationHashesUnchanged": true,
+  "migrationManifestSha256": "d74440082769f28196be8494277ea9fa2e78a6cc44a9a8f443932ee8797ffb92",
+  "originalDirtyRootAndOtherUserRefsPreserved": true,
+  "credentialsReadPrintedPersistedRotatedOrReset": false,
+  "secretEndpointCalls": 0,
+  "databaseConnections": 0,
+  "productionDatabaseOrCredentialAccess": false,
+  "sql": 0,
+  "providerMutation": false,
+  "newLauncherOrCredentialInput": false,
+  "newPrivateReader": false,
+  "hostedMemberAuth": false,
+  "maintenanceChange": false,
+  "netlifyReservationOrDeployment": false,
+  "wave10ieDiagnosticAllowanceUnused": true,
+  "deploymentReservationAllowanceUnused": true,
+  "currentDatabaseLedgerMaintenance": "Previous280/ON preserved by no action; not freshly queried"
+}

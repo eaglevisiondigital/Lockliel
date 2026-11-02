@@ -1,0 +1,22 @@
+{
+  "result": "NOT_ESTABLISHED_STOP_BEFORE_RETRIEVAL",
+  "reviewedSource": "5cc6af45c9c8323b13f6d71ee0881e6b823ddfa3",
+  "helperSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+  "approvedDirectHelper": "Hidden owner-supplied DB password input and guarded direct inspection; not provider credential recovery",
+  "approvedProtectedProviderTransport": {
+    "path": "scripts/member-hosted/uploader.mjs",
+    "sha256": "6f132ce8406a20c34eeff0c2e2eed63c913d5bd75647ac1fb9e6829ad7626d0c",
+    "provider": "Netlify only",
+    "genericHiddenTtyPrimitivesExist": true,
+    "supabasePrivateRecoveryBindingPresent": false
+  },
+  "connectedSupabaseInterface": "Standard tool-result interface; no reviewed opaque branch-secret-to-libpq handoff found",
+  "knownDatabaseInputLaunchers": "Spent one-attempt manual password launchers; not reused",
+  "secretStoreOrOperatorTokenInspected": false,
+  "newPrivateReaderImplementedOrApproved": false,
+  "credentialEndpointCalls": 0,
+  "recoveredCredential": false,
+  "databaseConnectionAttempts": 0,
+  "safeguardsVerified": false,
+  "noNewPrompt": true
+}
