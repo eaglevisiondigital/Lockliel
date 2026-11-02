@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Local package/verifier ready for source review, not deploy. Synthetic-ID artifact cannot enter hosting queue. No PR creation/push/merge; PR4 retained draft context from prior evidence. Next local Auth scope and exact provider draft decision are separate.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 No source/PR/push this wave. Wave8referencee83f0886ed7761d8a47738b9085ed8fab9610b8c is closed/local-only. Queue: supported current binding packet, local composition/routing/pin-lifecycle approval, new validated source/artifact review, then separate deployment/Auth lifecycle/read acceptance authority. PR4/course/main unchanged; do not fold member work into course release or relabel an old deploy.

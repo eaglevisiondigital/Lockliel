@@ -1,0 +1,63 @@
+{
+  "source": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "runtime": "70ad7d0881acfa51f6ea33931f9738b77bff7fff",
+  "javascript": {
+    "passed": 1582,
+    "failed": 0,
+    "skipped": 0,
+    "command": "npm run test:unit; existing deny-all network preload; explicit already-installed official toolchain"
+  },
+  "focused_subsets_not_additive": {
+    "runtime": 48,
+    "verifier": 63,
+    "package": 12,
+    "ui": 21,
+    "independent_combined": 144
+  },
+  "typescript": "PASS npm run typecheck",
+  "configured_lint": "PASS npm run lint:tooling",
+  "scoped_lint": "PASS new scripts/runtime/route/policy/tests --max-warnings=0",
+  "netlify": {
+    "modules": 82,
+    "handlers": 63,
+    "result": "PASS"
+  },
+  "sql": {
+    "migrations_replayed": 280,
+    "sql_rls_files": 17,
+    "result": "PASS existing disposable PostgreSQL17 socket-only runner; operational readiness/paused-read/write-denial probes rolled back; own cluster removed"
+  },
+  "build_modes": [
+    {
+      "mode": "off",
+      "status": 0,
+      "log": "/private/tmp/lockliel-wave10-build-off.log"
+    },
+    {
+      "mode": "legacy",
+      "status": 0,
+      "log": "/private/tmp/lockliel-wave10-build-legacy.log"
+    },
+    {
+      "mode": "offline",
+      "status": 0,
+      "log": "/private/tmp/lockliel-wave10-build-offline.log"
+    },
+    {
+      "mode": "server",
+      "status": 0,
+      "log": "/private/tmp/lockliel-wave10-build-server.log"
+    },
+    {
+      "mode": "hosted",
+      "status": 0,
+      "log": "/private/tmp/lockliel-wave10-build-hosted.log"
+    }
+  ],
+  "additional_builds": [
+    "exact source hosted-mode synthetic pin PASS",
+    "final default-OFF restoration verified separately"
+  ],
+  "hosted_tests": "NOT EXECUTED",
+  "production_tests": "NOT EXECUTED"
+}

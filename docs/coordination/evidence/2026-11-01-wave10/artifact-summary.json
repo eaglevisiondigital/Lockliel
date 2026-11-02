@@ -1,0 +1,33 @@
+{
+  "source": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "pin": {
+    "version": "lockliel-member-hosted-v1",
+    "binding": {
+      "project": "qjksggxorghaxvpyslip",
+      "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "deploy": "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "f5214b75b8dba3671b8eeda6c45574baa2539221"
+    },
+    "origin": "https://aaaaaaaaaaaaaaaaaaaaaaaa--jade-unicorn-642f40.netlify.app",
+    "context": "deploy-preview",
+    "schema": 280,
+    "protocol": "278-v1",
+    "paused": true
+  },
+  "manifestSha256": "0943e58ebfcf7dd45b7542c3444d2aba0096834fec27ae7ead6ad44cc1e2e84f",
+  "localBytesVerified": true,
+  "localFixture": true,
+  "hostedVerified": false,
+  "sourceClean": true,
+  "files": 22,
+  "compiledSha256": "cd424cf79f7a79aafc018b07b4f22bde3f9b03a53254baba22869797e00fc24c",
+  "zipSha256": "771f9ed28e7ba508ae5a72906b0cd93804cc4fecb8148ab0e6a1f27d78eb6751",
+  "toolchain": {
+    "zisi": "16.3.0",
+    "bootstrap": "2.24.0",
+    "bootstrapSha256": "d0a7166bbc0a4c664dccb3446e4c0358de247ced3214c1e7b944f34f467a4894",
+    "zisiEntrySha256": "50e86750efc12afca490f98770176a11744c41d8d3ecfc30162367d1952a12d1",
+    "bootstrapEntrySha256": "d0a7166bbc0a4c664dccb3446e4c0358de247ced3214c1e7b944f34f467a4894",
+    "esbuild": "0.28.0"
+  }
+}

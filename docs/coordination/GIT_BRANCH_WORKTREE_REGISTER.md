@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Dedicated codex/wave10-hosted-composition at /Users/davesmacbookpro/.codex/worktrees/lockliel-wave10-hosted-composition/Lockliel; base1cf2ead, runtime70ad7d0881acfa51f6ea33931f9738b77bff7fff, sourcef5214b75b8dba3671b8eeda6c45574baa2539221; later docs-only checkpoint. All prior refs and rootdirtyhistory preserved. No push/merge.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Reused /Users/davesmacbookpro/.codex/worktrees/lockliel-wave8-server-read/Lockliel on NEW codex/wave9-binding-review, basea41f4e628e773dce56b040674676d570b9afc358; documentation-only checkpoint follows. codex/wave8-server-read staysa41f4e6, planning72f30ae retained. All21 prior refs/rootdirtywork preserved; rootfa294f7 and actual GitHub devfa294f7/main1599ab2 match. PR4draft/open/unmerged/auto-mergeOFF. No push/merge/prune/worktree cleanup.

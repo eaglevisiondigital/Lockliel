@@ -1,5 +1,11 @@
 # Lockliel decisions and open questions
 
+<!-- wave10:begin -->
+## Wave 10 isolated hosting composition (2026-11-01)
+
+Read docs/coordination/WAVE10_COORDINATOR_RESULT.md and WAVE10_DEPLOYMENT_PROPOSAL.md. Local source f5214b75b8dba3671b8eeda6c45574baa2539221, runtime 70ad7d0881acfa51f6ea33931f9738b77bff7fff, dedicated codex/wave10-hosted-composition. Default-OFF exact source/site/deploy/context/nonpublished read-only composition reuses existing session/RLS/profile/preferences shell. Official native4entryZIP and independent byte/provider-receipt checker implemented; synthetic-ID artifact is NOT deployable. All1,582JS/type/fivebuilds/configured+scopedlint/Netlify82modules63handlers and disposable280replay/17SQL pass; migrationbytes unchanged. Independent144subset review closes local defects; actual200zoom/spokenreader/currentOSmotion remain unverified. Automatic review rejected credential-entry controls: no retry or exposedAuthroute, same-host bootstrap held. Provider skew-protection value appeared in tool output; no value in Git/evidence, scope unknown, ownerreview needed. Current hostedbinding/key/caller/route proof remains unverified; no blanket zero-exposure claim. All12registers/37features current, none newlyLive. No push/merge/deploy/hostedAuth/DB/settings/maintenance/content/payment/message/role/purchase action. Main/coursePR4/publicsites/rootdirtywork preserved; production274/isolated280pausedON are carried evidence, not freshSQL. Next exactAuthscope/providercoexistence decision only, no production execution.
+<!-- wave10:end -->
+
 <!-- wave9:begin -->
 ## Wave 9 trusted binding review (2026-11-01)
 

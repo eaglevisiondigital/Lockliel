@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Runtime lane owned new isolated runtime/two optional oldread parameters; UI lane owned review gate/route then disjoint package builder. Coordinator owned verifier/integration/docs; independent provider/security agent owned docs only. No competing Auth/core/nav/schema/token/dependency edits.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 All application/Auth/guard/route/package/schema files read-only this wave. Netlify reviewer owns hosted-binding docs, compatibility reviewer owns compatibility doc, parallel worker owns six-priority docs; coordinator owns Git/Supabase/evidence/registers. Future shared Auth/edge/package changes require explicit coordinated lease; no global guard relaxation, duplicate Auth or synthetic-grant casting.

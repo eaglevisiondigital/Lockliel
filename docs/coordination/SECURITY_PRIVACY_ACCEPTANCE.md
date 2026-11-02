@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Independent144focused/full1582pass; corrected authority/archive/privacy fixture issues. Provider credential-like skew field appeared in tool output, not Git/evidence; no blanket zero-exposure claim. Actual key provenance/Auth/callerREST/route/context remain unverified. Account origin and real CAPTCHA gates unchanged.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Fresh scoped read-only on/5s/30s confirms exact280, RLS57/57, service notes table+column0/0, stable invoker public session wrapper and stable definer private helper, anon denial and required column grants. Existing A/B/manager match, profiles/roles/session counts only; no PII/credentials. Effective ACL/default ACL distinction retained. Actual RPCGET/caller RLS/Auth/key/config/runtime no-production transport still gated. No sessions/tests/accounts changed.

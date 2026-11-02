@@ -1,0 +1,211 @@
+{
+  "date": "2026-11-01",
+  "worker": "/root/wave10_provider_security",
+  "sites": [
+    {
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "plan": "nf_team_pro",
+      "urls": {
+        "primarySiteUrl": "http://jade-unicorn-642f40.netlify.app",
+        "branchVersionOfSite": "http://6ae7eb995842d69fe118139f--jade-unicorn-642f40.netlify.app"
+      },
+      "currentDeployAttested": false
+    },
+    {
+      "id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "name": "lockliel-course-acceptance-jxtgtfff",
+      "plan": "nf_team_pro",
+      "urls": {
+        "primarySiteUrl": "http://lockliel-course-acceptance-jxtgtfff.netlify.app",
+        "branchVersionOfSite": "http://6ae7eb9a660a85b2d854fec5--lockliel-course-acceptance-jxtgtfff.netlify.app"
+      },
+      "currentDeployAttested": false
+    }
+  ],
+  "historicalDeploys": [
+    {
+      "id": "6abfd81ccee16b59b75711a0",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "branch": "rehearsal",
+      "commit_ref": null,
+      "published_at": null,
+      "has_source_zip": false,
+      "functions": [
+        {
+          "name": "lockliel-admin-content",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-admin-person",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-journey",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-lesson-resource",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-login",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-logout",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-mfa",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-profile",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-session",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        }
+      ]
+    },
+    {
+      "id": "6abcdb0c84404e24a9880ac6",
+      "site_id": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "state": "ready",
+      "context": "branch-deploy",
+      "branch": "acceptance",
+      "commit_ref": null,
+      "published_at": null,
+      "has_source_zip": false,
+      "functions": [
+        {
+          "name": "lockliel-admin-content",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-admin-person",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-admin",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-dashboard-attention",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-journey",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-lesson-resource",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-login",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-logout",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-mfa",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-next-step",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-notifications",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-profile",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-session",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        },
+        {
+          "name": "lockliel-signup",
+          "runtime": "nodejs24.x",
+          "region": "us-east-2"
+        }
+      ]
+    }
+  ],
+  "generatedDeployLookups": [
+    {
+      "error_code": "INVALID_ARGUMENT"
+    },
+    {
+      "error_code": "INVALID_ARGUMENT"
+    }
+  ],
+  "branches": {
+    "branches": [
+      {
+        "id": "7091bfd6-83ce-4c11-ac30-8ce85e09be2d",
+        "name": "course-cutover-rehearsal-274",
+        "project_ref": "qjksggxorghaxvpyslip",
+        "is_default": false,
+        "persistent": false,
+        "status": "FUNCTIONS_DEPLOYED",
+        "created_at": "2026-09-30T16:28:01.056315+00:00",
+        "updated_at": "2026-09-30T16:28:01.056315+00:00",
+        "parent_project_ref": "bsndfhbemstyrrglajat",
+        "with_data": false,
+        "preview_project_status": "ACTIVE_HEALTHY"
+      },
+      {
+        "id": "94c3bf31-d722-458c-ac10-84d57f90b9cd",
+        "name": "main",
+        "project_ref": "bsndfhbemstyrrglajat",
+        "is_default": true,
+        "persistent": false,
+        "status": "FUNCTIONS_DEPLOYED",
+        "created_at": "2026-09-30T08:30:06.470373+00:00",
+        "updated_at": "2026-09-30T08:30:06.470373+00:00",
+        "parent_project_ref": "bsndfhbemstyrrglajat",
+        "with_data": false,
+        "preview_project_status": "ACTIVE_HEALTHY"
+      }
+    ]
+  },
+  "directProjectLookup": {
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "credentialValuesIncluded": false,
+  "sqlExecuted": false,
+  "hostedMutations": false
+}

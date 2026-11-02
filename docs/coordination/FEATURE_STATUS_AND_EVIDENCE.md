@@ -1,5 +1,13 @@
 # Feature status and evidence register
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Verified source and synthetic artifact tests are separate from fresh metadata and retained SQL/production evidence. Real Auth/runtime binding remains held.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Read WAVE9_TRUSTED_BINDING_REVIEW.md. Fresh Git remote/main/PR4 and production hosting metadata match prior heads. Isolated280/readiness/RLS/notes/RPC/eleven-column ACL/synthetic fixture metadata verified read-only; no real Auth or caller/RPCGET. Historical artifact metadata, current binding, source SHA and provider digest domains are separated. No source change or status promotion.

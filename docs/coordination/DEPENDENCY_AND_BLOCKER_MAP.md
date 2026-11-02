@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Local composition blocker narrowed to same-host Auth scope, exact actual deploy ID/context/coexistence/key provenance, real provider byte/route/caller evidence and provider-output incident review. Do not create substitute infrastructure.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Closed metadata gaps: correct isolated active-session RPC owner/STABLE/invoker/search_path/ACL; authenticated read grants on eleven selected columns; existing synthetic A/B provenance. Open: current alias→deploy→artifact→backend/config attestation, safe course coexistence, Auth/key/no-message boundaries, actual callerGET/RLS, new hosted composition/routing and trusted deploy-ID pin lifecycle. Older branch absent/lookup denied is not deletion proof.

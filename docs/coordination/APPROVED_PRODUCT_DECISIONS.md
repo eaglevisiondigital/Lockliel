@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Wave10 authorizes local composition/testing/docs/read-only inspection only. No new product/financial/leadership/translation/privacy policy or hosted authority. Auth-controls rejection preserved.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Wave9 authorizes read-only infrastructure, local validation and documentation only. Hosted Auth/deployment, new source activation, schema, accounts, settings, purchases and resource cleanup are not authorized. Existing default-closed code remains intact. Local composition and gated acceptance assignments are proposals requiring separate approvals; no publishing/payment/book/legal/leadership/privacy decision is inferred.

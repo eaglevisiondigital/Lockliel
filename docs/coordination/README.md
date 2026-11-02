@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave10: [result](WAVE10_COORDINATOR_RESULT.md), [paste handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [gated proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). Local source f5214b7 passes1,582tests and fullchecks; same-host Auth/currentbinding stillheld; no deployment authority.
+
 Current Wave9: [trusted binding review](WAVE9_TRUSTED_BINDING_REVIEW.md), [Primary Chat handoff](WAVE9_PRIMARY_CHAT_HANDOFF.md), [local composition proposal](WAVE9_LOCAL_COMPOSITION_PROPOSAL.md), [gated hosted assignment](WAVE9_HOSTED_ACCEPTANCE_ASSIGNMENT.md). Read-only review complete, hosted binding/activation still incomplete. No hosted or production authority.
 
 Current Wave8: [WAVE8_COORDINATOR_RESULT.md](WAVE8_COORDINATOR_RESULT.md), [paste handoff](WAVE8_PRIMARY_CHAT_HANDOFF.md), [exact hosted gate](WAVE8_EXACT_CANDIDATE_AND_HOSTED_GATE.md). Local sourcee83f0886ed7761d8a47738b9085ed8fab9610b8c passes1438tests/fullchecks; currentbinding and realAuthacceptance BLOCKED, no releaseauthority. All12registers/37features reconciled.

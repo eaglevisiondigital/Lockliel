@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10:begin -->
+## Wave 10 current reconciliation (2026-11-01)
+
+Review provider-output incident scope; explicitly scope held LOCAL existing-handler same-host sign-in/logout composition; later decide exact isolated draft/coexistence/private key/usage budget and synthetic session/read acceptance. Actual200%zoom/spokenreader, Bible/private lifecycle, merchant/book/legal policies remain unresolved.
+
+Source `f5214b75b8dba3671b8eeda6c45574baa2539221`; full1,582JS/type/fivebuilds/lint/Netlify and disposable280/17SQL pass, all280migrationbytes preserved. [Result](WAVE10_COORDINATOR_RESULT.md), [handoff](WAVE10_PRIMARY_CHAT_HANDOFF.md), [proposal](WAVE10_DEPLOYMENT_PROPOSAL.md). No new Live status or release authority.
+<!-- wave10:end -->
+
 ## Wave 9 current result, November 1
 
 Owner/provider must supply exact current isolated alias/source/function/config/backend attestation and explain old branch absence/access if needed. Next approve a concrete local-only composition/routing/pin-lifecycle package, not blind sign-in. Later exact source/deploy/coexistence/Auth lifecycle and cost/window approvals remain separate. Conditional published pricing is not organization-specific quote; team/org selection/budget required before provisioning. Retain account/privacy/rights/merchant decisions.
