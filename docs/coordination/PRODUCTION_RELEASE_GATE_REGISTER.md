@@ -1,5 +1,13 @@
 # Production release gate register
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+No production release authority. Only disposable socket-only SQL was executed. Production 274/Small/PITR 7/leaked-password protection ON and isolated 280/paused ON are retained observations, not fresh audits. Main/PR4/publicsites/course maintenance untouched; no hostedSQL/Auth/settings/migration/deploy/push/merge.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

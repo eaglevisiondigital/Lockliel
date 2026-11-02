@@ -1,0 +1,68 @@
+{
+  "source": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "initialDirtyFixtureSource": "9b798fc24497f1059a8b3bf5b18c03ad4df25fc9",
+  "testKind": "actual static export and compiled handlers, loopback synthetic provider/context only",
+  "harness": "unshipped private temporary loopback fixture on localhost:4329",
+  "credentials": "non-real offline fixture strings only; no credential/token/cookie values retained here",
+  "initialActualHandlers": {
+    "enterLoginA": "PASS",
+    "reloadClearsViewAndExplicitLoadRetainsSession": "PASS",
+    "accountSwitchClearsABeforeLoadingB": "PASS",
+    "normalLogoutAndAnonymousDenial": "PASS",
+    "knownMfaDenialBeforeSuccessCookies": "PASS",
+    "unknownMfaAndUnverifiedNewGrantRevocationStop": "PASS",
+    "providerLogoutFailureClearsLocallyAndReportsUnverified": "PASS",
+    "revokedCurrentSessionReadDenied": "PASS"
+  },
+  "exactCommittedSource": {
+    "jsDisabledByHarnessOnlyCsp": "PASS; shipped headers unchanged",
+    "enterOnDisabledSsrForms": "PASS; zero API requests, zero grant/logout requests",
+    "forms": "exact two fixed POST forms, disabled empty fields/buttons before hydration",
+    "nativeGETLogin": 405,
+    "nativeGETLogout": 405,
+    "directFunctionAndSignupRoutes": 404,
+    "normalHydratedEnterLoginAndGuardedRead": "PASS",
+    "secureCookies": "headers passed unchanged and browser accepted on localhost; not real HTTPS proof",
+    "keyboardClearFocusH1": "PASS",
+    "finalLogoutAndLocalClear": "PASS",
+    "finalActiveSyntheticSessions": 0,
+    "unexpectedProviderTransportAttempts": 0,
+    "passwordAndEmailFieldsCleared": "PASS",
+    "privateSentinelsNeverRendered": "PASS",
+    "urlQueryEmpty": "PASS"
+  },
+  "responsive": [
+    {
+      "width": 320,
+      "documentWidth": 320,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 768,
+      "documentWidth": 768,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1365,
+      "documentWidth": 1365,
+      "horizontalOverflow": false
+    }
+  ],
+  "limits": [
+    "Initial broader lifecycle checks used dirty local fixture before commit; exact-source smoke checked same committed code and new source pin.",
+    "Browser A/B was sequential account switching on one jar; separate-jar contracts are offline tests, not two independent hosted sessions.",
+    "Browser storage/cookie contents were not retrieved; CUA read-only DOM scope does not expose those APIs. HttpOnly/no-token-store claims rely on actual headers/source/tests.",
+    "Actual 200% browser zoom, spoken screen reader, current-source OS reduced-motion activation, real HTTPS/Netlify context/routing, actual provider factors/CAPTCHA and hosted RLS-caller acceptance remain unverified."
+  ],
+  "cleanup": {
+    "tabClosed": true,
+    "viewportRestored": true,
+    "taskListenerStopped": true,
+    "syntheticSessionMemoryDiscarded": true
+  }
+}

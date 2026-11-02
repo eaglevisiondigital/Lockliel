@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave10b:begin -->
+## Wave 10B narrow LOCAL Auth checkpoint (2026-11-01)
+
+Read docs/coordination/WAVE10B_AUTH_IMPLEMENTATION_RESULT.md and WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md. Dave's explicit Wave 10B approval supersedes preparation-only scope only for the reviewed LOCAL correction; original rejection remains historical. Runtimebcaa35680ffefc61775636d65f568827e42d7f06, combined source 327ba098628f70aa65140862b8b14cd709bfd711 on codex/wave10-hosted-composition. Actual existing login/logout factories reused/defaults preserved, independentOFF controls, SecureHttpOnlyhostcookies, local-onlylogout/staleclear/revocationuncertainty, missing/verifiedMFAdenial, exactqjks/site70/source/deploy/Context pins. No refresh/newmanager/sessionstore/productionfallback. Originalv1read package strict; separately versioned Auth3 nativeZIPs/POSTlogin/logout. All1,689 JavaScript/6buildmodes/type/lint/Netlify 83/63 and disposable280/17 SQL pass;280 migrationbytes/1241protectednonMDhashes unchanged. Independent336 focused+361 parallel subsets pass;six findings closed. Exactsourceclean synthetic-ID manifestf9eb5c350815bd69930c8c90f78c8d5abb87e50a426d83cad4bc175c514647f5 is localFixturetrue/releaseEligiblefalse, NOT realdeployment. Actual localbrowserEnter/A-Bswitch/reload/logoutfailure/MFA/revokedread/four-width/keyboard and exactsourceJSdisabledEnter0 API pass; realHTTPS/Auth/currentbinding/actual 200% zoom/spokenreader/currentOSmotion remain unverified. All 12 registers/37 featurestatuses current, noneLive. Three actual agents, no claim of eight separately running agents. Root6dirtyfiles/22 otherrefs/main/course PR #4/publicsites preserved. Finaldefault OFF output restored and temporarylistener/tab retired. No push/merge/deploy/hostedSQL/Auth/provision/migration/settings/maintenance/content/role/payment/message/purchase operation. Production 274/isolated 280paused ON are retained, not freshaudits. Next exact isolated deployment REVIEW only; actualID/key/project/caller/route/rate/usage/coexistence/operator/failedNEWdraft containment and all production/course/security/recovery gates remain separately authorized.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A provider/Auth review (2026-11-01)
 

@@ -1,5 +1,13 @@
 # Feature status and evidence register
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+Source 327ba098 passes1,689 JavaScript/6modes/type/lint/Netlify 83/63 and disposable280/17 SQL. Exact-source three native ZIPs independently verified; synthetic-ID fixture remains non-deployable. Actual local browser/JS-disabled Enter evidence recorded separately from hosted unknowns.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

@@ -1,5 +1,13 @@
 # Shared design system contract, initial proposal
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+New gated controls reuse existing member Auth stylesheet and review shell; no style/token/public/navigation edits. Local four-width/no-overflow, Enter and Clear-to-H1 pass. Actual 200% zoom/spoken reader/currentOSmotion/exhaustive contrast remain unverified.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

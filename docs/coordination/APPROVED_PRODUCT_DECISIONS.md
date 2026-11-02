@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+Dave explicitly approved the exact Wave 10A LOCAL correction in Wave 10B, superseding preparation-only scope for that work. Historical automatic rejection remains recorded. No hosted credential/provision/deploy, settings, production or manager/MFA operation authority.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+Existing codex/wave10-hosted-composition worktree retained. Local runtime bcaa35680ffefc61775636d65f568827e42d7f06 then combined source 327ba098628f70aa65140862b8b14cd709bfd711. Report-only child follows. All 22 other prior refs/root six dirty hashes preserved; no push/merge/tag/rewrite/prune/worktree deletion.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

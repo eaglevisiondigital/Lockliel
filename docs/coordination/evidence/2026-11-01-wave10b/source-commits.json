@@ -1,0 +1,30 @@
+[
+  {
+    "commit": "bcaa35680ffefc61775636d65f568827e42d7f06",
+    "message": "Reuse Auth handlers for confined isolated member sessions",
+    "files": [
+      "netlify/functions/lockliel-login.mjs",
+      "netlify/functions/lockliel-logout.mjs",
+      "netlify/member-hosted/runtime.mjs",
+      "netlify/member-hosted/session-cookies.mjs",
+      "netlify/member-hosted/transport.mjs",
+      "tests/member-hosted-auth-composition.test.mjs"
+    ]
+  },
+  {
+    "commit": "327ba098628f70aa65140862b8b14cd709bfd711",
+    "message": "Compose gated member Auth controls and strict native packages",
+    "files": [
+      "app/my-lockliel/review/page.tsx",
+      "components/member-review/hosted-session-controls.tsx",
+      "components/member-review/server-member-read-shell.tsx",
+      "lib/member-review/review-policy.ts",
+      "scripts/member-hosted/package.mjs",
+      "scripts/member-hosted/verify.mjs",
+      "tests/member-hosted-package.test.mjs",
+      "tests/member-hosted-verifier.test.mjs",
+      "tests/wave10-member-ui.test.mjs",
+      "tests/wave10b-auth-ui.test.mjs"
+    ]
+  }
+]

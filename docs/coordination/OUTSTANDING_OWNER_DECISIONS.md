@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+Local implementation approval fulfilled. Next review exact source 327/site70/qjks bounded unpublished draft/operator/usage/coexistence/key provenance/freshbackend/route-rate-byte/protectedA-B/failedNEWdraft disposition scope. Manager/MFA hosted operations, real CAPTCHA, rights/privacy/book/legal/merchant/recovery/duration/accessibility and production releases remain separate decisions.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

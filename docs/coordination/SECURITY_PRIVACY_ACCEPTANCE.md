@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+Independent full-boundary local review passed aftersix findings corrected/rechecked. Exact POST/origin/CSRF/cookie/local-logout/MFA denial/binding and default OFF tests pass. No hosted credentials/Auth/SQL or token-value evidence. Actual TLS/provider factors/CAPTCHA/manager/caller acceptance separate. Prior provider-output incident record retained, no values retrieved/used.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 

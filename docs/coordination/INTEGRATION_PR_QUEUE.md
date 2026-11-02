@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10b:begin -->
+## Wave 10B local Auth implementation (2026-11-01)
+
+WAVE10B READY FOR ISOLATED DEPLOYMENT REVIEW, not deployment authorization. Source 327ba098, non-deployable synthetic manifestf9eb5c350815bd69930c8c90f78c8d5abb87e50a426d83cad4bc175c514647f5. Actual draft ID unassigned; no remote CI run or PR4 change.
+
+[Result](WAVE10B_AUTH_IMPLEMENTATION_RESULT.md), [Primary Chat paste](WAVE10B_PRIMARY_CHAT_HANDOFF.md), [separate deployment proposal](WAVE10B_ISOLATED_DEPLOYMENT_REVIEW.md). No hosted or production execution authority.
+<!-- wave10b:end -->
+
 <!-- wave10a:begin -->
 ## Wave 10A security/Auth review (2026-11-01)
 
