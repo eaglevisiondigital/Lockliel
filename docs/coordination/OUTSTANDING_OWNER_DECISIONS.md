@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10d:begin -->
+## Wave 10D deployment-context review (2026-11-02)
+
+Next: obtain an authoritative written Netlify answer, or separately approve the exact one-empty-draft protocol with operator/budget/new-ID cleanup. No Phase 2 approval exists yet.
+
+[Context result](WAVE10D_NETLIFY_CONTEXT_RESULT.md), [exact owner review](WAVE10D_CONTEXT_OWNER_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED.
+<!-- wave10d:end -->
+
 <!-- wave10c:begin -->
 ## Wave 10C read-only deployment preflight (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10d:begin -->
+## Wave 10D deployment-context review (2026-11-02)
+
+No integration or PR change. Keep PR #4 and every existing candidate. No application rebuild, push, merge or deployment is authorized.
+
+[Context result](WAVE10D_NETLIFY_CONTEXT_RESULT.md), [exact owner review](WAVE10D_CONTEXT_OWNER_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED.
+<!-- wave10d:end -->
+
 <!-- wave10c:begin -->
 ## Wave 10C read-only deployment preflight (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Master feature inventory
 
+<!-- wave10d:begin -->
+## Wave 10D deployment-context review (2026-11-02)
+
+All 37 feature rows/statuses preserved exactly. Context review adds no Live capability, service or source candidate.
+
+[Context result](WAVE10D_NETLIFY_CONTEXT_RESULT.md), [exact owner review](WAVE10D_CONTEXT_OWNER_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED.
+<!-- wave10d:end -->
+
 <!-- wave10c:begin -->
 ## Wave 10C read-only deployment preflight (2026-11-02)
 

@@ -1,5 +1,11 @@
 # Lockliel verified continuity baseline
 
+<!-- wave10d:begin -->
+## Wave 10D read-only context resolution (2026-11-02)
+
+Read docs/coordination/WAVE10D_NETLIFY_CONTEXT_RESULT.md and WAVE10D_CONTEXT_OWNER_REVIEW.md. NETLIFY DEPLOYMENT WORKFLOW BLOCKED: official API2.63.1/CLI pinned sources support reservation/same-ID update/deploy-private environment, but do not guarantee manual draft context=deploy-preview. Explicit draft context guarantee belongs to the separate builds endpoint, not an inert reservation; no substitution. No Phase 2 experiment is authorized. Support question and one-empty-draft/empty-same-ID-finalization/new-ID-cleanup approval are proposals only. Application327ba098/runtimebcaa356 unchanged; no rebuild/review replay, SQL/Auth/key/provider account call, resource/settings/maintenance change, push/merge/deploy or cleanup. Wave10C isolated280/paused ON remains prior evidence. All12registers/37statuses preserved; no subagents dispatched. All production/course/security gates intact.
+<!-- wave10d:end -->
+
 <!-- wave10c:begin -->
 ## Wave 10C read-only deployment preflight (2026-11-02)
 
