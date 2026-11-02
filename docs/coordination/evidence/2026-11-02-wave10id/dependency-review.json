@@ -1,0 +1,36 @@
+{
+  "workflows": [
+    {
+      "path": ".github/workflows/lockliel-preview-check.yml",
+      "secretReferenceNames": [],
+      "mentionsIsolatedProject": false,
+      "mentionsSupabaseDeploymentOrMigrationCommand": false
+    }
+  ],
+  "directDiagnostic": {
+    "path": "scripts/member-hosted/database_preflight.py",
+    "hiddenInputPerInvocation": true,
+    "noCredentialFile": true,
+    "currentHelperSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba"
+  },
+  "courseRunner": {
+    "path": "scripts/course-release/runner.mjs",
+    "psqlCallerSuppliesEnvironment": true,
+    "noStoredPasswordInConnectionURL": true
+  },
+  "memberPackage": {
+    "path": "scripts/member-hosted/package.mjs",
+    "usesIsolatedHttpsBinding": true,
+    "databasePasswordReference": false
+  },
+  "memberTransport": {
+    "path": "netlify/member-hosted/transport.mjs",
+    "usesHttpsApiAuthPath": true,
+    "databasePasswordReference": false
+  },
+  "protectedKeyNameOnly": "LOCKLIEL_MEMBER_READ_PUBLISHABLE_KEY",
+  "secretStoresInspected": false,
+  "externalAutomationCompleteInventory": false,
+  "databaseConnections": 0,
+  "credentialReads": 0
+}

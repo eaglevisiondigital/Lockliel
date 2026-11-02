@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave10id:begin -->
+## Wave 10I-D read-only credential recovery review (2026-11-02)
+
+Fresh branch metadata maps qjks/course-cutover-rehearsal-274 to the parent with is_default=false and provider ACTIVE_HEALTHY; isolated project lookup error remains separate. Official branch-config schema exposes db_pass plus another secret; no secret endpoint called. Protected recovery may avoid reset, but actual password validity needs a separately authorized guarded direct check. Password update is project-scoped; Reset branch is destructive and forbidden. Local direct tools depend on database credentials; member package uses separate HTTPS/publishable-key binding. No credential read/reset/retry, SQL/production connection, mutation, maintenance, migration, reservation/deploy, push/merge or newLivefeature. Prior280/maintenanceON retained, not freshly queried. All37 statuses/12 registers preserved. [Review and smallest next owner approval](docs/coordination/WAVE10ID_ISOLATED_CREDENTIAL_RECOVERY_REVIEW.md). Deployment allowance unused; no recovery/reset authority inferred.
+<!-- wave10id:end -->
+
 <!-- wave10ic:begin -->
 ## Wave 10I-C one direct diagnostic (2026-11-02)
 
