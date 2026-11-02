@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Actual reservation context=deploy-preview confirmed. Same-ID finalization remains untested because local guard required explicit draft=true while normalized response was null. This is a local validation gap, not provider context failure. New-ID containment passed.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

@@ -1,5 +1,13 @@
 # Production release gate register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+No production/Supabase/Auth/migration/settings/maintenance operation. Only one empty site70 draft created and removed; all historical resources retained. Production and course gates remain intact, not freshly audited.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

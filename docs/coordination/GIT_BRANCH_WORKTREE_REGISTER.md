@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Reuse codex/wave10-hosted-composition from docs aa983fc6; application327ba098/runtimebcaa356 unchanged. Local documentation checkpoint only; no new branch/worktree, push, merge or history rewrite.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

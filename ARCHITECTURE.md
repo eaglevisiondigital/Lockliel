@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave10e:begin -->
+## Wave 10E one authorized empty Netlify experiment (2026-11-02)
+
+Read docs/coordination/WAVE10E_NETLIFY_EXPERIMENT_RESULT.md and WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md. Owner authorized ONE site70 empty experiment; actual ID6ae8942b7f6512d039ce0da6 returned context=deploy-preview/state=new/published_at null. Local guard additionally required explicit response draft=true; normalized null stopped before any PUT. Context passed; finalization UNTESTED, not a provider context failure. Cancel200/delete204; separate provider lookups404/list restored to six historical IDs/immutable404 and rehearsal hashes preserved. Containment verified. Owner/all-site access confirmed; credit-Pro10000/used0/auto-topupOFF retained before/after, no exact invoice cost. One allowance consumed, NO replacement authorized. Proposed optional-field gate/next owner approval are review-only. Application327ba098/runtimebcaa356 and all280migration bytes unchanged; no app/functions/keys/Auth/Supabase/production/settings/maintenance/push/merge/build/source change. Existing CLI operator auth in process memory only; no credential exposure/new file. All12registers/37statuses current, noneLive; no subagent dispatched. Production/course/security gates intact.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D read-only context resolution (2026-11-02)
 

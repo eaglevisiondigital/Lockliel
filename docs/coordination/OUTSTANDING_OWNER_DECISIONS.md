@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Review optional draft/publication gate and either obtain authoritative provider confirmation or separately approve one NEW empty finalization experiment. Prior one-reservation allowance is consumed. Do not call the missing/null normalized flag a wrong provider context.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

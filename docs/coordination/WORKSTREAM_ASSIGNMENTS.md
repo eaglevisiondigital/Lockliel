@@ -1,5 +1,13 @@
 # Workstream assignment register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Coordinator executed the single authorized Netlify capability experiment and a separate read-only verifier. No subagent dispatched; no additional experiment or application deployment assigned.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

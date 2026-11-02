@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Existing Owner CLI auth used in process-memory HTTPS headers only; no new credential file/value/output or deployment secret. New-ID cleanup independently verified (two provider404s/list absence/immutable404). Guard limitation and generic404 hash variance explicitly reported.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 

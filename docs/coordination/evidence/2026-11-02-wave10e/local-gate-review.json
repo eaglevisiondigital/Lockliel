@@ -1,0 +1,19 @@
+{
+  "classification": "Partial capability success; full workflow NOT VERIFIED",
+  "providerContextAtReservation": "deploy-preview",
+  "providerStateAtReservation": "new",
+  "published_at": null,
+  "sitePublishedDeployBeforeAndAfter": null,
+  "localStop": "phase3 required response draft is True; normalized value was None",
+  "fieldPresenceLimitation": "minimal() uses dict.get; the retained journal cannot distinguish an absent draft field from explicit JSON null",
+  "notAProviderContextFailure": true,
+  "finalizationAttempted": false,
+  "automaticReplacementProhibitedAndNotAttempted": true,
+  "proposedGateChangeImplementedInApplication": false,
+  "proposedNextGuardExecutedRemotely": false,
+  "initialFollowupCheck": "An overbroad equality assertion included the generic primary 404 response body and failed. Corrected read-only verification retains that hash difference, checks stable publication identities/status, and requires unchanged rehearsal response hashes. Both attempts performed GETs only.",
+  "nextApproval": "Review documented publication evidence and authorize at most one NEW separately scoped empty reservation/finalization/deletion experiment if needed. No repeat is authorized now.",
+  "operatorScriptSha256": "993cae277ee28ef4671914b9274d47aa93beaaf90726ec03d0cf20d7f3ee0d72",
+  "preflightScriptSha256": "684e63c2ecda1fe5a6e0ddc65a94fe0dfb3f7c521bb49cc44bdd13033dcd46e9",
+  "independentVerifierSha256": "cee0aa64c449269c9642cf0555cad3167e328e39fd5d935f00b2f38f74c441e2"
+}

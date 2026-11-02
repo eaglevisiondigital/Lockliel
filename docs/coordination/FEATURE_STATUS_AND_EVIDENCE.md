@@ -1,5 +1,13 @@
 # Feature status and evidence register
 
+<!-- wave10e:begin -->
+## Wave 10E authorized empty experiment (2026-11-02)
+
+Fresh provider experiment only; no feature newly Live. One ID 6ae8942b7f6512d039ce0da6 created/cancelled/deleted; independent provider/URL404 and historical preservation pass. No new application tests/builds/SQL/Auth.
+
+[Actual result](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard/next review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). NETLIFY DEPLOYMENT WORKFLOW BLOCKED; containment verified.
+<!-- wave10e:end -->
+
 <!-- wave10d:begin -->
 ## Wave 10D deployment-context review (2026-11-02)
 
