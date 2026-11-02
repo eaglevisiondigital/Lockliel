@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10g:begin -->
+## Wave 10G observed empty workflow (2026-11-02)
+
+Wave10G one empty experiment authority fulfilled, no replacement required. Smallest next decision: local protected uploader/receipt-adapter review scope; remote application/key/isolated Auth/retirement requires later exact authorization.
+
+[Actual result](WAVE10G_NETLIFY_FINALIZATION_RESULT.md), [next application proposal, not executed](WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md). NETLIFY DEPLOYMENT WORKFLOW VERIFIED for this empty experiment; all broader gates remain.
+<!-- wave10g:end -->
+
 <!-- wave10f:begin -->
 ## Wave10F local checker correction (2026-11-02)
 

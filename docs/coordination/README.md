@@ -1,5 +1,7 @@
 # Lockliel coordinator: Wave 2 complete locally
 
+Current Wave10G: [verified empty finalization and cleanup](WAVE10G_NETLIFY_FINALIZATION_RESULT.md), [next isolated application proposal](WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md). One empty ID6ae8a1aa48521d4528081700 finalized in deploy-preview and independently retired. App/private-key/native-function/Auth acceptance remains held; no new Live feature or application execution authority. Earlier current headings below are historical.
+
 Current Wave10F: [local checker result](WAVE10F_LOCAL_CHECKER_RESULT.md), [exact future experiment preparation](WAVE10F_FINAL_EXPERIMENT_PREPARATION.md).33 offline tests pass; tooling4e5b594. Final kit is prepared/default-blocked; no credential/provider access or remote authority. Older wave reports remain historical.
 
 Current Wave10E: [actual single experiment](WAVE10E_NETLIFY_EXPERIMENT_RESULT.md), [local guard and next owner review](WAVE10E_LOCAL_GATE_AND_NEXT_REVIEW.md). Reservation context=deploy-preview observed; local draft-field guard stopped before finalization; new ID independently deleted/inaccessible. Full workflow BLOCKED, one allowance consumed, no application deployment or replacement authorized.

@@ -1,5 +1,11 @@
 # Lockliel security model
 
+<!-- wave10g:begin -->
+## Wave 10G authorized empty workflow verified (2026-11-02)
+
+Read docs/coordination/WAVE10G_NETLIFY_FINALIZATION_RESULT.md and WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md. Owner-authorized ONE empty site70 experiment passed: ID6ae8a1aa48521d4528081700 reserved200, SAME-ID finalized200/ready/context=deploy-preview, unpublished throughout. Raw draft omitted; independent publication/site/history proof passed reviewed tooling4e5b594 and sealed kit44f76859. Exact new-ID delete204; separate scoped/global404, list restored to six, immutable404 and rehearsal302/hash unchanged. Owner/all-site permissions and credit-Pro10000/used0/top-upOFF verified; exact cost unverified. One allowance consumed; no retained new resource. App327ba098/runtimebcaa356/all280migration bytes and old evidence preserved. No app/functions/key upload, Auth, Supabase, production access/change, settings/maintenance/migration/push/merge/purchase or historical cleanup. No subagent dispatched. Production274/isolated280-pausedON remain prior observations, not fresh audits. All12registers/37statuses preserved, none newlyLive. Empty lifecycle is VERIFIED only for observed case; native upload/private-key provenance/transfer, actual route/rate enforcement and A/B acceptance remain held. Next protected uploader/receipt-adapter LOCAL review proposal only, then separate exact application deployment/Auth/retirement authority. Do not reuse deleted ID or synthetic fixture. All course/production/security/recovery gates remain intact.
+<!-- wave10g:end -->
+
 <!-- wave10f:begin -->
 ## Wave10F LOCAL checker corrected/prepared (2026-11-02)
 

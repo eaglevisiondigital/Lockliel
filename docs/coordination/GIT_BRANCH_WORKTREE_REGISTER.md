@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10g:begin -->
+## Wave 10G observed empty workflow (2026-11-02)
+
+Existing codex/wave10-hosted-composition worktree reused from9e90f948d50df0e28abfffc91654fe951d9cda02. Application327ba098, course branch/PR4, main, all other branch/remote/tag refs and original dirty work preserved. Automatic Codex turn-diff snapshot refs are recorded separately in preservation evidence. Local docs/evidence checkpoint only; no push.
+
+[Actual result](WAVE10G_NETLIFY_FINALIZATION_RESULT.md), [next application proposal, not executed](WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md). NETLIFY DEPLOYMENT WORKFLOW VERIFIED for this empty experiment; all broader gates remain.
+<!-- wave10g:end -->
+
 <!-- wave10f:begin -->
 ## Wave10F local checker correction (2026-11-02)
 

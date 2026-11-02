@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10g:begin -->
+## Wave 10G observed empty workflow (2026-11-02)
+
+Empty provider lifecycle verified; no member candidate hosted or integrated. Next local operator/receipt review precedes any separate exact application deployment approval. PR4 unchanged by no operation.
+
+[Actual result](WAVE10G_NETLIFY_FINALIZATION_RESULT.md), [next application proposal, not executed](WAVE10G_NEXT_ISOLATED_APP_DEPLOYMENT_PROPOSAL.md). NETLIFY DEPLOYMENT WORKFLOW VERIFIED for this empty experiment; all broader gates remain.
+<!-- wave10g:end -->
+
 <!-- wave10f:begin -->
 ## Wave10F local checker correction (2026-11-02)
 
