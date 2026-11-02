@@ -1,5 +1,11 @@
 # Integration, pull request and validation queue
 
+<!-- wave10ig:begin -->
+## Wave 10I-G prepared one-attempt private recovery operator (2026-11-02)
+
+Local source9376b91e0628f6358ee44468652506317e74ff01 adds exact source/runtime-pinned launcher and durable READY->CONSUMED/fsync guard before input. Actual independent wave10ig_security PASS; full1855JS/32launcher+46recovery+49guard/type/lint/localNetlify pass. Sealed owner-only durable kit read-only offlineverify independently passes; actual grant READY/unconsumed,0credentialinput/provider/DB. Missing/deleted/ambiguous grant cannot auto reset or retry. Existing f3d1eb9 bridge/guard/application/all280migrations and37feature rows preserved. Owner confirmation of privately available read-authorizedPAT is pending; actual authority/auth/on5s30s remain UNVERIFIED. RECOVERY EXECUTION STILL BLOCKED on that input, not a code-security finding. No live retrieval/reset/SQL/Auth/settings/maintenance/reservation/deploy/production/push/merge; allowances unused. One duplicate prompt reconciled without duplicate grant. Trusted owner/OS and immutable-memory limits explicit. [Readiness, exact hashes and conditional later operator command](WAVE10IG_FINAL_RECOVERY_READINESS_RESULT.md). Do not run live recovery or deployment under10I-G.
+<!-- wave10ig:end -->
+
 <!-- wave10if:begin -->
 ## Wave 10I-F local private recovery bridge (2026-11-02)
 
