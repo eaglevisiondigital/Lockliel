@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "elapsedSeconds": 8.976,
+      "log": "/private/tmp/lockliel-wave10if-unit.log"
+    },
+    {
+      "check": "typecheck",
+      "exitCode": 0,
+      "elapsedSeconds": 2.192,
+      "log": "/private/tmp/lockliel-wave10if-typecheck.log"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "elapsedSeconds": 2.851,
+      "log": "/private/tmp/lockliel-wave10if-lint-configured.log"
+    },
+    {
+      "check": "lint-bridge",
+      "exitCode": 0,
+      "elapsedSeconds": 0.782,
+      "log": "/private/tmp/lockliel-wave10if-lint-bridge.log"
+    },
+    {
+      "check": "netlify-local",
+      "exitCode": 0,
+      "elapsedSeconds": 5.859,
+      "log": "/private/tmp/lockliel-wave10if-netlify-local.log"
+    }
+  ],
+  "javascript": {
+    "pass": 1854,
+    "fail": 0,
+    "skipped": 0
+  },
+  "python": {
+    "newRecoveryTests": 46,
+    "existingGuardTests": 49,
+    "counting": "Python tests execute inside two JS bridge tests and are not additional unique JS tests.",
+    "offlineOnly": true,
+    "forbiddenRealIOAttempts": 0,
+    "ASTAndInMemoryCompilation": true
+  },
+  "netlifyLocal": {
+    "modules": 83,
+    "handlers": 63,
+    "remoteOperations": 0
+  },
+  "applicationBuild": "NOT REPEATED, as instructed",
+  "migrationReplay": "NOT REPEATED; all 280 source hashes checked instead",
+  "logHashes": {
+    "unit": "c0b332c8be02c08c2d8eb42f3351efa43a04b9d37ceb48a73f77b9e6368e0b07",
+    "typecheck": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+    "lint-configured": "a8b580b80210ff144b41a93d39ab2f64f7210b500f2ddc9366f3cee304f64ef3",
+    "lint-bridge": "1e072761e0c5e68fb3f4b1eb356c8c96eac894ed68744119a632c6bf41a1c2a6",
+    "netlify-local": "af6870fc2f6994e94780e4f5846dfea6abdd6482f8e998f1cf8a0b4df3c02ed6"
+  }
+}

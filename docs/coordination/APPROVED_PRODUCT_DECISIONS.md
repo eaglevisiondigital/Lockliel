@@ -1,5 +1,11 @@
 # Approved product decisions and authority
 
+<!-- wave10if:begin -->
+## Wave 10I-F local private recovery bridge (2026-11-02)
+
+Source f3d1eb9e6b66937276a37f5b57534b638e08e386 adds a separate Supabase-only same-process private HTTPS-to-pinned-libpq bridge; application/guard/Netlify bytes unchanged. Actual independent agent wave10if_security PASSED after socket, source-race, buffered-output and TLS-keylog risks were fixed. Full1854JS/46new+49existingPython/type/lint/localNetlify pass;280migration hashes preserved. No live CLI activated, input/credential/provider account/DB/SQL/Auth/reservation/deploy/production/settings/maintenance/push/merge action. Live authentication/on5s30s remain UNVERIFIED. Recovery and deployment allowances unused. Future reviewed source-pinned exclusive launcher, cross-process atomic allowance and hidden read-authorized operator input required; immutable/native forensic erasure not promised. Historical isolated280/pausedON/production274 retained without fresh audit. All37feature rows and original dirty work/main/coursePR4/public sites preserved, none newlyLive. [Result and controlled execution prerequisites](WAVE10IF_PRIVATE_RECOVERY_BRIDGE_RESULT.md). This local review does not resume deployment or extend prior conditional recovery authority.
+<!-- wave10if:end -->
+
 <!-- wave10ie:begin -->
 ## Wave 10I-E protected recovery prerequisite stop (2026-11-02)
 
