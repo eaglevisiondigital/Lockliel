@@ -1,0 +1,15 @@
+{
+  "baseline": "51a1fb39189fab343e5a0dd0365254cc5ac34688",
+  "existingChangedDocuments": 19,
+  "allOriginalDocumentationBytesPreserved": true,
+  "allImplementationTestsDependenciesUnchanged": true,
+  "all280MigrationHashesUnchanged": true,
+  "all37FeatureRowsUnchanged": true,
+  "rootDirtyWorkUnchanged": true,
+  "mainCourseAndOtherRefsUnchanged": true,
+  "grant": "READY",
+  "grantUnchangedAndUnconsumed": true,
+  "liveTokensOrProviderAccountCalls": 0,
+  "databaseOrProductionConnections": 0,
+  "settingsMaintenanceMigrationsReservationsDeploymentsPushesMerges": 0
+}

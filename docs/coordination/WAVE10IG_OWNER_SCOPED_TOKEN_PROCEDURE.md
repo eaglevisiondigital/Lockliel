@@ -1,5 +1,11 @@
 # Wave 10I-G owner-only scoped-token procedure and security hold
 
+<!-- wave10ig-final-token:begin -->
+## Wave 10I-G final public token/resource contract review (2026-11-02)
+
+691syntheticformatcases pass. Exact officialCLI03392adf validator confirms worker's plain sbp_+40lowerhex/44total subset, includingfc+38hex; OAuth/v0 families intentionally unsupported. Studio publicissuerresponse typeonlystring, so completeissuedscopedgrammar stillUNVERIFIED. OpenAPIdeclaresbranching_development_read forlist/config butnochild-only resourceinheritance/filtering guarantee. qjks-only DevelopmentBranchesRead fullflow BLOCKED; parentaccessrequired NOTPROVEN. No permissionbroadening, parser/routing/grantchange or live token/API/DB/production action. Actual independent wave10ig_security corroborates. Preferproviderconfirmedchild-only nonsecretidentitylookup (noneverified); namedparentlookup notscopefix; separateownerprivateisolatedpasswordproposalonly. Source9376b91/f3d1eb9/guard/kit/grantREADY unchanged, allowancesunused;280hashes/37rows/historypreserved. [Exact evidence, limits and nonsecret provider questions](WAVE10IG_FINAL_TOKEN_COMPATIBILITY_REVIEW.md). No recovery/deployment resume.
+<!-- wave10ig-final-token:end -->
+
 November 2, 2026. **RECOVERY EXECUTION STILL BLOCKED.**
 
 Dave answered No or unsure. Token availability and permissions are **UNVERIFIED**, not assumed absent everywhere and not treated as authorized input. No live token, account token inventory or secret-bearing dashboard screen was inspected. The initial10I-G implementation review remains valid for its exact local scope; it did not prove availability, permission/resource coverage or format compatibility of an actual scoped token.

@@ -1,0 +1,37 @@
+{
+  "proposedButNotCertifiedScope": {
+    "resourceMode": "project",
+    "projectRefs": [
+      "qjksggxorghaxvpyslip"
+    ],
+    "permission": "branching_development_read",
+    "uiPermission": "Development Branches: Read",
+    "allOthers": "No access"
+  },
+  "operations": [
+    {
+      "path": "/v1/projects/bsndfhbemstyrrglajat/branches",
+      "permissionContract": "branching_development_read OR branching_production_read",
+      "isolatedOnlyResourceAuthorization": "UNVERIFIED",
+      "parentAccessRequired": "NOT ESTABLISHED",
+      "filteredChildOnlyResponseGuaranteed": "NOT ESTABLISHED"
+    },
+    {
+      "path": "/v1/branches/qjksggxorghaxvpyslip",
+      "permissionContract": "branching_development_read OR branching_production_read",
+      "isolatedOnlyResourceAuthorization": "NOT CERTIFIED by inspected public sources",
+      "noLiveRequest": true
+    },
+    {
+      "path": "/v1/projects/bsndfhbemstyrrglajat/branches/course-cutover-rehearsal-274",
+      "purpose": "Possible named lookup; still parent addressed, not a verified scope fix",
+      "isolatedOnlyResourceAuthorization": "UNVERIFIED"
+    }
+  ],
+  "currentScopeSupportedForCompleteFlow": false,
+  "scopeBroadened": false,
+  "recoveryBlocked": true,
+  "providerAccountCalls": 0,
+  "liveTokensCreatedRetrievedPrintedUsed": 0,
+  "databaseConnections": 0
+}
