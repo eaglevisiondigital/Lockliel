@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+No application leases executed. Coordinator owns provider/SQL/documentation; actual provider-capability and independent-security agents own read-only reviews. Existing Auth/core/schema/navigation/tokens preserved.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

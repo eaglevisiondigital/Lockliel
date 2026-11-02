@@ -1,0 +1,33 @@
+{
+  "startingHead": "24be944e5836cfddd9e5dad3e1683017caf3d292",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "sourceRuntimeConfigAssetsTestsMigrationsAndExistingEvidenceUnchanged": true,
+  "unchangedTrackedFiles": 1480,
+  "changedExistingFiles": [
+    "AGENTS.md",
+    "ARCHITECTURE.md",
+    "CURRENT_BUILD_STATE.md",
+    "DECISIONS.md",
+    "SECURITY_MODEL.md",
+    "docs/coordination/APPROVED_PRODUCT_DECISIONS.md",
+    "docs/coordination/DEPENDENCY_AND_BLOCKER_MAP.md",
+    "docs/coordination/FEATURE_STATUS_AND_EVIDENCE.md",
+    "docs/coordination/GIT_BRANCH_WORKTREE_REGISTER.md",
+    "docs/coordination/INTEGRATION_PR_QUEUE.md",
+    "docs/coordination/MASTER_FEATURE_INVENTORY.md",
+    "docs/coordination/OUTSTANDING_OWNER_DECISIONS.md",
+    "docs/coordination/PRODUCTION_RELEASE_GATE_REGISTER.md",
+    "docs/coordination/README.md",
+    "docs/coordination/SECURITY_PRIVACY_ACCEPTANCE.md",
+    "docs/coordination/SHARED_COMPONENT_API_OWNERSHIP.md",
+    "docs/coordination/SHARED_DESIGN_SYSTEM_CONTRACT.md",
+    "docs/coordination/WORKSTREAM_ASSIGNMENTS.md"
+  ],
+  "all280MigrationSourceHashesSealedMatch": true,
+  "all37FeatureRowsAndStatusesExact": true,
+  "allBranchTrackingRefsUnchangedBeforeDocumentationCommit": true,
+  "newDependencyLinkOrBrowserListener": false,
+  "fullTestsBuildsSqlReplayRerun": false,
+  "productionStateFreshAudit": false,
+  "remoteMutation": false
+}

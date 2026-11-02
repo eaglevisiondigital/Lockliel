@@ -1,5 +1,13 @@
 # Dependency and blocker map
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+Per-deploy functions secrets are now documented, not unsupported. Exact manual Context retention and protected operator workflow remain unverified; actual rate/cost/capacity/permissions/retirement proof still gated. No alternate target or shared-key substitution.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

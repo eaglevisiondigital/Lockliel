@@ -1,0 +1,14 @@
+{
+  "reference": "docs/evidence/hosted-duration-280-2026-10-01/expected-280.json",
+  "referenceSha256": "b839b614c76ffdad56cf45b9313757c378bbffbcb74d6181148b1ceb489377ad",
+  "secondMatchingHostedReference": "docs/evidence/hosted-duration-280-2026-10-01/after-migration-280.json",
+  "expectedCount": 280,
+  "actualCount": 280,
+  "missing": 0,
+  "unexpected": 0,
+  "changedStoredArrayTextMd5": 0,
+  "migration280StoredArrayTextMd5": "a55aead9115d12881650fee9f1bede27",
+  "migration280SourceSha256": "bb8af646303725c9c29ddc7119c5d8aefe2bf0afb91c206ffa8baa1a08e1b1c3",
+  "sourceSealed274Plus6Match": true,
+  "rehearsalReferenceCaution": "stage-reference.json first274 fingerprints differ from canonical hosted record; unchanged historical reference distinction, not a new drift finding. Canonical actual hosted array-text baseline and all source SHA256 seals match."
+}

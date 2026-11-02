@@ -1,5 +1,13 @@
 # Production release gate register
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+No productionSQL, migration, deployment, reservation, key, hostedAuth/settings/maintenance action. Freshisolated280paused ON does not prove production274 or a deployed member backend. All production/course/recovery/security gates remain held.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

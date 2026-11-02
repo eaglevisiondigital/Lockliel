@@ -1,5 +1,13 @@
 # Approved product decisions and authority
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+Wave 10C authorizes read-only provider/isolated SQL inspection and deployment preparation only. No reservation, protected-key provisioning, hostedAuth, environment change or deployment authority. Any empty-reservation experiment is a separate proposal.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

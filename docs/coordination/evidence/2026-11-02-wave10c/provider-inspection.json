@@ -1,0 +1,226 @@
+{
+  "observedDate": "2026-11-02",
+  "project": "qjksggxorghaxvpyslip",
+  "security": {
+    "readiness": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    },
+    "public_rls": {
+      "tables": 57,
+      "enabled": 57
+    },
+    "safeguards": {
+      "read_only": "on",
+      "lock_timeout": "5s",
+      "statement_timeout": "30s"
+    },
+    "rpc_metadata": [
+      {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+        "args": "",
+        "name": "lockliel_current_session_active",
+        "owner": "postgres",
+        "schema": "public",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "volatility": "s",
+        "anon_execute": false,
+        "definition_md5": "c7ad281a9078abef4a4115cb000b8247",
+        "security_definer": false,
+        "authenticated_execute": true
+      },
+      {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+        "args": "",
+        "name": "current_session_is_active",
+        "owner": "postgres",
+        "schema": "app_private",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "volatility": "s",
+        "anon_execute": false,
+        "definition_md5": "3637d79b4a93e044b8bd7f3c3e1d454b",
+        "security_definer": true,
+        "authenticated_execute": true
+      },
+      {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "args": "",
+        "name": "lockliel_course_cutover_status",
+        "owner": "postgres",
+        "schema": "public",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "volatility": "s",
+        "anon_execute": false,
+        "definition_md5": "6d5bca587b72a55adefcfc778eae0fa7",
+        "security_definer": true,
+        "authenticated_execute": true
+      }
+    ],
+    "required_columns": [
+      {
+        "table": "profiles",
+        "column": "id",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "profiles",
+        "column": "first_name",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "profiles",
+        "column": "last_name",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "profiles",
+        "column": "onboarding_status",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "profile_id",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "ministry_email",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "faith_boost_email",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "book_release_email",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "partner_email",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "sms_updates",
+        "anon_select": false,
+        "authenticated_select": true
+      },
+      {
+        "table": "communication_preferences",
+        "column": "updated_at",
+        "anon_select": false,
+        "authenticated_select": true
+      }
+    ],
+    "synthetic_fixtures": [
+      {
+        "label": "A",
+        "exists": true,
+        "sessions": 0,
+        "staff_roles": 0,
+        "profile_exists": true,
+        "expected_fixture_email_matches": true
+      },
+      {
+        "label": "B",
+        "exists": true,
+        "sessions": 0,
+        "staff_roles": 0,
+        "profile_exists": true,
+        "expected_fixture_email_matches": true
+      }
+    ],
+    "default_acl_metadata": [
+      {
+        "acl": "{postgres=rwU/supabase_admin,anon=rwU/supabase_admin,authenticated=rwU/supabase_admin,service_role=rwU/supabase_admin}",
+        "owner": "supabase_admin",
+        "schema": "public",
+        "object_type": "S"
+      },
+      {
+        "acl": "{postgres=arwdDxtm/supabase_admin,anon=arwdDxtm/supabase_admin,authenticated=arwdDxtm/supabase_admin,service_role=arwdDxtm/supabase_admin}",
+        "owner": "supabase_admin",
+        "schema": "public",
+        "object_type": "r"
+      },
+      {
+        "acl": "{postgres=X/supabase_admin,anon=X/supabase_admin,authenticated=X/supabase_admin,service_role=X/supabase_admin}",
+        "owner": "supabase_admin",
+        "schema": "public",
+        "object_type": "f"
+      },
+      {
+        "acl": "{postgres=arwdDxtm/postgres,service_role=Dxtm/postgres}",
+        "owner": "postgres",
+        "schema": "public",
+        "object_type": "r"
+      },
+      {
+        "acl": "{postgres=rwU/postgres}",
+        "owner": "postgres",
+        "schema": "public",
+        "object_type": "S"
+      },
+      {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "schema": "public",
+        "object_type": "f"
+      }
+    ],
+    "notes_table_privileges": 0,
+    "notes_column_privileges": 0
+  },
+  "netlifySite": {
+    "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "plan": "nf_team_pro",
+    "teamId": "6a674f7a0e2cdcc2b838db89",
+    "netlifyUrlForProject": "https://app.netlify.com/projects/jade-unicorn-642f40",
+    "currentDeploy": {
+      "state": "current"
+    },
+    "accessRequirementTypes": [
+      "requiresPassword",
+      "whichProjectsRequirePassword",
+      "requiresSSOTeamLogin",
+      "whichProjectsRequireSSOTeamLogin"
+    ]
+  },
+  "netlifyTeam": {
+    "id": "6a674f7a0e2cdcc2b838db89",
+    "name": "ChatGPT",
+    "slug": "dfowler4232",
+    "type_name": "Pro"
+  },
+  "projectLookup": "get_project: Project not found / INVALID_ARGUMENT; exact branch mapping and scoped SQL succeeded",
+  "branch": {
+    "id": "7091bfd6-83ce-4c11-ac30-8ce85e09be2d",
+    "name": "course-cutover-rehearsal-274",
+    "project_ref": "qjksggxorghaxvpyslip",
+    "status": "FUNCTIONS_DEPLOYED",
+    "preview_project_status": "ACTIVE_HEALTHY"
+  },
+  "readOnlyTransactions": 2,
+  "noKeyOrEnvironmentValueReaderCalled": true,
+  "noDeploymentOrAuthOperation": true
+}

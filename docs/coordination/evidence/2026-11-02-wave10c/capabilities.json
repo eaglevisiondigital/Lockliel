@@ -1,0 +1,13 @@
+{
+  "reservationBeforeBuild": "documented official CLI pattern; not executed",
+  "sameIdFinalization": "documented updateSiteDeploy pattern; not executed",
+  "draftDoesNotPublishProduction": "documented draft:true; no new deploy exists",
+  "manualDigestContextDeployPreview": "UNVERIFIED; request has no explicit context field; build context selection does not prove deployed Context",
+  "deployOnlySecretFunctionsEnvironment": "DOCUMENTED environment[] with functions scope/is_secret at create or finalization, immutable once set; no provisioning or value retrieval",
+  "existingEnvironmentCoexistence": "documented deploy scoping; operational exact-target protected transfer/project provenance not verified",
+  "rateLimit": "documented30/60/IP; actual processing/enforcement and current rule capacity not verified; up10s lag, invalid rule need not fail deploy",
+  "newDraftOnlyRetirement": "documented scoped delete; operator permission/asynchronous independent inaccessibility not exercised",
+  "availableDeploymentTool": "MCP deploy-site accepts siteId only, cannot express reviewed reserve/finalize/native artifacts/deploy-private environment; not invoked",
+  "noMandatoryCapabilityEstablishedUnsupported": true,
+  "assessment": "DEPLOYMENT PREFLIGHT BLOCKED"
+}

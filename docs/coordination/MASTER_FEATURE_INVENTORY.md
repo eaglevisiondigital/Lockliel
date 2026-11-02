@@ -1,5 +1,13 @@
 # Master feature inventory
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+All 37 IDs/status classes retained, none newlyLive. Wave 10C adds fresh isolated metadata and provider capability evidence only; source 327 remains local/unreleased.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

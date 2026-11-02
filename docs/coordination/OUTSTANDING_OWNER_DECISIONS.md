@@ -1,5 +1,13 @@
 # Outstanding owner decision register
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+Resolve manual reserve/finalize actualContext guarantee first. Later operator/window/budget/permissions/protectedkey-provenance/native-upload/route-rate/caller/A-B/retirement approvals remain. No authorization requested for full deployment from a blocked preflight.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

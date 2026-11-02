@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+DEPLOYMENT PREFLIGHT BLOCKED. No executable full-deployment assignment; smallest next review is provider confirmation, optionally separate secret-free empty-reservation-only authority. PR #4/main unchanged by no action.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 

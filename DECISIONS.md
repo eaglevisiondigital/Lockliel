@@ -1,5 +1,11 @@
 # Lockliel decisions and open questions
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+Read docs/coordination/WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md and WAVE10C_NEXT_OWNER_REVIEW.md. DEPLOYMENT PREFLIGHT BLOCKED. Exact application 327ba098628f70aa65140862b8b14cd709bfd711/runtime bcaa35680ffefc61775636d65f568827e42d7f06 preserved; synthetic manifest remains non-deployable. Fresh isolated qjks280 versions/all 280 canonical hosted fingerprints, paused=true/schemaReady=true/278-v1, RLS 57/57,11 read columns, notes service0 table/0 column,3 RPC security and existing A/Bprovenance/0 roles/0 sessions pass under actual read-only on/5s/30s. All 280 source seals unchanged. Branch metadata maps qjks healthy; get_project lookup inconsistency remains. Current Netlify API documents true deploy-only functions secret environment and reserve-before-build/same-ID update; exactmanual deploy-preview Context retention and protected operational workflow remain unverified. Rate30/60/IP actual processing/enforcement/capacity and newdraft retirement/operator/billing proof remain held. Two actual independent read-only agents complete; source/artifact integrity and security proposal pass WITH DEPLOYMENT HOLD. No new tests/builds/browser run or application edit; prior1,689/sixbuilds evidence retained. All 12 registers/37 statuses current, noneLive. No reservation/deploy/upload/key retrieval/provision/hostedAuth/productionSQL/migration/settings/maintenance/push/merge/content/payment/message/role/purchase/resourcecleanup. Smallest next: authoritative provider confirmation; secret-free empty-reservation-only experiment is a separately proposed authorization, not executable now. No alternative target, shared key or relaxed binding. All production/course/security/recovery gates remain intact.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B narrow LOCAL Auth checkpoint (2026-11-01)
 

@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10c:begin -->
+## Wave 10C read-only deployment preflight (2026-11-02)
+
+Reuse codex/wave10-hosted-composition from docs 24be944. Application327ba098 and runtime bcaa356 unchanged. Local docs-only checkpoint may follow; no new branch/worktree/push/merge or historical cleanup.
+
+[Preflight result](WAVE10C_FINAL_DEPLOYMENT_PREFLIGHT.md), [Primary Chat handoff](WAVE10C_PRIMARY_CHAT_HANDOFF.md), [smallest next owner review](WAVE10C_NEXT_OWNER_REVIEW.md). No execution authority.
+<!-- wave10c:end -->
+
 <!-- wave10b:begin -->
 ## Wave 10B local Auth implementation (2026-11-01)
 
