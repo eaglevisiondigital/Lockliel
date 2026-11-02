@@ -1,0 +1,23 @@
+{
+  "attempt": "owner-operated one controlled retry, separate from earlier AUTHENTICATION_FAILED attempt",
+  "result": {
+    "ok": false,
+    "errorCode": "DIRECT_CONNECTION_FAILED",
+    "stage": "direct_connection"
+  },
+  "helperHashVerified": true,
+  "launcherHashVerified": true,
+  "rawNativeErrorRetainedInWorkflow": false,
+  "ipv6LookupReturnedAddressesBeforeNativeCall": true,
+  "localDriverInitializationCompletedBeforeNativeCall": true,
+  "nativeConnectionDidNotReachReady": true,
+  "tcpSuccessThisAttempt": "unknown",
+  "tlsSuccessThisAttempt": "unknown",
+  "authenticationThisAttempt": "not verified",
+  "actualReadOnly5s30s": "not verified",
+  "guardedSqlReached": false,
+  "historicalTlsEvidenceNotReusedAsCurrentProof": true,
+  "connectionsThisReview": 0,
+  "passwordAccessThisReview": false,
+  "reservationUsed": false
+}

@@ -1,5 +1,11 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10i-offline-diagnosis:begin -->
+## Wave 10I offline error diagnosis (2026-11-02)
+
+Latest owner-operated retry returned DIRECT_CONNECTION_FAILED, distinct from earlier AUTHENTICATION_FAILED. IPv6 lookup and local driver setup completed; native connection failed before SQL. Actual TLS/auth/on/5s/30s remain unverified.13 offline classifier reproductions pass; generic code collapses multiple native failures, discarded raw cause unrecoverable from retained evidence. Diagnostic correction is proposed only, not implemented. Review [offline result](WAVE10I_OFFLINE_CONNECTION_DIAGNOSIS.md) before any separate local implementation or bounded connection step. No password access, network/remote action, source/migration change, reservation/deploy, production, maintenance, push/merge or newLivefeature. One reservation allowance unused; all original gates and37statuses preserved.
+<!-- wave10i-offline-diagnosis:end -->
+
 <!-- wave10ia:begin -->
 ## Wave 10I-A direct safeguard correction (2026-11-02)
 
