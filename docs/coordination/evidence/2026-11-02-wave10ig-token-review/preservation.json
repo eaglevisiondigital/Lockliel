@@ -1,0 +1,14 @@
+{
+  "changedExistingDocuments": 19,
+  "originalTextPreserved": true,
+  "sourceAndTestFilesUnchanged": true,
+  "rootDirtyWorkUnchanged": true,
+  "migrationHashesUnchanged": 280,
+  "featureRowsUnchanged": 37,
+  "grant": "READY",
+  "grantUnchanged": true,
+  "attemptConsumed": false,
+  "noLiveCredentialsOrProviderAccountCalls": true,
+  "noDatabaseOrProductionAccess": true,
+  "noSettingsMaintenanceDeployMigrationPushMerge": true
+}

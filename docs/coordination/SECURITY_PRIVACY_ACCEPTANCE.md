@@ -1,5 +1,11 @@
 # Security and privacy acceptance register
 
+<!-- wave10ig-token-review:begin -->
+## Wave 10I-G owner token availability and narrow-scope hold (2026-11-02)
+
+Owner answered No/unsure; availability and permissions remain UNVERIFIED. Publicprovider docs map Development Branches Read to config/list; scopedPAT prefixsbp_fc alone does not prove fullformat compatibility with unchanged40hex parser. Parent-addressed branchlisting coverage under qjks-only scope also UNVERIFIED. Do not createLegacy/fullaccounttoken, widenresources to production, or addProductionBranches merelyto pass. Owner-only Dashboard metadata/draftprocedure stopsBEFORECreate/Generate. Actual independent wave10ig_security confirms executionHOLD; fresh32/46/49offline tests pass,4syntheticformatcases documented, no realcredential/account/DB call. Original9376b91/f3d1eb9source/kit/grantREADY unchanged andunconsumed; no parser/routing/grant rebind, reset, production/settings/maintenance, migration, reservation/deploy,push/merge. All280hashes/37feature rows/historypreserved. [Owner steps, permission limits and remaining gates](WAVE10IG_OWNER_SCOPED_TOKEN_PROCEDURE.md). Prior pending-owner question is answered; no execution authority is inferred from uncertainty.
+<!-- wave10ig-token-review:end -->
+
 <!-- wave10ig:begin -->
 ## Wave 10I-G prepared one-attempt private recovery operator (2026-11-02)
 

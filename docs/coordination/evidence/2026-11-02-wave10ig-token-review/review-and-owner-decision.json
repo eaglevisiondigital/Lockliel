@@ -1,0 +1,44 @@
+{
+  "ownerDecision": {
+    "availability": "UNVERIFIED",
+    "permissions": "UNVERIFIED",
+    "answer": "No, or I am unsure",
+    "valueRequested": false
+  },
+  "publicSources": [
+    "https://supabase.com/docs/guides/platform/personal-access-tokens",
+    "https://supabase.com/blog/scope-your-personal-access-tokens",
+    "https://supabase.com/docs/reference/api/v1-get-a-branch-config",
+    "https://supabase.com/docs/reference/api/v1-list-all-branches"
+  ],
+  "proposedPermission": {
+    "label": "Development Branches",
+    "access": "Read",
+    "api": "branching_development_read",
+    "proposedResource": "qjksggxorghaxvpyslip",
+    "allOtherPermissions": "No access",
+    "creationAuthorized": false
+  },
+  "unknowns": [
+    "Actual token privately available and authorized",
+    "Complete scoped token format compatibility",
+    "qjks-only scope coverage of parent listing request",
+    "Actual isolated-resource selectability in ownerDashboard"
+  ],
+  "independentReviewer": "/root/wave10ig_security",
+  "reviewResult": "EXECUTION HOLD; existing implementation security pass limited to offline scope",
+  "syntheticAuthorizationCases": {
+    "classic40hex": "accepted",
+    "prefixfcPlus38hex": "accepted",
+    "longerScopedShaped": "denied",
+    "nonhexScopedShaped": "denied"
+  },
+  "liveProviderCalls": 0,
+  "liveTokenInputsOrOperations": 0,
+  "databaseConnections": 0,
+  "grantStatus": "READY",
+  "grantSha256": "433a71b3b4edad86b9d3508a3c46a5516bb1cde40eb5e4de2bacc4a38a9c3e7a",
+  "recoveryAllowanceConsumed": false,
+  "deploymentReservationConsumed": false,
+  "noSourceChanges": true
+}
