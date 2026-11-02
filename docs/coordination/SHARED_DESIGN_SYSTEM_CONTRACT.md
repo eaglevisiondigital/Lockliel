@@ -1,5 +1,13 @@
 # Shared design system contract, initial proposal
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+No component/token/style/navigation change. Parallel packet defines practical actual200%zoom/spokenreader/motion tests; they remain unexecuted. Existing visual identity preserved.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

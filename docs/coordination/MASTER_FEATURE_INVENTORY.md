@@ -1,5 +1,13 @@
 # Master feature inventory
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+All37 feature IDs/statuses retained, none newlyLive. Wave10A adds security/Auth review and35parallel proposed acceptance cases, no new application implementation.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

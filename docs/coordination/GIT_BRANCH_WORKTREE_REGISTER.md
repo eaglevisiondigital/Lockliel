@@ -1,5 +1,13 @@
 # Git branch and worktree register
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+Continue existing codex/wave10-hosted-composition worktree fromdocse0f3e3928591a1996386debe89e2b92412263fdd; appf5214b75b8dba3671b8eeda6c45574baa2539221 unchanged. Wave10A changes documentation only; no push/merge/newimplementationbranch. All earlierrefs/rootdirtyfiles preserved.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

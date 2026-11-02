@@ -1,5 +1,11 @@
 # Lockliel architecture
 
+<!-- wave10a:begin -->
+## Wave 10A provider/Auth review (2026-11-01)
+
+Read docs/coordination/WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md and WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md. Appf5214b75b8dba3671b8eeda6c45574baa2539221 and docse0f3e3928591a1996386debe89e2b92412263fdd preserved; documentation-only review. Primary Netlifydocs classify exposed fields as client-carried deploy-routing fingerprints, not identified admin/API/Auth credentials; originalworker confirms two historical branchdeploy field instances intooltranscript. No valuesretrieved/used; currentactivity/retention/exactvalueabsence remainunverified, no rotation recommendedsolelyonthisevidence. NarrowAuthproposal reviewed: default-preservingexistingfactories, separateOFF UI/runtime, explicitSecurecookieadapter/local-onlylogout/staleclear/MFAdenial; NO implementation authorized or performed. Fresh113focused tests pass; full1582/280replay/17SQL historical. All280migration/applicationbytes unchanged.35parallel proposedcases;12registers/37features current, noneLive. Assessment CLEARED FOR NARROW AUTH IMPLEMENTATION REVIEW is not credential/deploy permission. FutureAuthsource/deploy unassigned; maintenanceON and allproduction/course gateshold. NoSQL/Auth/settings/secret/maintenance/push/merge/migration/deploy/payment/message/role/content/purchase/deletion action.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 isolated hosting composition (2026-11-01)
 

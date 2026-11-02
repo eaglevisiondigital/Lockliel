@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+Coordinator owns consolidated review/proposal/registers. Auth, incident and parallel workers own disjoint docs/wave10a-* only. Proposed shared login/logout factory extraction and new cookie adapter require serialized approval; no source lease executed.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

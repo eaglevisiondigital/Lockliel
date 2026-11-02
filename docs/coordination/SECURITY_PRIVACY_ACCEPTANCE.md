@@ -1,5 +1,13 @@
 # Security and privacy acceptance register
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+Two historical branch deploy routing-token fields exposed in originaltooltranscript; documentedfingerprint is client-carried, no admin/API/Authcredentialidentified. No valuesretrieved/used; no rotation onthisevidence. Field-name scans not exactvalue proof. Futurelocal-onlylogout and Secure-cookie/MFA/stale clearing require explicitreviewedimplementation.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

@@ -1,5 +1,13 @@
 # Integration, pull request and validation queue
 
+<!-- wave10a:begin -->
+## Wave 10A security/Auth review (2026-11-01)
+
+WAVE10A CLEARED FOR NARROW AUTH IMPLEMENTATION REVIEW only. No Auth code or deployableAuthcandidate exists. Newsource/deployIDs UNASSIGNED. Keep currentread-onlypackage and PR4 unchanged; do not upload the synthetic-ID ZIP.
+
+[Review result](WAVE10A_SECURITY_AND_AUTH_REVIEW_RESULT.md), [paste handoff](WAVE10A_PRIMARY_CHAT_HANDOFF.md), [exact proposed correction and deployment gates](WAVE10A_NARROW_AUTH_AND_DEPLOYMENT_PROPOSAL.md). No credential value or new Auth behavior is included.
+<!-- wave10a:end -->
+
 <!-- wave10:begin -->
 ## Wave 10 current reconciliation (2026-11-01)
 

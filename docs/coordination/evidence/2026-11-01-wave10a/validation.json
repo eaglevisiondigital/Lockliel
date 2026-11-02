@@ -1,0 +1,32 @@
+{
+  "inspected_application": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "starting_documentation": "e0f3e3928591a1996386debe89e2b92412263fdd",
+  "fresh_focused_tests": {
+    "passed": 113,
+    "failed": 0,
+    "skipped": 0,
+    "files": [
+      "tests/auth-form-static-safety.test.mjs",
+      "tests/member-hosted-runtime.test.mjs",
+      "tests/member-hosted-verifier.test.mjs"
+    ],
+    "command": "node --import ./tests/support/network-guard.mjs --test tests/auth-form-static-safety.test.mjs tests/member-hosted-runtime.test.mjs tests/member-hosted-verifier.test.mjs",
+    "data": "Existing explicitly synthetic fixtures only; deny-all network preload"
+  },
+  "historical_wave10_not_rerun": {
+    "javascript": 1582,
+    "migration_replay": 280,
+    "sql_files": 17,
+    "type_build_lint_netlify": "Passed at application checkpoint, not repeated for documentation-only Wave10A"
+  },
+  "new_auth_implementation": false,
+  "hosted_auth": false,
+  "provider_value_retrieval": false,
+  "reviewers": [
+    "/root/wave10a_auth_review",
+    "/root/wave10a_artifact_review",
+    "/root/wave10a_parallel"
+  ],
+  "original_reviewer_metadata_followup": "/root/wave10_provider_security",
+  "parallel_proposed_cases": 35
+}
