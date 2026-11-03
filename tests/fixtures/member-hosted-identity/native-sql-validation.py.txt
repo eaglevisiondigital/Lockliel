@@ -1,0 +1,56 @@
+"""Disposable minimal identity-query validation, Unix socket only, synthetic data.
+No migration replay, managed connection, credential, TCP listener or owner DB.
+"""
+from pathlib import Path
+import hashlib,importlib.util,json,os,shutil,subprocess,tempfile,time
+ROOT=Path('/Users/davesmacbookpro/.codex/worktrees/lockliel-wave10-hosted-composition/Lockliel')
+BIN=Path('/opt/homebrew/opt/postgresql@17/bin')
+BASE=Path(tempfile.mkdtemp(prefix='lkimsql-',dir='/private/tmp'));DATA=BASE/'data';SOCK=BASE/'s';SOCK.mkdir(mode=0o700)
+ENV={'PATH':str(BIN)+':/usr/bin:/bin','LANG':'C','LC_ALL':'C'}
+started=False;stage='initialization';result={'scope':'disposable PostgreSQL17 Unix socket only','syntheticOnly':True,'managedDatabaseConnections':0,'tcpListener':False,'migrationReplayCount':0,'productionAccess':False}
+def run(command,args,source=None):
+ proc=subprocess.run([str(BIN/command),*args],input=source,text=True,capture_output=True,env=ENV,timeout=45)
+ if proc.returncode:raise RuntimeError('FIXTURE_OPERATION_FAILED')
+ return proc.stdout
+ARGS=['-X','-h',str(SOCK),'-p','5432','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1','-qAt']
+def sql(source):return run('psql',ARGS,source)
+def digest(value):return hashlib.sha256(value.encode()).hexdigest()
+try:
+ run('initdb',['-D',str(DATA),'-U','postgres','-A','trust','--no-locale','-E','UTF8'])
+ with (DATA/'postgresql.conf').open('a') as out:out.write("\nlisten_addresses = ''\nunix_socket_directories = '"+str(SOCK)+"'\nunix_socket_permissions = 0700\nport = 5432\n")
+ run('pg_ctl',['-D',str(DATA),'-l',str(BASE/'postgres.log'),'-w','-t','30','start']);started=True
+ stage='local-socket-identity';assert sql("select inet_server_addr() is null and current_setting('listen_addresses')='' and current_setting('data_directory')='"+str(DATA)+"';").strip()=='t'
+ stage='minimal-synthetic-fixture'
+ sql("""create schema auth;create table auth.users(id uuid primary key,created_at timestamptz not null,email_confirmed_at timestamptz,email text not null);create table public.profiles(id uuid primary key);create table public.staff_roles(profile_id uuid);
+ insert into auth.users values ('00000000-0000-4000-8000-000000000001','2026-11-02T00:00:00Z','2026-11-02T00:01:00Z',' Synthetic-A@EXAMPLE.INVALID '),('00000000-0000-4000-8000-000000000002','2026-11-02T00:00:01Z','2026-11-02T00:01:01Z','synthetic-b@example.invalid'),('00000000-0000-4000-8000-000000000003','2026-11-02T00:00:02Z',null,'synthetic-other@example.invalid');
+ insert into public.profiles select id from auth.users;insert into public.staff_roles values ('00000000-0000-4000-8000-000000000003');""")
+ spec=importlib.util.spec_from_file_location('worker',ROOT/'scripts/member-hosted/deployment_native_worker.py');w=importlib.util.module_from_spec(spec);spec.loader.exec_module(w)
+ now=time.time_ns()//1000000
+ mapping={'version':'lockliel-synthetic-identity-mapping-v1','project':w.PROJECT,'branch':w.BRANCH,'branchId':w.BRANCH_ID,'issuedAt':now-1000,'expiresAt':now+60000,'evidence':{'source':'independent-approved-synthetic-fixture-record','approvalId':'disposable-local-synthetic-query-only','recordSha256':'c'*64,'verifiedAt':now-2000},'subjects':[]}
+ for index,label in ((1,'A'),(2,'B')):
+  subject='00000000-0000-4000-8000-'+str(index).zfill(12);created='2026-11-02T00:00:0'+str(index-1)+'.000000Z'
+  mapping['subjects'].append({'label':label,'subjectSha256':digest('lockliel:qjks:auth:'+subject),'profileSha256':digest('lockliel:qjks:profile:'+subject),'createdAtSha256':digest('lockliel:qjks:created:'+created),'loginSha256':digest('lockliel:qjks:login:synthetic-'+label.lower()+'@example.invalid')})
+ stage='read-only-identity-query'
+ output=sql("begin read only;set local lock_timeout='5s';set local statement_timeout='30s';set local search_path='';select pg_catalog.json_build_object('readOnly',current_setting('transaction_read_only'),'lockTimeout',current_setting('lock_timeout'),'statementTimeout',current_setting('statement_timeout'),'unixSocket',inet_server_addr() is null);\n"+w.IDENTITY_SQL+'\nrollback;')
+ lines=output.strip().splitlines();assert len(lines)==2;settings=json.loads(lines[0]);rows=json.loads(lines[1]);assert settings=={'readOnly':'on','lockTimeout':'5s','statementTimeout':'30s','unixSocket':True}
+ stage='exact-private-mapping-validation';w.validate_mapping(mapping,now);verified=w.verify_subject_rows(rows,mapping);assert verified['subjectsVerified']==['A','B'] and verified['syntheticProvenanceVerified'] is True
+ result.update(queryExecuted=True,querySha256=digest(w.IDENTITY_SQL),settings=settings,syntheticRows=3,exactABDigestValidation='PASS',unapprovedThirdIdentityIgnored=True)
+ stage='wrong-user-denial';wrong=json.loads(json.dumps(mapping));wrong['subjects'][0]['subjectSha256']='f'*64
+ try:w.verify_subject_rows(rows,wrong);raise AssertionError('WRONG_USER_ACCEPTED')
+ except w.WorkerError as error:assert error.code=='SYNTHETIC_PROVENANCE_MISMATCH'
+ result['wrongUserDenied']=True
+ stage='wrong-login-binding-denial';wrong=json.loads(json.dumps(mapping));wrong['subjects'][0]['loginSha256']='d'*64
+ try:w.verify_subject_rows(rows,wrong);raise AssertionError('WRONG_LOGIN_ACCEPTED')
+ except w.WorkerError as error:assert error.code=='SYNTHETIC_PROVENANCE_MISMATCH'
+ result['wrongLoginBindingDenied']=True
+ stage='wrong-created-provenance-denial';wrong=json.loads(json.dumps(mapping));wrong['subjects'][1]['createdAtSha256']='e'*64
+ try:w.verify_subject_rows(rows,wrong);raise AssertionError('WRONG_PROVENANCE_ACCEPTED')
+ except w.WorkerError as error:assert error.code=='SYNTHETIC_PROVENANCE_MISMATCH'
+ result['wrongCreationProvenanceDenied']=True;result['ok']=True
+except BaseException as error:result.update(ok=False,failedPhase=stage,errorCategory=type(error).__name__)
+finally:
+ if started:
+  try:run('pg_ctl',['-D',str(DATA),'-m','immediate','-w','stop']);result['ownClusterStopped']=True
+  except BaseException:result['ownClusterStopped']=False
+ if not started or result.get('ownClusterStopped'):shutil.rmtree(BASE);result['ownTemporaryFixtureRemoved']=True
+ Path('/private/tmp/lockliel-wave10im-identity-sql-result.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
