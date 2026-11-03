@@ -1,0 +1,77 @@
+{
+  "sourceCommit": "7c1c7265889f3cd4f664ae0b0e479c4fc3aeb497",
+  "javascript": {
+    "full": 2113,
+    "passed": 2113,
+    "failed": 0,
+    "skipped": 0,
+    "newFocusedSubset": 16,
+    "independentNewSubset": 14,
+    "parallelExistingSubset": 576
+  },
+  "pythonRegression": {
+    "nativeV2": 50,
+    "nativeV1": 45,
+    "launcherV1": 27,
+    "durableAttempt": 34,
+    "notAnAdditionalUniqueJavaScriptTotal": true
+  },
+  "checks": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "seconds": 11.962
+    },
+    {
+      "check": "native-v2",
+      "exitCode": 0,
+      "seconds": 0.674
+    },
+    {
+      "check": "native-v1",
+      "exitCode": 0,
+      "seconds": 0.779
+    },
+    {
+      "check": "launcher-v1",
+      "exitCode": 0,
+      "seconds": 0.356
+    },
+    {
+      "check": "attempt",
+      "exitCode": 0,
+      "seconds": 0.717
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "seconds": 3.513
+    },
+    {
+      "check": "lint-binding",
+      "exitCode": 0,
+      "seconds": 1.266
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "seconds": 6.507
+    },
+    {
+      "check": "type",
+      "exitCode": 0,
+      "seconds": 2.834
+    },
+    {
+      "check": "build",
+      "exitCode": 0,
+      "seconds": 14.444
+    }
+  ],
+  "mode": "offline, synthetic input, blocked outbound network",
+  "sqlExecuted": false,
+  "migrationReplay": false,
+  "dependencyInstall": false,
+  "managedConnections": 0,
+  "liveCredentialsUsed": false
+}

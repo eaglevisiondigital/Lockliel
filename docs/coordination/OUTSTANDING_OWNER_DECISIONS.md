@@ -1,4 +1,14 @@
 
+<!-- wave10in:begin -->
+## Wave 10I-N installation preparation verified; live preflight incomplete (2026-11-03)
+
+Local preparation source `7c1c7265889f3cd4f664ae0b0e479c4fc3aeb497` verifies/stages40 exact disabled M files; copied operator/native offline launchers and dependency integrity pass with zero input/connections/grant changes. Full2,113JS/156Python-regression/type/build/lint/Netlify pass;16new tests include14independent attacker cases. Actual parallel review passed576existing contract/a11y-semantic/privacy tests across eight retained clean lanes. No SQL/replay or live action. Original M source/app and all280 migration bytes/37 feature rows unchanged. Independent local preparation review passed. Actual A/B provenance record/approval and operator installation remain UNVERIFIED; approval pins null and launchers offline-only. Activating these changes the reviewed boundary and remains held. Ordinary observer can populate4/16 Auth flags; six dynamic gaps are a subset of12missing. Positive manager AAL2/staff NOT TESTED. PREFLIGHT READINESS INCOMPLETE. J CONSUMED, reservation UNUSED. No production/provider/Auth/settings/maintenance/migration/reservation/deploy/push/merge/content action. Do not request credentials or execute a preflight from this preparation.
+
+Smallest action: locate and privately approve original exact qjks A/B fixture provenance, or authorize a separate child-only read-only evidence procedure. Then review exact approval/live-entry installation and one fresh preflight. Do not send credentials or raw identities in chat.
+
+[Complete result](WAVE10IN_FINAL_PREFLIGHT_READINESS_RESULT.md) and [conditional fresh assignment](WAVE10IN_ONE_FRESH_PREFLIGHT_ASSIGNMENT.md).
+<!-- wave10in:end -->
+
 <!-- wave10im:begin -->
 ## Wave 10I-M local operator integration (2026-11-02)
 
