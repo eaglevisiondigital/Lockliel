@@ -1,0 +1,66 @@
+"""Disposable local Unix-socket PostgreSQL fixture only, no TCP/auth/real data."""
+from pathlib import Path
+import tempfile,subprocess,os,json,shutil,hashlib,importlib.util
+ROOT=Path(__file__).resolve().parents[3]
+BIN=Path('/opt/homebrew/opt/postgresql@17/bin')
+BASE=Path(tempfile.mkdtemp(prefix='lknsql-',dir='/private/tmp'))
+DATA=BASE/'data';SOCK=BASE/'s';SOCK.mkdir(mode=0o700)
+ENV={'PATH':str(BIN)+':/usr/bin:/bin','LANG':'C','LC_ALL':'C'}
+started=False;stage='setup';result={'scope':'disposable PostgreSQL17 Unix socket only','managedDatabaseConnections':0,'tcpListener':False,'migrationSourcesModified':False,'syntheticOnly':True}
+def run(cmd,args,source=None):
+ p=subprocess.run([str(BIN/cmd),*args],input=source,text=True,capture_output=True,env=ENV,timeout=120)
+ if p.returncode:raise RuntimeError(cmd+' failed at '+stage)
+ return p.stdout
+ARGS=['-X','-h',str(SOCK),'-p','5432','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1','-qAt']
+def sql(source):return run('psql',ARGS,source)
+def source(path):return (ROOT/path).read_text()
+def unwrap(s):return s.replace('begin;','',1).rsplit('commit;',1)[0]
+try:
+ run('initdb',['-D',str(DATA),'-U','postgres','-A','trust','--no-locale','-E','UTF8'])
+ with (DATA/'postgresql.conf').open('a') as f:f.write("\nlisten_addresses = ''\nunix_socket_directories = '"+str(SOCK)+"'\nunix_socket_permissions = 0700\nport = 5432\n")
+ run('pg_ctl',['-D',str(DATA),'-l',str(BASE/'postgres.log'),'-w','-t','30','start']);started=True
+ stage='fixture-identity';assert sql("select inet_server_addr() is null and current_setting('data_directory')='"+str(DATA)+"';").strip()=='t'
+ stage='compat';sql(source('tests/support/supabase-compat.sql'))
+ stage='migration-replay';migrations=sorted((ROOT/'supabase/migrations').glob('*.sql'));assert len(migrations)==280
+ before={x.name:hashlib.sha256(x.read_bytes()).hexdigest() for x in migrations}
+ for i,path in enumerate(migrations):
+  stage='migration-'+str(i+1);sql('begin;\n'+path.read_text()+'\ncommit;')
+ result['migrationReplayCount']=280
+ stage='fixture-ledger';ledger=json.loads(source('scripts/member-hosted/deployment-preflight-baseline.json'))['ledger']
+ # Actual source bytes form local fixture statements, not forged hosted MD5s.
+ sql('create role authenticator nologin;create schema supabase_migrations;create table supabase_migrations.schema_migrations(version text primary key,name text,statements text[]);')
+ for path in migrations:
+  name=path.name[15:-4];src=path.read_text().replace("'","''")
+  sql("insert into supabase_migrations.schema_migrations values ('"+path.name[:14]+"','"+name+"',array['"+src+"']);")
+ stage='operational-fixture';sql(source('supabase/verification/course-release-280/maintenance-install.sql'))
+ sql(source('supabase/verification/course-release-280/maintenance-safe-reads.sql'))
+ sql("create function storage.allow_only_operation(expected_operation text) returns boolean language sql stable as $op$ select coalesce(regexp_replace(current_setting('storage.operation',true),'^storage[.]','')=regexp_replace(expected_operation,'^storage[.]','') and expected_operation<>'',false);$op$;")
+ sql(source('supabase/verification/course-release-280/maintenance-safe-resource-read.sql'))
+ sql(source('supabase/verification/course-release-280/maintenance-safe-resource-info.sql'))
+ stage='inventory';spec=importlib.util.spec_from_file_location('native',ROOT/'scripts/member-hosted/deployment_database_preflight.py');n=importlib.util.module_from_spec(spec);spec.loader.exec_module(n);b=n.load_baseline();g=n.load_guard()
+ rows={};counts={}
+ # Each SELECT runs only in an explicitly local READ ONLY transaction; this
+ # SQL-shape test cannot certify hosted physical TLS or direct-connect behavior.
+ for name,query in n.inspections(b,g):
+  stage='inventory-'+name
+  raw=sql("begin read only;set local lock_timeout='5s';set local statement_timeout='30s';set local search_path='';\n"+query+'\nrollback;')
+  rows[name]=json.loads(raw);counts[name]=len(raw)
+ result['inventoryQueriesExecuted']=len(rows);result['inventoryResultBytes']=counts
+ result['readiness']=rows['readiness'];result['security']=rows['security'];result['projectionCount']=len(rows['projections']);result['rpcCount']=len(rows['rpcs'])
+ result['ledgerVersionCount']=len(rows['catalog']['ledger']);result['ledgerVersionsMatch']=sorted(x['version'] for x in rows['catalog']['ledger'])==[x['version'] for x in b['ledger']]
+ result['catalogSetMatches']={k:n.canonical(sorted(rows['catalog'][k],key=n.canonical))==n.canonical(sorted(json.loads(source(b['catalogSource']))[k],key=n.canonical)) for k in rows['catalog']}
+ result['ledgerFingerprintLimit']='Local fixture statements stores each full authoritative source as one array element. Hosted CLI statement-array MD5 encoding is different; no hosted-MD5 parity claim.'
+ n.validate_rpc_rows(rows['rpcs'],b);result['rpcValidation']='PASS'
+ expected=[{'table':t,'column':c,'authenticatedSelect':True,'anonSelect':False} for t,c in sorted(n.PROJECTIONS)]
+ result['projectionValidation']='PASS' if n.canonical(rows['projections'])==n.canonical(expected) else 'FAIL'
+ result['migrationSourcesUnchanged']=before=={x.name:hashlib.sha256(x.read_bytes()).hexdigest() for x in migrations}
+ result['ok']=True
+except BaseException as exc:
+ result.update(ok=False,failedPhase=stage,errorCategory=type(exc).__name__)
+finally:
+ if started:
+  try:run('pg_ctl',['-D',str(DATA),'-m','immediate','-w','stop']);result['ownClusterStopped']=True
+  except BaseException:result['ownClusterStopped']=False
+ if not started or result.get('ownClusterStopped'):shutil.rmtree(BASE);result['ownTemporaryFixtureRemoved']=True
+ Path('/private/tmp/lockliel-wave10il-native-sql-result.json').write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps(result,indent=2))

@@ -1,0 +1,46 @@
+{
+  "version": "lockliel-deployment-preflight-launcher-template-v1",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "executionAuthorized": false,
+  "authorizationState": "NOT_AUTHORIZED",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "sources": {
+    "deployment_database_preflight.py": "c367e660e07d42286ec1be321fd65593a82aa2ad85bd883383b677cd139e75db",
+    "database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "deployment-preflight-baseline.json": "1b17b93a1c4d21d19cda04cd62c57785f276797c929fd5906c90b75ecf39e8ae",
+    "manual-branch-identity.json": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0"
+  },
+  "guards": {
+    "transport": "direct-ipv6",
+    "host": "db.qjksggxorghaxvpyslip.supabase.co",
+    "port": 5432,
+    "database": "postgres",
+    "username": "postgres",
+    "tls": "verify-full",
+    "hostnameVerification": true,
+    "readOnly": "on",
+    "lockTimeout": "5s",
+    "statementTimeout": "30s",
+    "sameConnectionAndTransaction": true,
+    "pooler": false,
+    "productionFallback": false
+  },
+  "attempt": {
+    "maximumDatabaseConnections": 1,
+    "separateFromConsumedRecoveryAllowance": true,
+    "consumeBeforeInput": true,
+    "operation": "atomic-READY-to-CONSUMED-rename-with-directory-fsync",
+    "missingOrAmbiguous": "deny",
+    "restartAfterConsumption": "deny",
+    "rearm": "forbidden",
+    "journalContainsSecrets": false
+  },
+  "missingPrerequisites": [
+    "independent-exact-A-B-fixture-binding",
+    "source-bound-operator-sealing",
+    "fresh-provider-and-database-execution-authorization"
+  ],
+  "runtimeManifestSha256": "e9c74aa5aca6b71689a649e84d3055f1fcaf242b09c1380991d1e0b7761a5865",
+  "runtimeSumsSha256": "3ad8fbfde07e8ab1ce971c5e467104c326cce29e1d051142bcf84df0879f359f"
+}
