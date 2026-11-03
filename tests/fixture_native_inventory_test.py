@@ -21,7 +21,7 @@ def rows(stage):
  if stage=='after':
   for i in range(2):
    subjects.append(dict(subjectSha256=SUBJECTS[i],profileSha256=str(i+7)*64,createdAtSha256=('a','b')[i]*64,loginSha256=LOGINS[i],profileCount=1,confirmed=True,staffRoleCount=0,factorCount=0,sessionCount=0,enrollmentCount=0,progressCount=0,noteCount=0,unexpectedClaimCount=0))
- return dict(triggerGraph=dict(publicTables=list(n.TABLES),graphSha256=GRAPH),collisions=dict(collisionCount=0),protectedState=dict(protectedStateSha256=STATE),bootstrap=[dict(table=k,count=0 if stage=='before' else 2) for k in sorted(n.OWNED)],subjects=subjects)
+ return dict(triggerGraph=dict(publicTables=list(n.TABLES),privateTables=list(n.PRIVATE_TABLES),graphSha256=GRAPH),collisions=dict(collisionCount=0),protectedState=dict(protectedStateSha256=STATE),bootstrap=[] if stage=='before' else [dict(label=label,table=k,count=1,validCount=1) for label in ('A','B') for k in sorted((*n.OWNED,'auth_identity','auth_metadata'))],subjects=subjects)
 class Driver(f.Driver):
  def __init__(self,stage='before'):
   super().__init__();self.stage=stage;self.extra=rows(stage);self.queries=dict(n.plan(stage,LOGINS,SUBJECTS if stage=='after' else None))
@@ -44,7 +44,7 @@ class Tests(unittest.TestCase):
   with self.assertRaises(n.Denied) as e:self.inspect(d)
   self.assertEqual(str(e.exception),'FIXTURE_NATIVE_DENIED');self.assertTrue(d.closed)
  def test_before_receipt_is_not_authority(self):
-  d=Driver();r=self.inspect(d);self.assertFalse(r['authority']);self.assertIn('sql_not_executed_in_wave10iq',r['limitations']);self.assertTrue(r['receipt']['safeguards']['rolledBack']);self.assertEqual(d.calls[-1],'ROLLBACK')
+  d=Driver();r=self.inspect(d);self.assertFalse(r['authority']);self.assertIn('local_replay_is_not_hosted_equivalence',r['limitations']);self.assertTrue(r['receipt']['safeguards']['rolledBack']);self.assertEqual(d.calls[-1],'ROLLBACK')
  def test_after_exact_two_comparison_is_not_live_provenance(self):
   r=self.inspect(Driver('after'));self.assertFalse(r['authority']);self.assertEqual([x['label'] for x in r['receipt']['subjects']],['A','B'])
  def test_public_tables_match_historical_ddl_including_numeric_names_and_drops(self):
@@ -57,7 +57,13 @@ class Tests(unittest.TestCase):
  def test_only_fixed_selects_no_secret_columns(self):
   for _,sql in n.plan('after',LOGINS,SUBJECTS):
    self.assertTrue(sql.lower().startswith('select '))
-   for forbidden in ['encrypted_password','access_token','refresh_token','identity_data','select *','u.raw_user_meta_data'] :self.assertNotIn(forbidden,sql)
+   for forbidden in ['encrypted_password','access_token','t.refresh_token','t.token','select *'] :self.assertNotIn(forbidden,sql)
+ def test_identity_fields_only_in_count_filter_not_result_projection(self):
+  sql=n.bootstrap_query(SUBJECTS,LOGINS)
+  self.assertEqual(sql.count("t.identity_data->>'sub'"),2)
+  self.assertEqual(sql.count("t.identity_data->>'email'"),2)
+  self.assertNotIn("to_jsonb(t)",sql.split("'auth_identity'")[1].split("'auth_metadata'")[0])
+  self.assertIn("json_build_object('label',label,'table',name,'count',count,'validCount',valid)",sql)
  def test_injection_or_duplicate_input_denied_before_begin(self):
   for bad in ["' or true--",'A'*64,LOGINS[0]]:
    d=Driver()
@@ -84,8 +90,16 @@ class Tests(unittest.TestCase):
   d=Driver();d.extra['triggerGraph']['publicTables'].pop();self.denied(d)
  def test_old_rows_changed(self):
   d=Driver('after');d.extra['protectedState']['protectedStateSha256']='0'*64;self.denied(d)
+ def test_bootstrap_safe_defaults_are_per_subject(self):
+  for label in ('A','B'):
+   for table in (*n.OWNED,'auth_identity','auth_metadata'):
+    d=Driver('after');row=next(x for x in d.extra['bootstrap'] if x['label']==label and x['table']==table);row['validCount']=0;self.denied(d)
+ def test_bootstrap_foreign_or_missing_subject_denied(self):
+  d=Driver('after');d.extra['bootstrap'][0]['label']='B';self.denied(d)
+ def test_unknown_private_schema_table_denied(self):
+  d=Driver();d.extra['triggerGraph']['privateTables'].append('unknown');self.denied(d)
  def test_bootstrap_wrong_count(self):
-  d=Driver('after');d.extra['bootstrap'][0]['count']=1;self.denied(d)
+  d=Driver('after');d.extra['bootstrap'][0]['count']=2;self.denied(d)
  def test_privilege_session_course_note_or_claim(self):
   for field in ['staffRoleCount','factorCount','sessionCount','enrollmentCount','progressCount','noteCount','unexpectedClaimCount']:
    d=Driver('after');d.extra['subjects'][0][field]=1;self.denied(d)

@@ -28,16 +28,23 @@ const uuid=x=>typeof x==='string'&&/^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[8
 export function loginDigest(email){need(typeof email==='string'&&/^[a-z0-9.-]{1,100}@fixture[.]invalid$/.test(email));return sha256('lockliel:qjks:login:'+email);}
 /** Raw provider user is private and discarded by transport, never returned. Only
  * allowlisted noncredential fields contribute to the evidence digest. */
+export function canonicalProviderTimestamp(value){
+ need(typeof value==='string');const m=/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d{1,9}))?Z$/.exec(value);need(m);
+ // Go time.Time marshals RFC3339Nano. PostgreSQL stores microseconds; reject
+ // nonzero sub-microsecond precision rather than invent an equality.
+ need(!m[2]||m[2].slice(6).replace(/0/g,'')==='');const normalized=m[1]+'.'+(m[2]||'').padEnd(6,'0').slice(0,6)+'Z';
+ const milliseconds=Date.parse(normalized);need(Number.isFinite(milliseconds)&&new Date(milliseconds).toISOString().slice(0,19)===m[1]);return normalized;
+}
 export function projectCreatedUser(raw,label,expectedLogin,now){
  const u=clone(raw);need(['A','B'].includes(label));need(uuid(u.id)&&u.email===expectedLogin&&loginDigest(u.email));
- need(typeof u.created_at==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}Z$/.test(u.created_at));
+ const createdAt=canonicalProviderTimestamp(u.created_at);
  const created=Date.parse(u.created_at);need(Number.isFinite(created)&&created<=now&&now-created<=300000);
  need(typeof u.email_confirmed_at==='string'&&Number.isFinite(Date.parse(u.email_confirmed_at))&&Date.parse(u.email_confirmed_at)<=now);
- need(u.role==='authenticated'&&u.is_anonymous===false&&u.phone===''&&Array.isArray(u.factors)&&u.factors.length===0);
+ need(u.role==='authenticated'&&u.is_anonymous===false&&(u.phone===''||u.phone===null)&&(!Object.hasOwn(u,'factors')||(Array.isArray(u.factors)&&u.factors.length===0)));
  const app=u.app_metadata;need(app&&typeof app==='object');need(Object.keys(app).every(k=>['provider','providers'].includes(k))&&app.provider==='email'&&Array.isArray(app.providers)&&app.providers.length===1&&app.providers[0]==='email');
  // Never hash arbitrary provider metadata, raw error text or credential fields.
- const tuple={label,subjectSha256:sha256('lockliel:qjks:auth:'+u.id),profileSha256:sha256('lockliel:qjks:profile:'+u.id),createdAtSha256:sha256('lockliel:qjks:created:'+u.created_at),loginSha256:loginDigest(u.email)};
- return freeze({tuple,projectionSha256:sha256(canonical({project:IDENTITY.project,...tuple,createdAt:u.created_at,confirmed:true,ordinaryRole:true})),createdAt:u.created_at});
+ const tuple={label,subjectSha256:sha256('lockliel:qjks:auth:'+u.id),profileSha256:sha256('lockliel:qjks:profile:'+u.id),createdAtSha256:sha256('lockliel:qjks:created:'+createdAt),loginSha256:loginDigest(u.email)};
+ return freeze({tuple,projectionSha256:sha256(canonical({project:IDENTITY.project,...tuple,createdAt,confirmed:true,ordinaryRole:true})),createdAt});
 }
 const safeguards={directIPv6:true,tlsVerifyFull:true,hostnameVerified:true,transactionReadOnly:'on',lockTimeout:'5s',statementTimeout:'30s',sameConnectionAndTransaction:true,rolledBack:true,connectionClosed:true};
 export function validateNativeReceipt(input,phase,seal,now){

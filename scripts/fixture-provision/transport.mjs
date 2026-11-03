@@ -4,9 +4,10 @@
 import https from 'node:https';
 import {EventEmitter} from 'node:events';
 import {IDENTITY,clone,need,deny,freeze,projectCreatedUser,loginDigest,safeFailure} from './contracts.mjs';
-import {validateOwnedPassword,disposeOwnedInputs} from './protected-input.mjs';
+import {validateOwnedPassword,disposeOwnedInputs,readHiddenLocalInput} from './protected-input.mjs';
+import {requireFixtureAuthority,requireFixtureOperation} from './operator-authority.mjs';
 const HOST='qjksggxorghaxvpyslip.supabase.co',PATH='/auth/v1/admin/users';
-const REVIEWED_LIVE_INSTALLATION=null;
+const live=new WeakMap();
 const offline=new WeakMap(),httpFixtures=new WeakMap();
 function login(label,generation){need(['A','B'].includes(label)&&/^[a-f0-9]{32}$/.test(generation));return 'lockliel-'+generation+'-'+label.toLowerCase()+'@fixture.invalid';}
 export function plannedLoginDigests(generation){return freeze(['A','B'].map(label=>({label,loginSha256:loginDigest(login(label,generation))})));}
@@ -17,7 +18,7 @@ function realRequest(token,body,fixture){const f=fixture===undefined?null:httpFi
   timer=setTimeout(()=>fail('PROVIDER_TIMEOUT'),f?10:10000);
   request=(f?f.request:https.request)({protocol:'https:',hostname:HOST,servername:HOST,port:443,path:PATH,method:'POST',rejectUnauthorized:true,agent:false,headers:{apikey:token.toString('utf8'),authorization:'Bearer '+token.toString('utf8'),'content-type':'application/json','content-length':body.length}},response=>{
    if(response.statusCode!==200&&response.statusCode!==201){response.resume();fail(response.statusCode>=400&&response.statusCode<500?'PROVIDER_REJECTED':'PROVIDER_AMBIGUOUS');return;}
-   response.on('data',chunk=>{if(done)return;responseBytes+=chunk.length;if(responseBytes>65536){fail('PROVIDER_AMBIGUOUS');return;}chunks.push(Buffer.from(chunk));});
+   response.on('data',chunk=>{if(done){if(Buffer.isBuffer(chunk))chunk.fill(0);return;}responseBytes+=chunk.length;if(responseBytes>65536){if(Buffer.isBuffer(chunk))chunk.fill(0);fail('PROVIDER_AMBIGUOUS');return;}chunks.push(Buffer.from(chunk));if(Buffer.isBuffer(chunk))chunk.fill(0);});
    response.once('aborted',()=>fail('PROVIDER_AMBIGUOUS'));response.once('error',()=>fail('PROVIDER_AMBIGUOUS'));
    response.once('end',()=>{if(done)return;done=true;clearTimeout(timer);const bytes=Buffer.concat(chunks);for(const b of chunks)b.fill(0);resolve(bytes);});
   });request.setTimeout(10000,()=>fail('PROVIDER_TIMEOUT'));request.once('error',()=>fail('PROVIDER_AMBIGUOUS'));request.end(body);
@@ -28,14 +29,33 @@ async function create(state,label,password,generation,now,request){
  try{
   need(!state.closed&&['A','B'][state.count]===label);validateOwnedPassword(password);need(state.token.length>=32&&state.token.length<=8192&&state.token.every(x=>x>32&&x<127));state.count++;
   const email=login(label,generation);body=Buffer.from(JSON.stringify({email,password:password.toString('utf8'),email_confirm:true,user_metadata:{full_name:'Synthetic User '+label}}));
-  const startedAt=state.syntheticOnly?now:Date.now();raw=await request(state.token,body);const completedAt=state.syntheticOnly?now:Date.now();need(completedAt>=startedAt&&completedAt-startedAt<=10000);need(Buffer.isBuffer(raw)&&raw.length<=65536);const user=JSON.parse(raw.toString('utf8'));return projectCreatedUser(user,label,email,completedAt);
+  const startedAt=state.syntheticOnly?now:Date.now();raw=await request(state.token,body);const completedAt=state.syntheticOnly?now:Date.now();need(completedAt>=startedAt&&completedAt-startedAt<=10000);need(Buffer.isBuffer(raw)&&raw.length<=65536);const user=JSON.parse(raw.toString('utf8'));const projected=projectCreatedUser(user,label,email,completedAt);need(Date.parse(projected.createdAt)>=startedAt);return projected;
  }catch(error){state.closed=true;throw new Error(safeFailure(error)==='DENIED'?'PROVIDER_AMBIGUOUS':safeFailure(error));}
  finally{disposeOwnedInputs([password,body,raw]);}
 }
 /** Explicit disabled zero-argument boundary: no input, no filesystem credential
  * access, no native connection and no network before reviewed live acquisition. */
-export function createReviewedFixtureTransport(...args){need(args.length===0&&REVIEWED_LIVE_INSTALLATION!==null,'AUTHORITY_MISSING');deny('AUTHORITY_MISSING');}
-export function transportReadiness(){return freeze({project:IDENTITY.project,host:HOST,path:PATH,method:'POST',maximumRequests:2,redirects:false,retries:false,liveEnabled:false,independentOperatorAuthority:'MISSING',nativeOpaqueAcquisition:'MISSING',requestImplementationPresent:typeof realRequest==='function'});}
+export function createReviewedFixtureTransport(...args){
+ need(args.length===1,'AUTHORITY_MISSING');const authority=args[0];requireFixtureAuthority(authority);
+ const state={count:0,closed:false,token:null,syntheticOnly:false};const h=freeze({kind:'private-fixture-provider'});live.set(h,{state,authority});return h;
+}
+/** Format/destination check is not proof of key provenance or cryptographic
+ * signature verification. Opaque secret keys require the separately reviewed
+ * private Dashboard provenance seal; upstream verifies actual credentials. */
+export function validateIsolatedOperatorCredential(value,now=Date.now()){
+ try{need(Buffer.isBuffer(value)&&value.length>=32&&value.length<=8192&&value.every(x=>x>32&&x<127));const token=value.toString('utf8');
+ // An opaque key cannot be bound to qjks by this owner-input path. Do not
+ // transmit it and hope a wrong-project rejection establishes provenance.
+ need(!token.startsWith('sb_secret_'),'AUTHORITY_MISSING');
+ need(/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(token));const claims=JSON.parse(Buffer.from(token.split('.')[1],'base64url').toString('utf8'));need(claims.ref===IDENTITY.project&&claims.role==='service_role'&&Number.isSafeInteger(claims.exp)&&claims.exp*1000>now);
+ return freeze({kind:'legacy-project-service-role',decodedProjectClaimMatches:true,requiresPrivateProjectProvenance:true});
+ }catch{throw new Error('AUTHORITY_MISSING');}
+}
+export async function openReviewedFixtureTransport(handle){const r=live.get(handle);need(r&&!r.state.token&&!r.state.closed,'AUTHORITY_MISSING');requireFixtureOperation(r.authority,'INPUT');r.state.token=await readHiddenLocalInput('operator');try{requireFixtureAuthority(r.authority);validateIsolatedOperatorCredential(r.state.token);}catch{disposeReviewedFixtureTransport(handle);throw new Error('AUTHORITY_MISSING');}}
+export async function createReviewedMember(handle,label,password){const r=live.get(handle);need(r&&r.state.token,'AUTHORITY_MISSING');const a=requireFixtureOperation(r.authority,'CREATE_'+label);const projected=await create(r.state,label,password,a.generation,Date.now(),realRequest);requireFixtureAuthority(r.authority);return projected;}
+export function disposeReviewedFixtureTransport(handle){const r=live.get(handle);need(r,'AUTHORITY_MISSING');r.state.closed=true;disposeOwnedInputs([r.state.token]);r.state.token=null;live.delete(handle);}
+
+export function transportReadiness(){return freeze({project:IDENTITY.project,host:HOST,path:PATH,method:'POST',maximumRequests:2,redirects:false,retries:false,liveEnabled:false,independentOperatorAuthority:'UNINSTALLED_REVIEWED_SEAL',nativeOpaqueAcquisition:'SOURCE_PINNED_PRIVATE_WORKER',requestImplementationPresent:typeof realRequest==='function'});}
 /** Tests receive fixed scenario DATA, never a caller callback or live capability. */
 export function createOfflineProvider(scenarios){const list=clone(scenarios);need(Array.isArray(list)&&list.length===2);for(const row of list){need(row&&['success','timeout','reject','redirect','malformed','wrong-project','duplicate','privileged','interrupt','secret-error'].includes(row.kind));need(Object.keys(row).every(k=>['kind','createdAt'].includes(k)));}const h=freeze({kind:'synthetic-provider-fixture',syntheticOnly:true});offline.set(h,{scenarios:list,syntheticOnly:true,count:0,closed:false,token:Buffer.from('synthetic-only-operator-credential-not-live'),calls:0});return h;}
 export async function createOfflineMember(handle,label,password,generation,now){const state=offline.get(handle);need(state);return create(state,label,password,generation,now,async(_token,body)=>{

@@ -3,7 +3,7 @@
 set -eu
 [[ $# == 0 ]] || exit 1
 cd -- "$(/usr/bin/dirname -- "$0")"
-[[ "$(/usr/bin/shasum -a 256 launcher.mjs)" == "ba3937287b77b56d5de539f961d4b81302304b43985c1ab9cbe8c270e90144fc  launcher.mjs" ]] || exit 1
-[[ "$(/usr/bin/shasum -a 256 source-manifest.json)" == "d388d6bcfeeee7dcbaee3d7834bbdbab7cba88a4f4908cb15c0406e2563fd714  source-manifest.json" ]] || exit 1
+[[ "$(/usr/bin/shasum -a 256 launcher.mjs)" == "2a3abc15d0907a044500e95b05617a25da6782cf79130458d1ba351e10d2edee  launcher.mjs" ]] || exit 1
+[[ "$(/usr/bin/shasum -a 256 source-manifest.json)" == "9a7d50d496b4eb1b222e85f2df0a79f1f3178842e60bd50cde2692bec1aaa329  source-manifest.json" ]] || exit 1
 [[ "$(/usr/bin/shasum -a 256 /opt/homebrew/opt/node@24/bin/node)" == "c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd  /opt/homebrew/opt/node@24/bin/node" ]] || exit 1
 exec /usr/bin/env -i PATH=/usr/bin:/bin /opt/homebrew/opt/node@24/bin/node ./launcher.mjs --offline-verify
