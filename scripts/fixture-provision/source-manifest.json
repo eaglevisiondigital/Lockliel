@@ -10,12 +10,15 @@
     "protected-input.mjs": "389a73fc3a4d68a425fb0741a871828cbc9cad9e8ad29119248cef55315eabc7",
     "transport.mjs": "1226ce45a819389ce9e34a31728dd5a7597340a2a832917110c20c179c3e720d",
     "workflow.mjs": "d340b203053583b88d66d3418fde689ac1b3ec3df4b0229ccfb37637e177cb6f",
-    "operator-authority.mjs": "459f21ce113ef1774245c3d5c422128f3c826533fd034dd115da57690c71d8ae",
+    "operator-authority.mjs": "a95e78a3b37d5ee6c485d1ad9bfdbec1bbd27a4bdd766b83d7729c20595a51fc",
     "operator-installation-seal.json": "b738cb178990863c08bb27868c770466bf3774cfa028771dac7b0654d05dd38c",
     "native-channel.mjs": "76a39a9d52f2bae0624cdaa394c375df4788c2d0e887c92bde1a17d8294183ff",
     "operator.mjs": "cf5fa0085f02b3e877ef84cc9c9c5240ce3d839d9eaf4c338f5267b0d2cc643f",
     "provenance-store.mjs": "9d79d4f621135fe2e900a95dfe8bab58eeb55c6cab1be46c2db25ddd32b3146e",
     "../fixture-native/fixture_inventory.py": "b5514243328a7bf6c04c0c14a4fdb2961115010b83cdc73690a62f4f5b4a4e52",
-    "../fixture-native/fixture_native_worker.py": "8b5d4cb302095c77a47d40cbc62ab590b41b6e111e19744c7c3706f87ca3c245"
+    "../fixture-native/fixture_native_worker.py": "8b5d4cb302095c77a47d40cbc62ab590b41b6e111e19744c7c3706f87ca3c245",
+    "provider-evidence.mjs": "1e7443b0e7f40a51f9170738d14461bf9847cb7f8495edd5d6a1ceaef6aaaadd",
+    "private-provider-projection.mjs": "76fa6b7f16720291115f110f9a9d68acbac3fe605f6e44a69b9cacd37077682d",
+    "auth-config-schema.json": "96e2a88494847a18923640fe0979ce4c387a4f5f82f770125c86016397b30415"
   }
 }

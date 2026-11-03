@@ -1,6 +1,6 @@
 /** Fixed bootstrap; source hashes are regenerated only after local review. */
 import fs from 'node:fs';import {createHash} from 'node:crypto';import {fileURLToPath} from 'node:url';
-const PIN={manifest:'9a7d50d496b4eb1b222e85f2df0a79f1f3178842e60bd50cde2692bec1aaa329',launcher:'2a3abc15d0907a044500e95b05617a25da6782cf79130458d1ba351e10d2edee'};
+const PIN={manifest:'cee869b2bdd0066341624ace2e078068527c3846d13ba8adcd9b209b63d92020',launcher:'8b3bbbc32a89dfa3ab784bbb366addedd1f245679eac64bba98793ab77447ba3'};
 function verify(name,digest){const path=fileURLToPath(new URL(name,import.meta.url)),s=fs.lstatSync(path);if(!s.isFile()||s.isSymbolicLink()||s.nlink!==1||s.uid!==process.getuid()||(s.mode&0o022)||s.size>131072||createHash('sha256').update(fs.readFileSync(path)).digest('hex')!==digest)throw Error('SOURCE_MISMATCH');}
 try{
  if(process.argv.length!==3||!['--offline-check','--execute-installed'].includes(process.argv[2]))throw Error('AUTHORITY_MISSING');

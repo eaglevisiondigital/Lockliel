@@ -5,6 +5,7 @@ import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {performance} from 'node:perf_hooks';
 import {IDENTITY,need,clone,exact,digest,sha256,canonical,freeze,freshness} from './contracts.mjs';
+import {AUTH_HOOK_FIELDS,validateCreationMechanisms} from './provider-evidence.mjs';
 const ROOT='/Users/davesmacbookpro/Library/Application Support/Lockliel/wave10ir-fixture-operator';
 const SOURCE=dirname(fileURLToPath(import.meta.url));
 const handles=new WeakMap();let rootStamp=null;
@@ -22,10 +23,11 @@ export function validateFixtureApproval(raw,seal,now){seal=clone(seal);const r=c
 /** Evidence is an independently collected and reviewed provider projection, not
  * a browser assertion. Installation pins its exact bytes and collector identity.
  * This function validates data only; it never grants a capability. */
-export function validateFixtureProviderEvidence(raw,approval,seal,now){approval=clone(approval);seal=clone(seal);const r=clone(raw);exact(r,['schema','project','branch','branchId','observedAt','collectorSourceSha','collectionReceiptSha256','operatorScope','beforeUserCreatedHook','customAccessTokenHook','passwordVerificationHook','sendEmailHook','authBinaryEvidence','source']);
- need(r.schema==='lockliel-fixture-provider-evidence-v1'&&r.source==='independent-provider-observation');for(const k of ['project','branch','branchId'])need(r[k]===IDENTITY[k]);
+export function validateFixtureProviderEvidence(raw,approval,seal,now){approval=clone(approval);seal=clone(seal);const r=clone(raw);exact(r,['schema','project','branch','branchId','observedAt','collectorSourceSha','collectionReceiptSha256','operatorScope',...AUTH_HOOK_FIELDS,'authBinaryEvidence','providerIdentity','creationMechanisms','source']);
+ need(r.schema==='lockliel-fixture-provider-evidence-v2'&&r.source==='independent-provider-observation'&&r.providerIdentity==='supabase-management-api');for(const k of ['project','branch','branchId'])need(r[k]===IDENTITY[k]);
  freshness(r.observedAt,r.observedAt,now);need(r.observedAt>=approval.issuedAt&&/^[a-f0-9]{40}$/.test(r.collectorSourceSha)&&digest(r.collectionReceiptSha256));
- need(r.operatorScope==='isolated-auth-admin-create-only-in-worker');for(const k of ['beforeUserCreatedHook','customAccessTokenHook','passwordVerificationHook','sendEmailHook'])need(r[k]==='disabled');
+ need(r.operatorScope==='isolated-auth-admin-create-only-in-worker');for(const k of AUTH_HOOK_FIELDS)need(r[k]==='disabled');
+ validateCreationMechanisms(r.creationMechanisms,approval.triggerGraphSha256);
  need(r.authBinaryEvidence==='provider-version-reviewed'&&seal.providerEvidenceSha256===approval.providerEvidenceSha256&&sha256(canonical(r))===approval.providerEvidenceSha256&&seal.collectorSourceSha===r.collectorSourceSha);return freeze(r);
 }
 export function loadFixtureOperatorAuthority(...args){need(args.length===0);const seal=JSON.parse(bytes(join(SOURCE,'operator-installation-seal.json')).toString());exact(seal,['schema','installed','ownerApprovalId','approvalSha256','providerEvidenceSha256','collectorSourceSha']);need(seal.schema==='lockliel-fixture-installation-v1'&&seal.installed===true,'AUTHORITY_MISSING');

@@ -9,7 +9,7 @@ const IDENTITY=Object.freeze({project:'qjksggxorghaxvpyslip',branch:'course-cuto
 const ROOT=dirname(fileURLToPath(import.meta.url));
 const NODE='/opt/homebrew/opt/node@24/bin/node';
 const NODE_HASH='c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd';
-const MODULES=['contracts.mjs','durable-ledger.mjs','protected-input.mjs','transport.mjs','workflow.mjs','operator-authority.mjs','operator-installation-seal.json','native-channel.mjs','operator.mjs','provenance-store.mjs','../fixture-native/fixture_inventory.py','../fixture-native/fixture_native_worker.py'];
+const MODULES=['contracts.mjs','durable-ledger.mjs','protected-input.mjs','transport.mjs','workflow.mjs','operator-authority.mjs','provider-evidence.mjs','private-provider-projection.mjs','auth-config-schema.json','operator-installation-seal.json','native-channel.mjs','operator.mjs','provenance-store.mjs','../fixture-native/fixture_inventory.py','../fixture-native/fixture_native_worker.py'];
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 function regular(path){const s=fs.lstatSync(path);need(s.isFile()&&!s.isSymbolicLink()&&s.uid===process.getuid()&&!(s.mode&0o022)&&s.nlink===1&&s.size>0&&s.size<=131072,'SOURCE_MISMATCH');return fs.readFileSync(path);}
 export function verifyLocalFixturePackage(...args){
