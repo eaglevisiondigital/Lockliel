@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+Independent codex/member-groups-experience, codex/member-founders-experience and codex/member-visual-review worktrees remain separate. Exact full commits/paths are in the report. Accepted Faith5f71011f, Share41b3be23 and Dashboardc2e03aa6 remain preserved; no merges.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)

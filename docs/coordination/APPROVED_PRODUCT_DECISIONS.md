@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+Owner authorized independent local Groups/Founders implementation and unified review only. Human review, entitlements and leadership remain separate. No approved final artwork/mockup identity was established, and no new business/financial promise is approved.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)

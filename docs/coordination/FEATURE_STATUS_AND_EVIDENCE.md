@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+Groups 97 focused tests; Founders 116 focused tests; review harness 6 policy tests. TypeScript and scoped lint pass. See the exact browser and source evidence in the consolidated report; totals overlap and must not be summed as a unique regression suite.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)

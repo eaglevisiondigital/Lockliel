@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+Preserve existing Arial/navy/blue/white direction. Groups uses a light surface while the member shell/Faith/Share/Founders use dark framing. Choose the integration surface explicitly; do not silently restyle accepted components or invent approved artwork.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)

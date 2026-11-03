@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+Actual agents groups_experience, founders_experience and member_visual_review completed their bounded local assignments. Groups and Founders cross-reviewed each other; Founders and coordinator reviewed the browser harness. No old idle lane is claimed as active.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)

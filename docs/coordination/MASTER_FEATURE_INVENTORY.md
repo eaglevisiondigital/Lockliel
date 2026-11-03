@@ -1,3 +1,11 @@
+<!-- parallel-member-delivery:begin -->
+## Groups, Founders and unified review (2026-11-03)
+
+All 37 feature statuses stay unchanged. F25 and F28 now have separate synthetic member-facing UI; no feature becomes Live. F15/F19/F20/F23/F24 gain scoped browser review evidence, not hosted integration acceptance.
+
+[Exact lane commits and validation](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.
+<!-- parallel-member-delivery:end -->
+
 
 <!-- member-followup:begin -->
 ## Member implementation continues; provider evidence pending (2026-11-03)
@@ -333,10 +341,10 @@ certifies connected functionality. Each feature's gap is preserved alongside its
 | F22/L4 | Crisis/self-harm safety and member-controlled faith sharing | Blocked | W4 CRISIS_SUPPORT_INTERACTION_REQUIREMENTS.md prepared for separate qualified safety review | No crisis runtime, monitoring/outreach or sharing delivery; policy/localization/minors/privacy decisions remain open |
 | F23/L5 | My Five owner-private contacts/notes/reminders | Partially Implemented | L5c933578:80tests, private relationship/note/reminder projections, five-active cap and consent; actual composed tests pass; Wave7 private-safe existing person projection composed; notes/history excluded | Synthetic no-save/no-send contracts; no new live contact/reminder system or backend acceptance |
 | F24/L5 | Referral attribution, share links/statistics/explicit confirmation | Partially Implemented | Wave5 actual composed Share Review UI, independent member/share grants, explicit confirmation, fresh consent/revision/org denials; Wave7 read-mode consent unknown, confirmation disabled; original local flow preserved | No message/delivery/referral write; entitled sharing held; actual server/consent integration remains |
-| F25/L5 | Groups/host requests/check-ins/leader tools | Partially Implemented | L5 synthetic self-membership/invitation/human host-leader review/growth-multiplication contracts | Requests and recommendations grant no group/staff/leadership; no operational membership change |
+| F25/L5 | Groups/host requests/check-ins/leader tools | Partially Implemented | L5 synthetic self-membership/invitation/human host-leader review/growth-multiplication contracts ; November3 separate synthetic UI da2a3a01 and focused/browser evidence in PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md | Requests and recommendations grant no group/staff/leadership; no operational membership change |
 | F26/L6 | Share Library/Getting a Grip invitation content | Partially Implemented | Wave5 catalog discovery and privacy-safe resource cards feed L5 Share Review; original L6 projection/readiness preserved; Wave7 existing catalog envelope projected with public-path allowlist; no activation | Real Getting a Grip Share Library item stays inactive; no rights/entitlement/publication activation |
 | F27/L6 | Faith Boost book lead/reader/resource access | Partially Implemented | L6 discovery/reader-entitlement/intake-consent contracts; mailbox/resource/member identity remain distinct | No protected bytes, resource-flow change, email/SMS or verified delivery; no live adapter |
-| F28/L6 | Founders 50 intake/orientation/human review | Partially Implemented | L6 separate application/orientation/human-review/recruiting fixture states, with no roles granted; L8purpose boundaries | No Founder approval, facilitator entitlement or staff grant; live operational acceptance remains unverified |
+| F28/L6 | Founders 50 intake/orientation/human review | Partially Implemented | L6 separate application/orientation/human-review/recruiting fixture states, with no roles granted; L8purpose boundaries ; November3 separate synthetic UI bc0df85f and focused/browser evidence in PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md | No Founder approval, facilitator entitlement or staff grant; live operational acceptance remains unverified |
 | F29/L6 | A Heart for the Lost release-interest funnel | Partially Implemented | Existing release-interest source preserved; L6 resource/book availability and consent/publication contracts | No final assets, book launch, delivery or benefit promise; existing funnel unchanged |
 | F30/L6+7 | Final books/complimentary offer/shipping | Proposed / Decision Pending | DECISIONS.md book/benefit decision gaps | Final assets, gift eligibility/threshold/currency/shipping/returns authority missing |
 | F31/L7 | Giving/partnership/order/fulfillment foundations | Partially Implemented | L7fcfd0f5:41tests for independent merchant routing, consent, intents/transitions/idempotency/refunds/reconciliation/entitlements/fulfillment | Fixture XTS only, all effects false; actual providers/legal/merchant/delivery decisions unresolved |
