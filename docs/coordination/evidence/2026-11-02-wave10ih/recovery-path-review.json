@@ -1,0 +1,24 @@
+{
+  "reviewer": "/root/wave10ih_path_review",
+  "actuallyDispatched": true,
+  "readOnly": true,
+  "childConfigAddressing": "DOCUMENTED",
+  "childConfigOperation": "GET /v1/branches/qjksggxorghaxvpyslip",
+  "permission": "branching_development_read",
+  "childOnlyPatResourceAuthorization": "UNVERIFIED",
+  "missingPreSecretMetadata": [
+    "branch name",
+    "branch id",
+    "parent project ref",
+    "is_default"
+  ],
+  "removingIdentityGateApproved": false,
+  "recommendedArchitecture": "Owner-private current isolated database-password handoff, conditional availability; no Management PAT",
+  "passwordAvailability": "UNVERIFIED; availability-only question pending",
+  "dashboardPasswordReadback": "NOT DOCUMENTED by inspected connection instructions",
+  "manualWrapperImplemented": false,
+  "exactSourceGrantReconciliationRequired": true,
+  "originalIsolatedResourceBoundarySufficient": true,
+  "oldSourceBoundGrantMayBeSilentlyRebound": false,
+  "liveCredentialsOrConnections": 0
+}

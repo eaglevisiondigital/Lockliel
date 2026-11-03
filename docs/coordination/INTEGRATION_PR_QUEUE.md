@@ -1,5 +1,15 @@
 # Integration, pull request and validation queue
 
+<!-- wave10ih:begin -->
+## Wave 10I-H isolated recovery path decision (2026-11-02)
+
+The child-reference configuration GET is documented, but its response lacks full branch-linkage metadata and contains secrets. Removing the parent identity preflight would weaken the approved gate. Child-only PAT resource authority remains UNVERIFIED. The preferred conditional path is an owner-private handoff of an already-known current isolated database password to the reviewed guard, without a PAT or parent API call. Password availability is pending; no retrieval, reset or input occurred.
+
+Independent reviewer wave10ih_path_review conditionally approves the architecture. A manual wrapper and exact source/single-allowance grant reconciliation remain proposals; the existing READY grant is unchanged. Nine contract checks and 46 recovery/49 guard regressions passed offline. The separate wave10ih_lane_continuity audit confirmed eight clean lane worktrees and preserved contracts/design. Its 67 Faith tests passed; a companion test could not start because esbuild was unavailable. No dependency installation or new feature coding occurred.
+
+All 280 migration hashes, 37 feature rows, prior root changes and course/main references are preserved. No credentials, private provider API requests, SQL, production changes, settings, maintenance, migrations, Netlify operations or GitHub changes occurred. [Decision, comparison, exact owner action and lane evidence](docs/coordination/WAVE10IH_RECOVERY_PATH_DECISION.md). Recovery and deployment remain BLOCKED. No source/grant rebind or execution is authorized by this result.
+<!-- wave10ih:end -->
+
 <!-- wave10ig-final-token:begin -->
 ## Wave 10I-G final public token/resource contract review (2026-11-02)
 

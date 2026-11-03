@@ -1,0 +1,57 @@
+{
+  "officialOpenApiSha256": "9ac6bd92b356d6de1fa551f1019075fd4e290e2552408e952eef986a412f0199",
+  "contractChecks": [
+    {
+      "check": "documented child ref parameter accepts exact qjks shape",
+      "passed": true
+    },
+    {
+      "check": "development branch read capability listed",
+      "passed": true
+    },
+    {
+      "check": "config response secret bearing",
+      "passed": true
+    },
+    {
+      "check": "config lacks required full branch linkage",
+      "passed": true
+    },
+    {
+      "check": "config verifies endpoint destination fields",
+      "passed": true
+    },
+    {
+      "check": "named metadata lookup still parent addressed",
+      "passed": true
+    },
+    {
+      "check": "project lookup needs extra capability",
+      "passed": true
+    },
+    {
+      "check": "direct guard unchanged",
+      "passed": true
+    },
+    {
+      "check": "private bridge unchanged",
+      "passed": true
+    }
+  ],
+  "pythonRegressions": [
+    {
+      "suite": "recovery",
+      "tests": 46,
+      "passed": true,
+      "elapsedSeconds": 0.496
+    },
+    {
+      "suite": "guard",
+      "tests": 49,
+      "passed": true,
+      "elapsedSeconds": 0.332
+    }
+  ],
+  "manualInputProposalImplemented": false,
+  "actualCredentialsOrConnections": 0
+}
