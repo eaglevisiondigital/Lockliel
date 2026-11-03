@@ -1,0 +1,11 @@
+{
+  "originalSha256": "de67d015cf29899228ba911116dc5441acc40fed59d7b7d12d7f196abb924265",
+  "correctedSha256": "07e836b9869b91463349e82062c45433a68cb9e4b7ced65976b18ed79a0ca27f",
+  "providerAttempts": 1,
+  "originalReceiptVerified": false,
+  "correctedProjectionLiveExecutions": 0,
+  "corrections": [
+    "Reject conflicting ref/id values",
+    "Reject mixed structured and text envelopes without documented equivalence"
+  ]
+}

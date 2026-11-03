@@ -1,0 +1,12 @@
+{
+  "localIntegrityOnly": true,
+  "providerSignature": false,
+  "files": {
+    "independent-projection-tests.json": "52c83897265350fc237b4bd5e3b3c542e7d38536fb8489ec7b0aec910c4f3f9e",
+    "preservation.json": "121ecb221cdd8cb6b77bdd88345e89a4ec4314334ff41fb6d859812dc9c226d9",
+    "project-projection.offline.js.txt": "07e836b9869b91463349e82062c45433a68cb9e4b7ced65976b18ed79a0ca27f",
+    "project-receipt.json": "a3bff3ed6cf4f0f6b72ace99b835e250ecc5274cd741fc84ed912d7405e47a88",
+    "projection-history.json": "f31b84127201dc912cc62207131999f4fbdc2bff63927e91369ac8c86042be29",
+    "validation.json": "f29d52c3beadac35623b8f7640fc2c6aa0ff9c8ccea2bedf65a13008ecb6d5f5"
+  }
+}

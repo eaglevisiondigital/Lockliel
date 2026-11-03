@@ -1,0 +1,65 @@
+{
+  "reviewer": "wave10is_security",
+  "sourceSha256": "07e836b9869b91463349e82062c45433a68cb9e4b7ced65976b18ed79a0ca27f",
+  "tests": [
+    {
+      "name": "identity-ref-id-conflict",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "structured-text-conflict",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "unrecognized-structured-envelope",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "array-rejected",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "error-raw-discarded",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "unknown-status-projected",
+      "expectedOk": true,
+      "actualOk": true,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "private-extra-discarded",
+      "expectedOk": true,
+      "actualOk": true,
+      "pass": true,
+      "noLeak": true
+    },
+    {
+      "name": "wrong-child",
+      "expectedOk": false,
+      "actualOk": false,
+      "pass": true,
+      "noLeak": true
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "providerCalls": 0
+}
