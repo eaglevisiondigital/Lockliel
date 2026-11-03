@@ -59,3 +59,9 @@ One explicitly approved child metadata read returned UNVERIFIED_PROVIDER_RESPONS
 
 Source `4560d7b87c6815cf48888bf4976c13aa61cd2fa4` requires complete seven-hook and reviewed native dependency/effect evidence. Full private filter is offline-verified but no collector, identity authority, new fixture, grant, registry or installation is established. Hosted facts remain UNKNOWN. J CONSUMED; reservation UNUSED. [Complete result](WAVE10IT_PROVIDER_EVIDENCE_READINESS.md).
 <!-- wave10it:end -->
+
+<!-- wave10iu:begin -->
+## Wave 10I-U offline collector event (2026-11-03)
+
+Source `13c9d1c9f74f3561025419f054ade786403dd0d6` has no live authority mint or installed grant. No fresh hosted identity, credential, hook, version or fixture evidence. Fixture activation remains disabled. J CONSUMED; reservation UNUSED. [Result](WAVE10IU_PRIVATE_COLLECTOR_RESULT.md).
+<!-- wave10iu:end -->

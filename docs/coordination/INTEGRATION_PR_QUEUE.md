@@ -1,4 +1,12 @@
 
+<!-- wave10iu:begin -->
+## Wave 10I-U private collector tested; authority gate remains (2026-11-03)
+
+Collector source `13c9d1c9f74f3561025419f054ade786403dd0d6` implements the private ordered pipeline and offline tests; live entry stops AUTHORITY_UNAVAILABLE before input/consumption/request. Reviewed provider contracts do not establish exact entered-credential/operator/child-scope binding. No fabricated proof or permission broadening. T238-field/seven-hook filter, 40-file operator and 280 migrations unchanged. Full 2,748 JS/type/build/lint/Netlify and offline checks pass; independent review corrected disposal/pin issues, preserves live block. Separate UI `4d80a1f0d0c45c7e1796bf0643cc5af6234681e2` adds synthetic action-plan growth labels and safe removal guidance;229 focused/type/lint pass. Actual three agents: collector, independent security, member UI. All37 feature statuses unchanged, none Live. J CONSUMED; reservation UNUSED. No live provider/credentials/DB/Auth/accounts/migration/maintenance/Netlify/production/push/merge. Next: separately approved private owner nonsecret Dashboard evidence with explicit limitations, not a live collector launch.
+
+[Complete result](WAVE10IU_PRIVATE_COLLECTOR_RESULT.md). Assessment: PRIVATE COLLECTOR STILL BLOCKED.
+<!-- wave10iu:end -->
+
 <!-- wave10it:begin -->
 ## Wave 10I-T local evidence correction; private collection still blocked (2026-11-03)
 
