@@ -6,7 +6,7 @@ This local package replaces no existing implementation. Its parent is the preser
 
 ## Implemented visual demonstrations
 
-1. **A: My Space and Member Home.** Scenic dark-blue editorial composition, persistent Share Hope, daily Faith Boost, My Journey and My Five. Actual in-memory mountain, cozy, high-tech and outdoor-court themes; sports/music/reading/making/nature interests; explicit optional life-stage suggestions; module order; private preferences and larger/calm display options.
+1. **A: My Lockliel and Member Home.** Scenic dark-blue editorial composition, persistent Share Hope, daily Faith Boost, My Journey and My Five. Actual in-memory mountain, cozy, high-tech and outdoor-court themes; sports/music/reading/making/nature interests; explicit optional life-stage suggestions; module order; private preferences and larger/calm display options.
 2. **B: Share Hope to Recipient.** Life-need search and eligible synthetic resources, permission-aware recipient/channel choice, optional escaped message, complete intended-share review and explicit local confirmation. Separate public recipient shell, text-only/larger text and noncoercive exploration. No member navigation or private relationship data appears in the recipient page.
 3. **C: Faith Boost to Growth and Multiplication.** Daily 7 PM Central and all seven identity series. Scheduled, synthetic live-layout and replay states are explicitly distinct. Archive, group discussion, Scripture, Share Hope and lesson/worksheet continuation. Desktop sticky video is on the left with the worksheet alongside, matching the preserved course layout's .85fr/1.15fr split and <=900px single-column behavior.
 

@@ -1,7 +1,7 @@
 {
   "files": {
-    "index.html": "2b98848420ac02025e1d37f33bb45285ed7ec68ff1f90db96eafb19c699ee5da",
-    "app.js": "c636344a983b2965dc7880a8d863a056b60094fe5182bb996a75cb7e20ff6b1c",
+    "index.html": "645b581b04722686cda36ce1495c02df40d2f11e7c75bff55baeb5d9d3c95cce",
+    "app.js": "1c2e6ab23e40413d72ebc93c557daf74469968b72298fd4b9f082b5e699f91f0",
     "styles.css": "56cd34f466d2140e2ae2e20632ab9c0d7095324e12521b3d86986353fbd408af",
     "assets/PermanentMarker-LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "assets/Poppins-OFL.txt": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
@@ -15,7 +15,7 @@
     "assets/poppins-regular.ttf": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
     "assets/poppins-semibold.ttf": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286",
     "assets/premium-rights-manifest.json": "de22a72cd418b00b013b0ac538c5e16ac0716985f96a0449ff2f615d83c8a9b8",
-    "assets/rights-manifest.json": "33aba205acf061e163d32cd4cbf33fc157b5fe310064d705e5e16c4c32a30f11",
+    "assets/rights-manifest.json": "13550f0dbfd80f47da4cdf29f3577b51c9bc0ea2e0bade50e197f7d131954277",
     "assets/studio.jpg": "55d0a86fc1ce74e51715b1caeb5f7154bcd91c532675e1953bdc408807ecb841",
     "assets/sunrise.jpg": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05"
   }
