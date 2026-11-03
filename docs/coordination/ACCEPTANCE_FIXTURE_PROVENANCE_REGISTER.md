@@ -33,3 +33,11 @@ Issue a new bounded approval only after a real current verification; never re-da
 The coordinator updates this nonsecret index and the existing12 registers after an actual approved fixture lifecycle event. The named owner-private custodian retains the original digest evidence and independent approval; report only safe logical labels/status externally. A second machine receives no private registry or credentials by default. A future source/artifact export for synthetic accessibility tests must exclude this registry and every private kit.
 
 If a record is unavailable or integrity fails: mark it unavailable, stop its execution authority, and require a bounded reconciliation or separately approved new generation. Do not scan unrelated members, silently recreate users, reset passwords or infer identity from a login. Preserve prior records and course progress. This register is the single coordination index going forward, preventing duplicate overlapping provenance registries; current short-lived operator artifacts remain derivatives, not separate sources of truth.
+
+<!-- wave10iq:begin -->
+## Wave 10I-Q preparation event (2026-11-03)
+
+New-generation status: LOCAL TOOLING INCOMPLETE, NOT CREATED. Source `4619835ff2689814eb295be9b02c1053da0dd9e4` contains strict projection contracts and an in-memory draft schema, UNVERIFIED_OFFLINE_ONLY. No live tuple, approval, permanent private writer/store or credential was installed. Historical original A/B remains unverified for the new operator; no substitution. Future independently verified creation events must retain original timestamps and private custody, and satisfy the unchanged mapping/16-flag/freshness requirements. This append-only safe index is not execution authority. J CONSUMED and application reservation UNUSED.
+
+[Q result](WAVE10IQ_SYNTHETIC_FIXTURE_TOOL_RESULT.md).
+<!-- wave10iq:end -->

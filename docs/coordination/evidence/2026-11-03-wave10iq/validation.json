@@ -1,0 +1,187 @@
+{
+  "source": "4619835ff2689814eb295be9b02c1053da0dd9e4",
+  "uiSource": "a35ef225286f7c1ab52100f51013c88d47d8b3b5",
+  "fullJavaScript": {
+    "pass": 2206,
+    "fail": 0,
+    "skip": 0,
+    "newFixtureSubset": 93
+  },
+  "python": {
+    "newFixtureNative": 27,
+    "retainedRegression": 156,
+    "sqlExecuted": false
+  },
+  "ui": {
+    "focused": 232,
+    "newSubset": 15,
+    "compatibility": 301,
+    "uniqueCombinedTotalClaimed": false,
+    "nativeBrowserAcceptance": false
+  },
+  "checks": [
+    {
+      "check": "unit-complete",
+      "logPath": "/private/tmp/lockliel-wave10iq-unit-complete.log",
+      "sha256": "5cc463b3b2d8be4797817e66cffb70f3c601d46e47f5d43603a27d217232a805",
+      "status": "PASS"
+    },
+    {
+      "check": "fixture-lint-complete",
+      "logPath": "/private/tmp/lockliel-wave10iq-fixture-lint-complete.log",
+      "sha256": "d9c94e694587e4b56f29c819ef10bb3ad55137e3eb4134f21d411aed9abcc7ed",
+      "status": "PASS"
+    },
+    {
+      "check": "package-complete",
+      "logPath": "/private/tmp/lockliel-wave10iq-package-complete.log",
+      "sha256": "3121d4390595693f3bbf976fed8d9a4a28cc7652e1e152c0859a4f53eaa553af",
+      "status": "PASS"
+    },
+    {
+      "check": "fixture-native",
+      "logPath": "/private/tmp/lockliel-wave10iq-fixture-native.log",
+      "sha256": "417387797a51a8cc42dcdcdc24d6c2b6937d5bfaf3079a0d46110a2bffb7c5ce",
+      "status": "PASS"
+    },
+    {
+      "check": "native-v2",
+      "logPath": "/private/tmp/lockliel-wave10iq-native-v2.log",
+      "sha256": "0dd28d1c5738914d2276dafee9c293e478aa456ed40a9ddb94a44d75f9f521e5",
+      "status": "PASS"
+    },
+    {
+      "check": "native-v1",
+      "logPath": "/private/tmp/lockliel-wave10iq-native-v1.log",
+      "sha256": "0d8bc06c6cde385008f3fb797897416760428fcc9bb61201e9262042d6f82761",
+      "status": "PASS"
+    },
+    {
+      "check": "launcher-v1",
+      "logPath": "/private/tmp/lockliel-wave10iq-launcher-v1.log",
+      "sha256": "0ab382443a6d992ce807cf8275fe8991ad6dafc567e4eb7451d6a33f91b33b26",
+      "status": "PASS"
+    },
+    {
+      "check": "attempt",
+      "logPath": "/private/tmp/lockliel-wave10iq-attempt.log",
+      "sha256": "3ea4041e5f86e0a5afa5df80bd389234fe037e8e9067603c303310ea5e01b453",
+      "status": "PASS"
+    },
+    {
+      "check": "lint-configured",
+      "logPath": "/private/tmp/lockliel-wave10iq-lint-configured.log",
+      "sha256": "cc7e8d41465ff37e5bc5620052f9e8d902e80f12b45644c53585a85dd9bbfb4e",
+      "status": "PASS"
+    },
+    {
+      "check": "lint-binding",
+      "logPath": "/private/tmp/lockliel-wave10iq-lint-binding.log",
+      "sha256": "b1f777b628762604690cd627e87ad407a8efb737d3406cf96877453773b4eaec",
+      "status": "PASS"
+    },
+    {
+      "check": "netlify",
+      "logPath": "/private/tmp/lockliel-wave10iq-netlify.log",
+      "sha256": "03a26143cd308a5db0361c2274b507ed1a7735d04187546b3973ec066185bc96",
+      "status": "PASS"
+    },
+    {
+      "check": "type",
+      "logPath": "/private/tmp/lockliel-wave10iq-type.log",
+      "sha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+      "status": "PASS"
+    },
+    {
+      "check": "build",
+      "logPath": "/private/tmp/lockliel-wave10iq-build.log",
+      "sha256": "bac02a68139b2bb7bb87ebe9c9d72d624e96965982ce0e724acb1f5540d119dd",
+      "status": "PASS"
+    }
+  ],
+  "history": [
+    {
+      "check": "fixture-native",
+      "exitCode": 0,
+      "seconds": 0.986,
+      "log": "/private/tmp/lockliel-wave10iq-fixture-native.log"
+    },
+    {
+      "check": "fixture-lint",
+      "exitCode": 1,
+      "seconds": 2.322,
+      "log": "/private/tmp/lockliel-wave10iq-fixture-lint.log"
+    },
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "seconds": 11.921,
+      "log": "/private/tmp/lockliel-wave10iq-unit.log"
+    },
+    {
+      "check": "native-v2",
+      "exitCode": 0,
+      "seconds": 0.726,
+      "log": "/private/tmp/lockliel-wave10iq-native-v2.log"
+    },
+    {
+      "check": "native-v1",
+      "exitCode": 0,
+      "seconds": 0.837,
+      "log": "/private/tmp/lockliel-wave10iq-native-v1.log"
+    },
+    {
+      "check": "launcher-v1",
+      "exitCode": 0,
+      "seconds": 0.373,
+      "log": "/private/tmp/lockliel-wave10iq-launcher-v1.log"
+    },
+    {
+      "check": "attempt",
+      "exitCode": 0,
+      "seconds": 0.54,
+      "log": "/private/tmp/lockliel-wave10iq-attempt.log"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "seconds": 3.081,
+      "log": "/private/tmp/lockliel-wave10iq-lint-configured.log"
+    },
+    {
+      "check": "lint-binding",
+      "exitCode": 0,
+      "seconds": 1.233,
+      "log": "/private/tmp/lockliel-wave10iq-lint-binding.log"
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "seconds": 6.087,
+      "log": "/private/tmp/lockliel-wave10iq-netlify.log"
+    },
+    {
+      "check": "type",
+      "exitCode": 0,
+      "seconds": 2.414,
+      "log": "/private/tmp/lockliel-wave10iq-type.log"
+    },
+    {
+      "check": "build",
+      "exitCode": 0,
+      "seconds": 10.791,
+      "log": "/private/tmp/lockliel-wave10iq-build.log"
+    }
+  ],
+  "supersededRunNotes": [
+    "Three unused imports fixed before final lint.",
+    "Intermediate full rerun skipped11 without packaging toolchain path; final run passes all2206.",
+    "Offline shell executable mode fixed before final direct verifier pass."
+  ],
+  "hostedUsersCreated": 0,
+  "liveCredentialsUsed": false,
+  "providerProjectCalls": 0,
+  "databaseConnections": 0,
+  "publicOfficialDocsRead": true,
+  "liveReadiness": "INCOMPLETE"
+}
