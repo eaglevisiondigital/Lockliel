@@ -1,5 +1,7 @@
 # WAVE 10I-K: PREPARED ISOLATED APPLICATION DEPLOYMENT ASSIGNMENT
 
+**Final review: NOT CLEARED FOR LIVE EXECUTION.** J remains complete and consumed. No production permission expansion is needed, but a reviewed rich/full preflight and sealed operator/evidence matrix are missing. [Final review](WAVE10IK_FINAL_DEPLOYMENT_READINESS_REVIEW.md) and [exact next local work package](WAVE10IL_LOCAL_OPERATOR_BINDING_ASSIGNMENT.md). No diagnostic rerun or remote action is authorized.
+
 **PREPARED ONLY. Do not execute under the final-reconciliation assignment.**
 
 This continues the previously approved one-reservation Wave 10I scope. It does not create another reservation allowance, reactivate a consumed database diagnostic grant, or bypass execution-environment review. [Wave 10I-J final reconciliation](WAVE10IJ_FINAL_RECONCILIATION.md) is authoritative: the diagnostic passed, and its allowance is consumed.

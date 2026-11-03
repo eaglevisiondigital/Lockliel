@@ -1,0 +1,23 @@
+{
+  "review": "offline-contract-comparison-only",
+  "checksPassed": 8,
+  "checksFailed": 0,
+  "minimalSavedReceiptRejected": true,
+  "wrappingOrTimestampDoesNotFixReceipt": true,
+  "noOpaqueReceiptForgery": true,
+  "deploymentStopsBeforeProvider": true,
+  "providerCalls": 0,
+  "actualDatabaseConnections": 0,
+  "credentialInputs": 0,
+  "fixtureExecuteCalls": 3,
+  "baseline": {
+    "path": "docs/evidence/hosted-duration-280-2026-10-01/expected-280.json",
+    "fileSha256": "b839b614c76ffdad56cf45b9313757c378bbffbcb74d6181148b1ceb489377ad",
+    "versionsCount": 280,
+    "proposedCanonicalEncoding": "UTF-8 JSON.stringify(array of version strings sorted ascending), no whitespace/newline",
+    "derivedVersionsSha256": "704b883be1f754fb64531ba71853503cd4137d86677d95496c36cb9679d97166",
+    "migration280StatementsArrayTextMd5": "a55aead9115d12881650fee9f1bede27",
+    "migration280SourceSha256": "bb8af646303725c9c29ddc7119c5d8aefe2bf0afb91c206ffa8baa1a08e1b1c3",
+    "derivedEncodingStatus": "review preparation; must be fixed consistently in future producer and verifier, not claimed as an already implemented canonicalization contract"
+  }
+}

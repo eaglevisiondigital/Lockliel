@@ -1,0 +1,17 @@
+{
+  "review": "NOT CLEARED FOR RESERVATION",
+  "trackedApplicationOrToolingCodeChanges": 0,
+  "historicalJReceiptAndEvidenceUnchanged": true,
+  "JAllowance": "CONSUMED unchanged; never rerun",
+  "migrationFilesUnchanged": 280,
+  "featureRowsUnchanged": 37,
+  "rootExistingDirtyWorkUnchanged": true,
+  "privateCredentialsAccessed": false,
+  "additionalDatabaseConnections": 0,
+  "providerCalls": 0,
+  "newReservationOrUploadOrDeployment": false,
+  "productionOrCourseInfrastructureChanged": false,
+  "localMainCourseRefsPreserved": true,
+  "productionPreservationBasis": "no remote action; no fresh remote audit claimed",
+  "credentialPatternCheck": "passed"
+}
