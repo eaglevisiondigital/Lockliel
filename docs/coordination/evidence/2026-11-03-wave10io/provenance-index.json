@@ -1,0 +1,102 @@
+{
+  "version": "lockliel-wave10io-provenance-index-v1",
+  "reviewDate": "2026-11-03",
+  "scope": "local sanitized historical evidence only",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "status": "EXACT_MAPPING_NOT_ESTABLISHED",
+  "historicalCreationNarrativeLocated": true,
+  "exactDigestArtifactLocated": false,
+  "sourceHistory": {
+    "creationNarrativeInitialCommit": "fbcb2b5",
+    "creationNarrativeLatestCommit": "5df0ffde24b67e6bad7dc5c61266c947a85af4e6",
+    "wave9RosterCommit": "1cf2ead15bcc093ee3e607379e27266c6aea663f"
+  },
+  "records": [
+    {
+      "location": "worktree",
+      "path": "docs/course-engine-isolated-acceptance-2026-09-30.md",
+      "sha256": "d6a3867a4476bc89afc81e065eb02ada988a3619e362da47e37c333e1516da7b",
+      "finding": "Older jxt environment: three synthetic accounts and manager MFA; excluded from qjks exact identity authority."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/course-hosted-275-stop-2026-09-30.md",
+      "sha256": "c3dd3e70c6e3060be5b05bb7797561b856a460c40a2ec3b5ad9c1372f26b9eea",
+      "finding": "qjks branch started with zero accounts; reports isolated Auth Admin creation of two learners and a content manager. Creation narrative, not exact per-account manifest."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/course-paused-acceptance-4204249-2026-10-01.md",
+      "sha256": "99e9f1a263b8081919ad488806eb3f2a170f6cc3754cd6b08be0c9ab979ce9ae",
+      "finding": "Designated A/B and manager subjects/issuers reported checked; separate sessions and course-owner isolation reported."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/evidence/course-release-review-2026-10-01/paused-4204249-sessions.json",
+      "sha256": "6a0ce83445edc6ceac24392896bddcd6fe3c0a034b756b450266046a7eca9759",
+      "finding": "Sanitized identity labels, issuer, subjectMatchesSynthetic and AAL only; no subject/profile/creation/login digest mapping."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/evidence/course-release-review-2026-10-01/post-reopen-preflight.json",
+      "sha256": "43ade8fb73d0a07ae35ab678448060731ab12262bbd0bba7d424f56c03e2d34f",
+      "finding": "qjks branch identity; expected users/profiles=3; aggregate identity assertion only."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/course-post-reopen-corrective-acceptance-2026-10-01.md",
+      "sha256": "f22227c895d8712dbf65e3dc614221e0a0734c57743b570a369470c58cba62ba",
+      "finding": "Existing manager retains content_admin and receives discipleship_admin; ordinary A/B403 and owner isolation documented."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/evidence/course-corrective-acceptance-2026-10-01/fixtures.json",
+      "sha256": "2163e8b73809077584f67f9d6954a5834c9c244c67bb3681fe2844653472e358",
+      "finding": "Misleadingly broad filename: project/readiness/manager-role names/media assets; no A/B creation manifest."
+    },
+    {
+      "location": "root-untracked",
+      "path": "docs/auth-manager-acceptance-2026-10-03.md",
+      "sha256": "0b62fa3a8c382e1787c13fb9a52456b3e89e41a4a625e5aba9bd1bae3251ed97",
+      "finding": "Historical qjks A/B separate browser/session acceptance, zero staff roles, manager two roles; final zero sessions. Root-only untracked narrative, no exact mapping."
+    },
+    {
+      "location": "root-untracked",
+      "path": "docs/auth-manager-acceptance-resume-2026-10-03.md",
+      "sha256": "efcf66c47e6bb8e9a83555a172fe3ffdb5222d8f23ec7fd5e655baeb39c378cc",
+      "finding": "Historical protected fixture mechanism and credential unavailability; not read as a credential source and no private helper opened."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/wave9-lanes/SUPABASE_EVIDENCE.json",
+      "sha256": "89352759adc43975e017551aa2212eb46cb309419e5a22aa85f1fb503529c06a",
+      "finding": "2026-11-01 A/B exist, profile exists, expected fixture identifier matches, zero staff roles/sessions; manager2roles. Sanitized historical corroboration only."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/coordination/WAVE9_TRUSTED_BINDING_REVIEW.md",
+      "sha256": "94d0d86af35bd54e078af1f3ce8a228ce3d153a89c783558262eadf800711763",
+      "finding": "Historical provider branch linkage and sanitized synthetic roster review."
+    },
+    {
+      "location": "worktree",
+      "path": "docs/coordination/WAVE10IN_IDENTITY_PROVENANCE_AND_AUTH_MATRIX.md",
+      "sha256": "1f73c0d23e83c51e6e66e54144134f3d41674892354d028d067f66250d8763b2",
+      "finding": "Prior exact digest/provenance contract and remaining approval gap."
+    },
+    {
+      "location": "worktree",
+      "path": "tests/fixtures/member-hosted-identity/README.md",
+      "sha256": "caab1f15c3d7b3a05e51411c7e6dabc5f8b25bae08374fe3d6b6d3177e477e43",
+      "finding": "Exact reviewed domain-separated digest schema and private approval procedure; offline fixtures are not hosted identity authority."
+    }
+  ],
+  "limits": [
+    "No private identity or credential stores searched.",
+    "No raw user identifiers, login addresses, passwords, tokens or sessions included in this index.",
+    "Hash proves inspected bytes, not provider authenticity or current state.",
+    "Root untracked records were inspected in place without modification.",
+    "No hosted action or grant reset performed."
+  ]
+}

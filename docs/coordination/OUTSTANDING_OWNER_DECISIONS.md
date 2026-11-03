@@ -1,4 +1,14 @@
 
+<!-- wave10io:begin -->
+## Wave 10I-O provenance and Auth evidence reconciliation (2026-11-03)
+
+Local read-only review located original September30 qjks creation narrative (two synthetic learners/manager), but exact independently approved A/B digest mapping remains missing. All16 fresh hosted Auth flags UNKNOWN; aal2AuthorizedOnly is ordinary non-escalation, not positive manager acceptance.40kit hashes verified, seals null and entry offline-only.163security/261Auth(overlap)/102parallel existing tests pass; no new fullbuild/SQL claim. Independent review corrected consume-before-password documentation ordering. Exact seals/conditional preflight/two-Mac synthetic plan prepared only. All280 migration bytes/37feature rows/rootdirtywork preserved. PREFLIGHT STILL BLOCKED. J CONSUMED, reservation UNUSED. No credentials/provider/DB/Auth/production/settings/maintenance/migration/reservation/deploy/push/merge/content action.
+
+Smallest owner action: privately locate original noncredential qjks A/B fixture record. Availability only, no password/token request. Any acquisition, activation, fresh grant or hosted test needs exact separate review/authority.
+
+[Complete result](WAVE10IO_PROVENANCE_AND_AUTH_RECONCILIATION_RESULT.md).
+<!-- wave10io:end -->
+
 <!-- wave10in:begin -->
 ## Wave 10I-N installation preparation verified; live preflight incomplete (2026-11-03)
 
