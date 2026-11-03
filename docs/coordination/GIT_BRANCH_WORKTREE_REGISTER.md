@@ -1,3 +1,13 @@
+
+<!-- wave10im:begin -->
+## Wave 10I-M local operator integration (2026-11-02)
+
+Source `d51b90db66d5fc650e7b5139a8a5787ba6a994ac` adds protected exact A/B digest mapping, a sealed native v2 child channel and concrete zero-option operator/network/package/runtime composition. Full2,097JS,50new+106regressionPython,TypeScript,build,configured/additive lint andNetlify pass. Independent review and actual offline bootstrap36-source/runtime checks pass; the new identity SELECT passed an approved disposable Unix-socket synthetic fixture. No new migration replay is claimed. All280 migration bytes/37 inventory rows preserved. Actual identity/operator approvals remain unset and UNVERIFIED, no private artifact or usable grant installed. Six dynamic Auth categories remain unobserved; deployment stops before input/connection/reservation. Positive manager AAL2/staff NOT TESTED. READY FOR CONTROLLED HOSTED PREFLIGHT REVIEW means review only, not execution or deployment clearance. J remains CONSUMED; application reservation UNUSED. No credentials, provider/managed DB/production/Auth action, settings/maintenance, migration, push/merge/deploy or activation. All other release gates remain open.
+
+Only codex/wave10-hosted-composition receives local commits. No new lane branch/worktree or remote update. Main/course/other lane refs and dirty root remain preserved.
+
+[Complete result](WAVE10IM_OPERATOR_INTEGRATION_RESULT.md) and [next gated proposal](WAVE10IM_NEXT_CONTROLLED_PREFLIGHT_PROPOSAL.md).
+<!-- wave10im:end -->
 # Git branch and worktree register
 
 <!-- wave10il:begin -->
