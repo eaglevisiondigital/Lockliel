@@ -1,0 +1,22 @@
+{
+  "reviewDate": "2026-11-03",
+  "scope": "Unauthenticated public official documentation only; no project/provider credential access",
+  "references": [
+    {
+      "url": "https://supabase.com/changelog",
+      "claim": "Public change index reviewed; markdown endpoint reader returned unsupported content-type; HTML used."
+    },
+    {
+      "url": "https://supabase.com/docs/reference/javascript/auth-admin-createuser",
+      "claim": "Server-only Admin create operation and explicit email-confirmed creation option."
+    },
+    {
+      "url": "https://supabase.com/docs/reference/dart/auth-admin-createuser",
+      "claim": "Admin create is documented not to send confirmation email; project hooks remain independently unverified."
+    },
+    {
+      "url": "https://supabase.com/docs/guides/auth/managing-user-data",
+      "claim": "Auth profile triggers can run on creation and failures can block signup; schema/RLS guidance is not authority to modify project."
+    }
+  ]
+}

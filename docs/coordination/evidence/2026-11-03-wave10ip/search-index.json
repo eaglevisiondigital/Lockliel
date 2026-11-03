@@ -1,0 +1,394 @@
+{
+  "version": "lockliel-wave10ip-final-search-index-v1",
+  "reviewDate": "2026-11-03",
+  "startingHead": "6f070dd9d042d2fbae6c7e8236221bc6e1b304df",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "searchClosed": true,
+  "authoritativeFullMappingFound": false,
+  "result": "NOT_RECOVERABLE_WITHIN_AUTHORIZED_LOCAL_BOUNDARY",
+  "priorEvidenceReference": "../2026-11-03-wave10io/provenance-index.json",
+  "priorThirteenRecordsNewlyDiscovered": false,
+  "boundary": {
+    "locations": [
+      "retained wave10 worktree scripts and selected docs/tests",
+      "root checkout scripts filenames and exact three runtime script comparisons",
+      "retained Git path history of acceptance/rehearsal scripts and fixture/identity/creation/provisioning evidence paths"
+    ],
+    "historicalRuntimeCommitCount": 3,
+    "historicalRuntimeBlobSnapshots": 7,
+    "uniqueHistoricalRuntimeBlobHashes": 5,
+    "currentRuntimePathsComparedAcrossTwoCheckouts": 3,
+    "additionalStructuredManifestCount": 4,
+    "approvedRegisterCount": 4,
+    "excluded": [
+      "private credential or identity kits",
+      "owner-private stores",
+      "browser storage and screenshots",
+      "shell histories and logs",
+      "general temporary directory search",
+      "unrelated member/account data",
+      "provider responses or remote queries"
+    ],
+    "execution": "No inspected script was invoked."
+  },
+  "runtimeCurrentComparisons": [
+    {
+      "path": "scripts/acceptance/prepare-runtime.mjs",
+      "worktreeSha256": "5a4a584eb7a4f2bd50b5e70035f618493611af1d2674861bbca530aa90d12860",
+      "rootSha256": "5a4a584eb7a4f2bd50b5e70035f618493611af1d2674861bbca530aa90d12860",
+      "sameBytes": true
+    },
+    {
+      "path": "scripts/acceptance/verify-artifact.mjs",
+      "worktreeSha256": "667dd4d296b74993131fba069a5e21a6d4c89db2315b3117c24fbb55dd97086b",
+      "rootSha256": "667dd4d296b74993131fba069a5e21a6d4c89db2315b3117c24fbb55dd97086b",
+      "sameBytes": true
+    },
+    {
+      "path": "scripts/rehearsal/prepare-runtime.mjs",
+      "worktreeSha256": "7ae8e3a8229960ec3b3ab4870214d112331a01bea005c1522593a1eec5df7446",
+      "rootSha256": "7ae8e3a8229960ec3b3ab4870214d112331a01bea005c1522593a1eec5df7446",
+      "sameBytes": true
+    }
+  ],
+  "runtimeHistoricalStructuralReview": [
+    {
+      "commit": "02062da4c95b9d43d9c96a5cb7cdd17ba84aa55d",
+      "path": "scripts/acceptance/prepare-runtime.mjs",
+      "sha256": "fac119650c514ef7bf4ddfa73355908a5989252fcf4bed652d45d88b8c3f2d3a",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "02062da4c95b9d43d9c96a5cb7cdd17ba84aa55d",
+      "path": "scripts/acceptance/verify-artifact.mjs",
+      "sha256": "a3e60b9a29c3b5696e71a18dfb79d44e8495bae95a0d33a7596d2dcb4fe3307a",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "91611ad89933333891bdf2bb3791314fdd03012e",
+      "path": "scripts/acceptance/prepare-runtime.mjs",
+      "sha256": "5a4a584eb7a4f2bd50b5e70035f618493611af1d2674861bbca530aa90d12860",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "91611ad89933333891bdf2bb3791314fdd03012e",
+      "path": "scripts/acceptance/verify-artifact.mjs",
+      "sha256": "667dd4d296b74993131fba069a5e21a6d4c89db2315b3117c24fbb55dd97086b",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "0cfcf405be16f43fa1ac7fbe0ee0ad2c3b764158",
+      "path": "scripts/acceptance/prepare-runtime.mjs",
+      "sha256": "5a4a584eb7a4f2bd50b5e70035f618493611af1d2674861bbca530aa90d12860",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "0cfcf405be16f43fa1ac7fbe0ee0ad2c3b764158",
+      "path": "scripts/acceptance/verify-artifact.mjs",
+      "sha256": "667dd4d296b74993131fba069a5e21a6d4c89db2315b3117c24fbb55dd97086b",
+      "qjksMention": false,
+      "oldProjectMention": true,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    },
+    {
+      "commit": "0cfcf405be16f43fa1ac7fbe0ee0ad2c3b764158",
+      "path": "scripts/rehearsal/prepare-runtime.mjs",
+      "sha256": "7ae8e3a8229960ec3b3ab4870214d112331a01bea005c1522593a1eec5df7446",
+      "qjksMention": true,
+      "oldProjectMention": false,
+      "createUserCallCount": 0,
+      "authAdminUsersPathCount": 0,
+      "completeDigestFieldSet": false,
+      "syntheticMappingLiteral": false
+    }
+  ],
+  "additionalStructuredManifests": [
+    {
+      "path": "docs/coordination/evidence/2026-11-01-wave10/local-fixture-manifest.json",
+      "sha256": "0943e58ebfcf7dd45b7542c3444d2aba0096834fec27ae7ead6ad44cc1e2e84f",
+      "schemaKeys": [
+        "archive",
+        "binding",
+        "bootstrap",
+        "bootstrapEntrySha256",
+        "bootstrapSha256",
+        "bootstrapVersion",
+        "byteDomains",
+        "compiled",
+        "context",
+        "deploy",
+        "dirty",
+        "enabled",
+        "esbuild",
+        "files",
+        "function",
+        "head",
+        "hostedAcceptance",
+        "inputs",
+        "literal",
+        "localFixture",
+        "methods",
+        "name",
+        "origin",
+        "path",
+        "pattern",
+        "paused",
+        "pin",
+        "project",
+        "protocol",
+        "provider",
+        "releaseEligible",
+        "routes",
+        "runtimeAPIVersion",
+        "schema",
+        "sha1",
+        "sha256",
+        "site",
+        "size",
+        "source",
+        "static",
+        "toolchain",
+        "tree",
+        "version",
+        "zisi",
+        "zisiEntrySha256"
+      ],
+      "qjksMention": true,
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "docs/coordination/evidence/2026-11-02-wave10ie/isolated-identity.json",
+      "sha256": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0",
+      "schemaKeys": [
+        "id",
+        "isError",
+        "is_default",
+        "isolatedBranch",
+        "name",
+        "parent_project_ref",
+        "persistent",
+        "preview_project_status",
+        "project_ref",
+        "secretEndpointCalled",
+        "status",
+        "verified"
+      ],
+      "qjksMention": true,
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "docs/coordination/evidence/2026-11-02-wave10ik/identity-and-scope.json",
+      "sha256": "b74e901f818d5a674d848b0c41c4536ed5561d7e27dedb79a70153ae48daa782",
+      "schemaKeys": [
+        "account",
+        "activeDiagnosticReused",
+        "applicationReservation",
+        "branch",
+        "courseAndMainLocalRefsUnchanged",
+        "credentialsAccessed",
+        "diagnosticAllowance",
+        "freshDatabaseOrProviderConnections",
+        "operator",
+        "project",
+        "reviewHead",
+        "reviewedApplication",
+        "reviewedTooling",
+        "site",
+        "toolingAndGuardPins",
+        "wave10ij"
+      ],
+      "qjksMention": true,
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "tests/fixtures/member-hosted-identity/native-sql-validation.json",
+      "sha256": "3f9e1c5e87564b1b443e96ddd06a692b83ab20b7599701bf66e64d21a66d7013",
+      "schemaKeys": [
+        "approvedEscalatedFixture",
+        "exactABDigestValidation",
+        "lockTimeout",
+        "managedDatabaseConnections",
+        "migrationReplayCount",
+        "ok",
+        "ownClusterStopped",
+        "ownTemporaryFixtureRemoved",
+        "productionAccess",
+        "queryExecuted",
+        "querySha256",
+        "readOnly",
+        "recipeSha256",
+        "scope",
+        "settings",
+        "statementTimeout",
+        "syntheticOnly",
+        "syntheticRows",
+        "tcpListener",
+        "unapprovedThirdIdentityIgnored",
+        "unixSocket",
+        "wrongCreationProvenanceDenied",
+        "wrongLoginBindingDenied",
+        "wrongUserDenied"
+      ],
+      "qjksMention": false,
+      "completeDigestFieldSet": false
+    }
+  ],
+  "registerReviewAtStartingHead": [
+    {
+      "path": "docs/coordination/GIT_BRANCH_WORKTREE_REGISTER.md",
+      "sha256": "0bdf5a66acc3a1de5a42664cee01a13ae998248a54d4ce3e4827d75f2ca7a8ef",
+      "relevantLineNumbers": [
+        3,
+        5,
+        9,
+        15,
+        25,
+        36,
+        251
+      ],
+      "targetedReferenceNames": [
+        "WAVE10IM_NEXT_CONTROLLED_PREFLIGHT_PROPOSAL.md",
+        "WAVE10IM_OPERATOR_INTEGRATION_RESULT.md",
+        "WAVE10IN_FINAL_PREFLIGHT_READINESS_RESULT.md",
+        "WAVE10IN_ONE_FRESH_PREFLIGHT_ASSIGNMENT.md",
+        "WAVE10IO_PROVENANCE_AND_AUTH_RECONCILIATION_RESULT.md"
+      ],
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "docs/coordination/SECURITY_PRIVACY_ACCEPTANCE.md",
+      "sha256": "425d342ff944b21754083358e6aa267116d93794a56606a8b71f162dc0b898a7",
+      "relevantLineNumbers": [
+        3,
+        5,
+        9,
+        15,
+        25,
+        27,
+        36,
+        140,
+        196,
+        220,
+        227,
+        233,
+        239,
+        245,
+        257,
+        263,
+        351,
+        356,
+        357
+      ],
+      "targetedReferenceNames": [
+        "WAVE10IM_NEXT_CONTROLLED_PREFLIGHT_PROPOSAL.md",
+        "WAVE10IM_OPERATOR_INTEGRATION_RESULT.md",
+        "WAVE10IN_FINAL_PREFLIGHT_READINESS_RESULT.md",
+        "WAVE10IN_ONE_FRESH_PREFLIGHT_ASSIGNMENT.md",
+        "WAVE10IO_PROVENANCE_AND_AUTH_RECONCILIATION_RESULT.md"
+      ],
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "docs/coordination/FEATURE_STATUS_AND_EVIDENCE.md",
+      "sha256": "c6bd3c83152348f68385de5bdf6f82108776e9e11b73b04a7928f36337f7f18a",
+      "relevantLineNumbers": [
+        3,
+        5,
+        7,
+        9,
+        15,
+        25,
+        27,
+        36,
+        196,
+        204,
+        212,
+        227,
+        301,
+        302
+      ],
+      "targetedReferenceNames": [
+        "WAVE10IM_NEXT_CONTROLLED_PREFLIGHT_PROPOSAL.md",
+        "WAVE10IM_OPERATOR_INTEGRATION_RESULT.md",
+        "WAVE10IN_FINAL_PREFLIGHT_READINESS_RESULT.md",
+        "WAVE10IN_ONE_FRESH_PREFLIGHT_ASSIGNMENT.md",
+        "WAVE10IO_PROVENANCE_AND_AUTH_RECONCILIATION_RESULT.md",
+        "auth-manager-acceptance-2026-10-03.md",
+        "docs/lane3-member-design/ACCEPTANCE.md",
+        "final-post-incident-preflight-2026-10-19.md",
+        "real-turnstile-acceptance-result-2026-10-19.md"
+      ],
+      "completeDigestFieldSet": false
+    },
+    {
+      "path": "docs/coordination/PRODUCTION_RELEASE_GATE_REGISTER.md",
+      "sha256": "6ac9f5e9f755fa8dd8edc02ab8a4a75f6c6f56bf2a2bd01b36bada578c2134b4",
+      "relevantLineNumbers": [
+        3,
+        5,
+        9,
+        15,
+        25,
+        36,
+        245,
+        251,
+        299,
+        301
+      ],
+      "targetedReferenceNames": [
+        "WAVE10IM_NEXT_CONTROLLED_PREFLIGHT_PROPOSAL.md",
+        "WAVE10IM_OPERATOR_INTEGRATION_RESULT.md",
+        "WAVE10IN_FINAL_PREFLIGHT_READINESS_RESULT.md",
+        "WAVE10IN_ONE_FRESH_PREFLIGHT_ASSIGNMENT.md",
+        "WAVE10IO_PROVENANCE_AND_AUTH_RECONCILIATION_RESULT.md",
+        "final-post-incident-preflight-2026-10-19.md"
+      ],
+      "completeDigestFieldSet": false
+    }
+  ],
+  "limitations": [
+    "Fixed source-marker searches are indexing aids, not proof of universal absence.",
+    "Current local existence and historical narrative cannot substitute for exact independently approved hosted A/B mapping.",
+    "Disposable synthetic identity fixtures and old jxt fixtures are excluded from live qjks authority.",
+    "No additional open-ended historical search is recommended; only an owner-supplied specifically identified original noncredential record can reopen this closed finding."
+  ],
+  "preservation": {
+    "credentialsRetrieved": false,
+    "hostedConnections": 0,
+    "scriptsExecuted": 0,
+    "sourceEdits": 0,
+    "migrationEdits": 0,
+    "attemptReset": false,
+    "jDiagnostic": "CONSUMED",
+    "deploymentReservation": "UNUSED"
+  }
+}

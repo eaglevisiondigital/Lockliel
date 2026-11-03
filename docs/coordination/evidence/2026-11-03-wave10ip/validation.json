@@ -1,0 +1,20 @@
+{
+  "sourceUnchanged": true,
+  "startingDocumentation": "6f070dd9d042d2fbae6c7e8236221bc6e1b304df",
+  "tests": {
+    "command": "/opt/homebrew/opt/node@24/bin/node --import ./tests/support/network-guard.mjs --test tests/member-hosted-identity-mapping.test.mjs",
+    "passed": 63,
+    "failed": 0,
+    "skipped": 0,
+    "newTests": 0,
+    "logPath": "/private/tmp/lockliel-wave10ip-identity-tests.log",
+    "logSha256": "d801cfc933695061de2df138d119f84a40b5fc438667a674e95c7cfbe345126c"
+  },
+  "uiTests": "Not started: esbuild absent; no dependency install/symlink",
+  "browserAcceptance": false,
+  "fullBuildTypeLintSQL": "Not rerun for documentation-only P; earlier evidence remains historical",
+  "publicDocumentationRead": true,
+  "authenticatedProviderCalls": 0,
+  "databaseConnections": 0,
+  "productionActions": 0
+}

@@ -1,4 +1,12 @@
 
+<!-- wave10ip:begin -->
+## Wave 10I-P final provenance resolution and concrete fallback (2026-11-03)
+
+Final targeted historical search CLOSED; original approved A/B mapping NOT RECOVERED in authorized local boundary. Seven historical script blobs, four additional manifests and four register references do not provide hosted identity authority. Independent review verifies21 indexed comparisons. Recommend a separately approved NEW ordinary pair with fresh provenance, protected input, collision/trigger checks and explicit fixture-owned bootstrap writes; no old learner/manager/progress mutation. Concrete proposal and permanent nonsecret fixture register prepared, no private store installed.63 existing offline identity tests pass. Parallel source review produced15-control accessibility plan and P-A11Y-01 silent whitespace validation finding, held without source edits. UI dependency unavailable; no fresh browser/fullbuild/SQL claim. All280 migrations/40operator files/37feature rows preserved. NEW ISOLATED IDENTITY VERIFICATION REQUIRED. J CONSUMED, reservation UNUSED. No credentials/authenticated project APIs/DB/Auth/users/settings/maintenance/migrations/reservation/deploy/push/merge/production changes. Public official documentation reads only.
+
+[Complete result](WAVE10IP_IDENTITY_PROVENANCE_RESULT.md) and [permanent nonsecret fixture index](ACCEPTANCE_FIXTURE_PROVENANCE_REGISTER.md). No new Live feature or execution authority.
+<!-- wave10ip:end -->
+
 <!-- wave10io:begin -->
 ## Wave 10I-O provenance and Auth evidence reconciliation (2026-11-03)
 
