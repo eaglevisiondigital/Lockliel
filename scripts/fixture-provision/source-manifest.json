@@ -1,0 +1,14 @@
+{
+  "version": "fixture-local-package-v1",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "liveExecutionEnabled": false,
+  "files": {
+    "contracts.mjs": "14b2bf6237bcaa15130e4ca2958adb10f39e267229b2e0e4f4ff9c2815754e17",
+    "durable-ledger.mjs": "12b45543951097aff1f81397edd7abb8b53eee6cc11b01c1292ae3a907cda2d7",
+    "protected-input.mjs": "389a73fc3a4d68a425fb0741a871828cbc9cad9e8ad29119248cef55315eabc7",
+    "transport.mjs": "c280220c65202be49d1bc7fd569189554ee49a3a0efd7e2d7b0d231b6f1d6add",
+    "workflow.mjs": "2fc78084111279f983b5320748f8e8a97868f350f1f32ee5c212ef84311e17ad"
+  }
+}
