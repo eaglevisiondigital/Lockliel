@@ -1,5 +1,15 @@
 # Integration, pull request and validation queue
 
+<!-- wave10il:begin -->
+## Wave 10I-L local preparation, live operator incomplete (2026-11-02)
+
+Local source `5a29d2fb5a415090c6542ae965049153e151bdcc` adds fixed seven-query native preflight, disabled pinned launcher, real durable attempt primitive, five-minute opaque evidence and correct member-only AAL non-escalation matrix. Full1978JS/106newPython/type/build/lint/Netlify pass; actual disposable Unix-socket280 replay and seven inventory SELECTs pass. Independent preparation security review passed after fixes. Hosted whole-catalog parity is not claimed. Exact A/B provenance and concrete sealed native/live operator binding remain incomplete; no fresh provider/caller evidence or controlled execution clearance. Positive manager/AAL2/staff NOT TESTED, not inferred or added to ordinary scope. All280 migrations/37 feature rows preserved, none newly Live. J remains CONSUMED; separate application reservation unused. No managed connection/credentials/Auth/production/settings/maintenance/reservation/deploy/push/merge. Only separately approved disposable local SQL ran. Read the complete result and gated next local assignment before continuing; do not request a password or run a launcher.
+
+No change to PR4 or remote queue. Source is local preparation only, not an application deployment or production candidate approval.
+
+[Complete result](WAVE10IL_OPERATOR_AND_PREFLIGHT_RESULT.md) and [next gated assignment](WAVE10IL_NEXT_CONTROLLED_ASSIGNMENT.md).
+<!-- wave10il:end -->
+
 <!-- wave10ik-review:begin -->
 ## Wave 10I-K final deployment review (2026-11-02)
 

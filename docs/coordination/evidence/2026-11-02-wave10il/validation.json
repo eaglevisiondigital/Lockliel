@@ -1,0 +1,98 @@
+{
+  "applicationChanged": false,
+  "sourceCommit": "5a29d2fb5a415090c6542ae965049153e151bdcc",
+  "javascript": {
+    "passed": 1978,
+    "failed": 0,
+    "skipped": 0,
+    "focusedSubset": 122,
+    "independentAttackerSubset": 20
+  },
+  "freshPython": {
+    "native": 45,
+    "launcher": 27,
+    "durableAttempt": 34,
+    "total": 106
+  },
+  "parallelFaithTests": 67,
+  "checks": [
+    {
+      "check": "unit",
+      "exit": 0,
+      "seconds": 12.83
+    },
+    {
+      "check": "python-native",
+      "exit": 0,
+      "seconds": 0.77
+    },
+    {
+      "check": "python-launcher",
+      "exit": 0,
+      "seconds": 0.31
+    },
+    {
+      "check": "netlify",
+      "exit": 0,
+      "seconds": 6.0
+    },
+    {
+      "check": "lint-configured",
+      "exit": 0,
+      "seconds": 3.44
+    },
+    {
+      "check": "lint-additive",
+      "exit": 0,
+      "seconds": 0.98
+    },
+    {
+      "check": "type",
+      "exit": 0,
+      "seconds": 2.45
+    },
+    {
+      "check": "build",
+      "exit": 0,
+      "seconds": 12.28
+    },
+    {
+      "check": "unit-final",
+      "exit": 0,
+      "seconds": 9.29
+    },
+    {
+      "check": "native-final",
+      "exit": 0,
+      "seconds": 0.79
+    },
+    {
+      "check": "launcher-final",
+      "exit": 0,
+      "seconds": 0.35
+    },
+    {
+      "check": "attempt-final",
+      "exit": 0,
+      "seconds": 0.51
+    },
+    {
+      "check": "lint-final",
+      "exit": 0,
+      "seconds": 1.87
+    }
+  ],
+  "disposableSql": {
+    "migrationsReplayed": 280,
+    "fixedInventoryQueries": 7,
+    "tcpEnabled": false,
+    "fixtureRemoved": true,
+    "wholeHostedCatalogParityClaimed": false
+  },
+  "managedDatabaseConnections": 0,
+  "liveCredentialsUsed": false,
+  "providerCalls": 0,
+  "hostedAuthOperations": 0,
+  "reservations": 0,
+  "applicationDeployments": 0
+}

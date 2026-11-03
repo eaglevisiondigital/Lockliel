@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "5a29d2fb5a415090c6542ae965049153e151bdcc",
+  "files": {
+    "scripts/member-hosted/deployment-evidence.mjs": "feca6917bab530e38d0ec64b35e35b4226009e68f3443b964ccc1572fde335f1",
+    "scripts/member-hosted/deployment-operator.mjs": "f35e6d25fe16b44ff4b3de540439f76bb33eccdf971e29a12bf7b686a29f14a7",
+    "scripts/member-hosted/deployment-preflight-baseline.json": "1b17b93a1c4d21d19cda04cd62c57785f276797c929fd5906c90b75ecf39e8ae",
+    "scripts/member-hosted/deployment-preflight-launch.command": "076d3836253ccf6848379f06922719b07af8f2b162906c55f80b50349a15275a",
+    "scripts/member-hosted/deployment-preflight-launcher-manifest.json": "b461561ba1f7d7bf260e3a7f9ab0efd731e286a024bc0ba94f715f69b486693d",
+    "scripts/member-hosted/deployment-preflight-launcher.py": "7d79a3e9864606326a5c55a1f05adef1fb04ca33bdc3889e40ad3be2238842eb",
+    "scripts/member-hosted/deployment_database_preflight.py": "c367e660e07d42286ec1be321fd65593a82aa2ad85bd883383b677cd139e75db",
+    "scripts/member-hosted/deployment_preflight_attempt.py": "aa3957eebe9509de4cf6aaeff4a56cc060ec7c8d04cb979ed9ad87accf05a7ac",
+    "tests/fixtures/member-hosted-deployment-preflight/disposable-sql-validation.json": "d630b0ca21946d50f3a3477077f8c146d40aeff45417b9313554b5683cec3426",
+    "tests/fixtures/member-hosted-deployment-preflight/disposable-sql-validation.py.txt": "c1377891240c8dda72c3c37ee98bef1ee9921ff6489747f5c89c3044ee2e1557",
+    "tests/member-hosted-deployment-composition.test.mjs": "6f7774aa1e23556e4db136aa591a9fb16841a6fd5df405c22733623093b4e9cc",
+    "tests/member-hosted-deployment-evidence.test.mjs": "b31cb6b0a7a6053b0acc94a6e933997a77251a80dd259a89a7c6913c3be0fe2f",
+    "tests/member-hosted-deployment-operator-security.test.mjs": "c2b3d06e23776799b3032e88965235a3632e0c3456563fc8d2ba704b9acd0bd4",
+    "tests/member_hosted_deployment_attempt_test.py": "29b5166361ef3ca370c5bda0006564e11420937e5c249c3e638d29601904211c",
+    "tests/member_hosted_deployment_launcher_test.py": "c2e12c4863dac0846c13702b6e83953c88b283c9eabfe62edd5c039a1950a91e",
+    "tests/member_hosted_deployment_preflight_test.py": "cda5c89ef6afb6f69a548b7a54789026e849706c994112c3a1385525c91d4cc5"
+  }
+}
