@@ -1,5 +1,13 @@
 # Shared component, service, database and API ownership
 
+<!-- wave10ii:begin -->
+## Wave 10I-I owner-controlled isolated password handoff (2026-11-02)
+
+Owner confirmed the current qjks PostgreSQL password is privately available; correctness remains untested. Local source `e3c3e382a53136fd57b3296b9d97876ecd7e4f7a` adds a hidden-input worker, source-pinned Terminal bootstrap, historical provider identity receipt and prepared same-allowance reconciliation proposal. Existing guard, F worker, original launcher/runtime and application are unchanged. New launcher rejects the old grant without consumption; a reconciled grant denies the old launcher, and both share durable READY-to-CONSUMED enforcement. Actual sealed kit/READY remain unchanged and unused; no second allowance or automatic reset exists.
+
+All 1,856 JavaScript tests pass without skips, including the 50-test synthetic Python handoff wrapper. TypeScript, configured lint, shell syntax and Netlify validation pass. Actual independent wave10ii_security review and 50-test rerun pass. UTF-8/no-echo input and locale-restoration disposal were verified synthetically. Identity evidence is independent historical metadata, not fresh health or owner attestation. All 280 migration hashes and 37 inventory rows are preserved, with no new Live feature. No real input, token, provider/DB connection, hosted Auth, settings/maintenance, migration, reservation/deploy, production, push/merge or activation occurred. Local readiness is complete; exact operator installation/grant reconciliation and one live diagnostic remain separate controlled steps. [Result, source hashes and operator boundaries](docs/coordination/WAVE10II_PROTECTED_HANDOFF_READINESS_RESULT.md).
+<!-- wave10ii:end -->
+
 <!-- wave10ih:begin -->
 ## Wave 10I-H isolated recovery path decision (2026-11-02)
 

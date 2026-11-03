@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "e3c3e382a53136fd57b3296b9d97876ecd7e4f7a",
+  "unchangedPreviousTrackedFilesOutsideAdditiveDocumentation": 1648,
+  "additiveContinuityDocuments": 18,
+  "migrationHashesUnchanged": 280,
+  "featureRowsUnchanged": 37,
+  "rootExistingDirtyWorkPreserved": {
+    "collapsedPaths": 73,
+    "allPaths": 609,
+    "trackedHashes": 1299
+  },
+  "onlyLocalRefChanged": [
+    "refs/heads/codex/wave10-hosted-composition"
+  ],
+  "mainAndCourseRefsUnchanged": true,
+  "allRemoteRefsTagsAndOtherBranchesUnchanged": true,
+  "actualRecoveryGrant": "READY unchanged and unused",
+  "sealedKitUnchanged": true,
+  "manualReconciliationInstalled": false,
+  "deploymentReservationConsumed": false,
+  "credentialInputs": 0,
+  "privateProviderRequests": 0,
+  "databaseConnections": 0,
+  "productionActions": 0,
+  "temporaryDependencyLinkRemoved": true
+}

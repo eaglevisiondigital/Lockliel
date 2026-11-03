@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "e3c3e382a53136fd57b3296b9d97876ecd7e4f7a",
+  "branch": "codex/wave10-hosted-composition",
+  "applicationCommitUnchanged": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "files": {
+    "manual_database_preflight.py": "24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5",
+    "manual_recovery_launcher.py": "ec07fb0d0c7b799bcd1307ae3097a68ededdfd1c3b8246ec450829ac99838821",
+    "manual-recovery-launch.command": "6a3b3a694dfe2bad63e9a30b214119a32d37f58cd8366668cfe8d88d15841cb3",
+    "manual-branch-identity.json": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0",
+    "manual-handoff-reconciliation-proposal.json": "7f51141180922514687ed33fba90d0fd95c3748f9c163979414bde9e143de8e3"
+  },
+  "guardSha256Unchanged": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+  "supportLauncherSha256Unchanged": "ceb426d2474cb5678c3e45f7e3b9562b5dfe1b817633129c05e0bc901df6fbc7",
+  "independentReviewer": "/root/wave10ii_security",
+  "actuallyDispatched": true,
+  "independentManualTestsPassed": 50,
+  "initialAdversarialAssertionsPassed": 47,
+  "review": "PASS for local readiness only",
+  "materialSecurityFindings": 0,
+  "identityEvidence": "Pinned independent historical provider branch receipt, not fresh health",
+  "passwordAvailability": "Owner explicitly confirmed privately available; correctness not tested",
+  "actualCredentialsAccessed": false,
+  "liveDiagnosticExecuted": false
+}
