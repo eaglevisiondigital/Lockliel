@@ -1,3 +1,11 @@
+<!-- unified-member-integration:begin -->
+## Unified local member review (2026-11-03)
+
+Anchor focus and Groups dark styling are independently committed; the local preview combines exact accepted components without merging. Four actual specialists completed implementation and review. Native browser results, manual accessibility limits, design authority and the owner command are in the report. All 37 feature statuses remain unchanged.
+
+[Exact commits, validation and preview](UNIFIED_MEMBER_EXPERIENCE_INTEGRATION_RESULT.md). Local synthetic composition only; no hosted or production activity or release. All 280 migration hashes, 40 operator files, disabled collector, pinned application, accepted branches and original dirty work are preserved. J CONSUMED; application reservation UNUSED; provider hold active.
+<!-- unified-member-integration:end -->
+
 <!-- parallel-member-delivery:begin -->
 ## Groups, Founders and unified review (2026-11-03)
 

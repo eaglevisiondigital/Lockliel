@@ -1,3 +1,7 @@
+## Latest unified member review
+
+[Exact local preview, commits and owner instructions](UNIFIED_MEMBER_EXPERIENCE_INTEGRATION_RESULT.md). [Design authority](MEMBER_DESIGN_REFERENCE_REGISTER.md). Local synthetic composition only; no hosted or production activity or release. All 280 migration hashes, 40 operator files, disabled collector, pinned application, accepted branches and original dirty work are preserved. J CONSUMED; application reservation UNUSED; provider hold active.
+
 ## Latest local member delivery (2026-11-03)
 
 [Groups, Founders and unified visual review](PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md). Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.

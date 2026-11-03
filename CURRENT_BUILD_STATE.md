@@ -1,3 +1,7 @@
+## Unified member preview checkpoint (2026-11-03)
+
+Read docs/coordination/UNIFIED_MEMBER_EXPERIENCE_INTEGRATION_RESULT.md and MEMBER_DESIGN_REFERENCE_REGISTER.md. Anchor `9764df3b5ccd0da56531b56d160cd2489d87d22c`, Groups `298fb5e3358bbc5f8ce6e2f43e5e124ec2d8f86a`, composition `13803b9370ba1190ed59401a61267585396fc6d4`, independent review `8a2007a5da311b8b2f0dc29e143221d179cfc01d` remain separate local branches. Local synthetic composition only; no hosted or production activity or release. All 280 migration hashes, 40 operator files, disabled collector, pinned application, accepted branches and original dirty work are preserved. J CONSUMED; application reservation UNUSED; provider hold active.
+
 ## Parallel member delivery checkpoint (2026-11-03)
 
 Read docs/coordination/PARALLEL_MEMBER_EXPERIENCE_DELIVERY_RESULT.md. Groups `da2a3a018499133cb581e1b521e8a8ec6ee524ab`, Founders `bc0df85facfcfbb1529c0e3368a768b4874924ac` and independent review `b4f7ed1178eb1764ce9f1797faa1bfd43c5e3057` are separate local branches. Preserve accepted Faith5f71011f/Share41b3be23/Dashboardc2e03aa6. Shared integration, final visual approval, native VoiceOver and actual200%zoom remain open. Separate local implementations and review only. No production or hosted action, credentials, database connection, migration, push, merge, deployment, message, payment, role grant or content activation. Provider hold remains active; J CONSUMED, reservation UNUSED.

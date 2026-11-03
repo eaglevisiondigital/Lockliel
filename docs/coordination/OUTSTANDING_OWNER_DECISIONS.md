@@ -1,3 +1,11 @@
+<!-- unified-member-integration:begin -->
+## Unified local member review (2026-11-03)
+
+Owner visual review of the local dark preview is pending. Missing final mockup, artwork placement and token specification approvals are explicit in MEMBER_DESIGN_REFERENCE_REGISTER.md. Actual 200% zoom, VoiceOver, physical-device and manual contrast checks remain. The provider Dashboard evidence hold is unchanged.
+
+[Exact commits, validation and preview](UNIFIED_MEMBER_EXPERIENCE_INTEGRATION_RESULT.md). Local synthetic composition only; no hosted or production activity or release. All 280 migration hashes, 40 operator files, disabled collector, pinned application, accepted branches and original dirty work are preserved. J CONSUMED; application reservation UNUSED; provider hold active.
+<!-- unified-member-integration:end -->
+
 <!-- parallel-member-delivery:begin -->
 ## Groups, Founders and unified review (2026-11-03)
 

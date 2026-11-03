@@ -1,0 +1,245 @@
+{
+  "source": "cc841a3f33c4fc80d0573b7cf0e6f00de48d293f",
+  "assets": [
+    {
+      "path": "public/bright-home-small-group.png",
+      "sha256": "958192facd0590513a0ee4004b8de8ef172543e6262e13d4c63765a70782db8d",
+      "bytes": 2185398,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/compassion-outreach.png",
+      "sha256": "28e4259a3d018d633adae4537dd8bfaa0befcdc9a4d5b3bd9f2e80c8b4a398e7",
+      "bytes": 2488477,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/conversation-outside-store.png",
+      "sha256": "67d7febf7907f7a6aa707a925504d3a3bfb72d33dd6fe940f79fc8eb263a2ea9",
+      "bytes": 2379568,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/daily-lineup.webp",
+      "sha256": "93ad45f421b58665270d72db5269b5449086d00cb775d4bf9ae3c4e1eceaf451",
+      "bytes": 134880,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/friday-healed.webp",
+      "sha256": "4addb774e5ae981c9188b8d232b5b0265b756c3d27557c73b2eac7f32edd7279",
+      "bytes": 86588,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/monday-love.webp",
+      "sha256": "c962a50d174a939b184856ea59a7be331ce680958a84aa9ee61315601d26c0e8",
+      "bytes": 87696,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/saturday-joy.webp",
+      "sha256": "5b0b3a561243648cfa6d3a2df67845ed2df63a632e0a5233e3b8bc594ec9a78b",
+      "bytes": 90552,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/sunday-bold.webp",
+      "sha256": "78865df2c3894159d5295fa4cbc7e16bf4072a8f7c43a33eda7c12655bec6ac6",
+      "bytes": 88856,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/thursday-anointed.webp",
+      "sha256": "17701836a3e9366235959df2479aa0505579e65b325a6fcd3fcdf827f8c0126f",
+      "bytes": 89452,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/tuesday-righteous.webp",
+      "sha256": "167166519272f1e437155b31e79527a744e302ee71254df0c1f4329413316a37",
+      "bytes": 88814,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost/wednesday-blessed.webp",
+      "sha256": "dfdc9f71911be8bb8251bc6937035a2cd89ed947a98dacbdfc0d536fddf3e417",
+      "bytes": 90866,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-boost-resource/cover.jpg",
+      "sha256": "6bf90f426f32c3dca6465e271c5ae59f5278e9b35bcf485c57880bb2b11ca766",
+      "bytes": 541514,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/faith-training-workshop.png",
+      "sha256": "a8f04b77f48c07152cb5129953cdf0382f5deabd2f8f179ca2d3da89e79b14bf",
+      "bytes": 2314994,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/favicon.svg",
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7",
+      "bytes": 712,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/file.svg",
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307",
+      "bytes": 392,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/global-harvest-v2.png",
+      "sha256": "f7ea30860f9333751ff6a6cc416fc4062801112c599019b367a4a5bd9dfd76b4",
+      "bytes": 2458877,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/global-harvest.png",
+      "sha256": "7759019020ef53e7da196aee6ed6040c739bd2e01920c73fd98abe0bcb3ae6a0",
+      "bytes": 2740757,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/globe.svg",
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9",
+      "bytes": 1036,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/heart-for-the-lost/back-cover.jpg",
+      "sha256": "17e5b49b73508ecb250dced602a10606662946fbb08655913f879cebf22bba9c",
+      "bytes": 614517,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/heart-for-the-lost/cover.jpg",
+      "sha256": "296c9a1ad3edb55ae2e6725db1bbc8abe43910db927efb3e19e0c20817bdb0f8",
+      "bytes": 396452,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/home-small-group.png",
+      "sha256": "afce1426655765bf2d9c41b5b3447f110d35ff9a8914318fddef647db217ade5",
+      "bytes": 2008952,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/living-room-small-group-v2.png",
+      "sha256": "1367d2d9a21cd19836ebdedca517df4cc7f82d7519f550bbc7ebaf8b169724b7",
+      "bytes": 2044210,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-counting-cost-thumbnail.png",
+      "sha256": "2263d76736f7e15a7383dcf049d78efe10b2710c79df518bee24607743cd5e33",
+      "bytes": 1971205,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-global-ministry-hero.png",
+      "sha256": "a0358b73455a7db4ffa3e986b101c024bf095cb06ff1bd9a288d27ce7dbf87e8",
+      "bytes": 1850397,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-long-form-vision-thumbnail.png",
+      "sha256": "e592a359086fd913ce18907b5d7a2b38e1520e58fc4458b8e4e88eacbf968d89",
+      "bytes": 1631863,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-mark.png",
+      "sha256": "ffd085fdeaf6784a9ae960d27043d020ca31555d646ec5b89afb99672d3db204",
+      "bytes": 270385,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-share-from-anywhere.png",
+      "sha256": "aa7fb773e73c0f5d755101172c6b34dd4c168dceae76a7a4c41b3e6f602cc9ed",
+      "bytes": 2094356,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-short-vision-thumbnail.png",
+      "sha256": "09b7f29041fee91be16b906477303bf3e9b3186a989474d6fc929bd007509754",
+      "bytes": 1992167,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-supported-conversation.png",
+      "sha256": "d517f9477b0d2c35d803a6dcf486e65f7bfeb45b0e3be5a1332c5d62568bd099",
+      "bytes": 2234858,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/lockliel-truth-for-the-moment.png",
+      "sha256": "c407d8191ea6785ccab5a3ebb49339e6d42a1aa6b21b0e79a3b8a47848319cb4",
+      "bytes": 2472918,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/marketplace-witnessing.png",
+      "sha256": "97627d2238c16f6a10f0fa171b3a7b0db71bf6aec5852e2437f7decdf0545379",
+      "bytes": 2086089,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/park-gospel-conversation.png",
+      "sha256": "fef095e9d575673cf7dfbf0abe208fc338c4d733c2c07e346e20182684aa30b3",
+      "bytes": 2523590,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/prayer-leading-someone.png",
+      "sha256": "831ac70b8b83ec53c0c95c10a51016c98636ac2a10aa078ac865bd3e38759679",
+      "bytes": 2222272,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    },
+    {
+      "path": "public/window.svg",
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
+      "bytes": 386,
+      "matchesPreservedMain": true,
+      "classification": "implemented asset; per-asset owner approval/rights not independently established in this scope"
+    }
+  ],
+  "remoteRecordsRead": false,
+  "newOwnerVisualApprovals": false
+}
