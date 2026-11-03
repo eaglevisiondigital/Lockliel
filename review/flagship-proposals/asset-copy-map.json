@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "c620c9aa2e50ba851459b88af9ecda45cd8bab87",
+  "sourceRoot": "review/flagship-assets",
+  "files": {
+    "photos/landscape.jpg": "assets/landscape.jpg",
+    "photos/forest.jpg": "assets/forest.jpg",
+    "photos/sunrise.jpg": "assets/sunrise.jpg",
+    "fonts/Poppins-Regular.ttf": "assets/poppins-regular.ttf",
+    "fonts/Poppins-SemiBold.ttf": "assets/poppins-semibold.ttf",
+    "fonts/Poppins-OFL.txt": "assets/Poppins-OFL.txt",
+    "fonts/PermanentMarker-LICENSE.txt": "assets/PermanentMarker-LICENSE.txt"
+  },
+  "note": "Two static Poppins weights used. Permanent Marker not used; its license copied for provenance completeness. No candidate logo or reference-composite photo extracted."
+}

@@ -1,0 +1,13 @@
+{
+  "purpose": "Local owner review only. Byte integrity does not confer design approval.",
+  "files": {
+    "app.js": "9446198e670acaf4b9977ec92352e695be9c6aff529944fd881793feaf4ab577",
+    "assets/forest.jpg": "54fe80e91c8d57a05481b3033dc52eb79cbbe5dcfb77ca6af2fec3cc9d5a0aa6",
+    "assets/landscape.jpg": "92b60c7b232d1056ffcd57d475cc3919dadd6e47659fdceeb2f1ab6182b5ceea",
+    "assets/poppins-regular.ttf": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+    "assets/poppins-semibold.ttf": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286",
+    "assets/sunrise.jpg": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05",
+    "index.html": "565fff0523f80350e8762679a3681793cc340e976f848815fcaeea2163542ff7",
+    "styles.css": "09f8ec4ae98a751d136d7e26a217aa27cabbef644676beee6ab0963d25e7738f"
+  }
+}
