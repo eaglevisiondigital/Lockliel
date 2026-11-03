@@ -1,0 +1,17 @@
+{
+  "verified": true,
+  "isolatedBranch": [
+    {
+      "id": "7091bfd6-83ce-4c11-ac30-8ce85e09be2d",
+      "name": "course-cutover-rehearsal-274",
+      "project_ref": "qjksggxorghaxvpyslip",
+      "parent_project_ref": "bsndfhbemstyrrglajat",
+      "is_default": false,
+      "persistent": false,
+      "status": "FUNCTIONS_DEPLOYED",
+      "preview_project_status": "ACTIVE_HEALTHY"
+    }
+  ],
+  "isError": false,
+  "secretEndpointCalled": false
+}
