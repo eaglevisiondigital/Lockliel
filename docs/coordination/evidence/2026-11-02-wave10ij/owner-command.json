@@ -1,0 +1,8 @@
+{
+  "path": "/private/tmp/lockliel-wave10ij-diagnostic.command",
+  "sha256": "6a3b3a694dfe2bad63e9a30b214119a32d37f58cd8366668cfe8d88d15841cb3",
+  "byteIdenticalToReviewedBootstrap": true,
+  "ownerAction": "invocation requested; not observed at installation recording",
+  "passwordMustRemainLocal": true,
+  "maximumInvocations": 1
+}

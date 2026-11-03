@@ -1,0 +1,18 @@
+{
+  "ok": true,
+  "mode": "independent-installed-readiness-only",
+  "source": "e3c3e382a53136fd57b3296b9d97876ecd7e4f7a",
+  "bootstrapHashVerified": true,
+  "runtimeAndNativeDependencyHashesVerified": true,
+  "officialCaPinVerified": true,
+  "identityEvidence": "independent historical provider metadata 2026-11-02, exact qjks branch linkage",
+  "grantState": "READY",
+  "reconciledSameUnusedAllowance": true,
+  "credentialInput": false,
+  "networkCalls": 0,
+  "nativeDriverLoads": 0,
+  "databaseConnections": 0,
+  "attemptConsumed": false,
+  "ownerExecutionObserved": false,
+  "sanitizedResultExists": false
+}

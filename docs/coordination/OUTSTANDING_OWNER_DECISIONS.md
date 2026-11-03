@@ -1,5 +1,11 @@
 # Outstanding owner decision register
 
+<!-- wave10ij:begin -->
+## Wave 10I-J handoff installed; owner diagnostic pending (2026-11-02)
+
+Exact reviewed source e3c3e382a53136fd57b3296b9d97876ecd7e4f7a is installed in the existing isolated kit. Seven old components are preserved. Original grant 433a71b3 is archived; the SAME unused allowance is reconciled to manual source as 3c3398cf, with zero API recoveries and one DB connection. No second allowance, reset or diagnostic execution occurred. Separate clean-environment installed-byte/runtime/CA/identity/grant verification passed with input/network/native driver blocked. READY remains unused. Owner has been given the byte-identical short Terminal command for deliberate once-only invocation. Actual authentication/TLS/on/5s/30s/SQL are pending, not proved by installation. All 280 migrations and release boundaries preserved; no production/remote/Auth/maintenance/deploy/push/merge action. [Installation and pending diagnostic result](docs/coordination/WAVE10IJ_HANDOFF_AND_DIAGNOSTIC_RESULT.md).
+<!-- wave10ij:end -->
+
 <!-- wave10ii:begin -->
 ## Wave 10I-I owner-controlled isolated password handoff (2026-11-02)
 

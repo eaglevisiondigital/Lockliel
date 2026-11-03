@@ -1,0 +1,13 @@
+{
+  "migrationHashesUnchanged": 280,
+  "sourceCommit": "e3c3e382a53136fd57b3296b9d97876ecd7e4f7a",
+  "sourceAndApplicationUnchanged": true,
+  "oldKitComponentsPreserved": 7,
+  "originalGrantArchivedInSameKit": true,
+  "onlySameExistingAllowanceRebound": true,
+  "allowanceStillUnusedAtReadiness": true,
+  "productionAccess": false,
+  "remoteActions": 0,
+  "credentialAccess": false,
+  "automaticDiagnosticExecution": false
+}
