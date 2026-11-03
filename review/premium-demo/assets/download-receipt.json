@@ -1,0 +1,65 @@
+{
+  "fontSourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+  "files": [
+    {
+      "path": "photos/landscape.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1433275328929-69941e862d61?fit=max&fm=jpg&q=90&w=2200",
+      "bytes": 538704,
+      "sha256": "92b60c7b232d1056ffcd57d475cc3919dadd6e47659fdceeb2f1ab6182b5ceea"
+    },
+    {
+      "path": "photos/forest.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 710866,
+      "sha256": "54fe80e91c8d57a05481b3033dc52eb79cbbe5dcfb77ca6af2fec3cc9d5a0aa6"
+    },
+    {
+      "path": "photos/sunrise.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1429655353447-d030683895ad?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 74385,
+      "sha256": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05"
+    },
+    {
+      "path": "fonts/Poppins-Regular.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Regular.ttf",
+      "bytes": 160316,
+      "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba"
+    },
+    {
+      "path": "fonts/Poppins-Medium.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Medium.ttf",
+      "bytes": 158576,
+      "sha256": "90373e7d838d32468438fc3e152dca0bdb12edcab99ea639f158790b1ba1fd05"
+    },
+    {
+      "path": "fonts/Poppins-SemiBold.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-SemiBold.ttf",
+      "bytes": 157312,
+      "sha256": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286"
+    },
+    {
+      "path": "fonts/Poppins-Bold.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Bold.ttf",
+      "bytes": 155996,
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c"
+    },
+    {
+      "path": "fonts/Poppins-OFL.txt",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/OFL.txt",
+      "bytes": 4385,
+      "sha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573"
+    },
+    {
+      "path": "fonts/PermanentMarker-Regular.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/apache/permanentmarker/PermanentMarker-Regular.ttf",
+      "bytes": 74632,
+      "sha256": "28f82c8a7943cb8e9d599f8554da1d4fc75dbcf69b9885ad6c0611d20c6946c5"
+    },
+    {
+      "path": "fonts/PermanentMarker-LICENSE.txt",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/apache/permanentmarker/LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

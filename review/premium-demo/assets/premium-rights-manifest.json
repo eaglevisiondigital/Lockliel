@@ -1,0 +1,121 @@
+{
+  "schema": "lockliel-premium-local-photo-candidates-v1",
+  "observationDate": "2026-11-03",
+  "photos": [
+    {
+      "path": "photos/friendship.jpg",
+      "title": "People laughing and talking outside during daytime",
+      "photographer": "Priscilla Du Preez",
+      "sourcePage": "https://unsplash.com/photos/people-laughing-and-talking-outside-during-daytime-nF8xhLMmg0c",
+      "publicationDate": "2017-04-06",
+      "camera": "Canon EOS 6D",
+      "downloadUrl": "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?fit=max&fm=jpg&q=90&w=2200",
+      "bytes": 577594,
+      "sha256": "822b5f7adaf9c1d8d4ae226edfef6467381c169d11b0e7d2a3389a631444fbc9",
+      "imageMetadata": [
+        "  pixelWidth: 2200",
+        "  pixelHeight: 1467"
+      ],
+      "license": "Unsplash License, free photo, not Unsplash+",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "photographicEvidence": "Official photo page publication date and camera model. All four downloaded files visually inspected; no AI imagery generated.",
+      "usageLimits": "Illustrative friendship only. Recognizable people: no model release independently verified. Do not imply actual members, testimony, religious belief, endorsement, private relationships or named recipient identity.",
+      "modelRelease": "NOT VERIFIED",
+      "ownerApproval": "PENDING",
+      "productionUse": "NOT APPROVED",
+      "alterations": "Provider JPEG width/quality rendition only. Source scene, colors and orientation unchanged."
+    },
+    {
+      "path": "photos/cozy.jpg",
+      "title": "A living room filled with furniture and a fire place",
+      "photographer": "Clay Banks",
+      "sourcePage": "https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-fire-place-364plyVT2eQ",
+      "publicationDate": "2024-04-18",
+      "camera": "Sony ILCE-7M3",
+      "downloadUrl": "https://images.unsplash.com/photo-1713453328505-40d98b722b92?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 447955,
+      "sha256": "b4579de2a6aae24c251dd124059e1153aa0bfb7e8a831133b25792e868d64d57",
+      "imageMetadata": [
+        "  pixelWidth: 1800",
+        "  pixelHeight: 1200"
+      ],
+      "license": "Unsplash License, free photo, not Unsplash+",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "photographicEvidence": "Official photo page publication date and camera model. All four downloaded files visually inspected; no AI imagery generated.",
+      "usageLimits": "Cozy theme candidate. Books, framed artwork and decorative objects visible; separate object rights/property release not verified.",
+      "modelRelease": "NOT VERIFIED",
+      "ownerApproval": "PENDING",
+      "productionUse": "NOT APPROVED",
+      "alterations": "Provider JPEG width/quality rendition only. Source scene, colors and orientation unchanged."
+    },
+    {
+      "path": "photos/basketball.jpg",
+      "title": "Basketball court",
+      "photographer": "Andy Abelein",
+      "sourcePage": "https://unsplash.com/photos/basketball-court-m1s_nIM5zQU",
+      "publicationDate": "2017-11-28",
+      "camera": "Canon EOS 70D",
+      "downloadUrl": "https://images.unsplash.com/photo-1511903894668-b924c5275076?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 869868,
+      "sha256": "805e96a300c65a793e1f1533e848aec8f9a47d8103aa80a81e6a7031d5d919ef",
+      "imageMetadata": [
+        "  pixelWidth: 1800",
+        "  pixelHeight: 2700"
+      ],
+      "license": "Unsplash License, free photo, not Unsplash+",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "photographicEvidence": "Official photo page publication date and camera model. All four downloaded files visually inspected; no AI imagery generated.",
+      "usageLimits": "Sports-interest theme, empty court. Small backboard sticker visible. No claim of a team, location partner or sponsorship.",
+      "modelRelease": "NOT VERIFIED",
+      "ownerApproval": "PENDING",
+      "productionUse": "NOT APPROVED",
+      "alterations": "Provider JPEG width/quality rendition only. Source scene, colors and orientation unchanged."
+    },
+    {
+      "path": "photos/studio.jpg",
+      "title": "Black flat screen computer monitor on white table",
+      "photographer": "Dinh Ng.",
+      "sourcePage": "https://unsplash.com/photos/black-flat-screen-computer-monitor-on-white-table-v7lqmaD8IEk",
+      "publicationDate": "2020-02-02",
+      "camera": "Sony ILCE-7M3",
+      "downloadUrl": "https://images.unsplash.com/photo-1580682264659-6416a41262ca?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 678557,
+      "sha256": "55d0a86fc1ce74e51715b1caeb5f7154bcd91c532675e1953bdc408807ecb841",
+      "imageMetadata": [
+        "  pixelWidth: 1800",
+        "  pixelHeight: 2700"
+      ],
+      "license": "Unsplash License, free photo, not Unsplash+",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "photographicEvidence": "Official photo page publication date and camera model. All four downloaded files visually inspected; no AI imagery generated.",
+      "usageLimits": "High-tech theme candidate. Electronics, wall print and decorative lights visible. No device-brand partnership or independent artwork clearance claimed.",
+      "modelRelease": "NOT VERIFIED",
+      "ownerApproval": "PENDING",
+      "productionUse": "NOT APPROVED",
+      "alterations": "Provider JPEG width/quality rendition only. Source scene, colors and orientation unchanged."
+    }
+  ],
+  "reusedAssets": {
+    "root": "../flagship-assets",
+    "rightsManifest": "../flagship-assets/rights-manifest.json",
+    "sourceCommit": "c620c9aa2e50ba851459b88af9ecda45cd8bab87",
+    "photos": [
+      "landscape.jpg",
+      "forest.jpg",
+      "sunrise.jpg"
+    ],
+    "fonts": [
+      "Poppins-Regular.ttf",
+      "Poppins-Medium.ttf",
+      "Poppins-SemiBold.ttf",
+      "Poppins-Bold.ttf",
+      "PermanentMarker-Regular.ttf"
+    ],
+    "fontLicenseNotes": "Poppins OFL1.1; Permanent Marker Apache2.0; preserve both bundled licenses."
+  },
+  "boundary": "Local design-review candidates only. Copyright permission is not blanket permission for recognizable people, brands or separate artwork. Production requires placement and rights review; do not infer approval from download."
+}
