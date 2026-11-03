@@ -4,5 +4,8 @@
   "byteIdenticalToReviewedBootstrap": true,
   "ownerAction": "invocation requested; not observed at installation recording",
   "passwordMustRemainLocal": true,
-  "maximumInvocations": 1
+  "maximumInvocations": 1,
+  "ownerExecutionConfirmed": true,
+  "currentState": "CONSUMED; must not rerun",
+  "resultReceiptVerified": true
 }

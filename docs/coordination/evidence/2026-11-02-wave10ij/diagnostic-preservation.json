@@ -1,0 +1,15 @@
+{
+  "phase": "owner-invoked diagnostic completion and local-only receipt verification",
+  "migrationHashesUnchanged": 280,
+  "featureRowsUnchanged": 37,
+  "freshIsolatedMigrationCount": 280,
+  "guardedReadOnlyDiagnosticPassed": true,
+  "reconciledAllowance": "CONSUMED, READY absent",
+  "additionalConnectionsByFollowup": 0,
+  "productionAccess": false,
+  "migrationApplied": false,
+  "maintenanceOrSettingsChanged": false,
+  "deploymentResumed": false,
+  "deploymentReservationConsumed": false,
+  "credentialInEvidence": false
+}

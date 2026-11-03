@@ -1,6 +1,6 @@
 # WAVE 10I-J HANDOFF AND DIAGNOSTIC RESULT
 
-November 2, 2026. **INSTALLATION VERIFIED. OWNER DIAGNOSTIC PENDING.**
+November 2, 2026. **OWNER-EXECUTED DIAGNOSTIC PASSED. ATTEMPT CONSUMED.**
 
 ## Installed source
 
@@ -22,10 +22,40 @@ Prepared owner command: `/private/tmp/lockliel-wave10ij-diagnostic.command`. Its
 
 ## Diagnostic result
 
-Pending owner invocation. Authentication, actual TLS, read_only/5s/30s and SQL are NOT VERIFIED by installation. No connection or SQL was initiated automatically. The operator must stop after its single sanitized result, without retry. Source/runtime, direct IPv6, verify-full, hostname, same physical connection/transaction, fixed read-only inspections and rollback/close remain mandatory.
+The owner deliberately invoked `/private/tmp/lockliel-wave10ij-diagnostic.command` and reported completion. Codex independently read the bounded, owner-only saved result through an exact key/value/type projection and reverified installed source/guard/identity hashes. No raw unknown fields or exception text were exposed. Saved receipt SHA256: `c24f1f46a682675c42166079e7c4add7476c4009fc93ed17e01fa620d64e6e5e`. It matches the owner's successful Terminal output.
+
+| Requirement | Observed result |
+|---|---|
+| Isolated target | qjksggxorghaxvpyslip; fixed reviewed direct endpoint |
+| Branch linkage | course-cutover-rehearsal-274, independently captured historical metadata |
+| Owner invocation | Confirmed; no automatic diagnostic invocation |
+| Direct IPv6 | Verified |
+| PostgreSQL authentication | Passed |
+| TLS verify-full | Passed |
+| Certificate hostname verification | Passed |
+| Actual transaction_read_only | on |
+| Actual lock_timeout | 5s |
+| Actual statement_timeout | 30s |
+| Same connection and transaction | Verified |
+| SQL reached | Yes; two fixed approved inspections, with safeguard witnesses |
+| Migration ledger | 280 |
+| Rollback | Completed |
+| Connection | Closed |
+| Failure category | None for this verified invocation |
+| Allowance | CONSUMED; READY absent; no retry or rearming |
+
+The pinned success contract additionally requires the unchanged guard's exact migration280 fingerprint, 57/57 public-table RLS and zero service-role private-note table/column privilege summary checks to pass before success. These are requirements enforced by the reviewed guard, not an additional query performed while reading this result. The safe receipt does not retain PostgreSQL version, TLS version/cipher or arbitrary native diagnostics; no such value is invented here.
+
+The branch display-name linkage remains independent historical provider evidence; actual TLS/project destination, migration baseline and safeguards were observed on the new authenticated connection. No fresh provider branch-health or maintenance-state API check was made. No Management API token, password recovery or reset was used; `credentialRecovered=false` and `manualHandoff=true` are explicit.
+
+Password input remained in the owner-operated hidden local Terminal mechanism, never in ChatGPT, arguments, environment values, credential files or evidence. The reviewed operator clears owned buffers, rolls back/closes and terminates. Python/native transient-copy and trusted-OS limitations remain as documented; no forensic erasure guarantee is made.
+
+This completion follow-up performed local receipt/source/state inspection only: zero additional database connections, no retry, no attempt reset, no new allowance and no deployment action. Do not rerun the spent command.
 
 ## Preservation and release boundary
 
-All 280 migration hashes are unchanged. No production access, private Management API request, password reset/rotation, Netlify reservation/deploy, hosted Auth, migration, maintenance/settings, push/merge, financial/content or account action occurred. Application deployment remains held even if the diagnostic later passes. Main/course PR4, source, published sites and historical isolated280/production274 state were not acted on; no fresh remote database/preservation audit is claimed.
+All 280 migration hashes are unchanged. The isolated ledger was freshly verified at 280. No production access, private Management API request, password reset/rotation, Netlify reservation/deploy, hosted member Auth, migration, maintenance/settings change, push/merge, financial/content or account action occurred. The only live database work was the owner-invoked isolated guarded read-only diagnostic. Application deployment remains held. Main/course PR4, published sites and production were not acted on; historical production274 and isolated maintenance ON are not fresh observations from this receipt.
 
-**ISOLATED DATABASE DIAGNOSTIC BLOCKED** pending owner invocation and observed authenticated safeguard values. Installation success is not database safeguard success.
+**ISOLATED DATABASE SAFEGUARDS VERIFIED**
+
+Smallest next step: review the separate exact isolated application-deployment preflight and remaining provider, binding, protected-configuration, synthetic Auth and retirement gates. No reservation, deployment or hosted Auth resumes under this result. The deployment reservation remains unused; the database diagnostic allowance is consumed.
