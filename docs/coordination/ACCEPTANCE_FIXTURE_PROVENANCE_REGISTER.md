@@ -53,3 +53,9 @@ Source `9bde7d74e3f8c303155ece75fd8148c0d45fd61a` implements the private permane
 
 One explicitly approved child metadata read returned UNVERIFIED_PROVIDER_RESPONSE; no fresh identity or authority seal admitted. Raw discarded; no retry. Branch linkage, Auth hooks/version and operator/key provenance UNKNOWN. Seven-hook schema gap blocks activation. No new fixture, grant, registry or installation. J CONSUMED; reservation UNUSED. [Complete result](WAVE10IS_ISOLATED_PROVIDER_EVIDENCE_RESULT.md).
 <!-- wave10is:end -->
+
+<!-- wave10it:begin -->
+## Wave 10I-T offline correction event (2026-11-03)
+
+Source `4560d7b87c6815cf48888bf4976c13aa61cd2fa4` requires complete seven-hook and reviewed native dependency/effect evidence. Full private filter is offline-verified but no collector, identity authority, new fixture, grant, registry or installation is established. Hosted facts remain UNKNOWN. J CONSUMED; reservation UNUSED. [Complete result](WAVE10IT_PROVIDER_EVIDENCE_READINESS.md).
+<!-- wave10it:end -->

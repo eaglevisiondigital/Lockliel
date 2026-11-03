@@ -1,0 +1,18 @@
+{
+  "source": "4560d7b87c6815cf48888bf4976c13aa61cd2fa4",
+  "files": {
+    "scripts/fixture-provision/auth-config-schema.json": "96e2a88494847a18923640fe0979ce4c387a4f5f82f770125c86016397b30415",
+    "scripts/fixture-provision/launcher.mjs": "8b3bbbc32a89dfa3ab784bbb366addedd1f245679eac64bba98793ab77447ba3",
+    "scripts/fixture-provision/offline-verify.command": "b688ab644a32915fcc1afefd9505a006aa528a29b1170a81e91be2adc7701d6d",
+    "scripts/fixture-provision/operator-authority.mjs": "a95e78a3b37d5ee6c485d1ad9bfdbec1bbd27a4bdd766b83d7729c20595a51fc",
+    "scripts/fixture-provision/operator-launch.command": "17137818b84eb36d9793e87fb6ec051825feb7375e2e966a8c0fba50bbd47f22",
+    "scripts/fixture-provision/operator-runner.mjs": "2619d693441ee74d5123656534929b28da1b103d78d6952624bd13795cea2e02",
+    "scripts/fixture-provision/private-provider-projection.mjs": "76fa6b7f16720291115f110f9a9d68acbac3fe605f6e44a69b9cacd37077682d",
+    "scripts/fixture-provision/provider-evidence.mjs": "1e7443b0e7f40a51f9170738d14461bf9847cb7f8495edd5d6a1ceaef6aaaadd",
+    "scripts/fixture-provision/source-manifest.json": "cee869b2bdd0066341624ace2e078068527c3846d13ba8adcd9b209b63d92020",
+    "tests/fixture-auth-config-projection.test.mjs": "0cecfc4390ba7758594c1a64c06ac280506d4b0c804f9116d5e2c97f9a3e5af4",
+    "tests/fixture-provider-projection.test.mjs": "b06a70fa2fa95a5f32c2aa08e36a6155f9f7cdcf4f0265fda6a820a88fc93dfd",
+    "tests/fixture-provision-provider-evidence.test.mjs": "fcdf4ad61df0cb154a50915b687998c75ced9870445772b0194bbcbc78e6d889",
+    "tests/fixture-provision-wave10ir-security.test.mjs": "6fbc9f0354ffee7eee288a32db82768f08f538dbf445f6d8d302cebae04edbfa"
+  }
+}

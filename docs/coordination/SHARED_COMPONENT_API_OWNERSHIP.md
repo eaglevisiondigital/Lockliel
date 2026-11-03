@@ -1,4 +1,12 @@
 
+<!-- wave10it:begin -->
+## Wave 10I-T local evidence correction; private collection still blocked (2026-11-03)
+
+Local source `4560d7b87c6815cf48888bf4976c13aa61cd2fa4` completes v2 seven-hook and graph/dependency/effect evidence requirements plus strict project/full Auth response filters. Full 2,729 JS tests (420 new included), TypeScript, build, lint, Netlify and two offline launchers pass. Independent review passes local corrections, including 20 additional adversarial checks. Full Auth filter validates 238 public-schema fields and emits seven states only; no transport or authority is created. Concrete private collector/provider/operator binding and current hosted facts remain unavailable. Conditional ONE child Auth-config read proposal is NOT EXECUTABLE. No repeat of S's spent metadata approval. Separate UI `1a500da6f996dd15c3fd87165f8147b58fc8e271` adds private synthetic Faith entry-limit guidance; 227 focused tests/type/lint pass, no native browser claim. Actual three agents: contracts, security, parallel. All 280 migrations, 40 deployment-operator files, root dirty work and existing main/course refs preserved. All 37 feature statuses unchanged, none Live. J CONSUMED; reservation UNUSED. No authenticated provider read, credentials, database/Auth/accounts, migration, maintenance, production, Netlify, push/merge or activation.
+
+[Complete result](WAVE10IT_PROVIDER_EVIDENCE_READINESS.md). Assessment: PROVIDER EVIDENCE PATH STILL BLOCKED.
+<!-- wave10it:end -->
+
 <!-- wave10is:begin -->
 ## Wave 10I-S bounded provider evidence remains blocked (2026-11-03)
 
