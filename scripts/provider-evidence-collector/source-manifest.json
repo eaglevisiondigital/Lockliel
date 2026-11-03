@@ -1,0 +1,17 @@
+{
+  "schema": "lockliel-private-collector-source-v1",
+  "baselineSource": "4560d7b87c6815cf48888bf4976c13aa61cd2fa4",
+  "liveInstallation": false,
+  "project": "qjksggxorghaxvpyslip",
+  "files": {
+    "scripts/provider-evidence-collector/authority.mjs": "ae74ff18d983082d76b52563fcfad44d3fe73d876b28a877ab4dc88e3d3680f2",
+    "scripts/provider-evidence-collector/transport.mjs": "650dba635d3093789e870ef50c0bc51fefa97e91a481a01f98ecf4dc94dfb60a",
+    "scripts/provider-evidence-collector/attempt.mjs": "af05612a074e541d8316dbd144da7a6d68631d2aee9ec16e98399fe21f9a5101",
+    "scripts/provider-evidence-collector/collector.mjs": "72d0cd5ea41f345b5f41fa7b85d06fb5e437003610661fbdd1f5fad7aaaa7852",
+    "scripts/provider-evidence-collector/launcher.mjs": "b3db74a7014c81e09c6952f327fdb49ccfa51bb7a68962a6d98d30a5e9b235b3",
+    "scripts/fixture-provision/private-provider-projection.mjs": "76fa6b7f16720291115f110f9a9d68acbac3fe605f6e44a69b9cacd37077682d",
+    "scripts/fixture-provision/auth-config-schema.json": "96e2a88494847a18923640fe0979ce4c387a4f5f82f770125c86016397b30415",
+    "scripts/fixture-provision/contracts.mjs": "6d61c0fa79d9cee43725bf126929ae6c491e73bbb8509f42f6af8ce5680413cf",
+    "scripts/fixture-provision/protected-input.mjs": "389a73fc3a4d68a425fb0741a871828cbc9cad9e8ad29119248cef55315eabc7"
+  }
+}
