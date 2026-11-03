@@ -1,5 +1,13 @@
 # Lockliel verified continuity baseline
 
+<!-- wave10ij-final:begin -->
+## Wave 10I-J final reconciliation: COMPLETE (2026-11-02)
+
+The successful e6483cf report is authoritative. Pending 28f0ff2 was a pre-execution snapshot at 19:29:09 America/Chicago; the receipt was created at 19:30:29, before completion was committed at 19:32:42. Filesystem timestamps corroborate chronology, not signed provider time. Receipt hash c24f1f46 and source pins match. The current ledger is CONSUMED with READY absent. Actual isolated direct IPv6, authentication, TLS verify-full/hostname, read-only on, lock timeout 5s, statement timeout 30s, same transaction, two inspections, ledger 280, rollback and close passed.
+
+This reconciliation did not request a password, reconnect, rerun a launcher, reset attempt state or perform any remote/production action. Historical receipts are preserved. The next isolated assignment is prepared against app327ba098/tooling51857e4/site70/qjks, with rich fresh Node receipt, full backend, operator, key and provider gates still mandatory. Do not re-date the minimal saved receipt or weaken guards. The J allowance is consumed; the separate one-reservation allowance is unused. All 280 migration hashes and 37 inventory rows remain unchanged. [Final reconciliation](docs/coordination/WAVE10IJ_FINAL_RECONCILIATION.md) and [prepared next assignment](docs/coordination/WAVE10IK_ISOLATED_APPLICATION_DEPLOYMENT_ASSIGNMENT.md).
+<!-- wave10ij-final:end -->
+
 <!-- wave10ij:begin -->
 ## Wave 10I-J isolated database safeguards verified (2026-11-02)
 

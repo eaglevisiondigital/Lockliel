@@ -2,6 +2,8 @@
 
 November 2, 2026. **OWNER-EXECUTED DIAGNOSTIC PASSED. ATTEMPT CONSUMED.**
 
+**Final reconciliation:** the earlier pending report at 28f0ff2 predates execution and is superseded by e6483cf. Current durable state is CONSUMED; the saved success receipt and reviewed source hashes agree. [Timestamped reconciliation](WAVE10IJ_FINAL_RECONCILIATION.md). Wave10I-J is COMPLETE; do not rerun the diagnostic.
+
 ## Installed source
 
 Exact handoff source `e3c3e382a53136fd57b3296b9d97876ecd7e4f7a` and documentation `9adca813140b54b9c6063d49082ae65def93130d` matched before installation. Existing worktree was clean. All four installed files match the reviewed Git object bytes. Worker SHA256 `24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5`, launcher `ec07fb0d0c7b799bcd1307ae3097a68ededdfd1c3b8246ec450829ac99838821`, Terminal bootstrap `6a3b3a694dfe2bad63e9a30b214119a32d37f58cd8366668cfe8d88d15841cb3`, historical independent identity `e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0`.

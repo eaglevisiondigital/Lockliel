@@ -1,0 +1,17 @@
+{
+  "authoritativeFinalStatus": "COMPLETE / SUCCESS",
+  "sourceCodeChanges": 0,
+  "migrationHashesUnchanged": 280,
+  "featureRowsUnchanged": 37,
+  "historicalWave10ijEvidenceBytesUnchanged": true,
+  "currentReceiptUnchanged": true,
+  "currentGrantStillConsumed": true,
+  "originalRootDirtyWorkPreserved": true,
+  "reconnectionOrRetry": false,
+  "passwordRequestOrUse": false,
+  "ledgerOrKitMutation": false,
+  "providerOrProductionAccess": false,
+  "reservationOrDeployment": false,
+  "newCredentialPatternCheck": "passed",
+  "validation": "offline hash/schema/state/timestamp/Git comparisons and documentation diff checks; no application test rerun required"
+}
