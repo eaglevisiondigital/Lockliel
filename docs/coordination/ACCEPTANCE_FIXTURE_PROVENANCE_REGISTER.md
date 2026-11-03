@@ -41,3 +41,9 @@ New-generation status: LOCAL TOOLING INCOMPLETE, NOT CREATED. Source `4619835ff2
 
 [Q result](WAVE10IQ_SYNTHETIC_FIXTURE_TOOL_RESULT.md).
 <!-- wave10iq:end -->
+
+<!-- wave10ir:begin -->
+## Wave 10I-R local implementation event (2026-11-03)
+
+Source `9bde7d74e3f8c303155ece75fd8148c0d45fd61a` implements the private permanent writer and fixed native/provider composition. New-generation state remains NOT CREATED; no live registry/grant/key/account was installed. Private lifecycle records and derived mapping require independent provider/native approval and cannot substitute for identity authority. Fresh supported child-only branch/hook/Authversion/operator evidence remains missing. J CONSUMED, reservationUNUSED. SeparateUI `a35ef225286f7c1ab52100f51013c88d47d8b3b5` preserved. [R result](WAVE10IR_FINAL_SYNTHETIC_FIXTURE_READINESS.md).
+<!-- wave10ir:end -->

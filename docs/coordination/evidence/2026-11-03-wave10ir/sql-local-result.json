@@ -1,0 +1,1365 @@
+{
+  "scope": "disposable-unix-socket-only",
+  "managedConnections": 0,
+  "hostedEquivalent": false,
+  "migrationsReplayed": 280,
+  "triggerInventory": [
+    {
+      "schema": "auth",
+      "table": "users",
+      "trigger": "audit_auth_password_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_auth_password_change",
+      "definition": "CREATE TRIGGER audit_auth_password_change_trigger AFTER UPDATE OF encrypted_password ON auth.users FOR EACH ROW EXECUTE FUNCTION app_private.audit_auth_password_change()"
+    },
+    {
+      "schema": "auth",
+      "table": "users",
+      "trigger": "link_financial_records_on_email_confirmation_trigger",
+      "functionSchema": "app_private",
+      "function": "link_financial_records_on_email_confirmation",
+      "definition": "CREATE TRIGGER link_financial_records_on_email_confirmation_trigger AFTER UPDATE OF email_confirmed_at ON auth.users FOR EACH ROW EXECUTE FUNCTION app_private.link_financial_records_on_email_confirmation()"
+    },
+    {
+      "schema": "auth",
+      "table": "users",
+      "trigger": "link_nonfinancial_records_on_email_confirmation_trigger",
+      "functionSchema": "app_private",
+      "function": "link_nonfinancial_records_on_email_confirmation",
+      "definition": "CREATE TRIGGER link_nonfinancial_records_on_email_confirmation_trigger AFTER UPDATE OF email_confirmed_at ON auth.users FOR EACH ROW EXECUTE FUNCTION app_private.link_nonfinancial_records_on_email_confirmation()"
+    },
+    {
+      "schema": "auth",
+      "table": "users",
+      "trigger": "on_auth_user_created_lockliel",
+      "functionSchema": "app_private",
+      "function": "handle_new_user",
+      "definition": "CREATE TRIGGER on_auth_user_created_lockliel AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION app_private.handle_new_user()"
+    },
+    {
+      "schema": "auth",
+      "table": "users",
+      "trigger": "sync_profile_email_from_auth_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_profile_email_from_auth",
+      "definition": "CREATE TRIGGER sync_profile_email_from_auth_trigger AFTER UPDATE OF email ON auth.users FOR EACH ROW EXECUTE FUNCTION app_private.sync_profile_email_from_auth()"
+    },
+    {
+      "schema": "public",
+      "table": "benefit_rules",
+      "trigger": "audit_benefit_rule_status_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_benefit_rule_status",
+      "definition": "CREATE TRIGGER audit_benefit_rule_status_trigger AFTER UPDATE OF status ON public.benefit_rules FOR EACH ROW EXECUTE FUNCTION app_private.audit_benefit_rule_status()"
+    },
+    {
+      "schema": "public",
+      "table": "benefit_rules",
+      "trigger": "validate_benefit_rule_activation_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_benefit_rule_activation",
+      "definition": "CREATE TRIGGER validate_benefit_rule_activation_trigger BEFORE INSERT OR UPDATE OF status, product_id, fulfillment_type, minimum_gift_cents, starts_at, ends_at ON public.benefit_rules FOR EACH ROW EXECUTE FUNCTION app_private.validate_benefit_rule_activation()"
+    },
+    {
+      "schema": "public",
+      "table": "checkout_sessions",
+      "trigger": "audit_checkout_session_status_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_checkout_session_status",
+      "definition": "CREATE TRIGGER audit_checkout_session_status_trigger AFTER UPDATE OF status ON public.checkout_sessions FOR EACH ROW EXECUTE FUNCTION app_private.audit_checkout_session_status()"
+    },
+    {
+      "schema": "public",
+      "table": "checkout_sessions",
+      "trigger": "normalize_checkout_session_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_checkout_session",
+      "definition": "CREATE TRIGGER normalize_checkout_session_trigger BEFORE INSERT OR UPDATE ON public.checkout_sessions FOR EACH ROW EXECUTE FUNCTION app_private.normalize_checkout_session()"
+    },
+    {
+      "schema": "public",
+      "table": "checkout_sessions",
+      "trigger": "validate_checkout_order_relationship_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_checkout_order_relationship",
+      "definition": "CREATE TRIGGER validate_checkout_order_relationship_trigger BEFORE INSERT OR UPDATE OF order_id, provider, profile_id ON public.checkout_sessions FOR EACH ROW EXECUTE FUNCTION app_private.validate_checkout_order_relationship()"
+    },
+    {
+      "schema": "public",
+      "table": "communication_preferences",
+      "trigger": "audit_communication_preferences_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_communication_preferences",
+      "definition": "CREATE TRIGGER audit_communication_preferences_trigger BEFORE UPDATE ON public.communication_preferences FOR EACH ROW EXECUTE FUNCTION app_private.audit_communication_preferences()"
+    },
+    {
+      "schema": "public",
+      "table": "connection_requests",
+      "trigger": "normalize_connection_request_resolution_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_connection_request_resolution",
+      "definition": "CREATE TRIGGER normalize_connection_request_resolution_trigger BEFORE UPDATE OF status ON public.connection_requests FOR EACH ROW EXECUTE FUNCTION app_private.normalize_connection_request_resolution()"
+    },
+    {
+      "schema": "public",
+      "table": "contact_permissions",
+      "trigger": "audit_contact_permission_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_contact_permission_change",
+      "definition": "CREATE TRIGGER audit_contact_permission_change_trigger AFTER UPDATE OF revoked_at ON public.contact_permissions FOR EACH ROW EXECUTE FUNCTION app_private.audit_contact_permission_change()"
+    },
+    {
+      "schema": "public",
+      "table": "contact_permissions",
+      "trigger": "close_inviter_task_on_consent_revoke_trigger",
+      "functionSchema": "app_private",
+      "function": "close_inviter_task_on_consent_revoke",
+      "definition": "CREATE TRIGGER close_inviter_task_on_consent_revoke_trigger AFTER UPDATE OF revoked_at ON public.contact_permissions FOR EACH ROW EXECUTE FUNCTION app_private.close_inviter_task_on_consent_revoke()"
+    },
+    {
+      "schema": "public",
+      "table": "contact_permissions",
+      "trigger": "sync_connection_counts_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_connection_counts",
+      "definition": "CREATE TRIGGER sync_connection_counts_trigger AFTER INSERT OR DELETE OR UPDATE ON public.contact_permissions FOR EACH ROW EXECUTE FUNCTION app_private.sync_connection_counts()"
+    },
+    {
+      "schema": "public",
+      "table": "contact_permissions",
+      "trigger": "sync_contact_permission_conversation_state_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_contact_permission_conversation_state",
+      "definition": "CREATE TRIGGER sync_contact_permission_conversation_state_trigger AFTER UPDATE OF revoked_at ON public.contact_permissions FOR EACH ROW EXECUTE FUNCTION app_private.sync_contact_permission_conversation_state()"
+    },
+    {
+      "schema": "public",
+      "table": "contact_permissions",
+      "trigger": "validate_contact_permission_relationship_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_contact_permission_relationship",
+      "definition": "CREATE TRIGGER validate_contact_permission_relationship_trigger BEFORE INSERT OR UPDATE OF profile_id, other_profile_id, permission_type, revoked_at ON public.contact_permissions FOR EACH ROW EXECUTE FUNCTION app_private.validate_contact_permission_relationship()"
+    },
+    {
+      "schema": "public",
+      "table": "course_enrollments",
+      "trigger": "normalize_course_enrollment_lifecycle_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_course_enrollment_lifecycle",
+      "definition": "CREATE TRIGGER normalize_course_enrollment_lifecycle_trigger BEFORE INSERT OR UPDATE ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_course_enrollment_lifecycle()"
+    },
+    {
+      "schema": "public",
+      "table": "course_enrollments",
+      "trigger": "notify_course_enrollment_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_course_enrollment",
+      "definition": "CREATE TRIGGER notify_course_enrollment_trigger AFTER INSERT ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.notify_course_enrollment()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "audit_course_status_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_course_status_change",
+      "definition": "CREATE TRIGGER audit_course_status_change_trigger AFTER UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_course_status_change()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "audit_learning_course",
+      "functionSchema": "app_private",
+      "function": "audit_learning_configuration",
+      "definition": "CREATE TRIGGER audit_learning_course AFTER UPDATE OF learning_rules ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('learning_rules')"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "cutover_write_guard",
+      "functionSchema": "lockliel_cutover",
+      "function": "deny_write",
+      "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "default_course_translation_key_trigger",
+      "functionSchema": "app_private",
+      "function": "default_translation_key_from_slug",
+      "definition": "CREATE TRIGGER default_course_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "protect_course_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_course_identity",
+      "definition": "CREATE TRIGGER protect_course_identity_trigger BEFORE UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.protect_course_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "validate_course_publish_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_course_publish",
+      "definition": "CREATE TRIGGER validate_course_publish_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_publish()"
+    },
+    {
+      "schema": "public",
+      "table": "courses",
+      "trigger": "validate_course_release_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_course_release",
+      "definition": "CREATE TRIGGER validate_course_release_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_release()"
+    },
+    {
+      "schema": "public",
+      "table": "entitlements",
+      "trigger": "audit_entitlement_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_entitlement_change",
+      "definition": "CREATE TRIGGER audit_entitlement_change_trigger AFTER INSERT OR DELETE ON public.entitlements FOR EACH ROW EXECUTE FUNCTION app_private.audit_entitlement_change()"
+    },
+    {
+      "schema": "public",
+      "table": "entitlements",
+      "trigger": "notify_resource_entitlement_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_resource_entitlement",
+      "definition": "CREATE TRIGGER notify_resource_entitlement_trigger AFTER INSERT ON public.entitlements FOR EACH ROW EXECUTE FUNCTION app_private.notify_resource_entitlement()"
+    },
+    {
+      "schema": "public",
+      "table": "faith_profiles",
+      "trigger": "advance_journey_after_faith_profile_trigger",
+      "functionSchema": "app_private",
+      "function": "advance_journey_after_faith_profile",
+      "definition": "CREATE TRIGGER advance_journey_after_faith_profile_trigger AFTER INSERT OR UPDATE ON public.faith_profiles FOR EACH ROW EXECUTE FUNCTION app_private.advance_journey_after_faith_profile()"
+    },
+    {
+      "schema": "public",
+      "table": "faith_profiles",
+      "trigger": "normalize_faith_profile_update_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_faith_profile_update",
+      "definition": "CREATE TRIGGER normalize_faith_profile_update_trigger BEFORE INSERT OR UPDATE ON public.faith_profiles FOR EACH ROW EXECUTE FUNCTION app_private.normalize_faith_profile_update()"
+    },
+    {
+      "schema": "public",
+      "table": "faith_profiles",
+      "trigger": "on_faith_profile_enroll_grip",
+      "functionSchema": "app_private",
+      "function": "ensure_grip_enrollment",
+      "definition": "CREATE TRIGGER on_faith_profile_enroll_grip AFTER INSERT OR UPDATE ON public.faith_profiles FOR EACH ROW EXECUTE FUNCTION app_private.ensure_grip_enrollment()"
+    },
+    {
+      "schema": "public",
+      "table": "faith_profiles",
+      "trigger": "on_faith_profile_sync_connections",
+      "functionSchema": "app_private",
+      "function": "sync_faith_connection_requests",
+      "definition": "CREATE TRIGGER on_faith_profile_sync_connections AFTER INSERT OR UPDATE OF wants_group, wants_host ON public.faith_profiles FOR EACH ROW EXECUTE FUNCTION app_private.sync_faith_connection_requests()"
+    },
+    {
+      "schema": "public",
+      "table": "faith_profiles",
+      "trigger": "on_faith_profile_sync_tags",
+      "functionSchema": "app_private",
+      "function": "sync_faith_profile_interest_tags",
+      "definition": "CREATE TRIGGER on_faith_profile_sync_tags AFTER INSERT OR UPDATE ON public.faith_profiles FOR EACH ROW EXECUTE FUNCTION app_private.sync_faith_profile_interest_tags()"
+    },
+    {
+      "schema": "public",
+      "table": "feature_flags",
+      "trigger": "audit_feature_flag_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_feature_flag_change",
+      "definition": "CREATE TRIGGER audit_feature_flag_change_trigger BEFORE UPDATE OF enabled ON public.feature_flags FOR EACH ROW EXECUTE FUNCTION app_private.audit_feature_flag_change()"
+    },
+    {
+      "schema": "public",
+      "table": "feature_flags",
+      "trigger": "lock_partner_checkout_feature_transition_trigger",
+      "functionSchema": "app_private",
+      "function": "lock_partner_checkout_transition",
+      "definition": "CREATE TRIGGER lock_partner_checkout_feature_transition_trigger BEFORE UPDATE OF enabled ON public.feature_flags FOR EACH STATEMENT EXECUTE FUNCTION app_private.lock_partner_checkout_transition()"
+    },
+    {
+      "schema": "public",
+      "table": "feature_flags",
+      "trigger": "refresh_partner_checkout_state_flag_trigger",
+      "functionSchema": "app_private",
+      "function": "refresh_partner_checkout_state_trigger",
+      "definition": "CREATE TRIGGER refresh_partner_checkout_state_flag_trigger AFTER UPDATE OF enabled ON public.feature_flags FOR EACH ROW WHEN ((new.key = 'partner_checkout'::text)) EXECUTE FUNCTION app_private.refresh_partner_checkout_state_trigger()"
+    },
+    {
+      "schema": "public",
+      "table": "feature_flags",
+      "trigger": "sync_operational_feature_flags_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_operational_feature_flags",
+      "definition": "CREATE TRIGGER sync_operational_feature_flags_trigger AFTER UPDATE OF enabled ON public.feature_flags FOR EACH ROW EXECUTE FUNCTION app_private.sync_operational_feature_flags()"
+    },
+    {
+      "schema": "public",
+      "table": "feature_flags",
+      "trigger": "validate_feature_activation_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_feature_activation",
+      "definition": "CREATE TRIGGER validate_feature_activation_trigger BEFORE UPDATE OF enabled ON public.feature_flags FOR EACH ROW EXECUTE FUNCTION app_private.validate_feature_activation()"
+    },
+    {
+      "schema": "public",
+      "table": "follow_up_tasks",
+      "trigger": "audit_follow_up_task_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_follow_up_task_change",
+      "definition": "CREATE TRIGGER audit_follow_up_task_change_trigger AFTER UPDATE OF status, assigned_to ON public.follow_up_tasks FOR EACH ROW EXECUTE FUNCTION app_private.audit_follow_up_task_change()"
+    },
+    {
+      "schema": "public",
+      "table": "follow_up_tasks",
+      "trigger": "normalize_follow_up_task_lifecycle_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_follow_up_task_lifecycle",
+      "definition": "CREATE TRIGGER normalize_follow_up_task_lifecycle_trigger BEFORE INSERT OR UPDATE OF status ON public.follow_up_tasks FOR EACH ROW EXECUTE FUNCTION app_private.normalize_follow_up_task_lifecycle()"
+    },
+    {
+      "schema": "public",
+      "table": "founder_orientation_progress",
+      "trigger": "audit_founder_orientation_progress_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_founder_orientation_progress",
+      "definition": "CREATE TRIGGER audit_founder_orientation_progress_trigger AFTER INSERT OR UPDATE OF completed_at ON public.founder_orientation_progress FOR EACH ROW EXECUTE FUNCTION app_private.audit_founder_orientation_progress()"
+    },
+    {
+      "schema": "public",
+      "table": "founder_orientation_progress",
+      "trigger": "founder_orientation_completion_followup_trigger",
+      "functionSchema": "app_private",
+      "function": "founder_orientation_completion_followup",
+      "definition": "CREATE TRIGGER founder_orientation_completion_followup_trigger AFTER INSERT OR UPDATE OF completed_at ON public.founder_orientation_progress FOR EACH ROW EXECUTE FUNCTION app_private.founder_orientation_completion_followup()"
+    },
+    {
+      "schema": "public",
+      "table": "founder_orientation_progress",
+      "trigger": "normalize_founder_orientation_progress_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_founder_orientation_progress",
+      "definition": "CREATE TRIGGER normalize_founder_orientation_progress_trigger BEFORE INSERT OR UPDATE ON public.founder_orientation_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_founder_orientation_progress()"
+    },
+    {
+      "schema": "public",
+      "table": "founders50_applications",
+      "trigger": "audit_founders50_status_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_founders50_status",
+      "definition": "CREATE TRIGGER audit_founders50_status_trigger AFTER UPDATE OF status ON public.founders50_applications FOR EACH ROW EXECUTE FUNCTION app_private.audit_founders50_status()"
+    },
+    {
+      "schema": "public",
+      "table": "founders50_applications",
+      "trigger": "create_founders50_followup_trigger",
+      "functionSchema": "app_private",
+      "function": "create_founders50_followup",
+      "definition": "CREATE TRIGGER create_founders50_followup_trigger AFTER UPDATE OF status ON public.founders50_applications FOR EACH ROW EXECUTE FUNCTION app_private.create_founders50_followup()"
+    },
+    {
+      "schema": "public",
+      "table": "founders50_applications",
+      "trigger": "notify_founders50_status_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_founders50_status",
+      "definition": "CREATE TRIGGER notify_founders50_status_trigger AFTER UPDATE OF status ON public.founders50_applications FOR EACH ROW EXECUTE FUNCTION app_private.notify_founders50_status()"
+    },
+    {
+      "schema": "public",
+      "table": "founders50_applications",
+      "trigger": "protect_active_founders_host_responsibility_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_active_founders_host_responsibility",
+      "definition": "CREATE TRIGGER protect_active_founders_host_responsibility_trigger BEFORE UPDATE OF status ON public.founders50_applications FOR EACH ROW EXECUTE FUNCTION app_private.protect_active_founders_host_responsibility()"
+    },
+    {
+      "schema": "public",
+      "table": "founders50_reviews",
+      "trigger": "apply_founders50_review_decision_trigger",
+      "functionSchema": "app_private",
+      "function": "apply_founders50_review_decision",
+      "definition": "CREATE TRIGGER apply_founders50_review_decision_trigger AFTER INSERT ON public.founders50_reviews FOR EACH ROW EXECUTE FUNCTION app_private.apply_founders50_review_decision()"
+    },
+    {
+      "schema": "public",
+      "table": "gifts",
+      "trigger": "audit_gift_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_gift_change",
+      "definition": "CREATE TRIGGER audit_gift_change_trigger AFTER UPDATE OF status, received_at, designation, campaign, donor_email, donor_name ON public.gifts FOR EACH ROW EXECUTE FUNCTION app_private.audit_gift_change()"
+    },
+    {
+      "schema": "public",
+      "table": "gifts",
+      "trigger": "audit_gift_insert_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_gift_insert",
+      "definition": "CREATE TRIGGER audit_gift_insert_trigger AFTER INSERT ON public.gifts FOR EACH ROW EXECUTE FUNCTION app_private.audit_gift_insert()"
+    },
+    {
+      "schema": "public",
+      "table": "gifts",
+      "trigger": "normalize_gift_record_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_gift_record",
+      "definition": "CREATE TRIGGER normalize_gift_record_trigger BEFORE INSERT OR UPDATE ON public.gifts FOR EACH ROW EXECUTE FUNCTION app_private.normalize_gift_record()"
+    },
+    {
+      "schema": "public",
+      "table": "gifts",
+      "trigger": "on_gift_apply_benefits",
+      "functionSchema": "app_private",
+      "function": "apply_active_gift_benefits",
+      "definition": "CREATE TRIGGER on_gift_apply_benefits AFTER INSERT OR UPDATE OF status, amount_cents, profile_id ON public.gifts FOR EACH ROW EXECUTE FUNCTION app_private.apply_active_gift_benefits()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "audit_group_membership_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_group_membership_change",
+      "definition": "CREATE TRIGGER audit_group_membership_change_trigger AFTER INSERT OR UPDATE OF role, status, left_at ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.audit_group_membership_change()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "audit_group_membership_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_group_membership",
+      "definition": "CREATE TRIGGER audit_group_membership_trigger AFTER INSERT ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.audit_group_membership()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "normalize_group_membership_dates_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_group_membership_dates",
+      "definition": "CREATE TRIGGER normalize_group_membership_dates_trigger BEFORE INSERT OR UPDATE OF status, left_at ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.normalize_group_membership_dates()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "notify_group_member_added_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_group_member_added",
+      "definition": "CREATE TRIGGER notify_group_member_added_trigger AFTER INSERT ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.notify_group_member_added()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "notify_group_membership_change_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_group_membership_change",
+      "definition": "CREATE TRIGGER notify_group_membership_change_trigger AFTER UPDATE OF status ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.notify_group_membership_change()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "protect_group_membership_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_group_membership_identity",
+      "definition": "CREATE TRIGGER protect_group_membership_identity_trigger BEFORE UPDATE ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.protect_group_membership_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "sync_group_contact_permission_lifecycle_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_group_contact_permission_lifecycle",
+      "definition": "CREATE TRIGGER sync_group_contact_permission_lifecycle_trigger AFTER DELETE OR UPDATE OF status ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.sync_group_contact_permission_lifecycle()"
+    },
+    {
+      "schema": "public",
+      "table": "group_members",
+      "trigger": "validate_group_leadership_membership_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_group_leadership_membership",
+      "definition": "CREATE TRIGGER validate_group_leadership_membership_trigger BEFORE INSERT OR UPDATE OF profile_id, role, status ON public.group_members FOR EACH ROW EXECUTE FUNCTION app_private.validate_group_leadership_membership()"
+    },
+    {
+      "schema": "public",
+      "table": "group_weekly_checkins",
+      "trigger": "audit_group_checkin_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_group_checkin",
+      "definition": "CREATE TRIGGER audit_group_checkin_trigger AFTER INSERT OR UPDATE OF gathered, attendance_count, faith_boosts_used, people_shared_with, new_people_count, next_leader_identified, testimony, needs_support ON public.group_weekly_checkins FOR EACH ROW EXECUTE FUNCTION app_private.audit_group_checkin()"
+    },
+    {
+      "schema": "public",
+      "table": "group_weekly_checkins",
+      "trigger": "create_tasks_from_group_checkin_trigger",
+      "functionSchema": "app_private",
+      "function": "create_tasks_from_group_checkin",
+      "definition": "CREATE TRIGGER create_tasks_from_group_checkin_trigger AFTER INSERT OR UPDATE OF needs_support, next_leader_identified ON public.group_weekly_checkins FOR EACH ROW EXECUTE FUNCTION app_private.create_tasks_from_group_checkin()"
+    },
+    {
+      "schema": "public",
+      "table": "group_weekly_checkins",
+      "trigger": "normalize_group_weekly_checkin_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_group_weekly_checkin",
+      "definition": "CREATE TRIGGER normalize_group_weekly_checkin_trigger BEFORE INSERT OR UPDATE ON public.group_weekly_checkins FOR EACH ROW EXECUTE FUNCTION app_private.normalize_group_weekly_checkin()"
+    },
+    {
+      "schema": "public",
+      "table": "groups",
+      "trigger": "audit_group_record_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_group_record_change",
+      "definition": "CREATE TRIGGER audit_group_record_change_trigger AFTER INSERT OR UPDATE OF name, leader_id, city, region, country, status, language_code ON public.groups FOR EACH ROW EXECUTE FUNCTION app_private.audit_group_record_change()"
+    },
+    {
+      "schema": "public",
+      "table": "groups",
+      "trigger": "protect_group_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_group_identity",
+      "definition": "CREATE TRIGGER protect_group_identity_trigger BEFORE INSERT OR UPDATE ON public.groups FOR EACH ROW EXECUTE FUNCTION app_private.protect_group_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "groups",
+      "trigger": "sync_group_primary_leader_membership_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_group_primary_leader_membership",
+      "definition": "CREATE TRIGGER sync_group_primary_leader_membership_trigger AFTER INSERT OR UPDATE OF leader_id ON public.groups FOR EACH ROW EXECUTE FUNCTION app_private.sync_group_primary_leader_membership()"
+    },
+    {
+      "schema": "public",
+      "table": "groups",
+      "trigger": "sync_group_status_contact_permissions_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_group_status_contact_permissions",
+      "definition": "CREATE TRIGGER sync_group_status_contact_permissions_trigger AFTER UPDATE OF status ON public.groups FOR EACH ROW EXECUTE FUNCTION app_private.sync_group_status_contact_permissions()"
+    },
+    {
+      "schema": "public",
+      "table": "groups",
+      "trigger": "validate_group_leader_approval_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_group_leader_approval",
+      "definition": "CREATE TRIGGER validate_group_leader_approval_trigger BEFORE INSERT OR UPDATE OF leader_id ON public.groups FOR EACH ROW EXECUTE FUNCTION app_private.validate_group_leader_approval()"
+    },
+    {
+      "schema": "public",
+      "table": "launch_verifications",
+      "trigger": "audit_launch_verification_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_launch_verification",
+      "definition": "CREATE TRIGGER audit_launch_verification_trigger BEFORE UPDATE ON public.launch_verifications FOR EACH ROW EXECUTE FUNCTION app_private.audit_launch_verification()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "audit_lead_operational_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_lead_operational_change",
+      "definition": "CREATE TRIGGER audit_lead_operational_change_trigger AFTER UPDATE OF status, assigned_to, next_follow_up_at, last_contacted_at ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.audit_lead_operational_change()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "audit_lead_pipeline_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_lead_pipeline_change",
+      "definition": "CREATE TRIGGER audit_lead_pipeline_change_trigger AFTER UPDATE ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.audit_lead_pipeline_change()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "convert_linked_lead_trigger",
+      "functionSchema": "app_private",
+      "function": "convert_linked_lead",
+      "definition": "CREATE TRIGGER convert_linked_lead_trigger BEFORE UPDATE OF linked_profile_id ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.convert_linked_lead()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "normalize_lead_contact_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_lead_contact_identity",
+      "definition": "CREATE TRIGGER normalize_lead_contact_identity_trigger BEFORE INSERT OR UPDATE OF email, first_name, last_name, phone ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lead_contact_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "normalize_lead_contact_update_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_lead_contact_update",
+      "definition": "CREATE TRIGGER normalize_lead_contact_update_trigger BEFORE UPDATE ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lead_contact_update()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "on_lead_contact_sync_source_tags",
+      "functionSchema": "app_private",
+      "function": "sync_lead_sources_to_profile_tags",
+      "definition": "CREATE TRIGGER on_lead_contact_sync_source_tags AFTER UPDATE OF linked_profile_id ON public.lead_contacts FOR EACH ROW WHEN ((new.linked_profile_id IS NOT NULL)) EXECUTE FUNCTION app_private.sync_lead_sources_to_profile_tags()"
+    },
+    {
+      "schema": "public",
+      "table": "lead_contacts",
+      "trigger": "sync_lead_followup_task_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_lead_followup_task",
+      "definition": "CREATE TRIGGER sync_lead_followup_task_trigger AFTER INSERT OR UPDATE OF status, assigned_to, next_follow_up_at ON public.lead_contacts FOR EACH ROW EXECUTE FUNCTION app_private.sync_lead_followup_task()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "audit_leader_assignment_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_leader_assignment",
+      "definition": "CREATE TRIGGER audit_leader_assignment_trigger AFTER INSERT OR UPDATE ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.audit_leader_assignment()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "normalize_leader_assignment_lifecycle_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_leader_assignment_lifecycle",
+      "definition": "CREATE TRIGGER normalize_leader_assignment_lifecycle_trigger BEFORE INSERT OR UPDATE ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_leader_assignment_lifecycle()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "notify_leader_assignment_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_leader_assignment",
+      "definition": "CREATE TRIGGER notify_leader_assignment_trigger AFTER INSERT OR UPDATE OF leader_id, status ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.notify_leader_assignment()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "resolve_leader_request_on_assignment_trigger",
+      "functionSchema": "app_private",
+      "function": "resolve_leader_request_on_assignment",
+      "definition": "CREATE TRIGGER resolve_leader_request_on_assignment_trigger AFTER INSERT OR UPDATE OF leader_id, status ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.resolve_leader_request_on_assignment()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "sync_leader_assignment_relationship_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_leader_assignment_relationship",
+      "definition": "CREATE TRIGGER sync_leader_assignment_relationship_trigger AFTER INSERT OR UPDATE OF leader_id, status ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.sync_leader_assignment_relationship()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_assignments",
+      "trigger": "validate_leader_assignment_approval_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_leader_assignment_approval",
+      "definition": "CREATE TRIGGER validate_leader_assignment_approval_trigger BEFORE INSERT OR UPDATE OF leader_id, assignment_type, status ON public.leader_assignments FOR EACH ROW EXECUTE FUNCTION app_private.validate_leader_assignment_approval()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_profiles",
+      "trigger": "audit_leader_profile_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_leader_profile_change",
+      "definition": "CREATE TRIGGER audit_leader_profile_change_trigger AFTER INSERT OR UPDATE ON public.leader_profiles FOR EACH ROW EXECUTE FUNCTION app_private.audit_leader_profile_change()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_profiles",
+      "trigger": "normalize_leader_profile_approval_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_leader_profile_approval",
+      "definition": "CREATE TRIGGER normalize_leader_profile_approval_trigger BEFORE INSERT OR UPDATE ON public.leader_profiles FOR EACH ROW EXECUTE FUNCTION app_private.normalize_leader_profile_approval()"
+    },
+    {
+      "schema": "public",
+      "table": "leader_profiles",
+      "trigger": "protect_active_leader_responsibilities_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_active_leader_responsibilities",
+      "definition": "CREATE TRIGGER protect_active_leader_responsibilities_trigger BEFORE UPDATE OF active, leader_type, city, region, country, capacity, language_code ON public.leader_profiles FOR EACH ROW EXECUTE FUNCTION app_private.protect_active_leader_responsibilities()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "audit_learning_duration_source",
+      "functionSchema": "app_private",
+      "function": "audit_learning_configuration",
+      "definition": "CREATE TRIGGER audit_learning_duration_source AFTER UPDATE OF duration_verification_source ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('duration_verification_source')"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "audit_learning_media",
+      "functionSchema": "app_private",
+      "function": "audit_learning_configuration",
+      "definition": "CREATE TRIGGER audit_learning_media AFTER UPDATE OF provider, provider_ref, external_url, storage_path, status ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('provider', 'provider_ref', 'external_url', 'storage_path', 'status')"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "audit_lesson_asset_duration_verification_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_lesson_asset_duration_verification",
+      "definition": "CREATE TRIGGER audit_lesson_asset_duration_verification_trigger AFTER INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_lesson_asset_duration_verification()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "cutover_write_guard",
+      "functionSchema": "lockliel_cutover",
+      "function": "deny_write",
+      "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "normalize_lesson_asset_duration_verification_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_lesson_asset_duration_verification",
+      "definition": "CREATE TRIGGER normalize_lesson_asset_duration_verification_trigger BEFORE INSERT OR UPDATE OF duration_seconds, duration_verification_source, provider, provider_ref, external_url, storage_path ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset_duration_verification()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "normalize_lesson_asset_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_lesson_asset",
+      "definition": "CREATE TRIGGER normalize_lesson_asset_trigger BEFORE INSERT OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "preserve_watched_media_identity",
+      "functionSchema": "app_private",
+      "function": "preserve_watched_media_identity",
+      "definition": "CREATE TRIGGER preserve_watched_media_identity BEFORE UPDATE OF lesson_id, asset_type, provider, provider_ref, external_url, storage_path ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.preserve_watched_media_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "recheck_grip_course_release_trigger",
+      "functionSchema": "app_private",
+      "function": "recheck_grip_course_release",
+      "definition": "CREATE TRIGGER recheck_grip_course_release_trigger AFTER INSERT OR DELETE OR UPDATE OF status, storage_path, asset_type ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_release()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_assets",
+      "trigger": "rederive_media_progress_after_duration_trigger",
+      "functionSchema": "app_private",
+      "function": "rederive_media_progress_after_duration",
+      "definition": "CREATE TRIGGER rederive_media_progress_after_duration_trigger AFTER UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW WHEN ((new.duration_seconds IS NOT NULL)) EXECUTE FUNCTION app_private.rederive_media_progress_after_duration()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "cutover_write_guard",
+      "functionSchema": "lockliel_cutover",
+      "function": "deny_write",
+      "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "normalize_lesson_progress_state_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_lesson_progress_state",
+      "definition": "CREATE TRIGGER normalize_lesson_progress_state_trigger BEFORE INSERT OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_progress_state()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "on_lesson_progress_referral_tracking",
+      "functionSchema": "app_private",
+      "function": "track_referred_discipleship_progress",
+      "definition": "CREATE TRIGGER on_lesson_progress_referral_tracking AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.track_referred_discipleship_progress()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "protect_lesson_progress_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_progress_identity",
+      "definition": "CREATE TRIGGER protect_lesson_progress_identity_trigger BEFORE UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "sync_journey_from_lesson_progress_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_journey_from_lesson_progress",
+      "definition": "CREATE TRIGGER sync_journey_from_lesson_progress_trigger AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.sync_journey_from_lesson_progress()"
+    },
+    {
+      "schema": "public",
+      "table": "lesson_progress",
+      "trigger": "validate_lesson_completion_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_lesson_completion",
+      "definition": "CREATE TRIGGER validate_lesson_completion_trigger BEFORE INSERT OR UPDATE OF status, worksheet_status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_completion()"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "audit_learning_lesson",
+      "functionSchema": "app_private",
+      "function": "audit_learning_configuration",
+      "definition": "CREATE TRIGGER audit_learning_lesson AFTER UPDATE OF worksheet_schema, configuration_version, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.audit_learning_configuration('worksheet_schema', 'configuration_version', 'position')"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "cutover_write_guard",
+      "functionSchema": "lockliel_cutover",
+      "function": "deny_write",
+      "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "default_lesson_translation_key_trigger",
+      "functionSchema": "app_private",
+      "function": "default_translation_key_from_slug",
+      "definition": "CREATE TRIGGER default_lesson_translation_key_trigger BEFORE INSERT OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "protect_lesson_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_lesson_identity",
+      "definition": "CREATE TRIGGER protect_lesson_identity_trigger BEFORE UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.protect_lesson_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "recheck_grip_course_after_lesson_change_trigger",
+      "functionSchema": "app_private",
+      "function": "recheck_grip_course_after_lesson_change",
+      "definition": "CREATE TRIGGER recheck_grip_course_after_lesson_change_trigger AFTER INSERT OR DELETE OR UPDATE OF course_id, \"position\", worksheet_schema, title ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_after_lesson_change()"
+    },
+    {
+      "schema": "public",
+      "table": "lessons",
+      "trigger": "validate_lesson_translation_family_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_lesson_translation_family",
+      "definition": "CREATE TRIGGER validate_lesson_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, course_id, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_translation_family()"
+    },
+    {
+      "schema": "public",
+      "table": "media_progress",
+      "trigger": "cutover_write_guard",
+      "functionSchema": "lockliel_cutover",
+      "function": "deny_write",
+      "definition": "CREATE TRIGGER cutover_write_guard BEFORE INSERT OR DELETE OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION lockliel_cutover.deny_write()"
+    },
+    {
+      "schema": "public",
+      "table": "media_progress",
+      "trigger": "normalize_media_progress_state_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_media_progress_state",
+      "definition": "CREATE TRIGGER normalize_media_progress_state_trigger BEFORE INSERT OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_media_progress_state()"
+    },
+    {
+      "schema": "public",
+      "table": "media_progress",
+      "trigger": "preserve_media_start_time_trigger",
+      "functionSchema": "app_private",
+      "function": "preserve_media_start_time",
+      "definition": "CREATE TRIGGER preserve_media_start_time_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.preserve_media_start_time()"
+    },
+    {
+      "schema": "public",
+      "table": "media_progress",
+      "trigger": "protect_media_progress_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_progress_identity",
+      "definition": "CREATE TRIGGER protect_media_progress_identity_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "member_staff_notes",
+      "trigger": "audit_member_staff_note_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_member_staff_note",
+      "definition": "CREATE TRIGGER audit_member_staff_note_trigger AFTER INSERT OR UPDATE ON public.member_staff_notes FOR EACH ROW EXECUTE FUNCTION app_private.audit_member_staff_note()"
+    },
+    {
+      "schema": "public",
+      "table": "messages",
+      "trigger": "notify_new_message_trigger",
+      "functionSchema": "app_private",
+      "function": "notify_new_message",
+      "definition": "CREATE TRIGGER notify_new_message_trigger AFTER INSERT ON public.messages FOR EACH ROW EXECUTE FUNCTION app_private.notify_new_message()"
+    },
+    {
+      "schema": "public",
+      "table": "order_fulfillment_events",
+      "trigger": "normalize_fulfillment_event_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_fulfillment_event",
+      "definition": "CREATE TRIGGER normalize_fulfillment_event_trigger BEFORE INSERT ON public.order_fulfillment_events FOR EACH ROW EXECUTE FUNCTION app_private.normalize_fulfillment_event()"
+    },
+    {
+      "schema": "public",
+      "table": "order_fulfillment_events",
+      "trigger": "sync_order_fulfillment_status_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_order_fulfillment_status",
+      "definition": "CREATE TRIGGER sync_order_fulfillment_status_trigger AFTER INSERT ON public.order_fulfillment_events FOR EACH ROW EXECUTE FUNCTION app_private.sync_order_fulfillment_status()"
+    },
+    {
+      "schema": "public",
+      "table": "order_fulfillment_events",
+      "trigger": "validate_fulfillment_event_order_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_fulfillment_event_order",
+      "definition": "CREATE TRIGGER validate_fulfillment_event_order_trigger BEFORE INSERT ON public.order_fulfillment_events FOR EACH ROW EXECUTE FUNCTION app_private.validate_fulfillment_event_order()"
+    },
+    {
+      "schema": "public",
+      "table": "order_items",
+      "trigger": "protect_order_items_fulfillment_snapshot_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_fulfillment_snapshot",
+      "definition": "CREATE TRIGGER protect_order_items_fulfillment_snapshot_trigger BEFORE INSERT OR DELETE OR UPDATE ON public.order_items FOR EACH ROW EXECUTE FUNCTION app_private.protect_fulfillment_snapshot()"
+    },
+    {
+      "schema": "public",
+      "table": "order_shipping_addresses",
+      "trigger": "protect_shipping_address_fulfillment_snapshot_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_fulfillment_snapshot",
+      "definition": "CREATE TRIGGER protect_shipping_address_fulfillment_snapshot_trigger BEFORE INSERT OR DELETE OR UPDATE ON public.order_shipping_addresses FOR EACH ROW EXECUTE FUNCTION app_private.protect_fulfillment_snapshot()"
+    },
+    {
+      "schema": "public",
+      "table": "order_shipping_addresses",
+      "trigger": "validate_shipping_address_order_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_shipping_address_order",
+      "definition": "CREATE TRIGGER validate_shipping_address_order_trigger BEFORE INSERT OR UPDATE ON public.order_shipping_addresses FOR EACH ROW EXECUTE FUNCTION app_private.validate_shipping_address_order()"
+    },
+    {
+      "schema": "public",
+      "table": "orders",
+      "trigger": "audit_order_status_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_order_status",
+      "definition": "CREATE TRIGGER audit_order_status_trigger AFTER UPDATE OF status ON public.orders FOR EACH ROW EXECUTE FUNCTION app_private.audit_order_status()"
+    },
+    {
+      "schema": "public",
+      "table": "orders",
+      "trigger": "normalize_order_record_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_order_record",
+      "definition": "CREATE TRIGGER normalize_order_record_trigger BEFORE INSERT OR UPDATE ON public.orders FOR EACH ROW EXECUTE FUNCTION app_private.normalize_order_record()"
+    },
+    {
+      "schema": "public",
+      "table": "orders",
+      "trigger": "validate_order_provider_relationships_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_order_provider_relationships",
+      "definition": "CREATE TRIGGER validate_order_provider_relationships_trigger BEFORE INSERT OR UPDATE OF provider ON public.orders FOR EACH ROW EXECUTE FUNCTION app_private.validate_order_provider_relationships()"
+    },
+    {
+      "schema": "public",
+      "table": "partner_commitments",
+      "trigger": "audit_partner_commitment_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_partner_commitment_change",
+      "definition": "CREATE TRIGGER audit_partner_commitment_change_trigger AFTER INSERT OR UPDATE ON public.partner_commitments FOR EACH ROW EXECUTE FUNCTION app_private.audit_partner_commitment_change()"
+    },
+    {
+      "schema": "public",
+      "table": "partner_commitments",
+      "trigger": "normalize_partner_commitment_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_partner_commitment",
+      "definition": "CREATE TRIGGER normalize_partner_commitment_trigger BEFORE INSERT OR UPDATE ON public.partner_commitments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_partner_commitment()"
+    },
+    {
+      "schema": "public",
+      "table": "partner_commitments",
+      "trigger": "validate_commitment_provider_relationships_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_commitment_provider_relationships",
+      "definition": "CREATE TRIGGER validate_commitment_provider_relationships_trigger BEFORE INSERT OR UPDATE OF provider ON public.partner_commitments FOR EACH ROW EXECUTE FUNCTION app_private.validate_commitment_provider_relationships()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_events",
+      "trigger": "audit_payment_event_failure_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_payment_event_failure",
+      "definition": "CREATE TRIGGER audit_payment_event_failure_trigger AFTER UPDATE OF status ON public.payment_events FOR EACH ROW EXECUTE FUNCTION app_private.audit_payment_event_failure()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_events",
+      "trigger": "normalize_payment_event_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_payment_event",
+      "definition": "CREATE TRIGGER normalize_payment_event_trigger BEFORE INSERT OR UPDATE ON public.payment_events FOR EACH ROW EXECUTE FUNCTION app_private.normalize_payment_event()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_events",
+      "trigger": "validate_payment_event_relationships_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_payment_event_relationships",
+      "definition": "CREATE TRIGGER validate_payment_event_relationships_trigger BEFORE INSERT OR UPDATE OF provider, checkout_session_id, gift_id, order_id, commitment_id ON public.payment_events FOR EACH ROW EXECUTE FUNCTION app_private.validate_payment_event_relationships()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_provider_connections",
+      "trigger": "audit_payment_provider_readiness_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_payment_provider_readiness",
+      "definition": "CREATE TRIGGER audit_payment_provider_readiness_trigger BEFORE UPDATE ON public.payment_provider_connections FOR EACH ROW EXECUTE FUNCTION app_private.audit_payment_provider_readiness()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_provider_connections",
+      "trigger": "lock_partner_checkout_provider_transition_trigger",
+      "functionSchema": "app_private",
+      "function": "lock_partner_checkout_transition",
+      "definition": "CREATE TRIGGER lock_partner_checkout_provider_transition_trigger BEFORE UPDATE OF status, checkout_adapter_ready, webhook_ready ON public.payment_provider_connections FOR EACH STATEMENT EXECUTE FUNCTION app_private.lock_partner_checkout_transition()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_provider_connections",
+      "trigger": "refresh_partner_checkout_state_provider_trigger",
+      "functionSchema": "app_private",
+      "function": "refresh_partner_checkout_state_trigger",
+      "definition": "CREATE TRIGGER refresh_partner_checkout_state_provider_trigger AFTER INSERT OR DELETE OR UPDATE OF status, checkout_adapter_ready, webhook_ready, supports_one_time, supports_recurring ON public.payment_provider_connections FOR EACH ROW EXECUTE FUNCTION app_private.refresh_partner_checkout_state_trigger()"
+    },
+    {
+      "schema": "public",
+      "table": "payment_provider_connections",
+      "trigger": "sync_payment_release_flag_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_payment_release_flag",
+      "definition": "CREATE TRIGGER sync_payment_release_flag_trigger AFTER UPDATE OF status, checkout_adapter_ready, webhook_ready ON public.payment_provider_connections FOR EACH ROW EXECUTE FUNCTION app_private.sync_payment_release_flag()"
+    },
+    {
+      "schema": "public",
+      "table": "privacy_requests",
+      "trigger": "audit_privacy_request_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_privacy_request",
+      "definition": "CREATE TRIGGER audit_privacy_request_trigger AFTER INSERT OR UPDATE OF status ON public.privacy_requests FOR EACH ROW EXECUTE FUNCTION app_private.audit_privacy_request()"
+    },
+    {
+      "schema": "public",
+      "table": "privacy_requests",
+      "trigger": "capture_account_deletion_target_trigger",
+      "functionSchema": "app_private",
+      "function": "capture_account_deletion_target",
+      "definition": "CREATE TRIGGER capture_account_deletion_target_trigger AFTER INSERT ON public.privacy_requests FOR EACH ROW EXECUTE FUNCTION app_private.capture_account_deletion_target()"
+    },
+    {
+      "schema": "public",
+      "table": "privacy_requests",
+      "trigger": "clear_account_deletion_target_trigger",
+      "functionSchema": "app_private",
+      "function": "clear_account_deletion_target",
+      "definition": "CREATE TRIGGER clear_account_deletion_target_trigger AFTER UPDATE OF status ON public.privacy_requests FOR EACH ROW EXECUTE FUNCTION app_private.clear_account_deletion_target()"
+    },
+    {
+      "schema": "public",
+      "table": "privacy_requests",
+      "trigger": "guard_privacy_request_update_trigger",
+      "functionSchema": "app_private",
+      "function": "guard_privacy_request_update",
+      "definition": "CREATE TRIGGER guard_privacy_request_update_trigger BEFORE INSERT OR UPDATE ON public.privacy_requests FOR EACH ROW EXECUTE FUNCTION app_private.guard_privacy_request_update()"
+    },
+    {
+      "schema": "public",
+      "table": "privacy_requests",
+      "trigger": "zz_guard_account_deletion_execution",
+      "functionSchema": "app_private",
+      "function": "guard_account_deletion_execution",
+      "definition": "CREATE TRIGGER zz_guard_account_deletion_execution BEFORE UPDATE ON public.privacy_requests FOR EACH ROW EXECUTE FUNCTION app_private.guard_account_deletion_execution()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "audit_product_release_change_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_product_release_change",
+      "definition": "CREATE TRIGGER audit_product_release_change_trigger AFTER UPDATE OF status, storage_path, price_cents ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.audit_product_release_change()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "default_product_translation_key_trigger",
+      "functionSchema": "app_private",
+      "function": "default_translation_key_from_slug",
+      "definition": "CREATE TRIGGER default_product_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "protect_product_identity_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_product_identity",
+      "definition": "CREATE TRIGGER protect_product_identity_trigger BEFORE UPDATE ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.protect_product_identity()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "sync_digital_delivery_release_flags_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_digital_delivery_release_flags",
+      "definition": "CREATE TRIGGER sync_digital_delivery_release_flags_trigger AFTER UPDATE OF status, storage_path ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.sync_digital_delivery_release_flags()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "validate_product_release_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_product_release",
+      "definition": "CREATE TRIGGER validate_product_release_trigger BEFORE INSERT OR UPDATE OF status, storage_path ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.validate_product_release()"
+    },
+    {
+      "schema": "public",
+      "table": "products",
+      "trigger": "validate_product_translation_family_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_product_translation_family",
+      "definition": "CREATE TRIGGER validate_product_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, product_type ON public.products FOR EACH ROW EXECUTE FUNCTION app_private.validate_product_translation_family()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "advance_journey_after_profile_trigger",
+      "functionSchema": "app_private",
+      "function": "advance_journey_after_profile",
+      "definition": "CREATE TRIGGER advance_journey_after_profile_trigger AFTER UPDATE OF onboarding_status ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.advance_journey_after_profile()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "guard_current_leader_pointer_trigger",
+      "functionSchema": "app_private",
+      "function": "guard_current_leader_pointer",
+      "definition": "CREATE TRIGGER guard_current_leader_pointer_trigger BEFORE INSERT OR UPDATE OF current_leader_id ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.guard_current_leader_pointer()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "guard_original_inviter_lineage_trigger",
+      "functionSchema": "app_private",
+      "function": "guard_original_inviter_lineage",
+      "definition": "CREATE TRIGGER guard_original_inviter_lineage_trigger BEFORE INSERT OR UPDATE OF original_inviter_id ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.guard_original_inviter_lineage()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "guard_profile_deletion_responsibilities_trigger",
+      "functionSchema": "app_private",
+      "function": "guard_profile_deletion_responsibilities",
+      "definition": "CREATE TRIGGER guard_profile_deletion_responsibilities_trigger BEFORE DELETE ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.guard_profile_deletion_responsibilities()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "link_financial_records_for_confirmed_new_profile_trigger",
+      "functionSchema": "app_private",
+      "function": "link_financial_records_for_confirmed_new_profile",
+      "definition": "CREATE TRIGGER link_financial_records_for_confirmed_new_profile_trigger AFTER INSERT ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.link_financial_records_for_confirmed_new_profile()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "link_nonfinancial_records_for_confirmed_new_profile_trigger",
+      "functionSchema": "app_private",
+      "function": "link_nonfinancial_records_for_confirmed_new_profile",
+      "definition": "CREATE TRIGGER link_nonfinancial_records_for_confirmed_new_profile_trigger AFTER INSERT ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.link_nonfinancial_records_for_confirmed_new_profile()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "normalize_member_profile_update_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_member_profile_update",
+      "definition": "CREATE TRIGGER normalize_member_profile_update_trigger BEFORE UPDATE OF first_name, last_name, phone, city, region, country, locale, timezone ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.normalize_member_profile_update()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "on_profile_create_communication_preferences",
+      "functionSchema": "app_private",
+      "function": "create_default_communication_preferences",
+      "definition": "CREATE TRIGGER on_profile_create_communication_preferences AFTER INSERT ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.create_default_communication_preferences()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "on_profile_created_referral",
+      "functionSchema": "app_private",
+      "function": "ensure_default_referral_link",
+      "definition": "CREATE TRIGGER on_profile_created_referral AFTER INSERT ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.ensure_default_referral_link()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "on_profile_sync_connection_card",
+      "functionSchema": "app_private",
+      "function": "sync_profile_connection_card",
+      "definition": "CREATE TRIGGER on_profile_sync_connection_card AFTER INSERT OR UPDATE OF first_name, last_name, city, region, country, locale ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.sync_profile_connection_card()"
+    },
+    {
+      "schema": "public",
+      "table": "profiles",
+      "trigger": "on_profile_sync_finance_card",
+      "functionSchema": "app_private",
+      "function": "sync_profile_finance_card",
+      "definition": "CREATE TRIGGER on_profile_sync_finance_card AFTER INSERT OR UPDATE OF first_name, last_name, email, city, region, country ON public.profiles FOR EACH ROW EXECUTE FUNCTION app_private.sync_profile_finance_card()"
+    },
+    {
+      "schema": "public",
+      "table": "reach_contacts",
+      "trigger": "enforce_reach_contact_limit_trigger",
+      "functionSchema": "app_private",
+      "function": "enforce_reach_contact_limit",
+      "definition": "CREATE TRIGGER enforce_reach_contact_limit_trigger BEFORE INSERT OR UPDATE OF status, owner_id ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.enforce_reach_contact_limit()"
+    },
+    {
+      "schema": "public",
+      "table": "reach_contacts",
+      "trigger": "sync_member_reach_counts_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_member_reach_counts",
+      "definition": "CREATE TRIGGER sync_member_reach_counts_trigger AFTER INSERT OR DELETE OR UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.sync_member_reach_counts()"
+    },
+    {
+      "schema": "public",
+      "table": "reach_contacts",
+      "trigger": "touch_reach_contact_updated_at_trigger",
+      "functionSchema": "app_private",
+      "function": "touch_reach_contact_updated_at",
+      "definition": "CREATE TRIGGER touch_reach_contact_updated_at_trigger BEFORE UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.touch_reach_contact_updated_at()"
+    },
+    {
+      "schema": "public",
+      "table": "referral_events",
+      "trigger": "sync_referral_signup_reach_count_trigger",
+      "functionSchema": "app_private",
+      "function": "sync_referral_signup_reach_count",
+      "definition": "CREATE TRIGGER sync_referral_signup_reach_count_trigger AFTER INSERT ON public.referral_events FOR EACH ROW WHEN ((new.event_type = 'signup'::text)) EXECUTE FUNCTION app_private.sync_referral_signup_reach_count()"
+    },
+    {
+      "schema": "public",
+      "table": "referral_links",
+      "trigger": "validate_referral_link_content_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_referral_link_content",
+      "definition": "CREATE TRIGGER validate_referral_link_content_trigger BEFORE INSERT ON public.referral_links FOR EACH ROW EXECUTE FUNCTION app_private.validate_referral_link_content()"
+    },
+    {
+      "schema": "public",
+      "table": "share_assets",
+      "trigger": "default_share_translation_key_trigger",
+      "functionSchema": "app_private",
+      "function": "default_translation_key_from_slug",
+      "definition": "CREATE TRIGGER default_share_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "schema": "public",
+      "table": "share_assets",
+      "trigger": "normalize_share_asset_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_share_asset",
+      "definition": "CREATE TRIGGER normalize_share_asset_trigger BEFORE INSERT OR UPDATE ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_share_asset()"
+    },
+    {
+      "schema": "public",
+      "table": "share_assets",
+      "trigger": "validate_share_asset_translation_family_trigger",
+      "functionSchema": "app_private",
+      "function": "validate_share_asset_translation_family",
+      "definition": "CREATE TRIGGER validate_share_asset_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, asset_type ON public.share_assets FOR EACH ROW EXECUTE FUNCTION app_private.validate_share_asset_translation_family()"
+    },
+    {
+      "schema": "public",
+      "table": "staff_roles",
+      "trigger": "audit_staff_role_delete_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_staff_role_delete",
+      "definition": "CREATE TRIGGER audit_staff_role_delete_trigger AFTER DELETE ON public.staff_roles FOR EACH ROW EXECUTE FUNCTION app_private.audit_staff_role_delete()"
+    },
+    {
+      "schema": "public",
+      "table": "staff_roles",
+      "trigger": "audit_staff_role_insert_trigger",
+      "functionSchema": "app_private",
+      "function": "audit_staff_role_insert",
+      "definition": "CREATE TRIGGER audit_staff_role_insert_trigger AFTER INSERT ON public.staff_roles FOR EACH ROW EXECUTE FUNCTION app_private.audit_staff_role_insert()"
+    },
+    {
+      "schema": "public",
+      "table": "staff_roles",
+      "trigger": "normalize_staff_role_grant_trigger",
+      "functionSchema": "app_private",
+      "function": "normalize_staff_role_grant",
+      "definition": "CREATE TRIGGER normalize_staff_role_grant_trigger BEFORE INSERT ON public.staff_roles FOR EACH ROW EXECUTE FUNCTION app_private.normalize_staff_role_grant()"
+    },
+    {
+      "schema": "public",
+      "table": "staff_roles",
+      "trigger": "protect_super_admin_delete_trigger",
+      "functionSchema": "app_private",
+      "function": "protect_super_admin_delete",
+      "definition": "CREATE TRIGGER protect_super_admin_delete_trigger BEFORE DELETE ON public.staff_roles FOR EACH ROW EXECUTE FUNCTION app_private.protect_super_admin_delete()"
+    }
+  ],
+  "ok": true,
+  "checks": [
+    "owned Unix socket only",
+    "280 authoritative sources",
+    "old learner enrollment and progress seeded",
+    "before inventory accepted",
+    "partial A cannot pass two-account acceptance",
+    "partial state does not fabricate B",
+    "per-account exact seven bootstrap tables plus identities metadata",
+    "distinct ordinary A B no roles enrollment progress notes sessions",
+    "existing rows unchanged across protected domains",
+    "catalog trigger graph unchanged",
+    "57 RLS tables and zero service note grants",
+    "A cross-owner select denial",
+    "B cross-owner select denial",
+    "reject wrong identity subject",
+    "reject wrong identity email",
+    "reject unexpected metadata",
+    "reject wrong profile default",
+    "reject wrong ordinary claim",
+    "reject unintended enrollment",
+    "reject existing learner mutation",
+    "all negative local changes rolled back",
+    "280 migration hashes unchanged"
+  ],
+  "checkCount": 22,
+  "localTriggerGraphSha256": "3da590ca2615058cb251d73e063c55f0c459e534a015715266148e117a906890",
+  "rls": {
+    "publicTables": 57,
+    "enabled": 57,
+    "notesTable": false,
+    "notesColumn": false
+  },
+  "localCatalogOnly": true,
+  "managedAuthHooksVerified": false,
+  "ownClusterStopped": true,
+  "ownFixtureRemoved": true
+}

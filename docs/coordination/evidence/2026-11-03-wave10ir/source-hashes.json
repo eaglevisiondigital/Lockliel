@@ -1,0 +1,27 @@
+{
+  "source": "9bde7d74e3f8c303155ece75fd8148c0d45fd61a",
+  "files": {
+    "scripts/fixture-native/fixture_inventory.py": "b5514243328a7bf6c04c0c14a4fdb2961115010b83cdc73690a62f4f5b4a4e52",
+    "scripts/fixture-native/fixture_native_worker.py": "8b5d4cb302095c77a47d40cbc62ab590b41b6e111e19744c7c3706f87ca3c245",
+    "scripts/fixture-provision/contracts.mjs": "6d61c0fa79d9cee43725bf126929ae6c491e73bbb8509f42f6af8ce5680413cf",
+    "scripts/fixture-provision/launcher.mjs": "2a3abc15d0907a044500e95b05617a25da6782cf79130458d1ba351e10d2edee",
+    "scripts/fixture-provision/native-channel.mjs": "76a39a9d52f2bae0624cdaa394c375df4788c2d0e887c92bde1a17d8294183ff",
+    "scripts/fixture-provision/offline-verify.command": "296492891b2aaca3403fbe1059a8e6cd8107b3a0f97169f4ed40d3fd93cd03dc",
+    "scripts/fixture-provision/operator-authority.mjs": "459f21ce113ef1774245c3d5c422128f3c826533fd034dd115da57690c71d8ae",
+    "scripts/fixture-provision/operator-installation-seal.json": "b738cb178990863c08bb27868c770466bf3774cfa028771dac7b0654d05dd38c",
+    "scripts/fixture-provision/operator-launch.command": "9412c78dc2a5e8b4ab0689dc66c192f536cfe8e73029c1bd19444364f84d8d40",
+    "scripts/fixture-provision/operator-runner.mjs": "15f356d20331cfb0b32dd6b63ae944092b8f58d7e21fdece2241f0f353b41b2d",
+    "scripts/fixture-provision/operator.mjs": "cf5fa0085f02b3e877ef84cc9c9c5240ce3d839d9eaf4c338f5267b0d2cc643f",
+    "scripts/fixture-provision/provenance-store.mjs": "9d79d4f621135fe2e900a95dfe8bab58eeb55c6cab1be46c2db25ddd32b3146e",
+    "scripts/fixture-provision/source-manifest.json": "9a7d50d496b4eb1b222e85f2df0a79f1f3178842e60bd50cde2692bec1aaa329",
+    "scripts/fixture-provision/transport.mjs": "1226ce45a819389ce9e34a31728dd5a7597340a2a832917110c20c179c3e720d",
+    "scripts/fixture-provision/workflow.mjs": "d340b203053583b88d66d3418fde689ac1b3ec3df4b0229ccfb37637e177cb6f",
+    "tests/fixture-provenance-store.test.mjs": "90cc5893e3226d0b74d278219b0d99f1c89fa3c361f1780609af0672a2285cf3",
+    "tests/fixture-provision-operator.test.mjs": "d41a4dcdb1b470de13f180834d33bd22f354f2b9afedde0fdba07ae1487477da",
+    "tests/fixture-provision-wave10ir-security.test.mjs": "c641e910c122cb6c9868c8dc3bb3f3b1abff398b9499db95b6e106b1f19b69af",
+    "tests/fixture_native_inventory_test.py": "24cc4e0c8858ab561090b64c8ce367d46e80b824e3f740dde690d275284f24d1",
+    "tests/fixture_native_wave10ir_security_test.py": "f178974c8f65b57d9b2a0edf641d5ed53704151a52516bdae1ab4ef6c2514ff2",
+    "tests/fixture_native_worker_test.py": "789e522a224cc71931f4f326642a9d7af20eb678c9b477b347c34464d48c0ebc",
+    "tests/fixture_provision_sql_test.py": "0bd757e973ba908726d67974c38f7d4b4f238f24024fe6cc265afdcd37d764f7"
+  }
+}
