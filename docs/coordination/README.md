@@ -1,3 +1,7 @@
+## Post-integration local acceptance (2026-11-03)
+
+[Post-integration acceptance](POST_INTEGRATION_ACCEPTANCE_RESULT.md) records actual native Chrome 200% reflow on eight destinations, keyboard Anchor focus, bounded rendered contrast, and VoiceOver attempted/restored with spoken acceptance PENDING. All34assets unchanged, individual approval evidence unverified. Earlier Owner Privacy/read-model variants remain unmounted; no source lost. Three actual agents delivered independent review c58f05e, asset register f9bb224 and separate My Five follow-up 15c4577 (122focused tests/type/lint/bundle; independently reviewed). No feature promoted to Live or branch merged. Existing accepted preview/worktrees/280migrations/40operator/collector/pinnedapp/rootdirtywork preserved. Owner visual signoff pending; provider hold active; J CONSUMED, reservation UNUSED. No credentials/provider/production/Auth/DB/migration/deployment/push/merge action.
+
 ## Latest unified member review
 
 [Exact local preview, commits and owner instructions](UNIFIED_MEMBER_EXPERIENCE_INTEGRATION_RESULT.md). [Design authority](MEMBER_DESIGN_REFERENCE_REGISTER.md). Local synthetic composition only; no hosted or production activity or release. All 280 migration hashes, 40 operator files, disabled collector, pinned application, accepted branches and original dirty work are preserved. J CONSUMED; application reservation UNUSED; provider hold active.

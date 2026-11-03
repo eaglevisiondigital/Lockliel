@@ -1,0 +1,37 @@
+{
+  "lanes": [
+    {
+      "agent": "post_integration_review",
+      "branch": "codex/post-integration-review",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-post-integration-review/Lockliel",
+      "commit": "c58f05e7b0a704bf043df39762cd17c498bb325b",
+      "clean": true
+    },
+    {
+      "agent": "asset_approval_review",
+      "branch": "codex/post-integration-design",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-post-integration-design/Lockliel",
+      "commit": "f9bb22412db881eac7d05eaffce1f60d1f77d6e6",
+      "clean": true
+    },
+    {
+      "agent": "myfive_reminder_preview",
+      "branch": "codex/myfive-reminder-preview",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-myfive-reminder-preview/Lockliel",
+      "commit": "15c457713b42394e3250055b24c71410e530c5a7",
+      "clean": true
+    }
+  ],
+  "migrationHashesUnchanged": 280,
+  "operatorFilesUnchanged": 40,
+  "collectorUnchanged": true,
+  "existingRefsUnchanged": true,
+  "rootDirtyStatusPreserved": true,
+  "previewListenerClosed": true,
+  "previewProcessExitCode": 0,
+  "J": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "providerHold": true,
+  "hostedOrProductionActions": 0,
+  "freshProductionAudit": false
+}

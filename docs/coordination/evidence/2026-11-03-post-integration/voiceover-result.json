@@ -1,0 +1,10 @@
+{
+  "initial": "off",
+  "temporarilyEnabled": true,
+  "settingsVerifiedOn": true,
+  "captionPanelAlreadyEnabled": true,
+  "navigationAttempt": "Control-Option-Right on Scripture Anchors",
+  "spokenOutputVerified": false,
+  "blocker": "VoiceOver application/caption observation timed out; no audio observation available",
+  "restoration": "The following is a diff from the previous accessibility tree for Window: \"VoiceOver\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t51 switch To toggle VoiceOver, quickly press Touch ID three times while holding the Command key., Value: off, ID: AX_VOICEOVER_ENABLED\nSelected:\n\t14 row (selected)\n\nNote: Pay special attention to the content selected by the user. If the user asks a question or refers to the content they are looking at on-screen, they might be referring to the selected content (but they might be referring to something else that's visible, too)."
+}
