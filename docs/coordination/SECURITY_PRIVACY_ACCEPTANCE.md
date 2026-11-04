@@ -1,3 +1,8 @@
+
+## Wave 281 binding adapter implementation
+
+Local-only four-adapter composition and independent review are being recorded in `docs/wave281-binding/RESULT.md`. The 42-check SQL evidence is retained without replay; no new fixture or hosted action. Original 280 operator, migrations and pinned application remain unchanged. Real-member safeguarding decisions remain pending; no feature becomes live. Separate member preview navigation-title improvement is committed on its own branch. Diagnostic CONSUMED; application reservation UNUSED.
+
 > Wave281 hosted decision: **HOSTED ACCEPTANCE STILL BLOCKED** only by absent separately reviewed trusted281hostedbinding; local42-checkphase complete, representationPASS/providerUNKNOWN. Proposalc3e3009/review9af8bd8; next fourlocaladapters only, no hostedauthority. Actual FaithBoost returncontinuity2f26720 passed14browser/8contract/type/build/lint. See [result](../wave281-hosted-decision/RESULT.md).321protectedhashes unchanged; policyproposals pending; JCONSUMED/reservationUNUSED; no hostedaction/newLive status.
 
 > Wave281 completion: **LOCAL CONTAINMENT VERIFIED** on232f2e96; ONE PG17.11 fixture,42checks,exact280→281,typed55P03concurrency,eight-recordcleanup,andcourse/catalogrestoration passed. Evidence1863ea9; independentreview/removal verified. Legacy nonsemanticparityhold retained; hosted/operationalReady remainfalse. Parallel8browserfocuscasespass, no newfeaturecode. See [result](../wave281-completion/RESULT.md).321protectedhashes unchanged; JCONSUMED/reservationUNUSED; no hostedactions/newLive status.

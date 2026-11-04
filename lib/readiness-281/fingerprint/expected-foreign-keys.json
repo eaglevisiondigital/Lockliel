@@ -1,0 +1,48 @@
+[
+  {
+    "sourceSchema": "public",
+    "sourceTable": "reach_contacts",
+    "sourceOwner": "postgres",
+    "targetSchema": "public",
+    "targetTable": "profiles",
+    "targetOwner": "postgres",
+    "targetColumns": [
+      "id"
+    ],
+    "matchType": "s",
+    "updateAction": "a",
+    "deferrable": false,
+    "initiallyDeferred": false,
+    "validated": true,
+    "sourceRls": true,
+    "sourceForceRls": false,
+    "name": "reach_contacts_linked_profile_id_fkey",
+    "sourceColumns": [
+      "linked_profile_id"
+    ],
+    "deleteAction": "n"
+  },
+  {
+    "sourceSchema": "public",
+    "sourceTable": "reach_contacts",
+    "sourceOwner": "postgres",
+    "targetSchema": "public",
+    "targetTable": "profiles",
+    "targetOwner": "postgres",
+    "targetColumns": [
+      "id"
+    ],
+    "matchType": "s",
+    "updateAction": "a",
+    "deferrable": false,
+    "initiallyDeferred": false,
+    "validated": true,
+    "sourceRls": true,
+    "sourceForceRls": false,
+    "name": "reach_contacts_owner_id_fkey",
+    "sourceColumns": [
+      "owner_id"
+    ],
+    "deleteAction": "c"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "lib/readiness-281/catalog.sql": "dc5a563e7b3ac84db16314c28d9dd57addf3449de116eec572ac14d11c45e3b1",
+  "lib/readiness-281/fingerprint/compare.mjs": "f719e2bc39c9a8a0a7e040b1226de948fc1e9675edbef6875b555f759674f520",
+  "lib/readiness-281/fingerprint/default.json": "f14e6cc8e87f33d6dc7d7d945524f50af96b2e602a6f9bcb9aac84b882ab124f",
+  "lib/readiness-281/fingerprint/empty.json": "b528069ba91e81dba36d9fb0ce875e422f798781a8323f6e2d6c2e9d35b52b67",
+  "lib/readiness-281/fingerprint/expected-foreign-keys.json": "fc5590bb63bee65c844f8c4fca1730e5d6ff372637794724334dab72f75d62a6",
+  "lib/readiness-281/fingerprint/future-structural-capture.sql": "e712c5eff26d0500931428c52b96caa9fb99581cae389aac81fad15f00109dac",
+  "lib/readiness-281/fingerprint/local-status-semantic-proposal.sql": "a345646e5ae68c3892129820ccfd4290e87bb936a1bcb635754532f214421549",
+  "lib/readiness-281/ledger.sql": "65f8f2920e79abef1b5962e6c86ccd0531e8e532d4200c46ab4e02247344c224",
+  "lib/readiness-281/local-expected.json": "e22879ab36a1e823561e0c42abe31a48fdf613b159b1e228b988320514803a11"
+}
