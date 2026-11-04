@@ -1,0 +1,16 @@
+{
+  "baseline": "b57946a84b3b49bd0ea3313e84b71ac1ac7246a4",
+  "correction": "ebc34a036266422aa3fd1a09ed9dd319f0c959ff",
+  "review": "3df833b0762b899717e308c0f6ecdfdb470a17a4",
+  "member": "99fb7925db8eedaeac2877d40a38c8eec34a06bf",
+  "protectedFiles": 321,
+  "protectedMismatches": 0,
+  "files": {
+    "tests/my-lockliel-platform.test.mjs": "2e87741571beb17ffcee4ffeefdab03028d7664de4676af5fb6786e580a79612",
+    "docs/wave281-regression/RESULT.md": "a9686a37dc3ad1404295473b08fdf29463234f0fc9b39d4dc4b346708b7c0417",
+    "docs/wave281-regression/FAILURES.md": "5954b1e07639dc27dc0f2b7d93cf9e4c6a73f43a6684156e1a0e722581b7c5ca",
+    "docs/wave281-regression/SKIPS.md": "204cb40edc3c54e583dafce166343d420135c875815a9406fe459a094962a225",
+    "docs/wave281-regression/SECURITY_REVIEW.md": "53b460fba65f97f78cc99ece7a081b1c54d0364729442551c39c8a3e60108060",
+    "docs/wave281-regression/VALIDATION.json": "fa95866c8fd1bdede1ea079a4263a3e44ba2ba3d72b0e16389ea7d940d239163"
+  }
+}

@@ -1,3 +1,7 @@
+## Wave 281 regression closeout
+
+Local regression: 2,903 passed, zero failures/skips. All 15 original failures and 11 skips classified in `docs/wave281-regression/RESULT.md`. Protected 321 hashes unchanged; no SQL replay or hosted action. Existing repository-wide lint debt remains. Separate member navigation accessibility delivery is recorded; no feature becomes live or visually approved. Real-provider and safeguarding gates persist. Diagnostic CONSUMED; reservation UNUSED.
+
 
 ## Wave 281 binding adapter implementation
 

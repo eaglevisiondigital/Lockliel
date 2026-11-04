@@ -566,11 +566,8 @@ test("members can only change notification read state",()=>{
 });
 
 
-test("My Five limit and system-owned fields are enforced in the database",()=>{
+test("historical 280 My Five cap and system-owned grants remain preserved",()=>{
   const migration=fs.readFileSync("supabase/migrations/20260925111601_lockliel_enforce_my_five_integrity.sql","utf8");
-  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
-  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
-
   assert.match(migration,/revoke insert, update on table public\.reach_contacts from authenticated/);
   assert.match(migration,/grant insert \([\s\S]*owner_id[\s\S]*display_name[\s\S]*private_notes[\s\S]*\) on table public\.reach_contacts to authenticated/);
   assert.match(migration,/grant update \([\s\S]*display_name[\s\S]*status[\s\S]*private_notes[\s\S]*updated_at[\s\S]*\) on table public\.reach_contacts to authenticated/);
@@ -578,7 +575,17 @@ test("My Five limit and system-owned fields are enforced in the database",()=>{
   assert.match(migration,/pg_advisory_xact_lock/);
   assert.match(migration,/active_count>=5/);
   assert.match(migration,/My Five can contain no more than five active people/);
-  assert.match(api,/Pause or complete one before reactivating another/);
+});
+
+test("current My Five API removes the encouragement cap while preserving owner and revision checks",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
+  assert.doesNotMatch(api,/Pause or complete one before reactivating another|activeCount\s*>=\s*5/);
+  assert.match(api,/owner_id:uid/);
+  assert.match(api,/\&owner_id=eq\./);
+  assert.match(api,/\&updated_at=eq\./);
+  assert.match(api,/Relationship version unavailable/);
+  assert.match(api,/rows\[0\]\?\.owner_id!==uid/);
   assert.match(client,/Unable to update My Five/);
 });
 
