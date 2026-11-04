@@ -1,3 +1,10 @@
+<!-- 281-readiness-2026-11-04 -->
+## Migration281 readiness and connected My Five continuation
+
+See [current result](../281-readiness/RESULT.md), [staged acceptance](../281-readiness/ISOLATED_ACCEPTANCE_PROPOSAL.md), [owner decisions](../281-readiness/OWNER_DECISIONS.md), [next approval](../281-readiness/NEXT_APPROVAL_REQUEST.md). Actual lanes: continuity_member operatorproposal ab0e401; continuity_myfive connectedfeature79d54f5; coordinator proposal66cf32d; independentreview6e1148f. Separate local branches/worktrees; no merge. Five operator/four feature focused tests pass; feature four browser workflows/three responsiveaxe scans, type/build/lint pass. Counts overlap independent reruns.
+
+Protected280 operator remains unchanged and correctly rejects281; separate catalog/readiness/native receipt seals needed. Current three hosted routes do not expose My Five APIs. Maintenance is course-scoped, not a blanket contact lock. DirectRLSrevocation gap, genericstatus revision limitations, source/identity/provider/AB/privacy gates remain. All37statuses/120targets/fivejourneys retained, none newLive; owner visualapproval/manualzoom/VoiceOver/device remain open. J CONSUMED/reservationUNUSED. No SQL/provider/hosted action.
+
 <!-- myfive-release-candidate-2026-11-04 -->
 ## My Five canonical candidate package — local review only
 
