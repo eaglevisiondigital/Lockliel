@@ -1,0 +1,15 @@
+{
+  "executedSource": "232f2e96790b0a70b4511434a0197c2cb64e8505",
+  "evidence": "1863ea90ff09853d740bd390ba07a44ab36dfe8f",
+  "independentReview": "212f0403d4e8a20fd66e044530f8ef11fc8aab82",
+  "previousCoordination": "1e6782a",
+  "parallelPreservedSource": "c8da5c57e9a7e0c4830656bd4b42ce3ee9922df6",
+  "ownedRoot": "/private/tmp/l281-H8SSnq",
+  "ownedPid": 67837,
+  "fixtureAttempts": 1,
+  "exitCode": 0,
+  "recordedChecks": 42,
+  "cleanupIndependentlyVerified": true,
+  "assessment": "281 LOCAL CONTAINMENT VERIFIED",
+  "hostedAuthorized": false
+}
