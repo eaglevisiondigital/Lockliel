@@ -1,3 +1,10 @@
+<!-- wave281-compatibility-2026-11-04 -->
+## Separate281 local implementation — acceptance blocked
+
+See [current implementation result](../wave281-acceptance/RESULT.md), [route/write boundary](../wave281-acceptance/CONTROL_AND_ROUTE_REVIEW.md), [policy decisions](../wave281-acceptance/OWNER_DECISIONS.md) and [next authorization](../wave281-acceptance/NEXT_AUTHORIZATION.md). Actual independent lanes: continuity_member220ec5c readiness; coordinator71bd6a7 planner; continuity_myfivefde5911 Founders→Groups/MyJourney; continuity_adapter independent review. Exact worktrees/source pins in result; no merge.
+
+25readiness/101root selected/3feature focused tests pass; counts are separate, not a full-suite total. Feature4browser workflows/3responsiveaxe scans/type/build/lint pass. Review fixed tableACL/ready-state and UUID validation. Old280operator untouched;281realcatalog/readiness/collector, MyFive databasewriteguard/directREST gap, cleanup and hosted authority remain BLOCKED. New SQLfixture requires pending separate approval; none created. Seven policy decisions remain unapproved. All37statuses/120targets/fivejourneys retained, none newlyLive/visuallyapproved. Original280+candidate281/40operatorbytes unchanged. J CONSUMED/reservationUNUSED. No hosted/provider/production action.
+
 <!-- 281-readiness-2026-11-04 -->
 ## Migration281 readiness and connected My Five continuation
 
