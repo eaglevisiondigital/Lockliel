@@ -1,0 +1,29 @@
+{
+  "migrationCount": 280,
+  "operatorCount": 40,
+  "originalCourseFiles": 9,
+  "lanes": {
+    "adapter": {
+      "head": "ff466510510eb30682d842fb6a0d2627b83543cd",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-continuity-adapter/Lockliel"
+    },
+    "myfive": {
+      "head": "81a62f28e05f267feaae8fc65f2133107a7a76d0",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-continuity-myfive/Lockliel"
+    },
+    "member": {
+      "head": "9ac2611c055f9a09572d27f3afd337f2c92e3474",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-continuity-member/Lockliel"
+    }
+  },
+  "application": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "postMoveBuild": {
+    "sources": 92,
+    "lanes": 13,
+    "allPinnedAndClean": true
+  },
+  "ownerGallerySHA256": "a4f9e9d98831eefc2486a393a49a75b29556b833773fa98fa9208b79e2c82eff"
+}

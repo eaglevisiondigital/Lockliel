@@ -1,3 +1,9 @@
+<!-- continuity-myfive:begin -->
+## Local course continuity and My Five expansion (2026-11-03)
+
+[Implementation, exact independent receipts and remaining gates](../continuity/RESULT.md). Mock course acknowledgments/recovery and growing synthetic My Five lists are local only. Five is encouragement, not the new local relationship maximum; the historical hosted database cap remains unchanged pending separate review. All37features/120targets/fivejourneys retained, no finalvisual or hostedapproval.280migrations/40operator/originalcourse preserved. J CONSUMED; reservation UNUSED. No provider/production/push/merge/deploy.
+<!-- continuity-myfive:end -->
+
 <!-- discipleship-integration:begin -->
 ## Local connected discipleship integration (2026-11-03)
 
