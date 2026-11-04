@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "lanes": [
+    {
+      "root": "/private/tmp/lockliel-281-readiness",
+      "head": "83713953eb1de03716ea1110f124cd9ef4f2317a",
+      "mismatches": []
+    },
+    {
+      "root": "/private/tmp/lockliel-281-operator-review",
+      "head": "ab0e401e022388b336df48adaeaa7ff356eee6ec",
+      "mismatches": []
+    },
+    {
+      "root": "/private/tmp/lockliel-281-ecosystem",
+      "head": "79d54f51614da25684315b12626cc3b2d9962e4a",
+      "mismatches": []
+    },
+    {
+      "root": "/private/tmp/lockliel-281-readiness-review",
+      "head": "8d0adb8d9571c71ca182166e77231be1f0aae8a7",
+      "mismatches": []
+    }
+  ],
+  "historicalMigrations": 280,
+  "operatorFiles": 40,
+  "candidateUnchanged": true,
+  "features": 37,
+  "targets": 120,
+  "journeys": 5,
+  "diagnostic": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "noFreshHostedEvidence": true
+}
