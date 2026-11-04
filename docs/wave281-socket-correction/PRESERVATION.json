@@ -1,0 +1,13 @@
+{
+  "previousCoordination": "11efb75",
+  "previousFailureEvidence": "aa8d52034d6350076f9fb254a471b5ecd692eba3",
+  "historicalSealSource": "6668cd3f4da109c7f6b8fa690613992d6c12173c",
+  "historicalMigrationCount": 280,
+  "candidateSha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+  "protectedOperatorFiles": 40,
+  "baselineFilesChecked": 321,
+  "baselineMismatches": [],
+  "databaseDiagnosticAllowance": "CONSUMED",
+  "deploymentReservation": "UNUSED",
+  "newFixtureCreated": false
+}
