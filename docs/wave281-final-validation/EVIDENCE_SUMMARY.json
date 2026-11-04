@@ -1,0 +1,55 @@
+{
+  "fixtureSource": "07787ec68afff8bfb0c992095625ebc0dd84cfcb",
+  "completed": false,
+  "passedRecordedChecks": 14,
+  "passedChecks": [
+    "baseline280 ready and maintenanceON",
+    "existing280 gate fails closed after281",
+    "old readiness definition and maintenance untouched",
+    "guard seed uses only new fixture actors and historical sentinel",
+    "install exact noncanonical guard and restricted cleanup only inside fixture",
+    "empty registry preserves unrelated canonical write before participant sessions authorized",
+    "register immutable closed run fixture; coverage remains false",
+    "closed participant denied while unrelated actor can insert update delete",
+    "active state without coverage seal denies participant",
+    "fixture-only coverage seal enables reviewed source cases, not hosted proof",
+    "add greater than five exact run records and other owner records",
+    "concurrent same-row lock timeout rolls back contender and preserves owner record",
+    "direct table unapproved fields and historical row updates denied",
+    "canonical status and note fields pass, stale timestamp matches zero"
+  ],
+  "failure": {
+    "phase": "other public table write denied for registered actor",
+    "category": "TEST_SCHEMA_MISMATCH",
+    "column": "profiles.full_name"
+  },
+  "fingerprints": {
+    "baseline281Catalog": "f14e6cc8e87f33d6dc7d7d945524f50af96b2e602a6f9bcb9aac84b882ab124f",
+    "localLedger": "db5ea3293abb3c8811d25b224ac41b4986ede8329861290918bcd3e8cfb9b0f6",
+    "emptySearchPathCatalog": "b528069ba91e81dba36d9fb0ce875e422f798781a8323f6e2d6c2e9d35b52b67",
+    "sessionFunctionEvidence": "86fc5bde5c67452842d0915e02e54386fd0c9f0d9fcda3ba02287d3dd733a4f6",
+    "callableFunctionInventory": "dfcaf5550320bb0540280ee25115fe101bfa01090a40c7468747d458cbf43d36",
+    "directWritePrivilegeInventory": "13f1a1a394812523215fa73e26c6829befe341ddbccb1af38a8adcd835979735",
+    "courseBaseline": "ea73a813aa092e44e437f989f9d877beac0fb114dbdc27623f98a36094d445d8"
+  },
+  "concurrency": {
+    "sameRowContender": "lock_timeout",
+    "holder": "rolled_back",
+    "noAutomaticRetry": true
+  },
+  "separateReadiness": {
+    "scope": "LOCAL_FIXTURE_ONLY",
+    "hostedReady": false,
+    "executionAuthorized": false,
+    "localCandidateCompatible": false
+  },
+  "recordCleanupSqlReached": false,
+  "fixtureRemoval": {
+    "root": "/tmp/lockliel-wave281-containment-eT7j2x",
+    "directoryAbsent": true,
+    "pid": 16924,
+    "independentPsExit": 1,
+    "independentPsOutputEmpty": true
+  },
+  "noSecondFixture": true
+}

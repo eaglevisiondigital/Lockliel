@@ -1,3 +1,5 @@
+> Wave281 final local containment validation: **BLOCKED**. One authorized socket-onlyPG17 fixture replayed280+281, recorded14 checks, then stopped at invalid test column profiles.full_name; remaining cleanup/RPC tests unexecuted. Owned fixture/PID independently absent. No replacement authorized. Source07787ec / evidence4928988; separate member Share continuity6c7a047 delivered. See [consolidated result](../wave281-final-validation/RESULT.md) and final source pins. Existing37-feature/120-target/five-journey classifications preserved; no newLive/visualapproval. All281 migration and40operator bytes unchanged; J CONSUMED, deployment UNUSED; no hosted action.
+
 <!-- wave281-correction-2026-11-04 -->
 ## 281 containment correction — local code complete, enforcement blocked
 

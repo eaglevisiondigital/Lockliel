@@ -1,0 +1,15 @@
+{
+  "baseline": "35dbef62a5375b10c079f8bc79537aafc73c7ca1",
+  "guardCleanupExecuted": "b766685de8ce1c4fc939d1937714e68752a2c695",
+  "executedRunner": "07787ec68afff8bfb0c992095625ebc0dd84cfcb",
+  "executionEvidence": "49289887ac11203124f8fe0e95d1df1297fc4019",
+  "offlineHarnessCorrection": "9497c78d61e77cc6793643c6d4687c2113d438fc",
+  "feature": "6c7a047ce67e60c56894e9b2418c1c1b7f84c30a",
+  "recipientJourneyTests": "b9cb48d55390b78e41384681ba50b5f0b2a875c6",
+  "independentReview": "c1900626e8dda030b8512e2e7534cb05cbb4c877",
+  "correctedRunner": "b6af4d1e11be5965a00582c0ddc29258c85a1e12",
+  "migration281Sha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+  "hostedAuthorized": false,
+  "fixtureCount": 1,
+  "secondFixtureCreated": false
+}
