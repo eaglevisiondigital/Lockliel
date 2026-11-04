@@ -1,0 +1,28 @@
+{
+  "status": "LOCAL_CANDIDATE_ONLY",
+  "packageSource": "bef3a69f58d402ad2d61d787e429b9f894582b6f",
+  "apiFrontend": "b19aa0ebfa4a7cf00a7cffc5d5f438cbecda6830",
+  "sqlSource": "90bc61dcf5c4fea8e25a2231f8a3a89303a59ca3",
+  "executedSqlSource": "e97c0d8baea35303eb67349b09cc840bd32a64e5",
+  "sqlEvidence": "815c32f493fcc075c5d636890dc63a481a11990a",
+  "candidate": {
+    "file": "supabase/migrations/20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+    "sha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+    "historicalExecutedFilename": "20261104141125_lockliel_expand_my_five_relationship_capacity.sql",
+    "sameExactSqlBytes": true
+  },
+  "approvedCli": {
+    "version": "2.118.0",
+    "sha256": "8bcf9b109b24094feaf89e35c2d10d01d3dde50cc2a960116bd151537c2908c4",
+    "temporaryBinary": "/private/tmp/lockliel-approved-cli-5qTafr/supabase",
+    "installed": false
+  },
+  "parallelFeature": "eaf2022e27b8827e0cb921cf5c52acbc0908cbe8",
+  "toolingCorrectionReview": "10313c10a0c6d7cded2637ca685f146c6419d4f4",
+  "hostedExecution": false,
+  "migrationApplicationToManagedDb": false,
+  "diagnosticAllowance": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "preservedApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "assembledIndependentReview": "8d0adb8d9571c71ca182166e77231be1f0aae8a7"
+}
