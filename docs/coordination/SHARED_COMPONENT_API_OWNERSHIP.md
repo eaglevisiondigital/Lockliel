@@ -1,3 +1,9 @@
+<!-- myfive-backend-compatibility:begin -->
+## My Five local backend compatibility and privacy decision (2026-11-04)
+
+[Source, tests, independent review and remaining decisions](../myfive-backend/RESULT.md). Adults-only initial release is owner-approved direction; minors/guardian workflows held. No privacy/safeguarding owner designated; age-evidence scope, retention and withdrawal remain release gates. Local API/client expansion and unexecuted SQL proposal only; no new Live status. All280 migrations/40operator/pinned candidate preserved. J CONSUMED; reservation UNUSED. No hosted writes, migrations, push, merge or deployment.
+<!-- myfive-backend-compatibility:end -->
+
 <!-- course-myfive-readiness:begin -->
 ## Course response and My Five readiness (2026-11-03)
 
