@@ -1,3 +1,9 @@
+<!-- discipleship-integration:begin -->
+## Local connected discipleship integration (2026-11-03)
+
+[Exact implementation, review and remaining gates](../discipleship/RESULT.md). Separate course, state, journey, accessibility, security and coordination worktrees preserve prior ecosystem sources. Pure synthetic course presentation only; no hosted progress/completion, transport or persistence. All 37 features, 120 targets and five original journeys retained; no visual approval inferred. Original course/watch policy, 280 migrations and 40-file operator preserved. J CONSUMED; deployment reservation UNUSED; provider and production release holds unchanged.
+<!-- discipleship-integration:end -->
+
 <!-- ecosystem-integration:begin -->
 ## Local ecosystem functional integration (2026-11-03)
 
