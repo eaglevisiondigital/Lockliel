@@ -1,0 +1,10 @@
+{
+  "checkedFiles": 321,
+  "historicalMigrations": 280,
+  "candidate281Unchanged": true,
+  "operatorFiles": 40,
+  "allUnchanged": true,
+  "noSqlReached": true,
+  "diagnosticAllowance": "CONSUMED",
+  "applicationReservation": "UNUSED"
+}
