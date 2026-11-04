@@ -1,7 +1,7 @@
 {
   "files": {
-    "index.html": "645b581b04722686cda36ce1495c02df40d2f11e7c75bff55baeb5d9d3c95cce",
-    "app.js": "1c2e6ab23e40413d72ebc93c557daf74469968b72298fd4b9f082b5e699f91f0",
+    "index.html": "da2947e1dcc1aa14cd141bace7b664f45fdc9b4dc4607b3302fdc8f09f5e168e",
+    "app.js": "1ce8f8140522e745dc0ce8650a72848fa323f665070f2b98de216631e6058a8c",
     "styles.css": "56cd34f466d2140e2ae2e20632ab9c0d7095324e12521b3d86986353fbd408af",
     "assets/PermanentMarker-LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "assets/Poppins-OFL.txt": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
@@ -17,6 +17,10 @@
     "assets/premium-rights-manifest.json": "de22a72cd418b00b013b0ac538c5e16ac0716985f96a0449ff2f615d83c8a9b8",
     "assets/rights-manifest.json": "13550f0dbfd80f47da4cdf29f3577b51c9bc0ea2e0bade50e197f7d131954277",
     "assets/studio.jpg": "55d0a86fc1ce74e51715b1caeb5f7154bcd91c532675e1953bdc408807ecb841",
-    "assets/sunrise.jpg": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05"
+    "assets/sunrise.jpg": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05",
+    "shared-correction.css": "d16411f7c0020c483ecfcf80763b0615d34d3335bab37e6147128ffa2c650597",
+    "home-correction.css": "10c59925c5e21114ceb0751a0196cdffde938d6e145b861cb73104ccedae3d8a",
+    "share-correction.css": "c0c970c1c7b76502762e9ec59a7978a5a6e0f2501f7353cbaf7070fe3e69b04d",
+    "boost-correction.css": "f2f5c4e4816c18c37eb93a3d76f159baf6acdc1bf69d317f8a382024586eb89b"
   }
 }

@@ -28,7 +28,7 @@ check('Declined contact permission fails closed',()=>{node('#recipient').value='
 check('Wrong channel fails closed',()=>{node('#recipient').value='Sam';node('#channel').value='Email';run('shareGuard()');assert.equal(node('#review-share').disabled,true)});
 check('Directreviewcall cannot bypassconsent gate',()=>{node('#dialog-body').innerHTML='unchanged';run('shareReview()');assert.equal(node('#dialog-body').innerHTML,'unchanged')});
 check('Personalmessage escaped inreview',()=>{node('#channel').value='Text message';node('#personal-message').value='<img src=x onerror=alert(1)>';run('shareReview()');assert.ok(node('#dialog-body').innerHTML.includes('&lt;img'));assert.ok(!node('#dialog-body').innerHTML.includes('<img src=x'))});
-check('Private notes andcourseaccess excluded frompreview',()=>assert.match(node('#dialog-body').innerHTML,/No private contact notes, prayer information/));
+check('Private notes andcourseaccess excluded frompreview',()=>assert.match(node('#dialog-body').innerHTML,/Excludes private contact notes, prayers, hidden profile details and protected course access/));
 check('Protectedcourse has no realmedia orstorage URLs',()=>{context.location.hash='#lesson';run('render(false)');assert.doesNotMatch(node('#app').innerHTML,/iframe|storage\/v1|https:\/\//);assert.match(node('#app').innerHTML,/cannot advance a lesson/)});
 check('Actual autosave isneverimplied',()=>assert.match(node('#app').innerHTML,/Not saved in this preview/));
 check('Desktop leftsticky mobile reflow preserved',()=>{assert.match(css,/grid-template-columns:minmax\(0,\.85fr\) minmax\(0,1\.15fr\)/);assert.match(css,/max-height:calc\(100dvh - 40px\)/);assert.match(css,/@media\(max-width:900px\).*\.lesson-video\{position:relative/s)});

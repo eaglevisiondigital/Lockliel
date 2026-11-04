@@ -1,3 +1,13 @@
+# Premium correction pass — local owner review
+
+This worktree applies the supplied 38-screen review to three connected experiences. Original source `5dbc6016` is preserved. Scope: local HTML/CSS/JavaScript only; no hosted functions, application API, Auth, database or deployment changes.
+
+Run `Open-Premium-Preview.command` in Terminal and open the printed loopback address. Stop with Control-C. The launcher checks all served-file SHA256 values and permits local GET requests only. The exact logo master remains unconfirmed; temporary text is deliberate. All photo/program placements remain proposals.
+
+The `../correction-gallery/` folder contains the correction matrix and combined browser/contrast checks. Existing Playwright/axe/sharp dependencies are used from the already-installed private dependency root; no package installation is required or performed. Scoped browser checks are not actual native200%zoom, spokenVoiceOver or physical-device acceptance.
+
+## Preserved baseline documentation
+
 # Lockliel premium connected design demonstrations
 
 Owner review only. These are three connected design proposals, not final owner-approved screens and not a new application release. Existing application code, full feature inventory and all 280 migrations are untouched.

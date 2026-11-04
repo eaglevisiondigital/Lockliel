@@ -7,7 +7,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const manifest = JSON.parse(readFileSync(resolve(root, 'integrity.json'), 'utf8'));
 const files = new Map();
 for (const [relative, expected] of Object.entries(manifest.files)) {
-  if (!/^(?:index\.html|app\.js|styles\.css|assets\/[a-zA-Z0-9_.-]+)$/.test(relative)) throw new Error('Unapproved preview file.');
+  if (!/^(?:index\.html|app\.js|(?:styles|shared-correction|home-correction|share-correction|boost-correction)\.css|assets\/[a-zA-Z0-9_.-]+)$/.test(relative)) throw new Error('Unapproved preview file.');
   const path = resolve(root, relative);
   if (realpathSync(path) !== path) throw new Error('Symbolic preview files are not allowed.');
   const bytes = readFileSync(path);
