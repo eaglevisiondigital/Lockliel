@@ -1,0 +1,16 @@
+{
+  "assessment": "HOSTED ACCEPTANCE STILL BLOCKED",
+  "proposal": "c3e3009cb44a1a97831f4b18ee02cd11e9242b94",
+  "independentReview": "9af8bd899ec6233af90a4c5ae0f79adfe5873c0a",
+  "parallelFeature": "2f267201bebed05eea05f8d7c33225d68c1e9b67",
+  "preservation": {
+    "verifiedFiles": 321,
+    "mismatches": 0
+  },
+  "documents": {
+    "RESULT.md": "358a9f0d2188bb691672406554f02cef426686d82570f3beefef445e116eea97",
+    "OWNER_DECISIONS.md": "79472944b7ef63d0c72e45d1603576626a63c4d137a5f114b8b803c1f6f01764",
+    "HOSTED_API_OPERATOR_PROPOSAL.md": "dfe58bb96d2451aabe8dd6e5205758cbe0851c859979e3c75790d050776400c6"
+  },
+  "liveActionsPerformed": false
+}
