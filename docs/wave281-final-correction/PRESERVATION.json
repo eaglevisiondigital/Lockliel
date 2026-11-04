@@ -1,0 +1,23 @@
+{
+  "baseline": "55fe753",
+  "checkedFiles": 321,
+  "historicalMigrations": 280,
+  "candidate281Unchanged": true,
+  "protectedOperatorFiles": 40,
+  "allUnchanged": true,
+  "newFixtureCreated": false,
+  "diagnosticAllowance": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "verified321FileWorktrees": [
+    "/private/tmp/lockliel-wave281-fingerprint-coordination",
+    "/private/tmp/lockliel-wave281-fingerprint",
+    "/private/tmp/lockliel-wave281-final-runner-preparation"
+  ],
+  "featurePreservation": {
+    "filesMatched": 320,
+    "candidate281AbsentInAcceptedFeatureBaseline": true,
+    "noMigrationAddedOrChanged": true
+  },
+  "sourceSealFiles": 22,
+  "sourceSealVerified": true
+}
