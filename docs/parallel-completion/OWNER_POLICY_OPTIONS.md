@@ -1,0 +1,18 @@
+# My Five privacy and safeguarding — owner decision options
+
+Prepared options only, not activated policy or a legal-compliance determination. Adults-only initial member release is accepted; minors/guardian workflows remain held. No safeguarding owner is designated.
+
+| Decision | Narrow option for review | Alternative requiring additional review | Still required |
+|---|---|---|---|
+| Adult members | Use a minimal eligibility assertion under a defined adult threshold; store no birth date in My Five | Independently verified eligibility through an approved process | Threshold, audience, acceptable evidence, trust/expiry rules, reviewer and accessibility fallback. Neither option implemented. |
+| Stored contacts | Initial contact records restricted to adults with known eligibility; hold unknown-age/family cases | Permit limited records about others under separately reviewed safeguarding rules | Decide whether the adult scope covers contacts as well as members. Do not infer age or add minor fields. |
+| Guardian/family records | Exclude minor-specific records and guardian workflows from initial release | A separately designed guardian-authority and safeguarding process | Explicit accountability, evidence, exceptions and incident handling before any collection. Family relationship is not guardian authority. |
+| Private notes | Brief, purpose-relevant relationship context; prohibit unnecessary sensitive information | Category-specific protected notes only with an approved need and controls | Exact permitted fields, prohibited categories, guidance, review/escalation and accidental-entry handling. No new categories activated. |
+| Communication consent | Purpose/channel-specific affirmative authority, with unknown/withdrawn states denying communication | Additional consent models only after dedicated review | Evidence provenance, expiry, recipient withdrawal and separation of contact storage, follow-up, group and resource-sharing consent. No messages in this package. |
+| Retention/deletion | Category-specific schedule tied to purpose, inactivity and withdrawal | Owner-selected periodic review plus a defined maximum, with explicit exceptions | Named approver must choose actual durations; no arbitrary period is proposed as approved. Cover notes, reminders, contact metadata, audit and backups. |
+| Withdrawal/suppression | Stop future authorized contact immediately, then apply approved record handling; retain only approved minimal suppression evidence | Other workflows only where required and explicitly approved | Scope for notes/reminders/unlinked contacts, suppression fields, who can act, propagation and verifiable completion. Withdrawal does not erase received messages. |
+| Ownership | Name a safeguarding decision owner and a separate operational custodian/reviewer | A documented combined role with compensating review | Named accountable people, escalation route, review cadence and signoff. No staff role grant is implied. |
+
+Decisions must be recorded individually. Choosing an initial adults-only audience does not approve an age-proof mechanism, minor records, contact consent or retention rules. The existing unlinked followupAllowed technical default is not consent evidence. Original inviter is immutable attribution, not mentor status or access to notes.
+
+Smallest owner decision sequence: designate the accountable reviewer; define adult-member and contact scope/evidence; approve permitted data and consent boundaries; approve category-specific retention, withdrawal and suppression rules. Keep live collection and outreach gates unchanged until that review is complete.

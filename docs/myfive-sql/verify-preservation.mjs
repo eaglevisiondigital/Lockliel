@@ -3,7 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 const base='775ed05';
-const roots=['/private/tmp/lockliel-myfive-sql-coordination','/private/tmp/lockliel-myfive-sql-validation','/private/tmp/lockliel-myfive-sql-compatibility','/private/tmp/lockliel-myfive-sql-review'];
+const roots=['/private/tmp/lockliel-myfive-sql-coordination','/private/tmp/lockliel-myfive-sql-validation','/private/tmp/lockliel-myfive-sql-compatibility','/private/tmp/lockliel-myfive-sql-review','/private/tmp/lockliel-connected-outreach','/private/tmp/lockliel-ecosystem-completion-learning','/private/tmp/lockliel-ecosystem-completion-integrated','/private/tmp/lockliel-completion-visual-review'];
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const git=(root,args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
 const migrations=readdirSync('supabase/migrations').filter(x=>x.endsWith('.sql')).sort().map(x=>'supabase/migrations/'+x);
