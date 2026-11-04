@@ -1,0 +1,13 @@
+{
+  "executedSource": "fd6ae878178c203b4c0dc2395b71e7d311e4b0f1",
+  "evidence": "714175d",
+  "independentReview": "85f80e55a86857c8fc826e20dd5f89e66ef10f6b",
+  "previousCoordination": "3186c9f",
+  "fixture": "/private/tmp/l281-H5AKYI",
+  "postmasterPid": 14176,
+  "attempts": 1,
+  "exitCode": 1,
+  "passedChecks": 12,
+  "removed": true,
+  "assessment": "281 LOCAL CONTAINMENT BLOCKED"
+}
