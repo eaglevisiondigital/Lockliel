@@ -1,3 +1,10 @@
+<!-- wave281-correction-2026-11-04 -->
+## 281 containment correction — local code complete, enforcement blocked
+
+[Current result](../wave281-correction/RESULT.md), [sourcepins](../wave281-correction/SOURCE_PINS.json), [pending owner matrix](../wave281-correction/OWNER_APPROVAL_MATRIX.md), [proposed fixture request](../wave281-correction/NEXT_DISPOSABLE_VALIDATION_REQUEST.md). Actual independent agents continuity_myfive14b37d8 participant-onlySQL/model; continuity_member1c10881durable; coordinatorfb99324/4bc5703cleanupcomposition and5f7003aSharecontinuity; continuity_adapterreview. No merge.
+
+Nonparticipantfreeze corrected in source, not SQLruntimeverified.36scope/model,20durable,30rootselectedtests pass; independent adversarialchecks pass, clockrewind defects fixed.6featurebrowser/3axe/type/build/lint pass. CompleteRPC/schema closure, trustedissuer/nativebinding and exactDBcleanupRPC remainmissing; hosteddisabled. No newfixture orSQL.40operator+280historical+281candidatepreserved. All37statuses/120targets/fivejourneys retained, none newLive/visualapproval. Ninepolicydecisionspending. J CONSUMED/reservationUNUSED. No provider/production/push/merge/deploy.
+
 <!-- wave281-operational-2026-11-04 -->
 ## Separate281 operational preparation — blocked, offline only
 

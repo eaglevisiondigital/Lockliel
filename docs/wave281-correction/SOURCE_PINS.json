@@ -1,0 +1,11 @@
+{
+  "baseline": "2a18a8957961108cd08ea9d007d00908ad84f4e1",
+  "containment": "14b37d8a7a95043527b868c2dde55d77a4630325",
+  "durable": "1c10881c88384be319a682c801c01a3c8181e753",
+  "cleanup": "fb993247106181fa5874ae8d378df4c78b77eb23",
+  "composition": "4bc5703aa4656a835a67e6598418e797d0247073",
+  "feature": "5f7003a8c7f1fdf0396ef9f0d86803c208413c86",
+  "independentReview": "1e82a3cd2a113b39c2cc6ebe16cb2960195d20d4",
+  "hostedEligible": false,
+  "newFixtureCreated": false
+}
