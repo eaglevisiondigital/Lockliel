@@ -1,3 +1,10 @@
+<!-- wave281-operational-2026-11-04 -->
+## Separate281 operational preparation — blocked, offline only
+
+[Current result](../wave281-operational/RESULT.md), [exact containment](../wave281-operational/EXACT_RESOURCE_CONTAINMENT.md), [pending policy](../wave281-operational/OWNER_DECISIONS.md). Actual lanes: continuity_member645b429 localreadiness; continuity_myfivef222408 writemodel/SQLcandidate; coordinator263f76b cleanup anddc404c1 Groupsnavigation; continuity_adapter independentreview. Exactpins/worktrees in result. No merge.
+
+Retainedcatalogcompatible, operational/hostedfalse. NewSQLstatus/guard notexecuted; nofixtureauthorizedorcreated. DirectREST/RPC/other-schema/triggercoverage, nonparticipantreachfreeze, durablegrants/authenticreceipts/cleanup remainholds.17readiness/26write/85cleanupselectedtests pass, independent8/10/11cases; no combinedsuiteclaim. Groups5focused/6browser/3axe/type/build/lint pass.40operator+280historical+281candidateunchanged.37/120/five retained, none newLive/visualapproval. Policydecisionspending. J CONSUMED/reservationUNUSED. No provider/production/SQL/push/merge/deploy.
+
 <!-- wave281-local-catalog-2026-11-04 -->
 ## Single authorized281 local catalog fixture complete
 
