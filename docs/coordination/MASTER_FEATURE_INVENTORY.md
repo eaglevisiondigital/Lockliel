@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+All37feature IDs retained. Completed local units, disconnected services, prototypes, missing assets/acceptance and release gates are classified separately. No historical Live status is promoted.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

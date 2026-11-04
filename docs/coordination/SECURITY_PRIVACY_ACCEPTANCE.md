@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+ExistingL5/L6consent/visibility/owner/revision checks retained. PublicrecipientDTO strips privatecontext. Preference snapshot guard and retainededitor revisions reviewed. No clock-derivedlive state, automaticrelationship/enrollment, hidden persistence or messages.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

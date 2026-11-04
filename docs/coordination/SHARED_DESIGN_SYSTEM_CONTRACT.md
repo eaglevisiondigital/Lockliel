@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+Existing member components/darkhost reused. Official palette/geometry preserved; nooldrepositorylogo substituted and no unapprovedphoto introduced. Correctedpremium ownergallery unchanged; no120screenexpansion.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

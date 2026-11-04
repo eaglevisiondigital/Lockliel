@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+Local source-pinned composition only. No remotePR/CI/deploy. Follow-up must address clearlyremaining transport/content/persistence gaps without bypassing currentproviderhold. Testing a synthetic view is not a release.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

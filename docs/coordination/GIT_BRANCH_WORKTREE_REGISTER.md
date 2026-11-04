@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+New independent codex/ecosystem-share, ecosystem-boost, ecosystem-personalization, ecosystem-member-integration, ecosystem-independent-review and ecosystem-coordination branches. Exactsourcepins/paths inreport. No branch merge, cherry-pick, push or originalcheckout reset.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

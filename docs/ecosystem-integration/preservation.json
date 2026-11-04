@@ -1,0 +1,75 @@
+{
+  "scope": "local byte/source preservation only; no provider audit",
+  "lanes": {
+    "share": {
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-ecosystem-share/Lockliel",
+      "base": "5bc3d837",
+      "head": "1453dd2110b773ccbce251fff27d10a1411871c0",
+      "migrationMismatches": [],
+      "changes": [
+        "components/share-review/share-review-workspace.tsx",
+        "docs/ecosystem-integration/SHARE_RESULT.md",
+        "lib/share-review/adapter.ts",
+        "lib/share-review/discovery.ts",
+        "tests/share-boost-handoff.test.mjs",
+        "tests/share-discovery-interaction.test.mjs"
+      ],
+      "observedTemporaryPath": "/private/tmp/lockliel-ecosystem-share"
+    },
+    "boost": {
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-ecosystem-boost/Lockliel",
+      "base": "ff4ca9b",
+      "head": "f14e6dc5b5f019866954b7e9368387834738b956",
+      "migrationMismatches": [],
+      "changes": [
+        "components/faith-boost-preview/faith-boost-preview.tsx",
+        "docs/functional-boost/ECOSYSTEM_CONTINUATION_RESULT.md",
+        "lib/faith-boost-preview/index.ts",
+        "tests/faith-boost-browser-check.mjs",
+        "tests/faith-boost-preview.test.mjs"
+      ],
+      "observedTemporaryPath": "/private/tmp/lockliel-ecosystem-boost"
+    },
+    "personalization": {
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-ecosystem-personalization/Lockliel",
+      "base": "733a36d9",
+      "head": "7d5620e8442f4cfc00ef177abba343a88ea7a8f2",
+      "migrationMismatches": [],
+      "changes": [
+        "components/member-personalization/personalization-preview.tsx",
+        "components/member-personalization/personalized-member-layout.css",
+        "components/member-personalization/personalized-member-layout.tsx",
+        "docs/ecosystem-personalization/RESULT.md",
+        "docs/ecosystem-personalization/browser-check.mjs",
+        "docs/ecosystem-personalization/browser-result.json",
+        "lib/member-personalization/presentation.ts",
+        "tests/member-personalization-presentation.test.mjs"
+      ],
+      "observedTemporaryPath": "/private/tmp/lockliel-ecosystem-personalization"
+    },
+    "member": {
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-ecosystem-member/Lockliel",
+      "base": "c7d357f4",
+      "head": "56fdd54eca8ddb2d2e9c90d43e66ba1f782dcbfc",
+      "migrationMismatches": [],
+      "changes": [
+        "review/member-experience-delivery/ECOSYSTEM_RESULT.md",
+        "review/member-experience-delivery/browser.mjs",
+        "review/member-experience-delivery/build.mjs",
+        "review/member-experience-delivery/entry.tsx",
+        "review/member-experience-delivery/evidence/ecosystem/browser-evidence.json",
+        "review/member-experience-delivery/evidence/ecosystem/source-manifest.json",
+        "review/member-experience-delivery/host.css"
+      ],
+      "observedTemporaryPath": "/private/tmp/lockliel-ecosystem-member"
+    }
+  },
+  "migrationCount": 280,
+  "ownerZipSHA256": "a4f9e9d98831eefc2486a393a49a75b29556b833773fa98fa9208b79e2c82eff",
+  "pinnedApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "postMoveBuild": {
+    "sources": 79,
+    "lanes": 9,
+    "allPinnedAndClean": true
+  }
+}

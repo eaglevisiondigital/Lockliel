@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+Share owns adapter/workspace; Boost owns callback/model; personalization owns snapshot/editor/layout; membercomposer owns review-onlyhost/build/tests; independentreview owns adversarial evidence; coordinator owns registers/status. SharedAuth/schema/operator/publicroutes untouched.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 

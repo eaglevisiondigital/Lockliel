@@ -1,3 +1,11 @@
+<!-- ecosystem-integration:begin -->
+## Local ecosystem functional integration (2026-11-03)
+
+Actual agents ecosystem_share, ecosystem_boost, ecosystem_personalization, ecosystem_member_composition and ecosystem_independent_review dispatched. Separatebranches/worktrees, sequentialslots, no claimedidleagents.
+
+[Exact result and evidence](../ecosystem-integration/RESULT.md); [37-feature status](../ecosystem-integration/STATUS.md). No production authority.
+<!-- ecosystem-integration:end -->
+
 <!-- master-register-received:begin -->
 ## Master design traceability baseline received (2026-11-03)
 
