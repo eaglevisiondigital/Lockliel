@@ -1,0 +1,29 @@
+{
+  "receivedForm": "Single pasted UTF-8 attachment containing baseline and owner addendum; no ZIP received or verified",
+  "source": "/Users/davesmacbookpro/.codex/attachments/9fa70c20-a160-44a6-94a9-3573ae32d858/Pasted text.txt",
+  "sha256": "fa47ecbed28f04f2dd44f11240b5a2e99ab416bf321cb214f2fee4efaeff73e2",
+  "bytes": 22465,
+  "targetCount": 120,
+  "uniqueTargetIds": 120,
+  "familyCounts": {
+    "A": 9,
+    "B": 9,
+    "C": 12,
+    "D": 13,
+    "E": 12,
+    "F": 9,
+    "G": 12,
+    "H": 13,
+    "I": 8,
+    "J": 13,
+    "K": 10
+  },
+  "journeyCount": 5,
+  "featureIdsCovered": 37,
+  "sourceIntegrity": "Exact local copy hash matches supplied bytes; no cryptographic sender authenticity or ZIP CRC claim",
+  "namespaceWarning": "journey:J01–J05 and design-target:J01–J13 are distinct; design-target:F01–F09 are not feature:F01–F09",
+  "courseFlow": "Additional cross-cutting demonstration F01–F09; never replaces journey:J05",
+  "newUserFacingNaming": "Personalize Your Faith Journey invitation; Personalize Your Experience feature; Make Lockliel Yours action; My Lockliel portal; My Journey, Share Hope, My Five",
+  "schedule": "Daily 7 PM America/Chicago with seasonal CST/CDT; operational delivery unverified",
+  "productionAuthorization": false
+}

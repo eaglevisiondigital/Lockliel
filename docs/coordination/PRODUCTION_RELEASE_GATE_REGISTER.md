@@ -1,3 +1,9 @@
+<!-- master-register-received:begin -->
+## Master design traceability baseline received (2026-11-03)
+
+Verified120unique target IDs and5canonical journeys from the complete pasted baseline/addendum; all37feature IDs mapped without status promotion. [Receipt, mapping and owner-decision reconciliation](../functional-advancement/master-register/RECONCILIATION.md). Earlier missing-register statements are historical and superseded. J05recipient/accessibility retained; courseflow additional. Current naming and daily7PM America/Chicago govern derived work. Exact master-logo/finalvisual/content/provider/release holds unchanged. No implementation or production authority inferred.
+<!-- master-register-received:end -->
+
 <!-- functional-advancement:begin -->
 ## Parallel functional advancement (2026-11-03)
 

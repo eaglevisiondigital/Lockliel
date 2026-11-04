@@ -3,9 +3,9 @@
   "basis": "Repository-only review; historical Live statuses are not fresh provider verification.",
   "featureCount": 37,
   "canonicalTargetCountRequired": 120,
-  "canonicalTargetIdsAvailable": 0,
-  "canonicalTargetReconciliation": "BLOCKED_MISSING_AUTHORITATIVE_REGISTER",
-  "missingReference": "Lockliel_Master_Experience_and_Mockup_Register.md from Lockliel_Codex_Design_Reference_Handoff_2026-11-03.zip",
+  "canonicalTargetIdsAvailable": 120,
+  "canonicalTargetReconciliation": "COMPLETE_AS_LOCAL_TRACEABILITY_CROSSWALK_NOT_IMPLEMENTATION_ACCEPTANCE",
+  "missingReference": null,
   "features": [
     {
       "id": "F01",
@@ -565,5 +565,7 @@
       "pendingOwnerDecision": true
     }
   ],
-  "ownerReportedNewRegister": "Owner reports Lockliel_Master_Register_For_Codex_NOW.zip containing120IDs and5journeys. Actual file not visible in searched local paths; integrity/content/count unverified. Exact path requested."
+  "ownerReportedNewRegister": "Received pasted baseline plus addendum; exact bytes preserved and120targets/5journeys verified. ZIP not received or validated.",
+  "canonicalJourneyCount": 5,
+  "currentRegisterEvidence": "master-register/receipt.json"
 }

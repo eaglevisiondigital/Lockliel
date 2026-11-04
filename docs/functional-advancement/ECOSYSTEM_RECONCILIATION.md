@@ -1,3 +1,7 @@
+## Master register received and reconciled (2026-11-03)
+
+The complete pasted baseline and owner addendum are now available. **120unique design targets and5originaljourneys verified; all37feature IDs mapped.** [Exact receipt, crosswalk and decisions](master-register/RECONCILIATION.md). This supersedes the earlier unavailable-register statements below, which remain historical. Current naming and7PM America/Chicago apply. Recipient/accessibility J05 is preserved; course/worksheet is additional cross-cutting demonstration. KingKind is now explicitly established as a requested book/resource/pathway, with content/rights/implementation still unverified. No visual or release status is promoted.
+
 # Functional ecosystem reconciliation
 
 All 37 authoritative feature rows are preserved below. Classifications describe local evidence only; no feature becomes Live. The source inventory’s historical release claims remain historical. No remote state was inspected.

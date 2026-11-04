@@ -1,3 +1,7 @@
+## Master register received and reconciled (2026-11-03)
+
+The complete pasted baseline and owner addendum are now available. **120unique design targets and5originaljourneys verified; all37feature IDs mapped.** [Exact receipt, crosswalk and decisions](master-register/RECONCILIATION.md). This supersedes the earlier unavailable-register statements below, which remain historical. Current naming and7PM America/Chicago apply. Recipient/accessibility J05 is preserved; course/worksheet is additional cross-cutting demonstration. KingKind is now explicitly established as a requested book/resource/pathway, with content/rights/implementation still unverified. No visual or release status is promoted.
+
 # LOCKLIEL PARALLEL FUNCTIONAL ADVANCEMENT RESULT
 
 Local functional work only. Corrected flagship concepts remain under owner review; no final visual approval is inferred. No branches were merged or pushed.
