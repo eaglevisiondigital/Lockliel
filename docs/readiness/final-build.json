@@ -1,0 +1,11 @@
+{
+  "pins": 14,
+  "sourceCount": 97,
+  "allPinsClean": true,
+  "outputHashes": {
+    "index.html": "ad07d4cdab25f457451909d3d8d4392446d5ca168791f1b51dfc150b14886cfa",
+    "review.js": "4df05b5220dbebf7f7015a6c75f73e6d58d09fd476f6c49322535b3a75366276",
+    "review.css": "75f8fa6c6caa7497e82904e96d5ecb0009f7d470e60e0475a8b0d446121b0a46"
+  },
+  "ownerGallerySha256": "a4f9e9d98831eefc2486a393a49a75b29556b833773fa98fa9208b79e2c82eff"
+}
