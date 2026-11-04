@@ -1,3 +1,7 @@
+## My Five disposable validation — 2026-11-04
+
+See `../myfive-sql/RESULT.md` and `../myfive-sql/SAFEGUARDING_DECISIONS.md`. One local Unix-socket PostgreSQL17 fixture replayed280 unchanged migrations and17 baseline SQL files;12 cap/scale/cursor/SELECT checks passed before a mutation-CTE harness error. Fixture removed; no replacement. Remaining concurrency/security/performance acceptance is BLOCKED, not certified. Narrow Unicode API compatibility correction is separate. Adults-only member direction retained; contact age, eligibility evidence, retention/withdrawal and safeguarding owner unresolved. No feature newly Live or visually approved;37 features,120 targets,five journeys retained. No hosted/provider/production action,push,merge,deploy or canonical migration. J CONSUMED; application reservation UNUSED. Original worktrees remain independent.
+
 <!-- myfive-backend-compatibility:begin -->
 ## My Five local backend compatibility and privacy decision (2026-11-04)
 
