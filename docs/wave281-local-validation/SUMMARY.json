@@ -1,0 +1,41 @@
+{
+  "completed": true,
+  "checks": [
+    "exact280 operational state ready and paused",
+    "exact281 ledger versions and source-array fingerprints",
+    "changed function security identity owner searchpath",
+    "unchanged policies grants constraints indexes and triggers",
+    "old280 readiness intentionally rejects281 while maintenance remainsON",
+    "same-count wrong version independently rejected and rolled back",
+    "wrong function permission drift changes exact catalog then rolls back",
+    "RLS disable drift detected and rolled back",
+    "wrong role cannot use protected catalog function",
+    "post281 ownership/private contracts member_journey_core.sql",
+    "post281 ownership/private contracts my_five_guided_follow_up.sql",
+    "post281 ownership/private contracts authorization_boundaries.sql",
+    "all281 migration bytes immutable"
+  ],
+  "localCatalogSha256": "68b181f0c8c4251f366ab1a5827ec7e8d6f85ece0a61ba095fa5ec1cd38915cf",
+  "localFunctionSha256": "afc92cc66f278fa0e656824712adab29262932bfc44aeafc944c540ee6703ca4",
+  "localCandidateLedger": {
+    "name": "lockliel_expand_my_five_relationship_capacity",
+    "version": "20261104142104",
+    "statements_md5": "0fcd61fa4a3861a20725013ba27aab54"
+  },
+  "ledgerRepresentation": "Each local migration source is one text[] element; not Supabase CLI/provider statement parsing",
+  "readiness": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": false
+  },
+  "cleanup": {
+    "ownedRoot": "/tmp/lockliel-wave281-catalog-aysFZy",
+    "removed": true,
+    "started": false,
+    "tcpEnabled": false,
+    "ownedPid": "49899"
+  },
+  "independentCoordinatorPathAbsent": true,
+  "independentCoordinatorRecordedPidAbsent": true,
+  "noHostedEvidenceClaim": true
+}
