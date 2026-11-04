@@ -1,0 +1,2394 @@
+{
+  "upgrade": {
+    "function": {
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "definer": true,
+      "config": [
+        "search_path=\"\""
+      ]
+    },
+    "policies": [
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_delete",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "DELETE",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_insert",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "INSERT",
+        "qual": null,
+        "with_check": "(owner_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_select",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "SELECT",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_update",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "UPDATE",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": "(owner_id = ( SELECT auth.uid() AS uid))"
+      }
+    ],
+    "triggers": [
+      "CREATE TRIGGER enforce_reach_contact_limit_trigger BEFORE INSERT OR UPDATE OF status, owner_id ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.enforce_reach_contact_limit()",
+      "CREATE TRIGGER sync_member_reach_counts_trigger AFTER INSERT OR DELETE OR UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.sync_member_reach_counts()",
+      "CREATE TRIGGER touch_reach_contact_updated_at_trigger BEFORE UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.touch_reach_contact_updated_at()"
+    ],
+    "constraints": [
+      {
+        "name": "reach_contacts_display_name_check",
+        "definition": "CHECK (((char_length(display_name) >= 1) AND (char_length(display_name) <= 120)))"
+      },
+      {
+        "name": "reach_contacts_id_owner_key",
+        "definition": "UNIQUE (id, owner_id)"
+      },
+      {
+        "name": "reach_contacts_linked_profile_id_fkey",
+        "definition": "FOREIGN KEY (linked_profile_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "reach_contacts_linked_profile_not_owner",
+        "definition": "CHECK (((linked_profile_id IS NULL) OR (linked_profile_id <> owner_id)))"
+      },
+      {
+        "name": "reach_contacts_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "reach_contacts_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "reach_contacts_private_notes_length",
+        "definition": "CHECK (((private_notes IS NULL) OR (char_length(private_notes) <= 3000)))"
+      },
+      {
+        "name": "reach_contacts_relationship_context_length",
+        "definition": "CHECK (((relationship_context IS NULL) OR (char_length(relationship_context) <= 500)))"
+      },
+      {
+        "name": "reach_contacts_status_check",
+        "definition": "CHECK ((status = ANY (ARRAY['praying'::text, 'invited'::text, 'connected'::text, 'growing'::text, 'paused'::text, 'completed'::text])))"
+      }
+    ],
+    "grants": [
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      }
+    ]
+  },
+  "fresh": {
+    "function": {
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "definer": true,
+      "config": [
+        "search_path=\"\""
+      ]
+    },
+    "policies": [
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_delete",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "DELETE",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_insert",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "INSERT",
+        "qual": null,
+        "with_check": "(owner_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_select",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "SELECT",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "reach_contacts",
+        "policyname": "reach_contacts_owner_update",
+        "permissive": "PERMISSIVE",
+        "roles": [
+          "authenticated"
+        ],
+        "cmd": "UPDATE",
+        "qual": "(owner_id = ( SELECT auth.uid() AS uid))",
+        "with_check": "(owner_id = ( SELECT auth.uid() AS uid))"
+      }
+    ],
+    "triggers": [
+      "CREATE TRIGGER enforce_reach_contact_limit_trigger BEFORE INSERT OR UPDATE OF status, owner_id ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.enforce_reach_contact_limit()",
+      "CREATE TRIGGER sync_member_reach_counts_trigger AFTER INSERT OR DELETE OR UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.sync_member_reach_counts()",
+      "CREATE TRIGGER touch_reach_contact_updated_at_trigger BEFORE UPDATE ON public.reach_contacts FOR EACH ROW EXECUTE FUNCTION app_private.touch_reach_contact_updated_at()"
+    ],
+    "constraints": [
+      {
+        "name": "reach_contacts_display_name_check",
+        "definition": "CHECK (((char_length(display_name) >= 1) AND (char_length(display_name) <= 120)))"
+      },
+      {
+        "name": "reach_contacts_id_owner_key",
+        "definition": "UNIQUE (id, owner_id)"
+      },
+      {
+        "name": "reach_contacts_linked_profile_id_fkey",
+        "definition": "FOREIGN KEY (linked_profile_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "reach_contacts_linked_profile_not_owner",
+        "definition": "CHECK (((linked_profile_id IS NULL) OR (linked_profile_id <> owner_id)))"
+      },
+      {
+        "name": "reach_contacts_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "reach_contacts_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "reach_contacts_private_notes_length",
+        "definition": "CHECK (((private_notes IS NULL) OR (char_length(private_notes) <= 3000)))"
+      },
+      {
+        "name": "reach_contacts_relationship_context_length",
+        "definition": "CHECK (((relationship_context IS NULL) OR (char_length(relationship_context) <= 500)))"
+      },
+      {
+        "name": "reach_contacts_status_check",
+        "definition": "CHECK ((status = ANY (ARRAY['praying'::text, 'invited'::text, 'connected'::text, 'growing'::text, 'paused'::text, 'completed'::text])))"
+      }
+    ],
+    "grants": [
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "authenticated",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "INSERT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "REFERENCES",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "postgres",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "UPDATE",
+        "grantable": "YES"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "INSERT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "REFERENCES",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "SELECT",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "created_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "display_name",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "last_shared_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "linked_profile_id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "next_follow_up_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "owner_id",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "private_notes",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "relationship_context",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "status",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      },
+      {
+        "grantor": "postgres",
+        "grantee": "service_role",
+        "schema": "public",
+        "table": "reach_contacts",
+        "column": "updated_at",
+        "privilege": "UPDATE",
+        "grantable": "NO"
+      }
+    ]
+  }
+}

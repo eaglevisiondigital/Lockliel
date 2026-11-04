@@ -1,0 +1,28 @@
+{
+  "freshMigrations": 281,
+  "upgradeBaseline": 280,
+  "candidate": "20261104141125_lockliel_expand_my_five_relationship_capacity.sql",
+  "freshTests": [
+    "account_deletion_execution.sql",
+    "account_deletion_readiness.sql",
+    "authorization_boundaries.sql",
+    "course_duration_policy.sql",
+    "course_engine_standard.sql",
+    "course_persistence_regression.sql",
+    "course_private_notes_privileges.sql",
+    "course_publication_authorization.sql",
+    "course_readiness_duration.sql",
+    "course_release_authorization.sql",
+    "deletion_preflight_access.sql",
+    "email_constraint_compatibility.sql",
+    "getting_a_grip_invitation.sql",
+    "integrity_staff_execution.sql",
+    "member_journey_core.sql",
+    "my_five_guided_follow_up.sql",
+    "reconciled_review_share.sql"
+  ],
+  "definitionParity": true,
+  "securityCatalogParity": true,
+  "injectedMigrationFailureRollback": true,
+  "completed": true
+}

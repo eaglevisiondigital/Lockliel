@@ -1,3 +1,10 @@
+<!-- myfive-release-candidate-2026-11-04 -->
+## My Five canonical candidate package — local review only
+
+Current exact sources, validation and release holds: [release result](../myfive-release/RESULT.md), [API/client compatibility](../myfive-release/API_FRONTEND_COMPATIBILITY.md), [safeguarding decisions](../myfive-release/SAFEGUARDING_DECISION_PACKAGE.md), [required separate hosted approvals](../myfive-release/HOSTED_APPROVAL_REQUIREMENTS.md). The new owner assignment authorizes a canonical candidate and disposable tests; earlier no-canonical statements below are historical. Existing280 migrations and40 operator files remain immutable.
+
+Actual owners/worktrees: continuity_member codex/myfive-release-sql; coordinator codex/myfive-release-package; continuity_myfive codex/release-ecosystem; continuity_adapter codex/myfive-release-review. Separate branches, no merges. All37feature classifications/120targets/fivejourneys retained; no feature newlyLive or finalvisualapproval. API inactivity denial remains distinct from inherited owner-onlyRLS. Adults-only direction retained, contactage/consent/retention/privacyownership unresolved. J CONSUMED/application reservation UNUSED; no provider/production authority.
+
 <!-- completion-program-2026-11-04 -->
 ## My Five completion and parallel program — 2026-11-04
 
