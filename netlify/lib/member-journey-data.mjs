@@ -21,7 +21,7 @@ export async function loadMemberJourney(session,{fetcher=globalThis.fetch,now=ne
   const [profiles,faith,reach,memberships,requests,founders,resources,course]=await Promise.all([
     rows('profiles?id=eq.'+uid+'&select=onboarding_status,locale&limit=1'),
     rows('faith_profiles?profile_id=eq.'+uid+'&select=growth_interests,wants_group,preferred_connection&limit=1'),
-    rows('reach_contacts?owner_id=eq.'+uid+'&status=in.(praying,invited,connected,growing)&select=id,display_name,status,linked_profile_id,next_follow_up_at,last_shared_at,last_follow_up_at&limit=6'),
+    rows('reach_contacts?owner_id=eq.'+uid+'&status=in.(praying,invited,connected,growing)&select=id,display_name,status,linked_profile_id,next_follow_up_at,last_shared_at,last_follow_up_at&order=created_at.desc,id.desc&limit=6'),
     rows('group_members?profile_id=eq.'+uid+'&status=eq.active&select=group_id,role&limit=100'),
     rows('connection_requests?requester_id=eq.'+uid+'&status=eq.open&request_type=in.(find_local_group,join_group)&select=request_type,status&limit=100'),
     rows('founders50_applications?profile_id=eq.'+uid+'&select=status&order=created_at.desc&limit=1'),

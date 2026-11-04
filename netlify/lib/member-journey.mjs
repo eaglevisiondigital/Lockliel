@@ -85,7 +85,7 @@ export function buildMemberJourney(state, now = new Date()) {
   } else if (course.available && !course.complete && course.current && (course.videoIncomplete || course.worksheetIncomplete) && state.course?.progress?.some(row => row.lesson_id === course.current.id)) {
     nextStep = step('lesson_requirement',3,'Finish your lesson','Return to the teaching and worksheet to complete the lesson requirements.','Open lesson',course.href,progress);
   } else if (course.available && !course.started && !course.complete) nextStep = step('grip_start',4,'Start Getting a Grip on the Basics','Build a foundation through 13 lessons, teaching videos and worksheets.','Start my first lesson',course.href,progress);
-  else if (!active.length) nextStep = step('my_five_empty',5,'Begin your My Five','Choose one person to pray for and encourage. You can keep up to five active people here.','Add my first person',paths.five);
+  else if (!active.length) nextStep = step('my_five_empty',5,'Begin your My Five','Start with five. Reach as many as God puts on your heart.','Add my first person',paths.five);
   else if (personal) nextStep = step('my_five_followup',6,personal.action.label+' with '+personal.person.display_name,personal.action.description,'Open person',personal.action.href);
   else if (due.length) nextStep = step('my_five_followup',6,'Make a thoughtful follow-up','A follow-up you planned is ready. Review your private My Five list and choose an appropriate next action.','Review my follow-ups',paths.five);
   else if (state.groupCheckinDue) nextStep = step('group_checkin',7,'Check in with your group','Record this week’s gathering and any support your group needs.','Open my group',paths.group);
@@ -101,7 +101,7 @@ export function buildMemberJourney(state, now = new Date()) {
   return {
     onboardingComplete:complete,nextStep,
     continueGrowing:{title:state.course?.course?.title || 'Getting a Grip on the Basics',available:course.available,complete:course.complete,progress,href:course.href,currentLesson:course.current?.title||null,latestActivity:course.latestActivity},
-    myFive:{activeCount:active.length,dueCount:due.length,maximum:5,href:paths.five},
+    myFive:{activeCount:active.length,dueCount:due.length,projection:"bounded-sample",href:paths.five},
     community:{state:communityState,href:paths.group},
     resources,
     journey:{stage,stages:JOURNEY_STAGES,description:'A guide for growth, not a role or permission. Multiplying is a continuing goal, not an inferred achievement.'}

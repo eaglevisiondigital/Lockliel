@@ -1,3 +1,4 @@
+import {parseReachPage,reachPageQuery,finishReachPage} from '../lib/my-five-pagination.mjs';
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies} from "../lib/lockliel-core.mjs";
 
@@ -6,6 +7,8 @@ function inFilter(ids){
 }
 
 export default withProductionBackend(async(request)=>{
+  if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
+  if(request.method==='POST'&&request.headers.get('origin')&&request.headers.get('origin')!==new URL(request.url).origin)return json({error:'Request not allowed'},403);
   const s=await requireSession(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
 
@@ -20,7 +23,10 @@ export default withProductionBackend(async(request)=>{
   const messagingEnabled=flagRows?.[0]?.enabled!==false;
 
   if(request.method==="POST"){
-    const b=await request.json().catch(()=>({}));
+    const raw=await request.text();
+    if(new TextEncoder().encode(raw).length>14000)return json({error:'Request too large.'},413);
+    let b;try{b=JSON.parse(raw);}catch{return json({error:'Invalid request'},400);}
+    if(!b||Array.isArray(b)||typeof b!=='object')return json({error:'Invalid request'},400);
 
     if(b.action==="requestLeader"){
       const existing=await fetch(
@@ -73,15 +79,6 @@ export default withProductionBackend(async(request)=>{
 
       if(!displayName)return json({error:"Enter the person's first name or a name you will recognize."},400);
 
-      const activeRes=await fetch(
-        SUPABASE_URL+"/rest/v1/reach_contacts?owner_id=eq."+encodeURIComponent(uid)+"&status=in.(praying,invited,connected,growing)&select=id",
-        {headers:h}
-      );
-      const active=activeRes.ok?await activeRes.json():[];
-      if(active.length>=5){
-        return json({error:"Your active My Five list already has five people. Pause or complete one before adding another."},409);
-      }
-
       const r=await fetch(SUPABASE_URL+"/rest/v1/reach_contacts",{
         method:"POST",
         headers:{...h,Prefer:"return=representation"},
@@ -95,7 +92,9 @@ export default withProductionBackend(async(request)=>{
         })
       });
       if(!r.ok)return json({error:"Unable to add this person to My Five."},r.status);
-      return json({ok:true,reachContact:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
+      const rows=await r.json().catch(()=>null);
+      if(!Array.isArray(rows)||rows.length!==1||typeof rows[0]?.id!=="string"||!/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(rows[0].id)||rows[0]?.owner_id!==uid||rows[0]?.status!=="praying")return json({error:"Add outcome is uncertain. Reload My Five before adding again."},502);
+      return json({ok:true,reachContact:rows[0]},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
     if(b.action==="updateReachDetails"){
@@ -144,26 +143,15 @@ export default withProductionBackend(async(request)=>{
       const currentRes=await fetch(
         SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+
         "&owner_id=eq."+encodeURIComponent(uid)+
-        "&select=id,status&limit=1",
+        "&select=id,status,updated_at&limit=1",
         {headers:h}
       );
       const current=(currentRes.ok?await currentRes.json():[])?.[0]||null;
       if(!current)return json({error:"My Five person not found."},404);
-
-      if(activeStatuses.includes(status)&&!activeStatuses.includes(current.status)){
-        const countRes=await fetch(
-          SUPABASE_URL+"/rest/v1/reach_contacts?owner_id=eq."+encodeURIComponent(uid)+
-          "&status=in.(praying,invited,connected,growing)&select=id",
-          {headers:h}
-        );
-        const active=countRes.ok?await countRes.json():[];
-        if(active.length>=5){
-          return json({error:"Your active My Five list already has five people. Pause or complete one before reactivating another."},409);
-        }
-      }
+      if(typeof current.updated_at!=="string"||!Number.isFinite(Date.parse(current.updated_at)))return json({error:"Relationship version unavailable. Reload before updating."},409);
 
       const r=await fetch(
-        SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+"&owner_id=eq."+encodeURIComponent(uid),
+        SUPABASE_URL+"/rest/v1/reach_contacts?id=eq."+encodeURIComponent(id)+"&owner_id=eq."+encodeURIComponent(uid)+"&status=eq."+encodeURIComponent(current.status)+"&updated_at=eq."+encodeURIComponent(current.updated_at),
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
@@ -171,7 +159,9 @@ export default withProductionBackend(async(request)=>{
         }
       );
       if(!r.ok)return json({error:"Unable to update My Five."},r.status);
-      return json({ok:true,reachContact:(await r.json())?.[0]||null},200,s.refreshed?sessionCookies(s.refreshed):[]);
+      const rows=await r.json().catch(()=>null);
+      if(!Array.isArray(rows)||rows.length!==1||rows[0]?.id!==id||rows[0]?.owner_id!==uid||rows[0]?.status!==status)return json({error:"This relationship changed. Reload before updating its status."},409);
+      return json({ok:true,reachContact:rows[0]},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
     if(b.action==="markReachActivity"){
@@ -295,13 +285,21 @@ export default withProductionBackend(async(request)=>{
 
   if(request.method!=="GET")return json({error:"Method not allowed"},405);
 
+  const params=new URL(request.url).searchParams;
+  let requestedPage;
+  try{requestedPage=parseReachPage(params,uid);}catch{return json({error:"Invalid My Five page request."},400);}
+  if(params.get('view')==='reach'){
+    const response=await fetch(SUPABASE_URL+"/rest/v1/reach_contacts?"+reachPageQuery(requestedPage),{headers:h});
+    if(!response.ok)return json({error:"Unable to load My Five."},response.status);
+    try{const result=finishReachPage(await response.json(),requestedPage);return json({reachContacts:result.contacts,reachPage:result.page},200,s.refreshed?sessionCookies(s.refreshed):[]);}catch{return json({error:"Unable to load My Five."},502);}
+  }
   const [mine,reachRes,tr,leaderRes,requestRes,permissionRes]=await Promise.all([
     fetch(
       SUPABASE_URL+"/rest/v1/conversation_members?profile_id=eq."+encodeURIComponent(uid)+"&left_at=is.null&select=conversation_id,member_role,joined_at",
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/reach_contacts?owner_id=eq."+encodeURIComponent(uid)+"&select=id,display_name,relationship_context,status,linked_profile_id,last_shared_at,last_follow_up_at,next_follow_up_at,private_notes,created_at,updated_at&order=updated_at.desc",
+      SUPABASE_URL+"/rest/v1/reach_contacts?"+reachPageQuery(requestedPage),
       {headers:h}
     ),
     fetch(
@@ -323,7 +321,10 @@ export default withProductionBackend(async(request)=>{
   ]);
 
   const selfMemberships=mine.ok?await mine.json():[];
-  const reachContacts=reachRes.ok?await reachRes.json():[];
+  if(!reachRes.ok)return json({error:"Unable to load My Five."},reachRes.status);
+  let reachResult;
+  try{reachResult=finishReachPage(await reachRes.json(),requestedPage);}catch{return json({error:"Unable to load My Five."},502);}
+  const reachContacts=reachResult.contacts;
   const tasks=tr.ok?await tr.json():[];
   const leaderRows=leaderRes.ok?await leaderRes.json():[];
   const leaderAssignment=leaderRows?.[0]||null;
@@ -409,6 +410,7 @@ export default withProductionBackend(async(request)=>{
     conversations,
     tasks,
     reachContacts,
+    reachPage:reachResult.page,
     messagingEnabled,
     leaderAssignment:leaderAssignment?{...leaderAssignment,person:leader}:null,
     leaderRequest,

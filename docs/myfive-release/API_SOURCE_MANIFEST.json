@@ -1,0 +1,16 @@
+{
+  "source": "eae9997715b0a51a4a34ca4ee025c1614435951a",
+  "mode": "exact file composition; no branch merge",
+  "files": {
+    "app/my-lockliel/connections/connections-client.tsx": "a05f5a9a933faecc2abb70d637ee2686fe955ca1bc753583c795e2e53cc370f7",
+    "app/my-lockliel/member-journey-panels.tsx": "2c74c3b3a0c6ae4b63c57a3106a932c29e33cb1a097d82ab2cd4894a1a2c6721",
+    "lib/member-journey-types.ts": "3f831243fb7e1700f447878b10ee3b74e716b24492b199dbf695b6a457a47655",
+    "netlify/functions/lockliel-connections.mjs": "3bfa6756ee4aec80397e52d26a5f272f06427653b4cdeb5cb71de87f2e5482e5",
+    "netlify/lib/member-journey-data.mjs": "1eeaab99d68fb8cae657ddb28dce997e2c7227ce5a312ec1a1347b21ed4d1822",
+    "netlify/lib/member-journey.mjs": "43f38b47f4ebb6c6085bf4cc6d9181f1225923b2604455b91c6e3494886008e7",
+    "netlify/lib/my-five-pagination.mjs": "d68370e83bf98fc219ae72d50362834283df6844485dcff05146f048e8317e2e",
+    "tests/member-journey.test.mjs": "3ec90e2706177d770a47d5ec8d17a6e847ef5e61713628d87848c9b6a33adae6",
+    "tests/my-five-pagination.test.mjs": "3b91e1ea3fb777f63b8bf871d0f4601267dbe033c91f3afc65d64034cb3624d4",
+    "tests/my-five-sql-compatibility.test.mjs": "1bbc41eb6f6943b5683240d194214aa70c6887b2003a06f2344a6f47ebfa9666"
+  }
+}
