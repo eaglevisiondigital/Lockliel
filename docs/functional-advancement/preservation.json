@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-11-04T01:16:41.685Z",
+  "migrations": 280,
+  "lanes": [
+    {
+      "path": "/private/tmp/lockliel-functional-share",
+      "head": "5bc3d8373f4b44376da98125d19d0567d402475d",
+      "migrationMismatches": []
+    },
+    {
+      "path": "/private/tmp/lockliel-functional-boost",
+      "head": "ff4ca9b264a0cda62a9d89526b1b8cacce3968a0",
+      "migrationMismatches": []
+    },
+    {
+      "path": "/private/tmp/lockliel-functional-personalization",
+      "head": "733a36d9c632a0d2a3a058d3d5bc1136e8347d07",
+      "migrationMismatches": []
+    }
+  ],
+  "galleryZipSHA256": "a4f9e9d98831eefc2486a393a49a75b29556b833773fa98fa9208b79e2c82eff",
+  "pinnedCandidate": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "reviewedDesign": "a836b60505d6372cceb093f4c739d35b228e5cc3"
+}
