@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/auth-manager-acceptance-2026-10-03.md",
+    "sha256": "0b62fa3a8c382e1787c13fb9a52456b3e89e41a4a625e5aba9bd1bae3251ed97",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/positive-280-authorized-2026-10-03.md",
+    "sha256": "6b30b57f4027318f3f467a01304c5e6fa6d242e3dab61c21cca7215bd0817e65",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/final-post-incident-preflight-2026-10-19.md",
+    "sha256": "de2b42ce363c6d3e00cab0792a1674c8c34302f9bd244b9a78a2fa9774806fdb",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/production-readiness-gap-review-2026-10-19.md",
+    "sha256": "321833a78f97916c468c074beeae2e017402e93bea22f130591637abd0de5213",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/real-turnstile-acceptance-result-2026-10-19.md",
+    "sha256": "ad4cd02cff87ac09cea85fa08069b14657a6e43b500f034cdff499e33f386450",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/turnstile-browser-compatibility-diagnosis-2026-10-19.md",
+    "sha256": "1bfa686befa1fcf326c7903e9badfac4038fc5399d8ac07e5112538751c5adb8",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  },
+  {
+    "path": "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/docs/coordination/evidence/2026-11-01/baseline.json",
+    "sha256": "68041ecb82eb35f199806fbaeff54a023a9ff2194904f407951ab847912e63e9",
+    "branch_availability": "external original checkout; not present in lane2 base"
+  }
+]

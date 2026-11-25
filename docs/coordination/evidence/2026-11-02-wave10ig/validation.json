@@ -1,0 +1,63 @@
+{
+  "checks": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "elapsedSeconds": 9.594,
+      "log": "/private/tmp/lockliel-wave10ig-unit.log"
+    },
+    {
+      "check": "typecheck",
+      "exitCode": 0,
+      "elapsedSeconds": 2.568,
+      "log": "/private/tmp/lockliel-wave10ig-typecheck.log"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "elapsedSeconds": 3.207,
+      "log": "/private/tmp/lockliel-wave10ig-lint-configured.log"
+    },
+    {
+      "check": "lint-bridge",
+      "exitCode": 0,
+      "elapsedSeconds": 0.834,
+      "log": "/private/tmp/lockliel-wave10ig-lint-bridge.log"
+    },
+    {
+      "check": "netlify-local",
+      "exitCode": 0,
+      "elapsedSeconds": 5.617,
+      "log": "/private/tmp/lockliel-wave10ig-netlify-local.log"
+    }
+  ],
+  "javascript": {
+    "pass": 1855,
+    "fail": 0,
+    "skipped": 0
+  },
+  "python": {
+    "launcher": 32,
+    "recovery": 46,
+    "guard": 49,
+    "counting": "Three Python suites execute inside three JavaScript bridge tests; not additional unique JS totals.",
+    "syntheticOnly": true,
+    "forbiddenIOAttempts": 0,
+    "hiddenInputTest": "Fresh synthetic controlling pseudoTTY with echo disabled; no user credential requested. Requires ordinary approved local TTY capability.",
+    "ASTAndMemoryCompilation": true
+  },
+  "shellSyntax": "PASS",
+  "netlifyLocal": {
+    "modules": 83,
+    "handlers": 63
+  },
+  "applicationBuild": "not repeated",
+  "migrationReplay": "not repeated;280 hashes preserved",
+  "logHashes": {
+    "unit": "df1a996f9f59d6fd8f10ba3e2bd7aeb62982531741160300291b7f24d417ef2b",
+    "typecheck": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+    "lint-configured": "03ec5fb972b0d9a419f1d0db5fdb272295fd5f118debd1d8652fe4ffd6d5e827",
+    "lint-bridge": "6186d30be8d1b38c37a5602dc8c122172b4818326395cf0d40f48ebf0f726f3d",
+    "netlify-local": "d310b6d307b2353197c40603d3a3b532b1c15712a96b4a11076e616d13461599"
+  }
+}

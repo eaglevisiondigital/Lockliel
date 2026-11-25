@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-01",
+  "kind": "coordinator browser observations of actual React synthetic prototype",
+  "viewport_sizes": [
+    [
+      1365,
+      900
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "passed": [
+    "scrollWidth equals clientWidth at all three widths",
+    "private defaults and explicit field sharing",
+    "public visitor receives no member card",
+    "hidden versus absent banner uses same non-owner copy",
+    "reset and refresh restore private defaults",
+    "unavailable retry to ready is local only",
+    "loading empty denied unavailable distinct",
+    "confirmation still requires sign-in and confers no role",
+    "Tab focus and Enter skip-link to MAIN",
+    "DOM resource origins localhost only; no returned console warnings or errors"
+  ],
+  "not_verified": [
+    "full screen-reader acceptance",
+    "automated contrast measurement",
+    "actual 200% browser zoom",
+    "runtime reduced-motion preference",
+    "exhaustive network traffic capture"
+  ],
+  "credentials_used": false,
+  "real_member_data": false,
+  "live_application_imported": false,
+  "cleanup": {
+    "server_stopped": true,
+    "harness_removed": true,
+    "dependency_symlink_removed": true,
+    "browser_tab_closed": true,
+    "viewport_reset": true
+  },
+  "screenshots": [
+    "member-preview.png",
+    "member-mobile-preview.png",
+    "member-desktop.png",
+    "member-mobile.png"
+  ],
+  "capture_limit": "member-mobile.png is a stitched capture with an offscreen fixed skip-link artifact; final viewport captures are the preferred review images."
+}

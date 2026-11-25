@@ -1,0 +1,107 @@
+{
+  "observedAt": "2026-11-02T14:44:19.435635+00:00",
+  "independentProcess": true,
+  "calls": [
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/deploys/6ae8a1aa48521d4528081700",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/6a674f7a0e2cdcc2b838db89",
+      "status": 200
+    }
+  ],
+  "experimentalId": "6ae8a1aa48521d4528081700",
+  "siteScopedLookup": 404,
+  "globalLookup": 404,
+  "existingSixIdsExact": true,
+  "deletedIdAbsent": true,
+  "publishedDeploymentId": null,
+  "siteDeployId": "",
+  "domainAliases": [],
+  "rehearsalAliasLatestHistoricalId": "6abfd81ccee16b59b75711a0",
+  "publicChecks": [
+    {
+      "url": "https://6ae8a1aa48521d4528081700--jade-unicorn-642f40.netlify.app/",
+      "status": 404,
+      "bodyLength": 7418,
+      "sha256": "6fea6a2c13120babeaa58e8c983237b20ce9edec1bdc8ed73dc4269e98ce43cf",
+      "location": null,
+      "etag": null
+    },
+    {
+      "url": "https://jade-unicorn-642f40.netlify.app/",
+      "status": 404,
+      "bodyLength": 7418,
+      "sha256": "7d94dea87942eb37a2bf17ef8c8b23a1b218a161f85bfe03636ba1255bfa5d7b",
+      "location": null,
+      "etag": null
+    },
+    {
+      "url": "https://rehearsal--jade-unicorn-642f40.netlify.app/",
+      "status": 302,
+      "bodyLength": 35,
+      "sha256": "e77684dd7a74d52e8dbf275b04d0db183212511ab985cca7eb7d751beca02342",
+      "location": "/my-lockliel/journey",
+      "etag": null
+    },
+    {
+      "url": "https://6abfd81ccee16b59b75711a0--jade-unicorn-642f40.netlify.app/",
+      "status": 302,
+      "bodyLength": 35,
+      "sha256": "e77684dd7a74d52e8dbf275b04d0db183212511ab985cca7eb7d751beca02342",
+      "location": "/my-lockliel/journey",
+      "etag": null
+    }
+  ],
+  "baselineComparisons": [
+    {
+      "url": "https://jade-unicorn-642f40.netlify.app/",
+      "statusUnchanged": true,
+      "staticResponseHashUnchanged": false
+    },
+    {
+      "url": "https://rehearsal--jade-unicorn-642f40.netlify.app/",
+      "statusUnchanged": true,
+      "staticResponseHashUnchanged": true
+    },
+    {
+      "url": "https://6abfd81ccee16b59b75711a0--jade-unicorn-642f40.netlify.app/",
+      "statusUnchanged": true,
+      "staticResponseHashUnchanged": true
+    }
+  ],
+  "billingReadback": {
+    "type_name": "Pro",
+    "type_slug": "credit-pro-tier-3",
+    "plan_credits": 10000,
+    "auto_topup_enabled": false,
+    "usages_exceeded": [],
+    "configurable_limits_exceeded": []
+  },
+  "creditsCapability": {
+    "included": 10000,
+    "used": 0
+  },
+  "noInvoiceOrExperimentAttributableChargeAvailable": true,
+  "allBaselineStatusesUnchanged": true,
+  "rehearsalResponsesUnchanged": true,
+  "containmentAndPreservationVerified": true
+}

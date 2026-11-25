@@ -1,0 +1,561 @@
+{
+  "siteId": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "siteName": "jade-unicorn-642f40",
+  "startedAt": "2026-11-02T14:43:53.147991+00:00",
+  "operatorRole": "Owner",
+  "requestBudget": 40,
+  "normalRequestBudget": 20,
+  "cleanupQuotaReserved": 20,
+  "timeBudgetSeconds": 600,
+  "calls": [
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deployed-branches",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deployed-branches",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deployed-branches",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/deploys/6ae8a1aa48521d4528081700",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deployed-branches",
+      "status": 200
+    }
+  ],
+  "reservationAttempts": 1,
+  "finalizationAttempts": 1,
+  "experimentalId": "6ae8a1aa48521d4528081700",
+  "containmentVerified": true,
+  "assessment": "NETLIFY DEPLOYMENT WORKFLOW VERIFIED",
+  "beforeReservation": {
+    "site": {
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "account_id": "6a674f7a0e2cdcc2b838db89",
+      "publishedId": null,
+      "deploy_id": "",
+      "custom_domain": null,
+      "domain_aliases": [],
+      "branch_deploy_custom_domain": null,
+      "deploy_preview_custom_domain": null
+    },
+    "historicalDeploys": {
+      "6abfd81ccee16b59b75711a0": {
+        "id": "6abfd81ccee16b59b75711a0",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-02T16:13:16.879Z"
+      },
+      "6abe8f4f75e5a756b7d0cd9a": {
+        "id": "6abe8f4f75e5a756b7d0cd9a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T16:50:23.730Z"
+      },
+      "6abe7a6b1490c08d003640dd": {
+        "id": "6abe7a6b1490c08d003640dd",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:21:15.429Z"
+      },
+      "6abe773dad5e9095300051c2": {
+        "id": "6abe773dad5e9095300051c2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:07:41.601Z"
+      },
+      "6abe71ba8466df3ae65d138a": {
+        "id": "6abe71ba8466df3ae65d138a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T14:44:10.760Z"
+      },
+      "6abd778184898338b60d32b2": {
+        "id": "6abd778184898338b60d32b2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-09-30T20:56:33.669Z"
+      }
+    },
+    "deployedBranches": [],
+    "allDeployIds": [
+      "6abd778184898338b60d32b2",
+      "6abe71ba8466df3ae65d138a",
+      "6abe773dad5e9095300051c2",
+      "6abe7a6b1490c08d003640dd",
+      "6abe8f4f75e5a756b7d0cd9a",
+      "6abfd81ccee16b59b75711a0"
+    ]
+  },
+  "reservationStatus": 200,
+  "reservationResponse": {
+    "id": "6ae8a1aa48521d4528081700",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "state": "new",
+    "context": "deploy-preview",
+    "draft": null,
+    "branch": null,
+    "review_id": null,
+    "published_at": null,
+    "created_at": "2026-11-02T14:43:54.592Z",
+    "draftFieldPresent": false,
+    "publishedAtFieldPresent": true
+  },
+  "reservedProviderMetadata": {
+    "id": "6ae8a1aa48521d4528081700",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "state": "new",
+    "context": "deploy-preview",
+    "draft": null,
+    "branch": null,
+    "review_id": null,
+    "published_at": null,
+    "created_at": "2026-11-02T14:43:54.592Z",
+    "draftFieldPresent": false,
+    "publishedAtFieldPresent": true
+  },
+  "afterReservation": {
+    "site": {
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "account_id": "6a674f7a0e2cdcc2b838db89",
+      "publishedId": null,
+      "deploy_id": "",
+      "custom_domain": null,
+      "domain_aliases": [],
+      "branch_deploy_custom_domain": null,
+      "deploy_preview_custom_domain": null
+    },
+    "historicalDeploys": {
+      "6abfd81ccee16b59b75711a0": {
+        "id": "6abfd81ccee16b59b75711a0",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-02T16:13:16.879Z"
+      },
+      "6abe8f4f75e5a756b7d0cd9a": {
+        "id": "6abe8f4f75e5a756b7d0cd9a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T16:50:23.730Z"
+      },
+      "6abe7a6b1490c08d003640dd": {
+        "id": "6abe7a6b1490c08d003640dd",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:21:15.429Z"
+      },
+      "6abe773dad5e9095300051c2": {
+        "id": "6abe773dad5e9095300051c2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:07:41.601Z"
+      },
+      "6abe71ba8466df3ae65d138a": {
+        "id": "6abe71ba8466df3ae65d138a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T14:44:10.760Z"
+      },
+      "6abd778184898338b60d32b2": {
+        "id": "6abd778184898338b60d32b2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-09-30T20:56:33.669Z"
+      }
+    },
+    "deployedBranches": [],
+    "allDeployIds": [
+      "6abd778184898338b60d32b2",
+      "6abe71ba8466df3ae65d138a",
+      "6abe773dad5e9095300051c2",
+      "6abe7a6b1490c08d003640dd",
+      "6abe8f4f75e5a756b7d0cd9a",
+      "6abfd81ccee16b59b75711a0",
+      "6ae8a1aa48521d4528081700"
+    ]
+  },
+  "latestProviderGate": {
+    "ok": true,
+    "reason": "independent_identity_publication_and_preservation_verified",
+    "createDraft": "omitted",
+    "observedDraft": "omitted"
+  },
+  "phase3Passed": true,
+  "finalizationStatus": 200,
+  "finalizedProviderMetadata": {
+    "id": "6ae8a1aa48521d4528081700",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "state": "ready",
+    "context": "deploy-preview",
+    "draft": null,
+    "branch": null,
+    "review_id": null,
+    "published_at": null,
+    "created_at": "2026-11-02T14:43:54.592Z",
+    "draftFieldPresent": false,
+    "publishedAtFieldPresent": true
+  },
+  "afterFinalization": {
+    "site": {
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "account_id": "6a674f7a0e2cdcc2b838db89",
+      "publishedId": null,
+      "deploy_id": "",
+      "custom_domain": null,
+      "domain_aliases": [],
+      "branch_deploy_custom_domain": null,
+      "deploy_preview_custom_domain": null
+    },
+    "historicalDeploys": {
+      "6abfd81ccee16b59b75711a0": {
+        "id": "6abfd81ccee16b59b75711a0",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-02T16:13:16.879Z"
+      },
+      "6abe8f4f75e5a756b7d0cd9a": {
+        "id": "6abe8f4f75e5a756b7d0cd9a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T16:50:23.730Z"
+      },
+      "6abe7a6b1490c08d003640dd": {
+        "id": "6abe7a6b1490c08d003640dd",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:21:15.429Z"
+      },
+      "6abe773dad5e9095300051c2": {
+        "id": "6abe773dad5e9095300051c2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:07:41.601Z"
+      },
+      "6abe71ba8466df3ae65d138a": {
+        "id": "6abe71ba8466df3ae65d138a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T14:44:10.760Z"
+      },
+      "6abd778184898338b60d32b2": {
+        "id": "6abd778184898338b60d32b2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-09-30T20:56:33.669Z"
+      }
+    },
+    "deployedBranches": [],
+    "allDeployIds": [
+      "6abd778184898338b60d32b2",
+      "6abe71ba8466df3ae65d138a",
+      "6abe773dad5e9095300051c2",
+      "6abe7a6b1490c08d003640dd",
+      "6abe8f4f75e5a756b7d0cd9a",
+      "6abfd81ccee16b59b75711a0",
+      "6ae8a1aa48521d4528081700"
+    ]
+  },
+  "finalizationPassed": true,
+  "cleanupIdentity": {
+    "id": "6ae8a1aa48521d4528081700",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "state": "ready",
+    "context": "deploy-preview",
+    "draft": null,
+    "branch": null,
+    "review_id": null,
+    "published_at": null,
+    "created_at": "2026-11-02T14:43:54.592Z",
+    "draftFieldPresent": false,
+    "publishedAtFieldPresent": true
+  },
+  "deleteStatus": 204,
+  "globalDeployAfterDeleteStatus": 404,
+  "afterCleanup": {
+    "site": {
+      "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "name": "jade-unicorn-642f40",
+      "account_id": "6a674f7a0e2cdcc2b838db89",
+      "publishedId": null,
+      "deploy_id": "",
+      "custom_domain": null,
+      "domain_aliases": [],
+      "branch_deploy_custom_domain": null,
+      "deploy_preview_custom_domain": null
+    },
+    "historicalDeploys": {
+      "6abfd81ccee16b59b75711a0": {
+        "id": "6abfd81ccee16b59b75711a0",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-02T16:13:16.879Z"
+      },
+      "6abe8f4f75e5a756b7d0cd9a": {
+        "id": "6abe8f4f75e5a756b7d0cd9a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T16:50:23.730Z"
+      },
+      "6abe7a6b1490c08d003640dd": {
+        "id": "6abe7a6b1490c08d003640dd",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:21:15.429Z"
+      },
+      "6abe773dad5e9095300051c2": {
+        "id": "6abe773dad5e9095300051c2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T15:07:41.601Z"
+      },
+      "6abe71ba8466df3ae65d138a": {
+        "id": "6abe71ba8466df3ae65d138a",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-10-01T14:44:10.760Z"
+      },
+      "6abd778184898338b60d32b2": {
+        "id": "6abd778184898338b60d32b2",
+        "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+        "state": "ready",
+        "context": "branch-deploy",
+        "draft": null,
+        "branch": "rehearsal",
+        "review_id": null,
+        "published_at": null,
+        "created_at": "2026-09-30T20:56:33.669Z"
+      }
+    },
+    "deployedBranches": [],
+    "allDeployIds": [
+      "6abd778184898338b60d32b2",
+      "6abe71ba8466df3ae65d138a",
+      "6abe773dad5e9095300051c2",
+      "6abe7a6b1490c08d003640dd",
+      "6abe8f4f75e5a756b7d0cd9a",
+      "6abfd81ccee16b59b75711a0"
+    ]
+  },
+  "immutableAfterDelete": {
+    "url": "https://6ae8a1aa48521d4528081700--jade-unicorn-642f40.netlify.app/",
+    "status": 404,
+    "bodyLength": 206,
+    "sha256": "ea3397971638362d13861b73537e43cb5890c981c5da86d192c3ed74745cb293"
+  },
+  "finishedAt": "2026-11-02T14:44:03.151037+00:00",
+  "elapsedSeconds": 10.003
+}

@@ -1,0 +1,39 @@
+{
+  "reviewer": "/root/wave10b_independent_security",
+  "date": "2026-11-01",
+  "baseApplication": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "baseDocumentation": "9b798fc24497f1059a8b3bf5b18c03ad4df25fc9",
+  "sourceSha256": {
+    "netlify/functions/lockliel-login.mjs": "e25787c90f22bc631c7925247b45ac76fcf8c870bd851bc05a601646fccbfbe6",
+    "netlify/functions/lockliel-logout.mjs": "ed9cfaf1c31ecf67051c92841992d5058bc065291c4b01a8319b9105ac08019c",
+    "netlify/member-hosted/runtime.mjs": "3253494355cef8bc00aa85b8b5c51e729279319bd15855c4132cfb03daec0419",
+    "netlify/member-hosted/transport.mjs": "ebb1e8515b3bf0fe66da2d5e9d0b236c76f3120d2d6f0c6df71d9ce738921f71",
+    "netlify/member-hosted/session-cookies.mjs": "4256579ec9ada7453e97a9e0719abd368ab3d2a4985113cef0a66a5f089f669b",
+    "components/member-review/hosted-session-controls.tsx": "7b498716ca4c5c5001674179b8b20ae456ae5728ff0117d875cf73f5dcf8e019",
+    "components/member-review/server-member-read-shell.tsx": "cfc5982c534687c6e3603791c8d554b4696acb8c5c7a52441a74ae5153d07b8d",
+    "app/my-lockliel/review/page.tsx": "a0a5f450094595e82cf2eb08ae9471615ca8daf14b5ba2f7bae7378cc64d352d",
+    "lib/member-review/review-policy.ts": "62041f9a385b845fb155ace5d76530f95ac5c21dc998f1d7361f9bb131811485",
+    "scripts/member-hosted/package.mjs": "dd7722c7492378862dd64fad2033e79975e0d9c1d08f0020bdec34270d39fafa",
+    "scripts/member-hosted/verify.mjs": "e5255bb5e9e291bf8c3dab3b373356394b454305b1df331eaf4419a6c94f7cc6"
+  },
+  "meaning": "Source review snapshot only, not provider proof or deployed artifact approval",
+  "finalReviewedSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "applicationImplementationCommit": "bcaa35680ffefc61775636d65f568827e42d7f06",
+  "sourceTree": "cd64094d654112a79326c12e0eb0c28c2f33be82",
+  "finalCommittedArtifact": {
+    "directory": "/private/tmp/lockliel-wave10b-exact-A6LulG/package",
+    "manifestSha256": "f9eb5c350815bd69930c8c90f78c8d5abb87e50a426d83cad4bc175c514647f5",
+    "localFixture": true,
+    "sourceDirty": false,
+    "releaseEligible": false,
+    "compiledInputsMatchedCommitAndDisk": 11,
+    "reviewedSourceHashesMatchedCommitAndDisk": 11,
+    "migrationHashCount": 280,
+    "migrationHashesUnchanged": true,
+    "nativeZipSha256": {
+      "lockliel-member-read": "c770f73f14723e0a269027bb72fff971c9fb55dd48260167f87906a3c071f394",
+      "lockliel-login": "c2630e93b003f13cb2fe395e5c6d7260f46e0f384651ee9b79380f422c697b8c",
+      "lockliel-logout": "573a3da6feb0e97c2fb208ceee0bbf29d51149636baa45c5ed3408f6b773db60"
+    }
+  }
+}

@@ -1,0 +1,124 @@
+-- Real RLS/RPC assertions, synthetic identities, disposable rollback only.
+do $test$
+declare a uuid:=gen_random_uuid(); b uuid:=gen_random_uuid(); staff uuid:=gen_random_uuid();
+ sa uuid:=gen_random_uuid(); sb uuid:=gen_random_uuid(); ss uuid:=gen_random_uuid();
+ c uuid; l1 uuid; l2 uuid; asset uuid; r jsonb; denied boolean;
+begin
+ insert into auth.users(id,email,raw_user_meta_data) values(a,a||'@example.invalid','{}'),(b,b||'@example.invalid','{}'),(staff,staff||'@example.invalid','{}');
+ insert into auth.sessions(id,user_id,aal) values(sa,a,'aal1'),(sb,b,'aal1'),(ss,staff,'aal2');
+ insert into public.staff_roles(profile_id,role) values(staff,'admin');
+ insert into public.courses(slug,title,status,translation_key,learning_rules)
+ values('engine-'||a,'Synthetic Engine','published','engine-'||a,'{"model":"watch_answer","sequential":true,"watch_threshold":95,"minimum_score":0}') returning id into c;
+ insert into public.lessons(course_id,position,slug,title,worksheet_schema) values(c,1,'one','Synthetic One','{"questions":[{"number":1,"text":"First","required":true},{"number":2,"text":"Optional","required":false}]}') returning id into l1;
+ insert into public.lessons(course_id,position,slug,title,worksheet_schema) values(c,2,'two','Synthetic Two','{"questions":[{"number":1,"text":"Second"}]}') returning id into l2;
+ insert into public.lesson_assets(lesson_id,asset_type,provider,provider_ref,status,duration_seconds) values(l1,'video','youtube','synthetic01','active',100) returning id into asset;
+ insert into public.course_enrollments(profile_id,course_id) values(a,c),(b,c);
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated','aal','aal1','session_id',sa)::text,true);
+ execute 'set local role authenticated';
+ r:=public.lockliel_save_lesson(a,l1,0,'{"1":"Private answer A"}','Private notes A',false);
+ assert r->>'revision'='1','Initial save did not return revision';
+ assert (select body='Private notes A' from public.lesson_private_notes where lesson_id=l1),'Own notes not restored';
+ denied:=false;begin perform public.lockliel_save_lesson(a,l1,0,'{}','',false);exception when sqlstate 'PT409' then denied:=true;end;
+ assert denied,'Stale blank save overwrote newer work';
+ denied:=false;begin perform public.lockliel_save_lesson(b,l1,1,'{}','',false);exception when insufficient_privilege then denied:=true;end;
+ assert denied,'Stale account save accepted';
+ denied:=false;begin perform public.lockliel_save_lesson(a,l2,0,'{}','',false);exception when insufficient_privilege then denied:=true;end;
+ assert denied,'Next lesson unlocked before watch';
+ denied:=false;begin update public.lesson_progress set worksheet_answers='{}' where profile_id=a and lesson_id=l1;
+ assert not found,'Direct REST bypassed revision RPC';exception when insufficient_privilege then denied:=true;end;
+ denied:=false;begin insert into public.media_progress(profile_id,asset_id,percent_watched) values(a,asset,100);exception when insufficient_privilege then denied:=true;end;
+ assert denied,'Browser forged watch percent';
+ r:=public.lockliel_sample_media(a,asset,99,false);
+ assert (r->>'percent_watched')::numeric=0,'Seek-to-end awarded credit';
+ execute 'reset role';
+ -- Seed only test evidence as fixture owner, then exercise 94/95 trusted boundaries.
+ update public.media_progress set covered_intervals='[[0,94]]',last_sample_at=clock_timestamp()-interval '5 seconds',last_sample_position=94,sample_session=sa where profile_id=a and asset_id=asset;
+ perform pg_sleep(0.31);
+ assert not app_private.course_watch_met(a,l1),'94% met watch requirement';
+ execute 'set local role authenticated';
+ r:=public.lockliel_sample_media(a,asset,95,true);
+ assert (r->>'percent_watched')::numeric=95,'95% did not derive from accumulated intervals';
+ r:=public.lockliel_course_gates();
+ assert exists(select 1 from jsonb_array_elements(r) g where g->>'lesson_id'=l2::text and (g->>'unlocked')::boolean),'95% failed to unlock next lesson with unfinished worksheet';
+ assert (select status='in_progress' from public.lesson_progress where lesson_id=l1),'Watch alone completed worksheet lesson';
+ execute 'reset role';
+ perform pg_sleep(0.31);
+ execute 'set local role authenticated';
+ r:=public.lockliel_save_lesson(a,l1,1,'{"1":"Private answer A"}','Private notes A',true);
+ assert r->>'status'='completed','Watch plus required answers did not complete';
+ execute 'reset role';
+ perform pg_sleep(0.31);
+ execute 'set local role authenticated';
+ r:=public.lockliel_save_lesson(a,l1,2,'{"1":"Private answer A"}','Notes after completion',false);
+ assert r->>'status'='completed','Notes save downgraded completion';
+ execute 'reset role';
+ perform pg_sleep(0.31);
+ execute 'set local role authenticated';
+ denied:=false;begin perform public.lockliel_save_lesson(a,l1,3,'{}','',false);exception when invalid_parameter_value then denied:=true;end;
+ assert denied,'Completed answers erased';
+ execute 'reset role';
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated','aal','aal1','session_id',sb)::text,true);
+ execute 'set local role authenticated';
+ assert not exists(select 1 from public.lesson_private_notes where profile_id=a),'B sees A notes';
+ assert not exists(select 1 from public.lesson_progress where profile_id=a),'B sees A answers';
+ r:=public.lockliel_save_lesson(b,l1,0,'{"1":"Independent B"}','Notes B',false);
+ assert r->>'profile_id'=b::text,'B wrote A state';
+ execute 'reset role';
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',staff,'role','authenticated','aal','aal2','session_id',ss)::text,true);
+ execute 'set local role authenticated';
+ assert not exists(select 1 from public.lesson_private_notes where profile_id in (a,b)),'Staff sees private notes';
+ assert exists(select 1 from public.lesson_progress where profile_id=a),'Authorized staff lost progress visibility';
+ execute 'reset role';
+
+ -- Durable achievement survives provider replacement without erasing prior completion.
+ update public.lesson_assets set status='draft' where id=asset;
+ assert not app_private.course_watch_met(a,l1),'Unavailable media authorized new progression';
+ assert (select status='completed' and watch_requirement_met_at is not null from public.lesson_progress where profile_id=a and lesson_id=l1),'Historical completion erased';
+ update public.lesson_assets set status='active' where id=asset;
+ -- Required answers are independent of watch achievement.
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',b,'role','authenticated','aal','aal1','session_id',sb)::text,true);
+ update public.lesson_progress set watch_requirement_met_at=clock_timestamp() where profile_id=b and lesson_id=l1;
+ insert into public.media_progress(profile_id,asset_id,covered_intervals) values(b,asset,'[[0,95]]');
+ perform pg_sleep(0.31);
+ execute 'set local role authenticated';
+ denied:=false;begin perform public.lockliel_save_lesson(b,l1,1,'{}','Notes B',true);exception when invalid_parameter_value then denied:=true;end;
+ assert denied,'Watch alone accepted empty required answers';
+ execute 'reset role';
+ -- Model B requires private versioned grading keys and the configured score.
+ update public.courses set learning_rules='{"model":"watch_score","sequential":true,"watch_threshold":90,"minimum_score":80}' where id=c;
+ insert into app_private.course_answer_keys values(l1,1,'{"1":"Approved test answer"}');
+ execute 'set local role authenticated';
+ denied:=false;begin perform public.lockliel_save_lesson(b,l1,1,'{"1":"Wrong answer"}','Notes B',true);exception when invalid_parameter_value then denied:=true;end;
+ assert denied,'Model B accepted a failed score';
+ r:=public.lockliel_save_lesson(b,l1,1,'{"1":"Approved test answer"}','Notes B',true);
+ assert r->>'status'='completed','Model B did not accept configured score';
+ execute 'reset role';
+ -- Model C supports a worksheet-only lesson, with no hardcoded watch/score rule.
+ update public.courses set learning_rules='{"model":"simple","sequential":true,"watch_threshold":95,"minimum_score":0}' where id=c;
+ execute 'set local role authenticated';
+ r:=public.lockliel_save_lesson(b,l2,0,'{"1":"Simple completion"}','',true);
+ execute 'reset role';
+ assert r->>'status'='completed','Model C demanded nonexistent video';
+
+ update public.courses set learning_rules='{"model":"review","sequential":false,"watch_threshold":95,"minimum_score":0}' where id=c;
+ perform set_config('request.jwt.claims',jsonb_build_object('sub',a,'role','authenticated','aal','aal1','session_id',sa)::text,true);
+ execute 'set local role authenticated';
+ denied:=false;begin perform public.lockliel_save_lesson(a,l2,0,'{"1":"Review assignment"}','',true);exception when invalid_parameter_value then denied:=true;end;
+ assert denied,'Model D bypassed admin review';
+ r:=public.lockliel_save_lesson(a,l2,0,'{"1":"Review assignment"}','',false);
+ execute 'reset role';
+ update public.lesson_progress set review_approved_at=clock_timestamp() where profile_id=a and lesson_id=l2;
+ perform pg_sleep(0.31);
+ execute 'set local role authenticated';
+ r:=public.lockliel_save_lesson(a,l2,1,'{"1":"Review assignment"}','',true);
+ assert r->>'status'='completed','Model D ignored existing approval';
+ assert (select body='Notes after completion' from public.lesson_private_notes where profile_id=a and lesson_id=l1),'A notes lost after B session';
+ execute 'reset role';
+ assert not exists(select 1 from public.staff_roles where profile_id in (a,b)),'Course granted staff authority';
+ perform set_config('request.jwt.claims','{}',true);
+ execute 'set local role anon';
+ denied:=false;begin perform public.lockliel_save_lesson(a,l1,3,'{}','',false);exception when insufficient_privilege then denied:=true;end;
+ assert denied,'Anonymous save permitted';
+ execute 'reset role';
+end;
+$test$;

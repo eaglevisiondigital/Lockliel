@@ -1,0 +1,66 @@
+{
+  "starting_head": "50b68755dadeea258b982bd629f49d695bbe3432",
+  "branch": "lockliel-backend-v1",
+  "authoritative_migrations": 279,
+  "migration_hashes_unchanged": true,
+  "acl_cases": {
+    "A": "PASS production full8 defaults preserved, final service privileges zero",
+    "B": "PASS restricted defaults preserved, final service privileges zero",
+    "C": "PASS 13 injected actual-grant defects rejected per profile",
+    "D": "PASS missing279 ledger/security and incomplete revocation rejected"
+  },
+  "duration_authoritative_279": {
+    "passed": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "failed": [
+      3,
+      8
+    ]
+  },
+  "duration_local_proposal": {
+    "passed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "path": "supabase/proposals/trusted-duration-policy/20261001204920_lockliel_current_trusted_duration_gate.sql",
+    "sha256": "b7d42d132203b2f8a71a013b82fdba558c9bb9674a9a706534492f0dd1157b65",
+    "in_authoritative_chain": false,
+    "changed_functions": [
+      "app_private.course_watch_met",
+      "public.lockliel_save_lesson"
+    ],
+    "security_persistence_regressions": 3
+  },
+  "validation": {
+    "javascript_tests_passed": 578,
+    "sql_files_passed": 16,
+    "candidate_overlay_cases_passed": 8,
+    "netlify_modules": 75,
+    "netlify_handlers": 62,
+    "build_static_pages": 37,
+    "typescript": "PASS",
+    "configured_lint": "PASS",
+    "targeted_lint": "PASS",
+    "staged_cli": "PASS baseline plus full8/restricted profiles, TLS/failure/drain/concurrency"
+  },
+  "inventory_gate": "PASS",
+  "production_population_gate": "REQUIRES SEPARATE AUTHORIZATION",
+  "production_access_this_task": false,
+  "production_mutations": false,
+  "push": false,
+  "merge": false,
+  "deploy": false,
+  "assessment": "VERIFIER AND DURATION POLICY REQUIRE CORRECTION"
+}

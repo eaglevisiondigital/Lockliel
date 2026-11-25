@@ -1,0 +1,228 @@
+{
+  "operator": {
+    "storedSelectedUserMatchesExpected": true,
+    "authenticatedCallerMatchesExpected": true,
+    "teamOwnerIdMatchesCaller": true,
+    "teamRolesAllowed": [
+      "Owner",
+      "Developer",
+      "Reviewer",
+      "Publisher",
+      "Internal Builder"
+    ],
+    "teamRole": "Owner"
+  },
+  "operatorAccess": {
+    "role": "Owner",
+    "site_access": "all"
+  },
+  "site": {
+    "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "account_id": "6a674f7a0e2cdcc2b838db89",
+    "account_slug": "dfowler4232",
+    "state": "current",
+    "plan": "nf_team_pro",
+    "published_deploy": null,
+    "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+    "url": "http://jade-unicorn-642f40.netlify.app",
+    "custom_domain": null,
+    "domain_aliases": [],
+    "branch_deploy_custom_domain": null,
+    "deploy_preview_custom_domain": null,
+    "availableNonSecretIdentityFields": [
+      "custom_domain",
+      "branch_deploy_custom_domain",
+      "deploy_preview_custom_domain",
+      "domain_aliases",
+      "gcp_lb_domains_last_seen_ts",
+      "account_sso_login",
+      "account_sso_login_context",
+      "deploy_id",
+      "deploy_url",
+      "max_domain_aliases",
+      "deploy_hook",
+      "published_deploy",
+      "account_id",
+      "account_slug",
+      "account_name",
+      "account_type",
+      "capabilities",
+      "id_domain",
+      "account_subdomain",
+      "deploy_retention_in_days",
+      "deploy_origin",
+      "prevent_non_git_prod_deploys",
+      "default_domain"
+    ]
+  },
+  "historicalDeploys": [
+    {
+      "id": "6abfd81ccee16b59b75711a0",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-10-02T16:13:16.879Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    },
+    {
+      "id": "6abe8f4f75e5a756b7d0cd9a",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-10-01T16:50:23.730Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    },
+    {
+      "id": "6abe7a6b1490c08d003640dd",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-10-01T15:21:15.429Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    },
+    {
+      "id": "6abe773dad5e9095300051c2",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-10-01T15:07:41.601Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    },
+    {
+      "id": "6abe71ba8466df3ae65d138a",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-10-01T14:44:10.760Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    },
+    {
+      "id": "6abd778184898338b60d32b2",
+      "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "state": "ready",
+      "context": "branch-deploy",
+      "draft": null,
+      "branch": "rehearsal",
+      "review_id": null,
+      "published_at": null,
+      "created_at": "2026-09-30T20:56:33.669Z",
+      "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+      "deploy_url": "http://rehearsal--jade-unicorn-642f40.netlify.app",
+      "ssl_url": "https://jade-unicorn-642f40.netlify.app",
+      "url": "http://jade-unicorn-642f40.netlify.app"
+    }
+  ],
+  "deployedBranches": [],
+  "deployListComplete": true,
+  "billing": {
+    "type_name": "Pro",
+    "type_slug": "credit-pro-tier-3",
+    "plan_credits": 10000,
+    "auto_topup_enabled": false,
+    "plan_auto_topup_amount": "1500.00",
+    "plan_auto_topup_per_unit_cost": "0.00667",
+    "current_billing_period_start": "2026-10-27T00:00:00.000-07:00",
+    "next_billing_period_start": "2026-11-27T00:00:00.000-08:00",
+    "usages_exceeded": [],
+    "sites_with_usage_exceeded": [],
+    "days_until_disabled": null,
+    "lifecycle_state": "active",
+    "in_operational_mode": false,
+    "configurable_limits_exceeded": []
+  },
+  "creditsCapability": {
+    "included": 10000,
+    "used": 0
+  },
+  "publicBaselines": [
+    {
+      "url": "https://jade-unicorn-642f40.netlify.app/",
+      "status": 404,
+      "bodyLength": 7418,
+      "sha256": "58ae3ccdfc911858d34f16ec5fe14dba9ab6ae99fe37a5f94b74e81c9e985e3a"
+    },
+    {
+      "url": "https://rehearsal--jade-unicorn-642f40.netlify.app/",
+      "status": 302,
+      "bodyLength": 35,
+      "sha256": "e77684dd7a74d52e8dbf275b04d0db183212511ab985cca7eb7d751beca02342"
+    },
+    {
+      "url": "https://6abfd81ccee16b59b75711a0--jade-unicorn-642f40.netlify.app/",
+      "status": 302,
+      "bodyLength": 35,
+      "sha256": "e77684dd7a74d52e8dbf275b04d0db183212511ab985cca7eb7d751beca02342"
+    },
+    {
+      "url": "https://6ae892b431d27dc53153a30f--jade-unicorn-642f40.netlify.app/",
+      "status": 404,
+      "bodyLength": 7418,
+      "sha256": "913489669af49e7fd106cb30886394ae62f3152da9c1454a961792b185956c6f"
+    }
+  ],
+  "apiPreflightCalls": [
+    {
+      "method": "GET",
+      "path": "/user",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/6a674f7a0e2cdcc2b838db89",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deployed-branches",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys?per_page=100&page=1",
+      "status": 200
+    }
+  ],
+  "credentials": "Existing selected CLI operator matches connected Owner; cached input read into process memory only; no new credential file/value/argument/environment/log/output",
+  "noPaymentMethodsOrEnvironmentValueEndpointCalled": true
+}

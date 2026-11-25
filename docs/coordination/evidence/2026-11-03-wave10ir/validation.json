@@ -1,0 +1,96 @@
+{
+  "source": "9bde7d74e3f8c303155ece75fd8148c0d45fd61a",
+  "fullJavaScript": {
+    "passed": 2309,
+    "failed": 0,
+    "skipped": 0
+  },
+  "python": {
+    "inventory": 31,
+    "worker": 4,
+    "independentSecurity": 8,
+    "uniqueFocusedTotal": 43
+  },
+  "sql": {
+    "migrationsReplayed": 280,
+    "checks": 22,
+    "hostedEquivalence": false,
+    "ownedFixtureRemoved": true
+  },
+  "checks": [
+    {
+      "check": "fixture-native",
+      "exitCode": 0,
+      "seconds": 1.696,
+      "log": "/private/tmp/lockliel-wave10ir-fixture-native.log",
+      "logSha256": "de0932530be7a1010428fda86ffcf22b6eb6580d0afde621a79ec10e1ad817a7"
+    },
+    {
+      "check": "fixture-worker",
+      "exitCode": 0,
+      "seconds": 0.709,
+      "log": "/private/tmp/lockliel-wave10ir-fixture-worker.log",
+      "logSha256": "0bff6039ed3a7c027a27e6168c07cdaa2248eb031edfaecb013188c43fad925b"
+    },
+    {
+      "check": "fixture-lint",
+      "exitCode": 0,
+      "seconds": 2.525,
+      "log": "/private/tmp/lockliel-wave10ir-fixture-lint.log",
+      "logSha256": "ffe135e4e6daa6cc01a85272486a89ff28a9e9ad6b232de15ef9b027ff3d2ba9"
+    },
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "seconds": 18.197,
+      "log": "/private/tmp/lockliel-wave10ir-unit.log",
+      "logSha256": "95a28e31cb9932adef9265b8911e5e2946751fedd421ab43cc3ec980f64a8e06"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "seconds": 3.263,
+      "log": "/private/tmp/lockliel-wave10ir-lint-configured.log",
+      "logSha256": "aacc2f6a07f6a568347793a9e6128a81512a1b553f7edccd135b2c95669842e8"
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "seconds": 5.498,
+      "log": "/private/tmp/lockliel-wave10ir-netlify.log",
+      "logSha256": "715cf7c643d6772813908bc25a87db74bc3fcdc696fb40040c899b956d8becc5"
+    },
+    {
+      "check": "type",
+      "exitCode": 0,
+      "seconds": 2.323,
+      "log": "/private/tmp/lockliel-wave10ir-type.log",
+      "logSha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15"
+    },
+    {
+      "check": "build",
+      "exitCode": 0,
+      "seconds": 9.554,
+      "log": "/private/tmp/lockliel-wave10ir-build.log",
+      "logSha256": "7f208ce782ec337450466af665a1e6294c1089b5b8fa227ec1c9d5c32e3b5340"
+    }
+  ],
+  "independentReview": {
+    "javascript": 36,
+    "python": 8,
+    "overlapWithOtherTotals": true
+  },
+  "parallelUi": {
+    "source": "a35ef225286f7c1ab52100f51013c88d47d8b3b5",
+    "focusedTests": 239,
+    "changesInR": 0,
+    "logSha256": "51b574ecc6d925eafdc7f5c839d6fbd91a2117a97cd5590a3ee64b6ae9bfa06c"
+  },
+  "history": [
+    "First SQL replay passed; test-only bigint-to-JSON cast failed afterward, corrected before final successful run.",
+    "Stale Python blanket identity_data assertion changed to distinguish count/hash predicates from returned private data; no returned raw identity fields.",
+    "Test lint module variable and unused import corrected; final full validation passes."
+  ],
+  "liveCredentialsUsed": false,
+  "managedDatabaseConnections": 0
+}

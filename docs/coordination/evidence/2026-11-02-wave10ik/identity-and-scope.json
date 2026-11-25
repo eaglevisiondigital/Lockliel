@@ -1,0 +1,22 @@
+{
+  "reviewHead": "5161b6bbff20ba4cec4bd826f05b8f67ea6d183f",
+  "reviewedApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "reviewedTooling": "51857e44642ac79a4b1f458de786b97d98762082",
+  "toolingAndGuardPins": {
+    "uploader.mjs": "6f132ce8406a20c34eeff0c2e2eed63c913d5bd75647ac1fb9e6829ad7626d0c",
+    "provider-receipts.mjs": "8844ca07f62a6da2f3e1e0226991f0b55c94d6048b7e0d481f45978adb69ef80",
+    "database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba"
+  },
+  "wave10ij": "COMPLETE, receipt and CONSUMED grant unchanged",
+  "diagnosticAllowance": "CONSUMED; must not rearm",
+  "applicationReservation": "unused according to retained local execution record; not freshly queried remotely",
+  "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "account": "6a674f7a0e2cdcc2b838db89",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "operator": "Historical caller-match/Owner/all-site predicates verified in G; actual caller ID and current privileges must be privately bound fresh; no live operator composition SHA established",
+  "courseAndMainLocalRefsUnchanged": true,
+  "freshDatabaseOrProviderConnections": 0,
+  "credentialsAccessed": false,
+  "activeDiagnosticReused": false
+}

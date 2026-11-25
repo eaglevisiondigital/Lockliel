@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-01T14:09:07.162Z",
+  "project": "qjksggxorghaxvpyslip",
+  "ledger": 279,
+  "status": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "identity": {
+    "ssl": true,
+    "tls": "TLSv1.3",
+    "lock": "5s",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "server": "17.11",
+    "database": "postgres",
+    "readonly": "on",
+    "statement": "30s"
+  }
+}

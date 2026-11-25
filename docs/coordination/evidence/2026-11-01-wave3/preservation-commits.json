@@ -1,0 +1,38 @@
+[
+  {
+    "lane": "W1",
+    "branch": "codex/lane1-account-integrity",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane1-account-integrity/Lockliel",
+    "parent": "d71d079126f48e49f8d3df591373c0381b9f91e1",
+    "checkpoint": "38a1c097e8cf50425ccceac4685fc1770dceffac",
+    "files": 3,
+    "working_tree": "clean"
+  },
+  {
+    "lane": "W2",
+    "branch": "codex/lane2-course-readiness",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane2-course-readiness/Lockliel",
+    "parent": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "checkpoint": "6e19e240e6d7fa00514399636f879de4992a290a",
+    "files": 12,
+    "working_tree": "clean"
+  },
+  {
+    "lane": "W3",
+    "branch": "codex/lane3-member-design",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane3-member-design/Lockliel",
+    "parent": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "checkpoint": "365b30769c534cc8a75818ea50d3cb85a5ade30c",
+    "files": 12,
+    "working_tree": "clean"
+  },
+  {
+    "lane": "W4",
+    "branch": "codex/lane4-faith-contracts",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane4-faith-contracts/Lockliel",
+    "parent": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "checkpoint": "dd743799f5e5063732fccc4e3f961ddae9da5e7a",
+    "files": 13,
+    "working_tree": "clean"
+  }
+]

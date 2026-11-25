@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-01T17:02:12.799Z",
+  "project": "qjksggxorghaxvpyslip",
+  "method": "Actual hosted API plus unchanged application autosave module; controlled transport discards a successful acknowledgement. Not browser network interception.",
+  "pass": true,
+  "calls": 2,
+  "successfulResponses": 2,
+  "committedRevisionDelta": 1,
+  "initialRevision": 1,
+  "finalRevision": 2,
+  "draftRetainedBeforeAcknowledgement": true,
+  "idempotentRetryAcknowledged": true,
+  "cloudAuthoritative": true,
+  "noDuplicateRows": true,
+  "restoredSaved": true
+}

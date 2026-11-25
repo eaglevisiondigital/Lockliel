@@ -1,0 +1,25 @@
+{
+  "source": "90bc61dcf5c4fea8e25a2231f8a3a89303a59ca3",
+  "composition": "Exact reviewed source/evidence copies; no branch merge",
+  "files": {
+    "supabase/migrations/20261104142104_lockliel_expand_my_five_relationship_capacity.sql": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+    "supabase/tests/member_journey_core.sql": "ee17ee9f98936ec09376c737516d7b210ce01bfa2f19fc5efe5d841a236f58fb",
+    "scripts/test-myfive-release-sql.mjs": "8a20cbde2bb6b0c50e10606bde07203cc9f20f1dab88e9b35f96ed496ce9affa",
+    "tests/fixtures/myfive-expansion/run.mjs": "f9962b754200ac774f7461162889f1b6f2ff10ebcddd1d535d87f9e9bb6f1cad",
+    "tests/myfive-release-migration.test.mjs": "68ae85331be548d19c11687a53e385aef6a3baa66e7fe5926f3a7d3482d43410",
+    "docs/myfive-release-sql/CLI_PROVENANCE_CORRECTION.json": "b75d26e01c7abff4e1cae867b9e1336cbed5bb8c04f44ff01221492aebd9aae5",
+    "docs/myfive-release-sql/PREPARATION.md": "0bf31cd64b4ec7ff44230ea1331947dea068363f16f0e45a4313d06dd0caf965",
+    "docs/myfive-release-sql/RESULT.md": "defcb5a0a434fed64a94139e27cc6043af1256df79390255649b204c488412a2",
+    "docs/myfive-release-sql/baseline-member-journey-core.sql": "d74a936f8764ff23514be4f61acab4977191ad4ca9399d2274151a4990ea9d0f",
+    "docs/myfive-release-sql/catalog-parity.json": "2e50f3564549477a87ed888096c4b8d8d78bdaa9778d927fe1a32c72c1b675bf",
+    "docs/myfive-release-sql/cleanup.json": "3f7eb677ec1d2116eb3554c245c8291264a56f448ad609503ddc1aa921b4e4ee",
+    "docs/myfive-release-sql/evidence.json": "686c5fe2eff0f49a1e641904adaa285bb6e31ecaa0846446480476583b2d9dd2",
+    "docs/myfive-release-sql/fresh-upgrade.json": "c8798939ed9e88fc9bc5dd169c86ffd21d05df25ad95e0dc4b37a1242d85dcf5",
+    "docs/myfive-release-sql/output.txt": "98c91e8a6bb23b5ca306c7667e87aeaf385297773fe82bf7e910672cadc4d991",
+    "docs/myfive-release-sql/source-sha256.json": "a87a4f6126dc803135208448c0e058ba823b0725b644cda9764b507a2ccb6a6d",
+    "docs/myfive-backend/proposed-cap-correction.sql": "34de65c23e65d23d0656fd29a0eeebbe4498fa7da61bb302d6abf574982429a6",
+    "tests/fixtures/myfive-expansion/recovery-control.mjs": "4819476c3079f87ca9802a7e2174b703a695527b1489749080209129b99be881",
+    "tests/fixtures/myfive-expansion/recovery.mjs": "d77c7c2d7a25dbc4c785e82e7c4799b177680188b41b27a03b528d8bd2e0a8bc",
+    "tests/fixtures/myfive-expansion/sql-shape.mjs": "d7bcf40060e08f08a6a3280b035ba57d3ef003c40eebbc7455a2b4794bc637bd"
+  }
+}

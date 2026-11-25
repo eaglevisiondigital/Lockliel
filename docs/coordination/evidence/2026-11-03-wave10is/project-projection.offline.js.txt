@@ -1,0 +1,26 @@
+function projectReceipt(result, observedAt) {
+  const blocked={schema:"lockliel-wave10is-project-observation-v1",operation:"supabase.get_project",requestedProject:target,observedAt,ok:false,category:"UNVERIFIED_PROVIDER_RESPONSE",rawResponseRetained:false};
+  try {
+    if(!result || result.isError===true) return blocked;
+    let value;
+    if(result.structuredContent!=null) {
+      if(result.content!==undefined&&(!Array.isArray(result.content)||result.content.length!==0))return blocked;
+      value=result.structuredContent;
+    }
+    else {
+      if(!Array.isArray(result.content)||result.content.length!==1||result.content[0].type!=="text"||typeof result.content[0].text!=="string"||result.content[0].text.length>65536)return blocked;
+      value=JSON.parse(result.content[0].text);
+    }
+    for(let i=0;i<2;i++){
+      if(!value||typeof value!=="object"||Array.isArray(value))return blocked;
+      if(typeof value.ref==="string"||typeof value.id==="string")break;
+      const keys=Object.keys(value);
+      if(keys.length!==1||!["result","project","data"].includes(keys[0]))return blocked;
+      value=value[keys[0]];
+    }
+    if(!value||typeof value!=="object"||Array.isArray(value))return blocked;
+    if((value.ref===undefined&&value.id===undefined)||(value.ref!==undefined&&value.ref!==target)||(value.id!==undefined&&value.id!==target))return blocked;
+    const statuses=["ACTIVE_HEALTHY","ACTIVE_UNHEALTHY","INACTIVE","COMING_UP","GOING_DOWN","RESTORING","UPGRADING","PAUSING","PAUSED","REMOVED"];
+    return {...blocked,ok:true,category:"PROJECT_METADATA_OBSERVED",exactProjectMatch:true,expectedNameMatch:typeof value.name==="string"?value.name==="course-cutover-rehearsal-274":null,expectedDatabaseHostMatch:typeof value.database?.host==="string"?value.database.host==="db."+target+".supabase.co":null,status:statuses.includes(value.status)?value.status:"UNKNOWN",authenticatedConnectorReadSucceeded:true,namedOperator:"UNKNOWN",branchParentLinkage:"UNKNOWN",authVersion:"UNKNOWN",authHooks:"UNKNOWN",credentialProvenance:"UNKNOWN"};
+  }catch{return blocked;}
+};

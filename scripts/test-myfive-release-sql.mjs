@@ -1,0 +1,234 @@
+// Creates its own cluster. Never connects to a caller-supplied database or service.
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {parseRecoveryCommand,waitForRecoveryCommand} from '../tests/fixtures/myfive-expansion/recovery-control.mjs';
+import {runExpansion} from '../tests/fixtures/myfive-expansion/run.mjs';
+import {verifyCourseACLMatrix} from '../tests/support/course-acl-matrix.mjs';
+
+const review275 = process.argv.length === 3 && ['--review-275','--review-279'].includes(process.argv[2]);
+const review279 = review275 && process.argv[2] === '--review-279';
+if (process.argv.length !== 2 && !review275) throw new Error('SQL tests accept only fixed --review-275/--review-279 profiles, never connection arguments.');
+const candidate='20261104142104_lockliel_expand_my_five_relationship_capacity.sql';
+const repo = fileURLToPath(new URL('../', import.meta.url));
+// Do not inherit PGHOST, PGSERVICE, PGOPTIONS, DATABASE_URL, secrets or shell startup files.
+const env = { PATH: process.env.PATH, LANG: 'C', LC_ALL: 'C' };
+function run(command, args, options = {}) {
+  const result = spawnSync(command, args, {env, encoding: 'utf8', timeout: 120000, ...options});
+  if (result.error || result.status !== 0) {
+    throw new Error(`${command} failed: ${result.error?.message || result.stderr || result.stdout}`);
+  }
+  return result.stdout;
+}
+const version = run('initdb', ['--version']);
+if (!/PostgreSQL\) 17\./.test(version)) throw new Error('PostgreSQL 17 binaries must be on PATH.');
+const root = mkdtempSync(join(tmpdir(), 'lockliel-myfive-sql-'));
+const data = join(root, 'data');
+const socket = join(root, 'socket');
+mkdirSync(socket, {mode: 0o700});
+let started = false;
+let ownedPid=null;
+const args = ['-X', '-h', socket, '-p', '5432', '-U', 'postgres', '-d', 'postgres', '-v', 'ON_ERROR_STOP=1'];
+function sql(source) { return run('psql', [...args, '-qAt'], {input: source}); }
+function cleanup() {
+  if (started) {
+    // Stop only the cluster we initialized, never a machine-wide service.
+    run('pg_ctl', ['-D', data, '-m', 'immediate', '-w', 'stop']);
+    started = false;
+  }
+  rmSync(root, {recursive: true, force: true});
+  writeFileSync(join(repo,'docs/myfive-release-sql/cleanup.json'),JSON.stringify({ownedRoot:root,removed:!existsSync(root),started:false,tcpEnabled:false},null,2)+'\n');
+}
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.once(signal, () => { cleanup(); process.exit(1); });
+}
+try {
+  run('initdb', ['-D', data, '-U', 'postgres', '-A', 'trust', '--no-locale', '-E', 'UTF8']);
+  // Socket directory is unique/private; no TCP listener or remote connection path.
+  const config = `\nlisten_addresses = ''\nunix_socket_directories = '${socket.replaceAll("'", "''")}'\nunix_socket_permissions = 0700\nport = 5432\n`;
+  writeFileSync(join(data, 'postgresql.conf'), readFileSync(join(data, 'postgresql.conf'), 'utf8') + config);
+  run('pg_ctl', ['-D', data, '-l', join(root, 'postgres.log'), '-w', '-t', '30', 'start']);
+  started = true;
+  const actual = sql("select current_setting('data_directory');").trim();
+  if (resolve(actual) !== resolve(data) || sql('select inet_server_addr() is null;').trim() !== 't') {
+    throw new Error('Refusing SQL tests: disposable socket-only cluster identity not verified.');
+  }
+  ownedPid=readFileSync(join(data,'postmaster.pid'),'utf8').split('\n')[0];
+  sql(readFileSync(join(repo, 'tests/support/supabase-compat.sql'), 'utf8'));
+  const catalogQuery = readFileSync(join(repo, 'supabase/verification/review-share-catalog.sql'), 'utf8');
+  const catalogExpected = JSON.parse(readFileSync(join(repo, 'supabase/verification/review-share-live-20260926.json'), 'utf8'));
+  const bridge = readFileSync(join(repo, 'supabase/migrations/20260925035350_lockliel_reconstructed_review_share_history.sql'), 'utf8');
+  function verifyReconciliation() {
+    const before = JSON.parse(sql(catalogQuery));
+    // This compares only two tables and the explicitly listed catalog properties.
+    for (const key of Object.keys(catalogExpected)) {
+      assert.deepEqual(before[key], catalogExpected[key], `Targeted live catalog differs: ${key}`);
+    }
+    sql('begin read only;\n' + bridge + '\nrollback;');
+    // Reapplying to a completed existing environment must execute no DDL/DML.
+    // Event trigger rejects any attempted DDL, even if the end schema is identical.
+    sql(`begin;
+      create function public.reject_bridge_ddl() returns event_trigger language plpgsql as $body$
+      begin raise exception 'Existing-environment bridge attempted DDL'; end; $body$;
+      create event trigger reject_bridge_ddl on ddl_command_start execute function public.reject_bridge_ddl();
+      ${bridge}
+      rollback;`);
+    assert.deepEqual(JSON.parse(sql(catalogQuery)), before, 'Bridge changed existing schema');
+    // These mutations exist only in rolled-back disposable sessions.
+    for (const drift of [
+      'alter table public.share_assets drop column share_text cascade;',
+      'drop index public.founders50_reviews_application_idx;',
+      'alter table public.founders50_reviews disable row level security;',
+    ]) {
+      assert.throws(() => sql('begin;\n' + drift + '\n' + bridge + '\nrollback;'), /Reconciliation refused/);
+    }
+    assert.deepEqual(JSON.parse(sql(catalogQuery)), before, 'Drift fixture did not roll back');
+    console.log('PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.');
+  }
+  function verifyEmailRecovery(pendingMigration) {
+    // A legacy value admitted by the broken rule must abort the correction,
+    // preserving the old constraint. The entire synthetic scenario is rolled back.
+    sql(String.raw`begin;
+      do $test$
+      declare old_check text; rejected boolean := false;
+      begin
+        select pg_get_constraintdef(oid) into old_check from pg_constraint
+          where conrelid='public.profiles'::regclass and conname='profiles_email_format';
+        insert into auth.users(id,email) values(gen_random_uuid(),$email$legacy@domain\xx$email$);
+        begin
+          execute $pending$${pendingMigration}$pending$;
+        exception when check_violation then rejected:=true; end;
+        assert rejected, 'Incompatible legacy row did not abort email migration';
+        assert (select pg_get_constraintdef(oid)=old_check from pg_constraint
+          where conrelid='public.profiles'::regclass and conname='profiles_email_format'),
+          'Failed email correction did not restore previous constraint';
+      end;
+      $test$;
+      rollback;`);
+    console.log('PASS incompatible legacy email abort and transactional constraint recovery.');
+  }
+  const allMigrations = readdirSync(join(repo, 'supabase/migrations')).filter(f => f.endsWith('.sql')).sort();
+  assert.equal(allMigrations.length,281);assert.equal(allMigrations[280],candidate);
+  const migrations=allMigrations.slice(0,280);
+  for (const file of review275 ? migrations.slice(0, 274) : migrations) {
+    if (file === '20260929215159_lockliel_course_engine_standard.sql') verifyCourseACLMatrix(sql,repo,migrations);
+    if (file === '20260926212002_lockliel_correct_profile_email_pattern.sql') {
+      verifyReconciliation();
+      verifyEmailRecovery(readFileSync(join(repo, 'supabase/migrations', file), 'utf8'));
+    }
+    try { sql('begin;\n' + readFileSync(join(repo, 'supabase/migrations', file), 'utf8') + '\ncommit;'); }
+    catch (error) { throw new Error(`Migration replay failed at ${file}: ${error.message}`); }
+
+  }
+  if (review275) {
+    const reviewDir = join(repo, 'tests/fixtures/course-275-review');
+    sql('begin;\n' + readFileSync(join(reviewDir, 'old-upsert.sql'), 'utf8') + '\nrollback;');
+    console.log('PASS original schema-274 upsert ACL defect reproduced; plain INSERT succeeds.');
+    const migration = migrations[274];
+    assert.equal(migration, '20260929215159_lockliel_course_engine_standard.sql');
+    for (const profile of ['disposable', 'hosted']) {
+      // Test-only default ACL simulation, rolled back with the migration and fixtures.
+      // Never changes a real branch or the authoritative migration bytes.
+      const defaults = profile === 'hosted' ? `alter default privileges for role postgres in schema public revoke all on tables from service_role;
+        alter default privileges for role postgres in schema public grant truncate,references,trigger,maintain on tables to service_role;` : '';
+      const fixture = review279 ? readFileSync(join(repo,'tests/fixtures/course-279-security/notes.sql'),'utf8').replaceAll('-- APPLY_279_HERE',readFileSync(join(repo,'supabase/migrations/20261001133500_lockliel_private_notes_service_privileges.sql'),'utf8')) : readFileSync(join(reviewDir,'notes.sql'),'utf8');
+      const schema = (review279 ? migrations.slice(274,278) : [migration]).map(file=>readFileSync(join(repo,'supabase/migrations',file),'utf8')).join('\n');
+      sql('begin;\n' + defaults + '\n' + schema + '\n' + fixture + '\nrollback;');
+      console.log(`PASS exact${review279 ? '278 then279' : '275'} ${profile} defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (${review279 ? 'actual279, absent-grant replay safe' : 'test-only revocation'}).`);
+    }
+    console.log(review279 ? 'Passed disposable before/after exact279 regression under both defaults.' : 'Passed focused 274/275 review; no CLI release rehearsal or later migrations.');
+  } else {
+  console.log(`Replayed ${migrations.length} authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).`);
+  const tests = readdirSync(join(repo, 'supabase/tests')).filter(f => f.endsWith('.sql')).sort();
+  for (const file of tests) {
+    try { sql('begin;\n' + readFileSync(file==='member_journey_core.sql'?join(repo,'docs/myfive-release-sql/baseline-member-journey-core.sql'):join(repo, 'supabase/tests', file), 'utf8') + '\nrollback;'); }
+    catch (error) { throw new Error(`SQL test failed at ${file}: ${error.message}`); }
+    console.log(`PASS ${file} (rolled back)`);
+  }
+  console.log(`Passed ${tests.length} SQL test files.`);
+  // Temporary readiness is operational SQL, intentionally outside migration history.
+  // Exercise its exact old-to-new update in this same disposable cluster only.
+  const unwrap = source => source.replace(/^begin;$/m, '').replace(/commit;\s*$/, '');
+  const ledger = migrations.map(file => `('${file.slice(0,14)}')`).join(',');
+  const oldInstall = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-279/maintenance-install.sql'), 'utf8'));
+  const readinessUpdate = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-280/maintenance-readiness-update.sql'), 'utf8'));
+  const readinessChecks = readFileSync(join(repo, 'tests/fixtures/course-280-readiness/checks.sql'), 'utf8').replace('-- APPLY_READINESS_UPDATE', () => readinessUpdate);
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${oldInstall}
+    ${readinessChecks}
+    rollback;`);
+  console.log('PASS isolated280 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
+  const safeReads=unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-reads.sql'),'utf8'));
+  const pausedChecks=readFileSync(join(repo,'tests/fixtures/course-paused-reads/checks.sql'),'utf8');
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-install.sql'),'utf8'))}
+    ${safeReads}
+    -- Exact hosted operation helper reproduced only in this disposable compatibility schema.
+    create function storage.allow_only_operation(expected_operation text) returns boolean language sql stable as $op$
+      select coalesce(regexp_replace(current_setting('storage.operation',true),'^storage[.]','')=regexp_replace(expected_operation,'^storage[.]','') and expected_operation<>'',false);
+    $op$;
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-read.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-info.sql'),'utf8'))}
+    ${pausedChecks}
+    rollback;`);
+  console.log('PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).');
+
+
+  }
+try { await runExpansion({sql,run,args,env,repo,socket,data,candidate,evidenceDirectory:'docs/myfive-release-sql'}); }
+catch(error) {
+ console.error('Extension stopped: '+error.message);
+ console.error('Owned fixture held for at most five minutes. Stop, or independently review the fixed recovery module then provide its SHA256. No automatic retry.');
+ const command=await waitForRecoveryCommand(process.stdin);
+ if(command===null)throw error;
+ const expected=parseRecoveryCommand(command);
+ if(expected===null)throw error;
+ // A single explicit invocation only; any failure falls directly through finally cleanup.
+ if(readFileSync(join(data,'postmaster.pid'),'utf8').split('\n')[0]!==ownedPid||!/^\d+$/.test(ownedPid))throw Error('Owned fixture PID mismatch');
+ process.kill(Number(ownedPid),0);
+ if(resolve(sql("select current_setting('data_directory');").trim())!==resolve(data)||sql('select inet_server_addr() is null;').trim()!=='t'||sql("select current_setting('listen_addresses');").trim()!==''||resolve(sql("select current_setting('unix_socket_directories');").trim())!==resolve(socket))throw Error('Owned fixture identity mismatch');
+ const recoveryPath=join(repo,'tests/fixtures/myfive-expansion/recovery.mjs');
+ const recoveryBytes=readFileSync(recoveryPath);
+ const actual=createHash('sha256').update(recoveryBytes).digest('hex');
+ if(actual!==expected)throw Error('Recovery module hash mismatch');
+ const receipt={originalFailure:error.message,recoverySha256:actual,attempted:true,completed:false};
+ try {const {runRecovery}=await import('data:text/javascript;base64,'+recoveryBytes.toString('base64'));await runRecovery({sql,run,args,env,repo,socket,data});receipt.completed=true;}
+ finally {writeFileSync(join(repo,'docs/myfive-release-sql/recovery-receipt.json'),JSON.stringify(receipt,null,2)+'\n');}
+}
+
+// Upgrade restoration has been verified by runExpansion. Reapply the exact canonical candidate.
+const candidateSQL=readFileSync(join(repo,'supabase/migrations',candidate),'utf8');
+const beforeFailedMigration=sql("select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);");
+assert.throws(()=>sql('begin;'+candidateSQL+'select 1/0;commit;'),/division by zero/);
+assert.equal(sql("select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);"),beforeFailedMigration);
+sql('begin;'+candidateSQL+'commit;');
+const definitionSQL="select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);";
+const upgradedDefinition=sql(definitionSQL);
+const parityQuery=`select json_build_object('function',(select json_build_object('owner',pg_get_userbyid(proowner),'acl',proacl,'definer',prosecdef,'config',proconfig)from pg_proc where oid='app_private.enforce_reach_contact_limit()'::regprocedure),'policies',(select json_agg(row_to_json(p)order by policyname)from pg_policies p where schemaname='public' and tablename='reach_contacts'),'triggers',(select json_agg(pg_get_triggerdef(oid)order by tgname)from pg_trigger where tgrelid='public.reach_contacts'::regclass and not tgisinternal),'constraints',(select json_agg(json_build_object('name',conname,'definition',pg_get_constraintdef(oid))order by conname)from pg_constraint where conrelid='public.reach_contacts'::regclass),'grants',(select json_agg(json_build_object('grantor',grantor,'grantee',grantee,'schema',table_schema,'table',table_name,'column',column_name,'privilege',privilege_type,'grantable',is_grantable)order by grantee,privilege_type,column_name)from information_schema.column_privileges c where table_schema='public' and table_name='reach_contacts'));`;
+const upgradedCatalog=sql(parityQuery);
+sql('create database lockliel_fresh_281;');
+const freshArgs=[...args];
+freshArgs[freshArgs.indexOf('-d')+1]='lockliel_fresh_281';
+const freshSQL=source=>run('psql',[...freshArgs,'-qAt'],{input:source});
+freshSQL(readFileSync(join(repo,'tests/support/supabase-compat.sql'),'utf8').replace(/^create role .*;\n/gm,''));
+for(const file of allMigrations)freshSQL('begin;'+readFileSync(join(repo,'supabase/migrations',file),'utf8')+'commit;');
+assert.equal(freshSQL(definitionSQL),upgradedDefinition);
+assert.equal(freshSQL(parityQuery),upgradedCatalog);
+writeFileSync(join(repo,'docs/myfive-release-sql/catalog-parity.json'),JSON.stringify({upgrade:JSON.parse(upgradedCatalog),fresh:JSON.parse(freshSQL(parityQuery))},null,2)+'\n');
+const freshTests=readdirSync(join(repo,'supabase/tests')).filter(f=>f.endsWith('.sql')).sort();
+for(const file of freshTests){freshSQL('begin;'+readFileSync(join(repo,'supabase/tests',file),'utf8')+'rollback;');console.log('PASS fresh281 '+file);}
+writeFileSync(join(repo,'docs/myfive-release-sql/fresh-upgrade.json'),JSON.stringify({freshMigrations:281,upgradeBaseline:280,candidate,freshTests,definitionParity:true,securityCatalogParity:true,injectedMigrationFailureRollback:true,completed:true},null,2)+'\n');
+
+} finally { cleanup(); }

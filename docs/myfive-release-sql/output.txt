@@ -1,0 +1,82 @@
+PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.
+PASS incompatible legacy email abort and transactional constraint recovery.
+PASS ACL production_full8: exact275–279 catalog, unchanged defaults, final zero service table/column privileges; 13 actual grant defects rejected.
+PASS ACL restricted_zero: exact275–279 catalog, unchanged defaults, final zero service table/column privileges; 13 actual grant defects rejected.
+PASS ACL cases A/B/C/D: production full8, restricted defaults, excessive actual grants, missing/incomplete279 fail closed.
+Replayed 280 authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).
+PASS account_deletion_execution.sql (rolled back)
+PASS account_deletion_readiness.sql (rolled back)
+PASS authorization_boundaries.sql (rolled back)
+PASS course_duration_policy.sql (rolled back)
+PASS course_engine_standard.sql (rolled back)
+PASS course_persistence_regression.sql (rolled back)
+PASS course_private_notes_privileges.sql (rolled back)
+PASS course_publication_authorization.sql (rolled back)
+PASS course_readiness_duration.sql (rolled back)
+PASS course_release_authorization.sql (rolled back)
+PASS deletion_preflight_access.sql (rolled back)
+PASS email_constraint_compatibility.sql (rolled back)
+PASS getting_a_grip_invitation.sql (rolled back)
+PASS integrity_staff_execution.sql (rolled back)
+PASS member_journey_core.sql (rolled back)
+PASS my_five_guided_follow_up.sql (rolled back)
+PASS reconciled_review_share.sql (rolled back)
+Passed 17 SQL test files.
+PASS isolated280 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).
+PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).
+PASS original sixth active insertion rejected for exact cap reason
+PASS proposal transaction rollback preserves function/catalog
+PASS proposal preserves policies/ACLs/triggers/indexes/role attributes
+PASS 5 active contacts accepted under actual authenticated role
+PASS 5 actual SQL cursor traversal exactly once
+PASS 25 active contacts accepted under actual authenticated role
+PASS 25 actual SQL cursor traversal exactly once
+PASS 100 active contacts accepted under actual authenticated role
+PASS 100 actual SQL cursor traversal exactly once
+PASS 1000 active contacts accepted under actual authenticated role
+PASS 1000 actual SQL cursor traversal exactly once
+PASS cross-owner SELECT hidden
+PASS cross-owner UPDATE and DELETE affect zero
+PASS cross-owner INSERT denied
+PASS owner and linked identity rewrites denied
+PASS anonymous SELECT denied
+PASS retained My Five private notes/consent/resource/inviter regression
+PASS original inviter remains separate from approved mentor and revoked follow-up
+PASS reactivation beyond five succeeds
+PASS actual SQL literal search and status subset
+PASS SQL equal-timestamp UUID ordering and offset-equivalent cursor
+PASS updated_at edit and deletion do not repeat prior cursor rows
+PASS database supplementary Unicode boundary accepted by pinned compatibility helper
+PASS stale status/version compare-and-set affects zero
+PASS simultaneous same-row CAS has one winner and one stale loser
+PASS duplicate-name add has no fabricated idempotency guarantee
+PASS four simultaneous same-owner inserts retain all committed rows
+PASS concurrent removal preserves other rows
+PASS duplicate owner-linked profile rejected by existing unique index
+PASS retained authorization/mentor/staff boundaries
+PASS post-correction course_engine_standard.sql
+PASS post-correction course_persistence_regression.sql
+PASS post-correction course_private_notes_privileges.sql
+PASS concurrent qualifying count matches actual rows
+PASS current-session predicate accepts active local fixture
+PASS current-session predicate rejects revoked fixture
+PASS rollback function replacement preserves expanded data and catalog
+PASS restored original cap prospectively rejects additional active contact
+My Five expansion: 38 explicit checks passed; observations recorded without treating limitations as success.
+PASS fresh281 account_deletion_execution.sql
+PASS fresh281 account_deletion_readiness.sql
+PASS fresh281 authorization_boundaries.sql
+PASS fresh281 course_duration_policy.sql
+PASS fresh281 course_engine_standard.sql
+PASS fresh281 course_persistence_regression.sql
+PASS fresh281 course_private_notes_privileges.sql
+PASS fresh281 course_publication_authorization.sql
+PASS fresh281 course_readiness_duration.sql
+PASS fresh281 course_release_authorization.sql
+PASS fresh281 deletion_preflight_access.sql
+PASS fresh281 email_constraint_compatibility.sql
+PASS fresh281 getting_a_grip_invitation.sql
+PASS fresh281 integrity_staff_execution.sql
+PASS fresh281 member_journey_core.sql
+PASS fresh281 my_five_guided_follow_up.sql
+PASS fresh281 reconciled_review_share.sql

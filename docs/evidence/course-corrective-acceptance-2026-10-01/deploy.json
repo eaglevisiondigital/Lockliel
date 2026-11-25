@@ -1,0 +1,9 @@
+{
+  "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "site_name": "jade-unicorn-642f40",
+  "deploy_id": "6abe8f4f75e5a756b7d0cd9a",
+  "deploy_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "logs": "https://app.netlify.com/projects/jade-unicorn-642f40/deploys/6abe8f4f75e5a756b7d0cd9a",
+  "function_logs": "https://app.netlify.com/projects/jade-unicorn-642f40/logs/functions?scope=deploy:6abe8f4f75e5a756b7d0cd9a",
+  "edge_function_logs": "https://app.netlify.com/projects/jade-unicorn-642f40/logs/edge-functions?scope=deployid:6abe8f4f75e5a756b7d0cd9a"
+}

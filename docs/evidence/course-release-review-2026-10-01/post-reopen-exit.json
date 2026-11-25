@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-01T15:55:37.955Z",
+  "project": "qjksggxorghaxvpyslip",
+  "before": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "after": {
+    "paused": false,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "mutation": "single maintenance control paused flag only"
+}

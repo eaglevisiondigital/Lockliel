@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "baseline": "f9ec32a",
+  "historicalMigrations": 280,
+  "protectedOperatorFiles": 40,
+  "originalCourseFiles": 9,
+  "featureRecords": 37,
+  "designTargets": 120,
+  "journeys": 5,
+  "lanes": [
+    {
+      "root": "/private/tmp/lockliel-myfive-release-package",
+      "head": "bef3a69f58d402ad2d61d787e429b9f894582b6f",
+      "mismatch": [],
+      "candidates": [
+        {
+          "file": "20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+          "sha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a"
+        }
+      ]
+    },
+    {
+      "root": "/private/tmp/lockliel-myfive-release-sql",
+      "head": "90bc61dcf5c4fea8e25a2231f8a3a89303a59ca3",
+      "mismatch": [],
+      "candidates": [
+        {
+          "file": "20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+          "sha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a"
+        }
+      ]
+    },
+    {
+      "root": "/private/tmp/lockliel-myfive-release-review",
+      "head": "8d0adb8d9571c71ca182166e77231be1f0aae8a7",
+      "mismatch": [],
+      "candidates": []
+    },
+    {
+      "root": "/private/tmp/lockliel-release-ecosystem",
+      "head": "eaf2022e27b8827e0cb921cf5c52acbc0908cbe8",
+      "mismatch": [],
+      "candidates": []
+    }
+  ],
+  "pinnedApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "diagnostic": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "freshHostedEvidence": false
+}

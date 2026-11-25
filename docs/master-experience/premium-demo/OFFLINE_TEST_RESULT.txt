@@ -1,0 +1,30 @@
+PASS Home is rendered without connected services
+PASS Public recipient has no authenticated member navigation
+PASS Public recipient has no sender private information
+PASS Text-only removes image region through scoped styling
+PASS Scripture is public-domain WEB
+PASS All seven approved daily series render
+PASS Daily7PMCentral preserved without unsupportedliveclaim
+PASS Live-state simulation discloses no real verification
+PASS Replay remains separate
+PASS Allowed recipient stillrequires explicitconsent
+PASS Allowedrecipient andchannel andconsent passreviewgate
+PASS Unknown relationship permission fails closed
+PASS Declined contact permission fails closed
+PASS Wrong channel fails closed
+PASS Directreviewcall cannot bypassconsent gate
+PASS Personalmessage escaped inreview
+PASS Private notes andcourseaccess excluded frompreview
+PASS Protectedcourse has no realmedia orstorage URLs
+PASS Actual autosave isneverimplied
+PASS Desktop leftsticky mobile reflow preserved
+PASS No network,persistence,orcredential primitives
+PASS No externalhref orformaction
+PASS HTML uses CSP compatible external scriptandstyle
+PASS Source andassetintegrity
+PASS Only dedicated asset files bundled
+PASS Interest and life-stage suggestions are actually rendered
+PASS Theme selection changes the hero photograph
+PASS Module arrangement changes the actual home grid
+PASS Lessons 11 through 13 remain unavailable
+29 focused offline checks passed.

@@ -1,0 +1,13 @@
+{
+  "wave3PreparationOnlyRejection": "retained historical; narrowly superseded by direct Wave4 synthetic source/test authorization",
+  "wave4Rejection": {
+    "actor": "L5 subagent",
+    "action": "stage lane files together with coordinator-owned shared context and authorization mirrors",
+    "executed": false,
+    "reason": "shared files exceeded lane ownership",
+    "permittedAlternative": "agent staged only lane-owned paths; coordinator checkpointed exact shared mirrors under coordinator ownership through normal approval",
+    "resolved": true,
+    "bypass": false
+  },
+  "pendingConfirmation": false
+}

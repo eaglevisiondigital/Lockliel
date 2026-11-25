@@ -1,0 +1,21 @@
+{
+  "lane": "Wave 8 local server read",
+  "base": "1a1443667d544b9e0161be284e254af74a6faaa2",
+  "source_files": {
+    "netlify/functions/lockliel-member-read.mjs": "d2bce11076ae9ad82f03f91f4d76a8d1329df57f2484812580c69637d05be929",
+    "netlify/lib/member-read-binding.mjs": "88ad503e9a987c5a8307c61d96d1559b3bd277b25224ce6e8f520bee61192a08",
+    "netlify/lib/member-read-projection.mjs": "96b2a1908245d30df38219d930e111a72aae17c5ebfb346c7e2addbf85af112a",
+    "netlify/lib/member-read-server.mjs": "553aa0a6927b27ac35a54e95f0eb65f157d95d67eef44d7b2bd9c538bca0d5f7",
+    "tests/member-read-server.test.mjs": "eb0eae3d9b4e06b98784bd8dbaabaebc6c8fe918cd7ffea82a86cfe2bac4ef4a"
+  },
+  "mock_tests": 85,
+  "failures": 0,
+  "skips": 0,
+  "network_guard": "deny all outbound, mocked transport only",
+  "targeted_lint": "pass, zero warnings",
+  "hosted_requests": 0,
+  "sql_executed": false,
+  "auth_refresh": false,
+  "default_route": "503, no activation gate",
+  "commit": "not created by lane; coordinator full validation pending"
+}

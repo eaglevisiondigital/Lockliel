@@ -1,0 +1,5 @@
+/* Local proposed composition. Official assets remain unchanged. */
+.topbar{height:82px;gap:24px}.main{padding-top:24px;padding-bottom:30px}.bottomnote{margin-top:24px}.topnav a{min-height:44px;display:flex;align-items:center}.topbar .brand{font-size:26px}.topbar .brand small{letter-spacing:.08em}
+#notice:not(:empty){position:relative;bottom:auto;left:auto;transform:none;margin:0 auto 16px;max-width:800px;box-shadow:none;text-align:center}
+@media(max-width:900px){.topnav a:nth-child(n+3){display:flex}.topnav{gap:18px}.topbar{gap:12px}.topnav a{font-size:12px}}
+@media(max-width:600px){.topbar{height:auto;padding:14px 18px 0;flex-wrap:wrap;gap:12px}.topbar .brand{margin-right:auto}.topnav{order:4;display:flex;width:100%;gap:0;justify-content:space-between;overflow-x:auto}.topnav a{font-size:11px;padding:12px 4px;white-space:nowrap;flex-shrink:0}.main{padding-top:18px}.review{gap:12px}.review span{text-align:right}.bottomnote{font-size:10px;line-height:1.7}}

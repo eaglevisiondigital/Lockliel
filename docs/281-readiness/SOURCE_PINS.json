@@ -1,0 +1,10 @@
+{
+  "proposal": "66cf32d1f6d5bef0a38ffcc1396cb5d14a73d46c",
+  "operator": "ab0e401e022388b336df48adaeaa7ff356eee6ec",
+  "feature": "79d54f51614da25684315b12626cc3b2d9962e4a",
+  "independentReview": "6e1148fb9a3ce0fca3f26f4e2d11da21a3fedc0f",
+  "hostedOperations": false,
+  "operatorActivation": false,
+  "diagnostic": "CONSUMED",
+  "reservation": "UNUSED"
+}

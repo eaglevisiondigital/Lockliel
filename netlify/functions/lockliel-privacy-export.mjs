@@ -42,6 +42,7 @@ async function handleRequest(request){
     profileTags,
     enrollments,
     lessonProgress,
+    lessonNotes,
     mediaProgress,
     reachContacts,
     referrals,
@@ -68,6 +69,7 @@ async function handleRequest(request){
     rows(SUPABASE_URL+"/rest/v1/profile_tags?profile_id=eq."+uid+"&select=tag_id,source,created_at",h),
     rows(SUPABASE_URL+"/rest/v1/course_enrollments?profile_id=eq."+uid+"&select=*",h),
     rows(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+uid+"&select=*",h),
+    rows(SUPABASE_URL+"/rest/v1/lesson_private_notes?profile_id=eq."+uid+"&select=*",h),
     rows(SUPABASE_URL+"/rest/v1/media_progress?profile_id=eq."+uid+"&select=*",h),
     rows(SUPABASE_URL+"/rest/v1/reach_contacts?owner_id=eq."+uid+"&select=*",h),
     rows(SUPABASE_URL+"/rest/v1/referral_links?owner_id=eq."+uid+"&select=id,code,campaign,content_type,content_id,destination_path,created_at,active",h),
@@ -120,6 +122,7 @@ async function handleRequest(request){
     discipleship:{
       enrollments,
       lesson_progress:lessonProgress,
+      lesson_private_notes:lessonNotes,
       media_progress:mediaProgress
     },
     my_five:reachContacts,

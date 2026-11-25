@@ -1,0 +1,23 @@
+[
+  {
+    "suite": "launcher",
+    "tests": 32,
+    "passed": true,
+    "exitCode": 0,
+    "elapsedSeconds": 1.43
+  },
+  {
+    "suite": "recovery",
+    "tests": 46,
+    "passed": true,
+    "exitCode": 0,
+    "elapsedSeconds": 0.473
+  },
+  {
+    "suite": "guard",
+    "tests": 49,
+    "passed": true,
+    "exitCode": 0,
+    "elapsedSeconds": 0.356
+  }
+]

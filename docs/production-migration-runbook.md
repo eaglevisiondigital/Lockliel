@@ -1,5 +1,15 @@
 # Lockliel controlled migration runbook
 
+## Course release follow-up blocked (2026-09-30)
+
+This historical 274 runner must not execute the course package. Read
+`course-release-transition-preparation-2026-09-30.md`: publication-state authorization
+failed disposable verification, and the assignment requires separate migration 278
+review before continuing. No new staged runner is implemented. A later authorized
+correction must explicitly revise the release set to 275–278, with maintenance,
+near-zero-loss recovery, trusted durations before reopen and resolved Auth warning.
+No migration, recovery action or production deployment is authorized by this runbook.
+
 Prepared 2026-09-27 UTC. **Preparation only. Production execution requires a new,
 explicit assignment from primary Lockliel Chat.** Do not run the write commands
 below under the release-preparation assignment. No push or deployment is needed.

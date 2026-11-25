@@ -1,0 +1,10 @@
+{
+  "local_files": 280,
+  "sealed_files": 280,
+  "missing": [],
+  "unexpected": [],
+  "mismatched": [],
+  "source_commit_pinned_by_manifest": "a09280eede4fd12391a6aa97e91eac65ef638e3f",
+  "historical_files_rewritten": false,
+  "scope": "Local bytes against sealed manifests only; no database replay or hosted migration hash recheck"
+}

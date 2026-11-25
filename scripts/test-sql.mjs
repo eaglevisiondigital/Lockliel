@@ -5,8 +5,11 @@ import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
+import {verifyCourseACLMatrix} from '../tests/support/course-acl-matrix.mjs';
 
-if (process.argv.length !== 2) throw new Error('SQL tests accept no connection arguments.');
+const review275 = process.argv.length === 3 && ['--review-275','--review-279'].includes(process.argv[2]);
+const review279 = review275 && process.argv[2] === '--review-279';
+if (process.argv.length !== 2 && !review275) throw new Error('SQL tests accept only fixed --review-275/--review-279 profiles, never connection arguments.');
 const repo = fileURLToPath(new URL('../', import.meta.url));
 // Do not inherit PGHOST, PGSERVICE, PGOPTIONS, DATABASE_URL, secrets or shell startup files.
 const env = { PATH: process.env.PATH, LANG: 'C', LC_ALL: 'C' };
@@ -102,7 +105,8 @@ try {
     console.log('PASS incompatible legacy email abort and transactional constraint recovery.');
   }
   const migrations = readdirSync(join(repo, 'supabase/migrations')).filter(f => f.endsWith('.sql')).sort();
-  for (const file of migrations) {
+  for (const file of review275 ? migrations.slice(0, 274) : migrations) {
+    if (file === '20260929215159_lockliel_course_engine_standard.sql') verifyCourseACLMatrix(sql,repo,migrations);
     if (file === '20260926212002_lockliel_correct_profile_email_pattern.sql') {
       verifyReconciliation();
       verifyEmailRecovery(readFileSync(join(repo, 'supabase/migrations', file), 'utf8'));
@@ -111,6 +115,24 @@ try {
     catch (error) { throw new Error(`Migration replay failed at ${file}: ${error.message}`); }
 
   }
+  if (review275) {
+    const reviewDir = join(repo, 'tests/fixtures/course-275-review');
+    sql('begin;\n' + readFileSync(join(reviewDir, 'old-upsert.sql'), 'utf8') + '\nrollback;');
+    console.log('PASS original schema-274 upsert ACL defect reproduced; plain INSERT succeeds.');
+    const migration = migrations[274];
+    assert.equal(migration, '20260929215159_lockliel_course_engine_standard.sql');
+    for (const profile of ['disposable', 'hosted']) {
+      // Test-only default ACL simulation, rolled back with the migration and fixtures.
+      // Never changes a real branch or the authoritative migration bytes.
+      const defaults = profile === 'hosted' ? `alter default privileges for role postgres in schema public revoke all on tables from service_role;
+        alter default privileges for role postgres in schema public grant truncate,references,trigger,maintain on tables to service_role;` : '';
+      const fixture = review279 ? readFileSync(join(repo,'tests/fixtures/course-279-security/notes.sql'),'utf8').replaceAll('-- APPLY_279_HERE',readFileSync(join(repo,'supabase/migrations/20261001133500_lockliel_private_notes_service_privileges.sql'),'utf8')) : readFileSync(join(reviewDir,'notes.sql'),'utf8');
+      const schema = (review279 ? migrations.slice(274,278) : [migration]).map(file=>readFileSync(join(repo,'supabase/migrations',file),'utf8')).join('\n');
+      sql('begin;\n' + defaults + '\n' + schema + '\n' + fixture + '\nrollback;');
+      console.log(`PASS exact${review279 ? '278 then279' : '275'} ${profile} defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (${review279 ? 'actual279, absent-grant replay safe' : 'test-only revocation'}).`);
+    }
+    console.log(review279 ? 'Passed disposable before/after exact279 regression under both defaults.' : 'Passed focused 274/275 review; no CLI release rehearsal or later migrations.');
+  } else {
   console.log(`Replayed ${migrations.length} authoritative migrations without historical supplements in disposable PostgreSQL 17 (TCP disabled).`);
   const tests = readdirSync(join(repo, 'supabase/tests')).filter(f => f.endsWith('.sql')).sort();
   for (const file of tests) {
@@ -119,4 +141,41 @@ try {
     console.log(`PASS ${file} (rolled back)`);
   }
   console.log(`Passed ${tests.length} SQL test files.`);
+  // Temporary readiness is operational SQL, intentionally outside migration history.
+  // Exercise its exact old-to-new update in this same disposable cluster only.
+  const unwrap = source => source.replace(/^begin;$/m, '').replace(/commit;\s*$/, '');
+  const ledger = migrations.map(file => `('${file.slice(0,14)}')`).join(',');
+  const oldInstall = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-279/maintenance-install.sql'), 'utf8'));
+  const readinessUpdate = unwrap(readFileSync(join(repo, 'supabase/verification/course-release-280/maintenance-readiness-update.sql'), 'utf8'));
+  const readinessChecks = readFileSync(join(repo, 'tests/fixtures/course-280-readiness/checks.sql'), 'utf8').replace('-- APPLY_READINESS_UPDATE', () => readinessUpdate);
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${oldInstall}
+    ${readinessChecks}
+    rollback;`);
+  console.log('PASS isolated280 operational readiness: exact update, lower/wrong ledger, missing objects, catalog/ACL drift, role denials, hook unchanged and maintenance ON (rolled back).');
+  const safeReads=unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-reads.sql'),'utf8'));
+  const pausedChecks=readFileSync(join(repo,'tests/fixtures/course-paused-reads/checks.sql'),'utf8');
+  sql(`begin;
+    create role authenticator nologin;
+    create schema supabase_migrations;
+    create table supabase_migrations.schema_migrations(version text primary key);
+    insert into supabase_migrations.schema_migrations values ${ledger};
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-install.sql'),'utf8'))}
+    ${safeReads}
+    -- Exact hosted operation helper reproduced only in this disposable compatibility schema.
+    create function storage.allow_only_operation(expected_operation text) returns boolean language sql stable as $op$
+      select coalesce(regexp_replace(current_setting('storage.operation',true),'^storage[.]','')=regexp_replace(expected_operation,'^storage[.]','') and expected_operation<>'',false);
+    $op$;
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-read.sql'),'utf8'))}
+    ${unwrap(readFileSync(join(repo,'supabase/verification/course-release-280/maintenance-safe-resource-info.sql'),'utf8'))}
+    ${pausedChecks}
+    rollback;`);
+  console.log('PASS isolated paused reads, publication/enrollment/translation/private data boundaries, direct and indirect write denial (rolled back).');
+
+
+  }
 } finally { cleanup(); }

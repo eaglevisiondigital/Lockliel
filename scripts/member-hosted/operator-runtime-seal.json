@@ -1,0 +1,16 @@
+{
+  "version": "lockliel-installed-operator-runtime-v1",
+  "nodeSha256": "c8eedc7651a438fb7d2ceb36fd70032676c855586a36c950ba5a662f0b7853bd",
+  "roots": {
+    "/Users/davesmacbookpro/Documents/ChatGPT/Lockliel/node_modules": {
+      "sha256": "522b592b6090a47897512d00df5261451d2637060b69cfd6c8907ffbcb8217ca",
+      "files": 54406,
+      "bytes": 822145828
+    },
+    "/Users/davesmacbookpro/.npm/_npx/90d26507e643fcc0/node_modules": {
+      "sha256": "f5b49e1760c5fc9065793c55de2b0b9680d02fdeb7ee8e77b4eaee69aca2e3ae",
+      "files": 22441,
+      "bytes": 236416509
+    }
+  }
+}

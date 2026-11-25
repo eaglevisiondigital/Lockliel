@@ -1,0 +1,70 @@
+{
+  "base": "46d003673bf6ef4d877c0731ac47cf678dbed494",
+  "owner": "/root/connections_wave3",
+  "ownedFiles": [
+    {
+      "path": "components/share-review/share-review-workspace.tsx",
+      "sha256": "4640b24028b545b9db892d8780adbafc25692d61cd917df8813ff124c5836c84"
+    },
+    {
+      "path": "components/share-review/share-review.module.css",
+      "sha256": "fd9d0a9650a5b25c5c937486b7c408f393d9ee62a6fd27226fba29f438ae260b"
+    },
+    {
+      "path": "lib/share-review/adapter.ts",
+      "sha256": "758d7d93c87c7f3576a96f1a8408ff0633351965b050272fcbdb4b8c4494c981"
+    },
+    {
+      "path": "tests/share-review-adapter.test.mjs",
+      "sha256": "b9e95ed881699e834b863ffb970da5fa09baace73efb94532fb0a3951f085de7"
+    },
+    {
+      "path": "tests/share-review-workspace.test.mjs",
+      "sha256": "282e5c367e02dadec49a7c6e90e8632f0cd482ae707d4f7875df84e1cc205176"
+    }
+  ],
+  "protectedContracts": [
+    {
+      "path": "lib/connections-preview/index.ts",
+      "sha256": "5233ab4e0154446eec8f4f10d6962fe203b23e3094135b6be78e7d57b35ef34d",
+      "baseBytesUnchanged": true
+    },
+    {
+      "path": "lib/content-readiness-preview/index.ts",
+      "sha256": "7101cc86d20f3c1b6add3269f70170f8364ff7f9cc0b27a4b2174fe0f3ea766a",
+      "baseBytesUnchanged": true
+    },
+    {
+      "path": "lib/synthetic-contracts/context.ts",
+      "sha256": "f2735b6aad2f2e287a7e9635f4c22265c6d91502dc76e2da4a50bb61de58a30e",
+      "baseBytesUnchanged": true
+    }
+  ],
+  "tests": {
+    "adapter": 67,
+    "actualComponentSSRAndSource": 11,
+    "total": 78,
+    "networkGuard": true
+  },
+  "strictScopedTypeScript": "passed",
+  "targetedLint": "passed-zero-warnings",
+  "adapterBrowserBundle": {
+    "bytes": 21257,
+    "inputs": 4,
+    "externalImports": 0,
+    "write": false
+  },
+  "uiBrowserBundle": {
+    "jsBytes": 42638,
+    "cssBytes": 11975,
+    "inputs": 6,
+    "write": false
+  },
+  "agentBrowserAcceptance": "not performed; coordinator owns actual browser and whole-app validation",
+  "dependencyLink": "coordinator-owned; retained for combined validation",
+  "productionActions": false,
+  "coordinatorBrowserReview": {
+    "optionalNotePosition": "coordinator reported computed static and visually visible after rebuild",
+    "decorativeLabelFit": "final scoped no-wrap fit rule applied; coordinator final review pending"
+  }
+}

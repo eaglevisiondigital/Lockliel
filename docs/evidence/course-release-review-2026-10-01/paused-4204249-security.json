@@ -1,0 +1,16 @@
+{
+  "project": "qjksggxorghaxvpyslip",
+  "status": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "control": {
+    "anon_execute": false,
+    "status_owner": "postgres",
+    "service_update": false,
+    "authenticated_update": false
+  },
+  "notesServiceAllowed": 0,
+  "publicGrants": 0
+}

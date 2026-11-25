@@ -1,0 +1,20 @@
+{
+  "source_migration_commit": "a09280eede4fd12391a6aa97e91eac65ef638e3f",
+  "js": 578,
+  "sql_files": 17,
+  "migrations": 280,
+  "historical_279_bytes": "unchanged",
+  "static_pages": 37,
+  "typecheck": "PASS",
+  "netlify_modules": 75,
+  "netlify_handlers": 62,
+  "configured_lint": "PASS",
+  "release_tooling_lint": "PASS",
+  "production_dependency_vulnerabilities": 0,
+  "local_os_egress": "DENIED",
+  "six_stage_CLI": "PASS",
+  "duration_cases_local": "8/8 PASS",
+  "hosted": "BLOCKED: no direct IPv6 route",
+  "application_change": false,
+  "push": false
+}

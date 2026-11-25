@@ -1,0 +1,872 @@
+{
+  "basis": "Functional composition coverage is not visual completion or approval; canonical IDs preserved",
+  "targets": [
+    {
+      "id": "A01",
+      "title": "Public cinematic homepage with mission, real scenery, invitation, transparent next steps.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A02",
+      "title": "How Lockliel works: Equip → Empower → Mobilize; Reach → Teach → Train → Disciple; relationship-powered multiplication.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A03",
+      "title": "Start Here choices: seeker, new believer, growing believer, mentor/host, church/ministry.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A04",
+      "title": "Public Faith Boost daily live/premiere schedule, 7 PM Central and archive entry.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A05",
+      "title": "Founders 50 public information/application with original commitments.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A06",
+      "title": "Books and free resources: *Who God Says You Are*, *A Heart for the Lost*, *King Kind* (availability/status accurately labeled).",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A07",
+      "title": "Partner in the Harvest/giving and project vision; no assumed active checkout.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A08",
+      "title": "Contact, notifications, interest form, consent and invitation to participate.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "A09",
+      "title": "Language, accessibility, privacy/legal and brand-consistent public navigation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B01",
+      "title": "Beautiful public received-resource landing; no forced signup.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B02",
+      "title": "Short video/audio player, Scripture image, quote, conversation prompt, media permissions and accessibility.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B03",
+      "title": "'What you're going through' choice and gentle topic exploration (fear, grief, anxiety, family, identity, purpose, money, etc.).",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B04",
+      "title": "God's love, finished work, Jesus and salvation explanation/invitation; no manipulation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B05",
+      "title": "Salvation next steps, King's Kingdom / King Kind introduction, new believer guidance.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B06",
+      "title": "Optional prayer, testimony, questions, trusted follow-up, consent and safety support.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B07",
+      "title": "Choose connection: local group, online group, mentor, local church, more resources.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B08",
+      "title": "Optional signup/enrollment and relationship-to-inviter privacy; never autoassign unwanted follow-up.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "B09",
+      "title": "Recipient progress and recommended next content; public and account-only modes distinctly indicated.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C01",
+      "title": "Secure registration/sign-in, email verification, recovery, MFA where applicable; errors and Turnstile states.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C02",
+      "title": "Welcome/onboarding: seeker vs believer; accessibility, consent, personal faith stage.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C03",
+      "title": "Main desktop Home with immersive hero and persistent **Share Hope**, **Continue My Journey**, **Faith Boost 7 PM Central** access.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C04",
+      "title": "Main mobile Home with one-handed quick share and intuitive small navigation.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C05",
+      "title": "Personalize Your Experience theme gallery: Flint Hills, ocean, mountain, forest, sunset, sunrise, sport, cozy, tech-forward, etc.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C06",
+      "title": "Interests taxonomy: sports (basketball/football/cheer), fishing, hunting, music, nature, family, creative hobbies, life topics; multi-select and skip.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C07",
+      "title": "Dashboard reordering, widgets, favorites, shortcuts, content format, text size, density, dark/light, reduced motion.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C08",
+      "title": "Profile: photo, privacy/visibility, Faith Banner, identity and preferences.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C09",
+      "title": "For You recommendations, saved content, recently viewed, personal next steps and empty states.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C10",
+      "title": "Notifications, reminders, follows, preferences, history and opt-outs.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C11",
+      "title": "Member messages/invitations/connect requests subject to permission and consent.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "C12",
+      "title": "Personal Privacy Status, account security, export, deletion/request controls, source-specific consents.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D01",
+      "title": "Global **Share Hope** quick action present on desktop and mobile.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D02",
+      "title": "Context search: 'Find something to share' by situation, Scripture, keywords and life need.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D03",
+      "title": "Facets: age suitability/life stage, demographic relevance with privacy controls, language, interest, format, duration, stage and audience.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D04",
+      "title": "Curated pain-point/resource pathways including the previous 12-topic × 15-audience / 180-mapping foundation, never represented as finished published inventory.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D05",
+      "title": "Resource detail: actual rights-cleared video/audio/image, short talking points, citations, next-step links.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D06",
+      "title": "Send preview/review, recipient-aware permission, no actual sending in mockups.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D07",
+      "title": "Share by SMS/email/native phone share/WhatsApp/Messenger as supported, Lockliel connection, copy link and QR.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D08",
+      "title": "Recipient-specific landing, language, accessible mobile link, privacy and attribution.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D09",
+      "title": "My Five: private people cards, prayers, relationship notes, follow-up reminders and progress.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D10",
+      "title": "Follow-up timeline and consensual contact, drafts, suppression and invitation status.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D11",
+      "title": "Distinct original inviter vs current mentor vs group/host/leader/organization relationship graph, not an MLM downline.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D12",
+      "title": "Saved share packs, follow-up collections, user-favorited Scripture/media and content access/revocation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "D13",
+      "title": "Permission-scoped outreach impact/reporting (engagement, growth, next steps, no manipulative quotas).",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E01",
+      "title": "Faith Journey overview: exploring, believing, growing, serving, multiplying with individualized stage/guidance.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E02",
+      "title": "Who God Is → Who You Are → What You Have → What You Can Do and personal identity profile.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E03",
+      "title": "Prayer Board: private requests, answered prayer, prayer for others, safe removal and sharing consent.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E04",
+      "title": "Scripture Anchors: collection, favorites, daily cards, keyboard-safe remove, Scripture context.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E05",
+      "title": "Bible reference drawer and preferred translations (KJV/NKJV/NLT/AMPC/NIV/MSG/TPT), license/provider gating.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E06",
+      "title": "Growth areas, personal goals, action plans, check-ins and progress.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E07",
+      "title": "Testimonials and encouragement with permission to publish/share.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E08",
+      "title": "For You personalized faith resources, pastoral boundaries and content explanations.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E09",
+      "title": "Ask Lockliel / Scripture-grounded guidance concept, verified teaching, citations, uncertainty and escalation; proposed/not assumed built.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E10",
+      "title": "Support for grief, crisis, unsafe situations and escalation resources; private by default.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E11",
+      "title": "Relationship-based mentor/care touchpoints, no forced data visibility.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "E12",
+      "title": "Faith Banner + nature image/personal theme with owner-approved real-photo library.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F01",
+      "title": "Course catalog, pathways and member entitlements.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F02",
+      "title": "Getting a Grip on the Basics overview: 13 lessons, protected PDFs and approved media/asset availability.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F03",
+      "title": "Lesson detail: sticky video left, worksheet right on desktop; mobile responsive minimized player.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F04",
+      "title": "**WATCH TO ADVANCE** (95% legitimate coverage) and **ANSWER TO COMPLETE**; progress clarity without grades.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F05",
+      "title": "Autosave, offline draft, revision conflict, private notes, recovery and delete/undo semantics.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F06",
+      "title": "Lesson resources, Scripture, PDF downloads and sharing where approved.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F07",
+      "title": "Journey progress, badges/milestones (if approved), Continue Course and completion.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F08",
+      "title": "Fullscreen/casting/device-specific affordances and accessible captions/transcripts.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "F09",
+      "title": "Course creator/admin: publishing, versioning, duration-trust, approvals and learner progress without private-note exposure.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G01",
+      "title": "**Daily at 7:00 PM Central** home entry, today/next countdown and real status (live vs scheduled premiere vs replay).",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G02",
+      "title": "Dedicated immersive broadcast watch page and clean responsive player.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G03",
+      "title": "Program guide: local time zone/CST-CDT handling, calendar, follow/remind and reminder consent.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G04",
+      "title": "Archive by date, topic, speaker and seven themes: Love, Righteous, Blessed, Anointed, Healed, Joy-Filled, Bold.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G05",
+      "title": "Episode companion: Scriptures, points, notes, 'Say It / Live It / Give It Away', follow-up and salvation invitation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G06",
+      "title": "Share an episode, clip, quote card, Scripture, replay or approved promotional image.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G07",
+      "title": "Group watch/founder session and CONNECT → WATCH → TALK → ACT → MULTIPLY guide.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G08",
+      "title": "Moderated prayer/questions/comments where separately authorized; no implied public chat activation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G09",
+      "title": "Persistent audio/video mini-player that does not cover nav/actions.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G10",
+      "title": "Restream multichannel destinations (YouTube, Facebook, Rumble; Instagram/TikTok when supported); operator publishing/schedule status.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G11",
+      "title": "Series-to-book, course, testimony and short-form social reuse.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "G12",
+      "title": "Staff broadcast planning/programming, replays, source rights and analytics/communications.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H01",
+      "title": "Local/online group discovery with consented location; no public home-address exposure.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H02",
+      "title": "Group detail, leader, faith focus, eligibility, join/request and permission state.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H03",
+      "title": "Member group home, meetings, resources, attendance, prayer and next steps.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H04",
+      "title": "Host workbench: prepare session, invitations, consent, attendance/check-in, follow-up.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H05",
+      "title": "Weekly Founders/host guide with CONNECT → WATCH → TALK → ACT → MULTIPLY.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H06",
+      "title": "Group communication/moderation with age-aware consent; no automatic messages.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H07",
+      "title": "Mentor/discipler relationship workspace, training, care and optional handoff.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H08",
+      "title": "Host/leader support tree distinct from inviter attribution.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H09",
+      "title": "Founders 50 application and human review; no auto-approval.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H10",
+      "title": "Founder orientation, training, share-with-five weekly and gather 2–10+ group rhythm.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H11",
+      "title": "Founder/leader dashboard showing applicable people, tasks, groups and resources, not unrelated private records.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H12",
+      "title": "Public and member events, gatherings, calendars, livestreams and RSVP as supported.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "H13",
+      "title": "Church/partner connections without representing Lockliel as a replacement for local church.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I01",
+      "title": "Resource library: books, PDFs, media, devotionals, courses, short graphics, templates.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I02",
+      "title": "Books/series: *Who God Says You Are*, *A Heart for the Lost*, *King Kind* availability and entitlement states.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I03",
+      "title": "Merchandise, print/ebook, fulfillment/order history and access; only verified SKUs.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I04",
+      "title": "Partner in the Harvest: one-time/monthly giving and donor consent.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I05",
+      "title": "Giving receipt/history, cancellation, refund/request support and provider status.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I06",
+      "title": "Provider-neutral checkout and settlement rules, real billing disabled until independently approved.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I07",
+      "title": "Text-to-Give/SMS keyword giving via shared Global Propel components, no duplicated payments system.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "I08",
+      "title": "Optional partner offers/benefits or local merchant connections: **historical proposal only—require decision confirmation, not automatic scope activation**.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J01",
+      "title": "Role-aware staff/Admin/Owner command center with MFA/AAL2 and approval scopes.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J02",
+      "title": "Person/CRM unified record: source/attribution, consent, contact permissions, profiles and follow-up.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J03",
+      "title": "Outreach decisions: salvation/rededication, campaign registration, restricted pastoral follow-up.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J04",
+      "title": "Invitations, resource sharing, recipient consent, suppression and delivery status.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J05",
+      "title": "My Five/relationship/mentorship and support lineage with scoped visibility.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J06",
+      "title": "Groups/host approval, activity, meeting/session guide and check-ins.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J07",
+      "title": "Founders 50 applicant review, orientation, milestones and support.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J08",
+      "title": "Content/CMS workflow: draft/review/publish/revoke, translation, attribution, copyright/photo rights.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J09",
+      "title": "Broadcast console: episode schedule, media rights, Restream routing, moderation/replays.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J10",
+      "title": "Course/content administration, lessons, protected documents, progress and trusted-duration evidence.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J11",
+      "title": "Giving/partner/commerce reconciliation, audit, exceptions and finance reporting.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J12",
+      "title": "Privacy requests, retention, consent, data export/deletion, staff restrictions and audit.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "J13",
+      "title": "Analytics/health/security/release readiness, feature flags, verified recovery and operator controls.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K01",
+      "title": "Universal search/filters/Ask entry with rights and provenance.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K02",
+      "title": "Responsive web/mobile app navigation, deep links, back/forward and focus behavior.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K03",
+      "title": "Persistent accessible media/casting and captions/transcripts.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K04",
+      "title": "Notification preferences by channel/purpose, delivery consent and age restriction.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K05",
+      "title": "Languages, localization and Bible licensing, accessible large text/contrast/motion options.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K06",
+      "title": "Account/guardian/privacy safety, role-based access, consent and session isolation.",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K07",
+      "title": "Loading/error/offline/draft/retry/empty/disabled/revoked states for every workflow.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K08",
+      "title": "Themes, interest tagging, approved image licensing and saved cross-device member customization.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K09",
+      "title": "Provenance of member source, inviter, mentor, group, church and outreach campaign (distinct identities).",
+      "functionalCompositionRelated": false,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    },
+    {
+      "id": "K10",
+      "title": "Design/asset tokens and keyboard/200%-zoom/VoiceOver/physical-device test matrices.",
+      "functionalCompositionRelated": true,
+      "newFinalVisualApproval": false,
+      "visualProgress": "UNCHANGED_OWNER_REVIEW_BASELINE; no120-screenexpansion"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "J01",
+      "name": "Encounter → Share",
+      "endToEndHostedAcceptance": false
+    },
+    {
+      "id": "J02",
+      "name": "Personal grow → multiply",
+      "endToEndHostedAcceptance": false
+    },
+    {
+      "id": "J03",
+      "name": "Faith Boost daily",
+      "endToEndHostedAcceptance": false
+    },
+    {
+      "id": "J04",
+      "name": "Founder/community",
+      "endToEndHostedAcceptance": false
+    },
+    {
+      "id": "J05",
+      "name": "Recipient and volunteer accessibility",
+      "endToEndHostedAcceptance": false
+    }
+  ]
+}

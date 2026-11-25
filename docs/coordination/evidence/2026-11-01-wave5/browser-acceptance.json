@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-01",
+  "artifact": "final locally enabled static build; exact source recorded in coordinator report",
+  "url": "http://127.0.0.1:4331/my-lockliel/review",
+  "syntheticOnly": true,
+  "previewReflow": [
+    {
+      "duplicateIds": 0,
+      "notePosition": "static",
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "duplicateIds": 0,
+      "notePosition": "static",
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "duplicateIds": 0,
+      "notePosition": "static",
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "duplicateIds": 0,
+      "notePosition": "static",
+      "scrollWidth": 1365,
+      "width": 1365
+    }
+  ],
+  "resourceReflow": [
+    {
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "scrollWidth": 1365,
+      "width": 1365
+    }
+  ],
+  "detailsReflow": [
+    {
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "scrollWidth": 1365,
+      "width": 1365
+    }
+  ],
+  "existingViewsReflow": [
+    {
+      "view": "Faith Journey",
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Faith Journey",
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "view": "Dashboard",
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "view": "Dashboard",
+      "scrollWidth": 768,
+      "width": 768
+    }
+  ],
+  "checks": {
+    "unknownOmitsPrivateControls": true,
+    "nativeRadioSpaceArrow": true,
+    "enterStepAndConfirmation": true,
+    "stepHeadingFocus": true,
+    "visibleErrorFocus": true,
+    "backPreservesDraft": true,
+    "cancelClearsAndReturnsFocus": true,
+    "resetOmitsPrivateControls": true,
+    "refreshReturnsUnknown": true,
+    "actorChangeClearsDraftAndResult": true,
+    "ordinaryNavigationRetainsOwnDraft": true,
+    "privatePrayerNotInVisibleShare": true,
+    "consentRevokedBlocksFinal": true,
+    "staleResourceBlocksFinal": true,
+    "confirmationRequired": true,
+    "validResultNothingSent": true,
+    "optionalNotePositionStaticAndVisible": true,
+    "decorativeBookLabelFits": true,
+    "skipLinkFocus": true,
+    "duplicateIds": 0
+  },
+  "limits": {
+    "actual200PercentZoom": "not verified",
+    "osReducedMotionBranch": "source reviewed; OS preference false, current visible motion zero",
+    "spokenScreenReader": "not performed; AX semantics reviewed",
+    "renderedContrast": "selected declared pairs only; not exhaustive",
+    "browserEgress": "CSP connect/frame/form none and new-source review; no complete browser request trace claimed"
+  },
+  "warnings": []
+}

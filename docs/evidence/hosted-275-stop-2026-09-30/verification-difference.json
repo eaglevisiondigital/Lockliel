@@ -1,0 +1,34 @@
+{
+  "state": "UNKNOWN_STOP",
+  "clientSucceeded": true,
+  "observedLedgerCount": 275,
+  "differences": [
+    {
+      "section": "tables",
+      "expectedOnly": [
+        {
+          "acl": [
+            "authenticated=r/postgres",
+            "postgres=arwdDxtm/postgres",
+            "service_role=arwdDxt/postgres"
+          ],
+          "name": "lesson_private_notes",
+          "rls": true,
+          "schema": "public"
+        }
+      ],
+      "observedOnly": [
+        {
+          "acl": [
+            "authenticated=r/postgres",
+            "postgres=arwdDxtm/postgres",
+            "service_role=Dxtm/postgres"
+          ],
+          "name": "lesson_private_notes",
+          "rls": true,
+          "schema": "public"
+        }
+      ]
+    }
+  ]
+}

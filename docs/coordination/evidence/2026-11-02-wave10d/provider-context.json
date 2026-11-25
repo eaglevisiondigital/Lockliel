@@ -1,0 +1,68 @@
+{
+  "reviewDate": "2026-11-02",
+  "startingDocumentationHead": "855bc685f8288351ed6bf19c8b5aced49ffa6153",
+  "application": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "runtimeParent": "bcaa35680ffefc61775636d65f568827e42d7f06",
+  "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "isolatedProject": "qjksggxorghaxvpyslip",
+  "apiVersion": "2.63.1",
+  "apiRevision": "e79124a60a1fb6bb4ae4c5b68fef4b11ff6fbc44",
+  "cliRevision": "857c63fb85746da56447a8be263f2000559a7f8c",
+  "sources": [
+    {
+      "name": "OpenAPI",
+      "url": "https://github.com/netlify/open-api/blob/e79124a60a1fb6bb4ae4c5b68fef4b11ff6fbc44/swagger.yml",
+      "sha256": "3af3c5d0165ae3be63f1c11373ba5f42d0325c1064759e3cd5a3eeaacff77ad7",
+      "bytes": 187628,
+      "relevantLines": "1146-1210 create/update;1328-1335 builds draft context;5509-5637 deployFiles"
+    },
+    {
+      "name": "CLI reservation",
+      "url": "https://github.com/netlify/cli/blob/857c63fb85746da56447a8be263f2000559a7f8c/src/commands/deploy/deploy.ts",
+      "sha256": "1b5ff5d237b67e9703118a727d6a884a6d821e03b585d962ac0b126ee506a0f7",
+      "bytes": 47464,
+      "relevantLines": "435-443 request;1445-1493 reserve/build same ID"
+    },
+    {
+      "name": "CLI finalization",
+      "url": "https://github.com/netlify/cli/blob/857c63fb85746da56447a8be263f2000559a7f8c/src/utils/deploy/deploy-site.ts",
+      "sha256": "a0a61a2195baf1977d98e49a3fc4a8b67a5d5ad4bc91b87d05160da1836009d2",
+      "bytes": 9655,
+      "relevantLines": "200-246 update same ID"
+    },
+    {
+      "name": "CLI mock routes",
+      "url": "https://github.com/netlify/cli/blob/857c63fb85746da56447a8be263f2000559a7f8c/tests/integration/commands/deploy/deploy-api-routes.ts",
+      "sha256": "418e48fbfc7e1e6e33ac4b83374f3a105c1b78887f1b21be2f6aee6968322526",
+      "bytes": 7892,
+      "relevantLines": "19-28 deployResponse;89-153 create/update/get mocks without context"
+    },
+    {
+      "name": "CLI mocked context test",
+      "url": "https://github.com/netlify/cli/blob/857c63fb85746da56447a8be263f2000559a7f8c/tests/integration/commands/deploy/deploy.test.ts",
+      "sha256": "7fc1d2efaed98ec2f3e5736a67f9b192edf98287fcbeec9a9f61bb74ba8c69b1",
+      "bytes": 64072,
+      "relevantLines": "1450-1483 local mock/branch test"
+    }
+  ],
+  "manualDraftContextInvariant": "UNVERIFIED",
+  "buildEndpointExplicitDraftContext": "DOCUMENTED, DISTINCT ENDPOINT NOT EXECUTED",
+  "sameIdFinalize": "DOCUMENTED CLI pattern, not executed",
+  "deployPrivateConfig": "DOCUMENTED contract, Wave10C feasibility retained; no value retrieval/provision",
+  "noMandatoryCapabilityProvenUnsupported": true,
+  "upstreamTests": "Mocked API; no real context result asserted; not executed",
+  "directPublishedYamlUrl": "404; official pinned schema and rendered API inspected instead",
+  "officialSupportAnswer": "NONE OBTAINED; question prepared, not sent",
+  "providerAccountMetadataCalls": 0,
+  "sqlCalls": 0,
+  "hostedAuthCalls": 0,
+  "reservations": 0,
+  "finalizations": 0,
+  "keyReadsOrProvisioning": 0,
+  "remoteResourcesCreatedOrDeleted": 0,
+  "subagentsDispatched": 0,
+  "phase2Authorized": false,
+  "phase2Executed": false,
+  "freshIsolatedDatabaseAudit": false,
+  "assessment": "NETLIFY DEPLOYMENT WORKFLOW BLOCKED"
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-30",
+  "project": "jxtgtfffdiwzxocxoqxk",
+  "repository_migration": "20260930145334_lockliel_media_publication_authorization.sql",
+  "isolated_ledger_alias": "20260930145615",
+  "migration_sha256": "7b86fc4647338537a4da06e363b716ce2f7960cb02fb28ec8acab2f26c926ea0",
+  "app_artifact": "91611ad89933333891bdf2bb3791314fdd03012e",
+  "method": "Real authenticated isolated PostgREST requests with existing synthetic A/B identities; new synthetic English/Spanish course fixture only",
+  "results": {
+    "published_english_and_spanish": "200, measured 94 then 95 percent",
+    "canonical_draft": "403/42501, media rows unchanged",
+    "canonical_archived_published_translation": "403/42501, media rows unchanged",
+    "canonical_draft_published_translation": "403/42501, media rows unchanged",
+    "unpublished_translation": "403/42501, media rows unchanged",
+    "both_draft_original_fallback": "403/42501, media rows unchanged",
+    "republish_spanish_and_english": "200, legitimate historical 95 percent preserved",
+    "cross_user_without_enrollment": "403",
+    "owner_save": "200, revision 1; unchanged repeated payload remains idempotent",
+    "other_user_private_notes": "200 with empty result"
+  },
+  "observations": [
+    "Immediate save after the media sample initially encountered the existing 300ms write-rate guard; retry after the interval passed. No guard was weakened.",
+    "English asset was correctly rejected while the learner selected Spanish content. After restoring en-US, English sampling passed.",
+    "Synthetic learner A locale restored to en-US; both new synthetic courses left published; infrastructure preserved."
+  ],
+  "limits": [
+    "No new maintenance-enabled app artifact was deployed.",
+    "Temporary maintenance operational DDL has not been installed on the hosted isolated project.",
+    "This is affected-RPC acceptance, not a full hosted cutover/browser certificate.",
+    "No production user data or production mutation was used."
+  ]
+}

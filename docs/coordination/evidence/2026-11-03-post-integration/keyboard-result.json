@@ -1,0 +1,12 @@
+{
+  "drawerTabOrder": [
+    "Close Scripture reference",
+    "Synthetic anchor reflection",
+    "Keep reference in this preview"
+  ],
+  "keyboardAdd": true,
+  "escapeFocusRestored": "Read John 3:1-3",
+  "removeReceipt": "Browser tab: 1759396896, Title: \"Lockliel local synthetic member review\", URL: \"http://127.0.0.1:53137/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 56-61\n~\t\t\t\t25 text Synthetic anchor removed from preview memory. Anchors remaining: 0. Nothing was saved or shared.\n+\t\t\t\t\t107 text No anchors in this preview yet. Open a reference to try one.\nThe focused UI element is 52 heading Scripture Anchors, Value: 3, ID: visual-faith-anchors-title",
+  "scope": "One native add/remove at actual 200%; repeated/empty removal sequences remain prior automated evidence",
+  "prayerBoardTabObservation": "After Prayer Board heading focus, Tab reached text entry area Synthetic prayer example, ID visual-faith-synthetic-prayer (native AX observed)."
+}

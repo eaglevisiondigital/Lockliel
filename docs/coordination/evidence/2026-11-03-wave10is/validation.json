@@ -1,0 +1,18 @@
+{
+  "fixtureSource": "9bde7d74e3f8c303155ece75fd8148c0d45fd61a",
+  "fixtureSourceChangesInS": 0,
+  "initialProjectionSyntheticTests": 5,
+  "independentCorrectedProjectionTests": 8,
+  "correctedProjectionLiveCalls": 0,
+  "actualAuthenticatedProjectCalls": 1,
+  "actualProjectReadVerified": false,
+  "parallelUiCommit": "3b7f8c124cadc5157dfaa4a9ac4d0d985ab49ba6",
+  "parallelFocusedPassed": 138,
+  "parallelNewTestsIncluded": 3,
+  "parallelTypeScript": "PASS nonincremental",
+  "parallelScopedLint": "PASS",
+  "parallelTestLogSha256": "d56a937f23fdecb3ccac124d1420d08da49823280d1b46fd0a387a4122b88619",
+  "fullApplicationBuildOrReplayInS": false,
+  "nativeBrowserOrSpokenScreenReaderInS": false,
+  "rawProviderResponseRetained": false
+}

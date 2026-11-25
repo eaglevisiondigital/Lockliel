@@ -1,0 +1,33 @@
+{
+  "agent": "/root/wave10ig_security",
+  "actualDispatch": true,
+  "verdict": "PASS within local readiness scope",
+  "finalSourceSha256": "ceb426d2474cb5678c3e45f7e3b9562b5dfe1b817633129c05e0bc901df6fbc7",
+  "shellSha256": "d81e0ccf792b420eed985da73675d49853ebc31cba4d2f3fe0ed7c6f2d99282e",
+  "independentTests": {
+    "launcher": 32,
+    "recovery": 46,
+    "guard": 49,
+    "pass": true
+  },
+  "preparedKitOfflineVerify": {
+    "ok": true,
+    "grant": "READY",
+    "credentialInput": false,
+    "providerCalls": 0,
+    "databaseConnections": 0,
+    "attemptConsumed": false
+  },
+  "materialOpenFindings": [],
+  "corrections": [
+    "Conservative no-retry status for partial/failed consumption",
+    "Pin sys.path and absent import zip",
+    "Pre-interpreter runtime file hashes/inventory with clean environment",
+    "Read-only offline verification regression proving READY and no consumer invocation"
+  ],
+  "limits": [
+    "Trusted owner and OS can deliberately recreate grants; not tamperproof against owner/root",
+    "Immutable Python/native copies not guaranteed physically erased",
+    "Real token availability/authority, provider response compatibility, authentication and actual safeguards not live verified"
+  ]
+}

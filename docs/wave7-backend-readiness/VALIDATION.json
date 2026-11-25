@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-01",
+  "documentation_only": true,
+  "source_files": 44,
+  "anchors": 86,
+  "migration_hashes": 280,
+  "wave6_backend_parity": true,
+  "links_checked": 10,
+  "new_live_queries": 0,
+  "application_tests_rerun": false,
+  "sql_replay": false,
+  "reason": "Docs only; coordinator validates implementation independently",
+  "wave6_branch_preserved": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+  "owned_paths_only": true
+}

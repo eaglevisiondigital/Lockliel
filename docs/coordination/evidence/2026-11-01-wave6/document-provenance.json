@@ -1,0 +1,47 @@
+[
+  {
+    "path": "docs/authenticated-integration-plan/ACCEPTANCE_AND_APPROVALS.md",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "2fef0a05806d664c44d863c51a4438bb04ea9d9c6a7924e68aa4bc13c080d309"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/CONTRACTS_AND_SCHEMA_PROPOSALS.md",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "f8db4f58102eab71acd08e02700878a28f76c1f1aa9c0b84998d52ff4cbca1be"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/README.md",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "1c3d2efca93d1be7097a4ca4cb46d63235109ef5eb063812dc54810420133216"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/REUSE_AND_GAPS.md",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "f1958951f6667768c44dbf8c21a6a86233b7f1d395ab9467376864e5f6f42958"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/SHA256SUMS",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "1f6b5d519b56f601f054d48db639c999b121e5aeeb15507574a25f54d6254255"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/SOURCE_EVIDENCE.json",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "387983549c45a71299dc4bd63becba938b57a3c388e0042df4b078390b56d832"
+  },
+  {
+    "path": "docs/authenticated-integration-plan/SOURCE_INDEX.md",
+    "sourceCommit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sha256": "0ad33d8b57c153b8bc23cedb35c4324461104434f5cf6b2677c910539888ce3b"
+  },
+  {
+    "path": "docs/lane1-account-integrity/WAVE6_SECURITY_REVIEW.md",
+    "sourceCommit": "233f13edd42bc26ad8c89246ca523f327cc0e315",
+    "sha256": "706f249c5df16fe3217bfb3d3757642e2a9bee0f1f6828ea6b574cc0dd92f753"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE6_COURSE_REVIEW.md",
+    "sourceCommit": "3b9b610c26bde138122d716031e649e31cb5b392",
+    "sha256": "eb4b07ac36ce8ea6de6d04d1c002778d803dc27229d146bf7c7d523cf87274b7"
+  }
+]

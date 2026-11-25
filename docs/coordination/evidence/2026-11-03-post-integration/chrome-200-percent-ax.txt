@@ -1,0 +1,143 @@
+Window: "Lockliel local synthetic member review", App: Google Chrome.
+0 standard window Lockliel local synthetic member review - Google Chrome, URL: 127.0.0.1:53137/, Secondary Actions: Raise
+	1 container Lockliel local synthetic member review - Google Chrome, URL: 127.0.0.1:53137/
+		2 container
+			3 container
+				4 scroll area
+					5 HTML content Lockliel local synthetic member review, URL: 127.0.0.1:53137/
+						6 container
+							7 link Skip to review content, Value: 127.0.0.1:53137/#review-content
+							8 text Lockliel · member experience preview
+							9 text Invented samples only. Local memory only. No account, cloud save, messages or payments.
+							10 button Reset all local drafts
+							11 container Review sections
+								12 button Dashboard
+								13 button Faith
+								14 button My Five projection
+								15 button Share
+								16 button Groups
+								17 button Founders
+								18 button Scripture Anchors
+								19 button Prayer Board
+							20 heading Dashboard, Value: 1
+								21 text Dashboard
+							22 text Dashboard sample state
+							23 pop up button Dashboard sample state, Value: ready
+								24 (selected) ready
+							25 container Member experience review
+								26 container A little time. A meaningful next step.
+									27 container
+										28 text YOUR NEXT STEP Review display
+										29 heading A little time. A meaningful next step., Value: 2
+											30 text A little time.
+											31 text A meaningful next step.
+										32 text Make room for a sample lesson and a moment of reflection. Invented lesson. No live progress.
+										33 button Review your next step
+										34 text A suggested action never grants access or marks a lesson complete.
+									35 text Next step ready for review. No course progress changed.
+								36 container
+									37 text YOUR MEMBER CARD
+									38 container Synthetic member card
+										39 image Synthetic photo placeholder, initials only
+										40 heading Jordan Example, Value: 3
+											41 text Jordan Example
+										42 text Sample City
+										43 text MY FAITH BANNER
+										44 text Take the next faithful step.
+										45 text A message you choose, never an assessment or score.
+										46 text Display preview only. Contact details, private prayers, assessments and giving never appear here.
+									47 button Review profile and privacy
+								48 container Make a little space for you.
+									49 text YOUR PROFILE, YOUR CHOICE
+									50 heading Make a little space for you., Value: 2
+										51 text Make a little space for you.
+									52 text Local review only
+									53 container
+										54 heading Choose your Faith Banner, Value: 3
+											55 text Choose your Faith Banner
+										56 text Banner message
+										57 pop up button Banner message, Value: Take the next faithful step.
+											58 (selected) Take the next faithful step.
+										59 text Optional and private by default. This message is not an assessment, score or permission.
+										60 container Profile photo preview
+											61 text Profile photo preview
+											62 text Photo placeholder state
+											63 pop up button Photo placeholder state, Value: Initials placeholder
+												64 (selected) Initials placeholder
+											65 text Initials only. No file can be selected or uploaded. Changing this sample resets photo visibility to Only me.
+											66 button Remove sample placeholder
+										67 container Visibility for this review, Help: Every optional field starts private. These controls do not grant access to anyone.
+											68 text Visibility for this review
+											69 text Every optional field starts private. These controls do not grant access to anyone.
+											70 text Photo placeholder
+											71 pop up button Photo placeholder, Value: Only me
+												72 (selected) Only me
+											73 text Initials only. No upload is available.
+											74 text Location
+											75 pop up button Location, Value: Only me
+												76 (selected) Only me
+											77 text Faith Banner
+											78 pop up button Faith Banner, Value: Only me
+												79 (selected) Only me
+										80 text Private prayers, assessments, notes, giving and contact details are excluded. A card never creates a staff or leadership role.
+										81 button Reset review visibility
+									82 container
+										83 text Preview the card as
+										84 pop up button Preview the card as, Value: Me
+											85 (selected) Me
+										86 text This comparison creates no relationship or permission. Public visitors receive no card.
+										87 container Synthetic member card
+											88 image Synthetic photo placeholder, initials only
+											89 heading Jordan Example, Value: 3
+												90 text Jordan Example
+											91 text Sample City
+											92 text MY FAITH BANNER
+											93 text Take the next faithful step.
+											94 text A message you choose, never an assessment or score.
+											95 text Display preview only. Contact details, private prayers, assessments and giving never appear here.
+										96 text Sharing stays intentional. Photo storage, audiences and live sharing require separate review before connecting real data.
+								97 text Optional fields start private. Changes remain in this view and are not saved or shared.
+							98 text Review composition only. Production integration and approval of intended reference artwork remain outside this artifact.
+			99 container Infobar Container
+				100 container Infobar
+					101 container
+						102 text "ChatGPT" started debugging this browser
+						103 button Cancel
+					104 button Close
+		105 container
+			106 container
+				107 toolbar
+					108 button Back
+					109 button (disabled) Forward
+					110 button Reload
+					111 container
+						112 pop up button View site information
+						113 text field (settable) Address and search bar, Value: 127.0.0.1:53137, Placeholder: Ask Google or type a URL
+						114 button Zoom: 200%
+						115 button Bookmark this tab
+					116 pop up button Extensions
+					117 button Dave
+					118 pop up button Chrome
+			119 container
+				120 pop up button Tab search
+				121 tab group
+					122 tab (selected, settable, boolean) Lockliel local synthetic member review - Memory usage - 75.8 MB, Value: on
+						123 button Close
+				124 button New Tab
+				125 button Open Gemini in Chrome
+	126 container
+		127 close button
+		128 zoom button
+129 menu bar
+	130 Chrome
+	131 File
+	132 Edit
+	133 View
+	134 History
+	135 Bookmarks
+	136 Profiles
+	137 Tab
+	138 Window
+	139 Help
+
+The focused UI element is 5 HTML content Lockliel local synthetic member review, URL: 127.0.0.1:53137/

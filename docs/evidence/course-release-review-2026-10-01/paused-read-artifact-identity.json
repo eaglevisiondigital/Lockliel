@@ -1,0 +1,31 @@
+{
+  "source": "406c1691aee11311783ef83a7e970c6a4d5acd13",
+  "packagerSource": "406c1691aee11311783ef83a7e970c6a4d5acd13",
+  "workingDiffSha256": null,
+  "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "ref": "qjksggxorghaxvpyslip",
+  "origin": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+  "handlers": [
+    "login",
+    "logout",
+    "session",
+    "mfa",
+    "journey",
+    "lesson-resource",
+    "profile",
+    "admin-content",
+    "admin-person"
+  ],
+  "hashes": {
+    "login": "96424b68bc943ba46dde69d9dae2f6d81672e221447ea7d052446fc5121a1be8",
+    "logout": "a8609f384bd3b1b389588916c2e58143c98ef9018b6173b46653517652da8c38",
+    "session": "5cf8f846f2b7da01a51c5f1fbbc415ba77bd6718cbd8c40a8da16c9f3c04e816",
+    "mfa": "f96743f453dc505f2a5ba52c077fcdbf6540cfc31cd12ab7536feefa8168909c",
+    "journey": "668cf7e8bd27bad9bcc72081e0d2ded22f99a44e9776e82bd8174c17baf7c932",
+    "lesson-resource": "185d40b290cf35587001fd305e990f645354d3497ce584cf007b9aaada656494",
+    "profile": "f05e41c7394db2530f10785543bd4420470f20258369c753f38da635fdc1dea6",
+    "admin-content": "4948a4a47fab3998526526d6a0a0e65082c1a8824b35cfd45313cbc508f5ffea",
+    "admin-person": "af5df7337967a4fb07143b6033b7ef4a0364e461d638f5a022b97f916d8b0d84"
+  },
+  "adaptation": "backend-config data only; exact candidate handlers/core/guard; outbound transport deny wrapper"
+}

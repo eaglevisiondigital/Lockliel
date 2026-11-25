@@ -1,0 +1,132 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync,readdirSync} from 'node:fs';
+import {join} from 'node:path';
+import {spawn} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {parseReachPage,reachPageQuery,finishReachPage} from '../../../netlify/lib/my-five-pagination.mjs';
+import {aggregateSelect,aggregateMutation,databaseLocaleQuery} from './sql-shape.mjs';
+const literal=v=>`'${String(v).replaceAll("'","''")}'`;
+export async function runExpansion({sql,args,env,repo,candidate=null,evidenceDirectory='docs/myfive-sql'}) {
+ const evidence={checks:[],performance:[],observations:{},preservation:{},failures:[],completed:false};
+ let phase='fixture orchestration';
+ const saveEvidence=()=>writeFileSync(join(repo,evidenceDirectory,'evidence.json'),JSON.stringify(evidence,null,2)+'\n');
+ const check=(name,fn)=>{phase=name;try{fn();evidence.checks.push(name);console.log('PASS '+name);}catch(error){evidence.failure={check:name,message:error.message};throw error;}finally{saveEvidence();phase='fixture orchestration';}};
+ // Read-only forensic observations may fail independently; retain all failures and never mark a complete pass.
+ const observe=(name,fn)=>{phase=name;try{evidence.observations[name]=fn();}catch(error){evidence.failures.push({phase:name,message:error.message});}finally{saveEvidence();phase='fixture orchestration';}};
+ try{
+ const digest=()=>Object.fromEntries(readdirSync(join(repo,'supabase/migrations')).filter(f=>f.endsWith('.sql')&&f!==candidate).map(f=>[f,createHash('sha256').update(readFileSync(join(repo,'supabase/migrations',f))).digest('hex')]));
+ const hashes=digest();assert.equal(Object.keys(hashes).length,280);
+ const original=sql("select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);");
+ const proposal=readFileSync(candidate?join(repo,'supabase/migrations',candidate):join(repo,'docs/myfive-backend/proposed-cap-correction.sql'),'utf8');
+ const catalog=`select json_build_object('policies',(select json_agg(row_to_json(p) order by policyname) from pg_policies p where schemaname='public' and tablename='reach_contacts'),'columns',(select json_agg(row_to_json(c) order by grantee,privilege_type,column_name) from information_schema.column_privileges c where table_schema='public' and table_name='reach_contacts'),'triggers',(select json_agg(pg_get_triggerdef(oid) order by tgname) from pg_trigger where tgrelid='public.reach_contacts'::regclass),'function',(select json_build_object('owner',proowner,'acl',proacl,'definer',prosecdef,'config',proconfig) from pg_proc where oid='app_private.enforce_reach_contact_limit()'::regprocedure),'indexes',(select json_agg(indexdef order by indexname) from pg_indexes where schemaname='public' and tablename='reach_contacts'),'roles',(select json_agg(row_to_json(r) order by rolname) from (select rolname,rolsuper,rolbypassrls from pg_roles where rolname in ('anon','authenticated','service_role')) r));`;
+ check('original sixth active insertion rejected for exact cap reason',()=>sql(`begin;do $test$ declare u uuid:=gen_random_uuid(); denied boolean:=false; begin insert into auth.users(id,email)values(u,u||'@example.invalid');insert into public.reach_contacts(owner_id,display_name)select u,'Baseline '||i from generate_series(1,5)i;begin insert into public.reach_contacts(owner_id,display_name)values(u,'Sixth');exception when others then if sqlerrm<>'My Five can contain no more than five active people.' then raise;end if;denied:=true;end;assert denied;end;$test$;rollback;`));
+ const baseline=sql(catalog);evidence.observations.catalogBefore=JSON.parse(baseline);evidence.observations.cluster=JSON.parse(sql("select json_build_object('version',version(),'data',current_setting('data_directory'),'socket',current_setting('unix_socket_directories'),'tcp',current_setting('listen_addresses'),'serverAddress',inet_server_addr());"));sql(`begin;${proposal}rollback;`);check('proposal transaction rollback preserves function/catalog',()=>{assert.equal(sql(catalog),baseline);assert.equal(sql("select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);"),original);});
+ sql(proposal);evidence.observations.catalogAfter=JSON.parse(sql(catalog));check('proposal preserves policies/ACLs/triggers/indexes/role attributes',()=>assert.equal(sql(catalog),baseline));
+ const A='a1000000-0000-4000-8000-000000000001',B='b1000000-0000-4000-8000-000000000001';
+ const auth=(owner,source)=>`begin;set local role authenticated;set local request.jwt.claims=${literal(JSON.stringify({sub:owner,role:'authenticated',aal:'aal1'}))};${source};commit;`;
+ const rows=(owner,query)=>JSON.parse(sql(auth(owner,aggregateSelect(query))).trim());
+ const mutations=(owner,statement)=>JSON.parse(sql(auth(owner,aggregateMutation(statement))).trim());
+ sql(`insert into auth.users(id,email) values('${A}','sql-a@example.invalid'),('${B}','sql-b@example.invalid');`);
+ for(const n of [5,25,100,1000]) {
+  sql(`delete from public.reach_contacts where owner_id='${A}';`);
+  const start=performance.now();sql(auth(A,`insert into public.reach_contacts(owner_id,display_name) select '${A}','Synthetic '||i from generate_series(1,${n}) i`));
+  evidence.performance.push({rows:n,insertMs:Math.round((performance.now()-start)*100)/100});
+  check(`${n} active contacts accepted under actual authenticated role`,()=>assert.equal(sql(auth(A,`select count(*) from public.reach_contacts`)).trim(),String(n)));
+  // Derive SQL predicates from the actual reviewed page/query contract; this is SQL, not a PostgREST server.
+  let cursor=null;const seen=[];let pages=0;
+  do {const p=new URLSearchParams({reachLimit:'25'});if(cursor)p.set('reachCursor',cursor);const page=parseReachPage(p,A),query=new URLSearchParams(reachPageQuery(page));
+   assert.equal(query.get('owner_id'),`eq.${A}`);assert.equal(query.get('order'),'created_at.desc,id.desc');
+   const c=page.cursor,where=c?`and (created_at<${literal(c.createdAt)}::timestamptz or (created_at=${literal(c.createdAt)}::timestamptz and id<${literal(c.id)}::uuid))`:'';
+   const data=rows(A,`select ${query.get('select')} from public.reach_contacts where owner_id='${A}' ${where} order by created_at desc,id desc limit ${Number(query.get('limit'))}`);
+   const result=finishReachPage(data,page);seen.push(...result.contacts.map(r=>r.id));cursor=result.page.nextCursor;pages++;
+  }while(cursor);
+  check(`${n} actual SQL cursor traversal exactly once`,()=>{assert.equal(seen.length,n);assert.equal(new Set(seen).size,n);});
+  evidence.performance.at(-1).pages=pages;
+  observe(`scale${n}OwnerPlan`,()=>JSON.parse(sql(auth(A,`explain(analyze,buffers,format json) select id,created_at from public.reach_contacts where owner_id='${A}' order by created_at desc,id desc limit 26`))));
+  observe(`scale${n}FilteredOwnerPlan`,()=>JSON.parse(sql(auth(A,`explain(analyze,buffers,format json) select id,created_at from public.reach_contacts where owner_id='${A}' and status in('praying','invited','connected','growing') and display_name ilike '%Synthetic%' order by created_at desc,id desc limit 26`))));
+ }
+ sql(auth(B,`insert into public.reach_contacts(owner_id,display_name,private_notes) values('${B}','Other owner','Synthetic private')`));
+ check('cross-owner SELECT hidden',()=>assert.equal(rows(A,`select id from public.reach_contacts where owner_id='${B}'`).length,0));
+ check('cross-owner UPDATE and DELETE affect zero',()=>{assert.equal(mutations(A,`update public.reach_contacts set private_notes='bad' where owner_id='${B}' returning id`).length,0);assert.equal(mutations(A,`delete from public.reach_contacts where owner_id='${B}' returning id`).length,0);});
+ check('cross-owner INSERT denied',()=>assert.throws(()=>sql(auth(A,`insert into public.reach_contacts(owner_id,display_name) values('${B}','Forbidden')`)),/row-level security/));
+ check('owner and linked identity rewrites denied',()=>{for(const field of ['owner_id','linked_profile_id'])assert.throws(()=>sql(auth(A,`update public.reach_contacts set ${field}='${B}' where owner_id='${A}'`)),/permission denied/);});
+ check('anonymous SELECT denied',()=>assert.throws(()=>sql('begin;set local role anon;select * from public.reach_contacts;rollback;'),/permission denied/));
+ check('retained My Five private notes/consent/resource/inviter regression',()=>sql('begin;'+readFileSync(join(repo,'supabase/tests/my_five_guided_follow_up.sql'),'utf8')+'rollback;'));
+ check('original inviter remains separate from approved mentor and revoked follow-up',()=>{
+ const fixture=readFileSync(join(repo,'supabase/tests/getting_a_grip_invitation.sql'),'utf8');
+ const marker=' -- Use a synthetic locale to isolate this fixture from historical seeded courses.';
+ assert.equal(fixture.split(marker).length,2);
+ const mentor=`
+ insert into public.leader_profiles(profile_id,leader_type,active)values(outsider,'mentor',true);
+ insert into public.leader_assignments(member_id,leader_id,assignment_type,status)values(member_id,outsider,'mentor','active');
+ assert (select original_inviter_id=inviter and current_leader_id=outsider from public.profiles where id=member_id),'Mentor overwrote original inviter';
+ assert not exists(select 1 from public.staff_roles where profile_id in(member_id,outsider)),'Mentor fixture granted staff';
+ update public.leader_assignments set status='paused' where leader_id=outsider;
+ assert (select original_inviter_id=inviter and current_leader_id is null from public.profiles where id=member_id),'Pause lost original inviter or retained leader';
+ assert not exists(select 1 from public.contact_permissions where profile_id=member_id and other_profile_id=outsider and permission_type='leader_followup' and revoked_at is null),'Paused mentorship retained follow-up permission';
+ `;
+ sql('begin;'+fixture.replace(marker,mentor+marker)+'rollback;');
+ });
+ const id=rows(A,`select id from public.reach_contacts order by id limit 1`)[0].id;
+ sql(auth(A,`update public.reach_contacts set status='paused' where id='${id}';update public.reach_contacts set status='growing' where id='${id}'`));
+ check('reactivation beyond five succeeds',()=>assert.equal(rows(A,`select status from public.reach_contacts where id='${id}'`)[0].status,'growing'));
+ // Real PostgreSQL search, status filtering and tied/microsecond ordering, projected through reviewed helper.
+ sql(auth(A,`insert into public.reach_contacts(owner_id,display_name,status) values('${A}','Alpha Person','invited'),('${A}','ALPHA second','paused'),('${A}','Élodie','praying'),('${A}','İpek','praying')`));
+ const queryRows=page=>{const params=new URLSearchParams(reachPageQuery(page)),filters=[`owner_id=${literal(page.owner)}::uuid`];if(page.status==='active')filters.push(`status in ('praying','invited','connected','growing')`);else if(page.status!=='all')filters.push(`status=${literal(page.status)}`);if(page.search)filters.push(`display_name ilike ${literal('%'+page.search+'%')}`);if(page.cursor)filters.push(`(created_at<${literal(page.cursor.createdAt)}::timestamptz or (created_at=${literal(page.cursor.createdAt)}::timestamptz and id<${literal(page.cursor.id)}::uuid))`);return rows(page.owner,`select ${params.get('select')} from public.reach_contacts where ${filters.join(' and ')} order by created_at desc,id desc limit ${Number(params.get('limit'))}`);};
+ check('actual SQL literal search and status subset',()=>{const page=parseReachPage(new URLSearchParams({reachSearch:'alpha',reachStatus:'active'}),A);const result=finishReachPage(queryRows(page),page);assert.deepEqual(result.contacts.map(r=>r.display_name),['Alpha Person']);});
+ const tied=rows(A,`select id from public.reach_contacts where display_name in('Alpha Person','ALPHA second') order by id`);
+ sql(`update public.reach_contacts set created_at='2026-01-02T03:04:05.000001Z' where id in('${tied[0].id}','${tied[1].id}');`);
+ check('SQL equal-timestamp UUID ordering and offset-equivalent cursor',()=>{const page=parseReachPage(new URLSearchParams({reachSearch:'alpha',reachLimit:'1'}),A);const first=finishReachPage(queryRows(page),page);const decoded=JSON.parse(Buffer.from(first.page.nextCursor,'base64url'));decoded.createdAt='2026-01-01T21:04:05.000001-06:00';const next=parseReachPage(new URLSearchParams({reachSearch:'alpha',reachLimit:'1',reachCursor:Buffer.from(JSON.stringify(decoded)).toString('base64url')}),A);assert.equal(finishReachPage(queryRows(next),next).contacts[0].id,tied[0].id);});
+ const firstPage=parseReachPage(new URLSearchParams({reachLimit:'5'}),A),firstResult=finishReachPage(queryRows(firstPage),firstPage),firstIDs=firstResult.contacts.map(r=>r.id);
+ sql(auth(A,`update public.reach_contacts set private_notes='Changed without reorder' where id='${firstIDs[0]}';delete from public.reach_contacts where id='${firstIDs.find(value=>value!==id)}'`));
+ check('updated_at edit and deletion do not repeat prior cursor rows',()=>{const next=parseReachPage(new URLSearchParams({reachLimit:'5',reachCursor:firstResult.page.nextCursor}),A);assert.ok(finishReachPage(queryRows(next),next).contacts.every(r=>!firstIDs.includes(r.id)));});
+ evidence.observations.unicodeSearch=[];
+ for(const search of ['i','İ','é','É']){const page=parseReachPage(new URLSearchParams({reachSearch:search}),A),data=queryRows(page);let accepted=true;try{finishReachPage(data,page);}catch{accepted=false;}evidence.observations.unicodeSearch.push({search,sqlNames:data.map(r=>r.display_name),responseAccepted:accepted});saveEvidence();}
+ sql(auth(A,`insert into public.reach_contacts(owner_id,display_name)values('${A}',repeat('😀',120))`));
+ const emojiPage=parseReachPage(new URLSearchParams(),A);const emoji=rows(A,`select owner_id,id,display_name,status,created_at from public.reach_contacts where display_name=repeat('😀',120)`);check('database supplementary Unicode boundary accepted by pinned compatibility helper',()=>{assert.equal(finishReachPage(emoji,emojiPage).contacts[0].display_name,'😀'.repeat(120));evidence.observations.supplementaryUnicodeAccepted=true;});
+ const prior=rows(A,`select updated_at,status from public.reach_contacts where id='${id}'`)[0];
+ sql(auth(A,`update public.reach_contacts set private_notes='new synthetic revision' where id='${id}'`));
+ check('stale status/version compare-and-set affects zero',()=>assert.equal(mutations(A,`update public.reach_contacts set status='completed' where id='${id}' and status=${literal(prior.status)} and updated_at=${literal(prior.updated_at)}::timestamptz returning id`).length,0));
+ const asyncSQL=source=>new Promise((resolve,reject)=>{const child=spawn('/opt/homebrew/opt/postgresql@17/bin/psql',[...args,'-qAt'],{env});let out='',err='';child.stdout.on('data',d=>out+=d);child.stderr.on('data',d=>err+=d);const timer=setTimeout(()=>child.kill('SIGTERM'),30000);child.on('close',code=>{clearTimeout(timer);if(code===0)resolve(out);else reject(Error('Local concurrent SQL failed: '+err));});child.stdin.end(source);});
+ const current=rows(A,`select updated_at,status from public.reach_contacts where id='${id}'`)[0];
+ const casSQL=status=>auth(A,aggregateMutation(`update public.reach_contacts set status=${literal(status)} where owner_id='${A}' and id='${id}' and status=${literal(current.status)} and updated_at=${literal(current.updated_at)}::timestamptz returning id`));
+ const raced=await Promise.all(['invited','paused'].map(status=>asyncSQL(casSQL(status))));
+ check('simultaneous same-row CAS has one winner and one stale loser',()=>assert.deepEqual(raced.map(value=>JSON.parse(value.trim()).length).sort(),[0,1]));
+ const duplicateName='Repeated ambiguous synthetic submission';await Promise.all([1,2].map(()=>asyncSQL(auth(A,`insert into public.reach_contacts(owner_id,display_name)values('${A}',${literal(duplicateName)})`))));
+ evidence.observations.ambiguousAddRows=rows(A,`select id from public.reach_contacts where display_name=${literal(duplicateName)}`).length;
+ check('duplicate-name add has no fabricated idempotency guarantee',()=>assert.equal(evidence.observations.ambiguousAddRows,2));
+ const before=Number(sql(auth(A,'select count(*) from public.reach_contacts')).trim());
+ await Promise.all([1,2,3,4].map(i=>asyncSQL(auth(A,`insert into public.reach_contacts(owner_id,display_name,status) values('${A}','Concurrent ${i}','invited')`))));
+ check('four simultaneous same-owner inserts retain all committed rows',()=>assert.equal(Number(sql(auth(A,'select count(*) from public.reach_contacts')).trim()),before+4));
+ const pair=rows(A,`select id from public.reach_contacts where display_name like 'Concurrent %' order by id limit 2`).map(r=>r.id);
+ await Promise.all(pair.map((contact,i)=>asyncSQL(auth(A,`update public.reach_contacts set status='growing' where id='${contact}';select pg_sleep(${i===0?0.15:0})`))));
+ evidence.observations.concurrentReachCount=JSON.parse(sql(`select json_build_object('recorded',(select reach_one_count from public.member_journey where profile_id='${A}'),'actual',(select count(*) from public.reach_contacts where owner_id='${A}' and status in('invited','connected','growing','completed')));`).trim());saveEvidence();
+ await Promise.all(pair.map(contact=>asyncSQL(auth(A,`delete from public.reach_contacts where id='${contact}'`))));
+ check('concurrent removal preserves other rows',()=>assert.equal(Number(sql(auth(A,'select count(*) from public.reach_contacts')).trim()),before+2));
+ check('duplicate owner-linked profile rejected by existing unique index',()=>{sql(`update public.reach_contacts set linked_profile_id='${B}' where id='${id}';`);assert.throws(()=>sql(`update public.reach_contacts set linked_profile_id='${B}' where id=(select id from public.reach_contacts where owner_id='${A}' and id<>'${id}' limit 1);`),/duplicate key/);});
+ check('retained authorization/mentor/staff boundaries',()=>sql('begin;'+readFileSync(join(repo,'supabase/tests/authorization_boundaries.sql'),'utf8')+'rollback;'));
+ for(const file of ['course_engine_standard.sql','course_persistence_regression.sql','course_private_notes_privileges.sql'])check('post-correction '+file,()=>sql('begin;'+readFileSync(join(repo,'supabase/tests',file),'utf8')+'rollback;'));
+ check('concurrent qualifying count matches actual rows',()=>assert.equal(evidence.observations.concurrentReachCount.recorded,evidence.observations.concurrentReachCount.actual));
+ const session='c1000000-0000-4000-8000-000000000001';sql(`insert into auth.sessions(id,user_id,aal)values('${session}','${A}','aal1');`);
+ const sessionSQL=q=>`begin;set local role authenticated;set local request.jwt.claims=${literal(JSON.stringify({sub:A,role:'authenticated',session_id:session,aal:'aal1'}))};${q};commit;`;
+ check('current-session predicate accepts active local fixture',()=>assert.equal(sql(sessionSQL('select app_private.current_session_is_active()')).trim(),'t'));
+ sql(`delete from auth.sessions where id='${session}';`);
+ check('current-session predicate rejects revoked fixture',()=>assert.equal(sql(sessionSQL('select app_private.current_session_is_active()')).trim(),'f'));
+ observe('revokedMemberRlsVisibleCount',()=>Number(sql(sessionSQL('select count(*) from public.reach_contacts')).trim()));
+ observe('sessionBoundary',()=>'Existing reach RLS uses owner identity, not active-session predicate; revocation is API/session-layer gate. No policy expanded.');
+ observe('collation',()=>JSON.parse(sql(databaseLocaleQuery).trim()));
+ observe('ownerPlan',()=>JSON.parse(sql(auth(A,`explain(analyze,buffers,format json) select id,created_at from public.reach_contacts where owner_id='${A}' order by created_at desc,id desc limit 26`))));
+ observe('plans',()=>JSON.parse(sql(`explain(analyze,buffers,format json) select id,created_at from public.reach_contacts where owner_id='${A}' order by created_at desc,id desc limit 26;`)));
+ phase='read expanded count before restoration';
+ const finalCount=sql(auth(A,'select count(*) from public.reach_contacts')).trim();
+ phase='restore original cap function';
+ sql(original);check('rollback function replacement preserves expanded data and catalog',()=>{assert.equal(sql(auth(A,'select count(*) from public.reach_contacts')).trim(),finalCount);assert.equal(sql(catalog),baseline);assert.equal(sql("select pg_get_functiondef('app_private.enforce_reach_contact_limit()'::regprocedure);"),original);});
+ check('restored original cap prospectively rejects additional active contact',()=>assert.throws(()=>sql(auth(A,`insert into public.reach_contacts(owner_id,display_name)values('${A}','Must fail under old cap')`)),/no more than five active/));
+ phase='final migration byte preservation';
+ assert.deepEqual(digest(),hashes);evidence.preservation={migrationCount:280,hashesUnchanged:true,sqlProposalUnnumbered:!candidate,candidate:candidate??null,candidateSHA256:candidate?createHash('sha256').update(proposal).digest('hex'):null,fixtureOnly:true};
+ writeFileSync(join(repo,evidenceDirectory,'evidence.json'),JSON.stringify(evidence,null,2)+'\n');
+ if(evidence.failures.length)throw Error('Independent local evidence observations failed; see preserved phases');
+ evidence.completed=true;
+ console.log(`My Five expansion: ${evidence.checks.length} explicit checks passed; observations recorded without treating limitations as success.`);
+ }catch(error){evidence.failure??={phase,message:error.message};throw error;}finally{saveEvidence();}
+}

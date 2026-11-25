@@ -76,11 +76,11 @@ test("private resource delivery checks member entitlement",()=>{
   assert.match(source,/storage\/v1\/object\/authenticated\/member-resources/);
 });
 
-test("lesson progress records covered media intervals",()=>{
+test("lesson player sends samples instead of trusting browser percentages",()=>{
   const source=fs.readFileSync("app/my-lockliel/journey/lesson/youtube-progress-player.tsx","utf8");
-  assert.match(source,/coveredIntervals/);
-  assert.match(source,/delta>0&&delta<15/);
-  assert.match(source,/percentWatched/);
+  assert.match(source,/positionSeconds/);
+  assert.match(source,/sample\(false\)/);
+  assert.doesNotMatch(source,/percentWatched|coveredIntervals/);
 });
 
 
@@ -566,11 +566,8 @@ test("members can only change notification read state",()=>{
 });
 
 
-test("My Five limit and system-owned fields are enforced in the database",()=>{
+test("historical 280 My Five cap and system-owned grants remain preserved",()=>{
   const migration=fs.readFileSync("supabase/migrations/20260925111601_lockliel_enforce_my_five_integrity.sql","utf8");
-  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
-  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
-
   assert.match(migration,/revoke insert, update on table public\.reach_contacts from authenticated/);
   assert.match(migration,/grant insert \([\s\S]*owner_id[\s\S]*display_name[\s\S]*private_notes[\s\S]*\) on table public\.reach_contacts to authenticated/);
   assert.match(migration,/grant update \([\s\S]*display_name[\s\S]*status[\s\S]*private_notes[\s\S]*updated_at[\s\S]*\) on table public\.reach_contacts to authenticated/);
@@ -578,7 +575,17 @@ test("My Five limit and system-owned fields are enforced in the database",()=>{
   assert.match(migration,/pg_advisory_xact_lock/);
   assert.match(migration,/active_count>=5/);
   assert.match(migration,/My Five can contain no more than five active people/);
-  assert.match(api,/Pause or complete one before reactivating another/);
+});
+
+test("current My Five API removes the encouragement cap while preserving owner and revision checks",()=>{
+  const api=fs.readFileSync("netlify/functions/lockliel-connections.mjs","utf8");
+  const client=fs.readFileSync("app/my-lockliel/connections/connections-client.tsx","utf8");
+  assert.doesNotMatch(api,/Pause or complete one before reactivating another|activeCount\s*>=\s*5/);
+  assert.match(api,/owner_id:uid/);
+  assert.match(api,/\&owner_id=eq\./);
+  assert.match(api,/\&updated_at=eq\./);
+  assert.match(api,/Relationship version unavailable/);
+  assert.match(api,/rows\[0\]\?\.owner_id!==uid/);
   assert.match(client,/Unable to update My Five/);
 });
 
@@ -1718,8 +1725,8 @@ test("member-generated text and JSON payloads are bounded in PostgreSQL",()=>{
   assert.match(migration,/pg_column_size\(worksheet_answers\)<=65536/);
   assert.match(migration,/jsonb_typeof\(metadata\)='object'/);
   assert.match(migration,/pg_column_size\(metadata\)<=16384/);
-  assert.match(journey,/Array\.isArray\(rawWorksheetAnswers\)/);
-  assert.match(journey,/worksheetBytes>60000/);
+  assert.match(journey,/Array\.isArray\(body.answers\)/);
+  assert.match(fs.readFileSync('supabase/migrations/20260929215159_lockliel_course_engine_standard.sql','utf8'),/octet_length\(answers::text\)>60000/);
 });
 
 
@@ -2008,6 +2015,14 @@ test("every Lockliel server route is authenticated unless explicitly public and 
       continue;
     }
 
+    if(name==="lockliel-member-read.mjs"){
+      // This candidate has no open implementation. Session refresh is not permitted.
+      // The network-guarded entrypoint matrix separately invokes every method/context.
+      assert.match(source,/import \{ unavailableMemberRead \} from '\.\.\/lib\/member-read-server\.mjs'/);
+      assert.match(source,/export default async function memberRead\(\) \{ return unavailableMemberRead\(\); \}/);
+      assert.doesNotMatch(source,/process\.env|fetch\(|createMemberReadHandler\(/);
+      continue;
+    }
     assert.match(source,/\brequireSession\b/,name+" must use the shared Lockliel session guard.");
   }
 });
@@ -2021,7 +2036,8 @@ test("public Auth handoffs bind access and refresh tokens to the same user and p
   const recover=fs.readFileSync("netlify/functions/lockliel-recover.mjs","utf8");
   const referral=fs.readFileSync("netlify/functions/lockliel-referral-redirect.mjs","utf8");
 
-  assert.match(core,/LOCKLIEL_APP_ORIGIN="https:\/\/lockliel\.com"/);
+  assert.match(core,/LOCKLIEL_APP_ORIGIN=backendConfig\.origin/);
+  assert.match(fs.readFileSync('netlify/lib/backend-config.mjs','utf8'),/origin: 'https:\/\/lockliel\.com'/);
   assert.match(core,/function validatedTokenPair/);
   assert.match(core,/refreshSession\(refresh\)/);
   assert.match(core,/refreshedUser\.id!==accessUser\.id/);
@@ -2342,7 +2358,7 @@ test("media progress interval evidence is bounded to the player contract",()=>{
   assert.match(migration,/jsonb_array_length\(covered_intervals\)<=250/);
   assert.match(migration,/media_progress_covered_intervals_size/);
   assert.match(migration,/pg_column_size\(covered_intervals\)<=32768/);
-  assert.match(player,/return merged\.slice\(-250\)/);
+  assert.doesNotMatch(player,/coveredIntervals/);
 });
 
 test("integrity health includes financial and media-progress drift detection",()=>{

@@ -1,0 +1,30 @@
+{
+  "status": "PREPARED_ONLY_NOT_INSTALLED",
+  "authorization": "same unused wave10ie allowance, no additional recovery or connection",
+  "existingRoot": "/Users/davesmacbookpro/Library/Application Support/Lockliel/wave10ie-qjks-recovery",
+  "previousGrantSha256": "433a71b3b4edad86b9d3508a3c46a5516bb1cde40eb5e4de2bacc4a38a9c3e7a",
+  "replacementGrantSha256": "3c3398cf5908f52126ef260a05254e69bdefca410ec6f0e1f6cfe47094e7b583",
+  "replacementGrant": {
+    "authorization": "wave10ie-one-private-recovery",
+    "project": "qjksggxorghaxvpyslip",
+    "branch": "course-cutover-rehearsal-274",
+    "mode": "owner-controlled-password-handoff",
+    "workerSha256": "24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5",
+    "guardSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "runtimeSha256": "e9c74aa5aca6b71689a649e84d3055f1fcaf242b09c1380991d1e0b7761a5865",
+    "identitySha256": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0",
+    "previousGrantSha256": "433a71b3b4edad86b9d3508a3c46a5516bb1cde40eb5e4de2bacc4a38a9c3e7a",
+    "maximumRecoveries": 0,
+    "maximumDatabaseConnections": 1
+  },
+  "reconciliationExecuted": false,
+  "constraints": [
+    "Exclusive operator window; no older operator in flight",
+    "Verify exact existing root/READY grant hash and absence of CONSUMED/result",
+    "Preserve previous grant/evidence before exact-source reconciliation",
+    "Replace binding of the same unused allowance only; never add a second READY or reset a consumed state",
+    "Stop on interruption or ambiguous state; no automatic repair or retry",
+    "Fresh source/launcher/runtime/CA verification before later hidden input",
+    "Live diagnostic requires its own exact execution assignment"
+  ]
+}

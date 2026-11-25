@@ -1,0 +1,9 @@
+# W1 Wave 3 result and acceptance preparation
+
+November 1,2026. Existing branch codex/lane1-account-integrity, preservation checkpoint38a1c097e8cf50425ccceac4685fc1770dceffac based on d71d079. No application/Auth modification.
+
+Fresh bounded read-only follow-up observes actual on/5s/30s and production274. October7–22cohort180:27confirmed,153unconfirmed,27withrecordedlastsignin;26confirmations within one minute,1between1and60minutes,0afterhour;19latest recovery timestamps precede confirmation. These timestamps do not prove first-session sequence, intent or legitimacy. No account IDs, names, addresses, credentials or notes were returned.
+
+An independent bounded October7 00:00–October8 00:00UTC Auth-log sample has126records:21signup200,21recover200,2token200,62token400,4verify303,2verify-without-status,10other200 and4withoutpath/status. Numeric correspondence with21creations is correlation only, not an event join;200does not prove unique account creation or delivered email,400does not identify attack cause. The October21sample fromWave2 remains historical115records, not rerun. Both samples are consistent with the existing paced-workflow concern; actor/abuse/compromise/purpose remain undetermined. Dave reports no known approved run.
+
+No account remediation, Auth/CAPTCHA/rate/SMTP/settings changes, sessions, emails, credentials, maintenance, migration, push, merge or deployment. No repeated22-test/build/replay because no Auth source changed; reviewed exact source remains protected by its prior validated checkpoint. New acceptance procedure is preparation only. Integration readiness: risk/procedure reviewable, real-CAPTCHA release blocked. Next: separately scoped owner-operated browser compatibility and real-proof synthetic acceptance only after fresh source/binding and explicit window authority.

@@ -1,0 +1,36 @@
+{
+  "preparationToolSha256": "221f71174c2f716f2eac641d17d599c96b4224c8db077d2be77335f036e87761",
+  "reviewedSource": "d51b90db66d5fc650e7b5139a8a5787ba6a994ac",
+  "filesCopiedAndVerified": 40,
+  "stagedFilesOwnerReadOnly": true,
+  "privateDirectory": true,
+  "operator": {
+    "ok": true,
+    "localBindingsVerified": true,
+    "liveExecutionAuthorized": false,
+    "runtimeVerified": true,
+    "identityState": "UNVERIFIED",
+    "operatorState": "UNVERIFIED",
+    "credentialsRequested": false,
+    "connectionsOpened": 0,
+    "reservations": 0
+  },
+  "native": {
+    "ok": true,
+    "preparationVerified": true,
+    "executionAuthorized": false,
+    "version": "lockliel-deployment-native-preflight-v2",
+    "project": "qjksggxorghaxvpyslip",
+    "branch": "course-cutover-rehearsal-274",
+    "credentialsRequested": false,
+    "connectionsOpened": 0,
+    "attemptStateTouched": false
+  },
+  "liveApprovalInstalled": false,
+  "grantCreated": false,
+  "providerCalls": 0,
+  "databaseConnections": 0,
+  "privateArtifactAccess": false,
+  "oldTemporaryStageRemoved": true,
+  "verifiedTemporaryStageRemoved": true
+}

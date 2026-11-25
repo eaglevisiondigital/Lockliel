@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-01T21:22:08.151792+00:00",
+  "fresh_readonly": {
+    "migration_count": 274,
+    "video_assets": 13,
+    "video_durations_nonnull": 0,
+    "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+    "pr4": "draft/open/unmerged; autoMergeRequest null; head eaff3fea36d4ce489009ebf2070071311619f9c2"
+  },
+  "no_actions": [
+    "production DB writes",
+    "migrations",
+    "push",
+    "merge",
+    "deploy",
+    "settings/permissions",
+    "Auth/SMTP",
+    "PITR/compute",
+    "duration population",
+    "payment/staff",
+    "Share Library activation",
+    "isolated mutations"
+  ],
+  "prior_observations_not_freshly_audited": {
+    "Netlify": "6abbb27a1cdd6d00081b0e8e",
+    "ChatGPT_Sites": "25",
+    "compute": "Small",
+    "PITR": "7-day",
+    "Auth_SMTP": "unchanged by this assignment"
+  },
+  "limitation": "No full row/settings/Storage equivalence audit was performed."
+}

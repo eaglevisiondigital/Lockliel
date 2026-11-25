@@ -1,3 +1,4 @@
+import {learningState} from './course-engine.mjs';
 import {nextPersonAction} from './my-five.mjs';
 // Pure member guidance. This module never writes data or grants authorization.
 export const ACTIVE_REACH_STATUSES = ['praying','invited','connected','growing'];
@@ -48,16 +49,18 @@ export function courseState(journey = {}) {
   const complete = Boolean(lessons.length && completed === lessons.length);
   const started = (journey.progress || []).some(row => ['in_progress','completed'].includes(row.status)) || (journey.mediaProgress || []).some(row => Number(row.percent_watched) > 0);
   const unfinished = lessons.filter(lesson => progress.get(lesson.id)?.status !== 'completed');
-  const current = unfinished.filter(lesson => progress.get(lesson.id)?.status === 'in_progress').sort((a,b) =>
+  const current = journey.course?.learning_rules?.model ? learningState(journey).current : unfinished.filter(lesson => progress.get(lesson.id)?.status === 'in_progress').sort((a,b) =>
     String(progress.get(b.id)?.last_activity_at || '').localeCompare(String(progress.get(a.id)?.last_activity_at || '')) || a.position-b.position
   )[0] || unfinished[0];
   const currentProgress = current ? progress.get(current.id) : null;
   const assets = (journey.assets || []).filter(asset => asset.lesson_id === current?.id && asset.asset_type === 'video');
-  const videoIncomplete = assets.some(asset => Number(media.get(asset.id)?.percent_watched || 0) < 95);
+  const watchThreshold=journey.course?.learning_rules?.watch_threshold||95;
+  const videoIncomplete = journey.course?.learning_rules?.model ? !current?.watchMet : assets.some(asset => Number(media.get(asset.id)?.percent_watched || 0) < watchThreshold);
+  const latestActivity=(journey.progress||[]).map(p=>p.last_activity_at).filter(Boolean).sort().at(-1)||null;
   const worksheetRequired = Boolean(current?.worksheet_schema?.questions?.length);
   const worksheetIncomplete = worksheetRequired && currentProgress?.worksheet_status !== 'completed';
   const href = current ? paths.course+'/lesson?lesson='+encodeURIComponent(current.slug) : paths.course;
-  return {available,started,complete,completed,total:lessons.length,current,videoIncomplete,worksheetIncomplete,href};
+  return {available,started,complete,completed,total:lessons.length,current,videoIncomplete,worksheetIncomplete,href,watchThreshold,latestActivity};
 }
 const step = (type,priority,title,description,label,href,progress) => ({type,priority,title,description,cta:{label,href},...(progress ? {progress} : {})});
 
@@ -77,12 +80,12 @@ export function buildMemberJourney(state, now = new Date()) {
   else if (course.available && course.started && !course.complete && course.current) {
     // Active-course priority includes its unfinished requirements, not a competing rule in the UI.
     const type = course.videoIncomplete ? 'lesson_video' : course.worksheetIncomplete ? 'lesson_worksheet' : 'course_continue';
-    const description = course.videoIncomplete ? 'Continue the teaching. Watch each required video to at least 95%.' : course.worksheetIncomplete ? 'Complete the worksheet or lesson notes, then finish your lesson.' : 'Pick up your next lesson and keep growing in the Word.';
+    const description = course.videoIncomplete ? `Continue the teaching. Watch each required video to at least ${course.watchThreshold}%.` : course.worksheetIncomplete ? 'Complete the required worksheet fields, then finish your lesson.' : 'Pick up your next lesson and keep growing in the Word.';
     nextStep = step(type,2,'Continue: '+course.current.title,description,course.videoIncomplete?'Continue video':course.worksheetIncomplete?'Open worksheet':'Continue lesson',course.href,progress);
   } else if (course.available && !course.complete && course.current && (course.videoIncomplete || course.worksheetIncomplete) && state.course?.progress?.some(row => row.lesson_id === course.current.id)) {
     nextStep = step('lesson_requirement',3,'Finish your lesson','Return to the teaching and worksheet to complete the lesson requirements.','Open lesson',course.href,progress);
   } else if (course.available && !course.started && !course.complete) nextStep = step('grip_start',4,'Start Getting a Grip on the Basics','Build a foundation through 13 lessons, teaching videos and worksheets.','Start my first lesson',course.href,progress);
-  else if (!active.length) nextStep = step('my_five_empty',5,'Begin your My Five','Choose one person to pray for and encourage. You can keep up to five active people here.','Add my first person',paths.five);
+  else if (!active.length) nextStep = step('my_five_empty',5,'Begin your My Five','Start with five. Reach as many as God puts on your heart.','Add my first person',paths.five);
   else if (personal) nextStep = step('my_five_followup',6,personal.action.label+' with '+personal.person.display_name,personal.action.description,'Open person',personal.action.href);
   else if (due.length) nextStep = step('my_five_followup',6,'Make a thoughtful follow-up','A follow-up you planned is ready. Review your private My Five list and choose an appropriate next action.','Review my follow-ups',paths.five);
   else if (state.groupCheckinDue) nextStep = step('group_checkin',7,'Check in with your group','Record this week’s gathering and any support your group needs.','Open my group',paths.group);
@@ -97,8 +100,8 @@ export function buildMemberJourney(state, now = new Date()) {
   const stage = !complete ? 'Starting' : hasHostMembership ? 'Leading' : active.some(row => row.status === 'growing') ? 'Discipling' : shared ? 'Sharing' : 'Growing';
   return {
     onboardingComplete:complete,nextStep,
-    continueGrowing:{title:state.course?.course?.title || 'Getting a Grip on the Basics',available:course.available,complete:course.complete,progress,href:course.href},
-    myFive:{activeCount:active.length,dueCount:due.length,maximum:5,href:paths.five},
+    continueGrowing:{title:state.course?.course?.title || 'Getting a Grip on the Basics',available:course.available,complete:course.complete,progress,href:course.href,currentLesson:course.current?.title||null,latestActivity:course.latestActivity},
+    myFive:{activeCount:active.length,dueCount:due.length,projection:"bounded-sample",href:paths.five},
     community:{state:communityState,href:paths.group},
     resources,
     journey:{stage,stages:JOURNEY_STAGES,description:'A guide for growth, not a role or permission. Multiplying is a continuing goal, not an inferred achievement.'}

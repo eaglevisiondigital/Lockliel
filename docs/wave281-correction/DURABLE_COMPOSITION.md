@@ -1,0 +1,9 @@
+# Explicit offline composition
+
+lib/durable-281/journal.mjs is an exact byte copy from independently reviewed1c10881c88384be319a682c801c01a3c8181e753, SHA256 a31dbdab270db5e8813cd9d9a57501cac8ad1cc6cf4ea5ed1c7f3b13094d15fc. Original lane/worktree preserved; no Git merge. Its authority is synthetic and every result remains liveAuthorized=false.
+
+The composition test binds exact cleanup sourcefb993247106181fa5874ae8d378df4c78b77eb23, isolated project, named synthetic operator, run, purpose and target digest. It obtains separately signed synthetic grant/before evidence, durably consumes and reserves before invoking the memory executor, then uses a fresh observed snapshot digest in signed after evidence. A restarted journal verifies COMPLETE or treats an unfinished attempt as INTERRUPTED; no replay/resumption is inferred. The local temporary nonsecret journal is removed by that test's own cleanup only.
+
+Three actual composition tests pass, including copied-source integrity, successful exact cleanup/after evidence/restart and interrupted reservation with no deletion. These are included in30selected root tests:3composition+9executor+18reconciliation. Independent reviewer reran3composition tests, not additional unique coverage.
+
+The standalone memory executor is deliberately still a synthetic fixture and does not internally require this journal. This test establishes contract compatibility, not a trusted installed native operator. It cannot stop an operating-system owner deleting all consumption history or creating another directory. Existing J/deployment grants are untouched. Durable local files/permissions/hash chain are tamper-evident within the reviewed process boundary; external immutable consumption authority, trusted time, actual named-operator provenance and real signing authority remain missing. Test keys never become provider credentials.

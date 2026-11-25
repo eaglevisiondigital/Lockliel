@@ -1,0 +1,9 @@
+{
+  "schema": "lockliel-wave10is-project-observation-v1",
+  "operation": "supabase.get_project",
+  "requestedProject": "qjksggxorghaxvpyslip",
+  "observedAt": "2026-11-03 14:12:45 UTC",
+  "ok": false,
+  "category": "UNVERIFIED_PROVIDER_RESPONSE",
+  "rawResponseRetained": false
+}

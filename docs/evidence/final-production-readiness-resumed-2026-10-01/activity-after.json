@@ -1,0 +1,48 @@
+[
+  {
+    "sampled_at": "2026-10-01 20:34:30.960127+00",
+    "stats_reset": "2026-08-25 20:33:23.891825+00",
+    "course_counters": [
+      {
+        "del": 0,
+        "ins": 1,
+        "upd": 0,
+        "table": "course_enrollments"
+      },
+      {
+        "del": 0,
+        "ins": 1,
+        "upd": 2,
+        "table": "courses"
+      },
+      {
+        "del": 0,
+        "ins": 40,
+        "upd": 27,
+        "table": "lesson_assets"
+      },
+      {
+        "del": 0,
+        "ins": 0,
+        "upd": 0,
+        "table": "lesson_progress"
+      },
+      {
+        "del": 0,
+        "ins": 13,
+        "upd": 30,
+        "table": "lessons"
+      },
+      {
+        "del": 0,
+        "ins": 0,
+        "upd": 0,
+        "table": "media_progress"
+      }
+    ],
+    "target_locks": 0,
+    "waiters": 0,
+    "other_transactions": 0,
+    "transactions_over_30s": 0
+  }
+]

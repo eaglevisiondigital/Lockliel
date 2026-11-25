@@ -1,0 +1,23 @@
+{
+  "format": 1,
+  "activation": false,
+  "liveEligible": false,
+  "base": "d71a66f",
+  "files": {
+    "netlify/functions/lockliel-connections.mjs": "3bfa6756ee4aec80397e52d26a5f272f06427653b4cdeb5cb71de87f2e5482e5",
+    "netlify/functions/lockliel-my-five.mjs": "dc0c369059bb9816b1c133bfb926259a7c8d62cfd6e96364c3da8d5761f9474e",
+    "netlify/lib/my-five-pagination.mjs": "d68370e83bf98fc219ae72d50362834283df6844485dcff05146f048e8317e2e",
+    "netlify/lib/lockliel-core.mjs": "cfa3123a3caafe2676ae14c0105f7357a090d7a4ef55deff8de791735d1ac146",
+    "netlify/lib/my-five.mjs": "8563c45f77304803176dc508b3658eb8b303e0a32589940f586b642953ef46cf",
+    "netlify/lib/my-five-data.mjs": "a2ec1ed6c21060fa7d9bdbfc21a1e89f804c5dee4c333f6d1137bc39d526368c",
+    "lib/acceptance-281/synthetic-plan.mjs": "8956892e713a2d3ef9163589b29e2df4cc341fdfe8bbcb2e3d6697b71787a873"
+  },
+  "routes": [
+    "GET /api/lockliel/connections?view=reach",
+    "POST /api/lockliel/connections",
+    "GET /api/lockliel/my-five",
+    "POST /api/lockliel/my-five"
+  ],
+  "newHostedAuthorization": false,
+  "cleanupRoute": null
+}

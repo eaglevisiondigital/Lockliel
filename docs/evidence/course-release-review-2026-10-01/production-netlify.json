@@ -1,0 +1,82 @@
+{
+  "id": "3096b319-3068-45ab-9837-ba0cce59d50f",
+  "name": "lockliel",
+  "published_deploy": {
+    "id": "6abbb27a1cdd6d00081b0e8e",
+    "state": "ready",
+    "context": "production",
+    "branch": "main",
+    "commit_ref": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+    "published_at": "2026-09-29T12:44:51.484Z",
+    "created_at": "2026-09-29T12:43:38.712Z",
+    "deploy_ssl_url": "https://main--lockliel.netlify.app",
+    "review_id": null
+  },
+  "https://lockliel.com": {
+    "status": 200,
+    "bytes": 128071,
+    "sha256": "a184c485520cc5fa6bd5cee0b0e47cdaf46575e1e9794f9afa25743466cfbe00"
+  },
+  "https://lockliel.netlify.app": {
+    "status": 200,
+    "bytes": 128071,
+    "sha256": "a184c485520cc5fa6bd5cee0b0e47cdaf46575e1e9794f9afa25743466cfbe00"
+  },
+  "recent_deploys": [
+    {
+      "id": "6abd366442bf580008d496b6",
+      "state": "ready",
+      "context": "deploy-preview",
+      "branch": "lockliel-backend-v1",
+      "commit_ref": "3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d",
+      "published_at": null,
+      "created_at": "2026-09-30T16:18:44.736Z",
+      "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+      "review_id": 4
+    },
+    {
+      "id": "6abcdbeb2e554100082d3a1f",
+      "state": "ready",
+      "context": "deploy-preview",
+      "branch": "lockliel-backend-v1",
+      "commit_ref": "a58626b2f0a46b2fad84e1f79e88dbfb13c81a22",
+      "published_at": null,
+      "created_at": "2026-09-30T09:52:43.370Z",
+      "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+      "review_id": 4
+    },
+    {
+      "id": "6abcc54b2ec109000875c2b6",
+      "state": "ready",
+      "context": "deploy-preview",
+      "branch": "lockliel-backend-v1",
+      "commit_ref": "f11a97afb051f9c90b15faca95265698363cfaf1",
+      "published_at": null,
+      "created_at": "2026-09-30T08:16:11.214Z",
+      "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+      "review_id": 4
+    },
+    {
+      "id": "6abc3af1948f010008be427f",
+      "state": "ready",
+      "context": "deploy-preview",
+      "branch": "lockliel-backend-v1",
+      "commit_ref": "ca5f09b85fee2689329b716b95d07e199746a6a2",
+      "published_at": null,
+      "created_at": "2026-09-29T22:25:53.376Z",
+      "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+      "review_id": 4
+    },
+    {
+      "id": "6abbb27a1cdd6d00081b0e8e",
+      "state": "ready",
+      "context": "production",
+      "branch": "main",
+      "commit_ref": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+      "published_at": "2026-09-29T12:44:51.484Z",
+      "created_at": "2026-09-29T12:43:38.712Z",
+      "deploy_ssl_url": "https://main--lockliel.netlify.app",
+      "review_id": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "approvedVersion": "2.118.0",
+  "binarySHA256": "8bcf9b109b24094feaf89e35c2d10d01d3dde50cc2a960116bd151537c2908c4",
+  "command": "env -i PATH=/usr/bin:/bin DO_NOT_TRACK=1 /private/tmp/lockliel-approved-cli-5qTafr/supabase migration new lockliel_expand_my_five_relationship_capacity",
+  "output": "Created new migration at supabase/migrations/20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+  "historicalExecutedCandidate": "20261104141125_lockliel_expand_my_five_relationship_capacity.sql",
+  "correctedCanonicalCandidate": "20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+  "sqlSHA256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+  "exactFileBytesIdentical": true,
+  "sqlRerun": false,
+  "historicalReceiptsUnmodified": true,
+  "initialTelemetryWriteBlocked": true,
+  "telemetryDisabledInvocationSucceeded": true
+}

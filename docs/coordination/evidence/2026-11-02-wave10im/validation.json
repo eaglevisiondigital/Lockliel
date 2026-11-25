@@ -1,0 +1,118 @@
+{
+  "sourceCommit": "d51b90db66d5fc650e7b5139a8a5787ba6a994ac",
+  "mode": "offline; network guard; synthetic inputs only",
+  "javascript": {
+    "full": 2097,
+    "passed": 2097,
+    "failed": 0,
+    "skipped": 0,
+    "focusedSubset": 119,
+    "identitySubset": 63,
+    "operatorSubset": 29,
+    "independentSecuritySubset": 27
+  },
+  "python": {
+    "newNative": 50,
+    "priorNativeRegression": 45,
+    "priorLauncherRegression": 27,
+    "priorAttemptRegression": 34,
+    "separateInvocationsNotAdditionalUniqueJavaScriptTests": true
+  },
+  "checks": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "seconds": 8.972
+    },
+    {
+      "check": "native-v2",
+      "exitCode": 0,
+      "seconds": 0.678
+    },
+    {
+      "check": "native-v1",
+      "exitCode": 0,
+      "seconds": 0.735
+    },
+    {
+      "check": "launcher-v1",
+      "exitCode": 0,
+      "seconds": 0.294
+    },
+    {
+      "check": "attempt",
+      "exitCode": 0,
+      "seconds": 0.513
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "seconds": 2.863
+    },
+    {
+      "check": "lint-binding",
+      "exitCode": 0,
+      "seconds": 1.214
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "seconds": 5.401
+    },
+    {
+      "check": "type",
+      "exitCode": 0,
+      "seconds": 2.026
+    },
+    {
+      "check": "build",
+      "exitCode": 0,
+      "seconds": 9.522
+    }
+  ],
+  "actualPreparation": {
+    "ok": true,
+    "sealedSourceFiles": 36,
+    "runtimeVerified": true,
+    "operator": "UNVERIFIED",
+    "identities": "UNVERIFIED",
+    "liveExecutionAuthorized": false,
+    "credentialsRequested": false,
+    "connectionsOpened": 0,
+    "reservations": 0
+  },
+  "independentBootstrapCanaries": {
+    "validFixtureImport": true,
+    "alteredDependencyDeniedBeforeImport": true
+  },
+  "disposableSQL": {
+    "scope": "disposable PostgreSQL17 Unix socket only",
+    "syntheticOnly": true,
+    "managedDatabaseConnections": 0,
+    "tcpListener": false,
+    "migrationReplayCount": 0,
+    "productionAccess": false,
+    "queryExecuted": true,
+    "querySha256": "03948b0580a4e51021afad0fb393c52d9a11f5098eb18d1bb720a261dec29d8c",
+    "settings": {
+      "readOnly": "on",
+      "lockTimeout": "5s",
+      "statementTimeout": "30s",
+      "unixSocket": true
+    },
+    "syntheticRows": 3,
+    "exactABDigestValidation": "PASS",
+    "unapprovedThirdIdentityIgnored": true,
+    "wrongUserDenied": true,
+    "wrongLoginBindingDenied": true,
+    "wrongCreationProvenanceDenied": true,
+    "ok": true,
+    "ownClusterStopped": true,
+    "ownTemporaryFixtureRemoved": true,
+    "recipeSha256": "2873dfc5cb4a42c7a5dd92fe453f88f59de16ff1ecccfcba430f48e3d1473038",
+    "approvedEscalatedFixture": "PASS"
+  },
+  "migrationReplayThisAssignment": false,
+  "prior280Replay": "Wave10I-L exact unchanged source evidence; not repeated",
+  "freshHostedEvidence": false
+}

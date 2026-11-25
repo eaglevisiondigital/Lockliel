@@ -1,0 +1,40 @@
+{
+  "startingDocumentationHead": "9e90f948d50df0e28abfffc91654fe951d9cda02",
+  "branch": "codex/wave10-hosted-composition",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "runtimeParent": "bcaa35680ffefc61775636d65f568827e42d7f06",
+  "reviewedToolingSource": "4e5b59482e5acddce7153aee977dd60ec3970f29",
+  "kitManifestSha256": "44f768595051db86f63071ef1b94b704e5ace139ea67a67ee613d6dd063bb625",
+  "kitFiles": {
+    "checker.py": "1ccd3859f0f5f2f4daf11c29a056ea9911e714f24a261f5e548390e9b2e83bd2",
+    "experiment.py": "3be7f3aafdf372c9fadb0a82927035a427eac263d7422a9ea22e6ef39f13cf5f",
+    "preflight.py": "2aacb5e20be8fa2fb376372187145f780c1d468dc15b32a3f556a88499bedc37",
+    "verify.py": "7fd3a0bd2b605162bda95fe6e6d0c81a0ede57eea393050e690f2b894fd6fd76"
+  },
+  "authority": "Direct owner Wave10G authorization; one empty experiment, no application deployment.",
+  "preparationManifestHistoricalMode": "PREPARED_ONLY_NOT_AUTHORIZED",
+  "historicalManifestNotRewritten": true,
+  "reservationAllowanceConsumed": true,
+  "newRemoteResourceRetained": false,
+  "subagentsDispatched": 0,
+  "writes": [
+    {
+      "method": "POST",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/70b03a42-6329-476e-bf4b-2b1ce30e9567/deploys/6ae8a1aa48521d4528081700",
+      "status": 204
+    }
+  ],
+  "prohibitedActionsPerformed": [],
+  "limits": "Empty workflow only. No native functions, protected configuration, rate enforcement, backend binding or hosted Auth acceptance proved.",
+  "productionPreservationBasis": "No production service accessed or modified; no fresh production database or hosting audit claimed."
+}

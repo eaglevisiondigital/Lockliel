@@ -1,0 +1,33 @@
+{
+  "migrations": 280,
+  "operatorFiles": 40,
+  "originalCourseFiles": 7,
+  "lanes": {
+    "course": {
+      "head": "dae8be3f9aca53d07f768201d1fabcc67ebd8553",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-discipleship-course/Lockliel"
+    },
+    "state": {
+      "head": "5179a66c39bb9f3b4200a73e432e057915e098f1",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-discipleship-state/Lockliel"
+    },
+    "journey": {
+      "head": "d74f88494bd9eb16cb0302cb07558ba0743e7e62",
+      "mismatches": [],
+      "path": "/Users/davesmacbookpro/.codex/worktrees/lockliel-discipleship-journey/Lockliel"
+    }
+  },
+  "application": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "postMoveBuild": {
+    "sources": 85,
+    "lanes": 11,
+    "allPinnedAndClean": true
+  },
+  "reviewCommits": {
+    "accessibility": "c81e457abfcf4fff16ac0c51d13fb49f72715ccc",
+    "security": "1ebf5cd4884c9840a1c6aaa665028f497972c255"
+  },
+  "ownerGallerySHA256": "a4f9e9d98831eefc2486a393a49a75b29556b833773fa98fa9208b79e2c82eff"
+}

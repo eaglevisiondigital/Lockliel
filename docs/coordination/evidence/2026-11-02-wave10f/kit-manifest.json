@@ -1,0 +1,18 @@
+{
+  "mode": "PREPARED_ONLY_NOT_AUTHORIZED",
+  "siteId": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+  "historicalTemplateHashes": {
+    "experiment.py.txt": "993cae277ee28ef4671914b9274d47aa93beaaf90726ec03d0cf20d7f3ee0d72",
+    "preflight.py.txt": "684e63c2ecda1fe5a6e0ddc65a94fe0dfb3f7c521bb49cc44bdd13033dcd46e9",
+    "verify.py.txt": "cee0aa64c449269c9642cf0555cad3167e328e39fd5d935f00b2f38f74c441e2"
+  },
+  "files": {
+    "checker.py": "1ccd3859f0f5f2f4daf11c29a056ea9911e714f24a261f5e548390e9b2e83bd2",
+    "experiment.py": "3be7f3aafdf372c9fadb0a82927035a427eac263d7422a9ea22e6ef39f13cf5f",
+    "preflight.py": "2aacb5e20be8fa2fb376372187145f780c1d468dc15b32a3f556a88499bedc37",
+    "verify.py": "7fd3a0bd2b605162bda95fe6e6d0c81a0ede57eea393050e690f2b894fd6fd76"
+  },
+  "requiresSeparateOwnerAuthorization": true,
+  "remoteCallsDuringPreparation": 0,
+  "credentialAccessDuringPreparation": false
+}

@@ -1,0 +1,63 @@
+{
+  "offline": true,
+  "networkFunctionsBlocked": true,
+  "realNativeErrorRead": false,
+  "realPasswordAccessed": false,
+  "classifierSourceHash": "d9df69e2f1b512bb46934e743c16fd3379815b11f951f6cc867ac84e8563d853",
+  "syntheticClassifierCases": 13,
+  "results": [
+    {
+      "syntheticCase": "password-rejection",
+      "currentCode": "AUTHENTICATION_FAILED"
+    },
+    {
+      "syntheticCase": "sasl-auth-failure",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "server-access-policy",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "native-name-resolution",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "route-unavailable",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "tcp-refused",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "connection-interrupted",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "native-timeout",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "certificate-verification",
+      "currentCode": "TLS_VERIFY_FAILED"
+    },
+    {
+      "syntheticCase": "tls-handshake",
+      "currentCode": "TLS_VERIFY_FAILED"
+    },
+    {
+      "syntheticCase": "tls-unavailable",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "startup-rejection",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    },
+    {
+      "syntheticCase": "empty-native-diagnostic",
+      "currentCode": "DIRECT_CONNECTION_FAILED"
+    }
+  ],
+  "runtimeSourceModified": false
+}

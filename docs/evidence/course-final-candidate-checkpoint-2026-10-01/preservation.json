@@ -1,0 +1,55 @@
+{
+  "production_before": {
+    "staff": 0,
+    "assets": 40,
+    "courses": 1,
+    "lessons": 13,
+    "profiles": 1,
+    "progress": 0,
+    "readonly": "on",
+    "auth_users": 1,
+    "enrollments": 1,
+    "ledger_last": "20260926212002",
+    "observed_at": "2026-10-01T20:01:20.440135+00:00",
+    "ledger_count": 274,
+    "lock_timeout": "5s",
+    "share_assets": 3,
+    "media_progress": 0,
+    "storage_objects": 13,
+    "statement_timeout": "30s",
+    "payment_connections": 4
+  },
+  "production_after": {
+    "staff": 0,
+    "assets": 40,
+    "courses": 1,
+    "lessons": 13,
+    "profiles": 1,
+    "progress": 0,
+    "readonly": "on",
+    "auth_users": 1,
+    "enrollments": 1,
+    "ledger_last": "20260926212002",
+    "observed_at": "2026-10-01T20:05:13.148335+00:00",
+    "ledger_count": 274,
+    "lock_timeout": "5s",
+    "share_assets": 3,
+    "media_progress": 0,
+    "storage_objects": 13,
+    "statement_timeout": "30s",
+    "payment_connections": 4
+  },
+  "netlify": {
+    "published_deploy_before": "6abbb27a1cdd6d00081b0e8e",
+    "published_deploy_after": "6abbb27a1cdd6d00081b0e8e",
+    "commit": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+    "source": "Authenticated Netlify dashboard before and after"
+  },
+  "sites": {
+    "id": "appgprj_6a904a70bcb48191b19a10b74adcf5d0",
+    "status": "active",
+    "version": 25,
+    "updated_at": "2026-08-27T22:28:57.301945+00:00"
+  },
+  "limits": "Aggregate equality is not full row/settings/Storage-byte equivalence. No production mutation was performed."
+}

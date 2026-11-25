@@ -1,0 +1,53 @@
+{
+  "lanes": [
+    {
+      "lane": "Groups",
+      "agent": "groups_experience",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-groups-experience/Lockliel",
+      "branch": "codex/member-groups-experience",
+      "head": "da2a3a018499133cb581e1b521e8a8ec6ee524ab",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-groups-experience/Lockliel/docs/coordination/GROUPS_EXPERIENCE_DELIVERY_RESULT.md",
+      "clean": true
+    },
+    {
+      "lane": "Founders 50",
+      "agent": "founders_experience",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-founders-experience/Lockliel",
+      "branch": "codex/member-founders-experience",
+      "head": "bc0df85facfcfbb1529c0e3368a768b4874924ac",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-founders-experience/Lockliel/docs/coordination/FOUNDERS_EXPERIENCE_DELIVERY_RESULT.md",
+      "clean": true
+    },
+    {
+      "lane": "Unified visual/accessibility review",
+      "agent": "member_visual_review",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-visual-review/Lockliel",
+      "branch": "codex/member-visual-review",
+      "head": "b4f7ed1178eb1764ce9f1797faa1bfd43c5e3057",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-member-visual-review/Lockliel/docs/coordination/UNIFIED_MEMBER_VISUAL_ACCESSIBILITY_RESULT.md",
+      "clean": true
+    }
+  ],
+  "acceptedFeatureCommitsPreserved": {
+    "faith": "5f71011f2526d2606b281eae467137cebce9f93b",
+    "share": "41b3be23ae463db15038cd9b48c67c48fe1f5fa0",
+    "dashboard": "c2e03aa6771f3cb3080ed7911abcd5511c8f9c99"
+  },
+  "protectedMigrationFilesUnchanged": 280,
+  "deploymentOperatorFilesUnchanged": 40,
+  "collectorSourceUnchanged": true,
+  "rootDirtyWorkUnchanged": true,
+  "mainCourseAndExistingRefsUnchanged": true,
+  "jAllowance": "CONSUMED",
+  "deploymentReservation": "UNUSED",
+  "providerEvidenceHold": true,
+  "ownerDashboardEvidenceReceived": false,
+  "liveCredentialInputs": 0,
+  "providerOperations": 0,
+  "databaseConnections": 0,
+  "hostedAuthOperations": 0,
+  "hostedAccountsCreated": 0,
+  "productionActions": 0,
+  "pushMergeDeploy": false,
+  "freshHostedAudit": false
+}

@@ -1,0 +1,155 @@
+{
+  "schema": "lockliel-local-design-assets-v1",
+  "observedAt": "2026-11-03T21:51:31.177368+00:00",
+  "purpose": "Licensed local mockup candidates only; no production deployment or owner visual approval",
+  "photos": [
+    {
+      "file": "photos/landscape.jpg",
+      "photographer": "Ales Krivec",
+      "title": "Blue sky over a clear lake",
+      "page": "https://unsplash.com/photos/landscape-photography-of-lake-surrounded-by-mountains-8aSs7QejvSw",
+      "published": "2015-06-02",
+      "camera": "Nikon D800",
+      "dimensions": [
+        2200,
+        1468
+      ],
+      "suggestedUse": "My Lockliel scenic hero; calm blue lake reflects the mountain journey direction.",
+      "path": "photos/landscape.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1433275328929-69941e862d61?fit=max&fm=jpg&q=90&w=2200",
+      "bytes": 538704,
+      "sha256": "92b60c7b232d1056ffcd57d475cc3919dadd6e47659fdceeb2f1ab6182b5ceea",
+      "license": "Unsplash License (free image, not Unsplash+)",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "sourceEvidence": "Official photo page lists photographer, publication date, camera and free Unsplash license. Historic camera metadata supports photographic origin; no generative image was created.",
+      "visualReview": "Viewed downloaded JPEG: natural landscape, no recognizable person, visible brand or separate artwork observed.",
+      "transformation": "Official image CDN rendition only: max width and JPEG quality90, aspect ratio retained. No AI generation, retouching, recoloring or source-art modification.",
+      "ownerApproval": "PENDING",
+      "productionActivation": "NOT AUTHORIZED"
+    },
+    {
+      "file": "photos/forest.jpg",
+      "photographer": "Lukasz Szmigiel",
+      "title": "Beautiful woodland path",
+      "page": "https://unsplash.com/photos/forest-trees-jFCViYFYcus",
+      "published": "2015-09-11",
+      "camera": "Canon EOS 7D",
+      "dimensions": [
+        1800,
+        1199
+      ],
+      "suggestedUse": "Course, reflection or resource supporting card. Natural warm light and grounded path.",
+      "path": "photos/forest.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 710866,
+      "sha256": "54fe80e91c8d57a05481b3033dc52eb79cbbe5dcfb77ca6af2fec3cc9d5a0aa6",
+      "license": "Unsplash License (free image, not Unsplash+)",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "sourceEvidence": "Official photo page lists photographer, publication date, camera and free Unsplash license. Historic camera metadata supports photographic origin; no generative image was created.",
+      "visualReview": "Viewed downloaded JPEG: natural landscape, no recognizable person, visible brand or separate artwork observed.",
+      "transformation": "Official image CDN rendition only: max width and JPEG quality90, aspect ratio retained. No AI generation, retouching, recoloring or source-art modification.",
+      "ownerApproval": "PENDING",
+      "productionActivation": "NOT AUTHORIZED"
+    },
+    {
+      "file": "photos/sunrise.jpg",
+      "photographer": "Blake Verdoorn",
+      "title": "Sunset over mountain silhouettes",
+      "page": "https://unsplash.com/photos/aerial-photography-of-mountain-during-sunrise-photo-ixbSaWYYOwY",
+      "published": "2015-04-21",
+      "camera": "Nikon D3300",
+      "dimensions": [
+        1800,
+        1200
+      ],
+      "suggestedUse": "Faith Boost or encouragement supporting artwork. Filename is a working identifier; provider caption says sunset while page title says sunrise.",
+      "path": "photos/sunrise.jpg",
+      "downloadUrl": "https://images.unsplash.com/photo-1429655353447-d030683895ad?fit=max&fm=jpg&q=90&w=1800",
+      "bytes": 74385,
+      "sha256": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05",
+      "license": "Unsplash License (free image, not Unsplash+)",
+      "licenseUrl": "https://unsplash.com/license",
+      "termsUrl": "https://unsplash.com/terms",
+      "sourceEvidence": "Official photo page lists photographer, publication date, camera and free Unsplash license. Historic camera metadata supports photographic origin; no generative image was created.",
+      "visualReview": "Viewed downloaded JPEG: natural landscape, no recognizable person, visible brand or separate artwork observed.",
+      "transformation": "Official image CDN rendition only: max width and JPEG quality90, aspect ratio retained. No AI generation, retouching, recoloring or source-art modification.",
+      "ownerApproval": "PENDING",
+      "productionActivation": "NOT AUTHORIZED"
+    }
+  ],
+  "fonts": [
+    {
+      "path": "fonts/Poppins-Regular.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Regular.ttf",
+      "bytes": 160316,
+      "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+      "family": "Poppins",
+      "license": "SIL Open Font License1.1",
+      "licenseFile": "fonts/Poppins-OFL.txt",
+      "sourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+      "modified": false
+    },
+    {
+      "path": "fonts/Poppins-Medium.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Medium.ttf",
+      "bytes": 158576,
+      "sha256": "90373e7d838d32468438fc3e152dca0bdb12edcab99ea639f158790b1ba1fd05",
+      "family": "Poppins",
+      "license": "SIL Open Font License1.1",
+      "licenseFile": "fonts/Poppins-OFL.txt",
+      "sourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+      "modified": false
+    },
+    {
+      "path": "fonts/Poppins-SemiBold.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-SemiBold.ttf",
+      "bytes": 157312,
+      "sha256": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286",
+      "family": "Poppins",
+      "license": "SIL Open Font License1.1",
+      "licenseFile": "fonts/Poppins-OFL.txt",
+      "sourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+      "modified": false
+    },
+    {
+      "path": "fonts/Poppins-Bold.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/ofl/poppins/Poppins-Bold.ttf",
+      "bytes": 155996,
+      "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c",
+      "family": "Poppins",
+      "license": "SIL Open Font License1.1",
+      "licenseFile": "fonts/Poppins-OFL.txt",
+      "sourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+      "modified": false
+    },
+    {
+      "path": "fonts/PermanentMarker-Regular.ttf",
+      "downloadUrl": "https://raw.githubusercontent.com/google/fonts/2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc/apache/permanentmarker/PermanentMarker-Regular.ttf",
+      "bytes": 74632,
+      "sha256": "28f82c8a7943cb8e9d599f8554da1d4fc75dbcf69b9885ad6c0611d20c6946c5",
+      "family": "Permanent Marker",
+      "license": "Apache2.0",
+      "licenseFile": "fonts/PermanentMarker-LICENSE.txt",
+      "sourceCommit": "2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc",
+      "modified": false
+    }
+  ],
+  "limitations": [
+    "Unsplash copyright license permits free commercial and noncommercial use but does not automatically clear recognizable people, trademarks or third-party art.",
+    "Do not resell images as substantially unmodified standalone images or compile a competing photo service.",
+    "No model or property release is asserted. Scenic visual inspection reduces but does not prove absence of third-party rights.",
+    "Photographic origin is supported by provider camera metadata and2015 publication dates, not an independent camera-raw audit.",
+    "Production selection, placement and crop still require owner visual confirmation. No Lockliel logo or brand art is included or changed.",
+    "Keep bundled font notices and licenses with redistribution. Fonts remain unmodified."
+  ],
+  "paletteProvidedByCoordinator": [
+    "#007BFF",
+    "#0056C9",
+    "#E6F2FF",
+    "#1A1A1A",
+    "#F4F6F8"
+  ],
+  "networkAtRuntime": "None required. Serve bundled files locally."
+}

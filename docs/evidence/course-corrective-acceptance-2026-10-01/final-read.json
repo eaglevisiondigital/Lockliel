@@ -1,0 +1,198 @@
+{
+  "at": "2026-10-01T17:10:14.324Z",
+  "project": "qjksggxorghaxvpyslip",
+  "learners": [
+    {
+      "who": "a",
+      "state": {
+        "paused": false,
+        "schemaReady": true,
+        "protocol": "278-v1"
+      },
+      "progress": {
+        "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+        "status": "completed",
+        "last_position_seconds": 0,
+        "watched_seconds": 0,
+        "worksheet_status": "completed",
+        "started_at": "2026-10-01T16:47:11.344887+00:00",
+        "last_activity_at": "2026-10-01T17:09:58.230699+00:00",
+        "completed_at": "2026-10-01T17:09:56.439668+00:00",
+        "revision": 3,
+        "watch_requirement_met_at": "2026-10-01T17:08:56.072166+00:00",
+        "worksheet_answers": {
+          "1": "SYNTHETIC A in-flight save interruption answer."
+        },
+        "content_snapshot": {
+          "media": [
+            {
+              "asset": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+              "provider_ref": "M7lc1UVf-VE",
+              "duration_seconds": 1344
+            }
+          ],
+          "rules": {
+            "model": "watch_answer",
+            "sequential": true,
+            "minimum_score": 0,
+            "watch_threshold": 95
+          },
+          "questions": [
+            {
+              "text": "Enter a synthetic rehearsal answer.",
+              "number": 1
+            }
+          ],
+          "configuration_version": 1
+        }
+      },
+      "media": {
+        "asset_id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+        "last_position_seconds": 1343.661,
+        "played_seconds": 1312.345331061035,
+        "percent_watched": 97.64,
+        "first_started_at": "2026-10-01T16:47:11.344887+00:00",
+        "last_activity_at": "2026-10-01T17:09:58.230699+00:00",
+        "completed_at": "2026-10-01T17:08:56.068586+00:00",
+        "covered_intervals": [
+          [
+            0,
+            193.37435602288818
+          ],
+          [
+            198.37492901907348,
+            203.37476308773805
+          ],
+          [
+            214.6303890305176,
+            373.62214619073484
+          ],
+          [
+            384.62953203051757,
+            1339.6089158397826
+          ]
+        ]
+      },
+      "gate": {
+        "unlocked": true,
+        "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+        "watch_met": true
+      },
+      "next": {
+        "unlocked": true,
+        "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+        "watch_met": false
+      },
+      "notes": [
+        {
+          "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+          "body": "SYNTHETIC A in-flight private note.",
+          "updated_at": "2026-10-01T17:09:56.454003+00:00"
+        }
+      ],
+      "mediaPendingLessons": [
+        {
+          "position": 11
+        },
+        {
+          "position": 12
+        },
+        {
+          "position": 13
+        }
+      ]
+    },
+    {
+      "who": "b",
+      "state": {
+        "paused": false,
+        "schemaReady": true,
+        "protocol": "278-v1"
+      },
+      "progress": {
+        "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+        "status": "in_progress",
+        "last_position_seconds": 0,
+        "watched_seconds": 0,
+        "worksheet_status": "completed",
+        "started_at": "2026-10-01T16:59:37.16951+00:00",
+        "last_activity_at": "2026-10-01T17:02:10.935031+00:00",
+        "completed_at": null,
+        "revision": 2,
+        "watch_requirement_met_at": null,
+        "worksheet_answers": {
+          "1": "SYNTHETIC B lost acknowledgement recovery answer, verified retry."
+        },
+        "content_snapshot": {
+          "media": [
+            {
+              "asset": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+              "provider_ref": "M7lc1UVf-VE",
+              "duration_seconds": 1344
+            }
+          ],
+          "rules": {
+            "model": "watch_answer",
+            "sequential": true,
+            "minimum_score": 0,
+            "watch_threshold": 95
+          },
+          "questions": [
+            {
+              "text": "Enter a synthetic rehearsal answer.",
+              "number": 1
+            }
+          ],
+          "configuration_version": 1
+        }
+      },
+      "media": {
+        "asset_id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+        "last_position_seconds": 1343.661,
+        "played_seconds": 28.396578185012775,
+        "percent_watched": 2.11,
+        "first_started_at": "2026-10-01T16:59:37.16951+00:00",
+        "last_activity_at": "2026-10-01T17:02:50.058307+00:00",
+        "completed_at": null,
+        "covered_intervals": [
+          [
+            0,
+            16.037069034332276
+          ],
+          [
+            1329.01475,
+            1341.3742591506805
+          ]
+        ]
+      },
+      "gate": {
+        "unlocked": true,
+        "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+        "watch_met": false
+      },
+      "next": {
+        "unlocked": false,
+        "lesson_id": "48f6d829-0c44-49d7-a568-2ed54b42bdf1",
+        "watch_met": false
+      },
+      "notes": [
+        {
+          "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+          "body": "SYNTHETIC B lost acknowledgement private note, verified retry.",
+          "updated_at": "2026-10-01T17:02:10.951266+00:00"
+        }
+      ],
+      "mediaPendingLessons": [
+        {
+          "position": 11
+        },
+        {
+          "position": 12
+        },
+        {
+          "position": 13
+        }
+      ]
+    }
+  ]
+}

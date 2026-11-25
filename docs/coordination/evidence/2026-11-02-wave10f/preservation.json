@@ -1,0 +1,21 @@
+{
+  "startingDocumentationHead": "8f1c29db29b52b71282171a63132b7cb30c0016d",
+  "initialToolingCommit": "69114462bfa5a3b826b0ca5b1dbb1ac9c6a3d232",
+  "finalToolingCommit": "4e5b59482e5acddce7153aee977dd60ec3970f29",
+  "applicationCandidate": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "existingTrackedNonMarkdownFiles": "all unchanged",
+  "historicalMarkdown": "exact outside new checkpoint blocks",
+  "all280MigrationSourceBytes": "unchanged",
+  "all37FeatureRows": "unchanged",
+  "rootStatusAndOtherGitRefs": "unchanged",
+  "offlineTestMethodsPassed": 33,
+  "providerAccountCalls": 0,
+  "liveCredentialReads": 0,
+  "newReservations": 0,
+  "hostedAuthOrSupabaseOperations": 0,
+  "pushOrMerge": false,
+  "applicationBuildAndFullJsSqlSuiteRerun": false,
+  "preparedManifestSha256": "44f768595051db86f63071ef1b94b704e5ace139ea67a67ee613d6dd063bb625",
+  "kitExecutionAuthorized": false,
+  "localHashesSyntaxLinksAndSecretLiteralScan": "PASS"
+}

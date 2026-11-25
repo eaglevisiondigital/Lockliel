@@ -1,0 +1,35 @@
+{
+  "javascript": {
+    "tests": 1856,
+    "pass": 1856,
+    "fail": 0,
+    "skipped": 0
+  },
+  "manualPythonTests": 50,
+  "manualPythonTestsIncludedViaOneJavascriptWrapper": true,
+  "existingPythonSuitesIncludedViaJavascriptWrappers": {
+    "recovery": 46,
+    "guard": 49,
+    "launcher": 32
+  },
+  "typescript": "passed, tsc --noEmit --incremental false",
+  "configuredLint": "passed",
+  "netlifyValidation": {
+    "passed": true,
+    "modules": 83,
+    "handlers": 63
+  },
+  "shellSyntax": "passed",
+  "fullApplicationBuild": "not repeated; application source unchanged",
+  "migrationReplay": "not run; migration source unchanged",
+  "networkGuard": true,
+  "dependenciesInstalled": false,
+  "temporaryExistingDependencySymlinkRemoved": true,
+  "syntheticOnly": true,
+  "correctedDuringValidation": [
+    "Test fixtures updated to use existing Driver fields",
+    "CLT getpass UTF-8 issue corrected with process-local LC_CTYPE and finally restoration",
+    "Created mutable buffer wiped if locale restoration fails"
+  ],
+  "finalSourceAllChecksPassed": true
+}

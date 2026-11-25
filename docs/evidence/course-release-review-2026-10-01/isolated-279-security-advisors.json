@@ -1,0 +1,118 @@
+{
+  "project": "qjksggxorghaxvpyslip",
+  "result": {
+    "lints": [
+      {
+        "name": "rls_enabled_no_policy",
+        "title": "RLS Enabled No Policy",
+        "level": "INFO",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Detects cases where row level security (RLS) has been enabled on a table but no RLS policies have been created.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy",
+        "count": 2,
+        "findings": [
+          {
+            "detail": "Table \\`app_private.course_answer_keys\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "course_answer_keys",
+              "type": "table",
+              "schema": "app_private"
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          },
+          {
+            "detail": "Table \\`lockliel_cutover.control\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "control",
+              "type": "table",
+              "schema": "lockliel_cutover"
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          }
+        ]
+      },
+      {
+        "name": "authenticated_security_definer_function_executable",
+        "title": "Signed-In Users Can Execute SECURITY DEFINER Function",
+        "level": "WARN",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Detects `SECURITY DEFINER` functions that are callable by signed-in users. Revoke `EXECUTE`, switch the function to `SECURITY INVOKER`, or move it out of your exposed API schema if signed-in users should not call it.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable",
+        "count": 4,
+        "findings": [
+          {
+            "detail": "Function `public.lockliel_course_cutover_status()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/lockliel_course_cutover_status`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "lockliel_course_cutover_status",
+              "schema": "public",
+              "language": "sql",
+              "arguments": "",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          },
+          {
+            "detail": "Function `public.lockliel_course_gates()` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/lockliel_course_gates`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "lockliel_course_gates",
+              "schema": "public",
+              "language": "sql",
+              "arguments": "",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          },
+          {
+            "detail": "Function `public.lockliel_sample_media(expected_user uuid, target_asset uuid, position_seconds numeric, playing boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/lockliel_sample_media`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "lockliel_sample_media",
+              "schema": "public",
+              "language": "plpgsql",
+              "arguments": "expected_user uuid, target_asset uuid, position_seconds numeric, playing boolean",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          },
+          {
+            "detail": "Function `public.lockliel_save_lesson(expected_user uuid, target_lesson uuid, expected_revision bigint, answers jsonb, notes text, complete boolean)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/lockliel_save_lesson`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "lockliel_save_lesson",
+              "schema": "public",
+              "language": "plpgsql",
+              "arguments": "expected_user uuid, target_lesson uuid, expected_revision bigint, answers jsonb, notes text, complete boolean",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-01T13:53:27.412Z"
+          }
+        ]
+      },
+      {
+        "name": "auth_leaked_password_protection",
+        "title": "Leaked Password Protection Disabled",
+        "level": "WARN",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Leaked password protection is currently disabled.",
+        "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection",
+        "count": 1,
+        "findings": [
+          {
+            "detail": "Supabase Auth prevents the use of compromised passwords by checking against HaveIBeenPwned.org. Enable this feature to enhance security.",
+            "metadata": {
+              "type": "auth",
+              "entity": "Auth"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

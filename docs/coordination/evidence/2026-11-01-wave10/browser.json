@@ -1,0 +1,47 @@
+{
+  "scope": "Actual packaged UI and compiled handler, with synthetic provider/context/key fixtures on loopback only; not real Auth or Netlify routing proof",
+  "source": "same implementation as f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "initial_fixture": "dirty preparation with b*40 source and a*24 deploy, explicitly noncertifying",
+  "exact_source_smoke": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+  "viewport_results": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "synthetic_a_ready": true
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "synthetic_a_ready": true
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "synthetic_a_ready": true
+    },
+    {
+      "width": 1365,
+      "scrollWidth": 1365,
+      "synthetic_a_ready": true
+    }
+  ],
+  "profile_preferences": "A profile and five current preference flags rendered; independent test requires exact actual columns",
+  "keyboard": [
+    "Load button Tab moves to Dashboard",
+    "Dashboard Tab moves to Faith Journey; Enter selects it",
+    "Clear member view clears data and focuses H1"
+  ],
+  "isolation": "A then B through separate fixture navigation: B present, A absent; actual account-switch/stale-response controller regressions included in full suite",
+  "negative_states": {
+    "anonymous": "No valid current session; A/B absent",
+    "expired": "No valid current session; A/B absent",
+    "upstream_error": "Unavailable; A/B absent"
+  },
+  "private_markers_rendered": false,
+  "browser_console_errors_or_warnings": 0,
+  "actual_200_percent_zoom": "UNVERIFIED: viewport width is not actual browser zoom",
+  "spoken_screen_reader": "UNVERIFIED: AX output/status semantics are not spoken acceptance",
+  "current_source_OS_reduce_motion": "NOT ACTIVATED; historical Wave6 evidence only",
+  "outbound": "Provider requests are lexical mock GETs; browser package CSP confines connections to self; no actual provider requests",
+  "cleanup": "Browser viewport override reset; owned tabs/listeners retired after verification"
+}

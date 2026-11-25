@@ -1,0 +1,39 @@
+{
+  "receiptVerified": true,
+  "receiptSha256": "c24f1f46a682675c42166079e7c4add7476c4009fc93ed17e01fa620d64e6e5e",
+  "receipt": {
+    "ok": true,
+    "project": "qjksggxorghaxvpyslip",
+    "branch": "course-cutover-rehearsal-274",
+    "credentialRecovered": false,
+    "manualHandoff": true,
+    "identityEvidence": "historical-provider-metadata-2026-11-02",
+    "authenticationVerified": true,
+    "tlsVerifyFull": true,
+    "hostnameVerified": true,
+    "directIPv6": true,
+    "transactionReadOnly": "on",
+    "lockTimeout": "5s",
+    "statementTimeout": "30s",
+    "sameConnectionAndTransaction": true,
+    "inspectionQueries": 2,
+    "rolledBack": true,
+    "connectionClosed": true,
+    "migrationCount": 280,
+    "safeguardsVerified": true,
+    "attemptConsumed": true
+  },
+  "grantState": "CONSUMED",
+  "readyAbsent": true,
+  "installedPinsVerified": {
+    "manual_database_preflight.py": "24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5",
+    "manual_recovery_launcher.py": "ec07fb0d0c7b799bcd1307ae3097a68ededdfd1c3b8246ec450829ac99838821",
+    "manual-recovery-launch.command": "6a3b3a694dfe2bad63e9a30b214119a32d37f58cd8366668cfe8d88d15841cb3",
+    "database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "manual-branch-identity.json": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0"
+  },
+  "localResultReadOnly": true,
+  "additionalDatabaseConnections": 0,
+  "automaticRetry": false,
+  "deploymentResumed": false
+}

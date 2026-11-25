@@ -1,0 +1,51 @@
+{
+  "commits": {
+    "evidence": "a51426ac8112a790265ed113a4d59f825c4abf3b",
+    "api": "903647e5cf663de5c609841b1496012944a59373",
+    "execution": "38920a87be022206d57fef8c561cd915211a84a7",
+    "review": "77dae8d1a2148fea38b732c7c19702c76c08d18d",
+    "member": "eda15e75c2aa7ffd5e3115ce8607e2596887c799"
+  },
+  "files": {
+    "docs/wave281-binding-api/RESULT.md": "bf2c38b783f766dd4a70fac3e29aff4ee415fb8f5d2a99de8c17b40a1a896a37",
+    "docs/wave281-binding-evidence/RESULT.md": "faeca3c5c84f4e9d5f18214b7bafa770c5adf73c86aecbc73e37f81836d84d2f",
+    "docs/wave281-binding-execution/RESULT.md": "3c279a3744a0c6d3b7fb28b5184e3d269f91cd30db014c3c4f89cd7dbe2a6d5f",
+    "lib/readiness-281/catalog.sql": "dc5a563e7b3ac84db16314c28d9dd57addf3449de116eec572ac14d11c45e3b1",
+    "lib/readiness-281/fingerprint/compare.mjs": "f719e2bc39c9a8a0a7e040b1226de948fc1e9675edbef6875b555f759674f520",
+    "lib/readiness-281/fingerprint/default.json": "f14e6cc8e87f33d6dc7d7d945524f50af96b2e602a6f9bcb9aac84b882ab124f",
+    "lib/readiness-281/fingerprint/empty.json": "b528069ba91e81dba36d9fb0ce875e422f798781a8323f6e2d6c2e9d35b52b67",
+    "lib/readiness-281/fingerprint/expected-foreign-keys.json": "fc5590bb63bee65c844f8c4fca1730e5d6ff372637794724334dab72f75d62a6",
+    "lib/readiness-281/fingerprint/future-structural-capture.sql": "e712c5eff26d0500931428c52b96caa9fb99581cae389aac81fad15f00109dac",
+    "lib/readiness-281/fingerprint/local-status-semantic-proposal.sql": "a345646e5ae68c3892129820ccfd4290e87bb936a1bcb635754532f214421549",
+    "lib/readiness-281/ledger.sql": "65f8f2920e79abef1b5962e6c86ccd0531e8e532d4200c46ab4e02247344c224",
+    "lib/readiness-281/local-expected.json": "e22879ab36a1e823561e0c42abe31a48fdf613b159b1e228b988320514803a11",
+    "netlify/functions/lockliel-connections.mjs": "b3304a3aa0cc4c45cce92e3ef762bc51d25262b6242bcee4cd918703e5f53184",
+    "scripts/acceptance-281/api-composition.mjs": "bdc05d44c36b7a8d2907749cacf69ac47935bf58c3139b4e424ccd367fa9dd5f",
+    "scripts/acceptance-281/operator.mjs": "9adece165e593a5e48b7991a8d59390b3cdc2dfd51f32a68b9fffb0e772d9c36",
+    "scripts/acceptance-281/provider-readiness-adapter.mjs": "d9a8f4e5c7e1a15db4e704bf6a839014459edc1cfc1e447562783b4202b32cea",
+    "scripts/acceptance-281/provider-readiness-source-seal.json": "631fd71cf4c71aa75494d5fa238fa8e6e9d9e5ff66a5ffcc0f8e1bb66ee0ee01",
+    "scripts/acceptance-281/record-cleanup-adapter.mjs": "6972dc7627d6c5d7d3c161e7e79a9047323e127b133d18e68b0006d13ac62110",
+    "tests/acceptance-281/execution-binding.test.mjs": "67bae2f7c35f05398619a38aa693f85d0d2d26c3b2496ab095d35233723de8ca",
+    "tests/acceptance-281/provider-readiness-adapter.test.mjs": "8f3a733ae6040af0fe3a6f26adc4f3b161359a8c6390199b69f6056c597abcd8",
+    "tests/wave281-api-composition.test.mjs": "ea8544f604752d145a4a3e47a8119772e84910c558116528b406e5281c8e6e35"
+  },
+  "protectedFiles": 321,
+  "protectedMismatches": 0,
+  "focused": {
+    "tests": 143,
+    "pass": 143,
+    "fail": 0,
+    "skip": 0
+  },
+  "independentNewAdapters": {
+    "tests": 82,
+    "pass": 82
+  },
+  "broadEarlier": {
+    "tests": 2869,
+    "pass": 2843,
+    "fail": 15,
+    "skip": 11
+  },
+  "hostedExecutionAuthorized": false
+}

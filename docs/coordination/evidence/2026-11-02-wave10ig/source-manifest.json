@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "9376b91e0628f6358ee44468652506317e74ff01",
+  "branch": "codex/wave10-hosted-composition",
+  "base": "84cc48e4dd3f4db720af616be4148a256eac6a7f",
+  "files": {
+    "scripts/member-hosted/recovery_launcher.py": "ceb426d2474cb5678c3e45f7e3b9562b5dfe1b817633129c05e0bc901df6fbc7",
+    "scripts/member-hosted/recovery-launch.command": "d81e0ccf792b420eed985da73675d49853ebc31cba4d2f3fe0ed7c6f2d99282e",
+    "scripts/member-hosted/recovery-runtime-manifest.json": "e9c74aa5aca6b71689a649e84d3055f1fcaf242b09c1380991d1e0b7761a5865",
+    "scripts/member-hosted/recovery-runtime-SHA256SUMS": "3ad8fbfde07e8ab1ce971c5e467104c326cce29e1d051142bcf84df0879f359f",
+    "tests/member_hosted_recovery_launcher_test.py": "c5bbdd7acaacc8c65c521bee68b2f5fb5acd9432e79d52324c83ccd7fd7306a6",
+    "tests/member-hosted-recovery-launcher.test.mjs": "67802f93418144de39d83dc28d6d25bcab6615ec4b9adf263f4155ab35f4071c"
+  },
+  "preservedRecoveryBridge": {
+    "source": "f3d1eb9e6b66937276a37f5b57534b638e08e386",
+    "sha256": "9f8991b9e0c390b0790ac1cae2f7d90729e6cbb6aa17964669bcf2764c6697b2"
+  },
+  "preservedGuardSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba"
+}

@@ -1,0 +1,508 @@
+{
+  "project": "qjksggxorghaxvpyslip",
+  "execution_parent_commit": "0f73571ad552a226f00592ac99d4a663d3e82f46",
+  "package_source_commit": "a2254aaa3890e2aff7c51b9c84c45021a7b7ba20",
+  "migration_275_replayed": false,
+  "stages": [
+    {
+      "ordinal": 276,
+      "filename": "20260930092000_lockliel_course_release_trigger_execution.sql",
+      "sha256": "83c7ea72d55b518c0ecb3704bc052bbc8be535c9b6b5461a6bf2224f2044b8ed",
+      "state": "COMMITTED",
+      "clientSucceeded": true,
+      "ledger": 276,
+      "identity": {
+        "ssl": true,
+        "tls": "TLSv1.3",
+        "lock": "5s",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "server": "17.11",
+        "database": "postgres",
+        "readonly": "on",
+        "statement": "30s"
+      },
+      "maintenance": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": false
+      },
+      "postconditions": {
+        "keys_rls": true,
+        "notes_rls": true,
+        "save_anon": false,
+        "ledger_count": 276,
+        "keys_anon_any": false,
+        "notes_orphans": 0,
+        "notes_anon_any": false,
+        "duration_invalid": 0,
+        "invalid_snapshots": 0,
+        "grip_rules_invalid": 0,
+        "negative_revisions": 0,
+        "save_authenticated": true,
+        "save_conflict_40001": true,
+        "save_conflict_pt409": false,
+        "keys_authenticated_any": false,
+        "progress_totals_invalid": 0,
+        "release_trigger_definer": true,
+        "notes_authenticated_write": false,
+        "notes_authenticated_select": true,
+        "release_trigger_authenticated": false
+      },
+      "catalog_verification": "exact expected transition matched"
+    },
+    {
+      "ordinal": 277,
+      "filename": "20260930092500_lockliel_course_conflict_http_status.sql",
+      "sha256": "42ca6baea8c16e599f04f5aa52823362b862761943e9e37e4e7ba19c986bcaf0",
+      "state": "COMMITTED",
+      "clientSucceeded": true,
+      "ledger": 277,
+      "identity": {
+        "ssl": true,
+        "tls": "TLSv1.3",
+        "lock": "5s",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "server": "17.11",
+        "database": "postgres",
+        "readonly": "on",
+        "statement": "30s"
+      },
+      "maintenance": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": false
+      },
+      "postconditions": {
+        "keys_rls": true,
+        "notes_rls": true,
+        "save_anon": false,
+        "ledger_count": 277,
+        "keys_anon_any": false,
+        "notes_orphans": 0,
+        "notes_anon_any": false,
+        "duration_invalid": 0,
+        "invalid_snapshots": 0,
+        "grip_rules_invalid": 0,
+        "negative_revisions": 0,
+        "save_authenticated": true,
+        "save_conflict_40001": false,
+        "save_conflict_pt409": true,
+        "keys_authenticated_any": false,
+        "progress_totals_invalid": 0,
+        "release_trigger_definer": true,
+        "notes_authenticated_write": false,
+        "notes_authenticated_select": true,
+        "release_trigger_authenticated": false
+      },
+      "catalog_verification": "exact expected transition matched"
+    },
+    {
+      "ordinal": 278,
+      "filename": "20260930145334_lockliel_media_publication_authorization.sql",
+      "sha256": "7b86fc4647338537a4da06e363b716ce2f7960cb02fb28ec8acab2f26c926ea0",
+      "state": "COMMITTED",
+      "clientSucceeded": true,
+      "ledger": 278,
+      "identity": {
+        "ssl": true,
+        "tls": "TLSv1.3",
+        "lock": "5s",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "server": "17.11",
+        "database": "postgres",
+        "readonly": "on",
+        "statement": "30s"
+      },
+      "maintenance": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": true
+      },
+      "postconditions": {
+        "keys_rls": true,
+        "notes_rls": true,
+        "save_anon": false,
+        "ledger_count": 278,
+        "keys_anon_any": false,
+        "notes_orphans": 0,
+        "notes_anon_any": false,
+        "duration_invalid": 0,
+        "invalid_snapshots": 0,
+        "grip_rules_invalid": 0,
+        "negative_revisions": 0,
+        "save_authenticated": true,
+        "save_conflict_40001": false,
+        "save_conflict_pt409": true,
+        "keys_authenticated_any": false,
+        "progress_totals_invalid": 0,
+        "release_trigger_definer": true,
+        "notes_authenticated_write": false,
+        "notes_authenticated_select": true,
+        "release_trigger_authenticated": false
+      },
+      "catalog_verification": "exact expected transition matched"
+    },
+    {
+      "ordinal": 279,
+      "filename": "20261001133500_lockliel_private_notes_service_privileges.sql",
+      "sha256": "5fbcf6d942583ea2e79cb2ae356f6ee712314fe749fb97130e9a21e962c10f71",
+      "state": "COMMITTED",
+      "clientSucceeded": true,
+      "ledger": 279,
+      "identity": {
+        "ssl": true,
+        "tls": "TLSv1.3",
+        "lock": "5s",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "server": "17.11",
+        "database": "postgres",
+        "readonly": "on",
+        "statement": "30s"
+      },
+      "maintenance": {
+        "paused": true,
+        "protocol": "278-v1",
+        "schemaReady": false
+      },
+      "postconditions": {
+        "keys_rls": true,
+        "notes_rls": true,
+        "save_anon": false,
+        "ledger_count": 279,
+        "keys_anon_any": false,
+        "notes_orphans": 0,
+        "notes_anon_any": false,
+        "duration_invalid": 0,
+        "invalid_snapshots": 0,
+        "grip_rules_invalid": 0,
+        "negative_revisions": 0,
+        "save_authenticated": true,
+        "save_conflict_40001": false,
+        "save_conflict_pt409": true,
+        "keys_authenticated_any": false,
+        "progress_totals_invalid": 0,
+        "release_trigger_definer": true,
+        "notes_authenticated_write": false,
+        "notes_authenticated_select": true,
+        "release_trigger_authenticated": false
+      },
+      "catalog_verification": "exact expected transition matched"
+    }
+  ],
+  "final": {
+    "checked_at": "2026-10-01T13:53:49.739Z",
+    "project": "qjksggxorghaxvpyslip",
+    "identity": {
+      "ssl": true,
+      "tls": "TLSv1.3",
+      "lock": "5s",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "server": "17.11",
+      "database": "postgres",
+      "readonly": "on",
+      "statement": "30s"
+    },
+    "ledger": 279,
+    "maintenance": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": false
+    },
+    "privileges": {
+      "effective": [
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "anon",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "UPDATE"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "authenticated",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "UPDATE"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "service_role",
+          "table": "app_private.course_answer_keys",
+          "allowed": false,
+          "privilege": "UPDATE"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "anon",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "UPDATE"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": true,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "authenticated",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "UPDATE"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "DELETE"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "INSERT"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "MAINTAIN"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "REFERENCES"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "SELECT"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRIGGER"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "TRUNCATE"
+        },
+        {
+          "role": "service_role",
+          "table": "public.lesson_private_notes",
+          "allowed": false,
+          "privilege": "UPDATE"
+        }
+      ],
+      "public_grants": 0
+    }
+  },
+  "production_commands_executed": false,
+  "deployed": false,
+  "pushed": false
+}

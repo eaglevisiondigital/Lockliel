@@ -1,0 +1,15 @@
+{
+  "coordinationBaseline": "73bca498a9db6692ff7b5450a4c796c6808b1158",
+  "reviewedReadiness": "220ec5c4a7e9c7ffa2088897146ffd9b793aa365",
+  "acceptancePlanner": "71bd6a7d96910522296c420aa21cfff3a0f27a1d",
+  "previousIndependentReview": "ef007cfbd8959aac1d4750481d20315660625252",
+  "parallelMemberSource": "03a23d2501e0f10a5eca62b24d473d58dd6db835",
+  "candidate": "20261104142104_lockliel_expand_my_five_relationship_capacity.sql",
+  "candidateSha256": "cacea34fc29561bc905b61b7eb1f7767405f16cef0761e8e9534e59380c4fb5a",
+  "fixtureAllowance": 1,
+  "hostedAuthorized": false,
+  "executedFixtureSource": "7694a0ae3b9960c7f125138012a6616608739829",
+  "fixtureEvidence": "fd20d8eef3fb54465100f2b237da4992caed0393",
+  "independentReview": "dba223d58841656aed13726375656f3df6ec58bf",
+  "fixtureAllowanceState": "CONSUMED"
+}

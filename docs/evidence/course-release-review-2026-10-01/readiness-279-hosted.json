@@ -1,0 +1,171 @@
+{
+  "project": "qjksggxorghaxvpyslip",
+  "checked_at": "2026-10-01T14:03:02.865Z",
+  "parent_commit": "90d8eddfd5919a9595fed0060475d292d3eb529c",
+  "update_sha256": "b2d5b59fb6e1114e67f9ca200bf95fdf3488136592e336558ac89607868ab486",
+  "ledger": 279,
+  "course_catalog_unchanged": true,
+  "catalog_sha256": "782a3873c2c39a6a4bb5adc7a006dd091f2d26bea9037fa313a6c68b1b3492f6",
+  "identity": {
+    "ssl": true,
+    "tls": "TLSv1.3",
+    "lock": "5s",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "server": "17.11",
+    "database": "postgres",
+    "readonly": "on",
+    "statement": "30s"
+  },
+  "before": {
+    "hook": [
+      {
+        "role": "authenticator",
+        "setting": "pgrst.db_pre_request=lockliel_cutover.request",
+        "database": "0"
+      }
+    ],
+    "status": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": false
+    },
+    "control": [
+      {
+        "paused": true,
+        "protocol": "278-v1",
+        "singleton": true
+      }
+    ],
+    "functions": [
+      {
+        "acl": [
+          "postgres=X/postgres"
+        ],
+        "md5": "cd1e467d687d95eac6b844b7b744cb36",
+        "name": "deny_write",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "lockliel_cutover",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION lockliel_cutover.deny_write()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nbegin\n -- Only a direct maintenance/migration connection with no request claims may bypass.\n if session_user='postgres' and coalesce(current_setting('request.jwt.claims',true),'') in ('','{}') then return case when tg_op='DELETE' then old else new end; end if;\n if coalesce((public.lockliel_course_cutover_status()->>'paused')::boolean,true) then\n  raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';\n end if;\n return case when tg_op='DELETE' then old else new end;\nend;$function$\n"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "md5": "5384e542a86090bc95f6090b06218086",
+        "name": "request",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "lockliel_cutover",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION lockliel_cutover.request()\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare path text:=current_setting('request.path',true); method text:=current_setting('request.method',true); headers jsonb:=coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb; state jsonb;\nbegin\n if path is null or method is null then raise sqlstate 'PT503' using message='Course request context unavailable.';end if;\n if path ~ '^/(courses|lessons|lesson_assets|course_enrollments|lesson_progress|media_progress|lesson_private_notes)(/|$)'\n or path ~ '^/rpc/(lockliel_(sample_media|save_lesson|course_gates|grip_readiness)|.*course.*|.*lesson.*)$' and path not in ('/rpc/lockliel_course_cutover_status','/rpc/lockliel_course_cutover_request') then\n  state:=public.lockliel_course_cutover_status();\n  if coalesce((state->>'paused')::boolean,true) then raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';end if;\n  if method not in ('GET','HEAD','OPTIONS') and path not in ('/rpc/lockliel_course_gates','/rpc/lockliel_grip_readiness') and headers->>'x-lockliel-course-protocol' is distinct from state->>'protocol' then raise sqlstate 'PT426' using message='Reload Getting a Grip before saving. Keep a copy of unsaved answers.';end if;\n end if;\nend;$function$\n"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres"
+        ],
+        "md5": "294b9e42f9c0474ef2fb2506f0d1b05a",
+        "name": "lockliel_course_cutover_status",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "public",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION public.lockliel_course_cutover_status()\n RETURNS jsonb\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n with ready as (select\n (select count(*)=278 from supabase_migrations.schema_migrations)\n and (select count(*)=9 and bool_and(md5(pg_get_functiondef(p.oid))=expected.value and pg_get_userbyid(p.proowner)='postgres')\n from jsonb_each_text('{\"app_private.audit_learning_configuration\":\"abacb6205c5aa998ff5e566108a494e4\",\"app_private.course_lesson_unlocked\":\"4ee41fbb39e108322c0ae7fd9b7104bc\",\"app_private.course_watch_met\":\"e27d583485b82a70712915f4d1a93d2a\",\"app_private.normalize_lesson_asset_duration_verification\":\"ffcb56a46a947385dd3c515ca6916fa5\",\"app_private.validate_course_release\":\"a9c38e606b5510100854ed9b5da72550\",\"app_private.validate_lesson_completion\":\"445dc44467c92cf1fac7d3bca2e00a00\",\"public.lockliel_course_gates\":\"f9220d0f0d325909c82b56c49b4c43b1\",\"public.lockliel_sample_media\":\"9a5509a2b798cb45dc83e8cec67d5b1c\",\"public.lockliel_save_lesson\":\"670f673fcfd9aa78f75164a18a321050\"}'::jsonb) expected\n join pg_namespace n on n.nspname=split_part(expected.key,'.',1)\n join pg_proc p on p.pronamespace=n.oid and p.proname=split_part(expected.key,'.',2)) as ok)\n select jsonb_build_object('paused',paused or not coalesce(ready.ok,false),'protocol',protocol,'schemaReady',coalesce(ready.ok,false)) from lockliel_cutover.control,ready where singleton;\n$function$\n"
+      }
+    ],
+    "control_security": {
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "owner": "postgres"
+    }
+  },
+  "after": {
+    "hook": [
+      {
+        "role": "authenticator",
+        "setting": "pgrst.db_pre_request=lockliel_cutover.request",
+        "database": "0"
+      }
+    ],
+    "status": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    },
+    "control": [
+      {
+        "paused": true,
+        "protocol": "278-v1",
+        "singleton": true
+      }
+    ],
+    "functions": [
+      {
+        "acl": [
+          "postgres=X/postgres"
+        ],
+        "md5": "cd1e467d687d95eac6b844b7b744cb36",
+        "name": "deny_write",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "lockliel_cutover",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION lockliel_cutover.deny_write()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nbegin\n -- Only a direct maintenance/migration connection with no request claims may bypass.\n if session_user='postgres' and coalesce(current_setting('request.jwt.claims',true),'') in ('','{}') then return case when tg_op='DELETE' then old else new end; end if;\n if coalesce((public.lockliel_course_cutover_status()->>'paused')::boolean,true) then\n  raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';\n end if;\n return case when tg_op='DELETE' then old else new end;\nend;$function$\n"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "md5": "5384e542a86090bc95f6090b06218086",
+        "name": "request",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "lockliel_cutover",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION lockliel_cutover.request()\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare path text:=current_setting('request.path',true); method text:=current_setting('request.method',true); headers jsonb:=coalesce(nullif(current_setting('request.headers',true),''),'{}')::jsonb; state jsonb;\nbegin\n if path is null or method is null then raise sqlstate 'PT503' using message='Course request context unavailable.';end if;\n if path ~ '^/(courses|lessons|lesson_assets|course_enrollments|lesson_progress|media_progress|lesson_private_notes)(/|$)'\n or path ~ '^/rpc/(lockliel_(sample_media|save_lesson|course_gates|grip_readiness)|.*course.*|.*lesson.*)$' and path not in ('/rpc/lockliel_course_cutover_status','/rpc/lockliel_course_cutover_request') then\n  state:=public.lockliel_course_cutover_status();\n  if coalesce((state->>'paused')::boolean,true) then raise sqlstate 'PT503' using message='Getting a Grip is being updated. Your progress is safe. Please check back in a few minutes.';end if;\n  if method not in ('GET','HEAD','OPTIONS') and path not in ('/rpc/lockliel_course_gates','/rpc/lockliel_grip_readiness') and headers->>'x-lockliel-course-protocol' is distinct from state->>'protocol' then raise sqlstate 'PT426' using message='Reload Getting a Grip before saving. Keep a copy of unsaved answers.';end if;\n end if;\nend;$function$\n"
+      },
+      {
+        "acl": [
+          "postgres=X/postgres",
+          "authenticated=X/postgres"
+        ],
+        "md5": "2ef91068c01546af75616bcc896e1fa6",
+        "name": "lockliel_course_cutover_status",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "schema": "public",
+        "definer": true,
+        "definition": "CREATE OR REPLACE FUNCTION public.lockliel_course_cutover_status()\n RETURNS jsonb\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n with ready as (select\n (select count(*)=279 from supabase_migrations.schema_migrations) and (select count(*)=5 from supabase_migrations.schema_migrations where version in\n ('20260929215159','20260930092000','20260930092500','20260930145334','20261001133500'))\n and (select count(*)=9 and bool_and(md5(pg_get_functiondef(p.oid))=expected.value and pg_get_userbyid(p.proowner)='postgres')\n from jsonb_each_text('{\"app_private.audit_learning_configuration\":\"abacb6205c5aa998ff5e566108a494e4\",\"app_private.course_lesson_unlocked\":\"4ee41fbb39e108322c0ae7fd9b7104bc\",\"app_private.course_watch_met\":\"e27d583485b82a70712915f4d1a93d2a\",\"app_private.normalize_lesson_asset_duration_verification\":\"ffcb56a46a947385dd3c515ca6916fa5\",\"app_private.validate_course_release\":\"a9c38e606b5510100854ed9b5da72550\",\"app_private.validate_lesson_completion\":\"445dc44467c92cf1fac7d3bca2e00a00\",\"public.lockliel_course_gates\":\"f9220d0f0d325909c82b56c49b4c43b1\",\"public.lockliel_sample_media\":\"9a5509a2b798cb45dc83e8cec67d5b1c\",\"public.lockliel_save_lesson\":\"670f673fcfd9aa78f75164a18a321050\"}'::jsonb) expected\n join pg_namespace n on n.nspname=split_part(expected.key,'.',1)\n join pg_proc p on p.pronamespace=n.oid and p.proname=split_part(expected.key,'.',2)) and not coalesce(has_table_privilege('service_role',to_regclass('public.lesson_private_notes'),'SELECT,INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER,MAINTAIN'),true)\n and not coalesce(has_any_column_privilege('service_role',to_regclass('public.lesson_private_notes'),'SELECT,INSERT,UPDATE,REFERENCES'),true) as ok)\n select jsonb_build_object('paused',paused or not coalesce(ready.ok,false),'protocol',protocol,'schemaReady',coalesce(ready.ok,false)) from lockliel_cutover.control,ready where singleton;\n$function$\n"
+      }
+    ],
+    "control_security": {
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "owner": "postgres"
+    }
+  }
+}

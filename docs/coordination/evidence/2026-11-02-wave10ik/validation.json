@@ -1,0 +1,23 @@
+{
+  "focusedJavascript": {
+    "tests": 179,
+    "pass": 179,
+    "fail": 0,
+    "skipped": 0
+  },
+  "pythonGuardTestsViaOneJavascriptWrapper": 49,
+  "additionalOfflineContractAssertions": 8,
+  "syntheticCallbacksOnly": true,
+  "networkGuard": true,
+  "dependencyInstallation": false,
+  "databaseConnections": 0,
+  "providerCalls": 0,
+  "credentialInputs": 0,
+  "sourceChanges": 0,
+  "notRerun": [
+    "full application build",
+    "full JavaScript suite",
+    "migration replay"
+  ],
+  "reason": "review only, no executable source changes"
+}

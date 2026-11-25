@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "5cc6af45c9c8323b13f6d71ee0881e6b823ddfa3",
+  "startingHead": "2e2ff1279d9f2fb3f8c6f0aff7b1eed1b8af5977",
+  "branch": "codex/wave10-hosted-composition",
+  "applicationSourceUnchanged": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "originalUploaderReceiptSourceUnchanged": "51857e44642ac79a4b1f458de786b97d98762082",
+  "reviewedFiles": {
+    "scripts/member-hosted/database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "tests/member_hosted_database_preflight_test.py": "9008de3f41b5d3a6e60f163668e2a42f6c307661da70ed98f0af6677fd3bff80",
+    "tests/member-hosted-database-preflight.test.mjs": "364f1584fb3e542e457d72ee8f3c013adadf12f6bf76f4df313024fe222fb7b2"
+  },
+  "all280MigrationHashesUnchanged": true,
+  "migrationManifestSha256": "d74440082769f28196be8494277ea9fa2e78a6cc44a9a8f443932ee8797ffb92",
+  "allOtherOriginalTrackedBytesUnchangedBeforeContinuity": true,
+  "originalDirtyRootStatusPreserved": true,
+  "originalDirtyStatusSha256": "49801ebde7daa73ea266b4ca45ab1edce1756acd5c2f20cf169eb3d479d78646",
+  "otherUserBranchesRemotesTagsPreserved": true,
+  "protectedGuardAndQueryAstUnchanged": true,
+  "connections": 0,
+  "realPasswordAccess": false,
+  "newPromptOrLauncher": false,
+  "remoteActions": 0,
+  "deploymentReservationUsed": false,
+  "productionAudit": "No production access; preservation by no action, not a fresh audit"
+}

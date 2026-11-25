@@ -1,0 +1,71 @@
+{
+  "agent": "/root/wave10ih_lane_continuity",
+  "actualAssignment": "Read-only contract/design/ownership audit and focused offline validation",
+  "newFeatureCodingDispatched": false,
+  "lanes": {
+    "L1": {
+      "branch": "codex/lane1-account-integrity",
+      "head": "233f13edd42bc26ad8c89246ca523f327cc0e315",
+      "clean": true
+    },
+    "L2": {
+      "branch": "codex/lane2-course-readiness",
+      "head": "3b9b610c26bde138122d716031e649e31cb5b392",
+      "clean": true
+    },
+    "L3": {
+      "branch": "codex/lane3-member-design",
+      "head": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+      "clean": true
+    },
+    "L4": {
+      "branch": "codex/lane4-faith-contracts",
+      "head": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+      "clean": true
+    },
+    "L5": {
+      "branch": "codex/lane5-consent-followup",
+      "head": "c933578e104c5b131d6866fc0669b7ca6f6c5af1",
+      "clean": true
+    },
+    "L6": {
+      "branch": "codex/lane6-content-readiness",
+      "head": "72e4c530ccca0bb892e4794a11de0266e839f576",
+      "clean": true
+    },
+    "L7": {
+      "branch": "codex/lane7-commerce-contracts",
+      "head": "fcfd0f5ec077397a4dc40db5033ac6f1405cd809",
+      "clean": true
+    },
+    "L8": {
+      "branch": "codex/lane8-privacy-ops",
+      "head": "1c908a53065cf8b28d19d70a325948c41ca0febc",
+      "clean": true
+    }
+  },
+  "integrationWorktrees": "Wave3-9 clean and preserved; currentWave10 clean before documentation",
+  "sharedContracts": "Existing ownership/session/privateDTO/consent/catalog/merchant/purpose boundaries preserved",
+  "design": "Approved navy/blue/cream/Arial identity; scoped modules; public website and Site25 preservation references retained",
+  "focusedFaithContracts": {
+    "pass": 67,
+    "fail": 0,
+    "networkGuard": true
+  },
+  "companionSyntheticContextTest": "Could not start: esbuild unavailable in this worktree; no assertion failure or dependency installation",
+  "rootPriorDirtyPaths": {
+    "defaultPorcelain": 73,
+    "allUntrackedFiles": 609,
+    "untracked": 603
+  },
+  "featureStatusCounts": {
+    "Live and Verified": 2,
+    "Partially Implemented": 22,
+    "Implemented but Not Released": 5,
+    "Blocked": 5,
+    "Proposed/Decision Pending": 2,
+    "Approved but Not Started": 1
+  },
+  "noNewLiveFeatures": true,
+  "noSourceGitOrProductionChanges": true
+}

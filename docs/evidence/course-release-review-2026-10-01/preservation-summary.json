@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-01",
+  "productionLedger": 274,
+  "productionLatestMigration": "20260926212002",
+  "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+  "remoteDevelopment": "3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d",
+  "pr4": {
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "autoMerge": null
+  },
+  "chatgptSite": {
+    "project": "appgprj_6a904a70bcb48191b19a10b74adcf5d0",
+    "status": "active",
+    "version": 25,
+    "updatedAt": "2026-08-27T22:28:57.301945+00:00"
+  },
+  "isolatedProject": "qjksggxorghaxvpyslip",
+  "isolatedLedger": 275,
+  "maintenance": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": false
+  },
+  "hostedExecutionBlocked": true,
+  "hostedMutations": false,
+  "push": false
+}

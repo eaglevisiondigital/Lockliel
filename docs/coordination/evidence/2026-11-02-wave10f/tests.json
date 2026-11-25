@@ -1,0 +1,27 @@
+{
+  "authoritativeCommand": "PYTHONDONTWRITEBYTECODE=1 /Library/Developer/CommandLineTools/usr/bin/python3 -m unittest discover -s scripts/netlify-context -p test_*.py -v",
+  "result": "PASS",
+  "testMethods": 33,
+  "subTestsIncluded": true,
+  "pureEvidenceChecks": "true/null/omitted/false/malformed draft; context/site/id; publication pointers; alias/historical changes; missing metadata; same-ID ready; three independent cleanup404s",
+  "mockedOperatorFlows": [
+    "null draft full flow",
+    "omitted draft full flow",
+    "omitted optional publication timestamp full flow",
+    "wrong reservation context no PUT",
+    "explicit false no PUT",
+    "wrong post-finalization context denied and contained",
+    "pending finalization denied and contained",
+    "permission denial before reservation",
+    "missing independent publication proof before reservation",
+    "unsafe billing preflight denied",
+    "default-block before credential/file/network access"
+  ],
+  "network": "socket.socket denied; urllib opener replaced with synthetic provider in flow tests",
+  "liveCredentialReads": 0,
+  "providerAccountCalls": 0,
+  "reservations": 0,
+  "appBuildOrFullJsSqlValidationRerun": false,
+  "sourceToolingCommit": "4e5b59482e5acddce7153aee977dd60ec3970f29",
+  "scope": "local checker/preparation only"
+}

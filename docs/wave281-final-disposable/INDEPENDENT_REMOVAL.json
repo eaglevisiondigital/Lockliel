@@ -1,0 +1,16 @@
+{
+  "ownedRoot": "/var/folders/ks/d_d9y4vx1mq1nm63bjgh8n_40000gn/T/lockliel-wave281-containment-mZtaeh",
+  "directoryAbsent": true,
+  "privateAliasAbsent": true,
+  "ownedPid": null,
+  "processScan": {
+    "commands": [
+      "postgres",
+      "postmaster",
+      "pg_ctl"
+    ],
+    "exactOwnedPathMatchCount": 0,
+    "unrelatedProcessDetailsEmitted": false
+  },
+  "specificPidTerminationClaimed": false
+}

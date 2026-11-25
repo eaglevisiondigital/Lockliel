@@ -1,0 +1,25 @@
+{
+  "projectLookup": {
+    "readOperation": "get_project(qjks)",
+    "isError": true
+  },
+  "isolatedBranch": {
+    "readOperation": "list_branches(parent) filtered to isolated project only",
+    "branches": [
+      {
+        "id": "7091bfd6-83ce-4c11-ac30-8ce85e09be2d",
+        "name": "course-cutover-rehearsal-274",
+        "project_ref": "qjksggxorghaxvpyslip",
+        "parent_project_ref": "bsndfhbemstyrrglajat",
+        "is_default": false,
+        "persistent": false,
+        "status": "FUNCTIONS_DEPLOYED",
+        "created_at": "2026-09-30T16:28:01.056315+00:00",
+        "updated_at": "2026-09-30T16:28:01.056315+00:00",
+        "preview_project_status": "ACTIVE_HEALTHY"
+      }
+    ],
+    "isError": false,
+    "matchingCount": 1
+  }
+}

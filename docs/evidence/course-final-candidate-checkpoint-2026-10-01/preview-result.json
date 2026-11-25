@@ -1,0 +1,51 @@
+{
+  "deploy": {
+    "id": "6abebc5dc0b59000076c25a5",
+    "state": "ready",
+    "context": "deploy-preview",
+    "branch": "lockliel-backend-v1",
+    "commit_ref": "eaff3fea36d4ce489009ebf2070071311619f9c2",
+    "published_at": null,
+    "created_at": "2026-10-01T20:02:37.899Z",
+    "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+    "review_id": 4,
+    "summary": {
+      "status": "ready",
+      "messages": [
+        {
+          "type": "info",
+          "title": "189 new files uploaded",
+          "description": "37 generated pages and 152 assets changed.",
+          "details": "New pages include:\n- index.html\n- 404.html\n- _not-found.html\n- a-heart-for-the-lost.html\n- founders-50.html\n- getting-a-grip.html\n- my-lockliel.html\n- thank-you.html\n- who-god-says-you-are.html\n- founders-50/thank-you.html\n"
+        },
+        {
+          "type": "info",
+          "title": "4 redirect rules processed",
+          "description": "All redirect rules deployed without errors.",
+          "details": ""
+        },
+        {
+          "type": "info",
+          "title": "3 header rules processed",
+          "description": "All header rules deployed without errors.",
+          "details": ""
+        },
+        {
+          "type": "info",
+          "title": "61 functions deployed",
+          "description": "We have deployed 61 functions. [Visit your Functions](/projects/lockliel/logs/functions?scope=deploypreview:4) for more information.",
+          "details": null
+        },
+        {
+          "type": "info",
+          "title": "1 edge function deployed",
+          "description": "We have deployed 1 edge function. [Visit your Edge Functions logs](/projects/lockliel/logs/edge-functions?scope=deployid:6abebc5dc0b59000076c25a5) for more information.",
+          "details": null
+        }
+      ]
+    }
+  },
+  "guard_checks": 36,
+  "static_pages": 16,
+  "result": "PASS"
+}

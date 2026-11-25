@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import {useEffect,useMemo,useState} from "react";
+import {useEffect,useMemo,useState,useRef} from "react";
 import {Check,Heart,MessageCircle,Send,UserPlus,Users} from "lucide-react";
 
 type Card={
@@ -52,6 +52,7 @@ export default function ConnectionsClient(){
     conversations:Conversation[];
     tasks:{id:string;notes?:string;due_at?:string}[];
     reachContacts:ReachContact[];
+    reachPage:{version:1;pageSize:number;hasMore:boolean;nextCursor:string|null;total:null;scope:"filtered-page"};
     messagingEnabled?:boolean;
     leaderAssignment?:{leader_id:string;assignment_type:string;person?:Card};
     leaderRequest?:{id:string};
@@ -62,17 +63,46 @@ export default function ConnectionsClient(){
   const [drafts,setDrafts]=useState<Record<string,string>>({});
   const [working,setWorking]=useState(false);
 
-  async function load(){
-    const r=await fetch("/api/lockliel/connections",{cache:"no-store"});
-    if(r.status===401){location.assign("/my-lockliel/sign-in");return;}
-    const d=await r.json();
-    if(!r.ok){setError(d.error||"Unable to load connections.");return;}
-    setData(d);
+  const [search,setSearch]=useState("");
+  const [reachStatus,setReachStatus]=useState("all");
+  const [loadingPage,setLoadingPage]=useState(false);
+  const queryRef=useRef({search:"",status:"all"});
+  const requestRef=useRef<{generation:number;controller:AbortController|null}>({generation:0,controller:null});
+  const pageHeading=useRef<HTMLHeadingElement>(null);
+  const invalidated=useRef(false);
+  async function load(cursor="",pageOnly=false){
+    if(invalidated.current)return;
+    requestRef.current.controller?.abort();
+    const controller=new AbortController(),generation=++requestRef.current.generation;
+    requestRef.current.controller=controller;setLoadingPage(true);setError("");
+    const query=new URLSearchParams({reachStatus:queryRef.current.status,reachSearch:queryRef.current.search,reachLimit:"25"});
+    if(cursor)query.set("reachCursor",cursor);if(pageOnly)query.set("view","reach");
+    try{
+      const r=await fetch("/api/lockliel/connections?"+query,{cache:"no-store",signal:controller.signal});
+      if(generation!==requestRef.current.generation)return;
+      if(r.status===401){setData(null);setDrafts({});location.assign("/my-lockliel/sign-in");return;}
+      const d=await r.json();if(generation!==requestRef.current.generation)return;
+      if(!r.ok)throw Error(d.error||"Unable to load connections.");
+      if(d.reachPage?.version!==1||d.reachPage.scope!=="filtered-page"||!Array.isArray(d.reachContacts)||d.reachContacts.length>25||typeof d.reachPage.hasMore!=="boolean"||(d.reachPage.hasMore?typeof d.reachPage.nextCursor!=="string":d.reachPage.nextCursor!==null))throw Error("My Five page is unavailable. Please try again.");
+      setData(current=>pageOnly&&current?{...current,reachContacts:d.reachContacts,reachPage:d.reachPage}:d);
+      if(pageOnly)requestAnimationFrame(()=>pageHeading.current?.focus());
+    }catch(error){if(!controller.signal.aborted&&generation===requestRef.current.generation)setError(error instanceof Error?error.message:"Unable to load connections.");}
+    finally{if(generation===requestRef.current.generation)setLoadingPage(false);}
   }
 
-  useEffect(()=>{Promise.resolve().then(load).catch(()=>setError("Unable to load connections."));},[]);
+  useEffect(()=>{
+    const state=requestRef.current;let cancelled=false;
+    const clear=()=>{invalidated.current=true;state.generation++;state.controller?.abort();setData(null);setDrafts({});setSearch("");setReachStatus("all");queryRef.current={search:"",status:"all"};setMessage("");setWorking(false);setLoadingPage(false);setError("Session context changed. Reload connections before continuing.");};
+    const storage=(event:StorageEvent)=>{if(event.key==='lockliel:auth-change')clear();};
+    const visibility=()=>{if(document.visibilityState==='hidden')clear();};
+    window.addEventListener('storage',storage);window.addEventListener('lockliel:session-changed',clear);window.addEventListener('pagehide',clear);document.addEventListener('visibilitychange',visibility);
+    void Promise.resolve().then(()=>{if(!cancelled)return load();});
+    return()=>{cancelled=true;state.generation++;state.controller?.abort();window.removeEventListener('storage',storage);window.removeEventListener('lockliel:session-changed',clear);window.removeEventListener('pagehide',clear);document.removeEventListener('visibilitychange',visibility);};
+  },[]);
 
   async function send(id:string){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     if(data?.messagingEnabled===false)return;
     const body=(drafts[id]||"").trim();
     if(!body)return;
@@ -81,6 +111,7 @@ export default function ConnectionsClient(){
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({action:"sendMessage",conversationId:id,body})
     });
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     if(r.ok){
       setDrafts(v=>({...v,[id]:""}));
       await load();
@@ -88,6 +119,8 @@ export default function ConnectionsClient(){
   }
 
   async function requestLeader(){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     setWorking(true);
     setMessage("");
     const r=await fetch("/api/lockliel/connections",{
@@ -96,6 +129,7 @@ export default function ConnectionsClient(){
       body:JSON.stringify({action:"requestLeader"})
     });
     const d=await r.json().catch(()=>({}));
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     setWorking(false);
     if(!r.ok){
       setMessage(d.error||"Unable to submit leader request.");
@@ -106,6 +140,8 @@ export default function ConnectionsClient(){
   }
 
   async function cancelLeaderRequest(){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     if(!data?.leaderRequest?.id)return;
     setWorking(true);
     setMessage("");
@@ -114,6 +150,7 @@ export default function ConnectionsClient(){
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({action:"cancelLeaderRequest",requestId:data.leaderRequest.id})
     });
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     setWorking(false);
     if(r.ok){
       setMessage("Leader request cancelled.");
@@ -122,6 +159,8 @@ export default function ConnectionsClient(){
   }
 
   async function setContactPermission(permission:ContactPermission,allow:boolean){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     if(!permission?.other_profile_id||!permission?.permission_type)return;
     setWorking(true);
     setMessage("");
@@ -136,6 +175,7 @@ export default function ConnectionsClient(){
       })
     });
     const d=await r.json().catch(()=>({}));
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     setWorking(false);
     if(!r.ok){setMessage(d.error||"Unable to update contact preference.");return;}
     setMessage(allow?"Messages are available again.":"Messages paused. You can turn them back on anytime.");
@@ -143,19 +183,24 @@ export default function ConnectionsClient(){
   }
 
   async function complete(taskId:string){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     const r=await fetch("/api/lockliel/connections",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({action:"completeTask",taskId})
     });
-    if(r.ok)await load();
+    if(!invalidated.current&&generation===requestRef.current.generation&&r.ok)await load();
   }
 
   async function addPerson(e:React.FormEvent<HTMLFormElement>){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     e.preventDefault();
     setWorking(true);
     setMessage("");
-    const f=new FormData(e.currentTarget);
+    const form=e.currentTarget;
+    const f=new FormData(form);
     const r=await fetch("/api/lockliel/connections",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
@@ -168,14 +213,17 @@ export default function ConnectionsClient(){
       })
     });
     const d=await r.json().catch(()=>({}));
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     setWorking(false);
     if(!r.ok){setMessage(d.error||"Unable to add person.");return;}
     setMessage("Added to My Five.");
-    e.currentTarget.reset();
+    form.reset();
     await load();
   }
 
   async function saveReachDetails(e:React.FormEvent<HTMLFormElement>,id:string){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     e.preventDefault();
     setWorking(true);
     setMessage("");
@@ -193,6 +241,7 @@ export default function ConnectionsClient(){
       })
     });
     const d=await r.json().catch(()=>({}));
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     setWorking(false);
     if(!r.ok){setMessage(d.error||"Unable to save My Five details.");return;}
     setMessage("My Five details saved.");
@@ -200,6 +249,8 @@ export default function ConnectionsClient(){
   }
 
   async function updateReach(id:string,status:string){
+    const generation=requestRef.current.generation;
+    if(invalidated.current)return;
     setMessage("");
     const r=await fetch("/api/lockliel/connections",{
       method:"POST",
@@ -207,6 +258,7 @@ export default function ConnectionsClient(){
       body:JSON.stringify({action:"updateReachContact",id,status})
     });
     const d=await r.json().catch(()=>({}));
+    if(invalidated.current||generation!==requestRef.current.generation)return;
     if(!r.ok){setMessage(d.error||"Unable to update My Five.");return;}
     await load();
   }
@@ -246,22 +298,28 @@ export default function ConnectionsClient(){
     [data]
   );
 
-  if(error)return <p className="ml-auth-message error">{error}</p>;
+  if(error)return <div><p role="alert" className="ml-auth-message error">{error}</p><button onClick={()=>{if(invalidated.current){location.reload();return;}void load();}}>Reload connections</button></div>;
   if(!data)return <div className="ml-loading">Loading your connections…</div>;
 
   return <>
     <section className="ml-connection-summary">
-      <article className="ml-card"><div className="ml-icon"><Heart size={20}/></div><strong>{activeFive.length}</strong><span>in My Five</span></article>
+      <article className="ml-card"><div className="ml-icon"><Heart size={20}/></div><strong>{activeFive.length}</strong><span>active on this My Five page</span></article>
       <article className="ml-card"><div className="ml-icon"><Users size={20}/></div><strong>{people.length}</strong><span>Lockliel connections</span></article>
       <article className="ml-card"><div className="ml-icon"><Check size={20}/></div><strong>{data.tasks.length}</strong><span>follow-ups to do</span></article>
     </section>
 
     <section className="ml-panel ml-my-five">
       <div className="ml-my-five-head">
-        <div><div className="ml-kicker">My Five</div><h2>Who are you intentionally reaching?</h2><p>Keep five people in front of you. Pray. Share. Follow up. Help them take a next step.</p></div>
-        <span>{activeFive.length}/5 active</span>
+        <div><div className="ml-kicker">My Five</div><h2 tabIndex={-1} ref={pageHeading}>Who are you intentionally reaching?</h2><p>Start with five. Reach as many as God puts on your heart.</p></div>
+        <span>{data.reachContacts.length} relationships on this page</span>
       </div>
 
+      <form onSubmit={event=>{event.preventDefault();queryRef.current={search:search.trim(),status:reachStatus};void load("",true);}}>
+        <label>Find a relationship<input value={search} onChange={event=>setSearch(event.target.value)} maxLength={80}/></label>
+        <label>Relationship status<select value={reachStatus} onChange={event=>setReachStatus(event.target.value)}>{["all","active","praying","invited","connected","growing","paused","completed"].map(status=><option key={status} value={status}>{status}</option>)}</select></label>
+        <button disabled={loadingPage}>Search My Five</button>
+      </form>
+      <p role="status">{loadingPage?"Loading relationships…":data.reachPage.hasMore?"More matching relationships are available. This page is not your total.":"No additional page was signaled by this response. Full-list coverage and totals are not verified."}</p>
       <div className="ml-five-grid">
         {activeFive.map(person=><article className="ml-five-person" key={person.id}>
           <div className="ml-five-person-top">
@@ -269,7 +327,7 @@ export default function ConnectionsClient(){
             <div><h3><Link href={"/my-lockliel/connections/person?id="+encodeURIComponent(person.id)}>{person.display_name}</Link></h3><span>{person.relationship_context||"Someone I’m intentionally reaching"}</span></div>
           </div>
           <div className="ml-five-status">
-            <select value={person.status} onChange={e=>updateReach(person.id,e.target.value)}>
+            <select aria-label={"Status for "+person.display_name} value={person.status} onChange={e=>updateReach(person.id,e.target.value)}>
               <option value="praying">Praying</option>
               <option value="invited">Invited / shared</option>
               <option value="connected">Connected</option>
@@ -298,7 +356,7 @@ export default function ConnectionsClient(){
           </div>
         </article>)}
 
-        {activeFive.length<5&&<form className="ml-five-add" onSubmit={addPerson}>
+        {<form className="ml-five-add" onSubmit={addPerson}>
           <div className="ml-icon"><UserPlus size={19}/></div>
           <h3>Add someone to My Five</h3>
           <label>Name<input name="displayName" required maxLength={120} placeholder="First name or a name you recognize"/></label>
@@ -309,6 +367,8 @@ export default function ConnectionsClient(){
         </form>}
       </div>
 
+      <nav aria-label="My Five pages"><button disabled={loadingPage} onClick={()=>void load("",true)}>First page / refresh</button><button disabled={loadingPage||!data.reachPage.hasMore} onClick={()=>void load(data.reachPage.nextCursor||"",true)}>Next page</button></nav>
+      <p>Search uses names only. Changing filters or refreshing starts a new page sequence; no private notes are searched or shared. Your other connections, inviter and mentor remain separate.</p>
       <p className="ml-privacy-note">My Five names and private notes are visible only to you. They are not exposed to leaders, administrators, or other members.</p>
       {message&&<p className="ml-share-message">{message}</p>}
 

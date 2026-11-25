@@ -1,0 +1,118 @@
+{
+  "observed_on": "2026-11-01",
+  "branch": "codex/lane2-course-readiness",
+  "base_and_head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane2-course-readiness/Lockliel",
+  "scope": "read-only isolated metadata/static HTTPS GETs and local verifier; no authenticated backend requests",
+  "metadata": {
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "site_name": "jade-unicorn-642f40",
+    "deploy_id": "6abfd81ccee16b59b75711a0",
+    "context": "branch-deploy",
+    "branch": "rehearsal",
+    "state": "ready",
+    "commit_ref": null,
+    "published_at": null,
+    "created_at": "2026-10-02T16:13:16.879Z",
+    "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+    "usable_function_digests_returned": false,
+    "function_digest_limit": "Metadata did not expose comparable function digests; no inference that functions are absent"
+  },
+  "static_gets": [
+    {
+      "path": "/my-lockliel/sign-in",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 8472,
+      "sha256": "56f71dd9004766630dd3adc3fc0df19b54fc3f3d53280bdde9f3d094c19ebd91",
+      "matches_historical_artifact": true,
+      "static_form_safety": {
+        "method_post": true,
+        "disabled_controls_present": true
+      }
+    },
+    {
+      "path": "/my-lockliel/sign-up",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 8809,
+      "sha256": "76c3d5ce47c821dee8cce2253e522d8b8c5f4d375711eee73ffff6e7fd99a59e",
+      "matches_historical_artifact": true
+    },
+    {
+      "path": "/my-lockliel/journey",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 9172,
+      "sha256": "e0700fa4279e2709b4c22ec46fe45b82f4c8ebbd78575b91a53762b19d1142a3",
+      "matches_historical_artifact": true
+    },
+    {
+      "path": "/my-lockliel/admin/person",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 7676,
+      "sha256": "ec6929e359759f71756eb3f4031c10e2e71c11e0e1b4b457833cd640b0743087",
+      "matches_historical_artifact": true
+    }
+  ],
+  "static_get_transport": {
+    "redirects_followed": false,
+    "credentials_sent": false,
+    "cookies_sent": false,
+    "browser_used": false,
+    "initial_restricted_attempt": "URLError for four pages; authorized unrestricted retry succeeded"
+  },
+  "isolated_coordinator_evidence": {
+    "readiness": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    },
+    "migrations": 280,
+    "service_note_table_grants": 0,
+    "service_note_column_grants": 0
+  },
+  "isolated_management_limit": {
+    "get_project": "Project not found",
+    "list_projects": "not returned",
+    "parent_branch_listing": "qjks present, course-cutover-rehearsal-274, ACTIVE_HEALTHY",
+    "sql": "succeeds;280/pausedON/schemaReady/278-v1; availability not treated as deletion"
+  },
+  "lane2_additional_sql_attempt": {
+    "result": "Internal tool error",
+    "success_not_claimed": true,
+    "requested_transaction": "READ ONLY with local5s/30s safeguards",
+    "no_mutation_statements": true
+  },
+  "local_validation": {
+    "source_verifier": {
+      "files": 280,
+      "pinned_git_source": "a09280eede4fd12391a6aa97e91eac65ef638e3f",
+      "source_bytes_match_manifests": true,
+      "git_source_bytes_match_manifests": true
+    },
+    "private_notes_verifier_unit_tests": {
+      "passed": 9,
+      "failed": 0,
+      "network_guard": true
+    },
+    "full_suite_rerun": false,
+    "migration_replay": false,
+    "build_rerun": false
+  },
+  "binding_assessment": "Four frontend HTML bytes recertified against historical fa294f7 artifact; current backend runtime binding and complete deployed function/artifact identity remain unverified",
+  "security_handling_limit": "One local source read inadvertently displayed a checked-in public publishable-key field. No private credential was requested or displayed. No key value is retained in this evidence/report; it was not used for requests.",
+  "preservation": {
+    "maintenance_changed": false,
+    "credential_requested": false,
+    "auth_test": false,
+    "hosted_write": false,
+    "migration": false,
+    "deploy": false,
+    "push": false,
+    "merge": false,
+    "production_action_by_lane2": false,
+    "application_source_change": false
+  }
+}

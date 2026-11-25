@@ -1,0 +1,77 @@
+{
+  "schema": "lockliel-wave10it-independent-review-v1",
+  "reviewer": "wave10it_security",
+  "reviewDate": "2026-11-03",
+  "sourceCommit": "4560d7b87c6815cf48888bf4976c13aa61cd2fa4",
+  "localReview": "PASSED",
+  "liveProviderEvidencePath": "BLOCKED",
+  "focusedTests": {
+    "total": 420,
+    "passed": 420,
+    "failed": 0,
+    "includesPrior148": true
+  },
+  "additionalAdversarialGroups": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0,
+    "projectEvidenceGroups": 12,
+    "fullAuthGroups": 8,
+    "executionEvidence": "inline reviewer execution results; no retained separate test source/log"
+  },
+  "publicSchema": {
+    "requiredFields": 238,
+    "propertyFields": 238,
+    "exactConstraintMatch": true,
+    "normalization": "missing nullable normalized to false for eight fields",
+    "source": "https://api.supabase.com/api/v1-json",
+    "sha256": "d0406b92a25c651b45f1baade59bfa384e3085ce8dfaf181a96434e7daf6807c"
+  },
+  "fixturePinChain": {
+    "files": 15,
+    "verified": true,
+    "manifestLauncherRunnerShellPinsMatch": true,
+    "offlineVerifyPassed": true,
+    "inputRequests": 0,
+    "networkRequests": 0,
+    "installed": false,
+    "executeInstalledInvoked": false
+  },
+  "sourceHashes": {
+    "scripts/fixture-provision/private-provider-projection.mjs": "76fa6b7f16720291115f110f9a9d68acbac3fe605f6e44a69b9cacd37077682d",
+    "scripts/fixture-provision/provider-evidence.mjs": "1e7443b0e7f40a51f9170738d14461bf9847cb7f8495edd5d6a1ceaef6aaaadd",
+    "scripts/fixture-provision/operator-authority.mjs": "a95e78a3b37d5ee6c485d1ad9bfdbec1bbd27a4bdd766b83d7729c20595a51fc",
+    "scripts/fixture-provision/auth-config-schema.json": "96e2a88494847a18923640fe0979ce4c387a4f5f82f770125c86016397b30415",
+    "scripts/fixture-provision/source-manifest.json": "cee869b2bdd0066341624ace2e078068527c3846d13ba8adcd9b209b63d92020",
+    "scripts/fixture-provision/launcher.mjs": "8b3bbbc32a89dfa3ab784bbb366addedd1f245679eac64bba98793ab77447ba3",
+    "scripts/fixture-provision/operator-runner.mjs": "2619d693441ee74d5123656534929b28da1b103d78d6952624bd13795cea2e02"
+  },
+  "retainedEvidence": [
+    {
+      "path": "/private/tmp/lockliel-wave10it-security-tests.log",
+      "sha256": "3c2849e575485a7f1aa1d7766378f6dfdfe59e7ae193c0c8be079ee698e3a0f6",
+      "kind": "offline-test-log"
+    },
+    {
+      "path": "/private/tmp/lockliel-wave10it-security-openapi.json",
+      "sha256": "d0406b92a25c651b45f1baade59bfa384e3085ce8dfaf181a96434e7daf6807c",
+      "kind": "public-unauthenticated-provider-contract"
+    }
+  ],
+  "authenticatedProviderCalls": 0,
+  "managedDatabaseConnections": 0,
+  "realCredentialsHandled": 0,
+  "hostedAccountOperations": 0,
+  "deploymentOperations": 0,
+  "productionActions": 0,
+  "publicDocumentationAccessOnly": true,
+  "limitations": [
+    "Pure parsers establish shape, not independent provider authority",
+    "Concrete private collector and credential/process boundary remain unverified",
+    "Auth response lacks project binding; output preserves UNKNOWN",
+    "No current hosted hooks, operator identity, key provenance or branch linkage established",
+    "No fixture activation or future provider execution authority granted",
+    "No physical immutable-runtime secret zeroization guarantee"
+  ],
+  "reportPath": "/Users/davesmacbookpro/.codex/worktrees/lockliel-wave10-hosted-composition/Lockliel/docs/coordination/WAVE10IT_INDEPENDENT_SECURITY_REVIEW.md"
+}

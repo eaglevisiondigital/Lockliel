@@ -53,10 +53,8 @@ begin
   for affected in 1..5 loop
     insert into public.reach_contacts(owner_id,display_name) values(member_a,'Private fixture '||affected);
   end loop;
-  rejected:=false;
-  begin insert into public.reach_contacts(owner_id,display_name) values(member_a,'Sixth active fixture');
-  exception when others then rejected:=true; end;
-  assert rejected,'My Five active limit exceeded';
+  insert into public.reach_contacts(owner_id,display_name) values(member_a,'Sixth active fixture');
+  assert (select count(*)=6 from public.reach_contacts where owner_id=member_a),'Six active relationships were not retained';
   execute 'reset role';
   assert (select church_background='Never expose another member' from public.faith_profiles where profile_id=member_b),'Other member modified';
 end;

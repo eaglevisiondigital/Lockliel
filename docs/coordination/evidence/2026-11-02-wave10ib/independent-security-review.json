@@ -1,0 +1,72 @@
+{
+  "review": "Wave10I-B independent credential-leak/security review",
+  "result": "PASS_WITH_OFFLINE_LIMITS",
+  "blockingFindings": [],
+  "reviewedFilesSha256": {
+    "scripts/member-hosted/database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "tests/member_hosted_database_preflight_test.py": "9008de3f41b5d3a6e60f163668e2a42f6c307661da70ed98f0af6677fd3bff80",
+    "tests/member-hosted-database-preflight.test.mjs": "364f1584fb3e542e457d72ee8f3c013adadf12f6bf76f4df313024fe222fb7b2"
+  },
+  "officialTests": {
+    "command": "/Library/Developer/CommandLineTools/usr/bin/python3 -I -B tests/member_hosted_database_preflight_test.py",
+    "passed": 49,
+    "failed": 0,
+    "evidence": "Independently executed final file versions; sockets, DNS, driver loads and hidden input globally blocked except explicit fakes."
+  },
+  "additionalIndependentChecks": {
+    "passed": 84,
+    "incompatibleNativeFamilyPairs": 77,
+    "description": "84 additional assertions, separate from official49: pairwise mixed-family denial77, unknown/localized continuation3, native bounded-category checks3, primary diagnostic wipe on classifier exception1."
+  },
+  "nativeOutputGap": {
+    "status": "IDENTIFIED_AND_CLOSED",
+    "originalGap": "Python exception sanitization/redirect_stderr does not contain direct native-style fd2 writes. Independently reproduced using synthetic os.write to a local pipe, without native driver or connection.",
+    "correction": "CLI suppresses fd1 and fd2 during main; explicit /dev/tty input remains unchanged. main returns result; exactly one JSON is emitted only after descriptor restoration. Setup/restore failure returns fixed DIAGNOSTIC_OUTPUT_UNAVAILABLE and no success.",
+    "verification": "Official final tests exercise real local fd1/fd2 writes, successful restoration, setup failure before main and restoration-failure denial."
+  },
+  "invariants": {
+    "protectedFunctionsAstUnchanged": [
+      "require",
+      "validate_ca",
+      "validate_native",
+      "validate_witness",
+      "inspect_guarded"
+    ],
+    "protectedDirectLibpqMethodsAstUnchanged": [
+      "connected",
+      "transaction_status",
+      "identity",
+      "_exec",
+      "command",
+      "select",
+      "close"
+    ],
+    "protectedConstantsAndConnectionParamsAstUnchanged": [
+      "PROJECT",
+      "HOST",
+      "LIBPQ",
+      "CA_SHA256",
+      "OPTIONS",
+      "GUARD_SQL",
+      "IDENTITY_SQL",
+      "SUMMARY_SQL",
+      "INSPECTIONS",
+      "params"
+    ],
+    "enumOnlyFailureOutput": true,
+    "boundedNativeReadBeforeCopy": true,
+    "ownedInputAndPrimaryDiagnosticBuffersWipedInTestedErrorPaths": true,
+    "guardedInspectionRemainsSameConnectionReadOnlyRollback": true
+  },
+  "otherChecks": {
+    "gitDiffCheck": "PASS",
+    "literalPhasesAllowlisted": "PASS"
+  },
+  "limits": [
+    "Strictly offline review: no network, DNS, actual native driver, real credentials, hidden input, SQL, hosted Auth, provider API, deployment, migration, push or merge.",
+    "No live connectivity, TLS/hostname/authentication outcome or actual on/5s/30s database safeguard verified. Existing deployment and production gates remain unchanged.",
+    "Fake-driver tests establish owned ctypes input-buffer and primary native-bytearray wiping only; they do not establish whole-process zeroization of Python immutable password or temporary classifier copies.",
+    "Output tests cover direct fd writes and the helper own result path; no blanket claim about arbitrary third-party buffered C output or historical credential disclosure.",
+    "JavaScript/full-suite evidence is parent-owned; this report does not add84 independent checks to any JavaScript test total."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "at": "2026-10-01T15:55:22.924Z",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "source": "406c1691aee11311783ef83a7e970c6a4d5acd13",
+  "connection": {
+    "ssl": true,
+    "tls": "TLSv1.3",
+    "lock": "5s",
+    "cipher": "TLS_AES_256_GCM_SHA384",
+    "server": "17.11",
+    "database": "postgres",
+    "readonly": "on",
+    "statement": "30s",
+    "sslmode": "verify-full",
+    "dns": [
+      "2600:1f18:4850:7c01:a8d4:c050:50de:3ade"
+    ],
+    "network": {
+      "family": 6,
+      "server": "2600:1f18:4850:7c01:a8d4:c050:50de:3ade"
+    }
+  },
+  "state": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "identities": {
+    "expected_users": 3,
+    "expected_profiles": 3
+  },
+  "helper": {
+    "safe_read_hash": "6db2a5cea39b88cf56e5aa83e93f8205"
+  },
+  "migrations": [
+    {
+      "ordinal": 275,
+      "filename": "20260929215159_lockliel_course_engine_standard.sql",
+      "sha256": "2e03aa8a8346f46e09e701fbb96c29ac8cb11404100fe51c1cdedebdc6ab35f1"
+    },
+    {
+      "ordinal": 276,
+      "filename": "20260930092000_lockliel_course_release_trigger_execution.sql",
+      "sha256": "83c7ea72d55b518c0ecb3704bc052bbc8be535c9b6b5461a6bf2224f2044b8ed"
+    },
+    {
+      "ordinal": 277,
+      "filename": "20260930092500_lockliel_course_conflict_http_status.sql",
+      "sha256": "42ca6baea8c16e599f04f5aa52823362b862761943e9e37e4e7ba19c986bcaf0"
+    },
+    {
+      "ordinal": 278,
+      "filename": "20260930145334_lockliel_media_publication_authorization.sql",
+      "sha256": "7b86fc4647338537a4da06e363b716ce2f7960cb02fb28ec8acab2f26c926ea0"
+    },
+    {
+      "ordinal": 279,
+      "filename": "20261001133500_lockliel_private_notes_service_privileges.sql",
+      "sha256": "5fbcf6d942583ea2e79cb2ae356f6ee712314fe749fb97130e9a21e962c10f71"
+    }
+  ],
+  "ledger": [
+    {
+      "name": "lockliel_course_engine_standard",
+      "version": "20260929215159",
+      "statements_md5": "d56b3807477b2b284c0e36b2d80e7548"
+    },
+    {
+      "name": "lockliel_course_release_trigger_execution",
+      "version": "20260930092000",
+      "statements_md5": "7ceee16757894fd42454c402d789ae4b"
+    },
+    {
+      "name": "lockliel_course_conflict_http_status",
+      "version": "20260930092500",
+      "statements_md5": "b75449244f55bc6bc9f9781762449c95"
+    },
+    {
+      "name": "lockliel_media_publication_authorization",
+      "version": "20260930145334",
+      "statements_md5": "1c6e696bd818a164a0c6b705d3853db6"
+    },
+    {
+      "name": "lockliel_private_notes_service_privileges",
+      "version": "20261001133500",
+      "statements_md5": "5107b430838d0798a588904933f71334"
+    }
+  ],
+  "postconditions": {
+    "keys_rls": true,
+    "notes_rls": true,
+    "save_anon": false,
+    "ledger_count": 279,
+    "keys_anon_any": false,
+    "notes_orphans": 0,
+    "notes_anon_any": false,
+    "duration_invalid": 0,
+    "invalid_snapshots": 0,
+    "grip_rules_invalid": 0,
+    "negative_revisions": 0,
+    "save_authenticated": true,
+    "save_conflict_40001": false,
+    "save_conflict_pt409": true,
+    "keys_authenticated_any": false,
+    "progress_totals_invalid": 0,
+    "release_trigger_definer": true,
+    "notes_authenticated_write": false,
+    "notes_authenticated_select": true,
+    "release_trigger_authenticated": false
+  }
+}

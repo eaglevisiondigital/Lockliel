@@ -1,0 +1,11 @@
+{
+  "localIntegrityOnly": true,
+  "providerSignature": false,
+  "files": {
+    "independent-review.json": "4ebc11e860133168f92f1ccf6113147fab64b6fad1e78b3cebbdae181ee77b48",
+    "offline-readiness.json": "a6ca78c769e32dbd9bc0b30a6aa8a3b3f9b9aee5a6093443c7e034c58d16c0c5",
+    "preservation.json": "3df2ba6f68c1ee8466d4a485ade7e57ce2dd135778ec6c49fafe46c129a928bc",
+    "source-hashes.json": "30aaadbf36778a09f943519185529839876caf9d5087ca88c3e001797c6a6aad",
+    "validation.json": "f25e5fd27e39b2199bc792f3acf2a75faeb5114ffdc35380d7e3c4ff41a29b19"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "lanes": [
+    {
+      "agent": "anchor_accessibility",
+      "branch": "codex/anchor-accessibility",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-anchor-accessibility/Lockliel",
+      "commit": "9764df3b5ccd0da56531b56d160cd2489d87d22c",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-anchor-accessibility/Lockliel/docs/coordination/ANCHOR_ACCESSIBILITY_RESULT.md",
+      "clean": true
+    },
+    {
+      "agent": "groups_dark_integration",
+      "branch": "codex/groups-dark-integration",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-groups-dark-integration/Lockliel",
+      "commit": "298fb5e3358bbc5f8ce6e2f43e5e124ec2d8f86a",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-groups-dark-integration/Lockliel/docs/coordination/GROUPS_DARK_INTEGRATION_RESULT.md",
+      "clean": true
+    },
+    {
+      "agent": "unified_member_composition",
+      "branch": "codex/unified-member-preview",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-unified-member-preview/Lockliel",
+      "commit": "13803b9370ba1190ed59401a61267585396fc6d4",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-unified-member-preview/Lockliel/docs/coordination/UNIFIED_MEMBER_COMPOSITION_RESULT.md",
+      "clean": true
+    },
+    {
+      "agent": "unified_member_independent_review",
+      "branch": "codex/unified-member-independent-review",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-unified-member-independent-review/Lockliel",
+      "commit": "8a2007a5da311b8b2f0dc29e143221d179cfc01d",
+      "report": "/Users/davesmacbookpro/.codex/worktrees/lockliel-unified-member-independent-review/Lockliel/docs/coordination/UNIFIED_MEMBER_INDEPENDENT_REVIEW.md",
+      "clean": true
+    }
+  ],
+  "280MigrationHashesUnchanged": true,
+  "40OperatorFilesUnchanged": true,
+  "disabledCollectorUnchanged": true,
+  "rootDirtyWorkPreserved": true,
+  "existingBranchesAndRemoteRefsPreserved": true,
+  "pinnedApplication": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "providerHold": true,
+  "JDiagnosticAllowance": "CONSUMED",
+  "applicationReservation": "UNUSED",
+  "hostedOrProductionActions": 0,
+  "credentials": 0,
+  "databaseConnections": 0,
+  "migrationsExecuted": 0,
+  "pushMergeDeploy": false,
+  "freshProductionAudit": false
+}

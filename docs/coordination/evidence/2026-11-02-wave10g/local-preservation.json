@@ -1,0 +1,47 @@
+{
+  "startingHead": "9e90f948d50df0e28abfffc91654fe951d9cda02",
+  "checksPassed": true,
+  "existingTrackedFiles": 1534,
+  "existingNonMarkdownBytesUnchanged": 1294,
+  "migrationFilesUnchanged": 280,
+  "existingMarkdownPrependsOnly": [
+    "AGENTS.md",
+    "ARCHITECTURE.md",
+    "CURRENT_BUILD_STATE.md",
+    "DECISIONS.md",
+    "SECURITY_MODEL.md",
+    "docs/coordination/APPROVED_PRODUCT_DECISIONS.md",
+    "docs/coordination/DEPENDENCY_AND_BLOCKER_MAP.md",
+    "docs/coordination/FEATURE_STATUS_AND_EVIDENCE.md",
+    "docs/coordination/GIT_BRANCH_WORKTREE_REGISTER.md",
+    "docs/coordination/INTEGRATION_PR_QUEUE.md",
+    "docs/coordination/MASTER_FEATURE_INVENTORY.md",
+    "docs/coordination/OUTSTANDING_OWNER_DECISIONS.md",
+    "docs/coordination/PRODUCTION_RELEASE_GATE_REGISTER.md",
+    "docs/coordination/README.md",
+    "docs/coordination/SECURITY_PRIVACY_ACCEPTANCE.md",
+    "docs/coordination/SHARED_COMPONENT_API_OWNERSHIP.md",
+    "docs/coordination/SHARED_DESIGN_SYSTEM_CONTRACT.md",
+    "docs/coordination/WORKSTREAM_ASSIGNMENTS.md"
+  ],
+  "historicalMarkdownBytesPreserved": true,
+  "featureRowsUnchanged": 37,
+  "branchesRemoteRefsAndTagsUnchangedBeforeDocsCommit": true,
+  "automaticAppSnapshotRefsAdded": [
+    "refs/codex/turn-diffs/captures/1793572069128/2db2315a-a8f9-4cea-b998-97d4f440fb04/base c37b1a7b4aa7da4604f8c07e02c4638fb43f3565",
+    "refs/codex/turn-diffs/captures/1793630563744/fcc55612-4ed0-4bb0-aad7-ec0a3c6442e3/base 317af9267370f040ad27d01e460a2abbfc717cef",
+    "refs/codex/turn-diffs/checkpoints/bd91da0f4303d8488cb430dbb02efc07/e58b54b0364aaad3906a21cf2950606b/1793629487944/c96e4746-5674-47c9-9e96-61ec7e9be161 317af9267370f040ad27d01e460a2abbfc717cef"
+  ],
+  "originalRootDirtyStatusUnchanged": true,
+  "sealedKitAndSixRepositoryToolingFilesUnchanged": true,
+  "providerWritesVerified": [
+    "one empty POST",
+    "one same-ID empty PUT",
+    "one exact-ID DELETE"
+  ],
+  "independentProviderAndUrl404Verified": true,
+  "localCredentialPatternScanPassed": true,
+  "productionFreshAudit": false,
+  "newApplicationValidationRun": false,
+  "reasonNoApplicationValidation": "Documentation/evidence only; application, tests, tooling and migration bytes unchanged. Wave10F tests and prior application validation were not repeated."
+}

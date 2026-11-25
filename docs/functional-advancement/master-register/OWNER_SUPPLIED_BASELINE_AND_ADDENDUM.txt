@@ -1,0 +1,340 @@
+# LOCKLIEL — Master Experience & Mockup Register (Design Baseline)
+
+**Version:** 2026-11-03 — strategy reconciliation candidate. **Status:** OWNER VISION RECORDED; no visual screen below is owner-approved merely by appearing here. **Purpose:** trace every discussed capability into a visible experience before redesigning production screens.
+
+## Immutable identity, mission, and experience rules
+
+- **Official mark:** use original owner-provided approved master only. Open-right icon/circle means *there is always room for one more*. Never close/add a right node, flip, rotate, recolor, redraw, or distort. Logo lockup variants only as the supplied guidelines permit.
+- **Brand:** Lockliel Blue `#007BFF`, Deep Blue `#0056C9`, Sky Blue `#E6F2FF`, Charcoal `#1A1A1A`, Light Gray `#F4F6F8`; Poppins primary typography, Permanent Marker handwritten accent. Exactly: `REACH. TEACH. TRAIN. DISCIPLE.` and supporting `powered by relationship™`. Multiplication is the outcome, not a silent alteration of the fixed primary tagline.
+- **Mission:** empower ordinary believers beyond church walls to reach others, teach truth, train for growth, disciple, and multiply; welcome seekers and all denominations; not itself a church, not MLM, not a conversion quota system.
+- **Photography:** published photographic imagery must be authentic, licensed real photography with rights/provenance, never an AI-generated substitute. Nature: Kansas Flint Hills, sunrise/sunset, sea, mountains, trees, forests, sports, families, community, joyful real people. Concepts may use placeholders only, clearly labeled.
+- **Visual:** high-tech, state-of-the-art yet warm, alive, peaceful, sparse, easy across ages; brand-stable framework with member-customizable interest, ambiance, accessibility and dashboard priorities. Real sharing cannot be buried.
+- **Faith Boost:** current owner directive **daily at 7:00 PM Central**; calendar display should use `America/Chicago` and CST/CDT seasonally. Older notes say Monday–Friday; treat as superseded for current mockups but flag operating-schedule verification. Do not falsely label prerecorded scheduled content as genuinely live.
+- **UX:** mobile-first quick-share; one clear next step; recipient content accessible without mandatory account; progressive disclosure. Original inviter/attribution distinct from mentor, group host, church relationship. Privacy/consent before messaging or exposing third-party data. No non-consensual import/invitation.
+- **Safety:** existing production/main/course PR and new isolated-auth deployment restrictions remain in force. No mockup is deployment permission. No mock share actually sends.
+
+## Primary end-to-end user stories to demonstrate
+
+**J01 Encounter → Share:** Believer encounters a need; Search or Share Hope → filter needs/age suitability/life stage/interests/language/media → preview video/graphic/talking point/Scripture → share via SMS/email/native share/Lockliel/link/QR with explicit confirmation → recipient opens public resource → explore Jesus/salvation/Kingdom/King Kind/next step → optional consent-based relationship / My Five → group and course → recipient equipped to reach another.
+
+**J02 Personal grow → multiply:** Sign in → choose My Space visual and interests → personalized home/For You → Faith Journey, Bible, Prayer Board, Scripture Anchors, growth/action plans → Getting a Grip or other training → My Five/Share → group → mentor/host support → leader multiplication.
+
+**J03 Faith Boost daily:** See today's episode in Home and global broadcast center → clear 7 PM Central next broadcast, calendar/subscribe/reminder → watch scheduled or live broadcast → persistent player/audio and Scripture/notes → share replay or highlights → discuss with group/founder circle → prayer/Q&A/next step → archives and seven identity series.
+
+**J04 Founder/community:** Interest/application → review/approval → orientation → share with five weekly → gather 2–10+ in homes/coffee shops/workplaces → CONNECT→WATCH→TALK→ACT→MULTIPLY → groups/host training/attendance/leader support → a new group/host forms. This supports, never replaces, local churches.
+
+**J05 Recipient and volunteer accessibility:** No account required to consume public share; accessible experience, optional sign-in, adjustable text/reduced motion, sensitive content/age safeguards, no pressured conversion tracking, consent-dependent contact and follow-up.
+
+## Mockup families and required screens
+
+Screen numbers are design targets, not release claims.
+
+### A. Public website and first contact — A01–A09
+
+A01 Public cinematic homepage with mission, real scenery, invitation, transparent next steps.
+
+A02 How Lockliel works: Equip → Empower → Mobilize; Reach → Teach → Train → Disciple; relationship-powered multiplication.
+
+A03 Start Here choices: seeker, new believer, growing believer, mentor/host, church/ministry.
+
+A04 Public Faith Boost daily live/premiere schedule, 7 PM Central and archive entry.
+
+A05 Founders 50 public information/application with original commitments.
+
+A06 Books and free resources: *Who God Says You Are*, *A Heart for the Lost*, *King Kind* (availability/status accurately labeled).
+
+A07 Partner in the Harvest/giving and project vision; no assumed active checkout.
+
+A08 Contact, notifications, interest form, consent and invitation to participate.
+
+A09 Language, accessibility, privacy/legal and brand-consistent public navigation.
+
+### B. Share recipient / seeker journey — B01–B09
+
+B01 Beautiful public received-resource landing; no forced signup.
+
+B02 Short video/audio player, Scripture image, quote, conversation prompt, media permissions and accessibility.
+
+B03 'What you're going through' choice and gentle topic exploration (fear, grief, anxiety, family, identity, purpose, money, etc.).
+
+B04 God's love, finished work, Jesus and salvation explanation/invitation; no manipulation.
+
+B05 Salvation next steps, King's Kingdom / King Kind introduction, new believer guidance.
+
+B06 Optional prayer, testimony, questions, trusted follow-up, consent and safety support.
+
+B07 Choose connection: local group, online group, mentor, local church, more resources.
+
+B08 Optional signup/enrollment and relationship-to-inviter privacy; never autoassign unwanted follow-up.
+
+B09 Recipient progress and recommended next content; public and account-only modes distinctly indicated.
+
+### C. My Lockliel member core and personalization — C01–C12
+
+C01 Secure registration/sign-in, email verification, recovery, MFA where applicable; errors and Turnstile states.
+
+C02 Welcome/onboarding: seeker vs believer; accessibility, consent, personal faith stage.
+
+C03 Main desktop Home with immersive hero and persistent **Share Hope**, **Continue My Journey**, **Faith Boost 7 PM Central** access.
+
+C04 Main mobile Home with one-handed quick share and intuitive small navigation.
+
+C05 My Space theme gallery: Flint Hills, ocean, mountain, forest, sunset, sunrise, sport, cozy, tech-forward, etc.
+
+C06 Interests taxonomy: sports (basketball/football/cheer), fishing, hunting, music, nature, family, creative hobbies, life topics; multi-select and skip.
+
+C07 Dashboard reordering, widgets, favorites, shortcuts, content format, text size, density, dark/light, reduced motion.
+
+C08 Profile: photo, privacy/visibility, Faith Banner, identity and preferences.
+
+C09 For You recommendations, saved content, recently viewed, personal next steps and empty states.
+
+C10 Notifications, reminders, follows, preferences, history and opt-outs.
+
+C11 Member messages/invitations/connect requests subject to permission and consent.
+
+C12 Personal Privacy Status, account security, export, deletion/request controls, source-specific consents.
+
+### D. Evangelism and relationship-powered sharing — D01–D13
+
+D01 Global **Share Hope** quick action present on desktop and mobile.
+
+D02 Context search: 'Find something to share' by situation, Scripture, keywords and life need.
+
+D03 Facets: age suitability/life stage, demographic relevance with privacy controls, language, interest, format, duration, stage and audience.
+
+D04 Curated pain-point/resource pathways including the previous 12-topic × 15-audience / 180-mapping foundation, never represented as finished published inventory.
+
+D05 Resource detail: actual rights-cleared video/audio/image, short talking points, citations, next-step links.
+
+D06 Send preview/review, recipient-aware permission, no actual sending in mockups.
+
+D07 Share by SMS/email/native phone share/WhatsApp/Messenger as supported, Lockliel connection, copy link and QR.
+
+D08 Recipient-specific landing, language, accessible mobile link, privacy and attribution.
+
+D09 My Five: private people cards, prayers, relationship notes, follow-up reminders and progress.
+
+D10 Follow-up timeline and consensual contact, drafts, suppression and invitation status.
+
+D11 Distinct original inviter vs current mentor vs group/host/leader/organization relationship graph, not an MLM downline.
+
+D12 Saved share packs, follow-up collections, user-favorited Scripture/media and content access/revocation.
+
+D13 Permission-scoped outreach impact/reporting (engagement, growth, next steps, no manipulative quotas).
+
+### E. Faith Journey, Bible, prayer and care — E01–E12
+
+E01 Faith Journey overview: exploring, believing, growing, serving, multiplying with individualized stage/guidance.
+
+E02 Who God Is → Who You Are → What You Have → What You Can Do and personal identity profile.
+
+E03 Prayer Board: private requests, answered prayer, prayer for others, safe removal and sharing consent.
+
+E04 Scripture Anchors: collection, favorites, daily cards, keyboard-safe remove, Scripture context.
+
+E05 Bible reference drawer and preferred translations (KJV/NKJV/NLT/AMPC/NIV/MSG/TPT), license/provider gating.
+
+E06 Growth areas, personal goals, action plans, check-ins and progress.
+
+E07 Testimonials and encouragement with permission to publish/share.
+
+E08 For You personalized faith resources, pastoral boundaries and content explanations.
+
+E09 Ask Lockliel / Scripture-grounded guidance concept, verified teaching, citations, uncertainty and escalation; proposed/not assumed built.
+
+E10 Support for grief, crisis, unsafe situations and escalation resources; private by default.
+
+E11 Relationship-based mentor/care touchpoints, no forced data visibility.
+
+E12 Faith Banner + nature image/personal theme with owner-approved real-photo library.
+
+### F. Learning and courses — F01–F09
+
+F01 Course catalog, pathways and member entitlements.
+
+F02 Getting a Grip on the Basics overview: 13 lessons, protected PDFs and approved media/asset availability.
+
+F03 Lesson detail: sticky video left, worksheet right on desktop; mobile responsive minimized player.
+
+F04 **WATCH TO ADVANCE** (95% legitimate coverage) and **ANSWER TO COMPLETE**; progress clarity without grades.
+
+F05 Autosave, offline draft, revision conflict, private notes, recovery and delete/undo semantics.
+
+F06 Lesson resources, Scripture, PDF downloads and sharing where approved.
+
+F07 Journey progress, badges/milestones (if approved), Continue Course and completion.
+
+F08 Fullscreen/casting/device-specific affordances and accessible captions/transcripts.
+
+F09 Course creator/admin: publishing, versioning, duration-trust, approvals and learner progress without private-note exposure.
+
+### G. Faith Boost Broadcast, content and media — G01–G12
+
+G01 **Daily at 7:00 PM Central** home entry, today/next countdown and real status (live vs scheduled premiere vs replay).
+
+G02 Dedicated immersive broadcast watch page and clean responsive player.
+
+G03 Program guide: local time zone/CST-CDT handling, calendar, follow/remind and reminder consent.
+
+G04 Archive by date, topic, speaker and seven themes: Love, Righteous, Blessed, Anointed, Healed, Joy-Filled, Bold.
+
+G05 Episode companion: Scriptures, points, notes, 'Say It / Live It / Give It Away', follow-up and salvation invitation.
+
+G06 Share an episode, clip, quote card, Scripture, replay or approved promotional image.
+
+G07 Group watch/founder session and CONNECT → WATCH → TALK → ACT → MULTIPLY guide.
+
+G08 Moderated prayer/questions/comments where separately authorized; no implied public chat activation.
+
+G09 Persistent audio/video mini-player that does not cover nav/actions.
+
+G10 Restream multichannel destinations (YouTube, Facebook, Rumble; Instagram/TikTok when supported); operator publishing/schedule status.
+
+G11 Series-to-book, course, testimony and short-form social reuse.
+
+G12 Staff broadcast planning/programming, replays, source rights and analytics/communications.
+
+### H. Groups, mentors, hosts, Founders 50, events — H01–H13
+
+H01 Local/online group discovery with consented location; no public home-address exposure.
+
+H02 Group detail, leader, faith focus, eligibility, join/request and permission state.
+
+H03 Member group home, meetings, resources, attendance, prayer and next steps.
+
+H04 Host workbench: prepare session, invitations, consent, attendance/check-in, follow-up.
+
+H05 Weekly Founders/host guide with CONNECT → WATCH → TALK → ACT → MULTIPLY.
+
+H06 Group communication/moderation with age-aware consent; no automatic messages.
+
+H07 Mentor/discipler relationship workspace, training, care and optional handoff.
+
+H08 Host/leader support tree distinct from inviter attribution.
+
+H09 Founders 50 application and human review; no auto-approval.
+
+H10 Founder orientation, training, share-with-five weekly and gather 2–10+ group rhythm.
+
+H11 Founder/leader dashboard showing applicable people, tasks, groups and resources, not unrelated private records.
+
+H12 Public and member events, gatherings, calendars, livestreams and RSVP as supported.
+
+H13 Church/partner connections without representing Lockliel as a replacement for local church.
+
+### I. Books, resources, giving, marketplace — I01–I08
+
+I01 Resource library: books, PDFs, media, devotionals, courses, short graphics, templates.
+
+I02 Books/series: *Who God Says You Are*, *A Heart for the Lost*, *King Kind* availability and entitlement states.
+
+I03 Merchandise, print/ebook, fulfillment/order history and access; only verified SKUs.
+
+I04 Partner in the Harvest: one-time/monthly giving and donor consent.
+
+I05 Giving receipt/history, cancellation, refund/request support and provider status.
+
+I06 Provider-neutral checkout and settlement rules, real billing disabled until independently approved.
+
+I07 Text-to-Give/SMS keyword giving via shared Global Propel components, no duplicated payments system.
+
+I08 Optional partner offers/benefits or local merchant connections: **historical proposal only—require decision confirmation, not automatic scope activation**.
+
+### J. Host/staff/owner administrative experience — J01–J13
+
+J01 Role-aware staff/Admin/Owner command center with MFA/AAL2 and approval scopes.
+
+J02 Person/CRM unified record: source/attribution, consent, contact permissions, profiles and follow-up.
+
+J03 Outreach decisions: salvation/rededication, campaign registration, restricted pastoral follow-up.
+
+J04 Invitations, resource sharing, recipient consent, suppression and delivery status.
+
+J05 My Five/relationship/mentorship and support lineage with scoped visibility.
+
+J06 Groups/host approval, activity, meeting/session guide and check-ins.
+
+J07 Founders 50 applicant review, orientation, milestones and support.
+
+J08 Content/CMS workflow: draft/review/publish/revoke, translation, attribution, copyright/photo rights.
+
+J09 Broadcast console: episode schedule, media rights, Restream routing, moderation/replays.
+
+J10 Course/content administration, lessons, protected documents, progress and trusted-duration evidence.
+
+J11 Giving/partner/commerce reconciliation, audit, exceptions and finance reporting.
+
+J12 Privacy requests, retention, consent, data export/deletion, staff restrictions and audit.
+
+J13 Analytics/health/security/release readiness, feature flags, verified recovery and operator controls.
+
+### K. Shared application and technical UX — K01–K10
+
+K01 Universal search/filters/Ask entry with rights and provenance.
+
+K02 Responsive web/mobile app navigation, deep links, back/forward and focus behavior.
+
+K03 Persistent accessible media/casting and captions/transcripts.
+
+K04 Notification preferences by channel/purpose, delivery consent and age restriction.
+
+K05 Languages, localization and Bible licensing, accessible large text/contrast/motion options.
+
+K06 Account/guardian/privacy safety, role-based access, consent and session isolation.
+
+K07 Loading/error/offline/draft/retry/empty/disabled/revoked states for every workflow.
+
+K08 Themes, interest tagging, approved image licensing and saved cross-device member customization.
+
+K09 Provenance of member source, inviter, mentor, group, church and outreach campaign (distinct identities).
+
+K10 Design/asset tokens and keyboard/200%-zoom/VoiceOver/physical-device test matrices.
+
+## Layout deliverables and approval flow
+
+1. Inventory traceability: compare **every** A–K target and journey J01–J05 against `AGENTS.md`, `CURRENT_BUILD_STATE.md`, `ARCHITECTURE.md`, `SECURITY_MODEL.md`, `DECISIONS.md`, the latest **37-feature / 12-register** records and historical mockups. Report missing or conflicting requirements; do not silently infer authority.
+2. Design system first: exact supplied logo master + Poppins + Permanent Marker + five immutable hex colors; licensed real-photo selection and source/license/rights ledger; accessibility and dark/light treatment.
+3. Design **4 surfaces** in separate responsive sets: (a) unauthenticated recipient/public site, (b) mobile member, (c) desktop/tablet member, (d) host/leader and staff/admin.
+4. Design connected **five canonical journeys** first: Share→Recipient→Salvation/Next Step; My Space→Home→Personal Growth; Faith Boost daily→Replay/Share→Group Watch; Group/Founder→Mentor→Multiply; Course→Watch/Worksheet→Continue/Share.
+5. Expand every screen A01–K10 with both desktop/mobile where meaningful. Report screen ID, approval level, exact linked feature IDs, real-photo source, privacy/auth states, expected actions, mock-only behaviors, responsiveness, accessibility and missing assets.
+6. Owner reviews high-fidelity designs in small grouped batches. No wholesale functional rewrite, no merge, no deployment, no settings/Auth/payment activation. Do not represent working code or provider access from images alone.
+7. If existing approved screenshot cannot be retrieved, label `REFERENCE MISSING`; retain current established workflow until a design is approved.
+
+## Current engineering preservation and dependencies
+
+- Latest isolated branch `qjksggxorghaxvpyslip` at 280 migrations, maintenance ON; production previously 274 migrations and course PR #4 draft/open. Authentication acceptance and fixture/provider-authority evidence still not cleared. The one deployment reservation remains unused; prior direct-diagnostic allowance consumed.
+- Local member-experience, Faith, My Five, Share, Groups, Founders, Privacy, dashboard and course-engine work must be reused where verified. High-fidelity mockups do not authorize provider or production operations.
+- The exact approved brand/logo should be provided as original file to Codex; screenshots are visual guidance, not a lossless font/logo master.
+
+---
+
+# Lockliel — Owner Decisions Superseding Older Register Wording
+
+This is an addendum, NOT a rewrite of `Lockliel_Master_Experience_and_Mockup_Register.md`. Preserve all 120 stable IDs A01–K10 and the five original journeys. Do not infer approval or implementation from an ID's existence.
+
+## Superseding terminology
+
+- Use **My Lockliel** for the member portal.
+- Use **Personalize Your Faith Journey** for the main personalization invitation and **Personalize Your Experience** for the feature.
+- Use **Make Lockliel Yours** for the action/button.
+- Use **My Journey**, **Share Hope**, and **My Five** for the respective experiences.
+- Do NOT use the older phrase `My Space` in new user-facing copy; it appears historically in C05 of the baseline register. Do not casually rename internal database identifiers or APIs.
+
+## Owner-required product behavior
+
+- **Daily Faith Boost Broadcast at 7:00 PM America/Chicago**, with correct CST/CDT display, scheduled/live/replay integrity, archive, Scripture, sharing, discussions and reminders. Verify operational delivery separately; design requirement is not proof of a live integration.
+- Relationship-powered Gospel sharing is central. Prioritize rapid need-based discovery, resource preview, intentional SMS/email/native/Lockliel/link/QR sharing, recipient pages without forced signup, My Five follow-up, small-group connections and multiplication. No MLM recruitment or compensation structure.
+- Members can personalize look/feel, authentic scenic interests, sports/hobbies, dashboard ordering, display accessibility, formats and shortcuts. Preferences are private by default and must not limit access to core capabilities. Cross-device persistence remains a future integration requirement, not a proven live feature.
+- Brand master: owner-supplied open-right Lockliel logo geometry and exact official colors/fonts are immutable. Exact PNG candidate hash beginning `a084d9ed` is not yet independently confirmed as the final master file. No approximation, recoloring, rotation or distortion.
+- The Mountain Journey Dashboard is a liked concept, **not** a final owner-approved layout. Photography must be genuine, appropriately licensed and rights-cleared, not AI-generated photographic imitation in released work.
+
+## Design approval and system boundaries
+
+- The 120 targets are a traceability baseline, not evidence that 120 mockups have been approved or implemented.
+- Owner visual approval is separate from code validation, provider security acceptance and production authorization.
+- Preserve pinned application candidate, course PR, 280 migration files, provider hold and existing release controls. No production activity is authorized by this document.
+
+## Reconcile the five journey definitions
+
+The register includes J01 encounter/share, J02 growth/multiplication, J03 daily Faith Boost, J04 founder/community, and J05 recipient/accessibility. The later mockup brief also discusses a course/worksheet flow as a flagship; treat it as an additional cross-cutting demonstration supported by existing course targets, not a silent replacement for J05.

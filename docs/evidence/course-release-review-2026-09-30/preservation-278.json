@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-30",
+  "production_project": "bsndfhbemstyrrglajat",
+  "production_ledger_count": 274,
+  "production_latest_version": "20260926212002",
+  "production_cutover_schema_absent": true,
+  "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+  "remote_development": "a58626b2f0a46b2fad84e1f79e88dbfb13c81a22",
+  "pr4": {"state":"OPEN","draft":true,"merged":false,"auto_merge":false},
+  "production_netlify_deploy": "6abbb27a1cdd6d00081b0e8e",
+  "homepage_status": 200,
+  "homepage_sha256": "a184c485520cc5fa6bd5cee0b0e47cdaf46575e1e9794f9afa25743466cfbe00",
+  "chatgpt_site": {"status":"active","version":25,"updated_at":"2026-08-27T22:28:57.301945+00:00"},
+  "security_advisor": "WARN auth_leaked_password_protection remains disabled",
+  "production_actions": "Read-only inspection only. No migration, business-data write, deployment, Auth/SMTP/settings/role/payment/Share Library mutation performed.",
+  "limits": "No exhaustive fresh settings or row-by-row production fingerprint; unchanged identities/counts and absence of mutations do not certify unrelated third-party activity."
+}

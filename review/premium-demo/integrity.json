@@ -1,0 +1,26 @@
+{
+  "files": {
+    "index.html": "da2947e1dcc1aa14cd141bace7b664f45fdc9b4dc4607b3302fdc8f09f5e168e",
+    "app.js": "1ce8f8140522e745dc0ce8650a72848fa323f665070f2b98de216631e6058a8c",
+    "styles.css": "56cd34f466d2140e2ae2e20632ab9c0d7095324e12521b3d86986353fbd408af",
+    "assets/PermanentMarker-LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "assets/Poppins-OFL.txt": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
+    "assets/basketball.jpg": "805e96a300c65a793e1f1533e848aec8f9a47d8103aa80a81e6a7031d5d919ef",
+    "assets/cozy.jpg": "b4579de2a6aae24c251dd124059e1153aa0bfb7e8a831133b25792e868d64d57",
+    "assets/download-receipt.json": "386ab781c01385b19f2735ff4cc300b56f72a6c3b8cb81a691f4f1a59e323e80",
+    "assets/forest.jpg": "54fe80e91c8d57a05481b3033dc52eb79cbbe5dcfb77ca6af2fec3cc9d5a0aa6",
+    "assets/friendship.jpg": "822b5f7adaf9c1d8d4ae226edfef6467381c169d11b0e7d2a3389a631444fbc9",
+    "assets/landscape.jpg": "92b60c7b232d1056ffcd57d475cc3919dadd6e47659fdceeb2f1ab6182b5ceea",
+    "assets/permanent-marker.ttf": "28f82c8a7943cb8e9d599f8554da1d4fc75dbcf69b9885ad6c0611d20c6946c5",
+    "assets/poppins-regular.ttf": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+    "assets/poppins-semibold.ttf": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286",
+    "assets/premium-rights-manifest.json": "de22a72cd418b00b013b0ac538c5e16ac0716985f96a0449ff2f615d83c8a9b8",
+    "assets/rights-manifest.json": "13550f0dbfd80f47da4cdf29f3577b51c9bc0ea2e0bade50e197f7d131954277",
+    "assets/studio.jpg": "55d0a86fc1ce74e51715b1caeb5f7154bcd91c532675e1953bdc408807ecb841",
+    "assets/sunrise.jpg": "287f096e8c3e44c76cf7c584a474f121339bde54df2565fcaf91514a9b6c2f05",
+    "shared-correction.css": "d16411f7c0020c483ecfcf80763b0615d34d3335bab37e6147128ffa2c650597",
+    "home-correction.css": "10c59925c5e21114ceb0751a0196cdffde938d6e145b861cb73104ccedae3d8a",
+    "share-correction.css": "c0c970c1c7b76502762e9ec59a7978a5a6e0f2501f7353cbaf7070fe3e69b04d",
+    "boost-correction.css": "f2f5c4e4816c18c37eb93a3d76f159baf6acdc1bf69d317f8a382024586eb89b"
+  }
+}

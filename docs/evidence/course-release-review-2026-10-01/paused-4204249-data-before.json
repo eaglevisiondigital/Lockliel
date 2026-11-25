@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-01T14:44:47.445Z",
+  "project": "qjksggxorghaxvpyslip",
+  "status": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "snapshots": {
+    "courses": {
+      "count": 1,
+      "digest": "ceaba9b1d13a30c4048bb3d3c7a944c5"
+    },
+    "lessons": {
+      "count": 13,
+      "digest": "e95b371944c4ecdc2de3b62cb212f51c"
+    },
+    "lesson_assets": {
+      "count": 40,
+      "digest": "7aef2fc8a86e6ae7a65b8334fb9c0829"
+    },
+    "course_enrollments": {
+      "count": 2,
+      "digest": "e1bf5f236319c178f729f8da994bebbf"
+    },
+    "lesson_progress": {
+      "count": 1,
+      "digest": "68e6b6653ac43877f5b7264c9332a2ce"
+    },
+    "media_progress": {
+      "count": 0,
+      "digest": "d751713988987e9331980363e24189ce"
+    },
+    "lesson_private_notes": {
+      "count": 0,
+      "digest": "d751713988987e9331980363e24189ce"
+    }
+  }
+}

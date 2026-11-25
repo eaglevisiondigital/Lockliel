@@ -1,0 +1,16 @@
+{
+  "protectedFiles": 327,
+  "migrations": 280,
+  "operatorFiles": 40,
+  "collectorFiles": 7,
+  "mismatches": [],
+  "rootStatusUnchanged": true,
+  "existingRefsChanged": {},
+  "newBranches": [
+    "refs/heads/codex/complete-member-acceptance",
+    "refs/heads/codex/complete-member-design",
+    "refs/heads/codex/complete-member-owner-review",
+    "refs/heads/codex/complete-member-preview",
+    "refs/heads/codex/privacy-legend-accessibility"
+  ]
+}

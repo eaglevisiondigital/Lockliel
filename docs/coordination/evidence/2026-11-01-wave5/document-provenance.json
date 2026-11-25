@@ -1,0 +1,12 @@
+[
+  {
+    "path": "docs/lane1-account-integrity/WAVE5_SECURITY_REVIEW.md",
+    "sourceCommit": "51706bdecc84fb681802ff34920b41766923d8f4",
+    "sha256": "2f6d680308f859863ee1f54100cb980453612363f2862879a9256d101d5703ab"
+  },
+  {
+    "path": "docs/lane2-course-readiness/WAVE5_COURSE_REVIEW.md",
+    "sourceCommit": "3d85400f0515f1b3cad918c3f3fedf283689ea97",
+    "sha256": "ee6f6fa405b83ff2087c559ab3454bd1d9cf4dcb624c68ecd71cd50473ac9f09"
+  }
+]

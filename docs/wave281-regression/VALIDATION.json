@@ -1,0 +1,37 @@
+{
+  "sourceBaseline": "b57946a84b3b49bd0ea3313e84b71ac1ac7246a4",
+  "correction": "ebc34a036266422aa3fd1a09ed9dd319f0c959ff",
+  "member": "99fb7925db8eedaeac2877d40a38c8eec34a06bf",
+  "command": "LOCKLIEL_MEMBER_PACKAGE_TOOLCHAIN_ROOT=/Users/davesmacbookpro/.npm/_npx/90d26507e643fcc0/node_modules node --import ./tests/support/network-guard.mjs --test tests/*.test.mjs tests/acceptance-281/*.test.mjs",
+  "regression": {
+    "tests": 2903,
+    "pass": 2903,
+    "fail": 0,
+    "skip": 0,
+    "cancelled": 0,
+    "exitCode": 0
+  },
+  "build": "PASS",
+  "typecheck": "PASS",
+  "scopedLint": "PASS",
+  "netlify": {
+    "modules": 84,
+    "handlers": 63,
+    "result": "PASS"
+  },
+  "repositoryLint": {
+    "errors": 327,
+    "warnings": 38,
+    "preexistingFilesUnchanged": true
+  },
+  "protectedFiles": 321,
+  "protectedMismatches": 0,
+  "liveActions": false,
+  "logs": {
+    "full": "825805cd5a4e5a9c9ceee6c57e88d4715a9a2a41e8e355b35285c8bf46d20061",
+    "build": "e59b12ecc7b69991cbaa6f9f74545cfad31876cd2254e95f53cd27ed52d42b48",
+    "types": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15",
+    "lint": "7258f22d65391afd2c678f7a65342518d5be5b2e02d7794a3f79c1ed43b7d58e",
+    "netlify": "6614e0e99a5d034878490ec6612a67ceb6eaf1cf85a4eac9cc257464a311ec50"
+  }
+}

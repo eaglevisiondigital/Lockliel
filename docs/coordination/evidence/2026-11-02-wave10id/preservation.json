@@ -1,0 +1,21 @@
+{
+  "startingDocumentationHead": "04fe5a9179ca50fa6524a23ced9c3cd5bab68085",
+  "reviewedRuntimeSource": "5cc6af45c9c8323b13f6d71ee0881e6b823ddfa3",
+  "runtimeHelperSha256": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+  "allOriginalTrackedBytesUnchangedBeforeDocumentation": true,
+  "all280MigrationHashesUnchanged": true,
+  "migrationManifestSha256": "d74440082769f28196be8494277ea9fa2e78a6cc44a9a8f443932ee8797ffb92",
+  "originalDirtyRootAndOtherUserRefsPreserved": true,
+  "databaseConnections": 0,
+  "productionPostgresqlConnections": 0,
+  "sqlStatements": 0,
+  "passwordRetrievalVerificationRotationOrReset": false,
+  "secretStoresInspected": false,
+  "secretBearingProviderEndpointsCalled": false,
+  "providerActions": "Two read-only management metadata calls: isolated project lookup and parent branch listing filtered to isolated target; public docs only otherwise",
+  "providerMutation": false,
+  "maintenanceChange": false,
+  "deploymentReservationUnused": true,
+  "currentDatabaseLedgerMaintenance": "Prior280/ON retained, not freshly queried",
+  "productionPr4PublishedSites": "No action, not a fresh remote audit"
+}

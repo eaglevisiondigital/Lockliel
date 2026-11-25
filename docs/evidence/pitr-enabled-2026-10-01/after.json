@@ -1,0 +1,70 @@
+{
+  "before": {
+    "staff": 0,
+    "assets": 40,
+    "courses": 1,
+    "lessons": 13,
+    "profiles": 1,
+    "progress": 0,
+    "readonly": "on",
+    "auth_users": 1,
+    "enrollments": 1,
+    "ledger_last": "20260926212002",
+    "observed_at": "2026-10-01T19:06:50.830699+00:00",
+    "ledger_count": 274,
+    "lock_timeout": "5s",
+    "share_assets": 3,
+    "media_progress": 0,
+    "storage_objects": 13,
+    "statement_timeout": "30s",
+    "payment_connections": 4
+  },
+  "after": {
+    "staff": 0,
+    "assets": 40,
+    "courses": 1,
+    "lessons": 13,
+    "profiles": 1,
+    "progress": 0,
+    "readonly": "on",
+    "auth_users": 1,
+    "enrollments": 1,
+    "ledger_last": "20260926212002",
+    "observed_at": "2026-10-01T19:11:49.74388+00:00",
+    "ledger_count": 274,
+    "lock_timeout": "5s",
+    "share_assets": 3,
+    "media_progress": 0,
+    "storage_objects": 13,
+    "statement_timeout": "30s",
+    "payment_connections": 4
+  },
+  "project": {
+    "id": "bsndfhbemstyrrglajat",
+    "ref": "bsndfhbemstyrrglajat",
+    "organization_id": "exvcwjbzbhckgtowsdiw",
+    "organization_slug": "exvcwjbzbhckgtowsdiw",
+    "name": "Lockliel Platform",
+    "region": "us-east-1",
+    "status": "ACTIVE_HEALTHY",
+    "database": {
+      "host": "db.bsndfhbemstyrrglajat.supabase.co",
+      "version": "17.6.1.166",
+      "postgres_engine": "17",
+      "release_channel": "ga"
+    },
+    "created_at": "2026-09-24T21:03:27.845227Z"
+  },
+  "compute": "Small",
+  "pitr_enabled": true,
+  "retention_days": 7,
+  "earliest_recovery_utc": "2026-09-24T21:06:12Z",
+  "latest_recovery_utc": "2026-10-01T19:11:17Z",
+  "recovery_source": "Supabase production dashboard Point in time, UTC selected; no restore performed",
+  "limitations": [
+    "Provider-listed availability, not successful restore test",
+    "RPO target not independently measured",
+    "Owner MFA and restore capability not verified",
+    "Aggregate parity is not complete row or object-byte identity"
+  ]
+}

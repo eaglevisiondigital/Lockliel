@@ -1,0 +1,39 @@
+{
+  "javascript": {
+    "total": 1853,
+    "passed": 1853,
+    "failed": 0,
+    "skipped": 0,
+    "focused17IncludedInTotal": true
+  },
+  "python": {
+    "passed": 49,
+    "baselineSafeguardTests": 21,
+    "newDiagnosticOutputTests": 28,
+    "runsInsideOneNodeBridge": true,
+    "notAdditionalJavascriptTests": true
+  },
+  "independentAdditionalAssertions": 84,
+  "configuredAndScopedLint": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "elapsedSeconds": 14.347,
+      "log": "/private/tmp/lockliel-wave10ib-unit.log"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "elapsedSeconds": 4.817,
+      "log": "/private/tmp/lockliel-wave10ib-lint-configured.log"
+    },
+    {
+      "check": "lint-guard",
+      "exitCode": 0,
+      "elapsedSeconds": 3.434,
+      "log": "/private/tmp/lockliel-wave10ib-lint-guard.log"
+    }
+  ],
+  "networkAndCredentialInput": "Blocked in diagnostic tests; fake native libraries only",
+  "applicationBuildTypeMigrationReplay": "Not rerun: no application/TS/schema/build configuration change. Prior Wave10H evidence remains historical."
+}

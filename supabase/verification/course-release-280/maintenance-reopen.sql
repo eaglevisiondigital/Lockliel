@@ -1,0 +1,11 @@
+-- Deliberately no default executable UPDATE here. Reopening requires: schema280
+-- verified, exact candidate deployed, old tabs drained, trusted production timings
+-- for every required active video1–10, near-zero-loss recovery and explicit approval.
+-- Future authorized executor performs this transaction only after those gates:
+-- BEGIN;
+-- LOCK TABLE public.courses,public.lessons,public.lesson_assets,
+--   public.lesson_progress,public.media_progress IN SHARE ROW EXCLUSIVE MODE;
+-- UPDATE lockliel_cutover.control SET paused=false WHERE singleton;
+-- COMMIT;
+-- Keep the protocol gate until stale clients and rollback needs are retired.
+-- No automatic cleanup, reopening, rollback, or restoration is permitted.

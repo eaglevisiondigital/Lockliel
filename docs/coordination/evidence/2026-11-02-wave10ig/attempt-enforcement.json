@@ -1,0 +1,24 @@
+{
+  "authorizationId": "wave10ie-one-private-recovery",
+  "scope": {
+    "project": "qjksggxorghaxvpyslip",
+    "branch": "course-cutover-rehearsal-274"
+  },
+  "initialState": "READY",
+  "currentState": "READY",
+  "approvedAttemptConsumed": false,
+  "mechanism": "Exact canonical nonsecret grant validated through nofollow owner-only directory FDs. Atomic READY->CONSUMED directory rename, rootfsync and inode/grant verification before token input. No runtime initialization/reset.",
+  "tested": [
+    "fresh-process restart",
+    "four-process race exactly one claim",
+    "kill after durable claim",
+    "interruption/failedfsync before private consumer",
+    "deleted consumed record cannot restore missingREADY",
+    "missing root cannot auto initialize",
+    "malformed/wrongproject/production grant",
+    "symlink/hardlink/unsafe permissions",
+    "readonlyoffline mode no consumption or consumer call"
+  ],
+  "recordsContainCredentials": false,
+  "powerAndTrustLimit": "OS filesystem/fsync semantics and trusted owner; no guarantee against malicious owner/root restoring old authorization files."
+}

@@ -1,0 +1,62 @@
+{
+  "base": "24a6159efb2daba4e8dddf2c075694ac599d9a83",
+  "validatedSource": "13118829b485893a1ae169db0a098c79ad99a169",
+  "panelCommit": "fa24c3464ea85338cda8ae7128007a3eb91eefbb",
+  "integrationBranch": "codex/wave6-privacy-integration",
+  "integrationWorktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-privacy-integration/Lockliel",
+  "sourceChain": [
+    "fa24c3464ea85338cda8ae7128007a3eb91eefbb feat: add owner-only synthetic privacy status panel",
+    "13118829b485893a1ae169db0a098c79ad99a169 Integrate default-OFF owner privacy review into member shell"
+  ],
+  "sourceDelta": [
+    "app/my-lockliel/review/page.tsx",
+    "components/member-review/member-review-shell.tsx",
+    "components/owner-privacy-preview/owner-privacy-workspace.tsx",
+    "components/owner-privacy-preview/owner-privacy.module.css",
+    "docs/owner-privacy-preview/README.md",
+    "docs/owner-privacy-preview/SOURCE_AND_VALIDATION.json",
+    "lib/member-review/review-policy.ts",
+    "lib/owner-privacy-preview/model.ts",
+    "tests/owner-privacy-preview-model.test.mjs",
+    "tests/owner-privacy-preview-workspace.test.mjs",
+    "tests/wave6-owner-privacy-integration.test.mjs"
+  ],
+  "fileHashes": {
+    "app/my-lockliel/review/page.tsx": "9520940f0fd826eb0bf9a6a5b6fd1019fa6f49d06054d183e8bd19b0ebf1ce19",
+    "components/member-review/member-review-shell.tsx": "d9b3c73f1d1b491e3c41c3c2076b3c2b3d31fa95abdf49660b39ee5fc0b535f3",
+    "components/owner-privacy-preview/owner-privacy-workspace.tsx": "a4437d7cab1c7dc11b1153665baa2156e2e64337237e5317278644eeba1b809d",
+    "components/owner-privacy-preview/owner-privacy.module.css": "a2f6bad75b344bb9f3dd95916a202476b3b930f619ced97b15688e7ece45b0b7",
+    "docs/owner-privacy-preview/README.md": "355e99d1b5820362be831c004aae6b5a79848ba19600f86691998f96d407ea11",
+    "docs/owner-privacy-preview/SOURCE_AND_VALIDATION.json": "b3afc88c8f6d7bdffb711e1b07661418f2b8e40725f36724db0f08036fa96942",
+    "lib/member-review/review-policy.ts": "06f23c8c448da02f5eb31d315708f004eea26dfe67df0e0aa23224ab331f0502",
+    "lib/owner-privacy-preview/model.ts": "bbd83f94ad32d508c91280854958ec4599250e3373b98fcb52ace1b4088a41a0",
+    "tests/owner-privacy-preview-model.test.mjs": "4432b57798d58d10251a14d7b50d25b4e1aa2f8afa5e65989af363f0386baf07",
+    "tests/owner-privacy-preview-workspace.test.mjs": "365b86cd2afb0755e2fafd52ed973bd47e98ed3a3f1c598ab2b80e364fae5d7e",
+    "tests/wave6-owner-privacy-integration.test.mjs": "03112be33bf896d5c9dfc556f3ee28923113fb23bd69cad3b4830c4266b2b55c"
+  },
+  "backendPlan": {
+    "agent": "/root/backend_plan_wave6",
+    "branch": "codex/wave6-backend-plan",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-wave6-backend-plan/Lockliel",
+    "commit": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+    "sourceFiles": 42,
+    "anchors": 82
+  },
+  "securityReview": {
+    "agent": "/root/security_course_wave6",
+    "branch": "codex/lane1-account-integrity",
+    "commit": "233f13edd42bc26ad8c89246ca523f327cc0e315"
+  },
+  "courseReview": {
+    "agent": "/root/security_course_wave6",
+    "branch": "codex/lane2-course-readiness",
+    "commit": "3b9b610c26bde138122d716031e649e31cb5b392"
+  },
+  "independentReview": {
+    "agent": "/root/integration_review",
+    "report": "WAVE6_PRIVACY_SOURCE_REVIEW.md",
+    "freshFocused": 70
+  },
+  "hostAgent": "/root",
+  "panelAgent": "/root/connections_wave3"
+}

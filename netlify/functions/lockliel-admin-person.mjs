@@ -1,8 +1,9 @@
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,json,dbHeaders,requireSession,sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
-export default withProductionBackend(async(request)=>{
-  const s=await requireSession(request);
+export function createPersonHandler({sessionFor=requireSession,fetcher=(...args)=>globalThis.fetch(...args)}={}) { return async(request)=>{
+  const fetch=fetcher;
+  const s=await sessionFor(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
@@ -14,6 +15,7 @@ export default withProductionBackend(async(request)=>{
   );
   const roles=rr.ok?(await rr.json()).map(r=>r.role):[];
   const elevated=roles.some(r=>["super_admin","admin"].includes(r));
+  const courseManager=roles.some(r=>["super_admin","admin","discipleship_admin"].includes(r));
   const ministry=roles.some(r=>["super_admin","admin","discipleship_admin","founders50_reviewer"].includes(r));
   const finance=roles.some(r=>["super_admin","admin","finance_admin"].includes(r));
   if(!ministry&&!finance)return json({error:"Person record access required"},403);
@@ -40,7 +42,7 @@ export default withProductionBackend(async(request)=>{
       ? fetch(SUPABASE_URL+"/rest/v1/course_enrollments?profile_id=eq."+safeId+"&select=id,course_id,status,enrolled_at,completed_at&order=enrolled_at.desc",{headers:h})
       : Promise.resolve(null),
     ministry
-      ? fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+safeId+"&select=lesson_id,status,worksheet_status,last_position_seconds,watched_seconds,started_at,last_activity_at,completed_at&order=last_activity_at.desc",{headers:h})
+      ? fetch(SUPABASE_URL+"/rest/v1/lesson_progress?profile_id=eq."+safeId+"&select=lesson_id,status,worksheet_status,last_position_seconds,watched_seconds,started_at,last_activity_at,completed_at"+(courseManager?",worksheet_answers,content_snapshot":"")+"&order=last_activity_at.desc",{headers:h})
       : Promise.resolve(null),
     ministry
       ? fetch(SUPABASE_URL+"/rest/v1/media_progress?profile_id=eq."+safeId+"&select=asset_id,last_position_seconds,played_seconds,percent_watched,last_activity_at,completed_at&order=last_activity_at.desc&limit=1000",{headers:h})
@@ -130,10 +132,10 @@ export default withProductionBackend(async(request)=>{
   }
   const groupMap=Object.fromEntries(groups.map(g=>[g.id,g]));
 
+  const enrollmentRows=ministry&&enrollmentRes?.ok?await enrollmentRes.json():[];
   let lessons=[],assets=[],courses=[],products=[];
   if(ministry){
-    const enrollments=enrollmentRes?.ok?await enrollmentRes.json():[];
-    const courseIds=[...new Set(enrollments.map(e=>e.course_id))];
+    const courseIds=[...new Set(enrollmentRows.map(e=>e.course_id))];
     if(courseIds.length){
       const cr=await fetch(
         SUPABASE_URL+"/rest/v1/courses?id=in.("+courseIds.join(",")+")&select=id,slug,title,status",
@@ -166,7 +168,6 @@ export default withProductionBackend(async(request)=>{
     products=pr.ok?await pr.json():[];
   }
 
-  const enrollmentRows=ministry&&enrollmentRes?.ok?await enrollmentRes.json():[];
   const progressRows=ministry&&progressRes?.ok?await progressRes.json():[];
   const mediaRows=ministry&&mediaRes?.ok?await mediaRes.json():[];
   const lessonMap=Object.fromEntries(lessons.map(l=>[l.id,l]));
@@ -191,10 +192,14 @@ export default withProductionBackend(async(request)=>{
     courses:enrollmentRows.map(e=>({
       ...e,
       course:courseMap[e.course_id]||null,
-      lessons:progressRows.filter(p=>lessonMap[p.lesson_id]?.course_id===e.course_id).map(p=>({...p,lesson:lessonMap[p.lesson_id]||null})),
+      totalLessons:lessons.filter(l=>l.course_id===e.course_id).length,
+      currentLesson:lessons.filter(l=>l.course_id===e.course_id).sort((a,b)=>a.position-b.position).find(l=>!progressRows.some(p=>p.lesson_id===l.id&&p.status==='completed'))||null,
+      lessons:progressRows.filter(p=>lessonMap[p.lesson_id]?.course_id===e.course_id).map(p=>({...p,worksheet_answers:courseManager&&p.status==="completed"?p.worksheet_answers:undefined,content_snapshot:courseManager&&p.status==="completed"?p.content_snapshot:undefined,lesson:lessonMap[p.lesson_id]||null})),
       media:mediaRows.filter(mp=>lessonMap[assetMap[mp.asset_id]?.lesson_id]?.course_id===e.course_id).map(mp=>({...mp,asset:assetMap[mp.asset_id]||null,lesson:lessonMap[assetMap[mp.asset_id]?.lesson_id]||null}))
     }))
   },200,s.refreshed?sessionCookies(s.refreshed):[]);
-});
+};}
+
+export default withProductionBackend(createPersonHandler());
 
 export const config={path:"/api/lockliel/admin/person"};

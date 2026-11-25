@@ -1,0 +1,28 @@
+{
+  "migrationCount": 280,
+  "operatorCount": 40,
+  "originalCourseFiles": 9,
+  "lanes": {
+    "projector": {
+      "head": "af58dfa85e273689464d437092a50fc135e48151",
+      "mismatches": []
+    },
+    "myfive": {
+      "head": "7b6edc2440f77cc1e718b9b5e789564ed96c3995",
+      "mismatches": []
+    },
+    "member": {
+      "head": "821f1c6c17504e5fd1576937c66abcfb197dc188",
+      "mismatches": []
+    },
+    "security": {
+      "head": "fcc967d44a98efb3db63f549c1aa417df8eb75f3",
+      "mismatches": []
+    },
+    "usability": {
+      "head": "64e45a38aa34fd94de185e22b3a4d1ac80ce79d9",
+      "mismatches": []
+    }
+  },
+  "application": "327ba098628f70aa65140862b8b14cd709bfd711"
+}

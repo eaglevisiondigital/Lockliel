@@ -1,0 +1,14 @@
+import {readFileSync,readdirSync,writeFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const hash=x=>createHash('sha256').update(x).digest('hex');
+const baseline=JSON.parse(readFileSync('docs/myfive-sql/PRESERVATION.json','utf8'));
+const operator=Object.keys(JSON.parse(readFileSync('docs/coordination/evidence/2026-11-03-wave10in/installation-inventory.json','utf8')).files);
+const courses=['lib/course/autosave.mjs','netlify/functions/lockliel-lesson-resource.mjs','netlify/lib/course-journey.mjs','netlify/lib/course-cutover.mjs','netlify/lib/course-engine.mjs','app/my-lockliel/journey/lesson/lesson-player-client.tsx','app/my-lockliel/journey/lesson/page.tsx','app/my-lockliel/journey/lesson/workspace.css','app/my-lockliel/journey/lesson/youtube-progress-player.tsx'];
+const other=Object.fromEntries([...operator,...courses].map(f=>[f,hash(execFileSync('git',['show',`f9ec32a:${f}`]))]));
+const roots=['/private/tmp/lockliel-myfive-release-package','/private/tmp/lockliel-myfive-release-sql','/private/tmp/lockliel-myfive-release-review','/private/tmp/lockliel-release-ecosystem'];
+const lanes=roots.map(root=>{const mismatch=Object.entries({...baseline.migrationHashes,...other}).filter(([f,h])=>hash(readFileSync(`${root}/${f}`))!==h).map(([f])=>f);const extras=readdirSync(`${root}/supabase/migrations`).filter(f=>f.endsWith('.sql')&&!baseline.migrationHashes[`supabase/migrations/${f}`]).map(f=>({file:f,sha256:hash(readFileSync(`${root}/supabase/migrations/${f}`))}));return{root,head:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),mismatch,candidates:extras};});
+assert.equal(Object.keys(baseline.migrationHashes).length,280);assert.equal(operator.length,40);assert(lanes.every(l=>!l.mismatch.length));assert(lanes.every(l=>l.candidates.length===((l.root.endsWith('release-sql')||l.root.endsWith('release-package'))?1:0)));
+const trace=JSON.parse(readFileSync('docs/myfive-backend/traceability.json'));assert.equal(new Set(trace.featureIds).size,37);assert.equal(new Set(trace.targetIds).size,120);assert.equal(trace.journeys.length,5);
+const evidence={passed:true,baseline:'f9ec32a',historicalMigrations:280,protectedOperatorFiles:40,originalCourseFiles:courses.length,featureRecords:37,designTargets:120,journeys:5,lanes,pinnedApplication:'327ba098628f70aa65140862b8b14cd709bfd711',diagnostic:'CONSUMED',applicationReservation:'UNUSED',freshHostedEvidence:false};writeFileSync('docs/myfive-release/PRESERVATION.json',JSON.stringify(evidence,null,2)+'\n');console.log(JSON.stringify(evidence));

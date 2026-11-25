@@ -1,0 +1,39 @@
+{
+  "requestedSource": "3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d",
+  "proposedSource": "4204249345513d9f871f3abeffb706a3bde3caaa",
+  "bindingIntroduced": "0cfcf405be16f43fa1ac7fbe0ee0ad2c3b764158",
+  "pr": {
+    "number": 4,
+    "state": "OPEN",
+    "draft": true,
+    "merged": false,
+    "autoMerge": false,
+    "head": "3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d",
+    "base": "main"
+  },
+  "ci": [
+    {
+      "event": "push",
+      "run": 36743265928,
+      "result": "success"
+    },
+    {
+      "event": "pull_request",
+      "run": 36743273182,
+      "result": "success"
+    }
+  ],
+  "existingDeploy": {
+    "id": "6abd778184898338b60d32b2",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "state": "ready",
+    "context": "branch-deploy",
+    "commit_ref": null,
+    "branch": "rehearsal",
+    "deploy_ssl_url": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+    "ssl_url": "https://jade-unicorn-642f40.netlify.app"
+  },
+  "deployed": false,
+  "sourceAuthorizationPending": true
+}

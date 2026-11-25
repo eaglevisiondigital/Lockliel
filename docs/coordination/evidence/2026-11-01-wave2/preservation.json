@@ -1,0 +1,25 @@
+{
+  "observed_on": "2026-11-01",
+  "main": "1599ab271e0120a5cdc4e38e225ba749dd214721",
+  "development": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "pr4": {
+    "state": "open",
+    "draft": true,
+    "merged": false,
+    "auto_merge": null,
+    "head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "base": "1599ab271e0120a5cdc4e38e225ba749dd214721"
+  },
+  "netlify_production": {
+    "site_id": "3096b319-3068-45ab-9837-ba0cce59d50f",
+    "deploy_id": "6abbb27a1cdd6d00081b0e8e",
+    "state": "ready"
+  },
+  "sites": {
+    "id": "appgprj_6a904a70bcb48191b19a10b74adcf5d0",
+    "status": "active",
+    "latest_version_number": 25,
+    "current_live_url": "https://lockliel-vision.dfowler4200.chatgpt.site"
+  },
+  "mutations": false
+}

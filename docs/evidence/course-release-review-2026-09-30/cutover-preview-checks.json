@@ -1,0 +1,474 @@
+{
+  "deploy": {
+    "id": "6abd366442bf580008d496b6",
+    "state": "ready",
+    "context": "deploy-preview",
+    "branch": "lockliel-backend-v1",
+    "commit_ref": "3a7b7b9e647739e72746f9ff2cb6602b1e06ff8d",
+    "published_at": null,
+    "created_at": "2026-09-30T16:18:44.736Z",
+    "deploy_ssl_url": "https://deploy-preview-4--lockliel.netlify.app",
+    "review_id": 4,
+    "summary": {
+      "status": "ready",
+      "messages": [
+        {
+          "type": "info",
+          "title": "184 new files uploaded",
+          "description": "37 generated pages and 147 assets changed.",
+          "details": "New pages include:\n- index.html\n- 404.html\n- _not-found.html\n- a-heart-for-the-lost.html\n- founders-50.html\n- getting-a-grip.html\n- my-lockliel.html\n- thank-you.html\n- who-god-says-you-are.html\n- founders-50/thank-you.html\n"
+        },
+        {
+          "type": "info",
+          "title": "4 redirect rules processed",
+          "description": "All redirect rules deployed without errors.",
+          "details": ""
+        },
+        {
+          "type": "info",
+          "title": "3 header rules processed",
+          "description": "All header rules deployed without errors.",
+          "details": ""
+        },
+        {
+          "type": "info",
+          "title": "61 functions deployed",
+          "description": "We have deployed 61 functions. [Visit your Functions](/projects/lockliel/logs/functions?scope=deploypreview:4) for more information.",
+          "details": null
+        },
+        {
+          "type": "info",
+          "title": "1 edge function deployed",
+          "description": "We have deployed 1 edge function. [Visit your Edge Functions logs](/projects/lockliel/logs/edge-functions?scope=deployid:6abd366442bf580008d496b6) for more information.",
+          "details": null
+        }
+      ]
+    }
+  },
+  "guards": [
+    {
+      "method": "GET",
+      "path": "/api/lockliel/admin/content",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/admin/content",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/.netlify/functions/lockliel-admin-content",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/.netlify/functions/lockliel-admin-content",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/journey",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/journey",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/.netlify/functions/lockliel-journey",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/.netlify/functions/lockliel-journey",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/lesson-resource",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/journey?export=unavailable",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/my-five",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/my-five",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/.netlify/functions/lockliel-my-five",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/.netlify/functions/lockliel-my-five",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/share-library",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/share-link",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/share-link",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/.netlify/functions/lockliel-share-link",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/connections",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel-auth/session",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/.netlify/functions/lockliel-session",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/next-step",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/.netlify/functions/lockliel-next-step",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/lockliel/onboarding",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel/onboarding",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/.netlify/functions/lockliel-onboarding",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/r/invalid_referral",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/api/faith-boost/access",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "GET",
+      "path": "/who-god-says-you-are/reader/chapter.pdf",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/lockliel-auth/signup",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/faith-boost/signup",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/api/book-release",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/thank-you",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/__founders50.html",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/__faith-boost-book.html",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    },
+    {
+      "method": "POST",
+      "path": "/__heart-book-release.html",
+      "status": 503,
+      "code": "production_backend_disabled",
+      "cache_control": "no-store",
+      "set_cookie": false,
+      "redirect": false
+    }
+  ],
+  "static_pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "form_count": 1,
+      "netlify_detection": false
+    },
+    {
+      "path": "/founders-50",
+      "status": 200,
+      "form_count": 1,
+      "netlify_detection": false
+    },
+    {
+      "path": "/__founders50.html",
+      "status": 200,
+      "form_count": 1,
+      "netlify_detection": false
+    },
+    {
+      "path": "/__faith-boost-book.html",
+      "status": 200,
+      "form_count": 1,
+      "netlify_detection": false
+    },
+    {
+      "path": "/__heart-book-release.html",
+      "status": 200,
+      "form_count": 1,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/onboarding",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/connections",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/connections/person",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/share",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/journey",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/journey/lesson?lesson=lesson-1",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/admin/person",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/admin",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/my-lockliel/journey/lesson?lesson=lesson-11",
+      "status": 200,
+      "form_count": 0,
+      "netlify_detection": false
+    },
+    {
+      "path": "/getting-a-grip",
+      "status": 200,
+      "approved_copy": true,
+      "signup": "/my-lockliel/sign-up",
+      "signin": "/my-lockliel/sign-in",
+      "protected_exposure": false
+    }
+  ]
+}

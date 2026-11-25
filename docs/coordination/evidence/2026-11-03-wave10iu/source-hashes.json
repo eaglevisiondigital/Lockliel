@@ -1,0 +1,16 @@
+{
+  "source": "13c9d1c9f74f3561025419f054ade786403dd0d6",
+  "files": {
+    "scripts/provider-evidence-collector/attempt.mjs": "af05612a074e541d8316dbd144da7a6d68631d2aee9ec16e98399fe21f9a5101",
+    "scripts/provider-evidence-collector/authority.mjs": "ae74ff18d983082d76b52563fcfad44d3fe73d876b28a877ab4dc88e3d3680f2",
+    "scripts/provider-evidence-collector/collector.mjs": "72d0cd5ea41f345b5f41fa7b85d06fb5e437003610661fbdd1f5fad7aaaa7852",
+    "scripts/provider-evidence-collector/launcher.mjs": "b3db74a7014c81e09c6952f327fdb49ccfa51bb7a68962a6d98d30a5e9b235b3",
+    "scripts/provider-evidence-collector/readiness.command": "8668e165a961adb61149c92ab5fb00cc359ffc542341ac892ccff05981b95be8",
+    "scripts/provider-evidence-collector/source-manifest.json": "198578421c5eb2895d8395c3cb963b3f62cee37b9e97d24f2a0d7d2ac226f12c",
+    "scripts/provider-evidence-collector/transport.mjs": "650dba635d3093789e870ef50c0bc51fefa97e91a481a01f98ecf4dc94dfb60a",
+    "tests/provider-evidence-collector.test.mjs": "3ae42cdb7b5ae7ad470c1e08c4db057edbc27521b0b2cafba04b6a27d40002b1",
+    "tests/provider-collector-independent-security.test.mjs": "60a479d130b4b60eb695a55b906f164eaab58070883de3e2b139e42901bf0fc8"
+  },
+  "localIntegrityOnly": true,
+  "providerSignature": false
+}

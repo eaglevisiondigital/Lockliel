@@ -22,10 +22,12 @@ export default function MemberJourneyPanels({data}:{data:MemberJourney}) {
     <section className="ml-journey-grid" aria-label="Your member journey">
       <article className="ml-card"><BookOpen aria-hidden="true"/><div className="ml-kicker">Continue growing</div><h2>{data.continueGrowing.title}</h2>
         <p>{data.continueGrowing.complete?'You completed this course. Revisit a lesson or help someone else begin.':data.continueGrowing.available?`${data.continueGrowing.progress.completed} of ${data.continueGrowing.progress.total} lessons complete. Your progress is saved.`:'Your course will appear when your enrollment and released content are available. You can explore Faith Boost now.'}</p>
-        <Link href={data.continueGrowing.available?data.continueGrowing.href:'/#faith-boost'}>{data.continueGrowing.available?'Open my journey':'Explore Faith Boost'} →</Link>
+        <progress aria-label="Course Progress" max={Math.max(1,data.continueGrowing.progress.total)} value={data.continueGrowing.progress.completed}/>
+        {data.continueGrowing.currentLesson&&<p>Current Lesson: {data.continueGrowing.currentLesson}</p>}{data.continueGrowing.latestActivity&&<p>Latest Activity: {new Date(data.continueGrowing.latestActivity).toLocaleDateString()}</p>}
+        <Link href={data.continueGrowing.available?data.continueGrowing.href:'/#faith-boost'}>{data.continueGrowing.available?'Continue Course':'Explore Faith Boost'} →</Link>
       </article>
-      <article className="ml-card"><Users aria-hidden="true"/><div className="ml-kicker">My Five</div><h2>{data.myFive.activeCount?`${data.myFive.activeCount} of ${data.myFive.maximum} people`:'Start with one person'}</h2>
-        <p>{data.myFive.activeCount?`${data.myFive.dueCount} planned follow-ups are ready. Your names, notes and next actions stay private.`:'Who could you pray for and encourage? Add one person now and build your list at your own pace.'}</p>
+      <article className="ml-card"><Users aria-hidden="true"/><div className="ml-kicker">My Five</div><h2>{data.myFive.activeCount?`${data.myFive.activeCount} people in this preview`:'Start with one person'}</h2>
+        <p>{data.myFive.activeCount?`${data.myFive.dueCount} planned follow-ups in this sample are ready. Open My Five to review more relationships; this preview is not a total or a complete reminder list.`:'Start with five. Reach as many as God puts on your heart. This bounded preview is not your full relationship list.'}</p>
         <p className="ml-privacy-note">Pray. Connect. Share. Engage. Grow. Disciple.</p><Link href={data.myFive.href}>{data.myFive.activeCount?'Open My Five':'Add my first person'} →</Link>
       </article>
       <article className="ml-card"><UsersRound aria-hidden="true"/><div className="ml-kicker">My community</div><h2>{data.community.state==='active'?'Growing together':data.community.state==='forming'?'A connection is forming':'Find your community'}</h2><p>{communityCopy[data.community.state]}</p><Link href={data.community.href}>View community options →</Link></article>

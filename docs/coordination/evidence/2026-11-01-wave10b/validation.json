@@ -1,0 +1,67 @@
+{
+  "source": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "javascript": {
+    "passed": 1689,
+    "failed": 0,
+    "skipped": 0,
+    "networkGuard": "tests/support/network-guard.mjs",
+    "officialNativeTestsIncluded": true
+  },
+  "typecheck": "PASS",
+  "buildModes": {
+    "defaultOFF": "PASS",
+    "legacySynthetic": "PASS",
+    "offlineRead": "PASS",
+    "localServerRead": "PASS",
+    "pinnedHostedRead": "PASS",
+    "pinnedHostedAuth": "PASS"
+  },
+  "exactCommittedSourceAuthBuild": "PASS",
+  "finalDefaultOffBuild": "PASS",
+  "configuredLint": "PASS",
+  "scopedLint": "PASS",
+  "netlify": {
+    "modules": 83,
+    "handlers": 63,
+    "result": "PASS"
+  },
+  "disposablePostgres": {
+    "versionMajor": 17,
+    "tcpListener": false,
+    "migrationsReplayed": 280,
+    "sqlTestFiles": [
+      "account_deletion_execution.sql",
+      "account_deletion_readiness.sql",
+      "authorization_boundaries.sql",
+      "course_duration_policy.sql",
+      "course_engine_standard.sql",
+      "course_persistence_regression.sql",
+      "course_private_notes_privileges.sql",
+      "course_publication_authorization.sql",
+      "course_readiness_duration.sql",
+      "course_release_authorization.sql",
+      "deletion_preflight_access.sql",
+      "email_constraint_compatibility.sql",
+      "getting_a_grip_invitation.sql",
+      "integrity_staff_execution.sql",
+      "member_journey_core.sql",
+      "my_five_guided_follow_up.sql",
+      "reconciled_review_share.sql"
+    ],
+    "result": "PASS",
+    "operationalReadinessAndPausedReadFixtures": "PASS",
+    "ownClusterCleaned": true
+  },
+  "independentSecurity": {
+    "focusedPassed": 336,
+    "parallelContractSubsetPassed": 361,
+    "countsAreSubsetsOfFullSuite": true,
+    "result": "PASS"
+  },
+  "finalStaticAuthSafetySubset": {
+    "passed": 2,
+    "countsAreSubsetsOfFullSuite": true
+  },
+  "dependencyInstallOrManifestChange": false,
+  "realProviderOperations": false
+}

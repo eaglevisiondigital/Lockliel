@@ -1,0 +1,27 @@
+{
+  "scope": "disposable PostgreSQL17 Unix socket only",
+  "syntheticOnly": true,
+  "managedDatabaseConnections": 0,
+  "tcpListener": false,
+  "migrationReplayCount": 0,
+  "productionAccess": false,
+  "queryExecuted": true,
+  "querySha256": "03948b0580a4e51021afad0fb393c52d9a11f5098eb18d1bb720a261dec29d8c",
+  "settings": {
+    "readOnly": "on",
+    "lockTimeout": "5s",
+    "statementTimeout": "30s",
+    "unixSocket": true
+  },
+  "syntheticRows": 3,
+  "exactABDigestValidation": "PASS",
+  "unapprovedThirdIdentityIgnored": true,
+  "wrongUserDenied": true,
+  "wrongLoginBindingDenied": true,
+  "wrongCreationProvenanceDenied": true,
+  "ok": true,
+  "ownClusterStopped": true,
+  "ownTemporaryFixtureRemoved": true,
+  "recipeSha256": "2873dfc5cb4a42c7a5dd92fe453f88f59de16ff1ecccfcba430f48e3d1473038",
+  "approvedEscalatedFixture": "PASS"
+}

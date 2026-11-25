@@ -1,0 +1,3481 @@
+{
+  "ledger": [
+    {
+      "name": "lockliel_v1_core_foundation",
+      "version": "20260924211046",
+      "statements_md5": "f4c7b414e312afc1f71b7322dcdd15f7"
+    },
+    {
+      "name": "lockliel_v1_indexes_and_member_policies",
+      "version": "20260924211057",
+      "statements_md5": "59170414658a196885db8bc71e914e1f"
+    },
+    {
+      "name": "lockliel_referral_event_owner_read",
+      "version": "20260924211102",
+      "statements_md5": "56960e99a1b181f80ccac25c1d1b4575"
+    },
+    {
+      "name": "lockliel_v1_member_dashboard_foundation",
+      "version": "20260924223806",
+      "statements_md5": "c3c86ad89f07dd8bdf301f7dec245335"
+    },
+    {
+      "name": "lockliel_auth_profile_bootstrap",
+      "version": "20260924224412",
+      "statements_md5": "5830a1440b24406dc5ba003a7b876492"
+    },
+    {
+      "name": "lockliel_default_referrals_and_visit_tracking",
+      "version": "20260924224706",
+      "statements_md5": "405d7894db4c1055fa94c80b062bc568"
+    },
+    {
+      "name": "lockliel_faith_profile_and_founders_linkage",
+      "version": "20260924224953",
+      "statements_md5": "6ee1bfaea87883808dcbd0ee51970d14"
+    },
+    {
+      "name": "lockliel_staff_authorization_policies",
+      "version": "20260924225103",
+      "statements_md5": "4fa45c44b7df5b4b94fc9354ad73bd70"
+    },
+    {
+      "name": "lockliel_referral_source_tags_and_grip_lessons",
+      "version": "20260924225240",
+      "statements_md5": "6d28ee7e0c1e77ed2b28db13ca5527f7"
+    },
+    {
+      "name": "lockliel_faith_interest_tag_sync",
+      "version": "20260924225729",
+      "statements_md5": "5b06f5e6f811db4d30de2c3cde45a7af"
+    },
+    {
+      "name": "lockliel_private_followup_messaging",
+      "version": "20260924225926",
+      "statements_md5": "e63ffa46c52eb6363d875b15ce3c7dab"
+    },
+    {
+      "name": "lockliel_safe_connection_cards",
+      "version": "20260924230011",
+      "statements_md5": "a83661f1c405df16a0a62f0c6e217169"
+    },
+    {
+      "name": "lockliel_private_course_enrollment",
+      "version": "20260924230210",
+      "statements_md5": "f60ea06430700ea86df690b9d8623d38"
+    },
+    {
+      "name": "lockliel_preaccount_lead_crm",
+      "version": "20260924230352",
+      "statements_md5": "cceaeec20d10762686890d0f7d4af6d0"
+    },
+    {
+      "name": "lockliel_giving_and_book_order_foundation_v2",
+      "version": "20260924230541",
+      "statements_md5": "9cf6b121f3947c65e6142652d6f4b824"
+    },
+    {
+      "name": "lockliel_missing_fk_indexes",
+      "version": "20260924230613",
+      "statements_md5": "50b6d24f3de60bb90b6694eeef852345"
+    },
+    {
+      "name": "lockliel_consolidate_rls_policies",
+      "version": "20260924230645",
+      "statements_md5": "33afe883f863c655997ebda4e0867176"
+    },
+    {
+      "name": "lockliel_founders50_account_tag_link",
+      "version": "20260924230729",
+      "statements_md5": "b80572f41d5d66c61ee5e744da150587"
+    },
+    {
+      "name": "lockliel_referral_discipleship_attribution",
+      "version": "20260924230830",
+      "statements_md5": "7e8977582a4d058d1793c1e9b8f59719"
+    },
+    {
+      "name": "lockliel_admin_source_analytics_access",
+      "version": "20260924231306",
+      "statements_md5": "52a36786e65bdb8aacce97d8f756eaac"
+    },
+    {
+      "name": "lockliel_group_and_host_request_queue",
+      "version": "20260924231552",
+      "statements_md5": "cff33037ecaecf33b92fb9686caac43b"
+    },
+    {
+      "name": "lockliel_safe_discipleship_directory_access",
+      "version": "20260924231747",
+      "statements_md5": "6c581df3f23751842ed4c93af5c183bb"
+    },
+    {
+      "name": "lockliel_private_member_resources",
+      "version": "20260924231926",
+      "statements_md5": "5e7c091575677cf3779034700287de4e"
+    },
+    {
+      "name": "lockliel_entitled_product_visibility",
+      "version": "20260924231945",
+      "statements_md5": "cc96e2a20ac2b5758645e0db45a1329f"
+    },
+    {
+      "name": "lockliel_finance_admin_and_gift_benefit_automation",
+      "version": "20260924232824",
+      "statements_md5": "729d8dddced173eb4ced9b0e85a95c76"
+    },
+    {
+      "name": "lockliel_finance_identity_and_manual_gifts",
+      "version": "20260924232848",
+      "statements_md5": "95d588646e490927355acf756c7260c3"
+    },
+    {
+      "name": "lockliel_feature_flags_and_audit_history",
+      "version": "20260924233100",
+      "statements_md5": "0abf30e25b9c9f8019683fe2fdba0ade"
+    },
+    {
+      "name": "lockliel_feature_flag_audit",
+      "version": "20260924233126",
+      "statements_md5": "0f0131437229ac2bd62fec22c19e3c05"
+    },
+    {
+      "name": "lockliel_sync_operational_flags",
+      "version": "20260924233159",
+      "statements_md5": "454cdd9fab54e0afcbe6371363a4e7f2"
+    },
+    {
+      "name": "lockliel_secure_admin_bootstrap",
+      "version": "20260924233549",
+      "statements_md5": "a44fe3197de1ae873902ed3fe7ab163b"
+    },
+    {
+      "name": "lockliel_remove_public_admin_bootstrap",
+      "version": "20260924233620",
+      "statements_md5": "ebde50217d27b10b322a5e21973430ab"
+    },
+    {
+      "name": "lockliel_group_operations_foundation",
+      "version": "20260924233918",
+      "statements_md5": "df264711e831f5724a98618b942230b0"
+    },
+    {
+      "name": "lockliel_safe_group_roster_access",
+      "version": "20260924233943",
+      "statements_md5": "20aaac0059ec394dcbb6eb0b4806e8a5"
+    },
+    {
+      "name": "lockliel_extensible_lesson_media_tracking",
+      "version": "20260924234138",
+      "statements_md5": "ddbb4443f3b92d4ee700558987a29db5"
+    },
+    {
+      "name": "lockliel_private_lesson_asset_storage",
+      "version": "20260924234246",
+      "statements_md5": "236bb853dee4025e770fc62d84d6dd31"
+    },
+    {
+      "name": "lockliel_content_admin_course_permissions",
+      "version": "20260924234314",
+      "statements_md5": "cc06429eb37f6b1b4ec7ae8a28abdb00"
+    },
+    {
+      "name": "lockliel_communication_preferences_and_consent_history",
+      "version": "20260924234437",
+      "statements_md5": "77135dc86fe7c92274945e8a5fc03f68"
+    },
+    {
+      "name": "lockliel_communication_preferences_self_insert",
+      "version": "20260924234454",
+      "statements_md5": "111c0c9c852f38f0028d046902b397b2"
+    },
+    {
+      "name": "lockliel_superadmin_role_management",
+      "version": "20260924235357",
+      "statements_md5": "bd508498d5803fde7366f98394dcc07e"
+    },
+    {
+      "name": "lockliel_weekly_group_checkins",
+      "version": "20260924235530",
+      "statements_md5": "d32aca1be1364b4b9b01793ee9d3d407"
+    },
+    {
+      "name": "lockliel_map_existing_grip_assets",
+      "version": "20260924235939",
+      "statements_md5": "75516b2bc8144ff41cb55e621d2e67d8"
+    },
+    {
+      "name": "lockliel_private_my_five_reach_contacts",
+      "version": "20260925003134",
+      "statements_md5": "b4b22d0afdef853582a81ca410a1c240"
+    },
+    {
+      "name": "lockliel_reach_count_combines_my_five_and_referrals",
+      "version": "20260925003150",
+      "statements_md5": "83d04379da38368c8c7d85844e2b3b61"
+    },
+    {
+      "name": "lockliel_group_checkin_followup_automation",
+      "version": "20260925003435",
+      "statements_md5": "ffce155147a7113db4f03bc6519a2ed6"
+    },
+    {
+      "name": "lockliel_seed_existing_grip_course_assets",
+      "version": "20260925003719",
+      "statements_md5": "7d01f2ebff05f154f0a696ca1aef62f4"
+    },
+    {
+      "name": "lockliel_preserve_true_progress_start_times",
+      "version": "20260925004036",
+      "statements_md5": "ba4aa4c97ce78a9a49341819e6ee51d6"
+    },
+    {
+      "name": "lockliel_archive_external_champion_grip_pdfs",
+      "version": "20260925004236",
+      "statements_md5": "18a8ebdc7f293b54d29dfa93711ad6ef"
+    },
+    {
+      "name": "lockliel_protect_profile_relationship_columns",
+      "version": "20260925004344",
+      "statements_md5": "50e9bab45773cd067c47bc8d7fac993f"
+    },
+    {
+      "name": "lockliel_protect_system_journey_and_consent_fields",
+      "version": "20260925004419",
+      "statements_md5": "7ff0add1f00f77f50f68788e12175a7b"
+    },
+    {
+      "name": "lockliel_leader_profiles_and_assignments",
+      "version": "20260925004840",
+      "statements_md5": "b13af03f5c2dcafd84266396f635b6fd"
+    },
+    {
+      "name": "lockliel_derive_active_connection_counts",
+      "version": "20260925005104",
+      "statements_md5": "19a253b4712c5656915979053d54fc69"
+    },
+    {
+      "name": "lockliel_private_product_upload_permissions",
+      "version": "20260925005155",
+      "statements_md5": "fc86b5ab14d2b8871f98d580de55b214"
+    },
+    {
+      "name": "lockliel_provider_neutral_checkout_events",
+      "version": "20260925005337",
+      "statements_md5": "400b760143618a655c153b63dbae6244"
+    },
+    {
+      "name": "lockliel_preserve_preaccount_source_tags",
+      "version": "20260925005420",
+      "statements_md5": "55b435402cdf158fc0235b090a51f6dd"
+    },
+    {
+      "name": "lockliel_physical_order_fulfillment_permissions",
+      "version": "20260925010007",
+      "statements_md5": "da49b30429ab234c33a04d5de78a6e05"
+    },
+    {
+      "name": "lockliel_founders50_followup_automation",
+      "version": "20260925010154",
+      "statements_md5": "48ffdb0e4498378daa0809187dbc4be8"
+    },
+    {
+      "name": "lockliel_member_notifications",
+      "version": "20260925010254",
+      "statements_md5": "4f2a5f3273f2af191a5b90ea6d867270"
+    },
+    {
+      "name": "lockliel_private_staff_notes",
+      "version": "20260925010642",
+      "statements_md5": "b396e65c2d3779f6fcf42b50f9b5065c"
+    },
+    {
+      "name": "lockliel_notification_gap_triggers",
+      "version": "20260925010923",
+      "statements_md5": "4a0fa314cf43fae326101ed8f3826de5"
+    },
+    {
+      "name": "lockliel_course_completion_integrity_and_next_steps",
+      "version": "20260925011026",
+      "statements_md5": "a3e3e269fbfcfc554a7f65608fbb81e2"
+    },
+    {
+      "name": "lockliel_new_relationship_fk_indexes",
+      "version": "20260925011105",
+      "statements_md5": "38cff6e73afeab22bcfd1e4f16e3ff34"
+    },
+    {
+      "name": "lockliel_preaccount_lead_pipeline",
+      "version": "20260925011502",
+      "statements_md5": "4b916b638004100539265a8e92b6fb3d"
+    },
+    {
+      "name": "lockliel_lead_followup_task_sync",
+      "version": "20260925011641",
+      "statements_md5": "5d07fdabb6a0189144106eed1b4fe7f2"
+    },
+    {
+      "name": "lockliel_founders50_orientation",
+      "version": "20260925011753",
+      "statements_md5": "ff03e779a00b3787f302796f2d7081cf"
+    },
+    {
+      "name": "lockliel_member_privacy_requests",
+      "version": "20260925013113",
+      "statements_md5": "966b5364692dd283efeb1307ff445cd4"
+    },
+    {
+      "name": "lockliel_audited_manual_launch_verifications",
+      "version": "20260925013327",
+      "statements_md5": "91245eff678f90cdc6f759d0879bd298"
+    },
+    {
+      "name": "lockliel_grip_lessons_5_13_notes_completion",
+      "version": "20260925013559",
+      "statements_md5": "55b088fadce5b21f7b7301084b2bf8ee"
+    },
+    {
+      "name": "lockliel_launch_verification_fk_index",
+      "version": "20260925014133",
+      "statements_md5": "ec9b9fb6e5affbc632ee02595ed8f933"
+    },
+    {
+      "name": "lockliel_link_guest_records_after_email_confirmation",
+      "version": "20260925014250",
+      "statements_md5": "64081abd3d72a9cd7ead6bb754b973a9"
+    },
+    {
+      "name": "lockliel_order_fulfillment_foundation",
+      "version": "20260925014401",
+      "statements_md5": "1659e08deb45ac3c910b79dd67a665a7"
+    },
+    {
+      "name": "lockliel_require_mfa_for_privileged_staff_rls",
+      "version": "20260925015823",
+      "statements_md5": "712294616dd306823577ae7bcd4d28e4"
+    },
+    {
+      "name": "lockliel_require_aal2_for_staff_authorization",
+      "version": "20260925015831",
+      "statements_md5": "712294616dd306823577ae7bcd4d28e4"
+    },
+    {
+      "name": "lockliel_member_connection_request_control",
+      "version": "20260925020557",
+      "statements_md5": "1c1ff99852026f395c7475940e2bd6f0"
+    },
+    {
+      "name": "lockliel_payment_provider_launch_readiness",
+      "version": "20260925020701",
+      "statements_md5": "41bf2ccbdfa209d64f4a436ce9627829"
+    },
+    {
+      "name": "lockliel_resolve_leader_request_on_assignment",
+      "version": "20260925020904",
+      "statements_md5": "5b76b2704b96986b2b1f818b06998403"
+    },
+    {
+      "name": "lockliel_founders50_richer_human_review_context",
+      "version": "20260925021200",
+      "statements_md5": "5d2e2067e0c181ba42f876a882297a85"
+    },
+    {
+      "name": "lockliel_clear_stale_digital_book_storage_reference",
+      "version": "20260925021738",
+      "statements_md5": "04978471113d53b1b866f11d362a1fe1"
+    },
+    {
+      "name": "lockliel_sync_deleted_storage_references",
+      "version": "20260925021811",
+      "statements_md5": "e810f5fb09a7b144288c86dfc4fc17eb"
+    },
+    {
+      "name": "lockliel_apply_gift_benefits_when_guest_gift_links",
+      "version": "20260925022357",
+      "statements_md5": "f1c8a4f6303eaebff1b910c7313306db"
+    },
+    {
+      "name": "lockliel_enforce_release_readiness_in_database",
+      "version": "20260925022621",
+      "statements_md5": "018a5a56b1b80d20e75e96e3dbd884ad"
+    },
+    {
+      "name": "lockliel_one_time_job_guard",
+      "version": "20260925034409",
+      "statements_md5": "30cf61918fb5a6277f3d37adefd34813"
+    },
+    {
+      "name": "lockliel_public_service_only_one_time_job_guard",
+      "version": "20260925034630",
+      "statements_md5": "3eb5b01dfd71d9ed1396ab830929385f"
+    },
+    {
+      "name": "lockliel_publish_getting_a_grip_after_asset_verification",
+      "version": "20260925034805",
+      "statements_md5": "12453a3dbd7e335c209f625551824b4f"
+    },
+    {
+      "name": "lockliel_remove_completed_one_time_import_guards",
+      "version": "20260925034818",
+      "statements_md5": "f3f66aa9253d150318f1a74d6cd7eb24"
+    },
+    {
+      "name": "lockliel_safe_first_super_admin_bootstrap",
+      "version": "20260925035159",
+      "statements_md5": "fdd2b9eaf4ba30e40d36c250947c4c10"
+    },
+    {
+      "name": "lockliel_reconstructed_review_share_history",
+      "version": "20260925035350",
+      "statements_md5": "ee20f99ed166735b9c12698411e8248b"
+    },
+    {
+      "name": "lockliel_global_locale_and_translation_foundation",
+      "version": "20260925035351",
+      "statements_md5": "56d3f03ed12898af4aece3d452ce22dd"
+    },
+    {
+      "name": "lockliel_language_aware_foundational_course_enrollment",
+      "version": "20260925035500",
+      "statements_md5": "cf530050662be2ed51c5451d32ada17f"
+    },
+    {
+      "name": "lockliel_language_aware_connection_matching",
+      "version": "20260925035642",
+      "statements_md5": "2c530776b3defee41896c14fcc289597"
+    },
+    {
+      "name": "lockliel_course_release_integrity_guard",
+      "version": "20260925035839",
+      "statements_md5": "32a748afa9f8f0155a2c83b72e6c3828"
+    },
+    {
+      "name": "lockliel_consolidate_remaining_permissive_policies",
+      "version": "20260925044341",
+      "statements_md5": "c958fda1ed7f6b904185dfa73f048788"
+    },
+    {
+      "name": "lockliel_translation_identity_and_lesson_mapping",
+      "version": "20260925044635",
+      "statements_md5": "0c348f069deb640159db141a53ae3517"
+    },
+    {
+      "name": "lockliel_localized_content_resolution",
+      "version": "20260925044759",
+      "statements_md5": "7df4520e949b77a3d71635808435b92a"
+    },
+    {
+      "name": "lockliel_my_five_share_attribution",
+      "version": "20260925045124",
+      "statements_md5": "71ee5be12c1c4a6cdfa874b148109048"
+    },
+    {
+      "name": "lockliel_index_my_five_share_fk",
+      "version": "20260925045350",
+      "statements_md5": "defbdceac34e04178267efef64fe8bf4"
+    },
+    {
+      "name": "lockliel_member_contact_consent_controls",
+      "version": "20260925045653",
+      "statements_md5": "2e14b0cba357e6e037e3f3be5e4f1802"
+    },
+    {
+      "name": "lockliel_contact_consent_relationship_guard",
+      "version": "20260925110224",
+      "statements_md5": "d676cbe36f5007a40db48b01476a3542"
+    },
+    {
+      "name": "lockliel_audit_contact_consent_changes",
+      "version": "20260925110334",
+      "statements_md5": "457192dd74c16d10c6e50fe97a7728d8"
+    },
+    {
+      "name": "lockliel_audit_product_release_changes",
+      "version": "20260925110808",
+      "statements_md5": "b090fef6fd6f5874d511761a40df9bf6"
+    },
+    {
+      "name": "lockliel_reviewed_group_transitions",
+      "version": "20260925111018",
+      "statements_md5": "07f9be8030a6289fd9ff211c7e97b6e3"
+    },
+    {
+      "name": "lockliel_group_transition_notifications",
+      "version": "20260925111300",
+      "statements_md5": "99353b8b5214862da8d7ae447d6dd5f9"
+    },
+    {
+      "name": "lockliel_preserve_member_leader_message_consent",
+      "version": "20260925111422",
+      "statements_md5": "ef60a30f915c75dc2f5972b8aa22b508"
+    },
+    {
+      "name": "lockliel_enforce_my_five_integrity",
+      "version": "20260925111601",
+      "statements_md5": "8cfe24a42c5b906d92dc72ff05774b4d"
+    },
+    {
+      "name": "lockliel_system_owned_reach_contact_timestamps",
+      "version": "20260925111717",
+      "statements_md5": "34e6d374956d1464442693a66125494f"
+    },
+    {
+      "name": "lockliel_protect_system_notifications",
+      "version": "20260925111920",
+      "statements_md5": "4465729ae4ed94f5d1f330b9082ac2d7"
+    },
+    {
+      "name": "lockliel_guard_privacy_request_member_fields",
+      "version": "20260925112057",
+      "statements_md5": "394a9abd1f139a35c03f4ed34df4b339"
+    },
+    {
+      "name": "lockliel_guard_privacy_request_creation",
+      "version": "20260925112150",
+      "statements_md5": "92a1c1b522c908c2d4462dae9593c7f7"
+    },
+    {
+      "name": "lockliel_close_inviter_task_on_consent_revoke",
+      "version": "20260925112829",
+      "statements_md5": "937f46219b1bab53bc4402be614c9d85"
+    },
+    {
+      "name": "lockliel_authoritative_reach_count_sync",
+      "version": "20260925113053",
+      "statements_md5": "57a5231d2a0ac85e7b330f47be98eebc"
+    },
+    {
+      "name": "lockliel_authoritative_connection_count_sync",
+      "version": "20260925113218",
+      "statements_md5": "e8252f0ce103c7d02aa04e100f24582c"
+    },
+    {
+      "name": "lockliel_idempotent_lesson_journey_sync",
+      "version": "20260925113326",
+      "statements_md5": "4cfc988bdaf313e730349cd2e58278cc"
+    },
+    {
+      "name": "lockliel_consistent_group_membership_dates",
+      "version": "20260925113405",
+      "statements_md5": "05c5677c201591a57671d6e693c3e493"
+    },
+    {
+      "name": "lockliel_harden_referral_analytics_writes",
+      "version": "20260925113543",
+      "statements_md5": "e26266d9080a0a86d4c3160e3a012756"
+    },
+    {
+      "name": "lockliel_dedupe_referral_visits",
+      "version": "20260925113704",
+      "statements_md5": "073221360fa04296d39ec170ffb103e2"
+    },
+    {
+      "name": "lockliel_protect_last_super_admin",
+      "version": "20260925113917",
+      "statements_md5": "4a5512c7813833b14cc780cf99c4fae3"
+    },
+    {
+      "name": "lockliel_auto_disable_unready_release_flags",
+      "version": "20260925114051",
+      "statements_md5": "576494d8ca3f0098dd227a767c1ea8b8"
+    },
+    {
+      "name": "lockliel_refine_book_benefit_release_sync",
+      "version": "20260925114131",
+      "statements_md5": "368db74371147878c562b9fa49d4e7e3"
+    },
+    {
+      "name": "lockliel_document_payment_provider_verification",
+      "version": "20260925114227",
+      "statements_md5": "5f68653f224c4ed16c3cd8092f9986ba"
+    },
+    {
+      "name": "lockliel_separate_finance_and_fulfillment_order_updates",
+      "version": "20260925114433",
+      "statements_md5": "279a819024620702e7050370d02fd03f"
+    },
+    {
+      "name": "lockliel_immutable_connection_request_details",
+      "version": "20260925115135",
+      "statements_md5": "d65348ebe7602cf17c44bb95d154ae48"
+    },
+    {
+      "name": "lockliel_enrollment_scoped_progress_writes",
+      "version": "20260925115405",
+      "statements_md5": "28ada277877a1492b92dc48765402d97"
+    },
+    {
+      "name": "lockliel_localized_lesson_completion_integrity",
+      "version": "20260925115537",
+      "statements_md5": "7a56af38122bf6ad39bcc361b8f92dd7"
+    },
+    {
+      "name": "lockliel_normalize_progress_state",
+      "version": "20260925115701",
+      "statements_md5": "f11947b6781d3d39a44f58acd5e7dbcd"
+    },
+    {
+      "name": "lockliel_reduce_dormant_data_api_writes",
+      "version": "20260925115908",
+      "statements_md5": "336dd23efa0a9a5e8fc3bda59408c7a4"
+    },
+    {
+      "name": "lockliel_system_owned_member_journey",
+      "version": "20260925120028",
+      "statements_md5": "f1bcee673e5563cab7bbb4dea5957086"
+    },
+    {
+      "name": "lockliel_system_owned_profile_onboarding",
+      "version": "20260925120141",
+      "statements_md5": "dc6c0d305f457ade37ff800d3ecde00c"
+    },
+    {
+      "name": "lockliel_harden_private_faith_profile",
+      "version": "20260925120317",
+      "statements_md5": "7d2aee7189c2fffc54dfe889878e0994"
+    },
+    {
+      "name": "lockliel_enforce_messaging_release_flag",
+      "version": "20260925120440",
+      "statements_md5": "59c6fc2abd25b1402675dede5dae1b39"
+    },
+    {
+      "name": "lockliel_harden_weekly_group_checkins",
+      "version": "20260925120612",
+      "statements_md5": "359cda4037dda88b48915a6f920dd68f"
+    },
+    {
+      "name": "lockliel_harden_group_weekly_checkins",
+      "version": "20260925120822",
+      "statements_md5": "63f2c4f0b8d44e8643adaa4a386eae48"
+    },
+    {
+      "name": "lockliel_immutable_founders50_review_workflow",
+      "version": "20260925120958",
+      "statements_md5": "c4fd6bb31d025d3517dc2eec085e030a"
+    },
+    {
+      "name": "lockliel_enforce_approved_leadership_roles",
+      "version": "20260925121010",
+      "statements_md5": "936bdfc608ba9e0306857f2f3cc49aa9"
+    },
+    {
+      "name": "lockliel_guard_group_leadership_memberships",
+      "version": "20260925121116",
+      "statements_md5": "bb16d4dae66ab8ea243badb1f5b2a057"
+    },
+    {
+      "name": "lockliel_normalize_connection_request_status",
+      "version": "20260925121239",
+      "statements_md5": "7be2e96b83e0580e0fcc88e3efc050e2"
+    },
+    {
+      "name": "lockliel_protect_active_leader_responsibilities",
+      "version": "20260925121355",
+      "statements_md5": "93dcdb3291abaf65472412ac8a8ab788"
+    },
+    {
+      "name": "lockliel_append_only_staff_notes_and_audit",
+      "version": "20260925121424",
+      "statements_md5": "987f5673b09865d83c5bd489ca014dab"
+    },
+    {
+      "name": "lockliel_harden_followup_task_lifecycle",
+      "version": "20260925121541",
+      "statements_md5": "3de13a833b2c21df822e8252836bdec0"
+    },
+    {
+      "name": "lockliel_normalize_leader_assignment_lifecycle",
+      "version": "20260925121546",
+      "statements_md5": "f6322ac12d1d6593a24429e41d9ade3d"
+    },
+    {
+      "name": "lockliel_normalize_leader_profile_approval",
+      "version": "20260925121721",
+      "statements_md5": "e983b631a203687e0889aa91229fefcf"
+    },
+    {
+      "name": "lockliel_read_only_tags_consent_history_notifications",
+      "version": "20260925121919",
+      "statements_md5": "ba5f8bb910b842be378d312a98865873"
+    },
+    {
+      "name": "lockliel_scope_founders_reviewer_access",
+      "version": "20260925122007",
+      "statements_md5": "abbb3a281fbc84c4c220408f8fefa55b"
+    },
+    {
+      "name": "lockliel_harden_preaccount_crm_records",
+      "version": "20260925122051",
+      "statements_md5": "8b22dc9e0cbf1f9e0f56c00cc8319e56"
+    },
+    {
+      "name": "lockliel_remove_legacy_connection_card_policy",
+      "version": "20260925122202",
+      "statements_md5": "458e11ebddb5a139252e75de86fb4a02"
+    },
+    {
+      "name": "lockliel_enrollment_and_locale_scoped_private_storage",
+      "version": "20260925122252",
+      "statements_md5": "585cf407e02cff0c8f8c3a21f0a5133f"
+    },
+    {
+      "name": "lockliel_harden_private_storage_reads",
+      "version": "20260925122318",
+      "statements_md5": "af0ce7d4c8796ccb70facdef942ebfa7"
+    },
+    {
+      "name": "lockliel_restore_translated_entitlement_storage_reads",
+      "version": "20260925122438",
+      "statements_md5": "49d5857f860009bfcc0e879380601383"
+    },
+    {
+      "name": "lockliel_harden_resource_and_order_records",
+      "version": "20260925122502",
+      "statements_md5": "5ed21d34e3cf0a9f71892e4dc4672c31"
+    },
+    {
+      "name": "lockliel_scope_lesson_rows_to_enrollment",
+      "version": "20260925122548",
+      "statements_md5": "44fe17d03385319b3d9cbbe7f907bde3"
+    },
+    {
+      "name": "lockliel_limit_member_progress_columns",
+      "version": "20260925122835",
+      "statements_md5": "97a3cf09bb1c4fc390e69a4aa8377d42"
+    },
+    {
+      "name": "lockliel_public_intake_rate_limits_v2",
+      "version": "20260925122850",
+      "statements_md5": "219bcf3457dcb405f593d7a4d701c09e"
+    },
+    {
+      "name": "lockliel_scope_course_rows_to_enrollment",
+      "version": "20260925122945",
+      "statements_md5": "ba6944a492e45855a71b34c7be4fbce7"
+    },
+    {
+      "name": "lockliel_nonrecursive_course_access_scope",
+      "version": "20260925123002",
+      "statements_md5": "43641545e2069a3aa84068ed92d2625e"
+    },
+    {
+      "name": "lockliel_align_content_release_integrity",
+      "version": "20260925123400",
+      "statements_md5": "17c4575e8fdbf9911dff13c8279d9919"
+    },
+    {
+      "name": "lockliel_protect_released_content_dependencies",
+      "version": "20260925123523",
+      "statements_md5": "8552162995f51295c93e59c7d16fee70"
+    },
+    {
+      "name": "lockliel_block_released_storage_replacement",
+      "version": "20260925123556",
+      "statements_md5": "cd1737d605318cd5329a88b9a427af92"
+    },
+    {
+      "name": "lockliel_harden_public_intake_records",
+      "version": "20260925123628",
+      "statements_md5": "85560560c536c5bf10896033201ee926"
+    },
+    {
+      "name": "lockliel_atomic_public_lead_upsert",
+      "version": "20260925123704",
+      "statements_md5": "cdc39c8d136e64010c7a879f4ca700d0"
+    },
+    {
+      "name": "lockliel_authoritative_grip_readiness_rpc",
+      "version": "20260925123754",
+      "statements_md5": "46df6455c92efdeb814bf943ff49e440"
+    },
+    {
+      "name": "lockliel_invoker_grip_readiness",
+      "version": "20260925124013",
+      "statements_md5": "92150b47b3513db528fe9074af21e792"
+    },
+    {
+      "name": "lockliel_make_grip_readiness_security_invoker",
+      "version": "20260925124032",
+      "statements_md5": "e719c5bdefb28f2e438ee0483e05fbb9"
+    },
+    {
+      "name": "lockliel_harden_course_and_lesson_records",
+      "version": "20260925124208",
+      "statements_md5": "23746b0245c155289e89f41cac8cfe7b"
+    },
+    {
+      "name": "lockliel_scope_group_access_to_operational_memberships",
+      "version": "20260925124306",
+      "statements_md5": "2fe66ce88d55112de3c9f9afed481213"
+    },
+    {
+      "name": "lockliel_align_public_grip_readiness_threshold",
+      "version": "20260925124314",
+      "statements_md5": "d337609d186e62c46a11a3e60b69d7d7"
+    },
+    {
+      "name": "lockliel_atomic_group_transition_resolution",
+      "version": "20260925124550",
+      "statements_md5": "9313be9f07b24f842ae97b022275a274"
+    },
+    {
+      "name": "lockliel_atomic_group_assignment",
+      "version": "20260925124731",
+      "statements_md5": "8d10152a14571be7aaf5c3eb47f6b964"
+    },
+    {
+      "name": "lockliel_unique_open_connection_requests",
+      "version": "20260925124859",
+      "statements_md5": "c03f9537adb3231b7ba82ee71cff5312"
+    },
+    {
+      "name": "lockliel_atomic_group_member_assignment",
+      "version": "20260925125053",
+      "statements_md5": "d5903fc873b5cd0c1f3c7511d27ed7a4"
+    },
+    {
+      "name": "lockliel_remove_redundant_group_assignment_rpc",
+      "version": "20260925125130",
+      "statements_md5": "85211c06822d89465af52b1d4a084164"
+    },
+    {
+      "name": "lockliel_sync_group_checkin_followup_tasks",
+      "version": "20260925125135",
+      "statements_md5": "399d9f0e4c5dc98bcd3fd6ca940cc0cc"
+    },
+    {
+      "name": "lockliel_audit_group_checkin_updates",
+      "version": "20260925125731",
+      "statements_md5": "9c5c80044ed90dfab8b0c296a00efcd8"
+    },
+    {
+      "name": "lockliel_harden_founder_orientation_progress",
+      "version": "20260925130031",
+      "statements_md5": "81d6816058913b6fb4b763acd349003e"
+    },
+    {
+      "name": "lockliel_read_only_founder_orientation_catalog",
+      "version": "20260925130305",
+      "statements_md5": "229e929751df4b21c351da6e598bdfe5"
+    },
+    {
+      "name": "lockliel_system_owned_staff_role_grants",
+      "version": "20260925130524",
+      "statements_md5": "4b4603bca75d9b371fac6719f7a832a7"
+    },
+    {
+      "name": "lockliel_system_owned_conversation_membership",
+      "version": "20260925130730",
+      "statements_md5": "0a200fc63ea2949cf1c4d48b4ea65742"
+    },
+    {
+      "name": "lockliel_bound_member_profile_fields",
+      "version": "20260925131048",
+      "statements_md5": "83b8692df04727310782fa10f0eb2efb"
+    },
+    {
+      "name": "lockliel_harden_product_and_share_identity",
+      "version": "20260925131440",
+      "statements_md5": "14782c6a1ad5559e52f2ae02008cf5f2"
+    },
+    {
+      "name": "lockliel_harden_release_control_surface",
+      "version": "20260925131510",
+      "statements_md5": "78b8a061ac4d711ec2723834cd96500f"
+    },
+    {
+      "name": "lockliel_require_founders_review_rationale",
+      "version": "20260925132018",
+      "statements_md5": "5b4bd6388e9e5b45f03a8dbf7631c584"
+    },
+    {
+      "name": "lockliel_bind_referral_links_to_approved_content",
+      "version": "20260925133008",
+      "statements_md5": "7aa62076074c444ff5f215e153f325d5"
+    },
+    {
+      "name": "lockliel_harden_gift_benefit_integrity",
+      "version": "20260925133406",
+      "statements_md5": "6bdd62b9d440f62c2299124cec944252"
+    },
+    {
+      "name": "lockliel_system_owned_orders_and_payment_events",
+      "version": "20260925133825",
+      "statements_md5": "545022be818cadcfe8168650e682a246"
+    },
+    {
+      "name": "lockliel_harden_checkout_session_integrity",
+      "version": "20260925134028",
+      "statements_md5": "cb65b9f282ae124fb9f12a9aa88b39ca"
+    },
+    {
+      "name": "lockliel_harden_partner_commitment_integrity",
+      "version": "20260925134147",
+      "statements_md5": "1ca9f5113b13474c192b0c214c8cc287"
+    },
+    {
+      "name": "lockliel_harden_fulfillment_record_integrity",
+      "version": "20260925134352",
+      "statements_md5": "ab08f826ad211d69b0eec761945918c6"
+    },
+    {
+      "name": "lockliel_harden_privacy_request_lifecycle",
+      "version": "20260925134636",
+      "statements_md5": "cf9a6bfd6b405e7395563d6baeb5f0bf"
+    },
+    {
+      "name": "lockliel_system_owned_profile_cards",
+      "version": "20260925134935",
+      "statements_md5": "02da3ee4dbb54ec33316caf9720c02de"
+    },
+    {
+      "name": "lockliel_read_only_profile_card_tables",
+      "version": "20260925134949",
+      "statements_md5": "285026364af0a1eaa88409ed39198269"
+    },
+    {
+      "name": "lockliel_remove_dormant_delete_privileges",
+      "version": "20260925135309",
+      "statements_md5": "66631d65b4608aae1aa69269624a50b0"
+    },
+    {
+      "name": "lockliel_staff_owned_group_records",
+      "version": "20260925135715",
+      "statements_md5": "3421d05dd8aeb5331ff619ec47429498"
+    },
+    {
+      "name": "lockliel_harden_group_membership_identity",
+      "version": "20260925135825",
+      "statements_md5": "a38271d2d8bf7a622a0854f0efbf2760"
+    },
+    {
+      "name": "lockliel_audit_group_record_changes",
+      "version": "20260925140153",
+      "statements_md5": "a01488e0da5b7a559aa408ccb4cb92cc"
+    },
+    {
+      "name": "lockliel_system_owned_leadership_actors",
+      "version": "20260925140411",
+      "statements_md5": "fd0c35486b7bfdfcda09084c726b489c"
+    },
+    {
+      "name": "lockliel_system_owned_group_checkin_submitter",
+      "version": "20260925140652",
+      "statements_md5": "f24e8ba1449c10b27267f107d8562031"
+    },
+    {
+      "name": "lockliel_system_owned_fulfillment_actor",
+      "version": "20260925140858",
+      "statements_md5": "8656771c36ffcea2a6aa53f6f8e25f3b"
+    },
+    {
+      "name": "lockliel_bound_member_generated_payloads",
+      "version": "20260925141105",
+      "statements_md5": "a498829b611f4a141020b24f1e81aae9"
+    },
+    {
+      "name": "lockliel_bound_gift_and_entitlement_metadata",
+      "version": "20260925141804",
+      "statements_md5": "d9b779a57a81decea1ada5079ee3ef6a"
+    },
+    {
+      "name": "lockliel_validate_gift_benefit_access",
+      "version": "20260925151920",
+      "statements_md5": "48734addc2e3ac9d87f9a1d4cfeff35d"
+    },
+    {
+      "name": "lockliel_audit_benefit_rule_status",
+      "version": "20260925152054",
+      "statements_md5": "8abf7d0d801b8ead4dc1e7105bc051c5"
+    },
+    {
+      "name": "lockliel_minimize_launch_verification_audit",
+      "version": "20260925152155",
+      "statements_md5": "fcc901ab18c51001ef467a973a3b28b5"
+    },
+    {
+      "name": "lockliel_sync_profile_email_from_auth",
+      "version": "20260925152507",
+      "statements_md5": "7d39d50892186e056136dc8439e22c73"
+    },
+    {
+      "name": "lockliel_complete_account_identity_lifecycle",
+      "version": "20260925153043",
+      "statements_md5": "cb8b29a5099fb09beef32765afd86d2a"
+    },
+    {
+      "name": "lockliel_enforce_profile_email_identity",
+      "version": "20260925153612",
+      "statements_md5": "4ed5d61c828ddc4e5d3054624d32f8ab"
+    },
+    {
+      "name": "lockliel_founders_active_host_group_eligibility",
+      "version": "20260925154111",
+      "statements_md5": "c2b228dfa9b313979b013ab67fa743af"
+    },
+    {
+      "name": "lockliel_sanitized_group_host_candidates",
+      "version": "20260925154343",
+      "statements_md5": "3a0d47c11da6051a4ad6e53063963556"
+    },
+    {
+      "name": "lockliel_fail_closed_data_api_grants",
+      "version": "20260925155851",
+      "statements_md5": "420b9bdaec05eacb9b69314498591bbb"
+    },
+    {
+      "name": "lockliel_serialize_group_leadership_eligibility",
+      "version": "20260925160443",
+      "statements_md5": "2197ba59276879b1ea2dd32d5ddf34e1"
+    },
+    {
+      "name": "lockliel_require_launch_verification_evidence",
+      "version": "20260925160735",
+      "statements_md5": "d9d2646d34c379abdaba61f3da03f589"
+    },
+    {
+      "name": "lockliel_serialize_first_super_admin_bootstrap",
+      "version": "20260925161117",
+      "statements_md5": "f48e9d7c3573eb10b650b03689c68520"
+    },
+    {
+      "name": "lockliel_serialize_partner_checkout_readiness",
+      "version": "20260925161334",
+      "statements_md5": "b330bbdc7a74bca3875db819da744833"
+    },
+    {
+      "name": "lockliel_admin_integrity_health_rpc",
+      "version": "20260925173856",
+      "statements_md5": "1839e775465341fb442b31511fc9e307"
+    },
+    {
+      "name": "lockliel_fix_integrity_health_boolean_aggregation",
+      "version": "20260925174244",
+      "statements_md5": "f027061943b079c5fd2c397b80651866"
+    },
+    {
+      "name": "lockliel_preserve_privacy_request_after_account_deletion",
+      "version": "20260925174623",
+      "statements_md5": "57fe834b8dfcff537f93c42747642099"
+    },
+    {
+      "name": "lockliel_require_account_deletion_processing_checks",
+      "version": "20260925174856",
+      "statements_md5": "bbbb94c6b756c3bdb6b0ce1d360cfa13"
+    },
+    {
+      "name": "lockliel_require_active_session_for_staff_access",
+      "version": "20260925175229",
+      "statements_md5": "d19586e8bb69208ab692bc0998d459e4"
+    },
+    {
+      "name": "lockliel_require_https_lesson_external_urls",
+      "version": "20260925213602",
+      "statements_md5": "6c640b25ef56e8c671a8d9498080caec"
+    },
+    {
+      "name": "lockliel_bound_public_rate_limit_history",
+      "version": "20260925214004",
+      "statements_md5": "40ded4375646fd3501ead9d80aebf6ba"
+    },
+    {
+      "name": "lockliel_link_public_records_only_after_email_confirmation",
+      "version": "20260925214457",
+      "statements_md5": "77acb8f8710b3d2de53438da8456b2a2"
+    },
+    {
+      "name": "lockliel_keep_preaccount_consent_separate",
+      "version": "20260925214922",
+      "statements_md5": "bb09251e85422224bc6982b9b049f0ea"
+    },
+    {
+      "name": "lockliel_remove_legacy_email_only_linkers",
+      "version": "20260925215110",
+      "statements_md5": "1c2b2d27ac0336287c41c85ca2b1e7b0"
+    },
+    {
+      "name": "lockliel_dedupe_founder_orientation_completion",
+      "version": "20260926000636",
+      "statements_md5": "900bfe6f66bac17b3869ebebe41e365a"
+    },
+    {
+      "name": "lockliel_idempotent_fulfillment_events",
+      "version": "20260926000830",
+      "statements_md5": "c8bcdaffd1ab5d784f2e4c544c14ea4e"
+    },
+    {
+      "name": "lockliel_unique_partner_subscription_refs",
+      "version": "20260926001005",
+      "statements_md5": "82dcb3caf8eccc5549fe529f9389aae6"
+    },
+    {
+      "name": "lockliel_nonnegative_order_totals",
+      "version": "20260926001148",
+      "statements_md5": "90345479f2a890e75461e0174b4cae2e"
+    },
+    {
+      "name": "lockliel_unique_linked_my_five_member",
+      "version": "20260926001333",
+      "statements_md5": "277dad8d338e637ca37117ed506f69e7"
+    },
+    {
+      "name": "lockliel_bind_referral_destination_to_asset",
+      "version": "20260926001516",
+      "statements_md5": "33157bc35bd6cd351b1af263a6159e2e"
+    },
+    {
+      "name": "lockliel_local_share_asset_destinations",
+      "version": "20260926001548",
+      "statements_md5": "83e983198c99fa21b042d9bb55b43131"
+    },
+    {
+      "name": "lockliel_one_active_founders_application",
+      "version": "20260926001759",
+      "statements_md5": "5bdb7a597b8f35f2e5bb5c6f7139e1d2"
+    },
+    {
+      "name": "lockliel_unique_referenced_lead_sources",
+      "version": "20260926002052",
+      "statements_md5": "a854c85e47fdc4ba87a004ab5b9e59eb"
+    },
+    {
+      "name": "lockliel_valid_benefit_rule_window",
+      "version": "20260926002609",
+      "statements_md5": "7bd68c28418275f6d4b26438393b546f"
+    },
+    {
+      "name": "lockliel_require_meaningful_message_body",
+      "version": "20260926002734",
+      "statements_md5": "39ef45d4388f627ab69e0ea2efb3d1b8"
+    },
+    {
+      "name": "lockliel_require_meaningful_staff_note_body",
+      "version": "20260926002837",
+      "statements_md5": "dcac4423729d36a1a8b3514d7d52ac39"
+    },
+    {
+      "name": "lockliel_atomic_public_intake_workflows",
+      "version": "20260926003840",
+      "statements_md5": "d76c9f1dd233dd3cb6c5651318ec1840"
+    },
+    {
+      "name": "lockliel_financial_temporal_integrity",
+      "version": "20260926005116",
+      "statements_md5": "ee55126f3e05f36c7edc5433a41b1cf2"
+    },
+    {
+      "name": "lockliel_validate_financial_cross_links",
+      "version": "20260926005556",
+      "statements_md5": "5ff303cdc83605b7b1c144b00464ce23"
+    },
+    {
+      "name": "lockliel_bound_media_progress_intervals",
+      "version": "20260926005808",
+      "statements_md5": "445db4a6b7aafdf1d6c60648db766bbd"
+    },
+    {
+      "name": "lockliel_expand_integrity_health_checks",
+      "version": "20260926010140",
+      "statements_md5": "1d7840b85227beaa9c284a6873dc7d59"
+    },
+    {
+      "name": "lockliel_allow_manual_gift_event_timestamps",
+      "version": "20260926010432",
+      "statements_md5": "7458e1d29dd22593a453c067bea630e0"
+    },
+    {
+      "name": "lockliel_validate_media_progress_interval_shape",
+      "version": "20260926010707",
+      "statements_md5": "fdf8e09f2d12d1841d01981d04e14662"
+    },
+    {
+      "name": "lockliel_validate_shipping_fulfillment_relationships",
+      "version": "20260926010745",
+      "statements_md5": "927a065e19dff976392cfd43f2fe3ef8"
+    },
+    {
+      "name": "lockliel_require_order_items_for_fulfillment",
+      "version": "20260926010924",
+      "statements_md5": "46337f92e03166ac0fa46fb6a3b60931"
+    },
+    {
+      "name": "lockliel_harden_order_fulfillment_financial_integrity",
+      "version": "20260926011312",
+      "statements_md5": "212efe6f175500c343bb02d8740d7a94"
+    },
+    {
+      "name": "lockliel_freeze_paid_order_items",
+      "version": "20260926011511",
+      "statements_md5": "8e70a10f23be7282b56d505a3b1144f2"
+    },
+    {
+      "name": "lockliel_harden_relationship_graph_integrity",
+      "version": "20260926012203",
+      "statements_md5": "87185b92f786d3b39977230cb8055863"
+    },
+    {
+      "name": "lockliel_enforce_contact_relationship_lifecycle",
+      "version": "20260926012423",
+      "statements_md5": "e556581ab189f4fc0c851a224c8eb92c"
+    },
+    {
+      "name": "lockliel_harden_group_record_lifecycle",
+      "version": "20260926012755",
+      "statements_md5": "31cabaaf33e6964293bd5d9ecd01f3f1"
+    },
+    {
+      "name": "lockliel_harden_group_membership_history",
+      "version": "20260926012757",
+      "statements_md5": "d93e4f994ad745374727bd571050f0b7"
+    },
+    {
+      "name": "lockliel_idempotent_referral_progress_attribution",
+      "version": "20260926013137",
+      "statements_md5": "487c45fe1d37cd69ab45fec339b131bb"
+    },
+    {
+      "name": "lockliel_course_scoped_referral_progress_attribution",
+      "version": "20260926013636",
+      "statements_md5": "cc372b002dc784235d76e91fc8c40598"
+    },
+    {
+      "name": "lockliel_bound_remaining_content_metadata",
+      "version": "20260926013812",
+      "statements_md5": "83e4efbe88bac2e8d937fc552c667af9"
+    },
+    {
+      "name": "lockliel_harden_course_enrollment_and_referral_validation",
+      "version": "20260926014000",
+      "statements_md5": "6f2c512cd540b77a4f63f5b4f1594c67"
+    },
+    {
+      "name": "lockliel_verify_protected_document_mime",
+      "version": "20260926014252",
+      "statements_md5": "1e4085b504f85939875665e5bf7c460a"
+    },
+    {
+      "name": "lockliel_dedupe_unreferenced_lead_attribution",
+      "version": "20260926014429",
+      "statements_md5": "68ab9f613a3e97f4107bef8aab12d323"
+    },
+    {
+      "name": "lockliel_close_private_function_execute_surface",
+      "version": "20260926014457",
+      "statements_md5": "38f0bb0806bfea974e505d9f4252d215"
+    },
+    {
+      "name": "lockliel_expand_security_integrity_health",
+      "version": "20260926023758",
+      "statements_md5": "975644d50db02846565a0ecded843d5b"
+    },
+    {
+      "name": "lockliel_harden_conversation_membership_history",
+      "version": "20260926024249",
+      "statements_md5": "82e830d71c9eb4ea2d8e8b09a7375ff1"
+    },
+    {
+      "name": "lockliel_harden_member_experience_payloads",
+      "version": "20260926030123",
+      "statements_md5": "05b6c62c7786a6209c98ecf4500730b8"
+    },
+    {
+      "name": "lockliel_harden_system_event_payloads",
+      "version": "20260926030304",
+      "statements_md5": "cf25ab12cc449a9b088b2b4fedae701b"
+    },
+    {
+      "name": "lockliel_derive_media_progress_from_interval_evidence",
+      "version": "20260926030813",
+      "statements_md5": "b426e407e6477603c2a715937dcbd6a0"
+    },
+    {
+      "name": "lockliel_track_verified_media_durations",
+      "version": "20260926031037",
+      "statements_md5": "23f756689491af42dfb0071b69d32794"
+    },
+    {
+      "name": "lockliel_preserve_media_interval_evidence",
+      "version": "20260926031528",
+      "statements_md5": "19da342e4a0c083a2ba654dd1f9477ea"
+    },
+    {
+      "name": "lockliel_require_pdf_for_digital_book_release",
+      "version": "20260926031559",
+      "statements_md5": "70ea21d0a4eb93abad86d31e5d35eb3d"
+    },
+    {
+      "name": "lockliel_monitor_verified_media_evidence",
+      "version": "20260926031611",
+      "statements_md5": "83027fc8b069d9640bf118296aae920d"
+    },
+    {
+      "name": "lockliel_preserve_historical_actor_records",
+      "version": "20260926032021",
+      "statements_md5": "417878a370cda74e889c66464edab066"
+    },
+    {
+      "name": "lockliel_enforce_translation_family_identity",
+      "version": "20260926032137",
+      "statements_md5": "de4073302367d4e012a4204e47998573"
+    },
+    {
+      "name": "lockliel_harden_lesson_translation_family_resolution",
+      "version": "20260926032854",
+      "statements_md5": "f45f3f66fbab572558172e226a12f615"
+    },
+    {
+      "name": "lockliel_account_deletion_preflight_and_guard",
+      "version": "20260926032933",
+      "statements_md5": "a347b805d1873782b1be61cf78813ec2"
+    },
+    {
+      "name": "lockliel_account_deletion_execution_support",
+      "version": "20260926033358",
+      "statements_md5": "9ed0d559cd31d96d66a59360fa09ae8e"
+    },
+    {
+      "name": "lockliel_verified_deletion_execution",
+      "version": "20260926035543",
+      "statements_md5": "45f1f62143a569631498b22642a0e802"
+    },
+    {
+      "name": "lockliel_private_deletion_target_policy",
+      "version": "20260926035646",
+      "statements_md5": "583bdd182369b937d6a910d2a679b6ec"
+    },
+    {
+      "name": "lockliel_admin_deletion_readiness_and_recovery",
+      "version": "20260926040641",
+      "statements_md5": "9ddb25d6414e26629e2422533585e7af"
+    },
+    {
+      "name": "lockliel_private_deletion_admin_implementations",
+      "version": "20260926040919",
+      "statements_md5": "c651ee7a2a59e420447342f5166d9965"
+    },
+    {
+      "name": "lockliel_integrity_staff_execution",
+      "version": "20260926041931",
+      "statements_md5": "8aca7381781750bf77dc3fa89dd7f9fb"
+    },
+    {
+      "name": "lockliel_staff_deletion_preflight_access",
+      "version": "20260926051230",
+      "statements_md5": "7dd2af1e6ed78f92147fa232e0b18bef"
+    },
+    {
+      "name": "lockliel_correct_profile_email_pattern",
+      "version": "20260926212002",
+      "statements_md5": "7bb32de68e66a9445529d6469545f092"
+    }
+  ],
+  "tables": [
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "course_enrollments",
+      "schema": "public"
+    },
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "courses",
+      "schema": "public"
+    },
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "lesson_assets",
+      "schema": "public"
+    },
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "lesson_progress",
+      "schema": "public"
+    },
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "lessons",
+      "schema": "public"
+    },
+    {
+      "acl": [
+        "authenticated=r/postgres",
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "rls": true,
+      "name": "media_progress",
+      "schema": "public"
+    }
+  ],
+  "columns": [
+    {
+      "type": "uuid",
+      "table": "courses",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "slug",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "title",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "description",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "status",
+      "default": "'draft'::text",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "courses",
+      "column": "created_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "language_code",
+      "default": "'en'::text",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "courses",
+      "column": "translation_key",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_assets",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_assets",
+      "column": "lesson_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "asset_type",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "title",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "provider",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "provider_ref",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "storage_path",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "external_url",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "numeric",
+      "table": "lesson_assets",
+      "column": "duration_seconds",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "integer",
+      "table": "lesson_assets",
+      "column": "sort_order",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_assets",
+      "column": "status",
+      "default": "'draft'::text",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_assets",
+      "column": "created_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_assets",
+      "column": "updated_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_assets",
+      "column": "duration_verified_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_progress",
+      "column": "profile_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "lesson_progress",
+      "column": "lesson_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_progress",
+      "column": "status",
+      "default": "'not_started'::text",
+      "notnull": true
+    },
+    {
+      "type": "numeric",
+      "table": "lesson_progress",
+      "column": "last_position_seconds",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "numeric",
+      "table": "lesson_progress",
+      "column": "watched_seconds",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lesson_progress",
+      "column": "worksheet_status",
+      "default": "'not_started'::text",
+      "notnull": true
+    },
+    {
+      "type": "jsonb",
+      "table": "lesson_progress",
+      "column": "worksheet_answers",
+      "default": "'{}'::jsonb",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_progress",
+      "column": "started_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_progress",
+      "column": "last_activity_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lesson_progress",
+      "column": "completed_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "uuid",
+      "table": "lessons",
+      "column": "id",
+      "default": "gen_random_uuid()",
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "lessons",
+      "column": "course_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "integer",
+      "table": "lessons",
+      "column": "position",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lessons",
+      "column": "slug",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lessons",
+      "column": "title",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lessons",
+      "column": "video_provider",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "text",
+      "table": "lessons",
+      "column": "video_ref",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "jsonb",
+      "table": "lessons",
+      "column": "worksheet_schema",
+      "default": "'{}'::jsonb",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "lessons",
+      "column": "created_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "text",
+      "table": "lessons",
+      "column": "translation_key",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "media_progress",
+      "column": "profile_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "uuid",
+      "table": "media_progress",
+      "column": "asset_id",
+      "default": null,
+      "notnull": true
+    },
+    {
+      "type": "numeric",
+      "table": "media_progress",
+      "column": "last_position_seconds",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "numeric",
+      "table": "media_progress",
+      "column": "played_seconds",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "numeric",
+      "table": "media_progress",
+      "column": "percent_watched",
+      "default": "0",
+      "notnull": true
+    },
+    {
+      "type": "jsonb",
+      "table": "media_progress",
+      "column": "covered_intervals",
+      "default": "'[]'::jsonb",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "media_progress",
+      "column": "first_started_at",
+      "default": null,
+      "notnull": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "media_progress",
+      "column": "last_activity_at",
+      "default": "now()",
+      "notnull": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "media_progress",
+      "column": "completed_at",
+      "default": null,
+      "notnull": false
+    }
+  ],
+  "policies": [
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "course_enrollments",
+      "permissive": "PERMISSIVE",
+      "policyname": "enrollments_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'published'::text) AND app_private.can_read_course(id, translation_key)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "courses",
+      "permissive": "PERMISSIVE",
+      "policyname": "courses_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "courses",
+      "permissive": "PERMISSIVE",
+      "policyname": "courses_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR ((status = 'active'::text) AND (EXISTS ( SELECT 1\n   FROM (((lessons content_lesson\n     JOIN courses content_course ON ((content_course.id = content_lesson.course_id)))\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_lesson.id = lesson_assets.lesson_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key))))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_staff_insert",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_assets",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_assets_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_self_insert",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lesson_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "progress_self_update",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM (lessons l\n     JOIN course_enrollments ce ON ((ce.course_id = l.course_id)))\n  WHERE ((l.id = lesson_progress.lesson_id) AND (ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text]))))))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "(app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text]) OR (EXISTS ( SELECT 1\n   FROM ((courses content_course\n     JOIN course_enrollments ce ON (((ce.profile_id = ( SELECT auth.uid() AS uid)) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((content_course.id = lessons.course_id) AND (content_course.status = 'published'::text) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_member_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_staff_insert",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "lessons",
+      "permissive": "PERMISSIVE",
+      "policyname": "lessons_staff_update",
+      "schemaname": "public",
+      "with_check": "app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text, 'content_admin'::text])"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((profile_id = ( SELECT auth.uid() AS uid)) OR app_private.has_staff_role(ARRAY['super_admin'::text, 'admin'::text, 'discipleship_admin'::text]))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_combined_read",
+      "schemaname": "public",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_self_insert",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "(profile_id = ( SELECT auth.uid() AS uid))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "media_progress",
+      "permissive": "PERMISSIVE",
+      "policyname": "media_progress_self_update",
+      "schemaname": "public",
+      "with_check": "((profile_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1\n   FROM ((((lesson_assets a\n     JOIN lessons l ON ((l.id = a.lesson_id)))\n     JOIN courses content_course ON ((content_course.id = l.course_id)))\n     JOIN course_enrollments ce ON ((ce.profile_id = ( SELECT auth.uid() AS uid))))\n     JOIN courses enrolled_course ON ((enrolled_course.id = ce.course_id)))\n  WHERE ((a.id = media_progress.asset_id) AND (a.status = 'active'::text) AND (ce.status = ANY (ARRAY['active'::text, 'completed'::text])) AND ((content_course.id = enrolled_course.id) OR ((content_course.translation_key IS NOT NULL) AND (content_course.translation_key = enrolled_course.translation_key)))))))"
+    }
+  ],
+  "triggers": [
+    {
+      "name": "normalize_course_enrollment_lifecycle_trigger",
+      "table": "course_enrollments",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_course_enrollment_lifecycle_trigger BEFORE INSERT OR UPDATE ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.normalize_course_enrollment_lifecycle()"
+    },
+    {
+      "name": "notify_course_enrollment_trigger",
+      "table": "course_enrollments",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER notify_course_enrollment_trigger AFTER INSERT ON public.course_enrollments FOR EACH ROW EXECUTE FUNCTION app_private.notify_course_enrollment()"
+    },
+    {
+      "name": "audit_course_status_change_trigger",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_course_status_change_trigger AFTER UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.audit_course_status_change()"
+    },
+    {
+      "name": "default_course_translation_key_trigger",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER default_course_translation_key_trigger BEFORE INSERT OR UPDATE OF slug, translation_key ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "name": "protect_course_identity_trigger",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER protect_course_identity_trigger BEFORE UPDATE ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.protect_course_identity()"
+    },
+    {
+      "name": "validate_course_publish_trigger",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER validate_course_publish_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_publish()"
+    },
+    {
+      "name": "validate_course_release_trigger",
+      "table": "courses",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER validate_course_release_trigger BEFORE UPDATE OF status ON public.courses FOR EACH ROW EXECUTE FUNCTION app_private.validate_course_release()"
+    },
+    {
+      "name": "audit_lesson_asset_duration_verification_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER audit_lesson_asset_duration_verification_trigger AFTER INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.audit_lesson_asset_duration_verification()"
+    },
+    {
+      "name": "normalize_lesson_asset_duration_verification_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_lesson_asset_duration_verification_trigger BEFORE INSERT OR UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset_duration_verification()"
+    },
+    {
+      "name": "normalize_lesson_asset_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_lesson_asset_trigger BEFORE INSERT OR UPDATE ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_asset()"
+    },
+    {
+      "name": "recheck_grip_course_release_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER recheck_grip_course_release_trigger AFTER INSERT OR DELETE OR UPDATE OF status, storage_path, asset_type ON public.lesson_assets FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_release()"
+    },
+    {
+      "name": "rederive_media_progress_after_duration_trigger",
+      "table": "lesson_assets",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER rederive_media_progress_after_duration_trigger AFTER UPDATE OF duration_seconds ON public.lesson_assets FOR EACH ROW WHEN ((new.duration_seconds IS NOT NULL)) EXECUTE FUNCTION app_private.rederive_media_progress_after_duration()"
+    },
+    {
+      "name": "normalize_lesson_progress_state_trigger",
+      "table": "lesson_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_lesson_progress_state_trigger BEFORE INSERT OR UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_lesson_progress_state()"
+    },
+    {
+      "name": "on_lesson_progress_referral_tracking",
+      "table": "lesson_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER on_lesson_progress_referral_tracking AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.track_referred_discipleship_progress()"
+    },
+    {
+      "name": "protect_lesson_progress_identity_trigger",
+      "table": "lesson_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER protect_lesson_progress_identity_trigger BEFORE UPDATE ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+    },
+    {
+      "name": "sync_journey_from_lesson_progress_trigger",
+      "table": "lesson_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER sync_journey_from_lesson_progress_trigger AFTER INSERT OR UPDATE OF status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.sync_journey_from_lesson_progress()"
+    },
+    {
+      "name": "validate_lesson_completion_trigger",
+      "table": "lesson_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER validate_lesson_completion_trigger BEFORE INSERT OR UPDATE OF status, worksheet_status ON public.lesson_progress FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_completion()"
+    },
+    {
+      "name": "default_lesson_translation_key_trigger",
+      "table": "lessons",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER default_lesson_translation_key_trigger BEFORE INSERT OR UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.default_translation_key_from_slug()"
+    },
+    {
+      "name": "protect_lesson_identity_trigger",
+      "table": "lessons",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER protect_lesson_identity_trigger BEFORE UPDATE ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.protect_lesson_identity()"
+    },
+    {
+      "name": "recheck_grip_course_after_lesson_change_trigger",
+      "table": "lessons",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER recheck_grip_course_after_lesson_change_trigger AFTER INSERT OR DELETE OR UPDATE OF course_id, \"position\", worksheet_schema, title ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.recheck_grip_course_after_lesson_change()"
+    },
+    {
+      "name": "validate_lesson_translation_family_trigger",
+      "table": "lessons",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER validate_lesson_translation_family_trigger BEFORE INSERT OR UPDATE OF translation_key, course_id, \"position\" ON public.lessons FOR EACH ROW EXECUTE FUNCTION app_private.validate_lesson_translation_family()"
+    },
+    {
+      "name": "normalize_media_progress_state_trigger",
+      "table": "media_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER normalize_media_progress_state_trigger BEFORE INSERT OR UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.normalize_media_progress_state()"
+    },
+    {
+      "name": "preserve_media_start_time_trigger",
+      "table": "media_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER preserve_media_start_time_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.preserve_media_start_time()"
+    },
+    {
+      "name": "protect_media_progress_identity_trigger",
+      "table": "media_progress",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER protect_media_progress_identity_trigger BEFORE UPDATE ON public.media_progress FOR EACH ROW EXECUTE FUNCTION app_private.protect_progress_identity()"
+    }
+  ],
+  "functions": [
+    {
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "args": "",
+      "name": "normalize_lesson_asset_duration_verification",
+      "owner": "postgres",
+      "schema": "app_private",
+      "definition": "698e787d2b36dc760a070892e045acea"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "args": "",
+      "name": "validate_course_release",
+      "owner": "postgres",
+      "schema": "app_private",
+      "definition": "06afaccc682e48268f68c1fd125a6399"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres"
+      ],
+      "args": "",
+      "name": "validate_lesson_completion",
+      "owner": "postgres",
+      "schema": "app_private",
+      "definition": "c0b54f97b3cb7ccaf2d089e4f70fce9b"
+    }
+  ],
+  "constraints": [
+    {
+      "name": "courses_description_length",
+      "table": "courses",
+      "valid": true,
+      "definition": "CHECK (((description IS NULL) OR (char_length(description) <= 10000)))"
+    },
+    {
+      "name": "courses_language_code_length",
+      "table": "courses",
+      "valid": true,
+      "definition": "CHECK (((char_length(language_code) >= 2) AND (char_length(language_code) <= 35)))"
+    },
+    {
+      "name": "courses_pkey",
+      "table": "courses",
+      "valid": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "courses_slug_key",
+      "table": "courses",
+      "valid": true,
+      "definition": "UNIQUE (slug)"
+    },
+    {
+      "name": "courses_status_check",
+      "table": "courses",
+      "valid": true,
+      "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'published'::text, 'archived'::text])))"
+    },
+    {
+      "name": "courses_title_length",
+      "table": "courses",
+      "valid": true,
+      "definition": "CHECK (((char_length(TRIM(BOTH FROM title)) >= 1) AND (char_length(TRIM(BOTH FROM title)) <= 300)))"
+    },
+    {
+      "name": "courses_translation_language_unique",
+      "table": "courses",
+      "valid": true,
+      "definition": "UNIQUE (translation_key, language_code)"
+    },
+    {
+      "name": "lesson_assets_asset_type_check",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK ((asset_type = ANY (ARRAY['video'::text, 'audio'::text, 'pdf'::text, 'worksheet'::text, 'external_link'::text])))"
+    },
+    {
+      "name": "lesson_assets_duration_nonnegative",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((duration_seconds IS NULL) OR (duration_seconds >= (0)::numeric)))"
+    },
+    {
+      "name": "lesson_assets_duration_verification_consistency",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK ((((duration_seconds IS NULL) AND (duration_verified_at IS NULL)) OR ((duration_seconds IS NOT NULL) AND (duration_seconds > (0)::numeric) AND (duration_verified_at IS NOT NULL))))"
+    },
+    {
+      "name": "lesson_assets_external_url_https",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((external_url IS NULL) OR (external_url ~* '^https://[^[:space:]]+$'::text)))"
+    },
+    {
+      "name": "lesson_assets_external_url_length",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((external_url IS NULL) OR (char_length(external_url) <= 2000)))"
+    },
+    {
+      "name": "lesson_assets_lesson_id_fkey",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "lesson_assets_pkey",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "lesson_assets_provider_length",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((provider IS NULL) OR (char_length(provider) <= 80)))"
+    },
+    {
+      "name": "lesson_assets_provider_ref_length",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((provider_ref IS NULL) OR (char_length(provider_ref) <= 500)))"
+    },
+    {
+      "name": "lesson_assets_sort_order_nonnegative",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK ((sort_order >= 0))"
+    },
+    {
+      "name": "lesson_assets_status_check",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK ((status = ANY (ARRAY['draft'::text, 'active'::text, 'archived'::text])))"
+    },
+    {
+      "name": "lesson_assets_storage_path_length",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((storage_path IS NULL) OR (char_length(storage_path) <= 1000)))"
+    },
+    {
+      "name": "lesson_assets_title_length",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((title IS NULL) OR (char_length(title) <= 300)))"
+    },
+    {
+      "name": "lesson_assets_video_duration_positive",
+      "table": "lesson_assets",
+      "valid": true,
+      "definition": "CHECK (((asset_type <> 'video'::text) OR (duration_seconds IS NULL) OR (duration_seconds > (0)::numeric)))"
+    },
+    {
+      "name": "lesson_progress_last_position_nonnegative",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((last_position_seconds >= (0)::numeric))"
+    },
+    {
+      "name": "lesson_progress_lesson_id_fkey",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "lesson_progress_pkey",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "PRIMARY KEY (profile_id, lesson_id)"
+    },
+    {
+      "name": "lesson_progress_profile_id_fkey",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "lesson_progress_status_check",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((status = ANY (ARRAY['not_started'::text, 'in_progress'::text, 'completed'::text])))"
+    },
+    {
+      "name": "lesson_progress_watched_seconds_nonnegative",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((watched_seconds >= (0)::numeric))"
+    },
+    {
+      "name": "lesson_progress_worksheet_answers_object",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((jsonb_typeof(worksheet_answers) = 'object'::text))"
+    },
+    {
+      "name": "lesson_progress_worksheet_answers_size",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((pg_column_size(worksheet_answers) <= 65536))"
+    },
+    {
+      "name": "lesson_progress_worksheet_status_check",
+      "table": "lesson_progress",
+      "valid": true,
+      "definition": "CHECK ((worksheet_status = ANY (ARRAY['not_started'::text, 'in_progress'::text, 'completed'::text, 'not_required'::text])))"
+    },
+    {
+      "name": "lessons_course_id_fkey",
+      "table": "lessons",
+      "valid": true,
+      "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "lessons_course_id_position_key",
+      "table": "lessons",
+      "valid": true,
+      "definition": "UNIQUE (course_id, \"position\")"
+    },
+    {
+      "name": "lessons_course_id_slug_key",
+      "table": "lessons",
+      "valid": true,
+      "definition": "UNIQUE (course_id, slug)"
+    },
+    {
+      "name": "lessons_course_translation_key_unique",
+      "table": "lessons",
+      "valid": true,
+      "definition": "UNIQUE (course_id, translation_key)"
+    },
+    {
+      "name": "lessons_pkey",
+      "table": "lessons",
+      "valid": true,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "lessons_position_positive",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK ((\"position\" >= 1))"
+    },
+    {
+      "name": "lessons_slug_length",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((char_length(slug) >= 1) AND (char_length(slug) <= 200)))"
+    },
+    {
+      "name": "lessons_title_length",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((char_length(TRIM(BOTH FROM title)) >= 1) AND (char_length(TRIM(BOTH FROM title)) <= 300)))"
+    },
+    {
+      "name": "lessons_translation_key_length",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((char_length(translation_key) >= 1) AND (char_length(translation_key) <= 200)))"
+    },
+    {
+      "name": "lessons_video_provider_length",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((video_provider IS NULL) OR (char_length(video_provider) <= 80)))"
+    },
+    {
+      "name": "lessons_video_ref_length",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((video_ref IS NULL) OR (char_length(video_ref) <= 500)))"
+    },
+    {
+      "name": "lessons_worksheet_questions_array",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((NOT (worksheet_schema ? 'questions'::text)) OR (jsonb_typeof((worksheet_schema -> 'questions'::text)) = 'array'::text)))"
+    },
+    {
+      "name": "lessons_worksheet_questions_count",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK (((NOT (worksheet_schema ? 'questions'::text)) OR (jsonb_array_length((worksheet_schema -> 'questions'::text)) <= 100)))"
+    },
+    {
+      "name": "lessons_worksheet_schema_object",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK ((jsonb_typeof(worksheet_schema) = 'object'::text))"
+    },
+    {
+      "name": "lessons_worksheet_schema_size",
+      "table": "lessons",
+      "valid": true,
+      "definition": "CHECK ((pg_column_size(worksheet_schema) <= 131072))"
+    },
+    {
+      "name": "media_progress_asset_id_fkey",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "FOREIGN KEY (asset_id) REFERENCES lesson_assets(id) ON DELETE CASCADE"
+    },
+    {
+      "name": "media_progress_covered_intervals_array",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK ((jsonb_typeof(covered_intervals) = 'array'::text))"
+    },
+    {
+      "name": "media_progress_covered_intervals_count",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK (((jsonb_typeof(covered_intervals) = 'array'::text) AND (jsonb_array_length(covered_intervals) <= 250)))"
+    },
+    {
+      "name": "media_progress_covered_intervals_shape",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK ((NOT jsonb_path_exists(covered_intervals, 'strict $[*]?(((((@.type() != \"array\" || @.size() != 2) || @[0].type() != \"number\") || @[1].type() != \"number\") || @[0] < 0) || @[1] <= @[0])'::jsonpath)))"
+    },
+    {
+      "name": "media_progress_covered_intervals_size",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK ((pg_column_size(covered_intervals) <= 32768))"
+    },
+    {
+      "name": "media_progress_last_position_nonnegative",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK ((last_position_seconds >= (0)::numeric))"
+    },
+    {
+      "name": "media_progress_percent_watched_check",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK (((percent_watched >= (0)::numeric) AND (percent_watched <= (100)::numeric)))"
+    },
+    {
+      "name": "media_progress_pkey",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "PRIMARY KEY (profile_id, asset_id)"
+    },
+    {
+      "name": "media_progress_played_seconds_nonnegative",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "CHECK ((played_seconds >= (0)::numeric))"
+    },
+    {
+      "name": "media_progress_profile_id_fkey",
+      "table": "media_progress",
+      "valid": true,
+      "definition": "FOREIGN KEY (profile_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    }
+  ],
+  "column_grants": [
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "description",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "description",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "language_code",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "language_code",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "courses",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "asset_type",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "duration_verified_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "external_url",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "provider_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "sort_order",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "storage_path",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_assets",
+      "column_name": "updated_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "completed_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_activity_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "lesson_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "started_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "watched_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_answers",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lesson_progress",
+      "column_name": "worksheet_status",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "course_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "course_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "created_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "position",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "slug",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "title",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "translation_key",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_provider",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "video_ref",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "lessons",
+      "column_name": "worksheet_schema",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "asset_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "asset_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "completed_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "covered_intervals",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "first_started_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_activity_at",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "last_position_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "percent_watched",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "played_seconds",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "authenticated",
+      "grantor": "postgres",
+      "table_name": "media_progress",
+      "column_name": "profile_id",
+      "is_grantable": "NO",
+      "table_schema": "public",
+      "privilege_type": "SELECT"
+    }
+  ],
+  "table_defaults": [
+    {
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "owner": "postgres",
+      "schema": "public"
+    }
+  ],
+  "global_table_defaults": []
+}

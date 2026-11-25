@@ -1,0 +1,20 @@
+[
+  {
+    "name": "old save RPC",
+    "status": 426,
+    "code": "PT426",
+    "pass": true
+  },
+  {
+    "name": "old media RPC",
+    "status": 426,
+    "code": "PT426",
+    "pass": true
+  },
+  {
+    "name": "old direct progress",
+    "status": 426,
+    "code": "PT426",
+    "pass": true
+  }
+]

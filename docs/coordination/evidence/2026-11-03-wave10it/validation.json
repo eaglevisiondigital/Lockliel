@@ -1,0 +1,83 @@
+{
+  "source": "4560d7b87c6815cf48888bf4976c13aa61cd2fa4",
+  "fullJavaScriptPassed": 2729,
+  "fullFailed": 0,
+  "fullSkipped": 0,
+  "newTestSubset": 420,
+  "subsetBreakdown": {
+    "projectProjection": 61,
+    "creationEvidence": 87,
+    "fullAuthConfigurationProjection": 272
+  },
+  "checks": [
+    {
+      "check": "fixture-lint",
+      "exitCode": 0,
+      "seconds": 1.82,
+      "log": "/private/tmp/lockliel-wave10it-fixture-lint.log",
+      "logSha256": "083c1a0cc4444dff4b57beada634509e5432e195fdac47ed8ec16b95539fb14d"
+    },
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "seconds": 15.696,
+      "log": "/private/tmp/lockliel-wave10it-unit.log",
+      "logSha256": "effdebfd3da673ea9be1fb9b13930ced75185b1af7c29b62ab73c0493e841a6d"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "seconds": 2.913,
+      "log": "/private/tmp/lockliel-wave10it-lint-configured.log",
+      "logSha256": "394075f85043c774058f746624a2607122d5d7767cf2d715b406ea8cfb4b0eb4"
+    },
+    {
+      "check": "netlify",
+      "exitCode": 0,
+      "seconds": 5.49,
+      "log": "/private/tmp/lockliel-wave10it-netlify.log",
+      "logSha256": "6e94fc1d31bdac6142f403bd347eda2ffd4b4cf0f86964defd7f0f0bd1e1b23b"
+    },
+    {
+      "check": "type",
+      "exitCode": 0,
+      "seconds": 2.206,
+      "log": "/private/tmp/lockliel-wave10it-type.log",
+      "logSha256": "151738782d8416b0f4bdb21216e6340022184ed49b30321f7aed0bbac40fae15"
+    },
+    {
+      "check": "build",
+      "exitCode": 0,
+      "seconds": 9.717,
+      "log": "/private/tmp/lockliel-wave10it-build.log",
+      "logSha256": "0da567ae84121793fd0ab4234e38da14f9e1f953e653cf848846bafc1d99bd9b"
+    },
+    {
+      "check": "offline-package",
+      "exitCode": 0,
+      "seconds": 0.133,
+      "log": "/private/tmp/lockliel-wave10it-offline-package.log",
+      "logSha256": "8b32680f7f0c97eb20dc667bd174ab6a56ffbaeb3ad49e28edee82fec60e03c6"
+    },
+    {
+      "check": "offline-operator",
+      "exitCode": 0,
+      "seconds": 0.078,
+      "log": "/private/tmp/lockliel-wave10it-offline-operator.log",
+      "logSha256": "00637b12ad7d11439abac6a0f22924cb8d8720ff32bccaf502a2a75af0b74fa2"
+    }
+  ],
+  "parallelUi": {
+    "commit": "1a500da6f996dd15c3fd87165f8147b58fc8e271",
+    "focusedPassed": 227,
+    "newTestsIncluded": 3,
+    "type": "PASS",
+    "lint": "PASS",
+    "logSha256": "e739072ad9da28e82880b039e0ff26985dc3c1f6c0558500572963a45c31ef18"
+  },
+  "sqlRun": false,
+  "migrationReplayRun": false,
+  "liveProviderCalls": 0,
+  "credentialValuesUsed": false,
+  "hostedAcceptance": false
+}

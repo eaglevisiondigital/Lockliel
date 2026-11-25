@@ -1,0 +1,27 @@
+{
+  "deploy": {
+    "id": "6abd3507530787bcad461764",
+    "state": "ready",
+    "context": "branch-deploy",
+    "created_at": "2026-09-30T16:12:55.312Z",
+    "title": "Isolated course cutover candidate d604a97",
+    "error_message": null,
+    "deploy_ssl_url": "https://acceptance--lockliel-course-acceptance-jxtgtfff.netlify.app"
+  },
+  "source": "d604a973cea0f524d5565caeec1db139b8c8c5df",
+  "ledger": 278,
+  "oldAppWrite": 426,
+  "oldDirectRPC": 426,
+  "freshRead": 200,
+  "lessons": 13,
+  "closedRead": 503,
+  "closedNewWrite": 503,
+  "closedOldWrite": 503,
+  "unrelatedProfile": 200,
+  "unresolvedCourseTransactions": 0,
+  "candidatePausedRevision": 6,
+  "candidatePausedQuestion6": null,
+  "manualPolicy": "APPROVED",
+  "fullHosted274Transition": "NOT VERIFIED: second hosted branch required",
+  "productionLedger": 274
+}

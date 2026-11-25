@@ -1,0 +1,11 @@
+{
+  "source": "232f2e96790b0a70b4511434a0197c2cb64e8505",
+  "review": "ba1838cd8147c86bfb09581ac6d6ab0606b003fb",
+  "feature": "5cf71bbee2249d516c22163e3dcee7e93416689e",
+  "featureReview": "c8da5c57e9a7e0c4830656bd4b42ce3ee9922df6",
+  "derivedSealSha256": "5c7f71aa7cf1ba6c44a51a521fea8ea9b5482dd85bcab38ea735fde3734220ba",
+  "launcherSha256": "1b443606f001ddaf22a5711c8a5574538dde9cdea2e5e1c2f3a5ee31b94a1d67",
+  "offlineTests": 113,
+  "independentAssertions": 25,
+  "fixtureCreated": false
+}

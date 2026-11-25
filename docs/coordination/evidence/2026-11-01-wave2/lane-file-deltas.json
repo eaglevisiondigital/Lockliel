@@ -1,0 +1,284 @@
+{
+  "date": "2026-11-01",
+  "phase": "Wave2",
+  "commits_created": false,
+  "workstreams": [
+    {
+      "package": "W1",
+      "owner": "/root coordinator",
+      "branch": "codex/lane1-account-integrity",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane1-account-integrity/Lockliel",
+      "base_and_head": "d71d079126f48e49f8d3df591373c0381b9f91e1",
+      "status": "completed, uncommitted and unstaged",
+      "files": [
+        {
+          "path": "docs/lane1-account-integrity/WAVE2_RESULT.md",
+          "sha256": "7c4697490b57a7af159abc49520d3437b94df11a2a9cefad14c8a9de90941c87",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane1-account-integrity/aggregate-followup.json",
+          "sha256": "47fc0ec8f8958951669fb5a88bb15e40a732368e7164e5580c1095c42a78bb05",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane1-account-integrity/phase2-result.md",
+          "sha256": "1b08a299e9faf015d96c7edf68ac352569c7f99429f02e10aaeb3922885aa4cc",
+          "delta_from_wave1": "unchanged"
+        }
+      ],
+      "migration_count": 274,
+      "migration_bytes_unchanged": true,
+      "tracked_diff": false,
+      "staged_diff": false
+    },
+    {
+      "package": "W2",
+      "owner": "/root/course_release_review",
+      "branch": "codex/lane2-course-readiness",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane2-course-readiness/Lockliel",
+      "base_and_head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "status": "completed, uncommitted and unstaged",
+      "files": [
+        {
+          "path": "docs/lane2-course-readiness/ISOLATED_ACCEPTANCE_MATRIX.md",
+          "sha256": "1d268d4e2fda28c89b2ce0eaf8651e886ba9d19c0dfaee0d7f50d55a00a3e352",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/READINESS_RECONCILIATION.md",
+          "sha256": "f714e14a59f3a9e724596fbf9ced22b44afd8d862d6895781940d096d351e331",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/RELEASE_ORDER_RECOVERY_DURATION.md",
+          "sha256": "df7a3b724fad4116e57f19034e5446215d492cc0088aa1fedef5b4172dc91519",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/SHA256SUMS",
+          "sha256": "5c149f38669558a7dd6c1cbe8a902a815741f162c5b7144a354f74ad63ef78ef",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/WAVE2_ACCEPTANCE_DELTA.md",
+          "sha256": "af8a774b156d606871ce7dbd9c17004bc4cf0c31efcaf09fbae5bc6e60e43424",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane2-course-readiness/WAVE2_RESULT.md",
+          "sha256": "fdcdb261a5432eaa5f0446b7be7a9457c9aaab1cd28968f788c43058ae6d5708",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/2026-11-01/document-validation.json",
+          "sha256": "d7baeebafff0b9070ce7e7b88b85cd12f811bbace945e72ee6f89687501530b9",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/2026-11-01/read-only-certification.json",
+          "sha256": "4ebd123729bd847469a075d1834316c922adc849820c3fdc8e92347dea591b1b",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/2026-11-01/source-report-fingerprints.json",
+          "sha256": "e0c00117841bf026fc09d190452f2315a234909e8f0be5e0f83590217d4d8760",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/SHA256SUMS",
+          "sha256": "05afe137d4c005e0352f8a00a9aeaedaaf73c1c864022808a1d2becd82facf4a",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/document-validation.json",
+          "sha256": "259dbdbda108391a5f1304a5e296e8fef3b2cfdc73b89ebfd96a004092f8087d",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane2-course-readiness/evidence/wave2-2026-11-01/verification.json",
+          "sha256": "a0a9edc7875b318590d991db5e6e8ffcf3d5df0faecfc15bcb11bdc5f85508bd",
+          "delta_from_wave1": "added"
+        }
+      ],
+      "migration_count": 280,
+      "migration_bytes_unchanged": true,
+      "tracked_diff": false,
+      "staged_diff": false
+    },
+    {
+      "package": "W3",
+      "owner": "/root/feature_inventory",
+      "branch": "codex/lane3-member-design",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane3-member-design/Lockliel",
+      "base_and_head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "status": "completed, uncommitted and unstaged",
+      "files": [
+        {
+          "path": "components/member-experience-preview/member-components.tsx",
+          "sha256": "d3bd92b69206074167c0cd71eafabe00abae901af95d9f8cacb61fd449028a99",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "components/member-experience-preview/member-experience-preview.module.css",
+          "sha256": "0f69ae6e6d0561aaece9f2eb1d93acc51c275cfc5c2e43f7ef33975b186b9761",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "components/member-experience-preview/member-experience-preview.tsx",
+          "sha256": "ece4d2661bcbbaec7d52c737393eec14e3cd1a2228df570f2a1da9c9cf171e00",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "components/member-experience-preview/preview-model.ts",
+          "sha256": "c199e96b41da809971b243ff6549824a55aeee9d3c6e97a30dbde3815a1f9149",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "components/member-experience-preview/synthetic-fixtures.ts",
+          "sha256": "2cc36aab10e8f2a50097b22f362ddcfcbf2d5debcd0b954d695a6e5ef2b797c8",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane3-member-design/ACCEPTANCE.md",
+          "sha256": "5aee11578e856570b881201ec0711c2ca553a2ffaa37f394234c6787833e4a1a",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane3-member-design/PRIVACY_AND_INTEGRATION.md",
+          "sha256": "c90f963f158dc9e54681af2ee16ef3a4de4263145a1c9f38c50ab92f77837832",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane3-member-design/README.md",
+          "sha256": "a55408413c5054e0adb148521381934c911ff6b3dd6e113b0ea1155d846f7c92",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "docs/lane3-member-design/WAVE1_FINGERPRINTS.json",
+          "sha256": "07153fb5856364ce6f65c115249beada435d767f769dd408df0b488185c660da",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane3-member-design/WAVE2_CONTRAST_REVIEW.json",
+          "sha256": "b02801e899606abdfad697cc71d1e6f5da7a8f40a477530e734513c254debe7b",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane3-member-design/WAVE2_RESULT.md",
+          "sha256": "4d99d9a14750455a54c230c03088b6103d358307ead861288131eff86075cdc3",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "tests/member-experience-preview.test.mjs",
+          "sha256": "5843f1217c4efabf5843dc6597fedc23ccbee5bd92a81c7e1d15f66d23c9363a",
+          "delta_from_wave1": "modified"
+        }
+      ],
+      "migration_count": 280,
+      "migration_bytes_unchanged": true,
+      "tracked_diff": false,
+      "staged_diff": false
+    },
+    {
+      "package": "W4",
+      "owner": "/root/faith_design_plan",
+      "branch": "codex/lane4-faith-contracts",
+      "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane4-faith-contracts/Lockliel",
+      "base_and_head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+      "status": "completed, uncommitted and unstaged",
+      "files": [
+        {
+          "path": "components/faith-journey-preview/faith-journey-preview.module.css",
+          "sha256": "aacaced886985d52eb3f9dd4fb73b0e254e6ce77aba5d34f502de692cc447e38",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "components/faith-journey-preview/faith-journey-preview.tsx",
+          "sha256": "ceca78f5baaf6f5b473cf25f350a00004bc899537240d723031e59fdc33ce0a7",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "components/faith-journey-preview/preview-model.ts",
+          "sha256": "59f79d92ab47a38b64fc9b3c556a2ad7fd02e7219170a87f39bd5592c84de835",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "components/faith-journey-preview/scripture-drawer.tsx",
+          "sha256": "6953e6184e46df4ce946d15fda1ba69d40892198bfb5eda798bb84081daec90a",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane4-faith-contracts/CRISIS_SUPPORT_INTERACTION_REQUIREMENTS.md",
+          "sha256": "8f04598a4d8ddfa552a1be168b3c1301fa71bf50d3e46f8bde336d093c176600",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane4-faith-contracts/README.md",
+          "sha256": "8b004021389e8ac0600e6c1f8ccdc30a9ffb4a6d9e05d3ce23058f256791aa06",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "docs/lane4-faith-contracts/WAVE2_RESULT.md",
+          "sha256": "aae0bde99b0af314b0566bdef633aac719ddec3347a6c3d292b10f04885fdb83",
+          "delta_from_wave1": "added"
+        },
+        {
+          "path": "docs/lane4-faith-contracts/private-domain-architecture.md",
+          "sha256": "8f8574994c24bd1682f69a8a0fac1afc2c14c6d9520fce36c45d527d3ea61c71",
+          "delta_from_wave1": "modified"
+        },
+        {
+          "path": "docs/lane4-faith-contracts/provider-licensing.md",
+          "sha256": "340028c4238a5f104caf9c268fbeb6de9c0f2256dc59375f9bc697deb02ad632",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "lib/faith-journey/contracts.ts",
+          "sha256": "76ac727c94582c5313236be3f376880cf7f0a821fc7bc6858c34cbdc12bb8e30",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "lib/faith-journey/index.ts",
+          "sha256": "17a8796cd449ff1bc4717ac441a98bd4fc34ae60a6e5487cad22c7fccf9e0ae0",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "tests/faith-journey-contracts.test.mjs",
+          "sha256": "c92cf12fb608bc33a18782d18ac607c29c4ce3d791f5c3553fca383e9327cd74",
+          "delta_from_wave1": "unchanged"
+        },
+        {
+          "path": "tests/faith-journey-preview.test.mjs",
+          "sha256": "d55505e5f41dad7117afb2175570c310a0d39f5550862e2d5389820d7e6c7ea3",
+          "delta_from_wave1": "added"
+        }
+      ],
+      "migration_count": 280,
+      "migration_bytes_unchanged": true,
+      "tracked_diff": false,
+      "staged_diff": false
+    }
+  ],
+  "cleanup": {
+    "no_4318_listener": true,
+    "no_4319_listener": true,
+    "temporary_harnesses_absent": true,
+    "lane_dependency_symlinks_absent": true,
+    "browser_review_tabs_closed": true,
+    "viewport_reset": true
+  },
+  "checks": {
+    "W1_focused_tests": 22,
+    "W2_fresh_readonly_SQL_transactions": 4,
+    "W2_static_GETs": 4,
+    "W2_no_cookie_denials": 2,
+    "W2_no_unit_rerun": true,
+    "W3_focused_tests": 23,
+    "W3_selected_contrast_pairs": 13,
+    "W4_focused_tests": 80,
+    "W4_additional_initial_SSR_assertions": 11,
+    "fresh_focused_total": 125,
+    "combined_full_suite_or_SQL_replay": false
+  }
+}

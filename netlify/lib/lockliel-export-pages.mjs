@@ -2,7 +2,7 @@ const keys={
   profiles:['id'],faith_profiles:['profile_id'],communication_preferences:['profile_id'],
   communication_preference_events:['id'],contact_permissions:['profile_id','other_profile_id','permission_type'],
   tags:['id'],profile_tags:['profile_id','tag_id'],course_enrollments:['id'],
-  lesson_progress:['profile_id','lesson_id'],media_progress:['profile_id','asset_id'],
+  lesson_private_notes:['profile_id','lesson_id'],lesson_progress:['profile_id','lesson_id'],media_progress:['profile_id','asset_id'],
   reach_contacts:['id'],referral_links:['id'],referral_events:['id'],
   group_members:['group_id','profile_id'],leader_assignments:['member_id'],
   founders50_applications:['id'],founder_orientation_progress:['profile_id','step_id'],

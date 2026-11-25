@@ -1,0 +1,12 @@
+{
+  "baseline": "2be683fd848c57e418b3144a7a8febe5881182c6",
+  "readiness": "645b429a75c9ab47f122507be220baa4340453f6",
+  "writeContainment": "f2224080e87a54d4fa5916088cda1c188fae9a79",
+  "recordContainment": "263f76b7c6e52df80f5e7461e9a23eb4d5bfd200",
+  "parallelGroups": "dc404c180f001d55b6dd2babcc801aa6ef6706c2",
+  "independentReview": "df8c3d4a62fa5264f1df48708f71383eb29627b7",
+  "hostedEligible": false,
+  "newFixtureCreated": false,
+  "applicationReservation": "UNUSED",
+  "diagnosticAllowance": "CONSUMED"
+}

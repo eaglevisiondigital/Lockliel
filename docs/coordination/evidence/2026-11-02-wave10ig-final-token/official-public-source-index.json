@@ -1,0 +1,93 @@
+[
+  {
+    "repo": "supabase/cli",
+    "commit": "03392adf120076480cf012b9e4d6f27a3ae3cfee",
+    "path": "apps/cli/src/auth/access-token.ts",
+    "sha256": "8c1c9993636547ece90c75bcf9718ebc2b16633cc85313fcec5fe570325bc3a3",
+    "url": "https://raw.githubusercontent.com/supabase/cli/03392adf120076480cf012b9e4d6f27a3ae3cfee/apps/cli/src/auth/access-token.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "packages/shared-data/scoped-access-token-permissions.ts",
+    "sha256": "4517c8ca586357f105c27b678598254165d5b727423b3cce4b42e418fc403153",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/packages/shared-data/scoped-access-token-permissions.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/components/interfaces/Account/AccessTokens/Scoped/Form/ResourceAccessStep.tsx",
+    "sha256": "7673020ae04feb9b0cc079863fc97673c9dc42aa1bf69998b277b612adc8162b",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/components/interfaces/Account/AccessTokens/Scoped/Form/ResourceAccessStep.tsx"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/components/interfaces/Account/AccessTokens/hooks/useOrgAndProjectData.ts",
+    "sha256": "3cbb36ef2f5ea9aeb347dc2bbe3d20497690579cb34fa1c11f10db19af186a26",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/components/interfaces/Account/AccessTokens/hooks/useOrgAndProjectData.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/data/scoped-access-tokens/scoped-access-token-create-mutation.ts",
+    "sha256": "c685758e256c7300309202d5c4c00b821f39609f087ea7b2a1c9215987b197b6",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/data/scoped-access-tokens/scoped-access-token-create-mutation.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/components/interfaces/Account/AccessTokens/Scoped/Form/NewScopedTokenForm.utils.ts",
+    "sha256": "d24d06aa521db3c016519f092ece79327c5c3ad3e27e85249ea9c6cb902ed438",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/components/interfaces/Account/AccessTokens/Scoped/Form/NewScopedTokenForm.utils.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "packages/api-types/types/platform.d.ts",
+    "sha256": "c0bde7fe618bb081b09bd7c0ffa9160912673d8860c4733af7cee8c76d3388cd",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/packages/api-types/types/platform.d.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "packages/api-types/types/api-v1.d.ts",
+    "sha256": "53b5681f50cbcfdab6f41f06fb36145500faa3f5b0ccab89e40fdcdcf9936a68",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/packages/api-types/types/api-v1.d.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/data/projects/org-projects-infinite-query.ts",
+    "sha256": "e0185b9bcffaa44fb38602516cf55aaca82710cf8cc422b39383e76439e7722f",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/data/projects/org-projects-infinite-query.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/data/branches/branch-query.ts",
+    "sha256": "698503e78120795cadebc097c0d19ce7acb09138a1f424b13a08b26d23663a7f",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/data/branches/branch-query.ts"
+  },
+  {
+    "repo": "supabase/supabase",
+    "commit": "8be85ad4ad4e8689e311798dfa6a9d7a4005d70f",
+    "path": "apps/studio/data/branches/branches-query.ts",
+    "sha256": "7e9a5797a3e14e121c3fe7480c46dac249e9dee86765afb240fd7962aad95e4d",
+    "url": "https://raw.githubusercontent.com/supabase/supabase/8be85ad4ad4e8689e311798dfa6a9d7a4005d70f/apps/studio/data/branches/branches-query.ts"
+  },
+  {
+    "repo": "supabase/cli",
+    "commit": "03392adf120076480cf012b9e4d6f27a3ae3cfee",
+    "path": "apps/cli/src/command-internal/resolve-token.unit.test.ts",
+    "sha256": "35a9ed9da681edaef85f657c1c7b2e3377afd55ae0d4bddfe967b388c4f5198f",
+    "url": "https://raw.githubusercontent.com/supabase/cli/03392adf120076480cf012b9e4d6f27a3ae3cfee/apps/cli/src/command-internal/resolve-token.unit.test.ts"
+  },
+  {
+    "repo": "supabase/cli",
+    "commit": "03392adf120076480cf012b9e4d6f27a3ae3cfee",
+    "path": "packages/api/src/generated/openapi.json",
+    "sha256": "9ac6bd92b356d6de1fa551f1019075fd4e290e2552408e952eef986a412f0199",
+    "url": "https://raw.githubusercontent.com/supabase/cli/03392adf120076480cf012b9e4d6f27a3ae3cfee/packages/api/src/generated/openapi.json"
+  }
+]

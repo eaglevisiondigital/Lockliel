@@ -1,0 +1,23 @@
+
+> lockliel-vision@0.1.0 typecheck
+> next typegen && tsc --noEmit
+
+Generating route types...
+✓ Types generated successfully
+
+> lockliel-vision@0.1.0 validate:netlify
+> node --import ./tests/support/network-guard.mjs scripts/validate-netlify.mjs
+
+Validated 75 Netlify modules; imported 62 handlers.
+ℹ tests 0
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3142.49925
+
+> lockliel-vision@0.1.0 lint:tooling
+> eslint scripts/test-sql.mjs scripts/validate-netlify.mjs tests/*.test.mjs tests/support/*.mjs netlify/functions/book-release.mjs netlify/functions/faith-boost-signup.mjs scripts/isolate-preview-forms.mjs netlify/lib/deployment-safety.mjs netlify/edge-functions/*.js
+

@@ -1,0 +1,35 @@
+{
+  "lane": "L6",
+  "mode": "synthetic-contracts-only",
+  "base": "4868c7a9f18c91f0ae48aeef9f036fd099de3650",
+  "tests": {
+    "focusedPass": 86,
+    "focusedFail": 0,
+    "networkGuardPreloaded": true
+  },
+  "strictScopedTypeScript": "pass, bundler resolution, no allowImportingTsExtensions",
+  "targetedLint": "pass, zero warnings",
+  "pureBrowserBundle": {
+    "bytes": 10364,
+    "externalImports": 0,
+    "inputs": [
+      "lib/synthetic-contracts/context.ts",
+      "lib/content-readiness-preview/index.ts"
+    ]
+  },
+  "migrationFilesUnchanged": 280,
+  "liveAdapter": false,
+  "productionAccess": false,
+  "ui": false,
+  "limitations": [
+    "No full application build or repository-wide typecheck",
+    "No real authentication, RLS, authorization or content delivery acceptance",
+    "No production query or deployment"
+  ],
+  "sha256": {
+    "lib/synthetic-contracts/context.ts": "f2735b6aad2f2e287a7e9635f4c22265c6d91502dc76e2da4a50bb61de58a30e",
+    "docs/wave4/AUTHORIZATION_AND_CONTRACT.md": "85d97b4121530269f543940f79af4a35b402750f19e81a2612861cf23f826d8e",
+    "lib/content-readiness-preview/index.ts": "7101cc86d20f3c1b6add3269f70170f8364ff7f9cc0b27a4b2174fe0f3ea766a",
+    "tests/content-readiness-preview.test.mjs": "46474836997c6543ce241fd2e70ea3e5075358f484e352c7557a4327c6ecd28f"
+  }
+}

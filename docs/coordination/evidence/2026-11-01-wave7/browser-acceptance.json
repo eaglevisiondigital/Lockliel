@@ -1,0 +1,275 @@
+{
+  "mode": "offline-authenticated",
+  "loopbackOnly": true,
+  "networkSandbox": true,
+  "cspConnectFrameFormBlocked": true,
+  "responsive": [
+    {
+      "view": "Dashboard",
+      "width": 320,
+      "current": [
+        "Dashboard"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 320
+    },
+    {
+      "view": "Faith Journey",
+      "width": 320,
+      "current": [
+        "Faith Journey"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 320
+    },
+    {
+      "view": "Share Review",
+      "width": 320,
+      "current": [
+        "Share Review"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 320
+    },
+    {
+      "view": "Privacy",
+      "width": 320,
+      "current": [
+        "Privacy"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 320
+    },
+    {
+      "view": "Dashboard",
+      "width": 390,
+      "current": [
+        "Dashboard"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 390
+    },
+    {
+      "view": "Faith Journey",
+      "width": 390,
+      "current": [
+        "Faith Journey"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 390
+    },
+    {
+      "view": "Share Review",
+      "width": 390,
+      "current": [
+        "Share Review"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 390
+    },
+    {
+      "view": "Privacy",
+      "width": 390,
+      "current": [
+        "Privacy"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 390
+    },
+    {
+      "view": "Dashboard",
+      "width": 768,
+      "current": [
+        "Dashboard"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 768
+    },
+    {
+      "view": "Faith Journey",
+      "width": 768,
+      "current": [
+        "Faith Journey"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 768
+    },
+    {
+      "view": "Share Review",
+      "width": 768,
+      "current": [
+        "Share Review"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 768
+    },
+    {
+      "view": "Privacy",
+      "width": 768,
+      "current": [
+        "Privacy"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 768
+    },
+    {
+      "view": "Dashboard",
+      "width": 1365,
+      "current": [
+        "Dashboard"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 1365
+    },
+    {
+      "view": "Faith Journey",
+      "width": 1365,
+      "current": [
+        "Faith Journey"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 1365
+    },
+    {
+      "view": "Share Review",
+      "width": 1365,
+      "current": [
+        "Share Review"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 1365
+    },
+    {
+      "view": "Privacy",
+      "width": 1365,
+      "current": [
+        "Privacy"
+      ],
+      "duplicateIds": [],
+      "mainCount": 1,
+      "reducedMotion": false,
+      "scrollWidth": 1365
+    }
+  ],
+  "states": [
+    {
+      "scenario": "loading",
+      "busy": "true",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "Loading demonstration paused. No previous private data is retained. Choose another state to continue."
+    },
+    {
+      "scenario": "missing",
+      "busy": "false",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "No member profile was returned."
+    },
+    {
+      "scenario": "network-error",
+      "busy": "false",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "The offline service could not be reached. Try again."
+    },
+    {
+      "scenario": "stale",
+      "busy": "false",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "The member snapshot changed. Reload before continuing."
+    },
+    {
+      "scenario": "unauthorized",
+      "busy": "false",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "A role or unknown permission does not grant private member access."
+    },
+    {
+      "scenario": "unknown-permissions",
+      "busy": "false",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "A role or unknown permission does not grant private member access."
+    }
+  ],
+  "denials": [
+    {
+      "actor": "expired",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "The sample session expired. Private content is cleared."
+    },
+    {
+      "actor": "staff",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "A role or unknown permission does not grant private member access."
+    },
+    {
+      "actor": "anonymous",
+      "disabledNavigation": true,
+      "privateDashboardCount": 0,
+      "privateInputCount": 0,
+      "status": "Choose a synthetic member to review private data."
+    }
+  ],
+  "switchBack": {
+    "draft": "",
+    "recipient": "",
+    "resource": ""
+  },
+  "keyboard": {
+    "navigationToResource": "offline-share-resource",
+    "resourceToRecipient": "offline-share-recipient",
+    "cancelFocus": "Resource and recipient review",
+    "resetRetryFocus": "Your space. With clear boundaries."
+  },
+  "refresh": "anonymous, no private controls",
+  "shareConsent": "unknown, confirmation disabled",
+  "actual200PercentZoom": "not verified; supported browser capability has no zoom control, retained native failure not repeated",
+  "reducedMotion": "current OS query false; source rule retained; prior Wave6 actual OS activation/restoration is historical evidence",
+  "spokenScreenReader": "not verified; no supported spoken-output surface used",
+  "animations": "document.getAnimations unavailable in read-only browser scope; no animation measurement claimed",
+  "consoleWarningsErrors": 0
+}

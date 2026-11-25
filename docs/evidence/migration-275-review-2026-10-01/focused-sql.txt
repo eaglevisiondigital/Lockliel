@@ -1,0 +1,10 @@
+
+> lockliel-vision@0.1.0 test:sql
+> node scripts/test-sql.mjs --review-275
+
+PASS targeted catalog parity, existing-schema no-DDL replay, and 3 drift rejection cases.
+PASS incompatible legacy email abort and transactional constraint recovery.
+PASS original schema-274 upsert ACL defect reproduced; plain INSERT succeeds.
+PASS exact275 disposable defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (test-only revocation).
+PASS exact275 hosted defaults: inherited-service defect reproduced; controlled notes path works with zero service grants (test-only revocation).
+Passed focused 274/275 review; no CLI release rehearsal or later migrations.

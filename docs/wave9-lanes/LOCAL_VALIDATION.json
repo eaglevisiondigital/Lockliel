@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "fresh_focused_tests": 162,
+  "failures": 0,
+  "skips": 0,
+  "command": "Node24 --import tests/support/network-guard.mjs --test four Wave8 server/client/UI/cross-lane test files",
+  "source": "e83f0886ed7761d8a47738b9085ed8fab9610b8c",
+  "tracked_baseline_files_unchanged": 1418,
+  "migration_files_unchanged": 280,
+  "network": "Node outbound deny-all guard, scrubbed provider env, injected synthetic transport only",
+  "temporary_dependency_symlink": "created solely for this run and removed",
+  "source_changes": false,
+  "historical_not_rerun": {
+    "full_javascript": 1438,
+    "sql_replay": 280,
+    "sql_files": 17,
+    "types_four_builds_lint_netlify": "prior Wave8 exact-source pass"
+  },
+  "log_sha256": "664b8c030957fe422791edceb8bf6335f52b3a1293c2c2c3233ae0a5712c99d1"
+}

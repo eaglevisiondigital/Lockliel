@@ -1,0 +1,9 @@
+{
+  "agent": "/root/wave10ig_security",
+  "actualFollowupDispatched": true,
+  "sourceFileHashesIndependentlyVerified": 12,
+  "result": "AGREE: verified plain-PAT grammar subset; complete issuer grammar and child-only full-flow authorization unverified, keep hold",
+  "sourceEdits": 0,
+  "liveInputOrAccountRequests": 0,
+  "grantConsumed": false
+}

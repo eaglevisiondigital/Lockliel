@@ -1,0 +1,16 @@
+{
+  "project": "qjksggxorghaxvpyslip",
+  "transport": "Supabase SQL connector, separate read-only connection",
+  "ledger": 280,
+  "version": "20261001211009",
+  "name": "lockliel_current_trusted_duration_progression",
+  "statements_md5": "a55aead9115d12881650fee9f1bede27",
+  "notes_rls": true,
+  "service_notes_table": false,
+  "service_notes_columns": false,
+  "readiness": {
+    "paused": true,
+    "schemaReady": true,
+    "protocol": "278-v1"
+  }
+}

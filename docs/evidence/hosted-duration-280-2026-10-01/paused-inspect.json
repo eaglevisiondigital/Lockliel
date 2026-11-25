@@ -1,0 +1,70 @@
+{
+  "rls": [
+    {
+      "table": "course_enrollments",
+      "enabled": true
+    },
+    {
+      "table": "lesson_progress",
+      "enabled": true
+    },
+    {
+      "table": "lesson_assets",
+      "enabled": true
+    },
+    {
+      "table": "media_progress",
+      "enabled": true
+    },
+    {
+      "table": "lesson_private_notes",
+      "enabled": true
+    }
+  ],
+  "maintenance": {
+    "paused": true,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "late_lessons": [
+    {
+      "position": 11,
+      "active_video_count": 0
+    },
+    {
+      "position": 12,
+      "active_video_count": 0
+    },
+    {
+      "position": 13,
+      "active_video_count": 0
+    }
+  ],
+  "auth_required_columns": [
+    {
+      "table": "sessions",
+      "column": "id",
+      "default": null
+    },
+    {
+      "table": "sessions",
+      "column": "user_id",
+      "default": null
+    },
+    {
+      "table": "users",
+      "column": "id",
+      "default": null
+    },
+    {
+      "table": "users",
+      "column": "is_sso_user",
+      "default": "false"
+    },
+    {
+      "table": "users",
+      "column": "is_anonymous",
+      "default": "false"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "syntheticCasesPassed": 691,
+  "categories": {
+    "scoped_candidate_44char": 608,
+    "wrong_length": 64,
+    "invalid_character": 17,
+    "other_cli_token_family": 2
+  },
+  "inputAndRequestGrammarIdentical": true,
+  "officialCliPattern": "^sbp_(oauth_|v0_)?[a-f0-9]{40}$",
+  "workerPattern": "sbp_[0-9a-f]{40}",
+  "plainPatTotalCharacters": 44,
+  "scopedPrefix": "sbp_fc",
+  "scopedCandidateRemainingLowercaseHexCharacters": 38,
+  "formatContractLimit": "Provider-issued scoped tokens are string in public create-response type; public CLI grammar is consumer evidence, not proof of private issuer or resource authority.",
+  "liveTokens": 0,
+  "providerCalls": 0,
+  "databaseConnections": 0,
+  "grantConsumption": 0,
+  "credentialExposure": false
+}

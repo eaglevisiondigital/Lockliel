@@ -1,0 +1,80 @@
+{
+  "at": "2026-10-01T16:46:43.363Z",
+  "project": "qjksggxorghaxvpyslip",
+  "state": {
+    "paused": false,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "roles": [
+    "content_admin",
+    "discipleship_admin"
+  ],
+  "assets": [
+    {
+      "id": "2431919a-7476-4e56-823a-cde1bee52cfb",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "c51040db-3955-45e5-b0ce-4497f1e43f9c",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "84913874-5754-4825-903c-ef4fc08b9f7d",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "50dd2d64-f0ad-4beb-8cb2-df46180c6926",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "497bcd0a-1108-4a5d-8f0f-6a84843a3a76",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "1c8fb889-dc39-4169-9a6b-6ca6150fe336",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "d600a2a2-4962-47d3-a6f0-c060410b10c1",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "c488e60a-26b2-40df-ac63-87e47c96c659",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "ae80f112-0d8f-468d-ae66-fb7594bd2b81",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "a7224bea-724d-49df-a921-acb8d0955ec7",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "44042664-8045-4f51-9de8-49f18630e927",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    },
+    {
+      "id": "559fbd4d-49dd-45e2-901d-ef6c9c4a9525",
+      "source": "manual_manager: YouTube M7lc1UVf-VE player 22:24, observed 2026-10-01; isolated synthetic fixture",
+      "duration": 1344
+    }
+  ]
+}

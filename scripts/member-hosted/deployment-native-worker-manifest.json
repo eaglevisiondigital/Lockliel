@@ -1,0 +1,27 @@
+{
+  "version": "lockliel-deployment-native-worker-template-v2",
+  "project": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "executionAuthorized": false,
+  "authorizationState": "NOT_AUTHORIZED",
+  "applicationSource": "327ba098628f70aa65140862b8b14cd709bfd711",
+  "operatorSeal": null,
+  "identityApproval": null,
+  "sourceHashes": {
+    "deployment_database_preflight.py": "c367e660e07d42286ec1be321fd65593a82aa2ad85bd883383b677cd139e75db",
+    "deployment_preflight_attempt.py": "aa3957eebe9509de4cf6aaeff4a56cc060ec7c8d04cb979ed9ad87accf05a7ac",
+    "manual_database_preflight.py": "24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5",
+    "supabase_recovery.py": "9f8991b9e0c390b0790ac1cae2f7d90729e6cbb6aa17964669bcf2764c6697b2",
+    "database_preflight.py": "c426f5b4ad719082255c40165ba2e64f156ffb0f7397c83ff36a7ab7734174ba",
+    "deployment-preflight-baseline.json": "1b17b93a1c4d21d19cda04cd62c57785f276797c929fd5906c90b75ecf39e8ae",
+    "manual-branch-identity.json": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0",
+    "recovery_launcher.py": "ceb426d2474cb5678c3e45f7e3b9562b5dfe1b817633129c05e0bc901df6fbc7",
+    "recovery-runtime-manifest.json": "e9c74aa5aca6b71689a649e84d3055f1fcaf242b09c1380991d1e0b7761a5865",
+    "recovery-runtime-SHA256SUMS": "3ad8fbfde07e8ab1ce971c5e467104c326cce29e1d051142bcf84df0879f359f"
+  },
+  "caSha256": "700723581420dd1ac98fd7e9ac529f0ef210eadcaf87fc868a3ad7d114c2f3b7",
+  "caSource": "https://supabase-downloads.s3-ap-southeast-1.amazonaws.com/prod/ssl/prod-ca-2021.crt",
+  "attemptRoot": "/Users/davesmacbookpro/Library/Application Support/Lockliel/wave10im-deployment-preflight",
+  "passwordChannel": "hidden-local-tty-only",
+  "maximumDatabaseConnections": 1
+}

@@ -258,7 +258,7 @@ export default withProductionBackend(async(request)=>{
       ready:gripVideoDurationTotal>0&&gripVideoDurationVerified===gripVideoDurationTotal,
       manual:false,
       required:false,
-      detail:gripVideoDurationVerified+" of "+gripVideoDurationTotal+" active YouTube teaching assets have a verified duration. Verified assets derive watched percent from interval evidence instead of trusting a browser-supplied percentage."
+      detail:gripVideoDurationVerified+" of "+gripVideoDurationTotal+" active YouTube teaching assets have a verified duration. Trusted duration is required for watch-based course advancement and completion. This supplemental publishing check does not waive that engine requirement."
     },
     {
       key:"digital_book",

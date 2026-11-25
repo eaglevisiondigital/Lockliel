@@ -1,0 +1,178 @@
+{
+  "version": "lockliel-member-package-v1",
+  "pin": {
+    "version": "lockliel-member-hosted-v1",
+    "binding": {
+      "project": "qjksggxorghaxvpyslip",
+      "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "deploy": "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "f5214b75b8dba3671b8eeda6c45574baa2539221"
+    },
+    "origin": "https://aaaaaaaaaaaaaaaaaaaaaaaa--jade-unicorn-642f40.netlify.app",
+    "context": "deploy-preview",
+    "schema": 280,
+    "protocol": "278-v1",
+    "paused": true
+  },
+  "localFixture": true,
+  "enabled": true,
+  "source": {
+    "head": "f5214b75b8dba3671b8eeda6c45574baa2539221",
+    "tree": "3b1cede85841c2ee3b3c2a0d0a2e46c3493bc21d",
+    "dirty": false,
+    "inputs": {
+      "netlify/lib/lockliel-core.mjs": "cfa3123a3caafe2676ae14c0105f7357a090d7a4ef55deff8de791735d1ac146",
+      "netlify/lib/member-read-binding.mjs": "dff4bdccf102209369be5afae9df029ddf14458751806f02b34a32c9aa9b6001",
+      "netlify/lib/member-read-projection.mjs": "96b2a1908245d30df38219d930e111a72aae17c5ebfb346c7e2addbf85af112a",
+      "netlify/lib/member-read-server.mjs": "40024c7d21e1066bd540092084dd6fea4f0470c600bfb46b0ffb84fa8985f65b",
+      "netlify/member-hosted/binding.mjs": "5432a9a30af5c985c7dbe2c30a5851121151bad215e888a81cde65ee63c106d9",
+      "netlify/member-hosted/transport.mjs": "f7ecad465a22f4791f71c65f5ad9adffb2a1f295f679138fe84bf5afd5d3ff25",
+      "netlify/member-hosted/runtime.mjs": "286eaa0db357e0ea73aadbddf01610f943671875d04d5e483a1a26d1975a94ac"
+    }
+  },
+  "files": {
+    "artifacts/lockliel-member-read.mjs": {
+      "sha256": "cd424cf79f7a79aafc018b07b4f22bde3f9b03a53254baba22869797e00fc24c",
+      "sha1": "87c21ba8f967e77e0057973933b04dbda224bfa5",
+      "size": 21982
+    },
+    "artifacts/official-function-metadata.json": {
+      "sha256": "ce900f3de10b305b4adba00ac65efd934403c044bb49d56e7b878b1d06ae4f03",
+      "sha1": "12a5b29f293c0180428e37b4a34b4d61d4790a18",
+      "size": 464
+    },
+    "functions/lockliel-member-read.zip": {
+      "sha256": "771f9ed28e7ba508ae5a72906b0cd93804cc4fecb8148ab0e6a1f27d78eb6751",
+      "sha1": "7439a6f3a8edf830565c76be4515c864509587df",
+      "size": 69226
+    },
+    "netlify.toml": {
+      "sha256": "73761802c608789a4b6a6c2fad0655ef0aef93beeb088673e9c04f4a7c32d21f",
+      "sha1": "6c4966651e88737039680dc8aa92aef2fc63fdec",
+      "size": 343
+    },
+    "public/404.html": {
+      "sha256": "7a8c05a25fbc6ae36a57af4e9705a3c47ff3cddbfe6ff03f86e80f43c491524f",
+      "sha1": "7011b25b7d2b69996c3ae9e80ca915f16e8ead62",
+      "size": 178
+    },
+    "public/_headers": {
+      "sha256": "44dae15f41bf08b53a42c2e2726db2f64949e6421dbc25c6dd9420b18db8d041",
+      "sha1": "9e7bac37084f38575c92f8d74b963e4e11dee4c5",
+      "size": 636
+    },
+    "public/_next/static/chunks/78168e53-0975bed2c2b0a15e.js": {
+      "sha256": "bdde979a48523de914179ab076551a70747995f4d143281d1a6700dd9239bcad",
+      "sha1": "4357407972b2d8e0dc79264f9bdd0a3d6e887d31",
+      "size": 201053
+    },
+    "public/_next/static/chunks/9146-50408430f6acb9fc.js": {
+      "sha256": "37de55f33016e3ad7e0e9c99c8d4d4ab9d447a7606b0e3893a0d15d49b4b0906",
+      "sha1": "6f6246d65cb65ea6ad9dbc2b3bb85e3f5a1dc925",
+      "size": 241238
+    },
+    "public/_next/static/chunks/app/my-lockliel/review/page-a5e678ccfd65e972.js": {
+      "sha256": "5a3b506561109be7b645f8690c2decce6a9155a52a6cd2366fc86a9ac0bd1e9b",
+      "sha1": "8f29f066e47aa8f8f6958fa4ef69ed2f64a517ce",
+      "size": 143396
+    },
+    "public/_next/static/chunks/main-app-40f7411609c15661.js": {
+      "sha256": "25b8471d7957fc598fed65611cad31d516106d1abc5a4355b064b5b47f993fdf",
+      "sha1": "c40f6f4a4548e46aeee91fbfc1a7bec26a83d8e3",
+      "size": 514
+    },
+    "public/_next/static/chunks/polyfills-42372ed130431b0a.js": {
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "sha1": "3f4899d0f1d29d89df1ae015f694c8714284cfb0",
+      "size": 112594
+    },
+    "public/_next/static/chunks/webpack-144bc6444146e310.js": {
+      "sha256": "cd76780e68284a706a467841ae0769836dfa61c7dc12e86c291f6a279183c1f6",
+      "sha1": "d8f95bd7171c4392d0d9e5f9596d86071bc54add",
+      "size": 3420
+    },
+    "public/_next/static/css/0d74bbaccea30523.css": {
+      "sha256": "8e83f6fc51447103d3d13f61346fa8e28924cd9d385d1d479ac2c772077c4a30",
+      "sha1": "0b241c1a313a254dc55742cab62b12f3da336337",
+      "size": 150634
+    },
+    "public/_next/static/css/53d99f89ff0949ed.css": {
+      "sha256": "2f23ae562a034ca9125faa7a385df5a34ca8037873c19abe7c1b939a5ee3802e",
+      "sha1": "c5ffbb3a2b7f973238e58aa6c7fc93900b82595a",
+      "size": 53484
+    },
+    "public/_redirects": {
+      "sha256": "d17b424241d0b252baf0c7f3afd68c36718645933d0b9f7965b51f22c656c744",
+      "sha1": "666f91d3e0ddc92e432f0130b11b859f317610d6",
+      "size": 132
+    },
+    "public/lockliel-global-ministry-hero.png": {
+      "sha256": "a0358b73455a7db4ffa3e986b101c024bf095cb06ff1bd9a288d27ce7dbf87e8",
+      "sha1": "eb766e1c1301768a6a969c8a31598ae3ff9aa9e7",
+      "size": 1850397
+    },
+    "public/lockliel-mark.png": {
+      "sha256": "ffd085fdeaf6784a9ae960d27043d020ca31555d646ec5b89afb99672d3db204",
+      "sha1": "6f110f1de62ed34b2d1e91b940f97fecdf14c676",
+      "size": 270385
+    },
+    "public/my-lockliel/review/__next._full.txt": {
+      "sha256": "4581e921eea236a67fa1adbe3bb3ede4a90902b824ccad7c3bd107a6c6fd1762",
+      "sha1": "7175bcf2507909f962b7e8f0edb535664308d3c0",
+      "size": 4598
+    },
+    "public/my-lockliel/review/__next._tree.txt": {
+      "sha256": "23c4b6c28226e2688d5ec6fa7da586f887f4ee529d98f0ca05a0c89d43666f4f",
+      "sha1": "d3371b0fa7e18cc3c15a354fb6425c82e345111e",
+      "size": 454
+    },
+    "public/my-lockliel/review/__next.my-lockliel.review.__PAGE__.txt": {
+      "sha256": "1569c68676105d068b57ea7dcf7242c85013d69d1b0c7865182a04a6d6feec03",
+      "sha1": "765af5a1f55d55a5efcd56e27dc364dc2a087dfe",
+      "size": 3816
+    },
+    "public/my-lockliel/review.html": {
+      "sha256": "94f583c76a03099c4cb67547b68ee00c786965605d58def69340e7b38b8d20c0",
+      "sha1": "767d1b756a1d2ec5b164383613c8167351ad66bb",
+      "size": 9114
+    },
+    "public/my-lockliel/review.txt": {
+      "sha256": "4581e921eea236a67fa1adbe3bb3ede4a90902b824ccad7c3bd107a6c6fd1762",
+      "sha1": "7175bcf2507909f962b7e8f0edb535664308d3c0",
+      "size": 4598
+    }
+  },
+  "function": {
+    "name": "lockliel-member-read",
+    "path": "functions/lockliel-member-read.zip",
+    "compiled": "artifacts/lockliel-member-read.mjs",
+    "runtimeAPIVersion": 2,
+    "bootstrapVersion": "2.24.0",
+    "routes": [
+      {
+        "pattern": "/api/lockliel/member-read",
+        "literal": "/api/lockliel/member-read",
+        "methods": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  "toolchain": {
+    "zisi": "16.3.0",
+    "bootstrap": "2.24.0",
+    "bootstrapSha256": "d0a7166bbc0a4c664dccb3446e4c0358de247ced3214c1e7b944f34f467a4894",
+    "zisiEntrySha256": "50e86750efc12afca490f98770176a11744c41d8d3ecfc30162367d1952a12d1",
+    "bootstrapEntrySha256": "d0a7166bbc0a4c664dccb3446e4c0358de247ced3214c1e7b944f34f467a4894",
+    "esbuild": "0.28.0"
+  },
+  "byteDomains": {
+    "source": "Git HEAD tree plus explicitly hashed compiled input bytes",
+    "compiled": "artifacts/lockliel-member-read.mjs SHA256",
+    "archive": "functions/lockliel-member-read.zip SHA256",
+    "static": "public/ file SHA256 and SHA1",
+    "provider": "UNVERIFIED: provider digests may use a different byte domain"
+  },
+  "hostedAcceptance": "NOT EXECUTED",
+  "releaseEligible": false
+}

@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "sourceCommit": "e3c3e382a53136fd57b3296b9d97876ecd7e4f7a",
+  "installedFiles": {
+    "manual_database_preflight.py": "24c9b04f1a696f6ad089614460842b20826a7f2b632f8bfe8a8589b53f1cb8b5",
+    "manual_recovery_launcher.py": "ec07fb0d0c7b799bcd1307ae3097a68ededdfd1c3b8246ec450829ac99838821",
+    "manual-recovery-launch.command": "6a3b3a694dfe2bad63e9a30b214119a32d37f58cd8366668cfe8d88d15841cb3",
+    "manual-branch-identity.json": "e41d3b988c3f58cfd4f0feff37d831077f8adf7d6c150aeb390df5305356c5f0"
+  },
+  "existingKitComponentsPreserved": 7,
+  "previousGrantPreserved": true,
+  "previousGrantSha256": "433a71b3b4edad86b9d3508a3c46a5516bb1cde40eb5e4de2bacc4a38a9c3e7a",
+  "newGrantSha256": "3c3398cf5908f52126ef260a05254e69bdefca410ec6f0e1f6cfe47094e7b583",
+  "grantState": "READY",
+  "sameAuthorizationAndDurableRoot": true,
+  "maximumRecoveries": 0,
+  "maximumDatabaseConnections": 1,
+  "attemptConsumed": false,
+  "credentialInput": false,
+  "databaseConnections": 0,
+  "providerRequests": 0,
+  "diagnosticExecuted": false
+}

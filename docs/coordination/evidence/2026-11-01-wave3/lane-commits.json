@@ -1,0 +1,105 @@
+[
+  {
+    "lane": "W1",
+    "agent": "/root coordinator",
+    "branch": "codex/lane1-account-integrity",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane1-account-integrity/Lockliel",
+    "preservationCommit": "38a1c097e8cf50425ccceac4685fc1770dceffac",
+    "head": "755b9859023dbb17995ade499eab53ecf9088686",
+    "clean": true,
+    "filesInWave3Commit": [
+      "docs/lane1-account-integrity/REAL_CAPTCHA_ACCEPTANCE_PROCEDURE.md",
+      "docs/lane1-account-integrity/WAVE3_RESULT.md",
+      "docs/lane1-account-integrity/wave3-readonly-evidence.json"
+    ],
+    "state": "completed local bounded lane"
+  },
+  {
+    "lane": "W2",
+    "agent": "/root/course_release_review",
+    "branch": "codex/lane2-course-readiness",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane2-course-readiness/Lockliel",
+    "preservationCommit": "6e19e240e6d7fa00514399636f879de4992a290a",
+    "head": "ba92f44f6d872fa2340e199f4596d967d5c0157f",
+    "clean": true,
+    "filesInWave3Commit": [
+      "docs/lane2-course-readiness/WAVE3_ATTESTATION_REQUEST.md",
+      "docs/lane2-course-readiness/WAVE3_RESULT.md",
+      "docs/lane2-course-readiness/evidence/wave3-2026-11-01/SHA256SUMS",
+      "docs/lane2-course-readiness/evidence/wave3-2026-11-01/access-review.json",
+      "docs/lane2-course-readiness/evidence/wave3-2026-11-01/document-validation.json"
+    ],
+    "state": "completed local bounded lane"
+  },
+  {
+    "lane": "W3",
+    "agent": "/root/feature_inventory",
+    "branch": "codex/lane3-member-design",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane3-member-design/Lockliel",
+    "preservationCommit": "365b30769c534cc8a75818ea50d3cb85a5ade30c",
+    "head": "e3a3dd00e8d3bbcf48e74a9e6a87666ebae95c48",
+    "clean": true,
+    "filesInWave3Commit": [
+      "components/member-experience-preview/index.ts",
+      "components/member-experience-preview/member-components.tsx",
+      "components/member-experience-preview/member-display-contract.ts",
+      "components/member-experience-preview/member-experience-preview.module.css",
+      "components/member-experience-preview/member-experience-preview.tsx",
+      "components/member-experience-preview/member-experience-workspace.tsx",
+      "docs/lane3-member-design/MEMBER_WORKSPACE_API.md",
+      "docs/lane3-member-design/WAVE3_A11Y_HARNESS.md",
+      "docs/lane3-member-design/WAVE3_RESULT.md",
+      "tests/member-experience-preview.test.mjs"
+    ],
+    "state": "completed local bounded lane"
+  },
+  {
+    "lane": "W4",
+    "agent": "/root/faith_design_plan",
+    "branch": "codex/lane4-faith-contracts",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane4-faith-contracts/Lockliel",
+    "preservationCommit": "dd743799f5e5063732fccc4e3f961ddae9da5e7a",
+    "head": "f4c2a9f606beb4f7224a6da5d9c42724769d1432",
+    "clean": true,
+    "filesInWave3Commit": [
+      "components/faith-journey-preview/faith-journey-preview.module.css",
+      "components/faith-journey-preview/faith-journey-preview.tsx",
+      "components/faith-journey-preview/faith-journey-workspace.tsx",
+      "components/faith-journey-preview/scripture-drawer.tsx",
+      "components/faith-journey-preview/scripture-encouragement.tsx",
+      "components/faith-journey-preview/synthetic-scripture.ts",
+      "components/faith-journey-preview/workspace-contract.ts",
+      "docs/lane4-faith-contracts/WAVE3_RESULT.md",
+      "tests/faith-journey-preview.test.mjs"
+    ],
+    "state": "completed local bounded lane"
+  },
+  {
+    "lane": "L5",
+    "agent": "/root/connections_wave3",
+    "branch": "codex/lane5-consent-followup",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane5-consent-followup/Lockliel",
+    "preservationCommit": null,
+    "head": "077e4d7877ea19b7e9bb22be0094f03cf44edd6d",
+    "clean": true,
+    "filesInWave3Commit": [
+      "docs/lane5-connections/IMPLEMENTATION_READY_PLAN.md",
+      "docs/lane5-connections/PROPOSED_ACCEPTANCE_MATRIX.md"
+    ],
+    "state": "completed documentation preparation only"
+  },
+  {
+    "lane": "L6",
+    "agent": "/root/content_wave3",
+    "branch": "codex/lane6-content-readiness",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane6-content-readiness/Lockliel",
+    "preservationCommit": null,
+    "head": "4868c7a9f18c91f0ae48aeef9f036fd099de3650",
+    "clean": true,
+    "filesInWave3Commit": [
+      "docs/lane6-content/ACCEPTANCE_MATRIX.md",
+      "docs/lane6-content/IMPLEMENTATION_READY_PLAN.md"
+    ],
+    "state": "completed documentation preparation only"
+  }
+]

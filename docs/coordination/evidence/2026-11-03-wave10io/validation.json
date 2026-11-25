@@ -1,0 +1,53 @@
+{
+  "sourceUnchanged": true,
+  "checkpoint": "fd24c876c3c761fdf1731fcbe8047330a1f74f8a",
+  "networkGuard": "tests/support/network-guard.mjs",
+  "runs": [
+    {
+      "name": "independent-security",
+      "passed": 163,
+      "failed": 0,
+      "skipped": 0,
+      "logPath": "/private/tmp/lockliel-wave10io-security-tests.log",
+      "logSha256": "5a5d40a9db0af534da0f9d15bec384e24f9317b6f6e7af4584f022336ddc6412",
+      "files": [
+        "tests/member-hosted-wave10in-security.test.mjs",
+        "tests/member-hosted-wave10im-security.test.mjs",
+        "tests/member-hosted-identity-mapping.test.mjs",
+        "tests/member-hosted-deployment-evidence.test.mjs"
+      ]
+    },
+    {
+      "name": "auth-matrix",
+      "passed": 261,
+      "failed": 0,
+      "skipped": 0,
+      "logPath": "/private/tmp/lockliel-wave10io-auth-matrix-tests.log",
+      "logSha256": "b8d9e4f13cb77decbf8b89e6770d6dd45b8efeb2a3b65fe73473c3b434b0eb63",
+      "files": [
+        "tests/member-hosted-deployment-evidence.test.mjs",
+        "tests/member-hosted-runtime.test.mjs",
+        "tests/member-hosted-auth-composition.test.mjs",
+        "tests/member-hosted-verifier.test.mjs"
+      ]
+    },
+    {
+      "name": "parallel-faith-myfive",
+      "passed": 102,
+      "failed": 0,
+      "skipped": 0,
+      "logPath": "/private/tmp/lockliel-wave10io-parallel-contract-tests.log",
+      "logSha256": "23e44601199bd22d661f8e22c02ca5c3cbaa62826948261e0d30ce601305424a",
+      "files": [
+        "tests/faith-journey-contracts.test.mjs",
+        "tests/my-five-guidance.test.mjs"
+      ]
+    }
+  ],
+  "countsNotAdditive": "Independent security and Auth matrix runs overlap; do not sum as unique tests. All are existing regression tests.",
+  "fullBuildTypeLintNetlify": "Not rerun for documentation-only O; N exact unchanged source evidence historical.",
+  "databaseOrMigrationExecution": false,
+  "currentBrowserAcceptance": false,
+  "providerActions": 0,
+  "productionActions": 0
+}

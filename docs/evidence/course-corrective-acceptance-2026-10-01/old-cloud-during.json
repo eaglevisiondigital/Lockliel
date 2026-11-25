@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-01T16:55:06.472Z",
+  "status": 200,
+  "progress": [
+    {
+      "lesson_id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+      "status": "completed",
+      "last_position_seconds": 0,
+      "watched_seconds": 0,
+      "worksheet_status": "completed",
+      "started_at": "2026-10-01T15:57:21.328821+00:00",
+      "last_activity_at": "2026-10-01T16:05:22.987259+00:00",
+      "completed_at": "2026-10-01T16:00:11.753237+00:00",
+      "revision": 5,
+      "watch_requirement_met_at": "2026-10-01T15:59:49.299097+00:00",
+      "worksheet_answers": {
+        "1": "SYNTHETIC B post-reopen independent answer 2026-10-01."
+      },
+      "content_snapshot": {
+        "media": [
+          {
+            "asset": "84913874-5754-4825-903c-ef4fc08b9f7d",
+            "provider_ref": "M7lc1UVf-VE",
+            "duration_seconds": 100
+          }
+        ],
+        "rules": {
+          "model": "watch_answer",
+          "sequential": true,
+          "minimum_score": 0,
+          "watch_threshold": 95
+        },
+        "questions": [
+          {
+            "text": "Enter a synthetic rehearsal answer.",
+            "number": 1
+          }
+        ],
+        "configuration_version": 1
+      }
+    }
+  ],
+  "notes": [
+    {
+      "lesson_id": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+      "body": "SYNTHETIC B private note remains editable after completion.",
+      "updated_at": "2026-10-01T16:05:23.007693+00:00"
+    }
+  ],
+  "media": [
+    {
+      "asset_id": "84913874-5754-4825-903c-ef4fc08b9f7d",
+      "last_position_seconds": 99.72088178256226,
+      "played_seconds": 99.72088178256226,
+      "percent_watched": 7.42,
+      "first_started_at": "2026-10-01T15:58:08.882127+00:00",
+      "last_activity_at": "2026-10-01T16:46:42.916645+00:00",
+      "completed_at": null,
+      "covered_intervals": [
+        [
+          0,
+          99.72088178256226
+        ]
+      ]
+    }
+  ]
+}

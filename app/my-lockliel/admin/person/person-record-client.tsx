@@ -122,12 +122,14 @@ export default function PersonRecordClient(){
       {data.courses.map((course:any)=><article key={course.id||course.course_id} className="ml-person-course">
         <div className="ml-person-course-head">
           <div><BookOpen size={18}/><div><b>{course.course?.title||"Course"}</b><span>{course.status}</span></div></div>
-          <strong>{course.lessons.filter((l:any)=>l.status==="completed").length}/{course.lessons.length||13}</strong>
+          <strong>{course.lessons.filter((l:any)=>l.status==="completed").length}/{course.totalLessons}</strong>
         </div>
+        <p>Overall progress: {course.totalLessons?Math.round(100*course.lessons.filter((l:any)=>l.status==="completed").length/course.totalLessons):0}%</p>
+        <p>Current lesson: {course.currentLesson?`Lesson ${course.currentLesson.position}: ${course.currentLesson.title}`:"Course completed"}</p>
         <div className="ml-person-lesson-list">
           {course.lessons.map((lesson:any)=><div key={lesson.lesson_id}>
             <span>{lesson.status==="completed"?<CheckCircle2 size={13}/>:<BookOpen size={13}/>}</span>
-            <div><b>Lesson {lesson.lesson?.position}: {lesson.lesson?.title||"Lesson"}</b><small>{lesson.status.replaceAll("_"," ")} • worksheet {lesson.worksheet_status.replaceAll("_"," ")}</small></div>
+            <div><b>Lesson {lesson.lesson?.position}: {lesson.lesson?.title||"Lesson"}</b><small>{lesson.status.replaceAll("_"," ")} • worksheet {lesson.worksheet_status.replaceAll("_"," ")}</small>{lesson.worksheet_answers&&<details><summary>Submitted Answers</summary>{(lesson.content_snapshot?.questions||[]).map((q:any)=><p key={String(q.number??q.id)}><b>{q.text||q.prompt}</b><br/>{lesson.worksheet_answers[String(q.number??q.id)]||""}</p>)}</details>}</div>
             <span>{lesson.last_activity_at?new Date(lesson.last_activity_at).toLocaleDateString():""}</span>
           </div>)}
         </div>

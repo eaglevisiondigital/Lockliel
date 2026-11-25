@@ -1,0 +1,39 @@
+[
+  {
+    "route": "my-lockliel",
+    "status": 200,
+    "sha256": "f536c6735e48e3f46787d44ac5a4a4792416da8ce3cb66f078a4676e5f6de3f0",
+    "matchesPackagedBytes": true,
+    "noindex": "noindex, nofollow, noarchive",
+    "environment": "isolated-course-rehearsal"
+  },
+  {
+    "route": "my-lockliel/journey",
+    "status": 200,
+    "sha256": "f2af7ee5fe6a9e1667afe2c211f123716d614918b70705de0546da33ad4fe9a8",
+    "matchesPackagedBytes": true,
+    "noindex": "noindex, nofollow, noarchive",
+    "environment": "isolated-course-rehearsal"
+  },
+  {
+    "route": "my-lockliel/journey/lesson",
+    "status": 200,
+    "sha256": "168aef2d8dbeba71f48efce418e1ee48ae472d82d6a13465df183fc4f22c2118",
+    "matchesPackagedBytes": true,
+    "noindex": "noindex, nofollow, noarchive",
+    "environment": "isolated-course-rehearsal"
+  },
+  {
+    "route": "my-lockliel/admin",
+    "status": 200,
+    "sha256": "19e23af7fc4e6ef2fc791bbf3d7df0e30ca5ecdf58f5ad1c65a86444ea7dd26b",
+    "matchesPackagedBytes": true,
+    "noindex": "noindex, nofollow, noarchive",
+    "environment": "isolated-course-rehearsal"
+  },
+  {
+    "route": "/",
+    "status": 302,
+    "location": "/my-lockliel/journey"
+  }
+]

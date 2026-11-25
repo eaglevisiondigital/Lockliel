@@ -1,0 +1,38 @@
+{
+  "checkedDate": "2026-11-02",
+  "sources": [
+    {
+      "title": "Working with branches",
+      "url": "https://supabase.com/docs/guides/deployment/branching/working-with-branches",
+      "supports": "Separate branch database/environments; branch isolation; destructive reset is different from password reset"
+    },
+    {
+      "title": "Branching",
+      "url": "https://supabase.com/docs/guides/deployment/branching",
+      "supports": "Each branch is a separate environment/instance with own credentials"
+    },
+    {
+      "title": "Get database branch config",
+      "url": "https://supabase.com/docs/reference/api/v1-get-a-branch-config",
+      "supports": "Read-only branch-ref config API schema includes db_pass and jwt_secret; environment:read / branching_development_read; actual secret endpoint NOT called"
+    },
+    {
+      "title": "Update database password",
+      "url": "https://supabase.com/docs/reference/api/v1-update-database-password",
+      "supports": "PATCH /v1/projects/{ref}/database/password; project-specific ref/password; database:write / database_config_write; NOT called"
+    },
+    {
+      "title": "How do I reset my Supabase database password?",
+      "url": "https://supabase.com/kb/troubleshooting/how-do-i-reset-my-supabase-database-password-oTs5sB",
+      "supports": "Dashboard Database > Settings password reset control; NOT used"
+    },
+    {
+      "title": "Connect to your database",
+      "url": "https://supabase.com/docs/guides/database/connecting-to-postgres",
+      "supports": "Database password differs from API connection model; HTTPS clients use project URL and API key rather than Postgres DSN"
+    }
+  ],
+  "changelogIndex": "Fetch attempted; browser reported unsupported text/markdown content type; no code/API change made",
+  "documentationSearch": "Preferred search tool tried; self-hosted results not used as hosted-branch evidence",
+  "noLiveSecretEndpointCalled": true
+}

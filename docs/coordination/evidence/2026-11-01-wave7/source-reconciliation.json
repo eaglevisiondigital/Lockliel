@@ -1,0 +1,11 @@
+{
+  "planSourceHashes": 44,
+  "planAnchors": 86,
+  "baseline": "d16dd5c922d68b79c2e223ec04bab95c67a6c5f7",
+  "currentDifferences": [
+    "components/member-review/member-review-shell.tsx"
+  ],
+  "reason": "Explicit historical planning-context host difference, already recorded in immutable plan; current authorized host is among18 independently reviewed final pins",
+  "readModelCurrentSourceHashes": 9,
+  "finalSourcePins": 18
+}

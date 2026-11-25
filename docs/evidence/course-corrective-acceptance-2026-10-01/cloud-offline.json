@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-01T16:51:32.217Z",
+  "status": 200,
+  "lesson": {
+    "id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+    "position": 2,
+    "slug": "how-to-be-sure-you-are-a-christian",
+    "title": "Synthetic rehearsal lesson 2",
+    "video_provider": null,
+    "video_ref": null,
+    "worksheet_schema": {
+      "questions": [
+        {
+          "text": "Enter a synthetic rehearsal answer.",
+          "number": 1
+        }
+      ]
+    },
+    "translation_key": "how-to-be-sure-you-are-a-christian",
+    "configuration_version": 1,
+    "canonical_lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+    "content_lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34"
+  },
+  "progress": [
+    {
+      "lesson_id": "58fd82d4-c957-4993-86aa-c64d9d724e34",
+      "status": "in_progress",
+      "last_position_seconds": 0,
+      "watched_seconds": 0,
+      "worksheet_status": "not_started",
+      "started_at": "2026-10-01T16:47:11.344887+00:00",
+      "last_activity_at": "2026-10-01T16:47:11.344887+00:00",
+      "completed_at": null,
+      "revision": 0,
+      "watch_requirement_met_at": null,
+      "worksheet_answers": {},
+      "content_snapshot": {}
+    }
+  ],
+  "notes": [],
+  "media": [
+    {
+      "asset_id": "c744e4fb-fc07-4abc-9934-8f91c3481c5a",
+      "last_position_seconds": 259.62862009155276,
+      "played_seconds": 243.37242115258792,
+      "percent_watched": 18.11,
+      "first_started_at": "2026-10-01T16:47:11.344887+00:00",
+      "last_activity_at": "2026-10-01T16:51:31.09759+00:00",
+      "completed_at": null,
+      "covered_intervals": [
+        [
+          0,
+          193.37435602288818
+        ],
+        [
+          198.37492901907348,
+          203.37476308773805
+        ],
+        [
+          214.6303890305176,
+          259.62862009155276
+        ]
+      ]
+    }
+  ]
+}

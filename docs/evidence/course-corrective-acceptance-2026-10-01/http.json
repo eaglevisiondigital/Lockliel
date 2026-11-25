@@ -1,0 +1,22 @@
+[
+  {
+    "path": "my-lockliel.html",
+    "status": 200,
+    "sha256": "eaf7b652d08e44c58c0cf04f027e16eaf426c293a66afe9c19e0313adc1b5584"
+  },
+  {
+    "path": "my-lockliel/journey.html",
+    "status": 200,
+    "sha256": "62181038760497da8d2c0670ff9d9e05fd7210af223c564b5416798de8619a36"
+  },
+  {
+    "path": "my-lockliel/journey/lesson.html",
+    "status": 200,
+    "sha256": "0979ad0f7af35b6f1e054249d51f43317baa61b88c406e4c4c184219c939a9ec"
+  },
+  {
+    "path": "my-lockliel/admin/person.html",
+    "status": 200,
+    "sha256": "3fc057d6cad2e9b69aa89de4aaa88221016498704a900e32d8262e56d8be8d7c"
+  }
+]

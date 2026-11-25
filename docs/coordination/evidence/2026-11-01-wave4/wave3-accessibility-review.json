@@ -1,0 +1,18 @@
+{
+  "source": "649a3f5d5acf5702427b908c5600da290b747ee1",
+  "baseline": {
+    "clientWidth": 854,
+    "h1Width": 814,
+    "scrollWidth": 854
+  },
+  "skipFocus": "member-review-main",
+  "trappedTab": "Close Scripture reference",
+  "focusReturn": "Read John 3:1-3 ↗",
+  "motion": {
+    "nonzeroMotion": [],
+    "osPrefersReducedMotion": false
+  },
+  "accessibilityTree": "Named native dialog/title, labelled controls, polite status regions and focus behavior observed; spoken screen-reader use not performed",
+  "zoom": "Review-tab shortcut produced no measurable viewport/layout change. Actual 200% browser zoom NOT VERIFIED; no repeated or unrelated-window action.",
+  "console": []
+}

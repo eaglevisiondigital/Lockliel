@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-01",
+  "method": "Original reviewer value-free provenance + current official documentation + local field-name/artifact-flow inspection; no raw response retrieval or value use",
+  "provider": "Netlify",
+  "originating_tool": "mcp__codex_apps__netlify_netlify_deploy_get_deploy_for_site",
+  "operation": "scoped get-deploy-for-site / HTTP GET deploy detail",
+  "field_name": "skew_protection_token",
+  "field_location": "top-level deploy property",
+  "affected": [
+    {
+      "site": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+      "deploy": "6abfd81ccee16b59b75711a0",
+      "context": "branch-deploy",
+      "branch": "rehearsal",
+      "published_at": null
+    },
+    {
+      "site": "60579b8e-d0ca-4ac1-abe5-7128f4243e8b",
+      "deploy": "6abcdb0c84404e24a9880ac6",
+      "context": "branch-deploy",
+      "branch": "acceptance",
+      "published_at": null
+    }
+  ],
+  "classification": "Client-carried deploy-routing fingerprint; no administrative, API or member Auth credential identified",
+  "permissions": "Documented routing to the specific previously served deployment; no documented account/database/Auth/management/write authority or arbitrary-deploy access",
+  "active": "Exact current lifecycle/expiry unknown and not tested; documented skew routing is bypassed for the observed branch-deploy contexts and permalinks",
+  "exposure": "Originating worker functions.exec tool output and private functions result store in Codex; user visibility/expandability and platform retention not verified; not sent as values to coordinator, other agents, commentary or report",
+  "persistence": "Origin reviewer reports no value copied to repo/evidence/artifact files. Field-name and artifact-flow scans support this; forbidden exact-value absence comparison was not performed. Existing published materials uninspected.",
+  "rotation": "No account/API/Auth credential rotation recommended on this evidence; no revocation or provider setting operation. Optional owner-requested value-free provider clarification if exact lifecycle needed.",
+  "containment": "Retain incident, omit token fields, allowlist metadata before output; no further raw detail fetch or value use. If later confirmed to grant protected access, stop and obtain exact containment authority.",
+  "value_included": false,
+  "raw_provider_calls_in_wave10a": 0,
+  "sources": [
+    "https://docs.netlify.com/build/frameworks/frameworks-api/#netlifyv1skew-protectionjson",
+    "https://docs.netlify.com/deploy/deploy-overview/#skew-protection",
+    "https://docs.netlify.com/build/functions/api/#deploy",
+    "https://open-api.netlify.com/"
+  ]
+}

@@ -1,5 +1,18 @@
 # Lockliel
 
+## Authoritative trusted-duration release280
+
+`npm run test:sql` replays280 authoritative migrations in a fresh socket-only
+PostgreSQL17 cluster, then runs17 SQL/RLS files, all8 duration cases, strict notes
+privileges and operational280 readiness tests. Historical279 bytes are unchanged.
+The earlier proposal overlay is no longer executed by the full suite. Production-like
+and restricted default-ACL profiles still reject excessive actual notes privileges.
+The six-stage CLI rehearsal covers275–280. Local checks pass. Hosted280 is now applied only on the isolated project, with
+maintenance ON and readiness280/protocol278-v1 verified. Full positive hosted regression
+remains incomplete because maintenance blocks sampling and saves. See
+`docs/hosted-duration-280-2026-10-01.md`,
+`docs/trusted-duration-280-2026-10-01.md` and `docs/course-release-280-runbook.md`.
+
 The supported application is Next.js static export (`out/`) with Netlify functions
 and Supabase. Read AGENTS.md and the four continuity documents before changes.
 `README-V63.md`, Sites/Vinext helpers, D1 examples and `db:generate` are legacy
@@ -18,6 +31,25 @@ npm run typecheck
 npm run test:sql
 npm run lint
 ```
+
+For the fixed migration-275 security investigation only, run
+`npm run test:sql -- --review-275`. It creates the same socket-only disposable
+PostgreSQL 17 cluster, replays 274, reproduces the original upsert failure, then
+tests exact 275 under disposable and hosted default grants in rolled-back
+transactions. The fixture demonstrates excessive inherited service privileges and
+proves the learner RPC works after a **test-only** revocation. It is not an applied
+fix, does not advance any hosted branch, and accepts no connection parameters.
+
+The corrective regression profile is `npm run test:sql -- --review-279`. It preserves
+the old274 upsert reproduction, applies275–278 in order inside disposable
+transactions, demonstrates inherited service-role TRUNCATE, then applies the exact279
+file and requires denial and working learner/RPC access. Both default-ACL profiles
+are covered. The full `npm run test:sql` now replays280 and includes the post279
+private-notes privilege test. See `docs/course-release-280-runbook.md` for the pinned
+six-stage package. Historical279 execution records remain in its older runbook. The full SQL command also exercises
+the exact temporary280 readiness update in a rolled-back disposable transaction,
+including wrong/missing schema, catalog/privilege drift, caller denials and preserved
+maintenance. This operational fixture creates no hosted migration or deployment.
 
 `npm test` builds with Webpack, then runs every Node test with network protection.
 `npm run test:unit` reuses an existing `out/` build. `npm run validate` combines

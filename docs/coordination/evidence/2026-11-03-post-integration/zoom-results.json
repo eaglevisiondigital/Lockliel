@@ -1,0 +1,98 @@
+[
+  {
+    "section": "Dashboard",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Dashboard",
+    "headings": [
+      "Dashboard"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Faith",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Faith",
+    "headings": [
+      "Faith"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "My Five projection",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "My Five projection",
+    "headings": [
+      "My Five projection"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Share",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Share",
+    "headings": [
+      "Share"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Groups",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Groups",
+    "headings": [
+      "Groups"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Founders",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Founders",
+    "headings": [
+      "Founders"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Scripture Anchors",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Scripture Anchors",
+    "headings": [
+      "Faith"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  },
+  {
+    "section": "Prayer Board",
+    "clientWidth": 756,
+    "dpr": 4,
+    "focus": "Private Prayer Board",
+    "headings": [
+      "Faith"
+    ],
+    "height": 402,
+    "scrollWidth": 756,
+    "width": 756
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "a ready paused read",
+    "pass": true,
+    "lessons": 13,
+    "progress": 1
+  },
+  {
+    "name": "a protected PDF streamed",
+    "pass": true,
+    "status": 200,
+    "bytes": 630,
+    "privateCache": "private,no-store",
+    "rawStorageUrlExposed": false
+  },
+  {
+    "name": "a embedded notes empty",
+    "pass": true,
+    "status": 200
+  },
+  {
+    "name": "a direct save still blocked",
+    "pass": true,
+    "status": 503
+  },
+  {
+    "name": "a isolated token binding",
+    "pass": true,
+    "issuer": "https://qjksggxorghaxvpyslip.supabase.co/auth/v1"
+  },
+  {
+    "name": "b ready paused read",
+    "pass": true,
+    "lessons": 13,
+    "progress": 0
+  },
+  {
+    "name": "b protected PDF streamed",
+    "pass": true,
+    "status": 200,
+    "bytes": 630,
+    "privateCache": "private,no-store",
+    "rawStorageUrlExposed": false
+  },
+  {
+    "name": "b embedded notes empty",
+    "pass": true,
+    "status": 200
+  },
+  {
+    "name": "b direct save still blocked",
+    "pass": true,
+    "status": 503
+  },
+  {
+    "name": "b isolated token binding",
+    "pass": true,
+    "issuer": "https://qjksggxorghaxvpyslip.supabase.co/auth/v1"
+  },
+  {
+    "name": "anonymous resource denied",
+    "pass": true,
+    "status": 401
+  },
+  {
+    "name": "final maintenance ON",
+    "pass": true,
+    "state": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    }
+  }
+]

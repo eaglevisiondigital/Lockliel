@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-01T21:22:08Z",
+  "project": "qjksggxorghaxvpyslip",
+  "direct_host": "db.qjksggxorghaxvpyslip.supabase.co",
+  "aaaa": "2600:1f18:4850:7c01:a8d4:c050:50de:3ade",
+  "libpq": "hostname resolution failed",
+  "ipv6_route": "not in table",
+  "tcp_5432": "No route to host",
+  "direct_tls_authentication": "not reached",
+  "connector_readonly": {
+    "migration_count": 279,
+    "maintenance": {
+      "paused": false,
+      "protocol": "278-v1",
+      "schemaReady": true
+    }
+  },
+  "hosted_mutations": false,
+  "hosted_duration_tests": "NOT RUN",
+  "metadata_get_project": "NotFoundException; SQL connector read succeeded"
+}

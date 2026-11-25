@@ -1,0 +1,60 @@
+{
+  "scope": "disposable PostgreSQL17 Unix socket only",
+  "managedDatabaseConnections": 0,
+  "tcpListener": false,
+  "migrationSourcesModified": false,
+  "syntheticOnly": true,
+  "migrationReplayCount": 280,
+  "inventoryQueriesExecuted": 7,
+  "inventoryResultBytes": {
+    "identity": 64,
+    "catalog": 110243,
+    "security": 180,
+    "projections": 1252,
+    "rpcs": 943,
+    "readiness": 127,
+    "synthetic": 85
+  },
+  "readiness": {
+    "status": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    },
+    "control": {
+      "paused": true,
+      "protocol": "278-v1"
+    }
+  },
+  "security": {
+    "publicTables": 57,
+    "rlsPublicTables": 57,
+    "notesServiceTablePrivileges": 0,
+    "notesServiceColumnPrivileges": 0,
+    "gradingKeysAnon": false,
+    "gradingKeysAuthenticated": false
+  },
+  "projectionCount": 11,
+  "rpcCount": 3,
+  "ledgerVersionCount": 280,
+  "ledgerVersionsMatch": true,
+  "catalogSetMatches": {
+    "ledger": false,
+    "tables": false,
+    "columns": true,
+    "policies": false,
+    "triggers": true,
+    "functions": true,
+    "constraints": false,
+    "column_grants": true,
+    "table_defaults": false,
+    "global_table_defaults": true
+  },
+  "ledgerFingerprintLimit": "Local fixture statements stores each full authoritative source as one array element. Hosted CLI statement-array MD5 encoding is different; no hosted-MD5 parity claim.",
+  "rpcValidation": "PASS",
+  "projectionValidation": "PASS",
+  "migrationSourcesUnchanged": true,
+  "ok": true,
+  "ownClusterStopped": true,
+  "ownTemporaryFixtureRemoved": true
+}

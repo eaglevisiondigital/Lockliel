@@ -1,0 +1,177 @@
+{
+  "observed_on": "2026-11-01",
+  "inspection_window_utc": "approximately 14:59\u201315:04 UTC",
+  "branch": "codex/lane2-course-readiness",
+  "head": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+  "deploy": {
+    "id": "6abfd81ccee16b59b75711a0",
+    "site_id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "state": "ready",
+    "context": "branch-deploy",
+    "branch": "rehearsal",
+    "commit_ref": null,
+    "published_at": null,
+    "created_at": "2026-10-02T16:13:16.879Z",
+    "function_digest_entries": []
+  },
+  "site": {
+    "id": "70b03a42-6329-476e-bf4b-2b1ce30e9567",
+    "name": "jade-unicorn-642f40",
+    "function_digest_entries": []
+  },
+  "isolated_readiness": {
+    "ledger": 280,
+    "database": "postgres",
+    "notes_rls": true,
+    "read_only": "on",
+    "readiness": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    },
+    "lock_timeout": "5s",
+    "statement_timeout": "30s",
+    "service_note_table_grants": 0,
+    "service_note_column_grants": 0
+  },
+  "isolated_security_tail": {
+    "read_only": "on",
+    "lock_timeout": "5s",
+    "statement_timeout": "30s",
+    "notes_service_maintain_denied": true,
+    "migration280_fingerprint": "a55aead9115d12881650fee9f1bede27",
+    "notes_owner": "postgres",
+    "answer_keys_rls": true
+  },
+  "isolated_exposure_metadata": {
+    "read_only": "on",
+    "lock_timeout": "5s",
+    "statement_timeout": "30s",
+    "authenticated_public_schema_usage": true,
+    "notes_authenticated_select": true,
+    "notes_authenticated_write": false,
+    "public_postgres_table_defaults": [
+      {
+        "acl": "{postgres=arwdDxtm/postgres,service_role=Dxtm/postgres}",
+        "owner": "postgres",
+        "schema": "public"
+      }
+    ]
+  },
+  "provider_notice_url": "https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically",
+  "provider_notice_limit": "Existing grants persist; current project rollout/settings and authenticated REST behavior not certified",
+  "local": {
+    "migration_files": 280,
+    "sealed_hashes_match": true,
+    "tracked_source_diff_files": [],
+    "wave1_six_record_checksums_match": true,
+    "new_unit_tests": 0,
+    "full_suite": false,
+    "migration_replay": false,
+    "wave1_manifest_sha256": "5c149f38669558a7dd6c1cbe8a902a815741f162c5b7144a354f74ad63ef78ef"
+  },
+  "preservation": {
+    "credentials_requested": false,
+    "keys_or_env_inventory_fetched": false,
+    "auth_or_synthetic_sessions_created": false,
+    "maintenance_changed": false,
+    "migrations_or_deployment": false,
+    "push_commit_merge": false,
+    "production_actions": false,
+    "browser_used": false
+  },
+  "http": {
+    "origin": "https://rehearsal--jade-unicorn-642f40.netlify.app",
+    "redirects_followed": false,
+    "credentials_or_cookies_sent": false,
+    "checks": [
+      {
+        "path": "/my-lockliel/sign-in",
+        "method": "GET",
+        "status": 200,
+        "content_type": "text/html",
+        "bytes": 8472,
+        "sha256": "56f71dd9004766630dd3adc3fc0df19b54fc3f3d53280bdde9f3d094c19ebd91",
+        "matches_wave1_html": true,
+        "set_cookie_header_count": 0,
+        "csp_isolated_origin_present": true,
+        "csp_production_origin_present": false,
+        "csp_form_action_self": true
+      },
+      {
+        "path": "/my-lockliel/sign-up",
+        "method": "GET",
+        "status": 200,
+        "content_type": "text/html",
+        "bytes": 8809,
+        "sha256": "76c3d5ce47c821dee8cce2253e522d8b8c5f4d375711eee73ffff6e7fd99a59e",
+        "matches_wave1_html": true,
+        "set_cookie_header_count": 0,
+        "csp_isolated_origin_present": true,
+        "csp_production_origin_present": false,
+        "csp_form_action_self": true
+      },
+      {
+        "path": "/my-lockliel/journey",
+        "method": "GET",
+        "status": 200,
+        "content_type": "text/html",
+        "bytes": 9172,
+        "sha256": "e0700fa4279e2709b4c22ec46fe45b82f4c8ebbd78575b91a53762b19d1142a3",
+        "matches_wave1_html": true,
+        "set_cookie_header_count": 0,
+        "csp_isolated_origin_present": true,
+        "csp_production_origin_present": false,
+        "csp_form_action_self": true
+      },
+      {
+        "path": "/my-lockliel/admin/person",
+        "method": "GET",
+        "status": 200,
+        "content_type": "text/html",
+        "bytes": 7676,
+        "sha256": "ec6929e359759f71756eb3f4031c10e2e71c11e0e1b4b457833cd640b0743087",
+        "matches_wave1_html": true,
+        "set_cookie_header_count": 0,
+        "csp_isolated_origin_present": true,
+        "csp_production_origin_present": false,
+        "csp_form_action_self": true
+      },
+      {
+        "path": "/api/lockliel-auth/session",
+        "method": "GET",
+        "status": 401,
+        "content_type": "application/json",
+        "bytes": 23,
+        "matches_expected_unauthenticated_json": true,
+        "set_cookie_header_count": 2,
+        "cookie_limit": "Headers counted only; local source returns expired clearing cookies; no cookie values saved"
+      },
+      {
+        "path": "/api/lockliel/journey",
+        "method": "GET",
+        "status": 401,
+        "content_type": "application/json",
+        "bytes": 24,
+        "matches_expected_unauthenticated_json": true,
+        "set_cookie_header_count": 0
+      }
+    ],
+    "backend_binding_limit": "Source-compatible unauthenticated responses do not certify function bytes or runtime destination"
+  },
+  "final_security": {
+    "read_only": "on",
+    "lock_timeout": "5s",
+    "statement_timeout": "30s",
+    "authenticated_notes_effective_insert": false,
+    "authenticated_notes_effective_update": false,
+    "authenticated_notes_effective_delete": false,
+    "final_readiness": {
+      "paused": true,
+      "protocol": "278-v1",
+      "schemaReady": true
+    }
+  },
+  "inspection_ended_utc": "2026-11-01 15:07:13 UTC"
+}

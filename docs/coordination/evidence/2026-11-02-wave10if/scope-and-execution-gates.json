@@ -1,0 +1,33 @@
+{
+  "assignment": "LOCAL IMPLEMENTATION AND OFFLINE TESTS ONLY",
+  "isolatedProject": "qjksggxorghaxvpyslip",
+  "branch": "course-cutover-rehearsal-274",
+  "branchId": "7091bfd6-83ce-4c11-ac30-8ce85e09be2d",
+  "privateProviderOrigin": "https://api.supabase.com:443",
+  "allowedGETPaths": [
+    "/v1/projects/bsndfhbemstyrrglajat/branches",
+    "/v1/branches/qjksggxorghaxvpyslip"
+  ],
+  "parentListingPurpose": "Identify only the exact child; no parent database or parent credential endpoint",
+  "databaseDestination": "db.qjksggxorghaxvpyslip.supabase.co:5432/postgres",
+  "databaseUsername": "postgres",
+  "guardSourcePinned": true,
+  "secretFetches": 0,
+  "databaseConnections": 0,
+  "hiddenInputs": 0,
+  "netlifyReservations": 0,
+  "hostedAuth": 0,
+  "productionAccess": 0,
+  "liveAuthentication": "NOT VERIFIED",
+  "actualLiveSafeguards": "NOT VERIFIED",
+  "recoveryDiagnosticAllowance": "UNUSED",
+  "deploymentReservationAllowance": "UNUSED",
+  "operatorEntry": "No live CLI or launcher activated; run_once is a trusted future private worker entry only",
+  "remainingPrerequisites": [
+    "Review and source-pin exclusive -I -B clean-process launcher",
+    "Consume nonsecret atomic one-attempt allowance before any operator input; no restart/retry",
+    "Provide existing read-authorized Supabase PAT only via hidden local TTY, never a model-visible tool or ambient store",
+    "Validate current provider branch/schema identity, direct IPv6, pinned CA, TLS/hostname and actual same-connection on/5s/30s once under prior 10I-E authority",
+    "End short-lived process after fixed sanitized result; no deployment resume in recovery assignment"
+  ]
+}

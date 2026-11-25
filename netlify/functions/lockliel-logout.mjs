@@ -1,12 +1,23 @@
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {SUPABASE_URL,SUPABASE_KEY,json,parseCookies,clearCookie,ACCESS_COOKIE,REFRESH_COOKIE} from "../lib/lockliel-core.mjs";
 
-export default withProductionBackend(async(request)=>{
- if(request.method!=="POST")return json({error:"Method not allowed"},405);
- const c=parseCookies(request),access=c[ACCESS_COOKIE];
- if(access)await fetch(SUPABASE_URL+"/auth/v1/logout",{method:"POST",headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+access}}).catch(()=>{});
- return json({ok:true},200,[clearCookie(ACCESS_COOKIE),clearCookie(REFRESH_COOKIE)]);
-});
+/** Default behavior remains the existing production logout. Explicit local policy belongs to the isolated composition. */
+export function createLogoutHandler({
+ supabaseUrl=SUPABASE_URL,supabaseKey=SUPABASE_KEY,fetchImpl=(...args)=>fetch(...args),
+ makeJson=json,readCookies=parseCookies,makeClearCookie=clearCookie,
+ logoutScope,formatResult
+}={}) {
+ return async(request)=>{
+  if(request.method!=="POST")return makeJson({error:"Method not allowed"},405);
+  const c=readCookies(request),access=c[ACCESS_COOKIE];
+  let result=null;
+  if(access)result=await fetchImpl(supabaseUrl+"/auth/v1/logout"+(logoutScope===undefined?"":"?scope="+encodeURIComponent(logoutScope)),{method:"POST",headers:{apikey:supabaseKey,Authorization:"Bearer "+access}}).catch(()=>null);
+  const cookies=[makeClearCookie(ACCESS_COOKIE),makeClearCookie(REFRESH_COOKIE)];
+  return formatResult?formatResult({attempted:Boolean(access),result,cookies}):makeJson({ok:true},200,cookies);
+ };
+}
+
+export default /* @__PURE__ */ withProductionBackend(/* @__PURE__ */ createLogoutHandler());
 
 export const config={
  path:"/api/lockliel-auth/logout",

@@ -1,0 +1,17 @@
+{
+  "brand": {
+    "branch": "codex/master-experience-brand",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-master-experience-brand/Lockliel",
+    "commit": "87bd338cab2b4c23f00439b39d8e94f3f6369fad"
+  },
+  "traceability": {
+    "branch": "codex/master-experience-traceability",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-master-experience-traceability/Lockliel",
+    "commit": "7d5d2edaa59bb803ca0fa6427bc37fec2cfed9d1"
+  },
+  "review": {
+    "branch": "codex/master-experience-review",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-master-experience-review/Lockliel",
+    "commit": "988939a37470019e48f0d77420d99cd7ea30948c"
+  }
+}

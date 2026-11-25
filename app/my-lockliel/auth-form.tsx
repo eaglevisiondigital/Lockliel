@@ -1,9 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import {useMemo,useState} from "react";
+import {safeResourcePath} from "../../netlify/lib/member-journey.mjs";
+import {useMemo,useState,useSyncExternalStore} from "react";
+
+const subscribeToHydration=()=>()=>{};
+const clientReady=()=>true;
+const serverReady=()=>false;
 
 export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
+  const ready=useSyncExternalStore(subscribeToHydration,clientReady,serverReady);
   const [status,setStatus]=useState<"idle"|"loading"|"error"|"confirmation">("idle");
   const [message,setMessage]=useState("");
 
@@ -14,6 +20,7 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
 
   async function submit(event:React.FormEvent<HTMLFormElement>){
     event.preventDefault();
+    if(!ready||status==="loading")return;
     setStatus("loading");
     setMessage("");
 
@@ -50,33 +57,37 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
         return;
       }
 
+      const intended=safeResourcePath(new URLSearchParams(location.search).get("next"))||"/my-lockliel";
+      try{localStorage.setItem("lockliel:auth-change",String(Date.now()));}catch{}
       if(mode==="login"&&body.requiresMfa){
-        window.location.assign("/my-lockliel/security?challenge=1&next="+encodeURIComponent("/my-lockliel"));
+        window.location.assign("/my-lockliel/security?challenge=1&next="+encodeURIComponent(intended));
         return;
       }
 
-      window.location.assign("/my-lockliel");
+      window.location.assign(intended);
     }catch(error){
       setStatus("error");
       setMessage(error instanceof Error?error.message:"Something went wrong.");
     }
   }
 
-  return <form className="ml-auth-card" onSubmit={submit}>
+  // Static export is visible before React attaches onSubmit. Never allow a native
+  // GET submission to put credentials in the URL during that interval.
+  return <form className="ml-auth-card" method="post" action={"/api/lockliel-auth/"+(mode==="login"?"login":"signup")} aria-busy={!ready||status==="loading"} onSubmit={submit}>
     {mode==="signup"&&<div className="ml-auth-row">
       <label>
         First name
-        <input name="firstName" autoComplete="given-name" maxLength={120} required/>
+        <input name="firstName" autoComplete="given-name" maxLength={120} disabled={!ready} required/>
       </label>
       <label>
         Last name
-        <input name="lastName" autoComplete="family-name" maxLength={120} required/>
+        <input name="lastName" autoComplete="family-name" maxLength={120} disabled={!ready} required/>
       </label>
     </div>}
 
     <label>
       Email address
-      <input name="email" type="email" autoComplete="email" maxLength={254} required/>
+      <input name="email" type="email" autoComplete="email" maxLength={254} disabled={!ready} required/>
     </label>
 
     <label>
@@ -87,6 +98,7 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
         autoComplete={mode==="login"?"current-password":"new-password"}
         minLength={8}
         maxLength={128}
+        disabled={!ready}
         required
       />
     </label>
@@ -107,7 +119,7 @@ export default function LocklielAuthForm({mode}:{mode:"login"|"signup"}){
       {message}
     </p>}
 
-    {status!=="confirmation"&&<button className="ml-action" disabled={status==="loading"}>
+    {status!=="confirmation"&&<button className="ml-action" disabled={!ready||status==="loading"}>
       {status==="loading"?"Please wait…":mode==="login"?"Sign in":"Create my account"}
     </button>}
 

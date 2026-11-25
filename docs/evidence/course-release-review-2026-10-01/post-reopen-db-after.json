@@ -1,0 +1,387 @@
+{
+  "at": "2026-10-01T16:09:26.562Z",
+  "project": "qjksggxorghaxvpyslip",
+  "state": {
+    "paused": false,
+    "protocol": "278-v1",
+    "schemaReady": true
+  },
+  "ledger": 279,
+  "catalogUnchanged": true,
+  "config": {
+    "courses": {
+      "count": 1,
+      "digest": "ceaba9b1d13a30c4048bb3d3c7a944c5"
+    },
+    "lessons": {
+      "count": 13,
+      "digest": "e95b371944c4ecdc2de3b62cb212f51c"
+    },
+    "lesson_assets": {
+      "count": 40,
+      "digest": "7aef2fc8a86e6ae7a65b8334fb9c0829"
+    }
+  },
+  "privileges": {
+    "effective": [
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "anon",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "service_role",
+        "table": "app_private.course_answer_keys",
+        "allowed": false,
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "anon",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": true,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "authenticated",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "UPDATE"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "DELETE"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "INSERT"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "MAINTAIN"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "REFERENCES"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "SELECT"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRIGGER"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "TRUNCATE"
+      },
+      {
+        "role": "service_role",
+        "table": "public.lesson_private_notes",
+        "allowed": false,
+        "privilege": "UPDATE"
+      }
+    ],
+    "public_grants": 0
+  },
+  "control": {
+    "learnerUpdate": false,
+    "storageDigest": "00658ec09acc86a75b9eff715fa587af",
+    "anonymousReadiness": false
+  },
+  "learners": {
+    "a": {
+      "media": [
+        {
+          "percent": 95,
+          "intervals": [
+            [
+              0,
+              95
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "lesson": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+          "ownMarker": true,
+          "otherMarker": false
+        }
+      ],
+      "progress": [
+        {
+          "lesson": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+          "status": "completed",
+          "revision": 6,
+          "watchMet": true,
+          "worksheet": "completed",
+          "otherMarker": false,
+          "answerMarker": true
+        }
+      ]
+    },
+    "b": {
+      "media": [
+        {
+          "percent": 99.72,
+          "intervals": [
+            [
+              0,
+              99.72088178256226
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "lesson": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+          "ownMarker": true,
+          "otherMarker": false
+        }
+      ],
+      "progress": [
+        {
+          "lesson": "0408dde5-080f-4f59-b9df-8e05cfd1a45b",
+          "status": "completed",
+          "revision": 5,
+          "watchMet": true,
+          "worksheet": "completed",
+          "otherMarker": false,
+          "answerMarker": true
+        }
+      ]
+    }
+  }
+}

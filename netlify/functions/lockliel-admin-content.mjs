@@ -1,9 +1,10 @@
+import {backendConfig} from '../lib/backend-config.mjs';
+import {courseReadState,courseMaintenanceMessage,courseHeaders} from '../lib/course-cutover.mjs';
+import {courseReadiness} from "../lib/course-engine.mjs";
 import { withProductionBackend } from "../lib/deployment-safety.mjs";
 import {
   SUPABASE_URL,
-  SUPABASE_KEY,
   json,
-  dbHeaders,
   requireSession,
   sessionCookies,sessionAal} from "../lib/lockliel-core.mjs";
 
@@ -18,28 +19,14 @@ function safeHttpsUrl(value){
   }
 }
 
-const GRIP_PDFS={
-  "getting-a-grip/lesson-01.pdf":"getting-a-grip-lesson-1-how-to-become-a-christian.pdf",
-  "getting-a-grip/lesson-02.pdf":"getting-a-grip-lesson-2-how-to-be-sure-you-are-a-christian.pdf",
-  "getting-a-grip/lesson-03.pdf":"getting-a-grip-lesson-3-how-to-develop-your-relationship-with-god.pdf",
-  "getting-a-grip/lesson-04.pdf":"getting-a-grip-lesson-4-how-to-talk-to-god.pdf",
-  "getting-a-grip/lesson-05.pdf":"getting-a-grip-lesson-5-how-to-hear-from-god.pdf",
-  "getting-a-grip/lesson-06.pdf":"getting-a-grip-lesson-6-how-to-obey-god.pdf",
-  "getting-a-grip/lesson-07.pdf":"getting-a-grip-lesson-7-how-to-experience-gods-love-and-forgiveness.pdf",
-  "getting-a-grip/lesson-08.pdf":"getting-a-grip-lesson-8-how-to-be-filled-with-the-holy-spirit.pdf",
-  "getting-a-grip/lesson-09.pdf":"getting-a-grip-lesson-9-how-to-be-sure-you-are-filled-with-the-spirit.pdf",
-  "getting-a-grip/lesson-10.pdf":"getting-a-grip-lesson-10-how-to-grow-and-develop-your-faith.pdf",
-  "getting-a-grip/lesson-11.pdf":"getting-a-grip-lesson-11-how-to-experience-the-abundant-life.pdf",
-  "getting-a-grip/lesson-12.pdf":"getting-a-grip-lesson-12-how-to-be-an-overcomer.pdf",
-  "getting-a-grip/lesson-13.pdf":"getting-a-grip-lesson-13-how-to-serve-god.pdf"
-};
-
-export default withProductionBackend(async(request)=>{
-  const s=await requireSession(request);
+export function createContentHandler({sessionFor=requireSession,fetcher=(...args)=>globalThis.fetch(...args),binding=backendConfig,readStateFor=courseReadState}={}) {
+ const fetch=fetcher;
+ return async(request)=>{
+  const s=await sessionFor(request);
   if(!s.user||!s.access)return json({error:"Unauthorized"},401);
   if(sessionAal(s.access)!=="aal2")return json({error:"Multi-factor authentication required.",code:"mfa_required"},403);
 
-  const h=dbHeaders(s.access);
+  const h=courseHeaders(s.access);
   const uid=encodeURIComponent(s.user.id);
   const rr=await fetch(
     SUPABASE_URL+"/rest/v1/staff_roles?profile_id=eq."+uid+"&select=role",
@@ -50,8 +37,16 @@ export default withProductionBackend(async(request)=>{
     return json({error:"Content administration access required"},403);
   }
 
+  const maintenance=binding.mode==='isolated-course-rehearsal'?await readStateFor(s.access,{fetcher,binding}):null;
+  if(maintenance?.response)return maintenance.response;
+  if(maintenance?.paused&&request.method!=='GET')return json({error:courseMaintenanceMessage,code:'course_maintenance'},503);
+
   if(request.method==="POST"){
-    const b=await request.json().catch(()=>({}));
+    const origin=request.headers.get('origin');
+    if(origin&&origin!==new URL(request.url).origin)return json({error:'Request origin rejected.'},403);
+    const raw=await request.text();if(new TextEncoder().encode(raw).length>12000)return json({error:'Request too large.'},413);
+    let b;try{b=JSON.parse(raw);}catch{return json({error:'Invalid request.'},400);}
+    if(!b||typeof b!=='object')return json({error:'Invalid request.'},400);
 
     if(b.action==="createAsset"){
       const lessonId=String(b.lessonId||"");
@@ -64,6 +59,8 @@ export default withProductionBackend(async(request)=>{
       const storagePath=String(b.storagePath||"").trim()||null;
       const rawDuration=String(b.durationSeconds??"").trim();
       const duration=rawDuration===""?null:Number(rawDuration);
+      const verificationSource=String(b.verificationSource||"").trim();
+      if(duration!==null&&(verificationSource.length<10||verificationSource.length>500))return json({error:"Describe the authoritative duration source (10–500 characters)."},400);
 
       if(!lessonId||!["video","audio","pdf","worksheet","external_link"].includes(assetType)){
         return json({error:"Lesson and asset type are required."},400);
@@ -90,6 +87,7 @@ export default withProductionBackend(async(request)=>{
           external_url:externalUrl,
           storage_path:storagePath,
           duration_seconds:duration,
+          duration_verification_source:duration===null?null:verificationSource,
           status:"active"
         })
       });
@@ -100,6 +98,8 @@ export default withProductionBackend(async(request)=>{
     if(b.action==="updateAssetDuration"){
       const assetId=String(b.assetId||"");
       const duration=Number(b.durationSeconds);
+      const verificationSource=String(b.verificationSource||"").trim();
+      if(verificationSource.length<10||verificationSource.length>500)return json({error:"Describe the authoritative duration source (10–500 characters)."},400);
       if(!assetId||!Number.isFinite(duration)||duration<=0||duration>86400){
         return json({error:"Choose a video and enter a duration between 1 and 86,400 seconds."},400);
       }
@@ -109,12 +109,13 @@ export default withProductionBackend(async(request)=>{
         {
           method:"PATCH",
           headers:{...h,Prefer:"return=representation"},
-          body:JSON.stringify({duration_seconds:duration})
+          body:JSON.stringify({duration_seconds:duration,duration_verification_source:verificationSource})
         }
       );
       if(!r.ok)return json({error:"Unable to verify video duration."},r.status);
       const asset=(await r.json())?.[0]||null;
       if(!asset)return json({error:"Video asset not found."},404);
+      if(asset.id!==assetId||Number(asset.duration_seconds)!==duration||!asset.duration_verified_at||asset.duration_verification_source!==verificationSource)return json({error:"Duration verification could not be confirmed."},502);
       return json({ok:true,asset},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
@@ -137,59 +138,7 @@ export default withProductionBackend(async(request)=>{
       return json({ok:true},200,s.refreshed?sessionCookies(s.refreshed):[]);
     }
 
-    if(b.action==="importGripPdfs"){
-      const results=[];
-
-      for(const [storagePath,fileName] of Object.entries(GRIP_PDFS)){
-        try{
-          const sourceUrl="https://raw.githubusercontent.com/eaglevisiondigital/championlife/main/assets/downloads/grip/"+fileName;
-          const source=await fetch(sourceUrl);
-          if(!source.ok)throw new Error("Source returned "+source.status);
-
-          const bytes=await source.arrayBuffer();
-          const uploadPath=storagePath.split("/").map(encodeURIComponent).join("/");
-          const upload=await fetch(
-            SUPABASE_URL+"/storage/v1/object/lesson-assets/"+uploadPath,
-            {
-              method:"POST",
-              headers:{
-                apikey:SUPABASE_KEY,
-                Authorization:"Bearer "+s.access,
-                "Content-Type":"application/pdf",
-                "x-upsert":"true"
-              },
-              body:bytes
-            }
-          );
-
-          if(!upload.ok){
-            const detail=await upload.text().catch(()=>"");
-            throw new Error("Storage returned "+upload.status+" "+detail.slice(0,140));
-          }
-
-          const patch=await fetch(
-            SUPABASE_URL+"/rest/v1/lesson_assets?storage_path=eq."+encodeURIComponent(storagePath),
-            {
-              method:"PATCH",
-              headers:{...h,Prefer:"return=minimal"},
-              body:JSON.stringify({status:"active"})
-            }
-          );
-          if(!patch.ok)throw new Error("Uploaded but could not activate asset");
-
-          results.push({storagePath,ok:true,size:bytes.byteLength});
-        }catch(error){
-          results.push({storagePath,ok:false,error:error instanceof Error?error.message:String(error)});
-        }
-      }
-
-      return json({
-        ok:results.every(r=>r.ok),
-        imported:results.filter(r=>r.ok).length,
-        total:results.length,
-        results
-      },results.every(r=>r.ok)?200:207,s.refreshed?sessionCookies(s.refreshed):[]);
-    }
+    if(b.action==="importGripPdfs")return json({error:"PDF import remains disabled."},403);
 
     return json({error:"Unknown action"},400);
   }
@@ -198,7 +147,7 @@ export default withProductionBackend(async(request)=>{
 
   const [cr,lr,ar]=await Promise.all([
     fetch(
-      SUPABASE_URL+"/rest/v1/courses?select=id,slug,title,description,status,created_at&order=created_at.asc",
+      SUPABASE_URL+"/rest/v1/courses?select=id,slug,title,description,status,learning_rules,translation_key,created_at&order=created_at.asc",
       {headers:h}
     ),
     fetch(
@@ -206,17 +155,16 @@ export default withProductionBackend(async(request)=>{
       {headers:h}
     ),
     fetch(
-      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,title,provider,provider_ref,storage_path,external_url,duration_seconds,duration_verified_at,sort_order,status,created_at&order=lesson_id.asc,sort_order.asc",
+      SUPABASE_URL+"/rest/v1/lesson_assets?select=id,lesson_id,asset_type,title,provider,provider_ref,storage_path,external_url,duration_seconds,duration_verified_at,duration_verification_source,sort_order,status,created_at&order=lesson_id.asc,sort_order.asc",
       {headers:h}
     )
   ]);
 
-  return json({
-    roles,
-    courses:cr.ok?await cr.json():[],
-    lessons:lr.ok?await lr.json():[],
-    assets:ar.ok?await ar.json():[]
-  },200,s.refreshed?sessionCookies(s.refreshed):[]);
-});
-
+  if(!cr.ok||!lr.ok||!ar.ok)return json({error:"Course configuration is temporarily unavailable."},503);
+  const courses=await cr.json(),lessons=await lr.json();
+  const assets=(await ar.json()).map(asset=>maintenance?.paused?{...Object.fromEntries(Object.entries(asset).filter(([key])=>!['storage_path','external_url'].includes(key))),resource_mapped:Boolean(asset.storage_path)}:asset);
+  return json({roles,courses,lessons,assets,maintenance,readiness:courses.map(course=>({course_id:course.id,...courseReadiness(course,lessons.filter(l=>l.course_id===course.id),assets)}))},200,s.refreshed?sessionCookies(s.refreshed):[]);
+ };
+}
+export default withProductionBackend(createContentHandler());
 export const config={path:"/api/lockliel/admin/content"};

@@ -1,0 +1,22 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {createSyntheticAcceptancePlan as make} from '../lib/acceptance-281/synthetic-plan.mjs';
+const path='/api/lockliel/connections',owner='10000000-0000-4000-8000-000000000001';
+const id=n=>`20000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
+const add=p=>p.prepare('A','POST',path,'',{action:'addReachContact',displayName:'Synthetic adult A 1'});
+function acknowledge(p,t,n=1){p.reconcile(t,{ok:true,reachContact:{id:id(n),owner_id:owner,status:'praying'}});}
+test('real canonical page parser used; exact reach view required',()=>{const p=make();assert.equal(p.prepare('A','GET',path,'view=reach&reachLimit=50').command.liveEligible,false);for(const q of ['','view=all','view=reach&view=reach','view=reach&owner=x','view=reach&reachLimit=51'])assert.throws(()=>p.prepare('A','GET',path,q));});
+test('unknown project-like or owner authority rejected',()=>{assert.throws(()=>make().prepare('production','GET',path,'view=reach'));});
+test('messages invitations activity claims and details rejected',()=>{for(const action of ['sendMessage','requestLeader','setContactPermission','markReachActivity','updateReachDetails'])assert.throws(()=>make().prepare('A','POST',path,'',{action}));});
+test('no arbitrary personal data or extra body fields',()=>{for(const body of [{action:'addReachContact',displayName:'A real name'},{action:'addReachContact',displayName:'Synthetic adult A 1',privateNotes:'x'}])assert.throws(()=>make().prepare('A','POST',path,'',body));});
+test('cross-owner existing and invented row requests denied',()=>{const p=make(),{ticket}=add(p);acknowledge(p,ticket);assert.throws(()=>p.prepare('B','GET','/api/lockliel/my-five',`id=${id(1)}`));assert.throws(()=>p.prepare('A','GET','/api/lockliel/my-five',`id=${id(2)}`));});
+test('exact created ownership supports versioned synthetic private note',()=>{const p=make(),{ticket}=add(p);acknowledge(p,ticket);const body={action:'note',id:id(1),version:'2026-11-04T12:00:00Z',note:'Synthetic private note'};assert.equal(p.prepare('A','POST','/api/lockliel/my-five','',body).command.body.version,body.version);assert.throws(()=>p.prepare('A','POST','/api/lockliel/my-five','',{...body,version:'bad'}));});
+test('four in-flight ceiling',()=>{const p=make();for(let i=0;i<4;i++)add(p);assert.throws(()=>add(p));});
+test('70 attempted adds including acknowledged rows ceiling',()=>{const p=make();for(let i=1;i<=64;i++)acknowledge(p,add(p).ticket,i);for(let i=65;i<=70;i++){const {ticket}=p.prepare('B','POST',path,'',{action:'addReachContact',displayName:'Synthetic adult B 1'});p.reconcile(ticket,{ok:true,reachContact:{id:id(i),owner_id:'10000000-0000-4000-8000-000000000002',status:'praying'}});}assert.throws(()=>add(p));assert.equal(p.evidence().created.length,70);});
+test('260 ordinary requests preserve proposed cleanup reserve',()=>{const p=make();for(let i=0;i<260;i++){const {ticket}=p.prepare('A','GET',path,'view=reach');p.reconcile(ticket,{ok:true});}assert.throws(()=>p.prepare('A','GET',path,'view=reach'));});
+test('foreign/duplicate ticket cannot reconcile',()=>{const p=make(),{ticket}=add(p);assert.throws(()=>p.reconcile({},{}));acknowledge(p,ticket);assert.throws(()=>p.reconcile(ticket,{}));});
+test('ambiguous acknowledgement freezes further operations',()=>{for(const receipt of [{ok:false},{ok:true,reachContact:{id:id(1),owner_id:'wrong',status:'praying'}},null]){const p=make();assert.throws(()=>p.reconcile(add(p).ticket,receipt));assert.equal(p.evidence().stopped,true);assert.throws(()=>add(p));}});
+test('duplicate created row stops; never name-based cleanup',()=>{const p=make();acknowledge(p,add(p).ticket);assert.throws(()=>acknowledge(p,add(p).ticket));assert.equal(p.evidence().created.length,1);assert.equal(p.evidence().cleanupSupported,false);});
+test('interrupt invalidates pending tickets without retry',()=>{const p=make(),{ticket}=add(p);p.interrupt();assert.throws(()=>acknowledge(p,ticket));assert.throws(()=>add(p));});
+test('DELETE and alternate endpoints are never planned',()=>{for(const [m,u] of [['DELETE',path],['POST','/rest/v1/reach_contacts'],['POST','/api/lockliel-auth/login']])assert.throws(()=>make().prepare('A',m,u));});
+
+test('non-string and uppercase UUID acknowledgments fail closed',()=>{for(const rowId of [{toString:()=>id(1)},'AAAAAAAA-0000-4000-8000-000000000001']){const p=make();assert.throws(()=>p.reconcile(add(p).ticket,{ok:true,reachContact:{id:rowId,owner_id:owner,status:'praying'}}));assert.equal(p.evidence().created.length,0);}});

@@ -1,0 +1,44 @@
+{
+  "javascript": {
+    "total": 1853,
+    "passed": 1853,
+    "failed": 0,
+    "skipped": 0,
+    "newIncluded": 17
+  },
+  "python": {
+    "passed": 21,
+    "mockDriversOnly": true,
+    "executedByNodeBridge": true,
+    "notAdditionalJavascriptTests": true
+  },
+  "checks": [
+    {
+      "check": "unit",
+      "exitCode": 0,
+      "elapsedSeconds": 14.844,
+      "log": "/private/tmp/lockliel-wave10ia-unit.log"
+    },
+    {
+      "check": "lint-configured",
+      "exitCode": 0,
+      "elapsedSeconds": 3.346,
+      "log": "/private/tmp/lockliel-wave10ia-lint-configured.log"
+    },
+    {
+      "check": "lint-guard",
+      "exitCode": 0,
+      "elapsedSeconds": 1.95,
+      "log": "/private/tmp/lockliel-wave10ia-lint-guard.log"
+    }
+  ],
+  "productionNetworkBlockedDuringLocalTests": true,
+  "localHiddenTtySyntheticTest": "PASS; input not echoed and terminal state restored",
+  "firstLocalAttempt": {
+    "failure": "unsupported r+ TTY open",
+    "passwordPromptReached": false,
+    "correction": "write-only /dev/tty stream"
+  },
+  "actualAttemptHelperSha256": "d9df69e2f1b512bb46934e743c16fd3379815b11f951f6cc867ac84e8563d853",
+  "buildTypeReplay": "Not rerun; no application/TS/schema change. Prior Wave10H evidence retained separately."
+}

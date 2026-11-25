@@ -1,0 +1,36 @@
+{
+  "checkpoint": "bd6534a96fe3c8ae45302471f96615a763dd9514",
+  "source_application": "21ac4a5172a7dd7082b659d65533385e231892ef",
+  "migration280_sha256": "bb8af646303725c9c29ddc7119c5d8aefe2bf0afb91c206ffa8baa1a08e1b1c3",
+  "network": "Mac en0 IPv6 reachable, Ethernet absent; user identified T-Mobile hotspot",
+  "endpoint": "db.qjksggxorghaxvpyslip.supabase.co:5432",
+  "starting_ledger": 279,
+  "starting_paused": false,
+  "maintenance_action": "false to true before migration; never disabled afterward, including transactions",
+  "migration_applied_only": 280,
+  "readiness_update": "existing temporary readiness function only",
+  "synthetic_fixture_transactions": "rolled back",
+  "fixture_diagnostics": [
+    "Initial94% assertion incorrectly tried reducing already-preserved95% intervals; corrected to independent synthetic B.",
+    "Expected invalid provenance assignment rejection was incorrect: existing normalizer supplies trusted_database_configuration; invalid stored provenance injection omitted.",
+    "Expected forged-write42501 was preempted by PT503 maintenance guard; now recorded as maintenance denial."
+  ],
+  "full_duration_acceptance": "INCOMPLETE",
+  "real_playback": "NOT RUN: maintenance prohibits positive sampling",
+  "completed_note_save": "PT503, not a successful edit",
+  "null_blank_stored_provenance_injection": "NOT RUN; no trigger or constraint disabled",
+  "lessons_11_13": "hosted active-video counts zero; unchanged application readiness returns Media Coming Soon; no fresh browser rendering",
+  "production_access": "none this assignment",
+  "production_baseline": "274 and NULL durations from prior read-only observation, not freshly queried",
+  "no_actions": [
+    "production changes",
+    "push",
+    "merge",
+    "deployment",
+    "Auth/SMTP/PITR/compute changes",
+    "real member tests",
+    "production duration population",
+    "maintenance reopening",
+    "replay275\u2013279"
+  ]
+}

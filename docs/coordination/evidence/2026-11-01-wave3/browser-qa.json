@@ -1,0 +1,92 @@
+{
+  "unknownDenied": true,
+  "photoResetPrivate": true,
+  "publicCardDenied": true,
+  "tests": [],
+  "navigationPreserves": true,
+  "drawerFocusTrapEscape": true,
+  "anchorAndPrivatePlan": true,
+  "accountBoundaryClears": true,
+  "responsive": [
+    {
+      "width": 320,
+      "section": "Dashboard",
+      "clientWidth": 320,
+      "mainCount": 1,
+      "scrollWidth": 320,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 320,
+      "section": "Faith Journey",
+      "clientWidth": 320,
+      "mainCount": 1,
+      "scrollWidth": 320,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 390,
+      "section": "Dashboard",
+      "clientWidth": 390,
+      "mainCount": 1,
+      "scrollWidth": 390,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 390,
+      "section": "Faith Journey",
+      "clientWidth": 390,
+      "mainCount": 1,
+      "scrollWidth": 390,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 768,
+      "section": "Dashboard",
+      "clientWidth": 768,
+      "mainCount": 1,
+      "scrollWidth": 768,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 768,
+      "section": "Faith Journey",
+      "clientWidth": 768,
+      "mainCount": 1,
+      "scrollWidth": 768,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 1365,
+      "section": "Dashboard",
+      "clientWidth": 1365,
+      "mainCount": 1,
+      "scrollWidth": 1365,
+      "visibleUnlabelledFields": 0
+    },
+    {
+      "width": 1365,
+      "section": "Faith Journey",
+      "clientWidth": 1365,
+      "mainCount": 1,
+      "scrollWidth": 1365,
+      "visibleUnlabelledFields": 0
+    }
+  ],
+  "unavailableNoFallback": true,
+  "resetUnknown": true,
+  "refreshUnknown": true,
+  "console": [],
+  "accessibilityLimits": [
+    "Actual 200% browser zoom not verified",
+    "OS reduced-motion runtime not verified",
+    "Full screen-reader review not performed",
+    "Rendered contrast not exhaustively certified"
+  ],
+  "networkSafety": {
+    "nodeChecks": "network-guard preload",
+    "server": "loopback-only sandbox, external outbound denied",
+    "page": "CSP connect-src none, frame-src none, form-action none, local scripts/styles only",
+    "browserResourceTiming": "not exposed by supported read-only DOM evaluator; not claimed as full network trace"
+  }
+}

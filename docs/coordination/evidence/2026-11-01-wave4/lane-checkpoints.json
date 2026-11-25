@@ -1,0 +1,95 @@
+[
+  {
+    "lane": "L5",
+    "agent": "/root/connections_wave3",
+    "branch": "codex/lane5-consent-followup",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane5-consent-followup/Lockliel",
+    "base": "077e4d7877ea19b7e9bb22be0094f03cf44edd6d",
+    "head": "c933578e104c5b131d6866fc0669b7ca6f6c5af1",
+    "tests": 80,
+    "clean": true,
+    "commits": [
+      "10e0838b21097026774cb8b2ad93986dd60b2c61 feat: add synthetic consent and relationship review contracts",
+      "17989532c32b0d7e33d97f740e525b6fc5b94ec4 Preserve coordinator-owned Wave 4 synthetic contract dependency",
+      "6710d572c527d29edc332ef85306b7091e4d241d fix: reject coercible enum objects in synthetic projections",
+      "c933578e104c5b131d6866fc0669b7ca6f6c5af1 fix: preserve member catalog eligibility during share review"
+    ],
+    "changedFiles": [
+      "docs/lane5-connections/WAVE4_RESULT.md",
+      "docs/wave4/AUTHORIZATION_AND_CONTRACT.md",
+      "lib/connections-preview/index.ts",
+      "lib/synthetic-contracts/context.ts",
+      "tests/connections-preview.test.mjs"
+    ]
+  },
+  {
+    "lane": "L6",
+    "agent": "/root/content_wave3",
+    "branch": "codex/lane6-content-readiness",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane6-content-readiness/Lockliel",
+    "base": "4868c7a9f18c91f0ae48aeef9f036fd099de3650",
+    "head": "72e4c530ccca0bb892e4794a11de0266e839f576",
+    "tests": 86,
+    "clean": true,
+    "commits": [
+      "40cad4025a8eb8f2a89882964e030b4102854a4e feat: model synthetic content readiness and consent boundaries",
+      "72e4c530ccca0bb892e4794a11de0266e839f576 Preserve coordinator-owned Wave 4 synthetic contract dependency"
+    ],
+    "changedFiles": [
+      "docs/lane6-content/ACCEPTANCE_MATRIX.md",
+      "docs/lane6-content/IMPLEMENTATION_READY_PLAN.md",
+      "docs/lane6-content/WAVE4_RESULT.md",
+      "docs/lane6-content/WAVE4_VALIDATION.json",
+      "docs/wave4/AUTHORIZATION_AND_CONTRACT.md",
+      "lib/content-readiness-preview/index.ts",
+      "lib/synthetic-contracts/context.ts",
+      "tests/content-readiness-preview.test.mjs"
+    ]
+  },
+  {
+    "lane": "L7",
+    "agent": "/root/commerce_wave4",
+    "branch": "codex/lane7-commerce-contracts",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane7-commerce-contracts/Lockliel",
+    "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "head": "fcfd0f5ec077397a4dc40db5033ac6f1405cd809",
+    "tests": 41,
+    "clean": true,
+    "commits": [
+      "9cc72c4c78ae96b271367df03d982c336bb9a248 Add isolated synthetic commerce contracts and tests",
+      "7815ebd45f997eb0dd8f7034b05fa4641ccadf3f Keep commerce contracts compatible with application TypeScript",
+      "fcfd0f5ec077397a4dc40db5033ac6f1405cd809 Preserve coordinator-owned Wave 4 synthetic contract dependency"
+    ],
+    "changedFiles": [
+      "docs/lane7-commerce/API_CONTRACT.md",
+      "docs/lane7-commerce/WAVE4_RESULT.md",
+      "docs/lane7-commerce/validation.json",
+      "docs/wave4/AUTHORIZATION_AND_CONTRACT.md",
+      "lib/commerce-preview/index.ts",
+      "lib/synthetic-contracts/context.ts",
+      "tests/commerce-preview.test.mjs"
+    ]
+  },
+  {
+    "lane": "L8",
+    "agent": "/root coordinator",
+    "branch": "codex/lane8-privacy-ops",
+    "worktree": "/Users/davesmacbookpro/.codex/worktrees/lockliel-lane8-privacy-ops/Lockliel",
+    "base": "fa294f7d4cd717a37d9fe44b10cd3c32fe2cd098",
+    "head": "1c908a53065cf8b28d19d70a325948c41ca0febc",
+    "tests": 50,
+    "clean": true,
+    "commits": [
+      "d49e945684a7d8313e76b1b731f591ed1cdf1d39 Preserve coordinator-owned Wave 4 synthetic contract dependency",
+      "1c908a53065cf8b28d19d70a325948c41ca0febc Model synthetic scoped privacy and operations review contracts"
+    ],
+    "changedFiles": [
+      "docs/lane8-privacy-ops/WAVE4_RESULT.md",
+      "docs/lane8-privacy-ops/validation.json",
+      "docs/wave4/AUTHORIZATION_AND_CONTRACT.md",
+      "lib/privacy-ops-preview/index.ts",
+      "lib/synthetic-contracts/context.ts",
+      "tests/privacy-ops-preview.test.mjs"
+    ]
+  }
+]

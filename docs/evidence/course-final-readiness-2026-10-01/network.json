@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-01T18:41:35.766365+00:00",
+  "endpoint": "db.bsndfhbemstyrrglajat.supabase.co:5432",
+  "ipv6": [
+    "2600:1f18:38df:9500::eef4"
+  ],
+  "tcp": "connected",
+  "tls_code": 0,
+  "tls": "Connecting to 2600:1f18:38df:9500::eef4\nCONNECTION ESTABLISHED\nProtocol version: TLSv1.3\nCiphersuite: TLS_AES_256_GCM_SHA384\nRequested Signature Algorithms: id-ml-dsa-65:id-ml-dsa-87:id-ml-dsa-44:ECDSA+SHA256:ECDSA+SHA384:ECDSA+SHA512:ed25519:ed448:ecdsa_brainpoolP256r1_sha256:ecdsa_brainpoolP384r1_sha384:ecdsa_brainpoolP512r1_sha512:rsa_pss_pss_sha256:rsa_pss_pss_sha384:rsa_pss_pss_sha512:RSA-PSS+SHA256:RSA-PSS+SHA384:RSA-PSS+SHA512:RSA+SHA256:RSA+SHA384:RSA+SHA512\nPeer certificate: C=US, ST=Delware, L=New Castle, O=Supabase Inc, CN=db.bsndfhbemstyrrglajat.supabase.co\nHash used: SHA256\nSignature type: rsa_pss_rsae_sha256\nVerification: OK\nVerified peername: db.bsndfhbemstyrrglajat.supabase.co\nPeer Temp Key: ECDH, prime256v1, 256 bits\nDONE\n",
+  "authentication": "Not attempted; no retained production password used",
+  "no_pooler": true
+}
